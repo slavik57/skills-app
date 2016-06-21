@@ -4,7 +4,8 @@
   "description": "the app host of the skills app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "set NODE_ENV=tests&& mocha -c -b src/**/*.test.js",
+    "start": "set NODE_ENV=development&& node src/server/server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,43 @@
   "bugs": {
     "url": "https://github.com/slavik57/skills-app/issues"
   },
-  "homepage": "https://github.com/slavik57/skills-app#readme"
+  "homepage": "https://github.com/slavik57/skills-app#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "connect-pg-simple": "^3.1.0",
+    "cookie-parser": "^1.4.3",
+    "css-loader": "^0.23.1",
+    "express": "^4.14.0",
+    "express-controller": "^0.2.9",
+    "express-session": "^1.13.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "fs": "0.0.2",
+    "html-loader": "^0.4.3",
+    "html-webpack-plugin": "^2.21.0",
+    "https": "^1.0.0",
+    "jquery": "^3.0.0",
+    "material-icons": "^0.1.0",
+    "materialize-css": "^0.97.6",
+    "method-override": "^2.3.6",
+    "net": "^1.0.2",
+    "node-sass": "^3.8.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "resolve-url-loader": "^1.4.3",
+    "sass-loader": "^3.2.1",
+    "style-loader": "^0.13.1",
+    "ts-loader": "^0.8.2",
+    "typescript": "^1.8.10",
+    "webpack": "^1.13.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0",
+    "webpack-merge": "^0.14.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "mocha": "^2.5.3",
+    "supertest": "^1.2.0"
+  }
 }
