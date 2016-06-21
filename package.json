@@ -1,0 +1,19 @@
+{
+  "name": "skills-app",
+  "version": "1.0.0",
+  "description": "the app host of the skills app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slavik57/skills-app.git"
+  },
+  "author": "Slava Shpitalny <slavik57@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/slavik57/skills-app/issues"
+  },
+  "homepage": "https://github.com/slavik57/skills-app#readme"
+}
