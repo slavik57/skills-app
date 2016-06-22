@@ -12,7 +12,7 @@ var config = {
             secret: 'skills_application_secret:712cfb7d-a5fa-4c16-9805-c6da1deb5380',
         },
         databbaseConfig: {
-            databaseName: 'skills_development',
+            databaseName: 'skills_app_development',
             databaseUsername: '',
             databasePassword: '',
             databaseHost: ''
@@ -29,7 +29,7 @@ var config = {
             secret: 'skills_application_secret:712cfb7d-a5fa-4c16-9805-c6da1deb5380'
         },
         databbaseConfig: {
-            databaseName: 'skills_tests',
+            databaseName: 'skills_app_tests',
             databaseUsername: '',
             databasePassword: '',
             databaseHost: ''
