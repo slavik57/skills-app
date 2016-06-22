@@ -101,7 +101,6 @@ export class ExpressSkillsServer {
     this._expressApp.use(methodOverride('X-HTTP-Method-Override'));
     this._configureSession();
     this._configurePassport(useFakeLogin);
-    this._configureSessionPersistedMessageMiddleware();
     this._configureControllersForApp();
   }
 
@@ -136,25 +135,6 @@ export class ExpressSkillsServer {
 
     this._expressApp.use(
       (request, response, nextFunction) => this._ensureAuthenticated(request, response, nextFunction));
-  }
-
-  // TODO: check whether needed both for the server and the client
-  private _configureSessionPersistedMessageMiddleware() {
-    this._expressApp.use((req: any, res: any, next) => {
-      var err = req.session.error,
-        msg = req.session.notice,
-        success = req.session.success;
-
-      delete req.session.error;
-      delete req.session.success;
-      delete req.session.notice;
-
-      if (err) res.locals.error = err;
-      if (msg) res.locals.notice = msg;
-      if (success) res.locals.success = success;
-
-      next();
-    });
   }
 
   private _configureControllersForApp() {

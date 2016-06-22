@@ -88,7 +88,6 @@ var ExpressSkillsServer = (function () {
         this._expressApp.use(methodOverride('X-HTTP-Method-Override'));
         this._configureSession();
         this._configurePassport(useFakeLogin);
-        this._configureSessionPersistedMessageMiddleware();
         this._configureControllersForApp();
     };
     ExpressSkillsServer.prototype._configureSession = function () {
@@ -114,21 +113,6 @@ var ExpressSkillsServer = (function () {
         passport.serializeUser(function (user, done) { done(null, user); });
         passport.deserializeUser(function (obj, done) { done(null, obj); });
         this._expressApp.use(function (request, response, nextFunction) { return _this._ensureAuthenticated(request, response, nextFunction); });
-    };
-    ExpressSkillsServer.prototype._configureSessionPersistedMessageMiddleware = function () {
-        this._expressApp.use(function (req, res, next) {
-            var err = req.session.error, msg = req.session.notice, success = req.session.success;
-            delete req.session.error;
-            delete req.session.success;
-            delete req.session.notice;
-            if (err)
-                res.locals.error = err;
-            if (msg)
-                res.locals.notice = msg;
-            if (success)
-                res.locals.success = success;
-            next();
-        });
     };
     ExpressSkillsServer.prototype._configureControllersForApp = function () {
         expressControllers.setDirectory(path.join(this._serverDirectory, 'controllers'))

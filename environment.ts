@@ -33,10 +33,10 @@ var config = {
         keyFilePath: PathHelper.getPathFromRoot('ssl', 'development-localhost.key'),
         certificateFilePath: PathHelper.getPathFromRoot('ssl', 'development-localhost.cert')
       },
-      secret: 'skills_application_secret:712cfb7d-a5fa-4c16-9805-c6da1deb5380',
+      secret: 'skills_application_secret:712cfb7d-a5fa-4c16-9805-c6da1deb5380'
     },
     databbaseConfig: <IDatabaseConfig>{
-      databaseName: 'skills_app_development',
+      databaseName: 'skills_development',
       databaseUsername: '',
       databasePassword: '',
       databaseHost: ''
@@ -53,7 +53,7 @@ var config = {
       secret: 'skills_application_secret:712cfb7d-a5fa-4c16-9805-c6da1deb5380'
     },
     databbaseConfig: <IDatabaseConfig>{
-      databaseName: 'skills_app_tests',
+      databaseName: 'skills_tests',
       databaseUsername: '',
       databasePassword: '',
       databaseHost: ''
