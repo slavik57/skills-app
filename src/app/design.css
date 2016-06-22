@@ -3,6 +3,8 @@
  * Copyright 2014-2015 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
+@import url(../../node_modules/material-icons/css/material-icons.css);
+@import url(../../node_modules/materialize-css/dist/css/materialize.css);
 .materialize-red {
   background-color: #e51c23 !important;
 }

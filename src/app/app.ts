@@ -1,7 +1,7 @@
-export class A {
-  constructor() {
-    console.log('env1:' + process.env.ENV);
-  }
+import { bootstrap } from '@angular/platform-browser-dynamic';
+import { enableProdMode } from '@angular/core';
+import { AppComponent } from './modules/app.component';
+if (process.env.ENV === 'production') {
+  enableProdMode();
 }
-
-new A();
+bootstrap(AppComponent, []);

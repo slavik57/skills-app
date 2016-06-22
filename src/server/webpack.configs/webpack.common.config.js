@@ -5,6 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 exports.webpackCommonConfiguration = {
     entry: {
+        'polyfills': './src/app/polyfills.ts',
         'app': './src/app/app.ts',
         'vendor': './src/app/vendor.ts',
         'design': './src/app/design.scss'
@@ -28,7 +29,13 @@ exports.webpackCommonConfiguration = {
             },
             {
                 test: /\.scss$/,
+                exclude: pathHelper_1.PathHelper.getPathFromRoot('src', 'app', 'modules'),
                 loaders: ["style", "css", 'resolve-url', 'sass?sourceMap']
+            },
+            {
+                test: /\.scss$/,
+                include: pathHelper_1.PathHelper.getPathFromRoot('src', 'app', 'modules'),
+                loader: 'raw!sass'
             },
             {
                 test: /\.css$/,
@@ -44,7 +51,7 @@ exports.webpackCommonConfiguration = {
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['app', 'vendor']
+            name: ['app', 'vendor', 'design', 'polyfills']
         }),
         new webpack.DefinePlugin({
             'process.env': {

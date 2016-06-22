@@ -7,6 +7,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 export var webpackCommonConfiguration: Configuration = {
   entry: {
+    'polyfills': './src/app/polyfills.ts',
     'app': './src/app/app.ts',
     'vendor': './src/app/vendor.ts',
     'design': './src/app/design.scss'
@@ -30,7 +31,13 @@ export var webpackCommonConfiguration: Configuration = {
       },
       {
         test: /\.scss$/,
+        exclude: PathHelper.getPathFromRoot('src', 'app', 'modules'),
         loaders: ["style", "css", 'resolve-url', 'sass?sourceMap']
+      },
+      {
+        test: /\.scss$/,
+        include: PathHelper.getPathFromRoot('src', 'app', 'modules'),
+        loader: 'raw!sass'
       },
       {
         test: /\.css$/,
@@ -46,7 +53,7 @@ export var webpackCommonConfiguration: Configuration = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor']
+      name: ['app', 'vendor', 'design', 'polyfills']
     }),
     new webpack.DefinePlugin({
       'process.env': {

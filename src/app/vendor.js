@@ -1,6 +1,11 @@
 "use strict";
-require('../../node_modules/material-icons/css/material-icons.css');
 require('jquery');
-require('../../node_modules/materialize-css/dist/css/materialize.css');
 require('../../node_modules/materialize-css/dist/js/materialize.js');
+require('@angular/platform-browser');
+require('@angular/platform-browser-dynamic');
+require('@angular/core');
+require('@angular/common');
+require('@angular/http');
+require('@angular/router-deprecated');
+require('rxjs');
 //# sourceMappingURL=vendor.js.map
