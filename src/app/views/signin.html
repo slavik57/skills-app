@@ -23,7 +23,7 @@
         <div class="sign-in-card">
           <div class="card-content">
             <span class="title">Sign in</span>
-            <form id="signin" action="/login" method="post">
+            <form id="signin" action="/api/login" method="post">
               <div class="input-field">
                 <input id="signin-username" type="text" name="username"/>
                 <label for="signin-username">Username</label>
@@ -47,7 +47,7 @@
           <div class="card-content">
             <span class="title">Register</span>
 
-            <form id="register" action="/register" method="post">
+            <form id="register" action="/api/register" method="post">
               <div class="input-field">
                 <input id="register-username" type="text" name="username"/>
                 <label for="register-username">Username</label>
@@ -68,7 +68,7 @@
                 <input id="register-last-name" type="text" name="lastName"/>
                 <label for="register-last-name">Last name</label>
               </div>
-              
+
               <div class="submit-wrapper">
                 <input type="submit" class="submit-button" value="Register"/>
               </div>
