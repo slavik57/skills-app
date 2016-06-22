@@ -109,7 +109,6 @@ export class ExpressSkillsServer {
       conString: EnvironmentConfig.getSessionDbConnectionString()
     });
 
-    // TODO: add support for the secret of the other server...
     var options: SessionOptions = {
       secret: EnvironmentConfig.getCurrentEnvironment().appConfig.secret,
       saveUninitialized: true,
