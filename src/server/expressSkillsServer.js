@@ -92,7 +92,7 @@ var ExpressSkillsServer = (function () {
     };
     ExpressSkillsServer.prototype._configureSession = function () {
         var postgreSqlStore = new PostgreSqlStore({
-            conString: EnvironmentConfig.getDbConnectionString()
+            conString: EnvironmentConfig.getSessionDbConnectionString()
         });
         var options = {
             secret: EnvironmentConfig.getCurrentEnvironment().appConfig.secret,

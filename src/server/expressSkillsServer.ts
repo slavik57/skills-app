@@ -106,7 +106,7 @@ export class ExpressSkillsServer {
 
   private _configureSession() {
     var postgreSqlStore = new PostgreSqlStore({
-      conString: EnvironmentConfig.getDbConnectionString()
+      conString: EnvironmentConfig.getSessionDbConnectionString()
     });
 
     // TODO: add support for the secret of the other server...

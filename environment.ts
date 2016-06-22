@@ -12,7 +12,7 @@ interface IAppConfig {
   secret: string;
 }
 
-interface IDatabaseConfig {
+interface ISessionDatabaseConfig {
   databaseName: string;
   databaseUsername: string;
   databasePassword: string;
@@ -21,7 +21,7 @@ interface IDatabaseConfig {
 
 interface IEnvironmentConfig {
   appConfig: IAppConfig;
-  databbaseConfig: IDatabaseConfig;
+  sessionDatabaseConfig: ISessionDatabaseConfig;
 }
 
 var config = {
@@ -35,7 +35,7 @@ var config = {
       },
       secret: 'skills_application_secret:712cfb7d-a5fa-4c16-9805-c6da1deb5380'
     },
-    databbaseConfig: <IDatabaseConfig>{
+    sessionDatabaseConfig: <ISessionDatabaseConfig>{
       databaseName: 'skills_development',
       databaseUsername: '',
       databasePassword: '',
@@ -52,7 +52,7 @@ var config = {
       },
       secret: 'skills_application_secret:712cfb7d-a5fa-4c16-9805-c6da1deb5380'
     },
-    databbaseConfig: <IDatabaseConfig>{
+    sessionDatabaseConfig: <ISessionDatabaseConfig>{
       databaseName: 'skills_tests',
       databaseUsername: '',
       databasePassword: '',
@@ -70,16 +70,16 @@ var config = {
 
     return this[this.currentEnvironment];
   },
-  getDbConnectionString: function(): string {
-    var databbaseConfig: IDatabaseConfig =
-      config.getCurrentEnvironment().databbaseConfig;
+  getSessionDbConnectionString: function(): string {
+    var sessionDatabaseConfig: ISessionDatabaseConfig =
+      config.getCurrentEnvironment().sessionDatabaseConfig;
 
     var connectionString =
       'postgres://' +
-      databbaseConfig.databaseUsername + ':' +
-      databbaseConfig.databasePassword + '@' +
-      databbaseConfig.databaseHost + '/' +
-      databbaseConfig.databaseName;
+      sessionDatabaseConfig.databaseUsername + ':' +
+      sessionDatabaseConfig.databasePassword + '@' +
+      sessionDatabaseConfig.databaseHost + '/' +
+      sessionDatabaseConfig.databaseName;
 
     return connectionString;
   }

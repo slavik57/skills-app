@@ -11,7 +11,7 @@ var config = {
             },
             secret: 'skills_application_secret:712cfb7d-a5fa-4c16-9805-c6da1deb5380'
         },
-        databbaseConfig: {
+        sessionDatabaseConfig: {
             databaseName: 'skills_development',
             databaseUsername: '',
             databasePassword: '',
@@ -28,7 +28,7 @@ var config = {
             },
             secret: 'skills_application_secret:712cfb7d-a5fa-4c16-9805-c6da1deb5380'
         },
-        databbaseConfig: {
+        sessionDatabaseConfig: {
             databaseName: 'skills_tests',
             databaseUsername: '',
             databasePassword: '',
@@ -43,13 +43,13 @@ var config = {
         }
         return this[this.currentEnvironment];
     },
-    getDbConnectionString: function () {
-        var databbaseConfig = config.getCurrentEnvironment().databbaseConfig;
+    getSessionDbConnectionString: function () {
+        var sessionDatabaseConfig = config.getCurrentEnvironment().sessionDatabaseConfig;
         var connectionString = 'postgres://' +
-            databbaseConfig.databaseUsername + ':' +
-            databbaseConfig.databasePassword + '@' +
-            databbaseConfig.databaseHost + '/' +
-            databbaseConfig.databaseName;
+            sessionDatabaseConfig.databaseUsername + ':' +
+            sessionDatabaseConfig.databasePassword + '@' +
+            sessionDatabaseConfig.databaseHost + '/' +
+            sessionDatabaseConfig.databaseName;
         return connectionString;
     }
 };
