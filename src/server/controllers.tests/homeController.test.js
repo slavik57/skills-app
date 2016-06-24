@@ -21,6 +21,7 @@ describe('HomeController', function () {
         });
     });
     beforeEach(function () {
+        this.timeout(testConfigurations_1.webpackInitializationTimeout);
         return userLoginManager_1.UserLoginManager.logoutUser(server);
     });
     describe('user not logged in', function () {

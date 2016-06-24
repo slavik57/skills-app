@@ -1,0 +1,12 @@
+.loading-wrapper {
+  margin-left: 35%;
+  margin-right: 35%;
+  width: 30%;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+}
+
+.loading-wrapper .progress {
+  margin-top: 1rem;
+}

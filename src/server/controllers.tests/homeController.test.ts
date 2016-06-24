@@ -31,6 +31,8 @@ describe('HomeController', () => {
   });
 
   beforeEach(function() {
+    this.timeout(webpackInitializationTimeout);
+
     return UserLoginManager.logoutUser(server);
   });
 

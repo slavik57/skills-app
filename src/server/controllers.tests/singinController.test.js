@@ -21,6 +21,7 @@ describe('SigninController', function () {
         });
     });
     beforeEach(function () {
+        this.timeout(testConfigurations_1.webpackInitializationTimeout);
         return userLoginManager_1.UserLoginManager.logoutUser(server);
     });
     describe('user not logged in', function () {
@@ -29,6 +30,12 @@ describe('SigninController', function () {
         });
         it('signin should return correct html', function (done) {
             server.get('/signin')
+                .expect(statusCode_1.StatusCode.OK)
+                .expect(pageTextResolver_1.PageTextResolver.getSigninPage(expressServer))
+                .end(done);
+        });
+        it('signin/register should return correct html', function (done) {
+            server.get('/signin/register')
                 .expect(statusCode_1.StatusCode.OK)
                 .expect(pageTextResolver_1.PageTextResolver.getSigninPage(expressServer))
                 .end(done);

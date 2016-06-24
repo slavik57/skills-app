@@ -152,7 +152,8 @@ export class ExpressSkillsServer {
       return;
     }
 
-    if (request.path === '/signin') {
+    if (request.path.indexOf('/signin') === 0) {
+      request.url = '/signin';
       nextFunction();
       return;
     }

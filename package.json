@@ -40,6 +40,7 @@
     "html-webpack-plugin": "^2.21.0",
     "https": "^1.0.0",
     "jquery": "^3.0.0",
+    "lodash": "^4.13.1",
     "material-icons": "^0.1.0",
     "materialize-css": "^0.97.6",
     "method-override": "^2.3.6",

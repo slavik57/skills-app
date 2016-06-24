@@ -1,7 +1,7 @@
 "use strict";
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
 var core_1 = require('@angular/core');
-var app_component_1 = require('./modules/app.component');
+var app_component_1 = require('./modules/home/components/app/app.component');
 if (process.env.ENV === 'production') {
     core_1.enableProdMode();
 }

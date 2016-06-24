@@ -14,7 +14,6 @@ var FakeLoginStrategy = (function () {
         passport.use(FakeLoginStrategy.NAME, new passport_local_1.Strategy(options, this._loginUser));
     };
     FakeLoginStrategy._loginUser = function (req, username, password, done) {
-        console.log('aaaa');
         done(null, {
             username: "some username",
         });

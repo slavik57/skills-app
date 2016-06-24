@@ -1,0 +1,47 @@
+<div class="register-container">
+
+  <div class="register-card-wrapper">
+
+    <div class="register-card">
+
+      <div class="card-content">
+        <span class="title">Register</span>
+
+        <form id="register" action="/api/register" method="post">
+          <div class="input-field">
+            <input id="register-username" type="text" name="username"/>
+            <label for="register-username">Username</label>
+          </div>
+          <div class="input-field">
+            <input id="register-password" type="password" name="password"/>
+            <label for="register-password">Password</label>
+          </div>
+          <div class="input-field">
+            <input id="register-email" type="email" name="email"/>
+            <label for="register-email">Email</label>
+          </div>
+          <div class="input-field">
+            <input id="register-first-name" type="text" name="firstName"/>
+            <label for="register-first-name">First name</label>
+          </div>
+          <div class="input-field">
+            <input id="register-last-name" type="text" name="lastName"/>
+            <label for="register-last-name">Last name</label>
+          </div>
+
+          <div class="submit-wrapper">
+            <input type="submit" class="submit-button" value="Register"/>
+          </div>
+        </form>
+
+      </div>
+
+      <div class="card-action">
+        Have an account? <a [routerLink]="['Signin']">Sign in</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

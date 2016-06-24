@@ -32,6 +32,8 @@ describe('SigninController', () => {
   });
 
   beforeEach(function() {
+    this.timeout(webpackInitializationTimeout);
+
     return UserLoginManager.logoutUser(server);
   });
 
@@ -43,6 +45,13 @@ describe('SigninController', () => {
 
     it('signin should return correct html', (done) => {
       server.get('/signin')
+        .expect(StatusCode.OK)
+        .expect(PageTextResolver.getSigninPage(expressServer))
+        .end(done);
+    });
+
+    it('signin/register should return correct html', (done) => {
+      server.get('/signin/register')
         .expect(StatusCode.OK)
         .expect(PageTextResolver.getSigninPage(expressServer))
         .end(done);

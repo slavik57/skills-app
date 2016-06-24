@@ -1,0 +1,34 @@
+<div class="signin-container">
+
+  <div class="sign-in-card-wrapper">
+
+    <div class="sign-in-card">
+
+      <div class="card-content">
+
+        <span class="title">Sign in</span>
+        <form id="signin" action="/api/login" method="post">
+          <div class="input-field">
+            <input id="signin-username" type="text" name="username"/>
+            <label for="signin-username">Username</label>
+          </div>
+          <div class="input-field">
+            <input id="signin-password" type="password" name="password"/>
+            <label for="signin-password">Password</label>
+          </div>
+          <div class="submit-wrapper">
+            <input type="submit" class="submit-button" value="Log In"/>
+          </div>
+        </form>
+
+      </div>
+
+      <div class="card-action">
+        Don't have an account? <a [routerLink]="['Register']">Register</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

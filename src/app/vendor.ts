@@ -1,6 +1,6 @@
 import 'jquery';
 
-import '../../node_modules/materialize-css/dist/js/materialize.js';
+import '../../node_modules/materialize-css/dist/js/materialize.min.js';
 
 // Angular 2
 import '@angular/platform-browser';
