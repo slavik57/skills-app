@@ -9,6 +9,7 @@ export var webpackCommonConfiguration: Configuration = {
   entry: {
     'polyfills': './src/app/polyfills.ts',
     'app': './src/app/app.ts',
+    'signin': './src/app/signinApp.ts',
     'vendor': './src/app/vendor.ts',
     'design': './src/app/design.scss'
   },
@@ -32,7 +33,7 @@ export var webpackCommonConfiguration: Configuration = {
       {
         test: /\.scss$/,
         exclude: PathHelper.getPathFromRoot('src', 'app', 'modules'),
-        loaders: ["style", "css", 'resolve-url', 'sass?sourceMap']
+        loader: ExtractTextPlugin.extract('style', 'css!resolve-url!sass?sourceMap')
       },
       {
         test: /\.scss$/,
@@ -42,7 +43,7 @@ export var webpackCommonConfiguration: Configuration = {
       {
         test: /\.css$/,
         exclude: PathHelper.getPathFromRoot('src', 'app', 'modules'),
-        loaders: ['style', 'css', 'resolve-url']
+        loader: ExtractTextPlugin.extract('style', 'css!resolve-url!css?sourceMap')
       },
       {
         test: /\.css$/,
@@ -62,11 +63,13 @@ export var webpackCommonConfiguration: Configuration = {
     }),
     new HtmlWebpackPlugin({
       template: PathHelper.getPathFromRoot('src', 'app', 'views', 'signin.html'),
-      filename: 'signin.html'
+      filename: 'signin.html',
+      chunks: ['design', 'polyfills', 'vendor', 'signin']
     }),
     new HtmlWebpackPlugin({
       template: PathHelper.getPathFromRoot('src', 'app', 'views', 'home.html'),
-      filename: 'home.html'
+      filename: 'home.html',
+      chunks: ['design', 'polyfills', 'vendor', 'app']
     })
   ]
 }
