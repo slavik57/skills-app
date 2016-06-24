@@ -5,7 +5,7 @@ import {webpackCommonConfiguration} from './webpack.common.config'
 import {PathHelper} from '../../common/pathHelper';
 
 var config: Configuration = {
-  devtool: 'source-map',
+  devtool: '#inline-source-map',
 
   output: {
     path: PathHelper.getPathFromRoot('dist'),

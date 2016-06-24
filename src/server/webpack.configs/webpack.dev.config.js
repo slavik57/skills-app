@@ -4,7 +4,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack_common_config_1 = require('./webpack.common.config');
 var pathHelper_1 = require('../../common/pathHelper');
 var config = {
-    devtool: 'source-map',
+    devtool: '#inline-source-map',
     output: {
         path: pathHelper_1.PathHelper.getPathFromRoot('dist'),
         publicPath: '/dist/',
