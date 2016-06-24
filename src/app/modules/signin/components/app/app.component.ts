@@ -1,6 +1,7 @@
+import {CreditsComponent} from "../../../common/components/credits/credits.component";
 import {RegisterComponent} from "../register/register.component";
 import {SigninComponent} from "../signin/signin.component";
-import {NavigationComponent} from "../../../navigation/components/navigation/navigation.component";
+import {NavigationComponent} from "../../../common/components/navigation/navigation.component";
 import { Component } from '@angular/core';
 import { Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import * as _ from 'lodash';
@@ -9,7 +10,7 @@ import * as _ from 'lodash';
   selector: 'signin-app',
   template: require('./app.component.html'),
   styles: [require('./app.component.css')],
-  directives: _.union(ROUTER_DIRECTIVES, [NavigationComponent]),
+  directives: _.union(ROUTER_DIRECTIVES, [NavigationComponent, CreditsComponent]),
   providers: [
     ROUTER_PROVIDERS
   ]

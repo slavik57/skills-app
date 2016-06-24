@@ -20,6 +20,7 @@ var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 var ExpressSkillsServer = (function () {
     function ExpressSkillsServer() {
+        this._allowedAnauthorizedPaths = ['/dist/', '/fonts/'];
         this._isInitialized = false;
         this._serverDirectory = pathHelper_1.PathHelper.getPathFromRoot('src', 'server');
         this._expressApp = express();
@@ -123,7 +124,7 @@ var ExpressSkillsServer = (function () {
             request.path === '/signin' ? response.redirect('/') : nextFunction();
             return;
         }
-        if (request.path.indexOf('/dist/') === 0) {
+        if (this._isAllowedAnauthorizedPath(request.path)) {
             nextFunction();
             return;
         }
@@ -133,6 +134,15 @@ var ExpressSkillsServer = (function () {
             return;
         }
         response.redirect('/signin');
+    };
+    ExpressSkillsServer.prototype._isAllowedAnauthorizedPath = function (path) {
+        for (var i = 0; i < this._allowedAnauthorizedPaths.length; i++) {
+            var allowedAnauthorizedPath = this._allowedAnauthorizedPaths[i];
+            if (path.indexOf(allowedAnauthorizedPath) === 0) {
+                return true;
+            }
+        }
+        return false;
     };
     ExpressSkillsServer.prototype._configureWebpack = function (doneCallback) {
         console.log('=== configuring webpack ===');

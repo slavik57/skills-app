@@ -48,7 +48,7 @@ export var webpackCommonConfiguration: Configuration = {
       {
         test: /\.css$/,
         include: PathHelper.getPathFromRoot('src', 'app', 'modules'),
-        loader: 'raw'
+        loader: 'raw!resolve-url'
       }
     ]
   },

@@ -8,9 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var credits_component_1 = require("../../../common/components/credits/credits.component");
 var register_component_1 = require("../register/register.component");
 var signin_component_1 = require("../signin/signin.component");
-var navigation_component_1 = require("../../../navigation/components/navigation/navigation.component");
+var navigation_component_1 = require("../../../common/components/navigation/navigation.component");
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var _ = require('lodash');
@@ -22,7 +23,7 @@ var AppComponent = (function () {
             selector: 'signin-app',
             template: require('./app.component.html'),
             styles: [require('./app.component.css')],
-            directives: _.union(router_deprecated_1.ROUTER_DIRECTIVES, [navigation_component_1.NavigationComponent]),
+            directives: _.union(router_deprecated_1.ROUTER_DIRECTIVES, [navigation_component_1.NavigationComponent, credits_component_1.CreditsComponent]),
             providers: [
                 router_deprecated_1.ROUTER_PROVIDERS
             ]

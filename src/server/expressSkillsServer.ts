@@ -30,6 +30,8 @@ export class ExpressSkillsServer {
   private _webpackDevMiddleware: any;
   private _isInitialized: boolean;
 
+  private _allowedAnauthorizedPaths = ['/dist/', '/fonts/'];
+
   constructor() {
     this._isInitialized = false;
 
@@ -147,7 +149,7 @@ export class ExpressSkillsServer {
       return;
     }
 
-    if (request.path.indexOf('/dist/') === 0) {
+    if (this._isAllowedAnauthorizedPath(request.path)) {
       nextFunction();
       return;
     }
@@ -159,6 +161,17 @@ export class ExpressSkillsServer {
     }
 
     response.redirect('/signin');
+  }
+
+  private _isAllowedAnauthorizedPath(path: string): boolean {
+    for (var i = 0; i < this._allowedAnauthorizedPaths.length; i++) {
+      var allowedAnauthorizedPath: string = this._allowedAnauthorizedPaths[i];
+      if (path.indexOf(allowedAnauthorizedPath) === 0) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   private _configureWebpack(doneCallback: () => void): void {
