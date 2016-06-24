@@ -22,7 +22,7 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'signin-app',
             template: require('./app.component.html'),
-            styles: [require('./app.component.css')],
+            styles: [require('./_app.component.scss')],
             directives: _.union(router_deprecated_1.ROUTER_DIRECTIVES, [navigation_component_1.NavigationComponent, credits_component_1.CreditsComponent]),
             providers: [
                 router_deprecated_1.ROUTER_PROVIDERS

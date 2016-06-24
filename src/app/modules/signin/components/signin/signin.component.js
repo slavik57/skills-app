@@ -17,7 +17,7 @@ var SigninComponent = (function () {
         core_1.Component({
             selector: 'signin',
             template: require('./signin.component.html'),
-            styles: [require('./signin.component.css')],
+            styles: [require('./_signin.component.scss')],
             directives: [router_deprecated_1.ROUTER_DIRECTIVES]
         }), 
         __metadata('design:paramtypes', [])

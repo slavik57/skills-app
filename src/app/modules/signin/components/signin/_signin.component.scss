@@ -1,19 +1,19 @@
-@import '../../../../../../node_modules/materialize-css/dist/css/materialize.min';
+@import '~materialize-css/dist/css/materialize.min';
 
-.register-container {
+.signin-container {
   @extend .row;
 
-  .register-card-wrapper {
+  .sign-in-card-wrapper {
     @extend .col;
     @extend .s12;
-    @extend .m8;
+    @extend .m6;
     @extend .l6;
-    @extend .offset-m2;
+    @extend .offset-m3;
     @extend .offset-l3;
 
     // TODO: add animation
 
-    .register-card {
+    .sign-in-card {
       @extend .card;
       @extend .grey;
       @extend .lighten-4;
@@ -36,25 +36,6 @@
           }
         }
 
-        .account-details, .credentials{
-          @extend .row;
-          margin-bottom: 0;
-
-          .input-field{
-            @extend .col;
-            @extend .m6;
-            @extend .s12;
-
-            &:first-child{
-              padding-left: 0;
-            }
-
-            &:last-child{
-              padding-right: 0;
-            }
-          }
-        }
-
         .submit-wrapper{
           @extend .row;
           margin-top: 1rem;
@@ -69,6 +50,14 @@
             @extend .l12;
           }
         }
+
+        // .register{
+        //   @extend .grey-text;
+        //
+        //   .register-link{
+        //     @extend .blue-text;
+        //   }
+        // }
       }
     }
   }

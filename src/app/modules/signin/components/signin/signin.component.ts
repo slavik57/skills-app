@@ -4,7 +4,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 @Component({
   selector: 'signin',
   template: require('./signin.component.html'),
-  styles: [require('./signin.component.css')],
+  styles: [require('./_signin.component.scss')],
   directives: [ROUTER_DIRECTIVES]
 })
 

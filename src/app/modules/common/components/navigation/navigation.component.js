@@ -16,7 +16,7 @@ var NavigationComponent = (function () {
         core_1.Component({
             selector: 'navigation-bar',
             template: require('./navigation.component.html'),
-            styles: [require('./navigation.component.css')]
+            styles: [require('./_navigation.component.scss')]
         }), 
         __metadata('design:paramtypes', [])
     ], NavigationComponent);
