@@ -8,25 +8,32 @@
         <span class="title">Register</span>
 
         <form id="register" action="/api/register" method="post">
-          <div class="input-field">
-            <input id="register-username" type="text" name="username"/>
-            <label for="register-username">Username</label>
+
+          <div class="account-details">
+            <div class="input-field">
+              <input id="register-username" type="text" name="username"/>
+              <label for="register-username">Username</label>
+            </div>
+            <div class="input-field">
+              <input id="register-password" type="password" name="password"/>
+              <label for="register-password">Password</label>
+            </div>
           </div>
-          <div class="input-field">
-            <input id="register-password" type="password" name="password"/>
-            <label for="register-password">Password</label>
+          
+          <div class="credentials">
+            <div class="input-field">
+              <input id="register-first-name" type="text" name="firstName"/>
+              <label for="register-first-name">First name</label>
+            </div>
+            <div class="input-field">
+              <input id="register-last-name" type="text" name="lastName"/>
+              <label for="register-last-name">Last name</label>
+            </div>
           </div>
+
           <div class="input-field">
             <input id="register-email" type="email" name="email"/>
             <label for="register-email">Email</label>
-          </div>
-          <div class="input-field">
-            <input id="register-first-name" type="text" name="firstName"/>
-            <label for="register-first-name">First name</label>
-          </div>
-          <div class="input-field">
-            <input id="register-last-name" type="text" name="lastName"/>
-            <label for="register-last-name">Last name</label>
           </div>
 
           <div class="submit-wrapper">

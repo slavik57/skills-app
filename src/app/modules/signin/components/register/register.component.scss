@@ -6,9 +6,9 @@
   .register-card-wrapper {
     @extend .col;
     @extend .s12;
-    @extend .m6;
+    @extend .m8;
     @extend .l6;
-    @extend .offset-m3;
+    @extend .offset-m2;
     @extend .offset-l3;
 
     // TODO: add animation
@@ -33,6 +33,25 @@
           input:focus {
             border-bottom: 1px solid #9e9e9e;
             box-shadow: none;
+          }
+        }
+
+        .account-details, .credentials{
+          @extend .row;
+          margin-bottom: 0;
+
+          .input-field{
+            @extend .col;
+            @extend .m6;
+            @extend .s12;
+
+            &:first-child{
+              padding-left: 0;
+            }
+
+            &:last-child{
+              padding-right: 0;
+            }
           }
         }
 
