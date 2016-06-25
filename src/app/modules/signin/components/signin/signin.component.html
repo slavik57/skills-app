@@ -6,24 +6,54 @@
 
       <div class="card-content">
 
-        <span class="title">Sign in</span>
-        <form id="signin" action="/api/login" method="post">
-          <div class="input-field">
-            <input id="signin-username" type="text" name="username"/>
-            <label for="signin-username">Username</label>
-          </div>
-          <div class="input-field">
-            <input id="signin-password" type="password" name="password"/>
-            <label for="signin-password">Password</label>
-          </div>
-          <div class="submit-wrapper">
-            <input type="submit" class="submit-button" value="Log In"/>
-          </div>
-        </form>
+        <div class="sign-in-card-content" [ngClass]="{ submitting: submitting }">
+          <span class="title">Sign in</span>
+          <form id="signin" (ngSubmit)="onSubmit()" #signinForm="ngForm">
 
+            <div class="input-field">
+              <input id="username"
+                     type="text"
+                     name="username"
+                     required
+                     [(ngModel)]="model.username"
+                     #username="ngModel"/>
+              <label for="username">Username</label>
+              <div class="validation-error" [ngClass]="{ 'has-errors': username.touched && !username.pristine && !username.valid }">
+                Name is required
+              </div>
+            </div>
+
+            <div class="input-field">
+              <input id="password"
+                     type="password"
+                     name="password"
+                     required
+                     [(ngModel)]="model.password"
+                     #password="ngModel"/>
+              <label for="password">Password</label>
+              <div class="validation-error" [ngClass]="{ 'has-errors': password.touched && !password.pristine && !password.valid }">
+                Password is required
+              </div>
+            </div>
+
+            <div class="submit-wrapper">
+              <button type="submit" class="submit-button"
+                      [disabled]="!signinForm.form.valid"
+                      [ngClass]="{ disabled: !signinForm.form.valid }">Log In</button>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="submitting-card-content" [ngClass]="{ submitting: submitting }">
+          <span class="title">Signing in...</span>
+          <div class="progress">
+            <div class="indeterminate"></div>
+          </div>
+        </div>
       </div>
 
-      <div class="card-action">
+      <div class="card-action" [ngClass]="{ submitting: submitting }">
         Don't have an account? <a [routerLink]="['Register']">Register</a>
       </div>
 

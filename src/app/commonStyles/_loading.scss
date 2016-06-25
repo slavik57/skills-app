@@ -5,8 +5,14 @@
   text-align: center;
   position: absolute;
   top: 40%;
+}
 
-  .progress{
-    margin-top: 1rem;
+.progress{
+  margin-top: 1rem;
+  @extend .grey;
+  @extend .lighten-2;
+
+  .indeterminate{
+    @extend .blue;
   }
 }
