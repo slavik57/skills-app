@@ -34,8 +34,8 @@ describe('SigninController', function () {
                 .expect(pageTextResolver_1.PageTextResolver.getSigninPage(expressServer))
                 .end(done);
         });
-        it('signin/register should return correct html', function (done) {
-            server.get('/signin/register')
+        it('signin/abcd should return correct html', function (done) {
+            server.get('/signin/abcd')
                 .expect(statusCode_1.StatusCode.OK)
                 .expect(pageTextResolver_1.PageTextResolver.getSigninPage(expressServer))
                 .end(done);
@@ -51,12 +51,24 @@ describe('SigninController', function () {
                 .expect('Location', '/')
                 .end(done);
         });
+        it('singin/abcd should redirect to home', function (done) {
+            server.get('/signin/abcd')
+                .expect(statusCode_1.StatusCode.REDIRECT)
+                .expect('Location', '/')
+                .end(done);
+        });
         describe('logout', function () {
             beforeEach(function () {
                 return userLoginManager_1.UserLoginManager.logoutUser(server);
             });
             it('signin should return correct html', function (done) {
                 server.get('/signin')
+                    .expect(statusCode_1.StatusCode.OK)
+                    .expect(pageTextResolver_1.PageTextResolver.getSigninPage(expressServer))
+                    .end(done);
+            });
+            it('signin/abcd should return correct html', function (done) {
+                server.get('/signin/abcd')
                     .expect(statusCode_1.StatusCode.OK)
                     .expect(pageTextResolver_1.PageTextResolver.getSigninPage(expressServer))
                     .end(done);

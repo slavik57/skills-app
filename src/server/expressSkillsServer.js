@@ -1,4 +1,5 @@
 "use strict";
+var pathRouter_1 = require("./pathRouter");
 var logoutStrategy_1 = require("./passportStrategies/logoutStrategy");
 var fakeLoginStrategy_1 = require("./passportStrategies/fakeLoginStrategy");
 var pathHelper_1 = require("../common/pathHelper");
@@ -20,7 +21,6 @@ var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 var ExpressSkillsServer = (function () {
     function ExpressSkillsServer() {
-        this._allowedAnauthorizedPaths = ['/dist/', '/fonts/'];
         this._isInitialized = false;
         this._serverDirectory = pathHelper_1.PathHelper.getPathFromRoot('src', 'server');
         this._expressApp = express();
@@ -113,36 +113,15 @@ var ExpressSkillsServer = (function () {
         logoutStrategy_1.LogoutStrategy.initialize(this._expressApp);
         passport.serializeUser(function (user, done) { done(null, user); });
         passport.deserializeUser(function (obj, done) { done(null, obj); });
-        this._expressApp.use(function (request, response, nextFunction) { return _this._ensureAuthenticated(request, response, nextFunction); });
+        this._expressApp.use(function (request, response, nextFunction) { return _this._routeRequest(request, response, nextFunction); });
     };
     ExpressSkillsServer.prototype._configureControllersForApp = function () {
         expressControllers.setDirectory(path.join(this._serverDirectory, 'controllers'))
             .bind(this._expressApp);
     };
-    ExpressSkillsServer.prototype._ensureAuthenticated = function (request, response, nextFunction) {
-        if (request.isAuthenticated()) {
-            request.path === '/signin' ? response.redirect('/') : nextFunction();
-            return;
-        }
-        if (this._isAllowedAnauthorizedPath(request.path)) {
-            nextFunction();
-            return;
-        }
-        if (request.path.indexOf('/signin') === 0) {
-            request.url = '/signin';
-            nextFunction();
-            return;
-        }
-        response.redirect('/signin');
-    };
-    ExpressSkillsServer.prototype._isAllowedAnauthorizedPath = function (path) {
-        for (var i = 0; i < this._allowedAnauthorizedPaths.length; i++) {
-            var allowedAnauthorizedPath = this._allowedAnauthorizedPaths[i];
-            if (path.indexOf(allowedAnauthorizedPath) === 0) {
-                return true;
-            }
-        }
-        return false;
+    ExpressSkillsServer.prototype._routeRequest = function (request, response, nextFunction) {
+        var pathRouter = new pathRouter_1.PathRouter(request, response, nextFunction);
+        pathRouter.routeRequest();
     };
     ExpressSkillsServer.prototype._configureWebpack = function (doneCallback) {
         console.log('=== configuring webpack ===');

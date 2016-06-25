@@ -50,8 +50,8 @@ describe('SigninController', () => {
         .end(done);
     });
 
-    it('signin/register should return correct html', (done) => {
-      server.get('/signin/register')
+    it('signin/abcd should return correct html', (done) => {
+      server.get('/signin/abcd')
         .expect(StatusCode.OK)
         .expect(PageTextResolver.getSigninPage(expressServer))
         .end(done);
@@ -72,6 +72,13 @@ describe('SigninController', () => {
         .end(done);
     });
 
+    it('singin/abcd should redirect to home', (done) => {
+      server.get('/signin/abcd')
+        .expect(StatusCode.REDIRECT)
+        .expect('Location', '/')
+        .end(done);
+    });
+
     describe('logout', () => {
 
       beforeEach(() => {
@@ -80,6 +87,13 @@ describe('SigninController', () => {
 
       it('signin should return correct html', (done) => {
         server.get('/signin')
+          .expect(StatusCode.OK)
+          .expect(PageTextResolver.getSigninPage(expressServer))
+          .end(done);
+      });
+
+      it('signin/abcd should return correct html', (done) => {
+        server.get('/signin/abcd')
           .expect(StatusCode.OK)
           .expect(PageTextResolver.getSigninPage(expressServer))
           .end(done);

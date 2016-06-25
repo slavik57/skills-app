@@ -50,6 +50,13 @@ describe('HomeController', () => {
         .end(done);
     });
 
+    it('home/abcd should redirect to signin', (done) => {
+      server.get('/abcd')
+        .expect(StatusCode.REDIRECT)
+        .expect('Location', '/signin')
+        .end(done);
+    });
+
   });
 
   describe('user logged in', () => {
@@ -58,8 +65,15 @@ describe('HomeController', () => {
       return UserLoginManager.loginUser(server);
     });
 
-    it('home should return html page', (done) => {
+    it('home should return correct html page', (done) => {
       server.get('/')
+        .expect(StatusCode.OK)
+        .expect(PageTextResolver.getHomePage(expressServer))
+        .end(done);
+    });
+
+    it('home/abcd should return correct html page', (done) => {
+      server.get('/abcd')
         .expect(StatusCode.OK)
         .expect(PageTextResolver.getHomePage(expressServer))
         .end(done);
@@ -73,6 +87,13 @@ describe('HomeController', () => {
 
       it('home should redirect to signin', (done) => {
         server.get('/')
+          .expect(StatusCode.REDIRECT)
+          .expect('Location', '/signin')
+          .end(done);
+      });
+
+      it('home/abcd should redirect to signin', (done) => {
+        server.get('/abcd')
           .expect(StatusCode.REDIRECT)
           .expect('Location', '/signin')
           .end(done);

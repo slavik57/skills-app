@@ -35,13 +35,25 @@ describe('HomeController', function () {
                 .expect('Location', '/signin')
                 .end(done);
         });
+        it('home/abcd should redirect to signin', function (done) {
+            server.get('/abcd')
+                .expect(statusCode_1.StatusCode.REDIRECT)
+                .expect('Location', '/signin')
+                .end(done);
+        });
     });
     describe('user logged in', function () {
         beforeEach(function () {
             return userLoginManager_1.UserLoginManager.loginUser(server);
         });
-        it('home should return html page', function (done) {
+        it('home should return correct html page', function (done) {
             server.get('/')
+                .expect(statusCode_1.StatusCode.OK)
+                .expect(pageTextResolver_1.PageTextResolver.getHomePage(expressServer))
+                .end(done);
+        });
+        it('home/abcd should return correct html page', function (done) {
+            server.get('/abcd')
                 .expect(statusCode_1.StatusCode.OK)
                 .expect(pageTextResolver_1.PageTextResolver.getHomePage(expressServer))
                 .end(done);
@@ -52,6 +64,12 @@ describe('HomeController', function () {
             });
             it('home should redirect to signin', function (done) {
                 server.get('/')
+                    .expect(statusCode_1.StatusCode.REDIRECT)
+                    .expect('Location', '/signin')
+                    .end(done);
+            });
+            it('home/abcd should redirect to signin', function (done) {
+                server.get('/abcd')
                     .expect(statusCode_1.StatusCode.REDIRECT)
                     .expect('Location', '/signin')
                     .end(done);

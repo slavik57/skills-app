@@ -1,3 +1,4 @@
+import {PathRouter} from "./pathRouter";
 import {LogoutStrategy} from "./passportStrategies/logoutStrategy";
 import {FakeLoginStrategy} from "./passportStrategies/fakeLoginStrategy";
 import {StatusCode} from "./enums/statusCode";
@@ -29,8 +30,6 @@ export class ExpressSkillsServer {
   private _expressApp: Express;
   private _webpackDevMiddleware: any;
   private _isInitialized: boolean;
-
-  private _allowedAnauthorizedPaths = ['/dist/', '/fonts/'];
 
   constructor() {
     this._isInitialized = false;
@@ -135,7 +134,7 @@ export class ExpressSkillsServer {
     passport.deserializeUser((obj, done) => { done(null, obj); });
 
     this._expressApp.use(
-      (request, response, nextFunction) => this._ensureAuthenticated(request, response, nextFunction));
+      (request, response, nextFunction) => this._routeRequest(request, response, nextFunction));
   }
 
   private _configureControllersForApp() {
@@ -143,35 +142,10 @@ export class ExpressSkillsServer {
       .bind(this._expressApp);
   }
 
-  private _ensureAuthenticated(request: Request, response: Response, nextFunction: NextFunction): void {
-    if (request.isAuthenticated()) {
-      request.path === '/signin' ? response.redirect('/') : nextFunction();
-      return;
-    }
+  private _routeRequest(request: Request, response: Response, nextFunction: NextFunction): void {
+    var pathRouter = new PathRouter(request, response, nextFunction);
 
-    if (this._isAllowedAnauthorizedPath(request.path)) {
-      nextFunction();
-      return;
-    }
-
-    if (request.path.indexOf('/signin') === 0) {
-      request.url = '/signin';
-      nextFunction();
-      return;
-    }
-
-    response.redirect('/signin');
-  }
-
-  private _isAllowedAnauthorizedPath(path: string): boolean {
-    for (var i = 0; i < this._allowedAnauthorizedPaths.length; i++) {
-      var allowedAnauthorizedPath: string = this._allowedAnauthorizedPaths[i];
-      if (path.indexOf(allowedAnauthorizedPath) === 0) {
-        return true;
-      }
-    }
-
-    return false;
+    pathRouter.routeRequest();
   }
 
   private _configureWebpack(doneCallback: () => void): void {
