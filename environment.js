@@ -20,6 +20,7 @@ exports.config = {
     },
     tests: {
         webpackInitializationTimeout: 100000,
+        webpackTestTimeout: 3000,
         appConfig: {
             hostName: 'localhost',
             port: 8020,

@@ -9,31 +9,27 @@ import * as supertest from 'supertest';
 import {SuperTest} from 'supertest';
 import * as chaiAsPromised from 'chai-as-promised';
 import {StatusCode} from '../enums/statusCode';
-import {config as environmentConfiguration} from '../../../environment';
 
 chai.use(chaiAsPromised);
 
 describe('SigninController', () => {
-
   var expressServer: ExpressSkillsServer;
   var server: SuperTest;
 
   before(function(done) {
-    this.timeout(environmentConfiguration.tests.webpackInitializationTimeout);
-
     ExpressSkillsServer.instance.initialize(true)
       .then((_expressServer) => {
         expressServer = _expressServer;
 
         server = supertest.agent(expressServer.expressApp);
-
-        done();
+      })
+      .then(() => {
+        server.get('/')
+          .end(done);
       });
   });
 
-  beforeEach(function() {
-    this.timeout(environmentConfiguration.tests.webpackInitializationTimeout);
-
+  beforeEach(() => {
     return UserLoginManager.logoutUser(server);
   });
 

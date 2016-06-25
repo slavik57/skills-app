@@ -25,21 +25,20 @@ describe('HomeController', () => {
         expressServer = _expressServer;
 
         server = supertest.agent(expressServer.expressApp);
-
-        done();
+      })
+      .then(() => {
+        server.get('/')
+          .end(done);
       });
   });
 
-  beforeEach(function() {
-    this.timeout(environmentConfiguration.tests.webpackInitializationTimeout);
-
+  beforeEach(() => {
     return UserLoginManager.logoutUser(server);
   });
 
   describe('user not logged in', () => {
 
-    beforeEach(function() {
-      this.timeout(environmentConfiguration.tests.webpackInitializationTimeout);
+    beforeEach(() => {
       return UserLoginManager.logoutUser(server);
     });
 

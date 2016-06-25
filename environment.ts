@@ -26,6 +26,7 @@ export interface IEnvironmentConfig {
 
 export interface ITestEnvironmentConfig extends IEnvironmentConfig {
   webpackInitializationTimeout: number;
+  webpackTestTimeout: number;
 }
 
 export var config = {
@@ -48,6 +49,7 @@ export var config = {
   },
   tests: <ITestEnvironmentConfig>{
     webpackInitializationTimeout: 100000,
+    webpackTestTimeout: 3000,
     appConfig: <IAppConfig>{
       hostName: 'localhost',
       port: 8020,

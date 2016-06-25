@@ -17,16 +17,17 @@ describe('HomeController', function () {
             .then(function (_expressServer) {
             expressServer = _expressServer;
             server = supertest.agent(expressServer.expressApp);
-            done();
+        })
+            .then(function () {
+            server.get('/')
+                .end(done);
         });
     });
     beforeEach(function () {
-        this.timeout(environment_1.config.tests.webpackInitializationTimeout);
         return userLoginManager_1.UserLoginManager.logoutUser(server);
     });
     describe('user not logged in', function () {
         beforeEach(function () {
-            this.timeout(environment_1.config.tests.webpackInitializationTimeout);
             return userLoginManager_1.UserLoginManager.logoutUser(server);
         });
         it('home should redirect to signin', function (done) {
