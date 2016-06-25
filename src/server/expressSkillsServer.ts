@@ -11,7 +11,7 @@ import * as methodOverride from 'method-override';
 import * as passport from 'passport';
 import * as expressSession from 'express-session';
 import {SessionOptions} from 'express-session';
-import * as EnvironmentConfig from "../../environment";
+import {config as EnvironmentConfig} from "../../environment";
 import * as path from 'path';
 import * as webpack from 'webpack';
 import * as https from 'https';

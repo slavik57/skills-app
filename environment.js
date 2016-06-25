@@ -1,6 +1,6 @@
 "use strict";
 var pathHelper_1 = require('./src/common/pathHelper');
-var config = {
+exports.config = {
     development: {
         appConfig: {
             hostName: 'localhost',
@@ -19,6 +19,7 @@ var config = {
         }
     },
     tests: {
+        webpackInitializationTimeout: 100000,
         appConfig: {
             hostName: 'localhost',
             port: 8020,
@@ -44,7 +45,7 @@ var config = {
         return this[this.currentEnvironment];
     },
     getSessionDbConnectionString: function () {
-        var sessionDatabaseConfig = config.getCurrentEnvironment().sessionDatabaseConfig;
+        var sessionDatabaseConfig = exports.config.getCurrentEnvironment().sessionDatabaseConfig;
         var connectionString = 'postgres://' +
             sessionDatabaseConfig.databaseUsername + ':' +
             sessionDatabaseConfig.databasePassword + '@' +
@@ -53,5 +54,4 @@ var config = {
         return connectionString;
     }
 };
-module.exports = config;
 //# sourceMappingURL=environment.js.map

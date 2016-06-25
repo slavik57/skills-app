@@ -28,5 +28,7 @@ src/*.css
 src/*.js
 src/*.js.map
 *.css
-webpack.configs/*.js
-webpack.configs/*.js.map
+karma.configs/karma.config.js
+karma.configs/karma.config.js.map
+karma.configs/webpack.test.config.js
+karma.configs/webpack.test.config.js.map

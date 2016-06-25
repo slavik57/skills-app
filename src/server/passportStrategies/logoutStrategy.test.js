@@ -5,13 +5,13 @@ var chai = require('chai');
 var supertest = require('supertest');
 var chaiAsPromised = require('chai-as-promised');
 var statusCode_1 = require('../enums/statusCode');
-var testConfigurations_1 = require('../../../testConfigurations');
+var environment_1 = require('../../../environment');
 chai.use(chaiAsPromised);
 describe('ExpressServer', function () {
     var expressServer;
     var server;
     before(function (done) {
-        this.timeout(testConfigurations_1.webpackInitializationTimeout);
+        this.timeout(environment_1.config.tests.webpackInitializationTimeout);
         expressSkillsServer_1.ExpressSkillsServer.instance.initialize(true)
             .then(function (_expressServer) {
             expressServer = _expressServer;

@@ -6,7 +6,7 @@ import * as supertest from 'supertest';
 import {SuperTest} from 'supertest';
 import * as chaiAsPromised from 'chai-as-promised';
 import {StatusCode} from '../enums/statusCode';
-import {webpackInitializationTimeout} from '../../../testConfigurations';
+import {config as environmentConfig} from '../../../environment';
 
 chai.use(chaiAsPromised);
 
@@ -16,7 +16,7 @@ describe('ExpressServer', () => {
   var server: SuperTest;
 
   before(function(done) {
-    this.timeout(webpackInitializationTimeout);
+    this.timeout(environmentConfig.tests.webpackInitializationTimeout);
 
     ExpressSkillsServer.instance.initialize(true)
       .then((_expressServer) => {

@@ -6,13 +6,13 @@ var chai = require('chai');
 var supertest = require('supertest');
 var chaiAsPromised = require('chai-as-promised');
 var statusCode_1 = require('../enums/statusCode');
-var testConfigurations_1 = require('../../../testConfigurations');
+var environment_1 = require('../../../environment');
 chai.use(chaiAsPromised);
 describe('HomeController', function () {
     var expressServer;
     var server;
     before(function (done) {
-        this.timeout(testConfigurations_1.webpackInitializationTimeout);
+        this.timeout(environment_1.config.tests.webpackInitializationTimeout);
         expressSkillsServer_1.ExpressSkillsServer.instance.initialize(true)
             .then(function (_expressServer) {
             expressServer = _expressServer;
@@ -21,7 +21,7 @@ describe('HomeController', function () {
         });
     });
     beforeEach(function () {
-        this.timeout(testConfigurations_1.webpackInitializationTimeout);
+        this.timeout(environment_1.config.tests.webpackInitializationTimeout);
         return userLoginManager_1.UserLoginManager.logoutUser(server);
     });
     describe('user not logged in', function () {

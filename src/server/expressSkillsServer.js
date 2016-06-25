@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var passport = require('passport');
 var expressSession = require('express-session');
-var EnvironmentConfig = require("../../environment");
+var environment_1 = require("../../environment");
 var path = require('path');
 var webpack = require('webpack');
 var https = require('https');
@@ -56,10 +56,10 @@ var ExpressSkillsServer = (function () {
     };
     ExpressSkillsServer.prototype.start = function () {
         var _this = this;
-        var port = process.env.PORT || EnvironmentConfig.getCurrentEnvironment().appConfig.port;
-        var hostName = EnvironmentConfig.getCurrentEnvironment().appConfig.hostName;
-        var certificateKeyPath = EnvironmentConfig.getCurrentEnvironment().appConfig.certificate.keyFilePath;
-        var certificateFilePath = EnvironmentConfig.getCurrentEnvironment().appConfig.certificate.certificateFilePath;
+        var port = process.env.PORT || environment_1.config.getCurrentEnvironment().appConfig.port;
+        var hostName = environment_1.config.getCurrentEnvironment().appConfig.hostName;
+        var certificateKeyPath = environment_1.config.getCurrentEnvironment().appConfig.certificate.keyFilePath;
+        var certificateFilePath = environment_1.config.getCurrentEnvironment().appConfig.certificate.certificateFilePath;
         var options = {
             key: fs.readFileSync(certificateKeyPath),
             cert: fs.readFileSync(certificateFilePath),
@@ -93,10 +93,10 @@ var ExpressSkillsServer = (function () {
     };
     ExpressSkillsServer.prototype._configureSession = function () {
         var postgreSqlStore = new PostgreSqlStore({
-            conString: EnvironmentConfig.getSessionDbConnectionString()
+            conString: environment_1.config.getSessionDbConnectionString()
         });
         var options = {
-            secret: EnvironmentConfig.getCurrentEnvironment().appConfig.secret,
+            secret: environment_1.config.getCurrentEnvironment().appConfig.secret,
             saveUninitialized: true,
             resave: true,
             store: postgreSqlStore

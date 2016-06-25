@@ -9,7 +9,7 @@ import * as supertest from 'supertest';
 import {SuperTest} from 'supertest';
 import * as chaiAsPromised from 'chai-as-promised';
 import {StatusCode} from '../enums/statusCode';
-import {webpackInitializationTimeout} from '../../../testConfigurations';
+import {config as environmentConfiguration} from '../../../environment';
 
 chai.use(chaiAsPromised);
 
@@ -19,7 +19,7 @@ describe('SigninController', () => {
   var server: SuperTest;
 
   before(function(done) {
-    this.timeout(webpackInitializationTimeout);
+    this.timeout(environmentConfiguration.tests.webpackInitializationTimeout);
 
     ExpressSkillsServer.instance.initialize(true)
       .then((_expressServer) => {
@@ -32,7 +32,7 @@ describe('SigninController', () => {
   });
 
   beforeEach(function() {
-    this.timeout(webpackInitializationTimeout);
+    this.timeout(environmentConfiguration.tests.webpackInitializationTimeout);
 
     return UserLoginManager.logoutUser(server);
   });

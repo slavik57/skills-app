@@ -4,7 +4,9 @@
   "description": "the app host of the skills app",
   "main": "index.js",
   "scripts": {
-    "test": "set NODE_ENV=tests&& mocha -c -b src/**/*.test.js",
+    "test": "npm run app-tests && npm run server-tests",
+    "app-tests": "karma start",
+    "server-tests": "set NODE_ENV=tests&& mocha -c -b src/server/**/*.test.js",
     "start": "set NODE_ENV=development&& node src/server/server.js"
   },
   "repository": {
@@ -65,7 +67,15 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.1",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^1.7.0",
     "mocha": "^2.5.3",
+    "null-loader": "^0.1.1",
+    "phantomjs-prebuilt": "^2.1.7",
     "supertest": "^1.2.0"
   }
 }

@@ -1,30 +1,34 @@
 import {PathHelper} from './src/common/pathHelper';
 
-interface ICertificate {
+export interface ICertificate {
   keyFilePath: string,
   certificateFilePath: string
 }
 
-interface IAppConfig {
+export interface IAppConfig {
   hostName: string;
   port: number;
   certificate: ICertificate;
   secret: string;
 }
 
-interface ISessionDatabaseConfig {
+export interface ISessionDatabaseConfig {
   databaseName: string;
   databaseUsername: string;
   databasePassword: string;
   databaseHost: string;
 }
 
-interface IEnvironmentConfig {
+export interface IEnvironmentConfig {
   appConfig: IAppConfig;
   sessionDatabaseConfig: ISessionDatabaseConfig;
 }
 
-var config = {
+export interface ITestEnvironmentConfig extends IEnvironmentConfig {
+  webpackInitializationTimeout: number;
+}
+
+export var config = {
   development: <IEnvironmentConfig>{
     appConfig: <IAppConfig>{
       hostName: 'localhost',
@@ -42,7 +46,8 @@ var config = {
       databaseHost: ''
     }
   },
-  tests: <IEnvironmentConfig>{
+  tests: <ITestEnvironmentConfig>{
+    webpackInitializationTimeout: 100000,
     appConfig: <IAppConfig>{
       hostName: 'localhost',
       port: 8020,
@@ -84,5 +89,3 @@ var config = {
     return connectionString;
   }
 }
-
-export = config;

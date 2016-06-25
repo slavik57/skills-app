@@ -18,7 +18,6 @@ export class FakeLoginStrategy {
   }
 
   private static _loginUser(req: Request, username: string, password: string, done: (error: any, user?: any, options?: IVerifyOptions) => void) {
-    console.log('aaaa');
     done(null, {
       username: "some username",
     });
