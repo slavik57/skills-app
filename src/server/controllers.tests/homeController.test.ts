@@ -38,7 +38,8 @@ describe('HomeController', () => {
 
   describe('user not logged in', () => {
 
-    beforeEach(() => {
+    beforeEach(function() {
+      this.timeout(environmentConfiguration.tests.webpackInitializationTimeout);
       return UserLoginManager.logoutUser(server);
     });
 

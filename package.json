@@ -4,9 +4,9 @@
   "description": "the app host of the skills app",
   "main": "index.js",
   "scripts": {
-    "test": "npm run app-tests && npm run server-tests",
+    "test": "set NODE_ENV=tests&& npm run app-tests && npm run server-tests",
     "app-tests": "karma start",
-    "server-tests": "set NODE_ENV=tests&& mocha -c -b src/server/**/*.test.js",
+    "server-tests": "mocha -c -b src/server/**/*.test.js",
     "start": "set NODE_ENV=development&& node src/server/server.js"
   },
   "repository": {

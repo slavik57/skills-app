@@ -1,21 +1,24 @@
 import * as webpack from 'webpack';
 import {Configuration} from 'webpack';
-import * as path from 'path';
 import {PathHelper} from '../../common/pathHelper';
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-export var webpackCommonConfiguration: Configuration = {
+var config: Configuration = {
+
+  devtool: '#inline-source-map',
+
   entry: {
     'polyfills': './src/app/polyfills.ts',
     'app': './src/app/app.ts',
     'signin': './src/app/signinApp.ts',
-    'vendor': './src/app/vendor.ts',
-    'design': './src/app/design.scss'
+    'vendor': './src/app/vendor.ts'
   },
+
   resolve: {
-    extensions: ['', '.ts', '.js', 'scss']
+    extensions: ['', '.ts', '.js']
   },
+
   module: {
     loaders: [
       {
@@ -25,36 +28,32 @@ export var webpackCommonConfiguration: Configuration = {
       {
         test: /\.html$/,
         loader: 'html'
+
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader: 'file?name=assets/[name].[hash].[ext]'
-      },
-      {
-        test: /\.scss$/,
-        exclude: PathHelper.getPathFromRoot('src', 'app', 'modules'),
-        loader: ExtractTextPlugin.extract('style', 'css!resolve-url!sass?sourceMap')
-      },
-      {
-        test: /\.scss$/,
-        include: PathHelper.getPathFromRoot('src', 'app', 'modules'),
-        loader: 'raw!sass'
+        loader: 'null'
       },
       {
         test: /\.css$/,
-        exclude: PathHelper.getPathFromRoot('src', 'app', 'modules'),
-        loader: ExtractTextPlugin.extract('style', 'css!resolve-url!css?sourceMap')
+        loader: 'null'
       },
       {
-        test: /\.css$/,
-        include: PathHelper.getPathFromRoot('src', 'app', 'modules'),
-        loader: 'raw!resolve-url'
+        test: /\.scss$/,
+        loader: 'null'
       }
     ]
   },
+  output: {
+    path: PathHelper.getPathFromRoot('dist'),
+    publicPath: '/dist/',
+    filename: '[name].js',
+    chunkFilename: '[id].chunk.js'
+  },
   plugins: [
+    new ExtractTextPlugin('[name].css'),
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'signin', 'vendor', 'design', 'polyfills']
+      name: ['app', 'vendor', 'signin', 'polyfills']
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -64,12 +63,14 @@ export var webpackCommonConfiguration: Configuration = {
     new HtmlWebpackPlugin({
       template: PathHelper.getPathFromRoot('src', 'app', 'views', 'signin.html'),
       filename: 'signin.html',
-      chunks: ['design', 'polyfills', 'vendor', 'signin']
+      chunks: ['polyfills', 'vendor', 'signin']
     }),
     new HtmlWebpackPlugin({
       template: PathHelper.getPathFromRoot('src', 'app', 'views', 'home.html'),
       filename: 'home.html',
-      chunks: ['design', 'polyfills', 'vendor', 'app']
+      chunks: ['polyfills', 'vendor', 'app']
     })
   ]
 }
+
+export var webpackTestConfig: Configuration = config;
