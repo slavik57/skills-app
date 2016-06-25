@@ -8,28 +8,45 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
+var userService_1 = require("../../../common/services/userService");
 var signinModel_1 = require("../../../models/signinModel");
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var common_1 = require('@angular/common');
 var SigninComponent = (function () {
-    function SigninComponent() {
+    function SigninComponent(userService) {
+        this.userService = userService;
+        this.error = null;
         this.model = new signinModel_1.SigninModel();
         this.submitting = false;
     }
     SigninComponent.prototype.onSubmit = function () {
         var _this = this;
         this.submitting = true;
-        setTimeout(function () { return _this.submitting = false; }, 2000);
+        this.error = null;
+        this.userService.signinUser(this.model.username, this.model.password)
+            .finally(function () { return _this._submitted(); })
+            .subscribe(function (_redirectLocation) { return _this._redirect(_redirectLocation); }, function (_error) { return _this._setError(_error); });
+    };
+    SigninComponent.prototype._redirect = function (redirectPath) {
+        window.location.href = redirectPath;
+    };
+    SigninComponent.prototype._setError = function (_error) {
+        this.error = _error;
+    };
+    SigninComponent.prototype._submitted = function () {
+        this.submitting = false;
     };
     SigninComponent = __decorate([
         core_1.Component({
             selector: 'signin',
             template: require('./signin.component.html'),
             styles: [require('./_signin.component.scss')],
-            directives: [router_deprecated_1.ROUTER_DIRECTIVES, common_1.NgClass]
+            directives: [router_deprecated_1.ROUTER_DIRECTIVES, common_1.NgClass, circularLoading_component_1.CircularLoadingComponent],
+            providers: [userService_1.UserService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [userService_1.UserService])
     ], SigninComponent);
     return SigninComponent;
 }());

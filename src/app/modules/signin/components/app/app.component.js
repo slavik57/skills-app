@@ -13,6 +13,7 @@ var register_component_1 = require("../register/register.component");
 var signin_component_1 = require("../signin/signin.component");
 var navigation_component_1 = require("../../../common/components/navigation/navigation.component");
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var _ = require('lodash');
 var AppComponent = (function () {
@@ -25,7 +26,8 @@ var AppComponent = (function () {
             styles: [require('./_app.component.scss')],
             directives: _.union(router_deprecated_1.ROUTER_DIRECTIVES, [navigation_component_1.NavigationComponent, credits_component_1.CreditsComponent]),
             providers: [
-                router_deprecated_1.ROUTER_PROVIDERS
+                router_deprecated_1.ROUTER_PROVIDERS,
+                http_1.HTTP_PROVIDERS
             ]
         }),
         router_deprecated_1.RouteConfig([

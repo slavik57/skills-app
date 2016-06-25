@@ -16,3 +16,7 @@
     @extend .blue;
   }
 }
+
+.spinner-layer{
+  @extend .spinner-blue-only;
+}

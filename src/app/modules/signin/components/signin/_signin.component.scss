@@ -73,28 +73,45 @@
           }
         }
 
+        .submit-error {
+          color: red;
+        }
+
         .sign-in-card-content{
           opacity: 1;
           max-height: 17rem;
           overflow: hidden;
-          transition: all .3s ease;
-          transition-property: max-height, opacity;
+          transition: opacity .3s ease;
 
           &.submitting{
-            opacity: 0;
-            max-height: 0;
+            pointer-events: none;
+            opacity: 0.5;
+          }
+
+          &.has-submit-error{
+            max-height: 19rem;
           }
         }
 
         .submitting-card-content{
-          opacity: 0;
-          max-height: 0;
           overflow: hidden;
-          transition: all .3s ease;
-          transition-property: max-height, opacity;
+          position: absolute;
+          bottom: 0;
+          top:0;
+          left: 0;
+          right: 0;
+          text-align: center;
+          display: none;
+          opacity: 0;
+          transition: opacity .3s ease;
+
+          circular-loading {
+            position: relative;
+            top: 9rem;
+          }
 
           &.submitting{
-            max-height: none;
+            display: block;
             opacity: 1;
           }
         }

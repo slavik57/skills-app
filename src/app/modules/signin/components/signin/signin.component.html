@@ -6,7 +6,7 @@
 
       <div class="card-content">
 
-        <div class="sign-in-card-content" [ngClass]="{ submitting: submitting }">
+        <div class="sign-in-card-content" [ngClass]="{ submitting: submitting, 'has-submit-error': !!error }">
           <span class="title">Sign in</span>
           <form id="signin" (ngSubmit)="onSubmit()" #signinForm="ngForm">
 
@@ -36,6 +36,10 @@
               </div>
             </div>
 
+            <div class="submit-error">
+              {{error}}
+            </div>
+
             <div class="submit-wrapper">
               <button type="submit" class="submit-button"
                       [disabled]="!signinForm.form.valid"
@@ -46,10 +50,7 @@
         </div>
 
         <div class="submitting-card-content" [ngClass]="{ submitting: submitting }">
-          <span class="title">Signing in...</span>
-          <div class="progress">
-            <div class="indeterminate"></div>
-          </div>
+          <circular-loading></circular-loading>
         </div>
       </div>
 

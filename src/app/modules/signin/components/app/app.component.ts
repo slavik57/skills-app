@@ -3,6 +3,7 @@ import {RegisterComponent} from "../register/register.component";
 import {SigninComponent} from "../signin/signin.component";
 import {NavigationComponent} from "../../../common/components/navigation/navigation.component";
 import { Component } from '@angular/core';
+import { HTTP_PROVIDERS } from '@angular/http';
 import { Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import * as _ from 'lodash';
 
@@ -12,7 +13,8 @@ import * as _ from 'lodash';
   styles: [require('./_app.component.scss')],
   directives: _.union(ROUTER_DIRECTIVES, [NavigationComponent, CreditsComponent]),
   providers: [
-    ROUTER_PROVIDERS
+    ROUTER_PROVIDERS,
+    HTTP_PROVIDERS
   ]
 })
 @RouteConfig([
