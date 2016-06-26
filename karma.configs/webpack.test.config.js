@@ -1,11 +1,22 @@
 "use strict";
 var config = {
     devtool: '#inline-source-map',
+    entry: {
+        test: ['sinon/pkg/sinon.js']
+    },
     resolve: {
-        extensions: ['', '.ts', '.js']
+        extensions: ['', '.ts', '.js'],
+        alias: {
+            sinon: 'sinon/pkg/sinon.js',
+        }
     },
     module: {
+        noParse: [/sinon\.js/],
         loaders: [
+            {
+                test: /sinon\/pkg\/sinon\.js/,
+                loader: 'imports?define=>false,require=>false',
+            },
             {
                 test: /\.ts$/,
                 loader: 'ts'

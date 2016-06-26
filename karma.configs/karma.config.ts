@@ -4,7 +4,7 @@ export var karmaConfig = function(config) {
   var _config = {
     basePath: '',
 
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'sinon'],
 
     files: [
       { pattern: './karma.configs/karma-test-shim.js', watched: false }
@@ -31,8 +31,8 @@ export var karmaConfig = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['PhantomJS'],
-    singleRun: false,
-    // singleRun: true,
+    // singleRun: false,
+    singleRun: true,
     client: {
       captureConsole: true
     }

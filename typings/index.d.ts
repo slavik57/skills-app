@@ -16,4 +16,5 @@
 /// <reference path="modules/chai/index.d.ts" />
 /// <reference path="modules/lodash/index.d.ts" />
 /// <reference path="modules/mime/index.d.ts" />
+/// <reference path="modules/sinon/index.d.ts" />
 /// <reference path="modules/webpack/index.d.ts" />

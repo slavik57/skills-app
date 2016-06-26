@@ -38,11 +38,15 @@ describe('HomeController', () => {
 
   describe('user not logged in', () => {
 
-    beforeEach(() => {
+    beforeEach(function() {
+      this.timeout(environmentConfiguration.tests.webpackInitializationTimeout);
+
       return UserLoginManager.logoutUser(server);
     });
 
-    it('home should redirect to signin', (done) => {
+    it('home should redirect to signin', function(done) {
+      this.timeout(environmentConfiguration.tests.webpackTestTimeout);
+
       server.get('/')
         .expect(StatusCode.REDIRECT)
         .expect('Location', '/signin')

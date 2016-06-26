@@ -72,11 +72,13 @@
     "karma": "^1.0.0",
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.1",
+    "karma-sinon": "^1.0.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.5.3",
     "null-loader": "^0.1.1",
     "phantomjs-prebuilt": "^2.1.7",
+    "sinon": "^1.17.4",
     "supertest": "^1.2.0"
   }
 }

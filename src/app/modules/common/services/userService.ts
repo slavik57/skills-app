@@ -8,8 +8,12 @@ interface ILoginInfo {
   password: string;
 }
 
+export interface IUserService {
+  signinUser(username: string, password: string): Observable<string>;
+}
+
 @Injectable()
-export class UserService {
+export class UserService implements IUserService {
   private _loginUrl = '/api/login';
 
   constructor(private http: Http) {
