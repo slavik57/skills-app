@@ -9,7 +9,6 @@ export interface IAppConfig {
   hostName: string;
   port: number;
   certificate: ICertificate;
-  secret: string;
 }
 
 export interface ISessionDatabaseConfig {
@@ -38,7 +37,6 @@ export var config = {
         keyFilePath: PathHelper.getPathFromRoot('ssl', 'development-localhost.key'),
         certificateFilePath: PathHelper.getPathFromRoot('ssl', 'development-localhost.cert')
       },
-      secret: 'skills_application_secret:712cfb7d-a5fa-4c16-9805-c6da1deb5380'
     },
     sessionDatabaseConfig: <ISessionDatabaseConfig>{
       databaseName: 'skills_development',
@@ -57,7 +55,6 @@ export var config = {
         keyFilePath: PathHelper.getPathFromRoot('ssl', 'development-localhost.key'),
         certificateFilePath: PathHelper.getPathFromRoot('ssl', 'development-localhost.cert')
       },
-      secret: 'skills_application_secret:712cfb7d-a5fa-4c16-9805-c6da1deb5380'
     },
     sessionDatabaseConfig: <ISessionDatabaseConfig>{
       databaseName: 'skills_tests',

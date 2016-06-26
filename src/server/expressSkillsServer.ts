@@ -1,3 +1,4 @@
+import {appSecret} from "../../appSecret";
 import {PathRouter} from "./pathRouter";
 import {LogoutStrategy} from "./passportStrategies/logoutStrategy";
 import {FakeLoginStrategy} from "./passportStrategies/fakeLoginStrategy";
@@ -111,7 +112,7 @@ export class ExpressSkillsServer {
     });
 
     var options: SessionOptions = {
-      secret: EnvironmentConfig.getCurrentEnvironment().appConfig.secret,
+      secret: appSecret,
       saveUninitialized: true,
       resave: true,
       store: postgreSqlStore

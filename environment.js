@@ -9,7 +9,6 @@ exports.config = {
                 keyFilePath: pathHelper_1.PathHelper.getPathFromRoot('ssl', 'development-localhost.key'),
                 certificateFilePath: pathHelper_1.PathHelper.getPathFromRoot('ssl', 'development-localhost.cert')
             },
-            secret: 'skills_application_secret:712cfb7d-a5fa-4c16-9805-c6da1deb5380'
         },
         sessionDatabaseConfig: {
             databaseName: 'skills_development',
@@ -28,7 +27,6 @@ exports.config = {
                 keyFilePath: pathHelper_1.PathHelper.getPathFromRoot('ssl', 'development-localhost.key'),
                 certificateFilePath: pathHelper_1.PathHelper.getPathFromRoot('ssl', 'development-localhost.cert')
             },
-            secret: 'skills_application_secret:712cfb7d-a5fa-4c16-9805-c6da1deb5380'
         },
         sessionDatabaseConfig: {
             databaseName: 'skills_tests',

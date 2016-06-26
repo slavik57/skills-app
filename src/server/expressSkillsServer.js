@@ -1,4 +1,5 @@
 "use strict";
+var appSecret_1 = require("../../appSecret");
 var pathRouter_1 = require("./pathRouter");
 var logoutStrategy_1 = require("./passportStrategies/logoutStrategy");
 var fakeLoginStrategy_1 = require("./passportStrategies/fakeLoginStrategy");
@@ -96,7 +97,7 @@ var ExpressSkillsServer = (function () {
             conString: environment_1.config.getSessionDbConnectionString()
         });
         var options = {
-            secret: environment_1.config.getCurrentEnvironment().appConfig.secret,
+            secret: appSecret_1.appSecret,
             saveUninitialized: true,
             resave: true,
             store: postgreSqlStore

@@ -11,6 +11,8 @@ bookshelf.js
 bookshelf.js.map
 karma.conf.js
 karma.conf.js.map
+appSecret.js
+appSecret.js.map
 src/*/*/*/*/*/*.css
 src/*/*/*/*/*/*.js
 src/*/*/*/*/*/*.js.map
