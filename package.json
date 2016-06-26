@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "set NODE_ENV=tests&& npm run app-tests && npm run server-tests",
-    "app-tests": "karma start",
-    "server-tests": "mocha -c -b src/server/**/*.test.js",
+    "app-tests": ".\\node_modules\\.bin\\karma start --capture-console=true karma.config.js",
+    "server-tests": ".\\node_modules\\.bin\\mocha -c -b src/server/**/*.test.js",
     "start": "set NODE_ENV=development&& node src/server/server.js"
   },
   "repository": {

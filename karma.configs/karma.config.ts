@@ -27,10 +27,15 @@ export var karmaConfig = function(config) {
     reporters: ['progress'],
     port: 9876,
     colors: true,
+    // logLevel: config.LOG_DEBUG,
     logLevel: config.LOG_INFO,
-    autoWatch: false,
+    autoWatch: true,
     browsers: ['PhantomJS'],
-    singleRun: true
+    singleRun: false,
+    // singleRun: true,
+    client: {
+      captureConsole: true
+    }
   };
 
   config.set(_config);

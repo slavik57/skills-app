@@ -21,9 +21,12 @@ exports.karmaConfig = function (config) {
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
-        autoWatch: false,
+        autoWatch: true,
         browsers: ['PhantomJS'],
-        singleRun: true
+        singleRun: false,
+        client: {
+            captureConsole: true
+        }
     };
     config.set(_config);
 };
