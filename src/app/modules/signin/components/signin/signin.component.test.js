@@ -15,7 +15,9 @@ testing_1.describe('SigninComponent', function () {
     testing_1.beforeEachProviders(function () {
         signinUserResult = new Subject_1.Subject();
         userServiceMock = {
-            signinUser: function () { return signinUserResult; }
+            signinUser: function () { return signinUserResult; },
+            isUsernameExists: function () { return null; },
+            registerUser: function () { return null; }
         };
         locationServiceMock = {
             goToUrl: function () { }
@@ -51,6 +53,7 @@ testing_1.describe('SigninComponent', function () {
             chai_1.expect(signinComponent.submitting).to.be.true;
         });
         testing_1.it('should call the service correctly', function () {
+            chai_1.expect(signinUserSpy.callCount).to.be.equal(1);
             chai_1.expect(signinUserSpy.args[0][0]).to.be.equal(username);
             chai_1.expect(signinUserSpy.args[0][1]).to.be.equal(password);
         });

@@ -1,0 +1,104 @@
+.input-field {
+  input {
+    &:not(.ng-pristine).ng-touched.ng-invalid:not(.validation-pending) {
+      border-bottom: 1px solid red;
+    }
+  }
+
+  input + label {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+
+  input:focus + label {
+    @extend .blue-text;
+  }
+
+  input:focus {
+    border-bottom: 1px solid #9e9e9e;
+    box-shadow: none;
+  }
+
+  .async-validation-indicator {
+    opacity: 0;
+    position: relative;
+    transition: opacity .3s ease;
+
+    &.pending {
+      opacity: 1;
+    }
+
+    circular-loading {
+      position: absolute;
+      right: 0;
+      bottom: 2rem;
+      $size: 1rem;
+      width: $size;
+      height: $size;
+    }
+  }
+}
+
+.submit-wrapper{
+  @extend .row;
+  margin-top: 1rem;
+
+  .submit-button {
+    @extend .btn;
+    @extend .blue;
+    @extend .lighten-1;
+    @extend .text-white;
+
+    @extend .col;
+    @extend .l12;
+  }
+}
+
+.submit-error {
+  color: red;
+}
+
+
+.filling-form-card-content{
+  opacity: 1;
+  overflow: hidden;
+  transition: opacity .3s ease;
+
+  &.submitting{
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
+.submitting-form-card-content{
+  overflow: hidden;
+  display: none;
+  opacity: 0;
+  transition: opacity .3s ease;
+
+  &.submitting{
+    display: block;
+    opacity: 1;
+  }
+}
+
+.form-validation-errors {
+  position: relative;
+
+  .form-validation-error {
+    position: absolute;
+    color: red;
+    font-size: 0.8rem;
+    bottom: -0.1rem;
+    right: 0;
+    opacity: 0;
+    transition: opacity .3s ease;
+
+    &.has-errors{
+      opacity: 1;
+    }
+  }
+
+}

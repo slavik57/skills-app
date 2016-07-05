@@ -9,6 +9,9 @@ var HttpError = (function (_super) {
     function HttpError() {
         _super.apply(this, arguments);
     }
+    HttpError.prototype.json = function () {
+        return this.body;
+    };
     return HttpError;
 }(Error));
 exports.HttpError = HttpError;

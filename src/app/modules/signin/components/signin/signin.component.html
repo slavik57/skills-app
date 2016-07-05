@@ -6,9 +6,12 @@
 
       <div class="card-content">
 
-        <div class="sign-in-card-content" [ngClass]="{ submitting: submitting, 'has-submit-error': !!error }">
+        <div class="filling-form-card-content"
+             [ngClass]="{ submitting: submitting, 'has-submit-error': !!error }">
           <span class="title">Sign in</span>
-          <form id="signin" (ngSubmit)="onSubmit()" #signinForm="ngForm">
+          <form id="signin"
+                (ngSubmit)="onSubmit()"
+                #signinForm="ngForm">
 
             <div class="input-field">
               <input id="username"
@@ -18,8 +21,10 @@
                      [(ngModel)]="model.username"
                      #username="ngModel"/>
               <label for="username">Username</label>
-              <div class="validation-error" [ngClass]="{ 'has-errors': username.touched && !username.pristine && !username.valid }">
-                Name is required
+              <div class="form-validation-errors">
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(username) }">
+                  Username is required
+                </div>
               </div>
             </div>
 
@@ -31,8 +36,10 @@
                      [(ngModel)]="model.password"
                      #password="ngModel"/>
               <label for="password">Password</label>
-              <div class="validation-error" [ngClass]="{ 'has-errors': password.touched && !password.pristine && !password.valid }">
-                Password is required
+              <div class="form-validation-errors">
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(password) }">
+                  Password is required
+                </div>
               </div>
             </div>
 
@@ -41,7 +48,8 @@
             </div>
 
             <div class="submit-wrapper">
-              <button type="submit" class="submit-button"
+              <button type="submit"
+                      class="submit-button"
                       [disabled]="!signinForm.form.valid"
                       [ngClass]="{ disabled: !signinForm.form.valid }">Log In</button>
             </div>
@@ -49,7 +57,7 @@
           </form>
         </div>
 
-        <div class="submitting-card-content" [ngClass]="{ submitting: submitting }">
+        <div class="submitting-form-card-content" [ngClass]="{ submitting: submitting }">
           <circular-loading></circular-loading>
         </div>
       </div>

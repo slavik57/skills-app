@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,6 +13,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var formComponentBase_1 = require("../../../common/components/formComponentBase/formComponentBase");
 var locationService_1 = require("../../../common/services/locationService");
 var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
 var userService_1 = require("../../../common/services/userService");
@@ -15,8 +21,10 @@ var signinModel_1 = require("../../../models/signinModel");
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var common_1 = require('@angular/common');
-var SigninComponent = (function () {
+var SigninComponent = (function (_super) {
+    __extends(SigninComponent, _super);
     function SigninComponent(userService, locationService) {
+        _super.call(this);
         this.userService = userService;
         this.locationService = locationService;
         this.error = null;
@@ -46,11 +54,10 @@ var SigninComponent = (function () {
             template: require('./signin.component.html'),
             styles: [require('./_signin.component.scss')],
             directives: [router_deprecated_1.ROUTER_DIRECTIVES, common_1.NgClass, circularLoading_component_1.CircularLoadingComponent],
-            providers: [userService_1.UserService, locationService_1.LocationService]
         }), 
         __metadata('design:paramtypes', [userService_1.UserService, locationService_1.LocationService])
     ], SigninComponent);
     return SigninComponent;
-}());
+}(formComponentBase_1.FormComponentBase));
 exports.SigninComponent = SigninComponent;
 //# sourceMappingURL=signin.component.js.map

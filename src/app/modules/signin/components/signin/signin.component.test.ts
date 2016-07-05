@@ -27,7 +27,9 @@ describe('SigninComponent', () => {
     signinUserResult = new Subject<string>()
 
     userServiceMock = {
-      signinUser: () => signinUserResult
+      signinUser: () => signinUserResult,
+      isUsernameExists: () => null,
+      registerUser: () => null
     };
 
     locationServiceMock = {
@@ -74,6 +76,7 @@ describe('SigninComponent', () => {
     });
 
     it('should call the service correctly', () => {
+      expect(signinUserSpy.callCount).to.be.equal(1)
       expect(signinUserSpy.args[0][0]).to.be.equal(username);
       expect(signinUserSpy.args[0][1]).to.be.equal(password);
     });

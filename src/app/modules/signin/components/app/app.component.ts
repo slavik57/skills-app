@@ -1,3 +1,5 @@
+import {LocationService} from "../../../common/services/locationService";
+import {UserService} from "../../../common/services/userService";
 import {CreditsComponent} from "../../../common/components/credits/credits.component";
 import {RegisterComponent} from "../register/register.component";
 import {SigninComponent} from "../signin/signin.component";
@@ -14,7 +16,9 @@ import * as _ from 'lodash';
   directives: _.union(ROUTER_DIRECTIVES, [NavigationComponent, CreditsComponent]),
   providers: [
     ROUTER_PROVIDERS,
-    HTTP_PROVIDERS
+    HTTP_PROVIDERS,
+    UserService,
+    LocationService
   ]
 })
 @RouteConfig([

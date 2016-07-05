@@ -15,6 +15,7 @@ var CircularLoadingComponent = (function () {
     CircularLoadingComponent = __decorate([
         core_1.Component({
             selector: 'circular-loading',
+            styles: [require('./circularLoading.component.scss')],
             template: require('./circularLoading.component.html')
         }), 
         __metadata('design:paramtypes', [])

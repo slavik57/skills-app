@@ -8,6 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var locationService_1 = require("../../../common/services/locationService");
+var userService_1 = require("../../../common/services/userService");
 var credits_component_1 = require("../../../common/components/credits/credits.component");
 var register_component_1 = require("../register/register.component");
 var signin_component_1 = require("../signin/signin.component");
@@ -27,7 +29,9 @@ var AppComponent = (function () {
             directives: _.union(router_deprecated_1.ROUTER_DIRECTIVES, [navigation_component_1.NavigationComponent, credits_component_1.CreditsComponent]),
             providers: [
                 router_deprecated_1.ROUTER_PROVIDERS,
-                http_1.HTTP_PROVIDERS
+                http_1.HTTP_PROVIDERS,
+                userService_1.UserService,
+                locationService_1.LocationService
             ]
         }),
         router_deprecated_1.RouteConfig([

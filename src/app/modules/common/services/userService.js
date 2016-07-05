@@ -16,6 +16,9 @@ var UserService = (function () {
     function UserService(http) {
         this.http = http;
         this._loginUrl = '/api/login';
+        this._registerUrl = '/api/register';
+        this._userControllerUrlPrefix = '/api/user/';
+        this._userExistsUrlSuffix = '/exists';
     }
     UserService.prototype.signinUser = function (username, password) {
         var _this = this;
@@ -23,12 +26,37 @@ var UserService = (function () {
             username: username,
             password: password
         });
+        return this._post(this._loginUrl, body)
+            .map(function (response) { return _this._getRedirectionLocation(response); })
+            .catch(function (error) { return _this._failSignin(error); });
+    };
+    UserService.prototype.isUsernameExists = function (username) {
+        var _this = this;
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(this._loginUrl, body, options)
+        var url = this._userControllerUrlPrefix + username + this._userExistsUrlSuffix;
+        return this.http.get(url, options)
+            .map(function (response) { return _this._getIsUserExists(response); })
+            .catch(function (error) { return _this._failUsernameExistanceCheck(error); });
+    };
+    UserService.prototype.registerUser = function (username, password, email, firstName, lastName) {
+        var _this = this;
+        var body = JSON.stringify({
+            username: username,
+            password: password,
+            email: email,
+            firstName: firstName,
+            lastName: lastName
+        });
+        console.log(body);
+        return this._post(this._registerUrl, body)
             .map(function (response) { return _this._getRedirectionLocation(response); })
-            .catch(function (error) { return _this._fail(error); });
-        ;
+            .catch(function (error) { return _this._failRegister(error); });
+    };
+    UserService.prototype._post = function (url, body) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.post(url, body, options);
     };
     UserService.prototype._getRedirectionLocation = function (response) {
         if (response.status === statusCode_1.StatusCode.OK) {
@@ -41,7 +69,18 @@ var UserService = (function () {
         ;
         throw 'Invalid result';
     };
-    UserService.prototype._fail = function (error) {
+    UserService.prototype._failRegister = function (error) {
+        console.log(error);
+        if (typeof error === 'string') {
+            return Observable_1.Observable.throw('Oops. Something went wrong. Please try again.');
+        }
+        var result = error.json();
+        if (!!result && !!result.error) {
+            return Observable_1.Observable.throw(result.error);
+        }
+        return Observable_1.Observable.throw('Oops. Something went wrong. Please try again.');
+    };
+    UserService.prototype._failSignin = function (error) {
         console.log(error);
         if (error.status === statusCode_1.StatusCode.UNAUTHORIZED) {
             return Observable_1.Observable.throw('Invalid credentials');
@@ -49,6 +88,21 @@ var UserService = (function () {
         else {
             return Observable_1.Observable.throw('Oops. Something went wrong. Please try again.');
         }
+    };
+    UserService.prototype._getIsUserExists = function (response) {
+        if (response.status === statusCode_1.StatusCode.OK) {
+            var result = response.json();
+            if (!result || !('userExists' in result)) {
+                throw 'Unexpected result';
+            }
+            return result.userExists;
+        }
+        ;
+        throw 'Invalid result';
+    };
+    UserService.prototype._failUsernameExistanceCheck = function (error) {
+        console.log(error);
+        return Observable_1.Observable.throw('Oops. Something went wrong. Please try again.');
     };
     UserService = __decorate([
         core_1.Injectable(), 

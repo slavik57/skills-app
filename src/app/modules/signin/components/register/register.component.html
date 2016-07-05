@@ -5,45 +5,145 @@
     <div class="register-card">
 
       <div class="card-content">
-        <span class="title">Register</span>
 
-        <form id="register" action="/api/register" method="post">
+        <div class="filling-form-card-content"
+             [ngClass]="{ submitting: submitting, 'has-submit-error': !!error }">
 
-          <div class="account-details">
-            <div class="input-field">
-              <input id="register-username" type="text" name="username"/>
-              <label for="register-username">Username</label>
-            </div>
-            <div class="input-field">
-              <input id="register-password" type="password" name="password"/>
-              <label for="register-password">Password</label>
-            </div>
-          </div>
-          
-          <div class="credentials">
-            <div class="input-field">
-              <input id="register-first-name" type="text" name="firstName"/>
-              <label for="register-first-name">First name</label>
-            </div>
-            <div class="input-field">
-              <input id="register-last-name" type="text" name="lastName"/>
-              <label for="register-last-name">Last name</label>
-            </div>
-          </div>
+          <span class="title">Register</span>
 
-          <div class="input-field">
-            <input id="register-email" type="email" name="email"/>
-            <label for="register-email">Email</label>
-          </div>
+          <form id="register"
+                [formGroup]="registerFormGroup"
+                (ngSubmit)="onSubmit()">
 
-          <div class="submit-wrapper">
-            <input type="submit" class="submit-button" value="Register"/>
-          </div>
-        </form>
+            <div class="user-details">
+
+              <div class="input-field username">
+                <input id="username"
+                       type="text"
+                       name="username"
+                       [(ngModel)]="model.username"
+                       #username="ngModel"
+                       [ngClass]="{ 'validation-pending': registerFormGroup.controls.username.pending }"/>
+                <label for="username">Username</label>
+                <div class="async-validation-indicator" [ngClass]="{ 'pending': registerFormGroup.controls.username.pending }">
+                  <circular-loading></circular-loading>
+                </div>
+                <div class="form-validation-errors">
+                  <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(username, 'required') }">
+                    Username is required
+                  </div>
+                  <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(username, 'usernameTaken', false) }">
+                    Username is taken
+                  </div>
+                  <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(username, 'usernameTakenCheckFailed', false) }">
+                    Failed checking if username exists
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-field email">
+                <input id="email"
+                       type="email"
+                       name="email"
+                       [(ngModel)]="model.email"
+                       #email="ngModel"/>
+                <label for="email">Email</label>
+                <div class="form-validation-errors">
+                  <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(email) }">
+                    The email is not valid
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="passwords" ngModelGroup="passwordsGroup">
+
+              <div class="input-field password">
+                <input id="password"
+                       type="password"
+                       name="password"
+                       [(ngModel)]="model.password"
+                       #password="ngModel"/>
+                <label for="password">Password</label>
+                <div class="form-validation-errors">
+                  <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(password) }">
+                    Password is required
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-field repeat-password">
+                <input id="repeat-password"
+                       type="password"
+                       name="repeatPassword"
+                       [(ngModel)]="model.repeatPassword"
+                       #repeatPassword="ngModel"/>
+                <label for="repeat-password">Repeat the password</label>
+                <div class="form-validation-errors">
+                  <div class="form-validation-error" [ngClass]="{ 'has-errors': wasFieldEdited(repeatPassword) && !passwordsGroup.valid }">
+                    The passwords don't match
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="credentials">
+
+              <div class="input-field first-name">
+                <input id="first-name"
+                       type="text"
+                       name="firstName"
+                       [(ngModel)]="model.firstName"
+                       #firstName="ngModel"/>
+                <label for="first-name">First name</label>
+                <div class="form-validation-errors">
+                  <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(firstName) }">
+                    First name is required
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-field last-name">
+                <input id="last-name"
+                       type="text"
+                       name="lastName"
+                       [(ngModel)]="model.lastName"
+                       #lastName="ngModel"/>
+                <label for="last-name">Last name</label>
+                <div class="form-validation-errors">
+                  <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(lastName) }">
+                    Last name is required
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="submit-error">
+              {{error}}
+            </div>
+
+            <div class="submit-wrapper">
+              <button type="submit"
+                      class="submit-button"
+                      [disabled]="!registerFormGroup.valid"
+                      [ngClass]="{ disabled: !registerFormGroup.valid }">
+                     Register
+              </button>
+            </div>
+          </form>
+
+        </div>
+
+        <div class="submitting-form-card-content" [ngClass]="{ submitting: submitting }">
+          <circular-loading></circular-loading>
+        </div>
 
       </div>
 
-      <div class="card-action">
+      <div class="card-action" [ngClass]="{ submitting: submitting }">
         Have an account? <a [routerLink]="['Signin']">Sign in</a>
       </div>
 
