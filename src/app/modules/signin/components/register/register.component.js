@@ -35,6 +35,8 @@ var RegisterComponent = (function (_super) {
         this.error = undefined;
         this.submitting = false;
         this.model = new registerModel_1.RegisterModel();
+    }
+    RegisterComponent.prototype.ngOnInit = function () {
         this.passwordsGroup = this.formBuilder.group({
             password: ['', forms_1.Validators.required],
             repeatPassword: ['', forms_1.Validators.required]
@@ -50,7 +52,7 @@ var RegisterComponent = (function (_super) {
             email: ['', emailValidator_1.EmailValidator.mailFormat]
         });
         usernameExistsValidator.bindControl(this.registerFormGroup.controls['username']);
-    }
+    };
     RegisterComponent.prototype.onSubmit = function () {
         var _this = this;
         this.submitting = true;

@@ -6,7 +6,7 @@ import {EqualFieldsValidator} from "../../../common/validators/equalFieldsValida
 import {FormComponentBase} from "../../../common/components/formComponentBase/formComponentBase";
 import {EmailValidator} from "../../../common/validators/emailValidator";
 import {RegisterModel} from "../../../models/registerModel";
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
@@ -18,7 +18,7 @@ import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormContr
   providers: [FormBuilder, UsernameExistsValidatorFactory]
 })
 
-export class RegisterComponent extends FormComponentBase {
+export class RegisterComponent extends FormComponentBase implements OnInit {
   public error = undefined;
   public submitting = false;
   public model = new RegisterModel();
@@ -30,7 +30,9 @@ export class RegisterComponent extends FormComponentBase {
     private userService: UserService,
     private locationService: LocationService) {
     super();
+  }
 
+  public ngOnInit(): any {
     this.passwordsGroup = this.formBuilder.group({
       password: ['', Validators.required],
       repeatPassword: ['', Validators.required]

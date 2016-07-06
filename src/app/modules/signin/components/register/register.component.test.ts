@@ -74,6 +74,7 @@ describe('RegisterComponent', () => {
 
   beforeEach(inject([RegisterComponent], (_registerComponent: RegisterComponent) => {
     registerComponent = _registerComponent;
+    registerComponent.ngOnInit();
   }));
 
   it('should be initialized correctly', () => {

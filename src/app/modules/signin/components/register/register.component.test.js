@@ -48,6 +48,7 @@ testing_1.describe('RegisterComponent', function () {
     });
     testing_1.beforeEach(testing_1.inject([register_component_1.RegisterComponent], function (_registerComponent) {
         registerComponent = _registerComponent;
+        registerComponent.ngOnInit();
     }));
     testing_1.it('should be initialized correctly', function () {
         chai_1.expect(registerComponent.error).to.be.undefined;
