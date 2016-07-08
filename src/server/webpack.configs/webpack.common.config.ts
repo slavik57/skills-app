@@ -74,7 +74,7 @@ export var webpackCommonConfiguration: Configuration = {
     new HtmlWebpackPlugin({
       template: PathHelper.getPathFromRoot('src', 'app', 'views', 'home.html'),
       filename: 'home.html',
-      chunks: ['polyfills',  'homeCommon', 'design', 'vendor', 'app']
+      chunks: ['polyfills', 'homeCommon', 'design', 'vendor', 'app']
     })
   ]
 }
