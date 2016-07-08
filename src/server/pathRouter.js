@@ -4,7 +4,7 @@ var PathRouter = (function () {
         this.request = request;
         this.response = response;
         this.nextFunction = nextFunction;
-        this._allowedNotAuthenticatedPaths = ['/dist/', '/fonts/'];
+        this._resourcePaths = ['/dist/', '/fonts/'];
         this._homePath = '/';
         this._signinPath = '/signin';
     }
@@ -20,13 +20,16 @@ var PathRouter = (function () {
         if (this._isSigninPath()) {
             this.response.redirect(this._homePath);
         }
+        else if (this._isResourcePath()) {
+            this.nextFunction();
+        }
         else {
             this.request.url = this._homePath;
             this.nextFunction();
         }
     };
     PathRouter.prototype._routeNotAuthenticatedRequest = function () {
-        if (this._isAllowedNotAuthenticatedPath()) {
+        if (this._isResourcePath()) {
             this.nextFunction();
             return;
         }
@@ -40,10 +43,10 @@ var PathRouter = (function () {
     PathRouter.prototype._isSigninPath = function () {
         return this.request.path.indexOf(this._signinPath) === 0;
     };
-    PathRouter.prototype._isAllowedNotAuthenticatedPath = function () {
-        for (var i = 0; i < this._allowedNotAuthenticatedPaths.length; i++) {
-            var allowedNotAuthenticatedPath = this._allowedNotAuthenticatedPaths[i];
-            if (this.request.path.indexOf(allowedNotAuthenticatedPath) === 0) {
+    PathRouter.prototype._isResourcePath = function () {
+        for (var i = 0; i < this._resourcePaths.length; i++) {
+            var resourcePath = this._resourcePaths[i];
+            if (this.request.path.indexOf(resourcePath) === 0) {
                 return true;
             }
         }

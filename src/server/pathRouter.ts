@@ -1,7 +1,7 @@
 import {Request, Response, NextFunction} from 'express';
 
 export class PathRouter {
-  private _allowedNotAuthenticatedPaths = ['/dist/', '/fonts/'];
+  private _resourcePaths = ['/dist/', '/fonts/'];
   private _homePath = '/';
   private _signinPath = '/signin';
 
@@ -19,14 +19,16 @@ export class PathRouter {
   private _routeAuthenticatedRequest() {
     if (this._isSigninPath()) {
       this.response.redirect(this._homePath);
+    } else if (this._isResourcePath()) {
+      this.nextFunction();
     } else {
       this.request.url = this._homePath;
       this.nextFunction();
     }
   }
 
-  private _routeNotAuthenticatedRequest(){
-    if (this._isAllowedNotAuthenticatedPath()) {
+  private _routeNotAuthenticatedRequest() {
+    if (this._isResourcePath()) {
       this.nextFunction();
       return;
     }
@@ -44,10 +46,10 @@ export class PathRouter {
     return this.request.path.indexOf(this._signinPath) === 0;
   }
 
-  private _isAllowedNotAuthenticatedPath(): boolean {
-    for (var i = 0; i < this._allowedNotAuthenticatedPaths.length; i++) {
-      var allowedNotAuthenticatedPath: string = this._allowedNotAuthenticatedPaths[i];
-      if (this.request.path.indexOf(allowedNotAuthenticatedPath) === 0) {
+  private _isResourcePath(): boolean {
+    for (var i = 0; i < this._resourcePaths.length; i++) {
+      var resourcePath: string = this._resourcePaths[i];
+      if (this.request.path.indexOf(resourcePath) === 0) {
         return true;
       }
     }

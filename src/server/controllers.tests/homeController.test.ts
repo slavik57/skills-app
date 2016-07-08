@@ -60,6 +60,13 @@ describe('HomeController', () => {
         .end(done);
     });
 
+    it('home/dist/app.js should return correct file', (done) => {
+      server.get('/dist/app.js')
+        .expect(StatusCode.OK)
+        .expect(PageTextResolver.getFile(expressServer, 'app.js'))
+        .end(done);
+    });
+
   });
 
   describe('user logged in', () => {
@@ -82,6 +89,13 @@ describe('HomeController', () => {
         .end(done);
     });
 
+    it('home/dist/app.js should return correct file', (done) => {
+      server.get('/dist/app.js')
+        .expect(StatusCode.OK)
+        .expect(PageTextResolver.getFile(expressServer, 'app.js'))
+        .end(done);
+    });
+
     describe('logout', () => {
 
       beforeEach(() => {
@@ -99,6 +113,13 @@ describe('HomeController', () => {
         server.get('/abcd')
           .expect(StatusCode.REDIRECT)
           .expect('Location', '/signin')
+          .end(done);
+      });
+
+      it('home/dist/app.js should return correct file', (done) => {
+        server.get('/dist/app.js')
+          .expect(StatusCode.OK)
+          .expect(PageTextResolver.getFile(expressServer, 'app.js'))
           .end(done);
       });
 

@@ -3,14 +3,14 @@ import {ExpressSkillsServer} from "../expressSkillsServer";
 
 export class PageTextResolver {
   public static getSigninPage(expressServer: ExpressSkillsServer): string {
-    return this._getPage(expressServer, 'signin.html');
+    return this.getFile(expressServer, 'signin.html');
   }
 
   public static getHomePage(expressServer: ExpressSkillsServer): string {
-    return this._getPage(expressServer, 'home.html');
+    return this.getFile(expressServer, 'home.html');
   }
 
-  private static _getPage(expressServer: ExpressSkillsServer, pageName: string): string {
+  public static getFile(expressServer: ExpressSkillsServer, pageName: string): string {
     var webpackMiddleware = expressServer.webpackMiddleware;
 
     var buffer = webpackMiddleware.fileSystem.readFileSync(PathHelper.getPathFromRoot('dist', pageName));

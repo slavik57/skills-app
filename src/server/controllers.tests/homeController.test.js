@@ -44,6 +44,12 @@ describe('HomeController', function () {
                 .expect('Location', '/signin')
                 .end(done);
         });
+        it('home/dist/app.js should return correct file', function (done) {
+            server.get('/dist/app.js')
+                .expect(statusCode_1.StatusCode.OK)
+                .expect(pageTextResolver_1.PageTextResolver.getFile(expressServer, 'app.js'))
+                .end(done);
+        });
     });
     describe('user logged in', function () {
         beforeEach(function () {
@@ -61,6 +67,12 @@ describe('HomeController', function () {
                 .expect(pageTextResolver_1.PageTextResolver.getHomePage(expressServer))
                 .end(done);
         });
+        it('home/dist/app.js should return correct file', function (done) {
+            server.get('/dist/app.js')
+                .expect(statusCode_1.StatusCode.OK)
+                .expect(pageTextResolver_1.PageTextResolver.getFile(expressServer, 'app.js'))
+                .end(done);
+        });
         describe('logout', function () {
             beforeEach(function () {
                 return userLoginManager_1.UserLoginManager.logoutUser(server);
@@ -75,6 +87,12 @@ describe('HomeController', function () {
                 server.get('/abcd')
                     .expect(statusCode_1.StatusCode.REDIRECT)
                     .expect('Location', '/signin')
+                    .end(done);
+            });
+            it('home/dist/app.js should return correct file', function (done) {
+                server.get('/dist/app.js')
+                    .expect(statusCode_1.StatusCode.OK)
+                    .expect(pageTextResolver_1.PageTextResolver.getFile(expressServer, 'app.js'))
                     .end(done);
             });
         });
