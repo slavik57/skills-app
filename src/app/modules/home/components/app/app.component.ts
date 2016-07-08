@@ -1,3 +1,4 @@
+import {UserProfileComponent} from "../../../user/components/userProfile.component";
 import {HomeComponent} from "../home/home.component";
 import { Component } from '@angular/core';
 import {NavigationComponent} from "../../../common/components/navigation/navigation.component";
@@ -10,7 +11,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'skills-app',
   template: require('./app.component.html'),
-  styles: [require('./app.component.css')],
+  styles: [require('./_app.component.scss')],
   directives: _.union(ROUTER_DIRECTIVES, [NavigationComponent, CreditsComponent]),
   providers: [
     ROUTER_PROVIDERS,
@@ -27,7 +28,7 @@ import * as _ from 'lodash';
   {
     path: '/profile',
     name: 'UserProfile',
-    component: HomeComponent
+    component: UserProfileComponent
   },
   {
     path: '/settings',
