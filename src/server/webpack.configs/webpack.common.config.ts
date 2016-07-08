@@ -54,7 +54,12 @@ export var webpackCommonConfiguration: Configuration = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'signin', 'vendor', 'design', 'polyfills']
+      name: 'signinCommon',
+      chunks: ['signin', 'vendor', 'design']
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'homeCommon',
+      chunks: ['app', 'vendor', 'design']
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -64,12 +69,12 @@ export var webpackCommonConfiguration: Configuration = {
     new HtmlWebpackPlugin({
       template: PathHelper.getPathFromRoot('src', 'app', 'views', 'signin.html'),
       filename: 'signin.html',
-      chunks: ['design', 'polyfills', 'vendor', 'signin']
+      chunks: ['polyfills', 'signinCommon', 'design', 'vendor', 'signin']
     }),
     new HtmlWebpackPlugin({
       template: PathHelper.getPathFromRoot('src', 'app', 'views', 'home.html'),
       filename: 'home.html',
-      chunks: ['design', 'polyfills', 'vendor', 'app']
+      chunks: ['polyfills',  'homeCommon', 'design', 'vendor', 'app']
     })
   ]
 }
