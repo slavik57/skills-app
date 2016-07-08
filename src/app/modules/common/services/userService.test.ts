@@ -13,7 +13,7 @@ import {provide} from '@angular/core';
 import {MockBackend, MockConnection} from '@angular/http/testing';
 import {Response, ResponseOptions} from '@angular/http';
 import {expect} from 'chai';
-import {UserService} from './userService';
+import {IUserDetails, UserService} from './userService';
 
 describe('UserService', () => {
 
@@ -89,6 +89,15 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + username + '/exists');
   });
 
+  it('getUserDetails should use correct url', () => {
+    var username = 'some username'
+    userService.getUserDetails();
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/');
+  });
+
   describe('on UNAUTHORIZED error', () => {
 
     beforeEach(() => {
@@ -117,6 +126,13 @@ describe('UserService', () => {
       userService.isUsernameExists('').subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+      );
+    });
+
+    it('getUserDetails should fail correctly', () => {
+      userService.getUserDetails().subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Unauthorized getting user details.')
       );
     });
 
@@ -153,6 +169,13 @@ describe('UserService', () => {
       );
     });
 
+    it('getUserDetails should fail correctly', () => {
+      userService.getUserDetails().subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+      );
+    });
+
   });
 
   describe('on success with UNAUTHORIZED', () => {
@@ -184,6 +207,13 @@ describe('UserService', () => {
 
     it('isUsernameExists should fail correctly', () => {
       userService.isUsernameExists('').subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+      );
+    });
+
+    it('getUserDetails should fail correctly', () => {
+      userService.getUserDetails().subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
       );
@@ -254,7 +284,7 @@ describe('UserService', () => {
 
     });
 
-    describe('without the user existsnce result', () => {
+    describe('without the user existance result', () => {
 
       beforeEach(() => {
         mockBackend.connections.subscribe(
@@ -270,7 +300,7 @@ describe('UserService', () => {
 
     });
 
-    describe('with the user existsnce result', () => {
+    describe('with the user existance result', () => {
 
       var result: boolean;
 
@@ -292,6 +322,124 @@ describe('UserService', () => {
       it('isUsernameExists should return correct value', () => {
         userService.isUsernameExists('').subscribe(
           (_result: boolean) => expect(_result).to.be.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
+
+    });
+
+    describe('without the user details result', () => {
+
+      beforeEach(() => {
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+      });
+
+      it('getUserDetails should fail correctly', () => {
+        userService.getUserDetails().subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        );
+      });
+
+    });
+
+    describe('with partial user details result', () => {
+
+      var result: IUserDetails;
+
+      beforeEach(() => {
+        result = {
+          id: 1,
+          username: 'some username',
+          email: 'some email',
+          firstName: 'some name',
+          lastName: 'some last name'
+        };
+
+        delete result.email;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+      });
+
+      it('getUserDetails should fail correctly', () => {
+        userService.getUserDetails().subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        );
+      });
+
+    });
+
+    describe('with the user details result and some fields empty', () => {
+
+      var result: IUserDetails;
+
+      beforeEach(() => {
+        result = {
+          id: 1,
+          username: 'some username',
+          email: null,
+          firstName: '',
+          lastName: 'some last name'
+        };
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+      });
+
+      it('getUserDetails should return correct value', () => {
+        userService.getUserDetails().subscribe(
+          (_result: IUserDetails) => expect(_result).to.be.deep.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
+
+    });
+
+    describe('with the user details result', () => {
+
+      var result: IUserDetails;
+
+      beforeEach(() => {
+        result = {
+          id: 1,
+          username: 'some username',
+          email: 'some email',
+          firstName: 'some name',
+          lastName: 'some last name'
+        };
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+      });
+
+      it('getUserDetails should return correct value', () => {
+        userService.getUserDetails().subscribe(
+          (_result: IUserDetails) => expect(_result).to.be.deep.equal(result),
           () => expect(true, 'should succeed').to.be.false)
       });
 

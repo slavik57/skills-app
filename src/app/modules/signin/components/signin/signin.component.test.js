@@ -17,7 +17,8 @@ testing_1.describe('SigninComponent', function () {
         userServiceMock = {
             signinUser: function () { return signinUserResult; },
             isUsernameExists: function () { return null; },
-            registerUser: function () { return null; }
+            registerUser: function () { return null; },
+            getUserDetails: function () { return null; }
         };
         locationServiceMock = {
             goToUrl: function () { }

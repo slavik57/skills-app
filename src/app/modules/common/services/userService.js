@@ -17,7 +17,7 @@ var UserService = (function () {
         this.http = http;
         this._loginUrl = '/api/login';
         this._registerUrl = '/api/register';
-        this._userControllerUrlPrefix = '/api/user/';
+        this._userControllerUrl = '/api/user/';
         this._userExistsUrlSuffix = '/exists';
     }
     UserService.prototype.signinUser = function (username, password) {
@@ -32,11 +32,9 @@ var UserService = (function () {
     };
     UserService.prototype.isUsernameExists = function (username) {
         var _this = this;
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        var url = this._userControllerUrlPrefix + username + this._userExistsUrlSuffix;
-        return this.http.get(url, options)
-            .map(function (response) { return _this._getIsUserExists(response); })
+        var url = this._userControllerUrl + username + this._userExistsUrlSuffix;
+        return this._get(url)
+            .map(function (response) { return _this._extractIsUserExists(response); })
             .catch(function (error) { return _this._failUsernameExistanceCheck(error); });
     };
     UserService.prototype.registerUser = function (username, password, email, firstName, lastName) {
@@ -52,6 +50,17 @@ var UserService = (function () {
         return this._post(this._registerUrl, body)
             .map(function (response) { return _this._getRedirectionLocation(response); })
             .catch(function (error) { return _this._failRegister(error); });
+    };
+    UserService.prototype.getUserDetails = function () {
+        var _this = this;
+        return this._get(this._userControllerUrl)
+            .map(function (response) { return _this._extractUserDetails(response); })
+            .catch(function (error) { return _this._failGettingUserDetails(error); });
+    };
+    UserService.prototype._get = function (url) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.get(url, options);
     };
     UserService.prototype._post = function (url, body) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
@@ -89,7 +98,7 @@ var UserService = (function () {
             return Observable_1.Observable.throw('Oops. Something went wrong. Please try again.');
         }
     };
-    UserService.prototype._getIsUserExists = function (response) {
+    UserService.prototype._extractIsUserExists = function (response) {
         if (response.status === statusCode_1.StatusCode.OK) {
             var result = response.json();
             if (!result || !('userExists' in result)) {
@@ -100,9 +109,34 @@ var UserService = (function () {
         ;
         throw 'Invalid result';
     };
+    UserService.prototype._extractUserDetails = function (response) {
+        if (response.status === statusCode_1.StatusCode.OK) {
+            var result = response.json();
+            if (!result || !this._isResponseHasAllUserDetails(result)) {
+                throw 'Unexpected result';
+            }
+            return result;
+        }
+        throw 'Invalid result';
+    };
     UserService.prototype._failUsernameExistanceCheck = function (error) {
         console.log(error);
         return Observable_1.Observable.throw('Oops. Something went wrong. Please try again.');
+    };
+    UserService.prototype._failGettingUserDetails = function (error) {
+        if (error.status === statusCode_1.StatusCode.UNAUTHORIZED) {
+            return Observable_1.Observable.throw('Unauthorized getting user details.');
+        }
+        else {
+            return Observable_1.Observable.throw('Oops. Something went wrong. Please try again.');
+        }
+    };
+    UserService.prototype._isResponseHasAllUserDetails = function (response) {
+        return ('id' in response) &&
+            ('username' in response) &&
+            ('email' in response) &&
+            ('firstName' in response) &&
+            ('lastName' in response);
     };
     UserService = __decorate([
         core_1.Injectable(), 

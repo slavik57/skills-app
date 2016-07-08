@@ -23,7 +23,8 @@ describe('UsernameExistsValidatorFactory', () => {
     userServiceMock = {
       signinUser: () => null,
       registerUser: () => null,
-      isUsernameExists: () => null
+      isUsernameExists: () => null,
+      getUserDetails: () => null
     };
 
     return [
@@ -69,7 +70,8 @@ describe('UsernameExistsValidator', () => {
     userServiceMock = {
       signinUser: () => null,
       registerUser: () => null,
-      isUsernameExists: () => isUsernameExistsResult
+      isUsernameExists: () => isUsernameExistsResult,
+      getUserDetails: () => null
     };
 
     control = new FormControl();

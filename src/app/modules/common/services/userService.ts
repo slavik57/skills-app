@@ -20,6 +20,14 @@ interface IRegisterError {
   error: string;
 }
 
+export interface IUserDetails {
+  id: number;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+}
+
 export interface IUserService {
   signinUser(username: string, password: string): Observable<string>;
   isUsernameExists(username: string): Observable<boolean>;
@@ -28,13 +36,14 @@ export interface IUserService {
     email: string,
     firstName: string,
     lastName: string): Observable<string>;
+  getUserDetails(): Observable<IUserDetails>;
 }
 
 @Injectable()
 export class UserService implements IUserService {
   private _loginUrl = '/api/login';
   private _registerUrl = '/api/register';
-  private _userControllerUrlPrefix = '/api/user/';
+  private _userControllerUrl = '/api/user/';
   private _userExistsUrlSuffix = '/exists'
 
   constructor(private http: Http) {
@@ -52,12 +61,10 @@ export class UserService implements IUserService {
   }
 
   public isUsernameExists(username: string): Observable<boolean> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    let url = this._userControllerUrlPrefix + username + this._userExistsUrlSuffix;
+    let url = this._userControllerUrl + username + this._userExistsUrlSuffix;
 
-    return this.http.get(url, options)
-      .map((response: Response) => this._getIsUserExists(response))
+    return this._get(url)
+      .map((response: Response) => this._extractIsUserExists(response))
       .catch((error: any) => this._failUsernameExistanceCheck(error));
   }
 
@@ -78,6 +85,19 @@ export class UserService implements IUserService {
     return this._post(this._registerUrl, body)
       .map((response: Response) => this._getRedirectionLocation(response))
       .catch((error: any) => this._failRegister(error));
+  }
+
+  public getUserDetails(): Observable<IUserDetails> {
+    return this._get(this._userControllerUrl)
+      .map((response: Response) => this._extractUserDetails(response))
+      .catch((error: any) => this._failGettingUserDetails(error));
+  }
+
+  private _get(url): Observable<Response> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(url, options);
   }
 
   private _post(url: string, body: string): Observable<Response> {
@@ -126,7 +146,7 @@ export class UserService implements IUserService {
     }
   }
 
-  private _getIsUserExists(response: Response): boolean {
+  private _extractIsUserExists(response: Response): boolean {
     if (response.status === StatusCode.OK) {
       var result = response.json();
 
@@ -140,10 +160,40 @@ export class UserService implements IUserService {
     throw 'Invalid result';
   }
 
+  private _extractUserDetails(response: Response): IUserDetails {
+    if (response.status === StatusCode.OK) {
+      var result = response.json();
+
+      if (!result || !this._isResponseHasAllUserDetails(result)) {
+        throw 'Unexpected result';
+      }
+
+      return result;
+    }
+
+    throw 'Invalid result';
+  }
+
   private _failUsernameExistanceCheck(error: any): Observable<boolean> {
     console.log(error);
 
     return Observable.throw('Oops. Something went wrong. Please try again.');
+  }
+
+  private _failGettingUserDetails(error: any): Observable<IUserDetails> {
+    if (error.status === StatusCode.UNAUTHORIZED) {
+      return Observable.throw('Unauthorized getting user details.');
+    } else {
+      return Observable.throw('Oops. Something went wrong. Please try again.');
+    }
+  }
+
+  private _isResponseHasAllUserDetails(response: any): boolean {
+    return ('id' in response) &&
+      ('username' in response) &&
+      ('email' in response) &&
+      ('firstName' in response) &&
+      ('lastName' in response);
   }
 
 }
