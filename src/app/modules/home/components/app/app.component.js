@@ -8,7 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var home_component_1 = require("../home/home.component");
 var core_1 = require('@angular/core');
+var navigation_component_1 = require("../../../common/components/navigation/navigation.component");
+var credits_component_1 = require("../../../common/components/credits/credits.component");
+var router_deprecated_1 = require('@angular/router-deprecated');
+var http_1 = require('@angular/http');
+var userService_1 = require("../../../common/services/userService");
+var _ = require('lodash');
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -16,8 +23,46 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'skills-app',
             template: require('./app.component.html'),
-            styles: [require('./app.component.css')]
-        }), 
+            styles: [require('./app.component.css')],
+            directives: _.union(router_deprecated_1.ROUTER_DIRECTIVES, [navigation_component_1.NavigationComponent, credits_component_1.CreditsComponent]),
+            providers: [
+                router_deprecated_1.ROUTER_PROVIDERS,
+                http_1.HTTP_PROVIDERS,
+                userService_1.UserService
+            ]
+        }),
+        router_deprecated_1.RouteConfig([
+            {
+                path: '/',
+                name: 'Home',
+                component: home_component_1.HomeComponent
+            },
+            {
+                path: '/profile',
+                name: 'UserProfile',
+                component: home_component_1.HomeComponent
+            },
+            {
+                path: '/settings',
+                name: 'Settings',
+                component: home_component_1.HomeComponent
+            },
+            {
+                path: '/skillsPrerequisites',
+                name: 'SkillsPrerequisites',
+                component: home_component_1.HomeComponent
+            },
+            {
+                path: '/skills',
+                name: 'Skills',
+                component: home_component_1.HomeComponent
+            },
+            {
+                path: '/teams',
+                name: 'Teams',
+                component: home_component_1.HomeComponent
+            }
+        ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;

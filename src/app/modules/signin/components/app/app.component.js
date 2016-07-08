@@ -37,7 +37,7 @@ var AppComponent = (function () {
         router_deprecated_1.RouteConfig([
             {
                 path: '/',
-                name: 'Signin',
+                name: 'Home',
                 component: signin_component_1.SigninComponent
             },
             {

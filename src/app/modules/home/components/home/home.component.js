@@ -9,25 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_deprecated_1 = require('@angular/router-deprecated');
-var NavigationComponent = (function () {
-    function NavigationComponent() {
-        this.isUserLoggedIn = false;
+var HomeComponent = (function () {
+    function HomeComponent() {
     }
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], NavigationComponent.prototype, "isUserLoggedIn", void 0);
-    NavigationComponent = __decorate([
+    HomeComponent = __decorate([
         core_1.Component({
-            selector: 'navigation-bar',
-            template: require('./navigation.component.html'),
-            styles: [require('./_navigation.component.scss')],
-            directives: [router_deprecated_1.ROUTER_DIRECTIVES]
+            selector: 'home',
+            template: require('./home.component.html'),
+            styles: [require('./_home.component.scss')],
         }), 
         __metadata('design:paramtypes', [])
-    ], NavigationComponent);
-    return NavigationComponent;
+    ], HomeComponent);
+    return HomeComponent;
 }());
-exports.NavigationComponent = NavigationComponent;
-//# sourceMappingURL=navigation.component.js.map
+exports.HomeComponent = HomeComponent;
+//# sourceMappingURL=home.component.js.map

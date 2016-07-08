@@ -1,5 +1,59 @@
+<ul id="dropdown-options"
+    class="dropdown-content"
+    *ngIf="isUserLoggedIn">
+
+  <li>
+    <a [routerLink]="['UserProfile']">
+      <i class="material-icons">account_circle</i><span class="text">Profile</span>
+    </a>
+  </li>
+  <li>
+    <a [routerLink]="['Settings']">
+      <i class="material-icons">settings</i><span class="text">Settings</span>
+    </a>
+  </li>
+  <li class="divider"></li>
+  <li><a href="/logout">Log Out</a></li>
+
+</ul>
+
 <div class="navbar-fixed">
   <nav>
-    <a href="/" class="brand-logo">Skills</a>
+    <div class="nav-wrapper">
+      <a href="#!" [routerLink]="['Home']" class="brand-logo">Skills</a>
+
+      <ul *ngIf="isUserLoggedIn"
+          class="navigation-options">
+
+          <li>
+            <a [routerLink]="['SkillsPrerequisites']">
+              <i class="material-icons">timeline</i>
+            </a>
+          </li>
+
+        <li>
+          <a [routerLink]="['Skills']">
+            <i class="material-icons">card_membership</i>
+          </a>
+        </li>
+
+        <li>
+          <a [routerLink]="['Teams']">
+            <i class="material-icons">supervisor_account</i>
+          </a>
+        </li>
+
+        <li>
+          <a class="dropdown-button"
+            data-beloworigin="true"
+            data-constrainwidth="false"
+            href="#!"
+            data-activates="dropdown-options">
+            <i class="material-icons">arrow_drop_down</i>
+          </a>
+        </li>
+
+      </ul>
+    </div>
   </nav>
 </div>

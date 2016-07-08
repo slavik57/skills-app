@@ -24,7 +24,7 @@ import * as _ from 'lodash';
 @RouteConfig([
   {
     path: '/',
-    name: 'Signin',
+    name: 'Home',
     component: SigninComponent
   },
   {
