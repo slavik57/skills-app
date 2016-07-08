@@ -58,13 +58,13 @@ var RegisterComponent = (function (_super) {
         this.submitting = true;
         this.error = null;
         this.userService.registerUser(this.model.username, this.model.password, this.model.email, this.model.firstName, this.model.lastName)
-            .finally(function () { return _this._submitted(); })
-            .subscribe(function (_redirectLocation) { return _this._redirect(_redirectLocation); }, function (_error) { return _this._setError(_error); });
+            .subscribe(function (_redirectLocation) { return _this._redirect(_redirectLocation); }, function (_error) { return _this._finishRegistrationWithError(_error); });
     };
     RegisterComponent.prototype._redirect = function (redirectPath) {
         this.locationService.goToUrl(redirectPath);
     };
-    RegisterComponent.prototype._setError = function (_error) {
+    RegisterComponent.prototype._finishRegistrationWithError = function (_error) {
+        this._submitted();
         this.error = _error;
     };
     RegisterComponent.prototype._submitted = function () {

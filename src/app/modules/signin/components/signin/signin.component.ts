@@ -29,17 +29,17 @@ export class SigninComponent extends FormComponentBase {
     this.error = null;
 
     this.userService.signinUser(this.model.username, this.model.password)
-      .finally(() => this._submitted())
       .subscribe(
       (_redirectLocation: string) => this._redirect(_redirectLocation),
-      _error => this._setError(_error));
+      _error => this._finishSigninWithError(_error));
   }
 
   private _redirect(redirectPath: string): void {
     this.locationService.goToUrl(redirectPath);
   }
 
-  private _setError(_error: any) {
+  private _finishSigninWithError(_error: any) {
+    this._submitted();
     this.error = _error;
   }
 

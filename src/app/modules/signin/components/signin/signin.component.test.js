@@ -79,8 +79,8 @@ testing_1.describe('SigninComponent', function () {
                 signinUserResult.next(redirectUrl);
                 signinUserResult.complete();
             });
-            testing_1.it('should set submitting to false', function () {
-                chai_1.expect(signinComponent.submitting).to.be.false;
+            testing_1.it('should set submitting to true', function () {
+                chai_1.expect(signinComponent.submitting).to.be.true;
             });
             testing_1.it('should navigate to correct url', function () {
                 chai_1.expect(goToUrlSpy.args[0][0]).to.be.equal(redirectUrl);

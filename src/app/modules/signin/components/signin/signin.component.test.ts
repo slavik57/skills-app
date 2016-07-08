@@ -115,8 +115,8 @@ describe('SigninComponent', () => {
         signinUserResult.complete();
       });
 
-      it('should set submitting to false', () => {
-        expect(signinComponent.submitting).to.be.false;
+      it('should set submitting to true', () => {
+        expect(signinComponent.submitting).to.be.true;
       });
 
       it('should navigate to correct url', () => {

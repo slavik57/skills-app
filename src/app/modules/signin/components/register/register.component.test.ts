@@ -397,8 +397,8 @@ describe('RegisterComponent', () => {
         registerUserResult.complete();
       });
 
-      it('should set submitting to false', () => {
-        expect(registerComponent.submitting).to.be.false;
+      it('should set submitting to true', () => {
+        expect(registerComponent.submitting).to.be.true;
       });
 
       it('should navigate to correct url', () => {

@@ -36,13 +36,13 @@ var SigninComponent = (function (_super) {
         this.submitting = true;
         this.error = null;
         this.userService.signinUser(this.model.username, this.model.password)
-            .finally(function () { return _this._submitted(); })
-            .subscribe(function (_redirectLocation) { return _this._redirect(_redirectLocation); }, function (_error) { return _this._setError(_error); });
+            .subscribe(function (_redirectLocation) { return _this._redirect(_redirectLocation); }, function (_error) { return _this._finishSigninWithError(_error); });
     };
     SigninComponent.prototype._redirect = function (redirectPath) {
         this.locationService.goToUrl(redirectPath);
     };
-    SigninComponent.prototype._setError = function (_error) {
+    SigninComponent.prototype._finishSigninWithError = function (_error) {
+        this._submitted();
         this.error = _error;
     };
     SigninComponent.prototype._submitted = function () {
