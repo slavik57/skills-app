@@ -2,7 +2,7 @@ import {FormComponentBase} from "../../../common/components/formComponentBase/fo
 import {LocationService} from "../../../common/services/locationService";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {UserService} from "../../../common/services/userService";
-import {SigninModel} from "../../../models/signinModel";
+import {SigninModel} from "../../models/signinModel";
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { NgClass }    from '@angular/common';

@@ -5,7 +5,7 @@ import {IUsernameExistsValidator, UsernameExistsValidator, UsernameExistsValidat
 import {EqualFieldsValidator} from "../../../common/validators/equalFieldsValidator";
 import {FormComponentBase} from "../../../common/components/formComponentBase/formComponentBase";
 import {EmailValidator} from "../../../common/validators/emailValidator";
-import {RegisterModel} from "../../../models/registerModel";
+import {RegisterModel} from "../../models/registerModel";
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
