@@ -6,6 +6,8 @@
     "express": "registry:dt/express#4.0.0+20160317120654",
     "express-serve-static-core": "registry:dt/express-serve-static-core#0.0.0+20160617060422",
     "express-session": "registry:dt/express-session#0.0.0+20160331200931",
+    "jquery": "registry:dt/jquery#1.10.0+20160704162008",
+    "materialize-css": "registry:dt/materialize-css#0.97.5+20160628040906",
     "method-override": "registry:dt/method-override#0.0.0+20160317120654",
     "node": "registry:dt/node#6.0.0+20160619064643",
     "passport": "registry:dt/passport#0.2.0+20160317120654",
