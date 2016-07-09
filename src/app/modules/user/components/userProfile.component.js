@@ -50,7 +50,7 @@ var UserProfileComponent = (function (_super) {
         this.updatingUserDetailsError = null;
         this.userService.updateUserDetails(this._originalUserDetails.id, this.model.username, this.model.email, this.model.firstName, this.model.lastName)
             .finally(function () { return _this._setAsNotUpdatingUserDetails(); })
-            .subscribe(function () { }, function (error) { return _this._setUpdatingUserDetailsError(error); });
+            .subscribe(function () { return _this._updateTheOriginalUserDetailsByModel(); }, function (error) { return _this._setUpdatingUserDetailsError(error); });
     };
     UserProfileComponent.prototype._setAsNotGettingUserDetails = function () {
         this.gettingUserDetails = false;
@@ -98,6 +98,12 @@ var UserProfileComponent = (function (_super) {
     };
     UserProfileComponent.prototype._setUpdatingUserDetailsError = function (error) {
         this.updatingUserDetailsError = error;
+    };
+    UserProfileComponent.prototype._updateTheOriginalUserDetailsByModel = function () {
+        this._originalUserDetails.username = this.model.username;
+        this._originalUserDetails.email = this.model.email;
+        this._originalUserDetails.firstName = this.model.firstName;
+        this._originalUserDetails.lastName = this.model.lastName;
     };
     UserProfileComponent = __decorate([
         core_1.Component({

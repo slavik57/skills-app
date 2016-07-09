@@ -646,6 +646,10 @@ describe('UserProfileComponent', () => {
           expect(userProfileComponent.updatingUserDetailsError).to.be.null;
         });
 
+        it('canUpdateUserDetails should return false', () => {
+          expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+        });
+
       });
 
     })
@@ -896,6 +900,10 @@ describe('UserProfileComponent', () => {
 
         it('should set updatingUserDetailsError to null', () => {
           expect(userProfileComponent.updatingUserDetailsError).to.be.null;
+        });
+
+        it('canUpdateUserDetails should return false', () => {
+          expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
         });
 
       });

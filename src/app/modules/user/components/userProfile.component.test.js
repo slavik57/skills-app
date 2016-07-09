@@ -459,6 +459,9 @@ testing_1.describe('UserProfileComponent', function () {
                 testing_1.it('should set updatingUserDetailsError to null', function () {
                     chai_1.expect(userProfileComponent.updatingUserDetailsError).to.be.null;
                 });
+                testing_1.it('canUpdateUserDetails should return false', function () {
+                    chai_1.expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+                });
             });
         });
     });
@@ -639,6 +642,9 @@ testing_1.describe('UserProfileComponent', function () {
                 });
                 testing_1.it('should set updatingUserDetailsError to null', function () {
                     chai_1.expect(userProfileComponent.updatingUserDetailsError).to.be.null;
+                });
+                testing_1.it('canUpdateUserDetails should return false', function () {
+                    chai_1.expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
                 });
             });
         });

@@ -61,7 +61,7 @@ export class UserProfileComponent extends FormComponentBase implements OnInit {
       this.model.lastName)
       .finally(() => this._setAsNotUpdatingUserDetails())
       .subscribe(
-      () => { },
+      () => this._updateTheOriginalUserDetailsByModel(),
       (error: any) => this._setUpdatingUserDetailsError(error));
   }
 
@@ -125,5 +125,12 @@ export class UserProfileComponent extends FormComponentBase implements OnInit {
 
   private _setUpdatingUserDetailsError(error: any): void {
     this.updatingUserDetailsError = error;
+  }
+
+  private _updateTheOriginalUserDetailsByModel(): void {
+    this._originalUserDetails.username = this.model.username;
+    this._originalUserDetails.email = this.model.email;
+    this._originalUserDetails.firstName = this.model.firstName;
+    this._originalUserDetails.lastName = this.model.lastName;
   }
 }
