@@ -44,7 +44,8 @@ export interface IUserService {
     firstName: string,
     lastName: string): Observable<string>;
   getUserDetails(): Observable<IUserDetails>;
-  updateUserDetails(username: string,
+  updateUserDetails(userId: number,
+    username: string,
     email: string,
     firstName: string,
     lastName: string): Observable<void>;
@@ -104,12 +105,13 @@ export class UserService implements IUserService {
       .catch((error: any) => this._failGettingUserDetails(error));
   }
 
-  public updateUserDetails(username: string,
+  public updateUserDetails(userId: number,
+    username: string,
     email: string,
     firstName: string,
     lastName: string): Observable<void> {
 
-    let url = this._userControllerUrl + username;
+    let url = this._userControllerUrl + userId;
 
     let body: string = JSON.stringify(<IUpdateUserInfo>{
       username: username,

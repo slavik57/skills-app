@@ -56,9 +56,9 @@ var UserService = (function () {
             .map(function (response) { return _this._extractUserDetails(response); })
             .catch(function (error) { return _this._failGettingUserDetails(error); });
     };
-    UserService.prototype.updateUserDetails = function (username, email, firstName, lastName) {
+    UserService.prototype.updateUserDetails = function (userId, username, email, firstName, lastName) {
         var _this = this;
-        var url = this._userControllerUrl + username;
+        var url = this._userControllerUrl + userId;
         var body = JSON.stringify({
             username: username,
             email: email,
