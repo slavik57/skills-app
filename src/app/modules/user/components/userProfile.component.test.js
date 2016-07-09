@@ -31,7 +31,7 @@ testing_1.describe('UserProfileComponent', function () {
     }));
     testing_1.it('should initialize correctly', function () {
         chai_1.expect(userProfileComponent.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
-        chai_1.expect(userProfileComponent.editUserProfileModel, 'editUserProfileModel should be correct').to.be.undefined;
+        chai_1.expect(userProfileComponent.model, 'editUserProfileModel should be correct').to.be.undefined;
         chai_1.expect(userProfileComponent.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
     });
     testing_1.it('canReloadUserDetals should return false', function () {
@@ -50,7 +50,7 @@ testing_1.describe('UserProfileComponent', function () {
             chai_1.expect(userProfileComponent.gettingUserDetails).to.be.false;
         });
         testing_1.it('model should still be undefined', function () {
-            chai_1.expect(userProfileComponent.editUserProfileModel).to.be.undefined;
+            chai_1.expect(userProfileComponent.model).to.be.undefined;
         });
         testing_1.it('should set error correctly', function () {
             chai_1.expect(userProfileComponent.gettingUserDetailsError).to.be.equal(error);
@@ -66,7 +66,7 @@ testing_1.describe('UserProfileComponent', function () {
             });
             testing_1.it('should set properties correctly', function () {
                 chai_1.expect(userProfileComponent.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
-                chai_1.expect(userProfileComponent.editUserProfileModel, 'editUserProfileModel should be correct').to.be.undefined;
+                chai_1.expect(userProfileComponent.model, 'editUserProfileModel should be correct').to.be.undefined;
                 chai_1.expect(userProfileComponent.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
             });
             testing_1.it('canReloadUserDetals should return false', function () {
@@ -79,7 +79,8 @@ testing_1.describe('UserProfileComponent', function () {
     });
     testing_1.describe('fetching user details succeeds', function () {
         var userDetails;
-        testing_1.beforeEach(function () {
+        var updateTextFieldsSpy;
+        testing_1.beforeEach(testing_1.fakeAsync(function () {
             userDetails = {
                 id: 1,
                 username: 'some username',
@@ -87,8 +88,13 @@ testing_1.describe('UserProfileComponent', function () {
                 firstName: 'some firstName',
                 lastName: 'some lastName'
             };
+            updateTextFieldsSpy = sinon_1.spy(Materialize, 'updateTextFields');
             getUserDetailsResult.next(userDetails);
             getUserDetailsResult.complete();
+            testing_1.tick(0);
+        }));
+        testing_1.afterEach(function () {
+            updateTextFieldsSpy.restore();
         });
         testing_1.it('should set gettingUserDetails to false', function () {
             chai_1.expect(userProfileComponent.gettingUserDetails).to.be.false;
@@ -100,7 +106,10 @@ testing_1.describe('UserProfileComponent', function () {
             chai_1.expect(userProfileComponent.canReloadUserDetails()).to.be.false;
         });
         testing_1.it('the model should be correct', function () {
-            chai_1.expect(userProfileComponent.editUserProfileModel).to.be.deep.equal(userDetails);
+            chai_1.expect(userProfileComponent.model).to.be.deep.equal(userDetails);
+        });
+        testing_1.it('should call Materialize.updateTextFields()', function () {
+            chai_1.expect(updateTextFieldsSpy.callCount).to.be.equal(1);
         });
     });
 });

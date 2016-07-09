@@ -1,18 +1,23 @@
+import {FormComponentBase} from "../../common/components/formComponentBase/formComponentBase";
+import {CircularLoadingComponent} from "../../common/components/circularLoading/circularLoading.component";
 import {EditUserProfile} from "../models/editUserProfileModel";
 import {UserService, IUserDetails} from "../../common/services/userService";
 import { Component, OnInit } from '@angular/core';
+import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'user-profile',
   template: require('./userProfile.component.html'),
   styles: [require('./_userProfile.component.scss')],
+  directives: [REACTIVE_FORM_DIRECTIVES, CircularLoadingComponent]
 })
-export class UserProfileComponent implements OnInit {
-  public editUserProfileModel: EditUserProfile;
+export class UserProfileComponent extends FormComponentBase implements OnInit {
+  public model: EditUserProfile;
   public gettingUserDetails: boolean;
   public gettingUserDetailsError: any;
 
   constructor(private userService: UserService) {
+    super();
   }
 
   public ngOnInit(): void {
@@ -39,7 +44,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   private _initializeEditUserProfileModel(userDetails: IUserDetails): void {
-    this.editUserProfileModel = EditUserProfile.fromUserDetails(userDetails);
+    this.model = EditUserProfile.fromUserDetails(userDetails);
+    setTimeout(() => Materialize.updateTextFields(), 0);
   }
 
   private _setGettingUserDetailsError(error: any): void {

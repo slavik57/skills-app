@@ -1,5 +1,7 @@
 Error.stackTraceLimit = Infinity;
 
+require('../node_modules/materialize-css/dist/js/materialize.min.js');
+
 require('core-js/es6');
 require('reflect-metadata');
 

@@ -53,7 +53,12 @@ var config: Configuration = {
   plugins: [
     new ExtractTextPlugin('[name].css'),
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['app', 'vendor', 'signin', 'polyfills']
+      name: 'signinCommon',
+      chunks: ['signin', 'vendor']
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'homeCommon',
+      chunks: ['app', 'vendor']
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -63,12 +68,12 @@ var config: Configuration = {
     new HtmlWebpackPlugin({
       template: PathHelper.getPathFromRoot('src', 'app', 'views', 'signin.html'),
       filename: 'signin.html',
-      chunks: ['polyfills', 'vendor', 'signin']
+      chunks: ['polyfills', 'signinCommon', 'vendor', 'signin']
     }),
     new HtmlWebpackPlugin({
       template: PathHelper.getPathFromRoot('src', 'app', 'views', 'home.html'),
       filename: 'home.html',
-      chunks: ['polyfills', 'vendor', 'app']
+      chunks: ['polyfills', 'homeCommon', 'vendor', 'app']
     })
   ]
 }

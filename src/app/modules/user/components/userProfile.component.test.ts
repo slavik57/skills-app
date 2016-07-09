@@ -3,7 +3,10 @@ import {
   inject,
   describe,
   beforeEach,
+  afterEach,
   beforeEachProviders,
+  tick,
+  fakeAsync
 } from '@angular/core/testing';
 import {provide} from '@angular/core';
 import {IUserService, UserService, IUserDetails} from "../../common/services/userService";
@@ -45,7 +48,7 @@ describe('UserProfileComponent', () => {
 
   it('should initialize correctly', () => {
     expect(userProfileComponent.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
-    expect(userProfileComponent.editUserProfileModel, 'editUserProfileModel should be correct').to.be.undefined;
+    expect(userProfileComponent.model, 'editUserProfileModel should be correct').to.be.undefined;
     expect(userProfileComponent.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
   });
 
@@ -71,7 +74,7 @@ describe('UserProfileComponent', () => {
     });
 
     it('model should still be undefined', () => {
-      expect(userProfileComponent.editUserProfileModel).to.be.undefined;
+      expect(userProfileComponent.model).to.be.undefined;
     });
 
     it('should set error correctly', () => {
@@ -93,7 +96,7 @@ describe('UserProfileComponent', () => {
 
       it('should set properties correctly', () => {
         expect(userProfileComponent.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
-        expect(userProfileComponent.editUserProfileModel, 'editUserProfileModel should be correct').to.be.undefined;
+        expect(userProfileComponent.model, 'editUserProfileModel should be correct').to.be.undefined;
         expect(userProfileComponent.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
       });
 
@@ -112,8 +115,9 @@ describe('UserProfileComponent', () => {
   describe('fetching user details succeeds', () => {
 
     var userDetails: IUserDetails;
+    var updateTextFieldsSpy: SinonSpy;
 
-    beforeEach(() => {
+    beforeEach(fakeAsync(() => {
       userDetails = {
         id: 1,
         username: 'some username',
@@ -122,8 +126,16 @@ describe('UserProfileComponent', () => {
         lastName: 'some lastName'
       };
 
+      updateTextFieldsSpy = spy(Materialize, 'updateTextFields');
+
       getUserDetailsResult.next(userDetails);
       getUserDetailsResult.complete();
+
+      tick(0);
+    }));
+
+    afterEach(() => {
+      updateTextFieldsSpy.restore();
     });
 
     it('should set gettingUserDetails to false', () => {
@@ -139,8 +151,12 @@ describe('UserProfileComponent', () => {
     });
 
     it('the model should be correct', () => {
-      expect(userProfileComponent.editUserProfileModel).to.be.deep.equal(userDetails);
-    })
+      expect(userProfileComponent.model).to.be.deep.equal(userDetails);
+    });
+
+    it('should call Materialize.updateTextFields()', () => {
+      expect(updateTextFieldsSpy.callCount).to.be.equal(1);
+    });
 
   });
 
