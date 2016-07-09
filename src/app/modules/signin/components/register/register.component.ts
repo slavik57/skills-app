@@ -51,7 +51,7 @@ export class RegisterComponent extends FormComponentBase implements OnInit {
       email: ['', EmailValidator.mailFormat]
     });
 
-    usernameExistsValidator.bindControl(<any>this.registerFormGroup.controls['username']);
+    usernameExistsValidator.bindControl(this.registerFormGroup.controls['username']);
   }
 
   public onSubmit(): void {

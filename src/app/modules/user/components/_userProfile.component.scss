@@ -4,7 +4,7 @@
 :host {
   flex: 1 0 auto;
 
-  circular-loading {
+  .loading-user-details-indicator {
     $size: 2rem;
     width: $size;
     height: $size;

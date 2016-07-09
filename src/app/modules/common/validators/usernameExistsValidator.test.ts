@@ -13,6 +13,7 @@ import {UsernameExistsValidator, UsernameExistsValidatorFactory} from "./usernam
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import {FormControl} from '@angular/forms';
+import {spy, SinonSpy} from 'sinon';
 
 describe('UsernameExistsValidatorFactory', () => {
 
@@ -44,6 +45,20 @@ describe('UsernameExistsValidatorFactory', () => {
 
       expect(validator).to.be.instanceof(UsernameExistsValidator);
       expect(validator['userService']).to.be.equal(userServiceMock);
+      expect(validator['allowedUsernames']).to.be.deep.equal([]);
+    });
+
+  });
+
+  describe('createWithAllowedUsers', () => {
+
+    it('should create correct UsernameExistsValidator', () => {
+      var usernames = ['a', 'b', 'c'];
+      var validator = usernameExistsValidatorFactory.createWithAllowedUsers(usernames);
+
+      expect(validator).to.be.instanceof(UsernameExistsValidator);
+      expect(validator['userService']).to.be.equal(userServiceMock);
+      expect(validator['allowedUsernames']).to.be.deep.equal(usernames);
     });
 
   });
@@ -58,6 +73,8 @@ describe('UsernameExistsValidator', () => {
   var control: FormControl;
   var validator: UsernameExistsValidator;
   var originalDebounce: any;
+  var validUsernames: string[];
+  var isUsernameExistsSpy: SinonSpy;
 
   beforeEach(() => {
     originalDebounce = Observable.prototype.debounce;
@@ -76,9 +93,12 @@ describe('UsernameExistsValidator', () => {
 
     control = new FormControl();
 
-    validator = new UsernameExistsValidator(userServiceMock);
+    validUsernames = ['valid username1', 'valid username2'];
+    validator = new UsernameExistsValidator(validUsernames, userServiceMock);
 
     validator.bindControl(control);
+
+    isUsernameExistsSpy = spy(userServiceMock, 'isUsernameExists');
   });
 
   afterEach(() => {
@@ -88,9 +108,10 @@ describe('UsernameExistsValidator', () => {
   describe('usernameExists', () => {
 
     it('isUsernameExists returns true should return error', () => {
+      var actualResult;
       validator.usernameExists(control).subscribe(
         (_result) => {
-          expect(_result).to.deep.equal({ 'usernameTaken': true });
+          actualResult = _result;
         }
       )
 
@@ -100,13 +121,15 @@ describe('UsernameExistsValidator', () => {
 
       isUsernameExistsResult.next(true);
       isUsernameExistsResult.complete();
+
+      expect(actualResult).to.deep.equal({ 'usernameTaken': true });
     });
 
-
     it('isUsernameExists returns false should be null', () => {
+      var actualResult;
       validator.usernameExists(control).subscribe(
         (_result) => {
-          expect(_result).to.be.null;
+          actualResult = _result;
         }
       )
 
@@ -116,12 +139,15 @@ describe('UsernameExistsValidator', () => {
 
       isUsernameExistsResult.next(false);
       isUsernameExistsResult.complete();
+
+      expect(actualResult).to.be.null;
     });
 
     it('isUsernameExists rejects should return usernameTakenCheckFailed error', () => {
+      var actualResult;
       validator.usernameExists(control).subscribe(
         (_result) => {
-          expect(_result).to.deep.equal({ 'usernameTakenCheckFailed': true });
+          actualResult = _result;
         }
       )
 
@@ -130,6 +156,8 @@ describe('UsernameExistsValidator', () => {
       control.updateValueAndValidity();
 
       isUsernameExistsResult.error('some error');
+
+      expect(actualResult).to.deep.equal({ 'usernameTakenCheckFailed': true });
     });
 
     it('value changes without subscriber should not fail', () => {
@@ -139,9 +167,10 @@ describe('UsernameExistsValidator', () => {
     });
 
     it('null username should be null', () => {
+      var actualResult;
       validator.usernameExists(control).subscribe(
         (_result) => {
-          expect(_result).to.be.null;
+          actualResult = _result;
         }
       )
 
@@ -150,12 +179,15 @@ describe('UsernameExistsValidator', () => {
       control.updateValueAndValidity();
 
       isUsernameExistsResult.error('some error');
+
+      expect(actualResult).to.be.null;
     });
 
     it('undefined username should be null', () => {
+      var actualResult;
       validator.usernameExists(control).subscribe(
         (_result) => {
-          expect(_result).to.be.null;
+          actualResult = _result;
         }
       )
 
@@ -164,6 +196,8 @@ describe('UsernameExistsValidator', () => {
       control.updateValueAndValidity();
 
       isUsernameExistsResult.error('some error');
+
+      expect(actualResult).to.be.null;
     });
 
     it('empty username should be null', () => {
@@ -178,6 +212,54 @@ describe('UsernameExistsValidator', () => {
       control.updateValueAndValidity();
 
       isUsernameExistsResult.error('some error');
+    });
+
+    it('on valid username should not use the user service', () => {
+      validator.usernameExists(control);
+
+      control.updateValue(validUsernames[0]);
+      control.updateValueAndValidity();
+
+      expect(isUsernameExistsSpy.callCount).to.be.equal(0);
+    });
+
+    it('on another valid username should not use the user service', () => {
+      validator.usernameExists(control);
+
+      control.updateValue(validUsernames[1]);
+      control.updateValueAndValidity();
+
+      expect(isUsernameExistsSpy.callCount).to.be.equal(0);
+    });
+
+    it('on valid username should return null', () => {
+      control.updateValue(validUsernames[0]);
+
+      var actualResult;
+      validator.usernameExists(control).subscribe(
+        (_result) => {
+          actualResult = _result;
+        }
+      );
+
+      control.updateValueAndValidity();
+
+      expect(actualResult).to.be.null;
+    });
+
+    it('on another valid username should return null', () => {
+      control.updateValue(validUsernames[1]);
+
+      var actualResult;
+      validator.usernameExists(control).subscribe(
+        (_result) => {
+          actualResult = _result;
+        }
+      )
+
+      control.updateValueAndValidity();
+
+      expect(actualResult).to.be.null;
     });
 
   });

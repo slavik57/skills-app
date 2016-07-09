@@ -12,7 +12,8 @@ var userService_1 = require("../services/userService");
 var core_1 = require('@angular/core');
 var Observable_1 = require('rxjs/Observable');
 var UsernameExistsValidator = (function () {
-    function UsernameExistsValidator(userService) {
+    function UsernameExistsValidator(allowedUsernames, userService) {
+        this.allowedUsernames = allowedUsernames;
         this.userService = userService;
     }
     UsernameExistsValidator.prototype.bindControl = function (control) {
@@ -34,6 +35,11 @@ var UsernameExistsValidator = (function () {
     UsernameExistsValidator.prototype.usernameExists = function (control) {
         var _this = this;
         return new Observable_1.Observable(function (subscriber) {
+            if (_this.allowedUsernames.indexOf(control.value) >= 0) {
+                _this._subscriber = null;
+                _this._resolveSubscriber(subscriber, null);
+                return;
+            }
             _this._subscriber = subscriber;
         });
     };
@@ -62,7 +68,10 @@ var UsernameExistsValidatorFactory = (function () {
         this.userService = userService;
     }
     UsernameExistsValidatorFactory.prototype.create = function () {
-        return new UsernameExistsValidator(this.userService);
+        return new UsernameExistsValidator([], this.userService);
+    };
+    UsernameExistsValidatorFactory.prototype.createWithAllowedUsers = function (usernames) {
+        return new UsernameExistsValidator(usernames, this.userService);
     };
     UsernameExistsValidatorFactory = __decorate([
         core_1.Injectable(), 

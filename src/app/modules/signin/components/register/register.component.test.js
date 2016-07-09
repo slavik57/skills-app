@@ -37,7 +37,8 @@ testing_1.describe('RegisterComponent', function () {
         usernameExistsValidatorBindControlSpy =
             sinon_1.spy(usernameExistsValidatorMock, 'bindControl');
         usernameExistsValidatorFactoryMock = {
-            create: function () { return usernameExistsValidatorMock; }
+            create: function () { return usernameExistsValidatorMock; },
+            createWithAllowedUsers: function () { return null; }
         };
         return [
             forms_1.FormBuilder,
@@ -60,8 +61,8 @@ testing_1.describe('RegisterComponent', function () {
         chai_1.expect(registerComponent.model.firstName).to.be.undefined;
         chai_1.expect(registerComponent.model.lastName).to.be.undefined;
         chai_1.expect(registerComponent.submitting).to.be.false;
-        chai_1.expect(registerComponent.registerFormGroup).to.not.equal(null);
-        chai_1.expect(registerComponent.passwordsGroup).to.not.equal(null);
+        chai_1.expect(registerComponent.registerFormGroup).to.exist;
+        chai_1.expect(registerComponent.passwordsGroup).to.exist;
     });
     testing_1.it('should bind the username control to the usernameExistsValidator', function () {
         chai_1.expect(usernameExistsValidatorBindControlSpy.callCount).to.be.equal(1);
@@ -107,14 +108,14 @@ testing_1.describe('RegisterComponent', function () {
                     usernameControl.updateValueAndValidity();
                     usernameExistsResult.next(null);
                     usernameExistsResult.complete();
-                    chai_1.expect(usernameControl.errors).to.be.null;
+                    chai_1.expect(usernameControl.errors).not.to.exist;
                 });
                 testing_1.it('invalid username should fail validation', function () {
                     usernameControl.updateValue(invalidUsername);
                     usernameControl.updateValueAndValidity();
                     usernameExistsResult.next(null);
                     usernameExistsResult.complete();
-                    chai_1.expect(usernameControl.errors).not.to.be.null;
+                    chai_1.expect(usernameControl.errors).to.exist;
                 });
             });
             testing_1.describe('username exists', function () {

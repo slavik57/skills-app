@@ -61,7 +61,8 @@ describe('RegisterComponent', () => {
       spy(usernameExistsValidatorMock, 'bindControl');
 
     usernameExistsValidatorFactoryMock = {
-      create: () => usernameExistsValidatorMock
+      create: () => usernameExistsValidatorMock,
+      createWithAllowedUsers: () => null
     }
 
     return [
@@ -87,8 +88,8 @@ describe('RegisterComponent', () => {
     expect(registerComponent.model.firstName).to.be.undefined;
     expect(registerComponent.model.lastName).to.be.undefined;
     expect(registerComponent.submitting).to.be.false;
-    expect(registerComponent.registerFormGroup).to.not.equal(null);
-    expect(registerComponent.passwordsGroup).to.not.equal(null);
+    expect(registerComponent.registerFormGroup).to.exist;
+    expect(registerComponent.passwordsGroup).to.exist;
   });
 
   it('should bind the username control to the usernameExistsValidator', () => {
@@ -149,7 +150,7 @@ describe('RegisterComponent', () => {
           usernameExistsResult.next(null);
           usernameExistsResult.complete();
 
-          expect(usernameControl.errors).to.be.null;
+          expect(usernameControl.errors).not.to.exist;
         });
 
         it('invalid username should fail validation', () => {
@@ -159,7 +160,7 @@ describe('RegisterComponent', () => {
           usernameExistsResult.next(null);
           usernameExistsResult.complete();
 
-          expect(usernameControl.errors).not.to.be.null;
+          expect(usernameControl.errors).to.exist;
         });
 
       });

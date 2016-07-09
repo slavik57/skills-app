@@ -46,7 +46,6 @@ var UserService = (function () {
             firstName: firstName,
             lastName: lastName
         });
-        console.log(body);
         return this._post(this._registerUrl, body)
             .map(function (response) { return _this._getRedirectionLocation(response); })
             .catch(function (error) { return _this._failRegister(error); });

@@ -7,14 +7,15 @@ import {Subscriber} from 'rxjs/Subscriber';
 
 export interface IUsernameExistsValidator {
   bindControl(control: AbstractControl): void;
-  usernameExists(control: AbstractControl): Observable<IValidationResult>
+  usernameExists(control: AbstractControl): Observable<IValidationResult>;
 }
 
 export class UsernameExistsValidator implements IUsernameExistsValidator {
 
   private _subscriber: Subscriber<IValidationResult>
 
-  constructor(private userService: IUserService) {
+  constructor(private allowedUsernames: string[],
+    private userService: IUserService) {
   }
 
   public bindControl(control: AbstractControl): void {
@@ -37,6 +38,13 @@ export class UsernameExistsValidator implements IUsernameExistsValidator {
 
   public usernameExists(control: AbstractControl): Observable<IValidationResult> {
     return new Observable<IValidationResult>((subscriber: Subscriber<IValidationResult>) => {
+
+      if (this.allowedUsernames.indexOf(control.value) >= 0) {
+        this._subscriber = null;
+        this._resolveSubscriber(subscriber, null);
+        return;
+      }
+
       this._subscriber = subscriber;
     });
   }
@@ -65,6 +73,7 @@ export class UsernameExistsValidator implements IUsernameExistsValidator {
 
 export interface IUsernameExistsValidatorFactory {
   create(): IUsernameExistsValidator;
+  createWithAllowedUsers(usernames: string[]): IUsernameExistsValidator;
 }
 
 @Injectable()
@@ -74,6 +83,10 @@ export class UsernameExistsValidatorFactory implements IUsernameExistsValidatorF
   }
 
   public create(): IUsernameExistsValidator {
-    return new UsernameExistsValidator(this.userService);
+    return new UsernameExistsValidator([], this.userService);
+  }
+
+  public createWithAllowedUsers(usernames: string[]): IUsernameExistsValidator {
+    return new UsernameExistsValidator(usernames, this.userService);
   }
 }

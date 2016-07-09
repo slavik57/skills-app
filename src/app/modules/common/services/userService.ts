@@ -81,7 +81,7 @@ export class UserService implements IUserService {
       firstName: firstName,
       lastName: lastName
     });
-    console.log(body);
+
     return this._post(this._registerUrl, body)
       .map((response: Response) => this._getRedirectionLocation(response))
       .catch((error: any) => this._failRegister(error));

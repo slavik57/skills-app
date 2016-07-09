@@ -1,4 +1,5 @@
-<circular-loading [ngClass]="{ loading: gettingUserDetails }"></circular-loading>
+<circular-loading class="loading-user-details-indicator"
+                  [ngClass]="{ loading: gettingUserDetails }"></circular-loading>
 
 <div class="error-loading-user-details-wrapper"
     [ngClass]="{ 'has-error': !!gettingUserDetailsError }"
@@ -23,8 +24,8 @@
 
           <span class="title">User Details</span>
 
-          <form id="user-details-form">
-                <!-- [formGroup]="registerFormGroup" -->
+          <form id="user-details-form"
+                [formGroup]="userDetailsFormGroup">
                 <!-- (ngSubmit)="onSubmit()"> -->
 
             <div class="user-details">
@@ -34,12 +35,12 @@
                        type="text"
                        name="username"
                        [(ngModel)]="model.username"
-                       #username="ngModel">
-                       <!-- [ngClass]="{ 'validation-pending': registerFormGroup.controls.username.pending }"/> -->
+                       #username="ngModel"
+                       [ngClass]="{ 'validation-pending': userDetailsFormGroup.controls.username.pending }"/>
                 <label for="username">Username</label>
-                <!-- <div class="async-validation-indicator" [ngClass]="{ 'pending': registerFormGroup.controls.username.pending }">
+                <div class="async-validation-indicator" [ngClass]="{ 'pending': userDetailsFormGroup.controls.username.pending }">
                   <circular-loading></circular-loading>
-                </div> -->
+                </div>
                 <div class="form-validation-errors">
                   <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(username, 'required') }">
                     Username is required
@@ -47,9 +48,9 @@
                   <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(username, 'usernameTaken', false) }">
                     Username is taken
                   </div>
-                  <!-- <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(username, 'usernameTakenCheckFailed', false) }">
+                  <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(username, 'usernameTakenCheckFailed', false) }">
                     Failed checking if username exists
-                  </div> -->
+                  </div>
                 </div>
               </div>
 
@@ -107,12 +108,13 @@
 
             <div class="submit-wrapper">
               <button type="submit"
-                      class="submit-button">
-                      <!-- [disabled]="!registerFormGroup.valid" -->
-                      <!-- [ngClass]="{ disabled: !registerFormGroup.valid }"> -->
+                      class="submit-button"
+                      [disabled]="!canUpdateUserDetails()"
+                      [ngClass]="{ disabled: !canUpdateUserDetails() }">
                      Update Profile
               </button>
             </div>
+
           </form>
 
         </div>
