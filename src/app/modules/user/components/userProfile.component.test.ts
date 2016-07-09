@@ -12,7 +12,7 @@ import {
 } from '@angular/core/testing';
 import {provide} from '@angular/core';
 import {IUserService, UserService, IUserDetails} from "../../common/services/userService";
-import {SinonSpy, spy} from 'sinon';
+import {SinonSpy, stub, spy} from 'sinon';
 import {expect} from 'chai';
 import { UserProfileComponent } from './userProfile.component';
 import { Subject } from 'rxjs/Subject';
@@ -88,6 +88,8 @@ describe('UserProfileComponent', () => {
     expect(userProfileComponent.model, 'editUserProfileModel should be correct').to.be.undefined;
     expect(userProfileComponent.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
     expect(userProfileComponent.userDetailsFormGroup).to.be.undefined;
+    expect(userProfileComponent.updatingUserDetails, 'updatingUserDetails should be correct').to.be.false;
+    expect(userProfileComponent.updatingUserDetailsError, 'updatingUserDetailsError should be correct').to.be.undefined;
   });
 
   it('should fetch userDetails', () => {
@@ -542,6 +544,112 @@ describe('UserProfileComponent', () => {
       });
     });
 
+    describe('updateUserDetails()', () => {
+
+      var newUserDetails: IUserDetails;
+      var updateUserDetailsResult: Subject<void>;
+      var updateUserDetailsStub: SinonSpy;
+
+      beforeEach(() => {
+        newUserDetails = {
+          id: userDetails.id,
+          username: 'new username',
+          email: 'new@email.com',
+          firstName: 'new first name',
+          lastName: 'new last name'
+        }
+
+        var usernameControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['username'];
+        var emailControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['email'];
+        var firstNameControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['firstName'];
+        var lastNameControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['lastName'];
+
+        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, usernameControl, newUserDetails.username);
+        userProfileComponent.model.username = newUserDetails.username;
+        usernameExistsResult.next(null);
+        usernameExistsResult.complete();
+
+        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, newUserDetails.email);
+        userProfileComponent.model.email = newUserDetails.email;
+
+        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, firstNameControl, newUserDetails.firstName);
+        userProfileComponent.model.firstName = newUserDetails.firstName;
+
+        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, lastNameControl, newUserDetails.lastName);
+        userProfileComponent.model.lastName = newUserDetails.lastName;
+
+        updateUserDetailsResult = new Subject<void>();
+
+        updateUserDetailsStub =
+          stub(userServiceMock, 'updateUserDetails', () => updateUserDetailsResult);
+
+        userProfileComponent.updateUserDetails();
+      });
+
+      afterEach(() => {
+        updateUserDetailsStub.restore();
+      })
+
+      it('should call userService.updateUserDetails() correctly', () => {
+        var expectedArgs = [
+          newUserDetails.id,
+          newUserDetails.username,
+          newUserDetails.email,
+          newUserDetails.firstName,
+          newUserDetails.lastName
+        ];
+
+        expect(updateUserDetailsStub.callCount).to.be.equal(1);
+        expect(updateUserDetailsStub.args[0]).to.be.deep.equal(expectedArgs);
+      });
+
+      it('should set updatingUserDetails to true', () => {
+        expect(userProfileComponent.updatingUserDetails).to.be.true;
+      });
+
+      it('should set updatingUserDetailsError to null', () => {
+        expect(userProfileComponent.updatingUserDetailsError).to.be.null;
+      });
+
+      describe('updating fails', () => {
+
+        var error: string;
+
+        beforeEach(() => {
+          error = 'updateUserDetails error';
+
+          updateUserDetailsResult.error(error);
+        });
+
+        it('should set updatingUserDetails to false', () => {
+          expect(userProfileComponent.updatingUserDetails).to.be.false;
+        });
+
+        it('should set updatingUserDetailsError correctly', () => {
+          expect(userProfileComponent.updatingUserDetailsError).to.be.equal(error);
+        });
+
+      });
+
+      describe('updating succeeds', () => {
+
+        beforeEach(() => {
+          updateUserDetailsResult.next(null);
+          updateUserDetailsResult.complete();
+        });
+
+        it('should set updatingUserDetails to false', () => {
+          expect(userProfileComponent.updatingUserDetails).to.be.false;
+        });
+
+        it('should set updatingUserDetailsError to null', () => {
+          expect(userProfileComponent.updatingUserDetailsError).to.be.null;
+        });
+
+      });
+
+    })
+
   });
 
   describe('fetching user details succeeds with null email', () => {
@@ -682,6 +790,112 @@ describe('UserProfileComponent', () => {
             expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
           });
 
+        });
+
+      });
+
+    });
+
+    describe('updateUserDetails()', () => {
+
+      var newUserDetails: IUserDetails;
+      var updateUserDetailsResult: Subject<void>;
+      var updateUserDetailsStub: SinonSpy;
+
+      beforeEach(() => {
+        newUserDetails = {
+          id: userDetails.id,
+          username: 'new username',
+          email: 'new@email.com',
+          firstName: 'new first name',
+          lastName: 'new last name'
+        }
+
+        var usernameControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['username'];
+        var emailControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['email'];
+        var firstNameControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['firstName'];
+        var lastNameControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['lastName'];
+
+        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, usernameControl, newUserDetails.username);
+        userProfileComponent.model.username = newUserDetails.username;
+        usernameExistsResult.next(null);
+        usernameExistsResult.complete();
+
+        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, newUserDetails.email);
+        userProfileComponent.model.email = newUserDetails.email;
+
+        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, firstNameControl, newUserDetails.firstName);
+        userProfileComponent.model.firstName = newUserDetails.firstName;
+
+        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, lastNameControl, newUserDetails.lastName);
+        userProfileComponent.model.lastName = newUserDetails.lastName;
+
+        updateUserDetailsResult = new Subject<void>();
+
+        updateUserDetailsStub =
+          stub(userServiceMock, 'updateUserDetails', () => updateUserDetailsResult);
+
+        userProfileComponent.updateUserDetails();
+      });
+
+      afterEach(() => {
+        updateUserDetailsStub.restore();
+      })
+
+      it('should call userService.updateUserDetails() correctly', () => {
+        var expectedArgs = [
+          newUserDetails.id,
+          newUserDetails.username,
+          newUserDetails.email,
+          newUserDetails.firstName,
+          newUserDetails.lastName
+        ];
+
+        expect(updateUserDetailsStub.callCount).to.be.equal(1);
+        expect(updateUserDetailsStub.args[0]).to.be.deep.equal(expectedArgs);
+      });
+
+      it('should set updatingUserDetails to true', () => {
+        expect(userProfileComponent.updatingUserDetails).to.be.true;
+      });
+
+      it('should set updatingUserDetailsError to null', () => {
+        expect(userProfileComponent.updatingUserDetailsError).to.be.null;
+      });
+
+      describe('updating fails', () => {
+
+        var error: string;
+
+        beforeEach(() => {
+          error = 'updateUserDetails error';
+
+          updateUserDetailsResult.error(error);
+        });
+
+        it('should set updatingUserDetails to false', () => {
+          expect(userProfileComponent.updatingUserDetails).to.be.false;
+        });
+
+        it('should set updatingUserDetailsError correctly', () => {
+          expect(userProfileComponent.updatingUserDetailsError).to.be.equal(error);
+        });
+
+      });
+
+      describe('updating succeeds', () => {
+
+        beforeEach(() => {
+          updateUserDetailsResult.next(null);
+          updateUserDetailsResult.complete();
+        });
+
+        it('should set updatingUserDetails to false', () => {
+          expect(userProfileComponent.updatingUserDetails).to.be.false;
+        });
+
+        it('should set updatingUserDetailsError to null', () => {
+          expect(userProfileComponent.updatingUserDetailsError).to.be.null;
         });
 
       });

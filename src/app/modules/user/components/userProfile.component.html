@@ -19,14 +19,14 @@
 
       <div class="card-content">
 
-        <div class="filling-form-card-content">
-             <!-- [ngClass]="{ submitting: submitting, 'has-submit-error': !!error }"> -->
+        <div class="filling-form-card-content"
+             [ngClass]="{ submitting: updatingUserDetails, 'has-submit-error': !!updatingUserDetailsError }">
 
           <span class="title">User Details</span>
 
           <form id="user-details-form"
-                [formGroup]="userDetailsFormGroup">
-                <!-- (ngSubmit)="onSubmit()"> -->
+                [formGroup]="userDetailsFormGroup"
+                (ngSubmit)="updateUserDetails()">
 
             <div class="user-details">
 
@@ -103,7 +103,7 @@
             </div>
 
             <div class="submit-error">
-              {{error}}
+              {{updatingUserDetailsError}}
             </div>
 
             <div class="submit-wrapper">
@@ -119,9 +119,9 @@
 
         </div>
 
-        <!-- <div class="submitting-form-card-content" [ngClass]="{ submitting: submitting }">
+        <div class="submitting-form-card-content" [ngClass]="{ submitting: updatingUserDetails }">
           <circular-loading></circular-loading>
-        </div> -->
+        </div>
 
       </div>
 

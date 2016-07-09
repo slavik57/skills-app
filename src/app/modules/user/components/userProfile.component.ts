@@ -21,6 +21,8 @@ export class UserProfileComponent extends FormComponentBase implements OnInit {
   public gettingUserDetails: boolean;
   public gettingUserDetailsError: any;
   public userDetailsFormGroup: FormGroup;
+  public updatingUserDetails: boolean;
+  public updatingUserDetailsError: any;
 
   constructor(private userService: UserService,
     private formBuilder: FormBuilder,
@@ -29,6 +31,8 @@ export class UserProfileComponent extends FormComponentBase implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.updatingUserDetails = false;
+
     this.loadUserDetails();
   }
 
@@ -44,6 +48,21 @@ export class UserProfileComponent extends FormComponentBase implements OnInit {
 
   public canUpdateUserDetails(): boolean {
     return this.userDetailsFormGroup.valid && this._isUserDetailsChanged();
+  }
+
+  public updateUserDetails(): void {
+    this.updatingUserDetails = true;
+    this.updatingUserDetailsError = null;
+
+    this.userService.updateUserDetails(this._originalUserDetails.id,
+      this.model.username,
+      this.model.email,
+      this.model.firstName,
+      this.model.lastName)
+      .finally(() => this._setAsNotUpdatingUserDetails())
+      .subscribe(
+      () => { },
+      (error: any) => this._setUpdatingUserDetailsError(error));
   }
 
   private _setAsNotGettingUserDetails(): void {
@@ -98,5 +117,13 @@ export class UserProfileComponent extends FormComponentBase implements OnInit {
 
   private _isNullUndefinedOrEmptyString(value: string): boolean {
     return value === null || value === undefined || value === '';
+  }
+
+  private _setAsNotUpdatingUserDetails(): void {
+    this.updatingUserDetails = false;
+  }
+
+  private _setUpdatingUserDetailsError(error: any): void {
+    this.updatingUserDetailsError = error;
   }
 }

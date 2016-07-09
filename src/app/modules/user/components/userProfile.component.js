@@ -30,6 +30,7 @@ var UserProfileComponent = (function (_super) {
         this.usernameExistsValidatorFactory = usernameExistsValidatorFactory;
     }
     UserProfileComponent.prototype.ngOnInit = function () {
+        this.updatingUserDetails = false;
         this.loadUserDetails();
     };
     UserProfileComponent.prototype.loadUserDetails = function () {
@@ -42,6 +43,14 @@ var UserProfileComponent = (function (_super) {
     };
     UserProfileComponent.prototype.canUpdateUserDetails = function () {
         return this.userDetailsFormGroup.valid && this._isUserDetailsChanged();
+    };
+    UserProfileComponent.prototype.updateUserDetails = function () {
+        var _this = this;
+        this.updatingUserDetails = true;
+        this.updatingUserDetailsError = null;
+        this.userService.updateUserDetails(this._originalUserDetails.id, this.model.username, this.model.email, this.model.firstName, this.model.lastName)
+            .finally(function () { return _this._setAsNotUpdatingUserDetails(); })
+            .subscribe(function () { }, function (error) { return _this._setUpdatingUserDetailsError(error); });
     };
     UserProfileComponent.prototype._setAsNotGettingUserDetails = function () {
         this.gettingUserDetails = false;
@@ -83,6 +92,12 @@ var UserProfileComponent = (function (_super) {
     };
     UserProfileComponent.prototype._isNullUndefinedOrEmptyString = function (value) {
         return value === null || value === undefined || value === '';
+    };
+    UserProfileComponent.prototype._setAsNotUpdatingUserDetails = function () {
+        this.updatingUserDetails = false;
+    };
+    UserProfileComponent.prototype._setUpdatingUserDetailsError = function (error) {
+        this.updatingUserDetailsError = error;
     };
     UserProfileComponent = __decorate([
         core_1.Component({

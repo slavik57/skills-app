@@ -60,6 +60,8 @@ testing_1.describe('UserProfileComponent', function () {
         chai_1.expect(userProfileComponent.model, 'editUserProfileModel should be correct').to.be.undefined;
         chai_1.expect(userProfileComponent.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
         chai_1.expect(userProfileComponent.userDetailsFormGroup).to.be.undefined;
+        chai_1.expect(userProfileComponent.updatingUserDetails, 'updatingUserDetails should be correct').to.be.false;
+        chai_1.expect(userProfileComponent.updatingUserDetailsError, 'updatingUserDetailsError should be correct').to.be.undefined;
     });
     testing_1.it('should fetch userDetails', function () {
         chai_1.expect(getUserDetailsSpy.callCount).to.be.equal(1);
@@ -382,6 +384,83 @@ testing_1.describe('UserProfileComponent', function () {
                 });
             });
         });
+        testing_1.describe('updateUserDetails()', function () {
+            var newUserDetails;
+            var updateUserDetailsResult;
+            var updateUserDetailsStub;
+            testing_1.beforeEach(function () {
+                newUserDetails = {
+                    id: userDetails.id,
+                    username: 'new username',
+                    email: 'new@email.com',
+                    firstName: 'new first name',
+                    lastName: 'new last name'
+                };
+                var usernameControl = userProfileComponent.userDetailsFormGroup.controls['username'];
+                var emailControl = userProfileComponent.userDetailsFormGroup.controls['email'];
+                var firstNameControl = userProfileComponent.userDetailsFormGroup.controls['firstName'];
+                var lastNameControl = userProfileComponent.userDetailsFormGroup.controls['lastName'];
+                formFiller_1.FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, usernameControl, newUserDetails.username);
+                userProfileComponent.model.username = newUserDetails.username;
+                usernameExistsResult.next(null);
+                usernameExistsResult.complete();
+                formFiller_1.FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, newUserDetails.email);
+                userProfileComponent.model.email = newUserDetails.email;
+                formFiller_1.FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, firstNameControl, newUserDetails.firstName);
+                userProfileComponent.model.firstName = newUserDetails.firstName;
+                formFiller_1.FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, lastNameControl, newUserDetails.lastName);
+                userProfileComponent.model.lastName = newUserDetails.lastName;
+                updateUserDetailsResult = new Subject_1.Subject();
+                updateUserDetailsStub =
+                    sinon_1.stub(userServiceMock, 'updateUserDetails', function () { return updateUserDetailsResult; });
+                userProfileComponent.updateUserDetails();
+            });
+            testing_1.afterEach(function () {
+                updateUserDetailsStub.restore();
+            });
+            testing_1.it('should call userService.updateUserDetails() correctly', function () {
+                var expectedArgs = [
+                    newUserDetails.id,
+                    newUserDetails.username,
+                    newUserDetails.email,
+                    newUserDetails.firstName,
+                    newUserDetails.lastName
+                ];
+                chai_1.expect(updateUserDetailsStub.callCount).to.be.equal(1);
+                chai_1.expect(updateUserDetailsStub.args[0]).to.be.deep.equal(expectedArgs);
+            });
+            testing_1.it('should set updatingUserDetails to true', function () {
+                chai_1.expect(userProfileComponent.updatingUserDetails).to.be.true;
+            });
+            testing_1.it('should set updatingUserDetailsError to null', function () {
+                chai_1.expect(userProfileComponent.updatingUserDetailsError).to.be.null;
+            });
+            testing_1.describe('updating fails', function () {
+                var error;
+                testing_1.beforeEach(function () {
+                    error = 'updateUserDetails error';
+                    updateUserDetailsResult.error(error);
+                });
+                testing_1.it('should set updatingUserDetails to false', function () {
+                    chai_1.expect(userProfileComponent.updatingUserDetails).to.be.false;
+                });
+                testing_1.it('should set updatingUserDetailsError correctly', function () {
+                    chai_1.expect(userProfileComponent.updatingUserDetailsError).to.be.equal(error);
+                });
+            });
+            testing_1.describe('updating succeeds', function () {
+                testing_1.beforeEach(function () {
+                    updateUserDetailsResult.next(null);
+                    updateUserDetailsResult.complete();
+                });
+                testing_1.it('should set updatingUserDetails to false', function () {
+                    chai_1.expect(userProfileComponent.updatingUserDetails).to.be.false;
+                });
+                testing_1.it('should set updatingUserDetailsError to null', function () {
+                    chai_1.expect(userProfileComponent.updatingUserDetailsError).to.be.null;
+                });
+            });
+        });
     });
     testing_1.describe('fetching user details succeeds with null email', function () {
         var userDetails;
@@ -483,6 +562,83 @@ testing_1.describe('UserProfileComponent', function () {
                     testing_1.it('canUpdateUserDetails should return false', function () {
                         chai_1.expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
                     });
+                });
+            });
+        });
+        testing_1.describe('updateUserDetails()', function () {
+            var newUserDetails;
+            var updateUserDetailsResult;
+            var updateUserDetailsStub;
+            testing_1.beforeEach(function () {
+                newUserDetails = {
+                    id: userDetails.id,
+                    username: 'new username',
+                    email: 'new@email.com',
+                    firstName: 'new first name',
+                    lastName: 'new last name'
+                };
+                var usernameControl = userProfileComponent.userDetailsFormGroup.controls['username'];
+                var emailControl = userProfileComponent.userDetailsFormGroup.controls['email'];
+                var firstNameControl = userProfileComponent.userDetailsFormGroup.controls['firstName'];
+                var lastNameControl = userProfileComponent.userDetailsFormGroup.controls['lastName'];
+                formFiller_1.FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, usernameControl, newUserDetails.username);
+                userProfileComponent.model.username = newUserDetails.username;
+                usernameExistsResult.next(null);
+                usernameExistsResult.complete();
+                formFiller_1.FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, newUserDetails.email);
+                userProfileComponent.model.email = newUserDetails.email;
+                formFiller_1.FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, firstNameControl, newUserDetails.firstName);
+                userProfileComponent.model.firstName = newUserDetails.firstName;
+                formFiller_1.FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, lastNameControl, newUserDetails.lastName);
+                userProfileComponent.model.lastName = newUserDetails.lastName;
+                updateUserDetailsResult = new Subject_1.Subject();
+                updateUserDetailsStub =
+                    sinon_1.stub(userServiceMock, 'updateUserDetails', function () { return updateUserDetailsResult; });
+                userProfileComponent.updateUserDetails();
+            });
+            testing_1.afterEach(function () {
+                updateUserDetailsStub.restore();
+            });
+            testing_1.it('should call userService.updateUserDetails() correctly', function () {
+                var expectedArgs = [
+                    newUserDetails.id,
+                    newUserDetails.username,
+                    newUserDetails.email,
+                    newUserDetails.firstName,
+                    newUserDetails.lastName
+                ];
+                chai_1.expect(updateUserDetailsStub.callCount).to.be.equal(1);
+                chai_1.expect(updateUserDetailsStub.args[0]).to.be.deep.equal(expectedArgs);
+            });
+            testing_1.it('should set updatingUserDetails to true', function () {
+                chai_1.expect(userProfileComponent.updatingUserDetails).to.be.true;
+            });
+            testing_1.it('should set updatingUserDetailsError to null', function () {
+                chai_1.expect(userProfileComponent.updatingUserDetailsError).to.be.null;
+            });
+            testing_1.describe('updating fails', function () {
+                var error;
+                testing_1.beforeEach(function () {
+                    error = 'updateUserDetails error';
+                    updateUserDetailsResult.error(error);
+                });
+                testing_1.it('should set updatingUserDetails to false', function () {
+                    chai_1.expect(userProfileComponent.updatingUserDetails).to.be.false;
+                });
+                testing_1.it('should set updatingUserDetailsError correctly', function () {
+                    chai_1.expect(userProfileComponent.updatingUserDetailsError).to.be.equal(error);
+                });
+            });
+            testing_1.describe('updating succeeds', function () {
+                testing_1.beforeEach(function () {
+                    updateUserDetailsResult.next(null);
+                    updateUserDetailsResult.complete();
+                });
+                testing_1.it('should set updatingUserDetails to false', function () {
+                    chai_1.expect(userProfileComponent.updatingUserDetails).to.be.false;
+                });
+                testing_1.it('should set updatingUserDetailsError to null', function () {
+                    chai_1.expect(userProfileComponent.updatingUserDetailsError).to.be.null;
                 });
             });
         });
