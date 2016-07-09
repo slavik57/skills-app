@@ -44,7 +44,8 @@ describe('UserProfileComponent', () => {
       signinUser: () => null,
       registerUser: () => null,
       isUsernameExists: () => null,
-      getUserDetails: () => getUserDetailsResult
+      getUserDetails: () => getUserDetailsResult,
+      updateUserDetails: () => null
     };
 
     getUserDetailsSpy = spy(userServiceMock, 'getUserDetails');

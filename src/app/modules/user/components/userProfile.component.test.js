@@ -25,7 +25,8 @@ testing_1.describe('UserProfileComponent', function () {
             signinUser: function () { return null; },
             registerUser: function () { return null; },
             isUsernameExists: function () { return null; },
-            getUserDetails: function () { return getUserDetailsResult; }
+            getUserDetails: function () { return getUserDetailsResult; },
+            updateUserDetails: function () { return null; }
         };
         getUserDetailsSpy = sinon_1.spy(userServiceMock, 'getUserDetails');
         usernameExistsValidatorMock = {

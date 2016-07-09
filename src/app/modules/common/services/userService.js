@@ -48,13 +48,26 @@ var UserService = (function () {
         });
         return this._post(this._registerUrl, body)
             .map(function (response) { return _this._getRedirectionLocation(response); })
-            .catch(function (error) { return _this._failRegister(error); });
+            .catch(function (error) { return _this._handleServerError(error); });
     };
     UserService.prototype.getUserDetails = function () {
         var _this = this;
         return this._get(this._userControllerUrl)
             .map(function (response) { return _this._extractUserDetails(response); })
             .catch(function (error) { return _this._failGettingUserDetails(error); });
+    };
+    UserService.prototype.updateUserDetails = function (username, email, firstName, lastName) {
+        var _this = this;
+        var url = this._userControllerUrl + username;
+        var body = JSON.stringify({
+            username: username,
+            email: email,
+            firstName: firstName,
+            lastName: lastName
+        });
+        return this._put(url, body)
+            .map(function (response) { return _this._throwErrorIfStatusIsNotOk(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
     };
     UserService.prototype._get = function (url) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
@@ -66,19 +79,24 @@ var UserService = (function () {
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.post(url, body, options);
     };
-    UserService.prototype._getRedirectionLocation = function (response) {
-        if (response.status === statusCode_1.StatusCode.OK) {
-            var redirectPath = response.headers.get('redirect-path');
-            if (!redirectPath) {
-                throw 'Unexpected result';
-            }
-            return redirectPath;
-        }
-        ;
-        throw 'Invalid result';
+    UserService.prototype._put = function (url, body) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.put(url, body, options);
     };
-    UserService.prototype._failRegister = function (error) {
+    UserService.prototype._getRedirectionLocation = function (response) {
+        this._throwErrorIfStatusIsNotOk(response);
+        var redirectPath = response.headers.get('redirect-path');
+        if (!redirectPath) {
+            throw 'Unexpected result';
+        }
+        return redirectPath;
+    };
+    UserService.prototype._handleServerError = function (error) {
         console.log(error);
+        if (error.status === statusCode_1.StatusCode.UNAUTHORIZED) {
+            return Observable_1.Observable.throw('Anauthorized performing the operation.');
+        }
         if (typeof error === 'string') {
             return Observable_1.Observable.throw('Oops. Something went wrong. Please try again.');
         }
@@ -98,25 +116,20 @@ var UserService = (function () {
         }
     };
     UserService.prototype._extractIsUserExists = function (response) {
-        if (response.status === statusCode_1.StatusCode.OK) {
-            var result = response.json();
-            if (!result || !('userExists' in result)) {
-                throw 'Unexpected result';
-            }
-            return result.userExists;
+        this._throwErrorIfStatusIsNotOk(response);
+        var result = response.json();
+        if (!result || !('userExists' in result)) {
+            throw 'Unexpected result';
         }
-        ;
-        throw 'Invalid result';
+        return result.userExists;
     };
     UserService.prototype._extractUserDetails = function (response) {
-        if (response.status === statusCode_1.StatusCode.OK) {
-            var result = response.json();
-            if (!result || !this._isResponseHasAllUserDetails(result)) {
-                throw 'Unexpected result';
-            }
-            return result;
+        this._throwErrorIfStatusIsNotOk(response);
+        var result = response.json();
+        if (!result || !this._isResponseHasAllUserDetails(result)) {
+            throw 'Unexpected result';
         }
-        throw 'Invalid result';
+        return result;
     };
     UserService.prototype._failUsernameExistanceCheck = function (error) {
         console.log(error);
@@ -135,6 +148,11 @@ var UserService = (function () {
             ('username' in response) &&
             ('firstName' in response) &&
             ('lastName' in response);
+    };
+    UserService.prototype._throwErrorIfStatusIsNotOk = function (response) {
+        if (response.status !== statusCode_1.StatusCode.OK) {
+            throw 'Invalid result';
+        }
     };
     UserService = __decorate([
         core_1.Injectable(), 

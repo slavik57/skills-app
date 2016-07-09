@@ -30,7 +30,8 @@ describe('SigninComponent', () => {
       signinUser: () => signinUserResult,
       isUsernameExists: () => null,
       registerUser: () => null,
-      getUserDetails: () => null
+      getUserDetails: () => null,
+      updateUserDetails: () => null
     };
 
     locationServiceMock = {

@@ -24,7 +24,8 @@ testing_1.describe('RegisterComponent', function () {
             signinUser: function () { return null; },
             registerUser: function () { return registerUserResult; },
             isUsernameExists: function () { return null; },
-            getUserDetails: function () { return null; }
+            getUserDetails: function () { return null; },
+            updateUserDetails: function () { return null; }
         };
         locationServiceMock = {
             goToUrl: function () { }

@@ -98,6 +98,32 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/');
   });
 
+  it('updateUserDetails should use correct url', () => {
+    var username = 'some username';
+    userService.updateUserDetails(username, '', '', '');
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Put);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + username);
+  });
+
+  it('retister should use correct body', () => {
+    var username = 'some username';
+    var email = 'some email';
+    var firstName = 'some first name';
+    var lastName = 'some last name';
+    userService.updateUserDetails(username, email, firstName, lastName);
+
+    var expectedBody = JSON.stringify({
+      username: username,
+      email: email,
+      firstName: firstName,
+      lastName: lastName
+    });
+
+    expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+  });
+
   describe('on UNAUTHORIZED error', () => {
 
     beforeEach(() => {
@@ -118,7 +144,7 @@ describe('UserService', () => {
     it('register should fail correctly', () => {
       userService.registerUser('', '', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Anauthorized performing the operation.')
       );
     });
 
@@ -133,6 +159,13 @@ describe('UserService', () => {
       userService.getUserDetails().subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Unauthorized getting user details.')
+      );
+    });
+
+    it('updateUserDetails should fail correctly', () => {
+      userService.updateUserDetails('', '', '', '').subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Anauthorized performing the operation.')
       );
     });
 
@@ -171,6 +204,13 @@ describe('UserService', () => {
 
     it('getUserDetails should fail correctly', () => {
       userService.getUserDetails().subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+      );
+    });
+
+    it('updateUserDetails should fail correctly', () => {
+      userService.updateUserDetails('', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
       );
@@ -219,6 +259,13 @@ describe('UserService', () => {
       );
     });
 
+    it('updateUserDetails should fail correctly', () => {
+      userService.updateUserDetails('', '', '', '').subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+      );
+    });
+
   });
 
   describe('on success with OK', () => {
@@ -233,6 +280,18 @@ describe('UserService', () => {
       })
 
       response = new Response(responseOptions);
+    });
+
+    it('updateUserDetails should succeed', () => {
+      mockBackend.connections.subscribe(
+        (connection: MockConnection) => connection.mockRespond(response));
+
+      var wasResolved = false;
+      userService.updateUserDetails('', '', '', '').subscribe(
+        () => { wasResolved = true; },
+        () => expect(true, 'should succeed').to.be.false);
+
+      expect(wasResolved).to.be.true;
     });
 
     describe('without redirect-path header', () => {
@@ -498,6 +557,13 @@ describe('UserService', () => {
 
     it('register should fail correctly', () => {
       userService.registerUser('', '', '', '', '').subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal(reasonForError)
+      );
+    });
+
+    it('updateUserDetails should fail correctly', () => {
+      userService.updateUserDetails('', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal(reasonForError)
       );
