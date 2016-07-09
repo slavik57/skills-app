@@ -133,7 +133,6 @@ var UserService = (function () {
     UserService.prototype._isResponseHasAllUserDetails = function (response) {
         return ('id' in response) &&
             ('username' in response) &&
-            ('email' in response) &&
             ('firstName' in response) &&
             ('lastName' in response);
     };

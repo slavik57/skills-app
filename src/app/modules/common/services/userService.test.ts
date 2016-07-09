@@ -356,7 +356,7 @@ describe('UserService', () => {
           lastName: 'some last name'
         };
 
-        delete result.email;
+        delete result.lastName;
 
         responseOptions = new ResponseOptions({
           status: StatusCode.OK,
@@ -441,6 +441,41 @@ describe('UserService', () => {
         userService.getUserDetails().subscribe(
           (_result: IUserDetails) => expect(_result).to.be.deep.equal(result),
           () => expect(true, 'should succeed').to.be.false)
+      });
+
+    });
+
+    describe('without email in the user details result', () => {
+
+      var result: IUserDetails;
+
+      beforeEach(() => {
+        result = {
+          id: 1,
+          username: 'some username',
+          email: 'some email',
+          firstName: 'some name',
+          lastName: 'some last name'
+        };
+
+        delete result.email;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+      });
+
+      it('getUserDetails should return correct user details', () => {
+        userService.getUserDetails().subscribe(
+          (_result: IUserDetails) => expect(_result).to.be.deep.equal(result),
+          () => expect(true, 'should succeed').to.be.false);
       });
 
     });

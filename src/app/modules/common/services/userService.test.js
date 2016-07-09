@@ -209,7 +209,7 @@ testing_1.describe('UserService', function () {
                     firstName: 'some name',
                     lastName: 'some last name'
                 };
-                delete result.email;
+                delete result.lastName;
                 responseOptions = new http_2.ResponseOptions({
                     status: statusCode_1.StatusCode.OK,
                     headers: new http_1.Headers(),
@@ -263,6 +263,29 @@ testing_1.describe('UserService', function () {
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
             });
             testing_1.it('getUserDetails should return correct value', function () {
+                userService.getUserDetails().subscribe(function (_result) { return chai_1.expect(_result).to.be.deep.equal(result); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
+            });
+        });
+        testing_1.describe('without email in the user details result', function () {
+            var result;
+            testing_1.beforeEach(function () {
+                result = {
+                    id: 1,
+                    username: 'some username',
+                    email: 'some email',
+                    firstName: 'some name',
+                    lastName: 'some last name'
+                };
+                delete result.email;
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: result
+                });
+                response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+            });
+            testing_1.it('getUserDetails should return correct user details', function () {
                 userService.getUserDetails().subscribe(function (_result) { return chai_1.expect(_result).to.be.deep.equal(result); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
             });
         });

@@ -191,7 +191,6 @@ export class UserService implements IUserService {
   private _isResponseHasAllUserDetails(response: any): boolean {
     return ('id' in response) &&
       ('username' in response) &&
-      ('email' in response) &&
       ('firstName' in response) &&
       ('lastName' in response);
   }
