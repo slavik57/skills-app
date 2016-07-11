@@ -34,12 +34,10 @@ var EditUserDetailsComponent = (function (_super) {
         this.loadUserDetails();
     };
     EditUserDetailsComponent.prototype.loadUserDetails = function () {
-        var _this = this;
-        this.gettingUserDetailsError = null;
-        this.gettingUserDetails = true;
-        this.userService.getUserDetails()
-            .finally(function () { return _this._setAsNotGettingUserDetails(); })
-            .subscribe(function (userDetails) { return _this._initializeEditUserProfile(userDetails); }, function (error) { return _this._setGettingUserDetailsError(error); });
+        if (!this.userDetails) {
+            throw 'userDetails is not set';
+        }
+        this._initializeEditUserProfile();
     };
     EditUserDetailsComponent.prototype.canUpdateUserDetails = function () {
         return this.userDetailsFormGroup.valid && this._isUserDetailsChanged();
@@ -48,21 +46,14 @@ var EditUserDetailsComponent = (function (_super) {
         var _this = this;
         this.updatingUserDetails = true;
         this.updatingUserDetailsError = null;
-        this.userService.updateUserDetails(this._originalUserDetails.id, this.model.username, this.model.email, this.model.firstName, this.model.lastName)
+        this.userService.updateUserDetails(this.userDetails.id, this.model.username, this.model.email, this.model.firstName, this.model.lastName)
             .finally(function () { return _this._setAsNotUpdatingUserDetails(); })
             .subscribe(function () { return _this._updateTheOriginalUserDetailsByModel(); }, function (error) { return _this._setUpdatingUserDetailsError(error); });
     };
-    EditUserDetailsComponent.prototype._setAsNotGettingUserDetails = function () {
-        this.gettingUserDetails = false;
-    };
-    EditUserDetailsComponent.prototype._initializeEditUserProfile = function (userDetails) {
-        this._originalUserDetails = userDetails;
-        this.model = editUserProfileModel_1.EditUserProfile.fromUserDetails(userDetails);
+    EditUserDetailsComponent.prototype._initializeEditUserProfile = function () {
+        this.model = editUserProfileModel_1.EditUserProfile.fromUserDetails(this.userDetails);
         this._initializeFormGroup();
         setTimeout(function () { return Materialize.updateTextFields(); }, 0);
-    };
-    EditUserDetailsComponent.prototype._setGettingUserDetailsError = function (error) {
-        this.gettingUserDetailsError = error;
     };
     EditUserDetailsComponent.prototype._initializeFormGroup = function () {
         var usernameExistsValidator = this.usernameExistsValidatorFactory.createWithAllowedUsers([this.model.username]);
@@ -75,16 +66,16 @@ var EditUserDetailsComponent = (function (_super) {
         usernameExistsValidator.bindControl(this.userDetailsFormGroup.controls['username']);
     };
     EditUserDetailsComponent.prototype._isUserDetailsChanged = function () {
-        return this._originalUserDetails.username !== this.model.username ||
+        return this.userDetails.username !== this.model.username ||
             this._isEmailDifferent() ||
-            this._originalUserDetails.firstName !== this.model.firstName ||
-            this._originalUserDetails.lastName !== this.model.lastName;
+            this.userDetails.firstName !== this.model.firstName ||
+            this.userDetails.lastName !== this.model.lastName;
     };
     EditUserDetailsComponent.prototype._isEmailDifferent = function () {
-        if (this._originalUserDetails.email === this.model.email) {
+        if (this.userDetails.email === this.model.email) {
             return false;
         }
-        if (this._isNullUndefinedOrEmptyString(this._originalUserDetails.email) &&
+        if (this._isNullUndefinedOrEmptyString(this.userDetails.email) &&
             this._isNullUndefinedOrEmptyString(this.model.email)) {
             return false;
         }
@@ -100,11 +91,15 @@ var EditUserDetailsComponent = (function (_super) {
         this.updatingUserDetailsError = error;
     };
     EditUserDetailsComponent.prototype._updateTheOriginalUserDetailsByModel = function () {
-        this._originalUserDetails.username = this.model.username;
-        this._originalUserDetails.email = this.model.email;
-        this._originalUserDetails.firstName = this.model.firstName;
-        this._originalUserDetails.lastName = this.model.lastName;
+        this.userDetails.username = this.model.username;
+        this.userDetails.email = this.model.email;
+        this.userDetails.firstName = this.model.firstName;
+        this.userDetails.lastName = this.model.lastName;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], EditUserDetailsComponent.prototype, "userDetails", void 0);
     EditUserDetailsComponent = __decorate([
         core_1.Component({
             selector: 'edit-user-details',

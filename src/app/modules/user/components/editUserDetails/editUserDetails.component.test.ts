@@ -26,10 +26,9 @@ import {
 
 describe('EditUserDetailsComponent', () => {
 
+  var userDetails: IUserDetails;
   var userServiceMock: IUserService;
   var component: EditUserDetailsComponent;
-  var getUserDetailsSpy: SinonSpy;
-  var getUserDetailsResult: Subject<IUserDetails>;
   var usernameExistsResult: Subject<IValidationResult>;
   var usernameExistsValidatorMock: IUsernameExistsValidator;
   var usernameExistsValidatorFactoryMock: IUsernameExistsValidatorFactory;
@@ -37,18 +36,22 @@ describe('EditUserDetailsComponent', () => {
   var createUsernameExistsValidatorSpy: SinonSpy;
 
   beforeEachProviders(() => {
-
-    getUserDetailsResult = new Subject<IUserDetails>()
+    userDetails = {
+      id: 1,
+      username: 'some username',
+      email: 'some@mail.com',
+      firstName: 'some firstName',
+      lastName: 'some lastName'
+    };
 
     userServiceMock = {
       signinUser: () => null,
       registerUser: () => null,
       isUsernameExists: () => null,
-      getUserDetails: () => getUserDetailsResult,
-      updateUserDetails: () => null
+      getUserDetails: () => null,
+      updateUserDetails: () => null,
+      updateUserPassword: () => null
     };
-
-    getUserDetailsSpy = spy(userServiceMock, 'getUserDetails');
 
     usernameExistsValidatorMock = {
       bindControl: () => { },
@@ -78,91 +81,24 @@ describe('EditUserDetailsComponent', () => {
     ];
   });
 
-  beforeEach(inject([EditUserDetailsComponent], (_userProfileComponent: EditUserDetailsComponent) => {
-    component = _userProfileComponent;
-    component.ngOnInit();
+  beforeEach(inject([EditUserDetailsComponent], (_component: EditUserDetailsComponent) => {
+    component = _component;
   }));
 
-  it('should initialize correctly', () => {
-    expect(component.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
-    expect(component.model, 'editUserProfileModel should be correct').to.be.undefined;
-    expect(component.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
-    expect(component.userDetailsFormGroup).to.be.undefined;
-    expect(component.updatingUserDetails, 'updatingUserDetails should be correct').to.be.false;
-    expect(component.updatingUserDetailsError, 'updatingUserDetailsError should be correct').to.be.undefined;
-  });
+  it('initializing without the user details should throw error', inject([EditUserDetailsComponent], (_component: EditUserDetailsComponent) => {
+    _component.userDetails = null;
+    expect(() => _component.ngOnInit()).to.throw('userDetails is not set');
+  }));
 
-  it('should fetch userDetails', () => {
-    expect(getUserDetailsSpy.callCount).to.be.equal(1);
-  });
+  describe('full user', () => {
 
-  describe('fetching user details failed', () => {
-
-    var error: any;
-
-    beforeEach(() => {
-      error = 'some error';
-      getUserDetailsResult.error(error);
-    });
-
-    it('should set gettingUserDetails to false', () => {
-      expect(component.gettingUserDetails).to.be.false;
-    });
-
-    it('model should still be undefined', () => {
-      expect(component.model).to.be.undefined;
-    });
-
-    it('userDetailsFormGroup should still be undefined', () => {
-      expect(component.userDetailsFormGroup).to.be.undefined;
-    })
-
-    it('should set error correctly', () => {
-      expect(component.gettingUserDetailsError).to.be.equal(error);
-    });
-
-    describe('reload user details', () => {
-
-      beforeEach(() => {
-        getUserDetailsSpy.reset();
-        getUserDetailsResult = new Subject<IUserDetails>();
-
-        component.loadUserDetails();
-      });
-
-      it('should set properties correctly', () => {
-        expect(component.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
-        expect(component.model, 'editUserProfileModel should be correct').to.be.undefined;
-        expect(component.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
-        expect(component.userDetailsFormGroup).to.be.undefined;
-      });
-
-      it('should fetch userDetails', () => {
-        expect(getUserDetailsSpy.callCount).to.be.equal(1);
-      });
-
-    });
-
-  });
-
-  describe('fetching user details succeeds', () => {
-
-    var userDetails: IUserDetails;
     var updateTextFieldsSpy: SinonSpy;
 
     beforeEach(fakeAsync(() => {
-      userDetails = {
-        id: 1,
-        username: 'some username',
-        email: 'some@email.com',
-        firstName: 'some firstName',
-        lastName: 'some lastName'
-      };
+      component.userDetails = userDetails;
+      component.ngOnInit();
 
       updateTextFieldsSpy = spy(Materialize, 'updateTextFields');
-
-      getUserDetailsResult.next(userDetails);
-      getUserDetailsResult.complete();
 
       tick(0);
 
@@ -172,14 +108,6 @@ describe('EditUserDetailsComponent', () => {
 
     afterEach(() => {
       updateTextFieldsSpy.restore();
-    });
-
-    it('should set gettingUserDetails to false', () => {
-      expect(component.gettingUserDetails).to.be.false;
-    });
-
-    it('should set error correctly', () => {
-      expect(component.gettingUserDetailsError).to.be.null
     });
 
     it('the model should be correct', () => {
@@ -650,6 +578,14 @@ describe('EditUserDetailsComponent', () => {
           expect(component.canUpdateUserDetails()).to.be.false;
         });
 
+        it('should not change the userDetails reference', () => {
+          expect(component.userDetails).to.be.equal(userDetails);
+        });
+
+        it('should update the userDetails', () => {
+          expect(component.userDetails).to.be.deep.equal(newUserDetails);
+        });
+
       });
 
     })
@@ -658,22 +594,14 @@ describe('EditUserDetailsComponent', () => {
 
   describe('fetching user details succeeds with null email', () => {
 
-    var userDetails: IUserDetails;
     var updateTextFieldsSpy: SinonSpy;
 
     beforeEach(fakeAsync(() => {
-      userDetails = {
-        id: 1,
-        username: 'some username',
-        email: null,
-        firstName: 'some firstName',
-        lastName: 'some lastName'
-      };
+      userDetails.email = null;
+      component.userDetails = userDetails;
+      component.ngOnInit();
 
       updateTextFieldsSpy = spy(Materialize, 'updateTextFields');
-
-      getUserDetailsResult.next(userDetails);
-      getUserDetailsResult.complete();
 
       tick(0);
 
@@ -683,14 +611,6 @@ describe('EditUserDetailsComponent', () => {
 
     afterEach(() => {
       updateTextFieldsSpy.restore();
-    });
-
-    it('should set gettingUserDetails to false', () => {
-      expect(component.gettingUserDetails).to.be.false;
-    });
-
-    it('should set error correctly', () => {
-      expect(component.gettingUserDetailsError).to.be.null
     });
 
     it('the model should be correct', () => {
@@ -904,6 +824,14 @@ describe('EditUserDetailsComponent', () => {
 
         it('canUpdateUserDetails should return false', () => {
           expect(component.canUpdateUserDetails()).to.be.false;
+        });
+
+        it('should not change the userDetails reference', () => {
+          expect(component.userDetails).to.be.equal(userDetails);
+        });
+
+        it('should update the userDetails', () => {
+          expect(component.userDetails).to.be.deep.equal(newUserDetails);
         });
 
       });

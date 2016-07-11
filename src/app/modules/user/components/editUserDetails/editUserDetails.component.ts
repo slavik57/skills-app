@@ -2,7 +2,7 @@ import {FormComponentBase} from "../../../common/components/formComponentBase/fo
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {EditUserProfile} from "../../models/editUserProfileModel";
 import {UserService, IUserDetails} from "../../../common/services/userService";
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import {IUsernameExistsValidator, UsernameExistsValidator, UsernameExistsValidatorFactory} from "../../../common/validators/usernameExistsValidator";
 import {EmailValidator} from "../../../common/validators/emailValidator";
@@ -15,11 +15,9 @@ import {EmailValidator} from "../../../common/validators/emailValidator";
   providers: [FormBuilder, UsernameExistsValidatorFactory]
 })
 export class EditUserDetailsComponent extends FormComponentBase implements OnInit {
-  private _originalUserDetails: IUserDetails;
+  @Input() public userDetails: IUserDetails;
 
   public model: EditUserProfile;
-  public gettingUserDetails: boolean;
-  public gettingUserDetailsError: any;
   public userDetailsFormGroup: FormGroup;
   public updatingUserDetails: boolean;
   public updatingUserDetailsError: any;
@@ -37,13 +35,11 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
   }
 
   public loadUserDetails(): void {
-    this.gettingUserDetailsError = null;
-    this.gettingUserDetails = true;
+    if (!this.userDetails) {
+      throw 'userDetails is not set';
+    }
 
-    this.userService.getUserDetails()
-      .finally(() => this._setAsNotGettingUserDetails())
-      .subscribe((userDetails: IUserDetails) => this._initializeEditUserProfile(userDetails),
-      (error: any) => this._setGettingUserDetailsError(error));
+    this._initializeEditUserProfile();
   }
 
   public canUpdateUserDetails(): boolean {
@@ -54,7 +50,7 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
     this.updatingUserDetails = true;
     this.updatingUserDetailsError = null;
 
-    this.userService.updateUserDetails(this._originalUserDetails.id,
+    this.userService.updateUserDetails(this.userDetails.id,
       this.model.username,
       this.model.email,
       this.model.firstName,
@@ -65,20 +61,10 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
       (error: any) => this._setUpdatingUserDetailsError(error));
   }
 
-  private _setAsNotGettingUserDetails(): void {
-    this.gettingUserDetails = false;
-  }
-
-  private _initializeEditUserProfile(userDetails: IUserDetails): void {
-    this._originalUserDetails = userDetails;
-
-    this.model = EditUserProfile.fromUserDetails(userDetails);
+  private _initializeEditUserProfile(): void {
+    this.model = EditUserProfile.fromUserDetails(this.userDetails);
     this._initializeFormGroup();
     setTimeout(() => Materialize.updateTextFields(), 0);
-  }
-
-  private _setGettingUserDetailsError(error: any): void {
-    this.gettingUserDetailsError = error;
   }
 
   private _initializeFormGroup(): void {
@@ -96,18 +82,18 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
   }
 
   private _isUserDetailsChanged(): boolean {
-    return this._originalUserDetails.username !== this.model.username ||
+    return this.userDetails.username !== this.model.username ||
       this._isEmailDifferent() ||
-      this._originalUserDetails.firstName !== this.model.firstName ||
-      this._originalUserDetails.lastName !== this.model.lastName;
+      this.userDetails.firstName !== this.model.firstName ||
+      this.userDetails.lastName !== this.model.lastName;
   }
 
   private _isEmailDifferent(): boolean {
-    if (this._originalUserDetails.email === this.model.email) {
+    if (this.userDetails.email === this.model.email) {
       return false;
     }
 
-    if (this._isNullUndefinedOrEmptyString(this._originalUserDetails.email) &&
+    if (this._isNullUndefinedOrEmptyString(this.userDetails.email) &&
       this._isNullUndefinedOrEmptyString(this.model.email)) {
       return false;
     }
@@ -128,9 +114,9 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
   }
 
   private _updateTheOriginalUserDetailsByModel(): void {
-    this._originalUserDetails.username = this.model.username;
-    this._originalUserDetails.email = this.model.email;
-    this._originalUserDetails.firstName = this.model.firstName;
-    this._originalUserDetails.lastName = this.model.lastName;
+    this.userDetails.username = this.model.username;
+    this.userDetails.email = this.model.email;
+    this.userDetails.firstName = this.model.firstName;
+    this.userDetails.lastName = this.model.lastName;
   }
 }

@@ -4,10 +4,74 @@
 :host {
   flex: 1 0 auto;
 
+  .loading-user-details-indicator {
+    $size: 2rem;
+    width: $size;
+    height: $size;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -$size/2;
+    margin-right: $size/2;
+    margin-top: -$size/2;
+    margin-bottom: $size/2;
+    justify-content: center;
+    display: none;
+    opacity: 0;
+    transition: opacity .3s ease;
+
+    &.loading {
+      display: block;
+      opacity: 1;
+    }
+  }
+
+  .error-loading-user-details-wrapper{
+    opacity: 0;
+    transition: opacity .3s ease;
+
+    &.has-error{
+      opacity: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .error{
+      margin: 1rem;
+    }
+
+    .retry-button{
+      @extend .btn;
+      @extend .blue;
+      @extend .lighten-1;
+      @extend .text-white;
+    }
+  }
+
   .edit-user-details-wrapper{
     @extend .row;
 
     edit-user-details {
+      @extend .col;
+      @extend .s12;
+      @extend .m8;
+      @extend .l6;
+      @extend .offset-m2;
+      @extend .offset-l3;
+    }
+  }
+
+  .edit-user-password-wrapper{
+    @extend .row;
+
+    change-user-password {
       @extend .col;
       @extend .s12;
       @extend .m8;

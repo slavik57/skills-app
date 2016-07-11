@@ -2,8 +2,6 @@
 @import '../../../../commonStyles/_forms';
 
 :host {
-  flex: 1 0 auto;
-
   .loading-user-details-indicator {
     $size: 2rem;
     width: $size;

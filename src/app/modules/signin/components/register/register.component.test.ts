@@ -45,7 +45,8 @@ describe('RegisterComponent', () => {
       registerUser: () => registerUserResult,
       isUsernameExists: () => null,
       getUserDetails: () => null,
-      updateUserDetails: () => null
+      updateUserDetails: () => null,
+      updateUserPassword: () => null
     };
 
     locationServiceMock = {

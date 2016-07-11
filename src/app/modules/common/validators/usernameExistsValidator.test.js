@@ -17,7 +17,8 @@ testing_1.describe('UsernameExistsValidatorFactory', function () {
             registerUser: function () { return null; },
             isUsernameExists: function () { return null; },
             getUserDetails: function () { return null; },
-            updateUserDetails: function () { return null; }
+            updateUserDetails: function () { return null; },
+            updateUserPassword: function () { return null; }
         };
         return [
             core_1.provide(userService_1.UserService, { useValue: userServiceMock }),
@@ -65,7 +66,8 @@ testing_1.describe('UsernameExistsValidator', function () {
             registerUser: function () { return null; },
             isUsernameExists: function () { return isUsernameExistsResult; },
             getUserDetails: function () { return null; },
-            updateUserDetails: function () { return null; }
+            updateUserDetails: function () { return null; },
+            updateUserPassword: function () { return null; }
         };
         control = new forms_1.FormControl();
         validUsernames = ['valid username1', 'valid username2'];

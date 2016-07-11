@@ -10,25 +10,30 @@ var Subject_1 = require('rxjs/Subject');
 var forms_1 = require('@angular/forms');
 var usernameExistsValidator_1 = require("../../../common/validators/usernameExistsValidator");
 testing_1.describe('EditUserDetailsComponent', function () {
+    var userDetails;
     var userServiceMock;
     var component;
-    var getUserDetailsSpy;
-    var getUserDetailsResult;
     var usernameExistsResult;
     var usernameExistsValidatorMock;
     var usernameExistsValidatorFactoryMock;
     var usernameExistsValidatorBindControlSpy;
     var createUsernameExistsValidatorSpy;
     testing_1.beforeEachProviders(function () {
-        getUserDetailsResult = new Subject_1.Subject();
+        userDetails = {
+            id: 1,
+            username: 'some username',
+            email: 'some@mail.com',
+            firstName: 'some firstName',
+            lastName: 'some lastName'
+        };
         userServiceMock = {
             signinUser: function () { return null; },
             registerUser: function () { return null; },
             isUsernameExists: function () { return null; },
-            getUserDetails: function () { return getUserDetailsResult; },
-            updateUserDetails: function () { return null; }
+            getUserDetails: function () { return null; },
+            updateUserDetails: function () { return null; },
+            updateUserPassword: function () { return null; }
         };
-        getUserDetailsSpy = sinon_1.spy(userServiceMock, 'getUserDetails');
         usernameExistsValidatorMock = {
             bindControl: function () { },
             usernameExists: function () {
@@ -51,82 +56,25 @@ testing_1.describe('EditUserDetailsComponent', function () {
             editUserDetails_component_1.EditUserDetailsComponent
         ];
     });
-    testing_1.beforeEach(testing_1.inject([editUserDetails_component_1.EditUserDetailsComponent], function (_userProfileComponent) {
-        component = _userProfileComponent;
-        component.ngOnInit();
+    testing_1.beforeEach(testing_1.inject([editUserDetails_component_1.EditUserDetailsComponent], function (_component) {
+        component = _component;
     }));
-    testing_1.it('should initialize correctly', function () {
-        chai_1.expect(component.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
-        chai_1.expect(component.model, 'editUserProfileModel should be correct').to.be.undefined;
-        chai_1.expect(component.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
-        chai_1.expect(component.userDetailsFormGroup).to.be.undefined;
-        chai_1.expect(component.updatingUserDetails, 'updatingUserDetails should be correct').to.be.false;
-        chai_1.expect(component.updatingUserDetailsError, 'updatingUserDetailsError should be correct').to.be.undefined;
-    });
-    testing_1.it('should fetch userDetails', function () {
-        chai_1.expect(getUserDetailsSpy.callCount).to.be.equal(1);
-    });
-    testing_1.describe('fetching user details failed', function () {
-        var error;
-        testing_1.beforeEach(function () {
-            error = 'some error';
-            getUserDetailsResult.error(error);
-        });
-        testing_1.it('should set gettingUserDetails to false', function () {
-            chai_1.expect(component.gettingUserDetails).to.be.false;
-        });
-        testing_1.it('model should still be undefined', function () {
-            chai_1.expect(component.model).to.be.undefined;
-        });
-        testing_1.it('userDetailsFormGroup should still be undefined', function () {
-            chai_1.expect(component.userDetailsFormGroup).to.be.undefined;
-        });
-        testing_1.it('should set error correctly', function () {
-            chai_1.expect(component.gettingUserDetailsError).to.be.equal(error);
-        });
-        testing_1.describe('reload user details', function () {
-            testing_1.beforeEach(function () {
-                getUserDetailsSpy.reset();
-                getUserDetailsResult = new Subject_1.Subject();
-                component.loadUserDetails();
-            });
-            testing_1.it('should set properties correctly', function () {
-                chai_1.expect(component.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
-                chai_1.expect(component.model, 'editUserProfileModel should be correct').to.be.undefined;
-                chai_1.expect(component.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
-                chai_1.expect(component.userDetailsFormGroup).to.be.undefined;
-            });
-            testing_1.it('should fetch userDetails', function () {
-                chai_1.expect(getUserDetailsSpy.callCount).to.be.equal(1);
-            });
-        });
-    });
-    testing_1.describe('fetching user details succeeds', function () {
-        var userDetails;
+    testing_1.it('initializing without the user details should throw error', testing_1.inject([editUserDetails_component_1.EditUserDetailsComponent], function (_component) {
+        _component.userDetails = null;
+        chai_1.expect(function () { return _component.ngOnInit(); }).to.throw('userDetails is not set');
+    }));
+    testing_1.describe('full user', function () {
         var updateTextFieldsSpy;
         testing_1.beforeEach(testing_1.fakeAsync(function () {
-            userDetails = {
-                id: 1,
-                username: 'some username',
-                email: 'some@email.com',
-                firstName: 'some firstName',
-                lastName: 'some lastName'
-            };
+            component.userDetails = userDetails;
+            component.ngOnInit();
             updateTextFieldsSpy = sinon_1.spy(Materialize, 'updateTextFields');
-            getUserDetailsResult.next(userDetails);
-            getUserDetailsResult.complete();
             testing_1.tick(0);
             usernameExistsResult.next(null);
             usernameExistsResult.complete();
         }));
         testing_1.afterEach(function () {
             updateTextFieldsSpy.restore();
-        });
-        testing_1.it('should set gettingUserDetails to false', function () {
-            chai_1.expect(component.gettingUserDetails).to.be.false;
-        });
-        testing_1.it('should set error correctly', function () {
-            chai_1.expect(component.gettingUserDetailsError).to.be.null;
         });
         testing_1.it('the model should be correct', function () {
             chai_1.expect(component.model).to.be.deep.equal(userDetails);
@@ -462,35 +410,28 @@ testing_1.describe('EditUserDetailsComponent', function () {
                 testing_1.it('canUpdateUserDetails should return false', function () {
                     chai_1.expect(component.canUpdateUserDetails()).to.be.false;
                 });
+                testing_1.it('should not change the userDetails reference', function () {
+                    chai_1.expect(component.userDetails).to.be.equal(userDetails);
+                });
+                testing_1.it('should update the userDetails', function () {
+                    chai_1.expect(component.userDetails).to.be.deep.equal(newUserDetails);
+                });
             });
         });
     });
     testing_1.describe('fetching user details succeeds with null email', function () {
-        var userDetails;
         var updateTextFieldsSpy;
         testing_1.beforeEach(testing_1.fakeAsync(function () {
-            userDetails = {
-                id: 1,
-                username: 'some username',
-                email: null,
-                firstName: 'some firstName',
-                lastName: 'some lastName'
-            };
+            userDetails.email = null;
+            component.userDetails = userDetails;
+            component.ngOnInit();
             updateTextFieldsSpy = sinon_1.spy(Materialize, 'updateTextFields');
-            getUserDetailsResult.next(userDetails);
-            getUserDetailsResult.complete();
             testing_1.tick(0);
             usernameExistsResult.next(null);
             usernameExistsResult.complete();
         }));
         testing_1.afterEach(function () {
             updateTextFieldsSpy.restore();
-        });
-        testing_1.it('should set gettingUserDetails to false', function () {
-            chai_1.expect(component.gettingUserDetails).to.be.false;
-        });
-        testing_1.it('should set error correctly', function () {
-            chai_1.expect(component.gettingUserDetailsError).to.be.null;
         });
         testing_1.it('the model should be correct', function () {
             chai_1.expect(component.model).to.be.deep.equal(userDetails);
@@ -645,6 +586,12 @@ testing_1.describe('EditUserDetailsComponent', function () {
                 });
                 testing_1.it('canUpdateUserDetails should return false', function () {
                     chai_1.expect(component.canUpdateUserDetails()).to.be.false;
+                });
+                testing_1.it('should not change the userDetails reference', function () {
+                    chai_1.expect(component.userDetails).to.be.equal(userDetails);
+                });
+                testing_1.it('should update the userDetails', function () {
+                    chai_1.expect(component.userDetails).to.be.deep.equal(newUserDetails);
                 });
             });
         });

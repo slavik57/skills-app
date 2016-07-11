@@ -26,7 +26,8 @@ describe('UsernameExistsValidatorFactory', () => {
       registerUser: () => null,
       isUsernameExists: () => null,
       getUserDetails: () => null,
-      updateUserDetails: () => null
+      updateUserDetails: () => null,
+      updateUserPassword: () => null
     };
 
     return [
@@ -90,7 +91,8 @@ describe('UsernameExistsValidator', () => {
       registerUser: () => null,
       isUsernameExists: () => isUsernameExistsResult,
       getUserDetails: () => null,
-      updateUserDetails: () => null
+      updateUserDetails: () => null,
+      updateUserPassword: () => null
     };
 
     control = new FormControl();

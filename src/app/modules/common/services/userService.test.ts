@@ -125,6 +125,15 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
   });
 
+  it('updateUserPassword should use correct url', () => {
+    var id = 123;
+    userService.updateUserPassword(id, '', '');
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Put);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + id + '/password');
+  });
+
   describe('on UNAUTHORIZED error', () => {
 
     beforeEach(() => {
@@ -165,6 +174,13 @@ describe('UserService', () => {
 
     it('updateUserDetails should fail correctly', () => {
       userService.updateUserDetails(1, '', '', '', '').subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Anauthorized performing the operation.')
+      );
+    });
+
+    it('updateUserPassword should fail correctly', () => {
+      userService.updateUserPassword(1, '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Anauthorized performing the operation.')
       );
@@ -212,6 +228,13 @@ describe('UserService', () => {
 
     it('updateUserDetails should fail correctly', () => {
       userService.updateUserDetails(1, '', '', '', '').subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+      );
+    });
+
+    it('updateUserPassword should fail correctly', () => {
+      userService.updateUserPassword(1, '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
       );
@@ -267,6 +290,13 @@ describe('UserService', () => {
       );
     });
 
+    it('updateUserPassword should fail correctly', () => {
+      userService.updateUserPassword(1, '', '').subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+      );
+    });
+
   });
 
   describe('on success with OK', () => {
@@ -289,6 +319,18 @@ describe('UserService', () => {
 
       var wasResolved = false;
       userService.updateUserDetails(1, '', '', '', '').subscribe(
+        () => { wasResolved = true; },
+        () => expect(true, 'should succeed').to.be.false);
+
+      expect(wasResolved).to.be.true;
+    });
+
+    it('updateUserPassword should succeed', () => {
+      mockBackend.connections.subscribe(
+        (connection: MockConnection) => connection.mockRespond(response));
+
+      var wasResolved = false;
+      userService.updateUserPassword(1, '', '').subscribe(
         () => { wasResolved = true; },
         () => expect(true, 'should succeed').to.be.false);
 
@@ -564,6 +606,13 @@ describe('UserService', () => {
     });
 
     it('updateUserDetails should fail correctly', () => {
+      userService.updateUserDetails(1, '', '', '', '').subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal(reasonForError)
+      );
+    });
+
+    it('updateUserPassword should fail correctly', () => {
       userService.updateUserDetails(1, '', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal(reasonForError)
