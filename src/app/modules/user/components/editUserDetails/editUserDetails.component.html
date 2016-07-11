@@ -1,18 +1,4 @@
-<circular-loading class="loading-user-details-indicator"
-                  [ngClass]="{ loading: gettingUserDetails }"></circular-loading>
-
-<div class="error-loading-user-details-wrapper"
-    [ngClass]="{ 'has-error': !!gettingUserDetailsError }"
-     *ngIf="gettingUserDetailsError">
-  <div class="error">{{gettingUserDetailsError}}</div>
-  <button class="retry-button" (click)="loadUserDetails()">
-   Try Again
-  </button>
-</div>
-
-<div *ngIf="!!model"
-     class="user-profile-card-wrapper"
-     [ngClass]="{ loading: gettingUserDetails }">
+<div class="user-profile-card-wrapper">
 
   <div class="user-profile-card">
 
