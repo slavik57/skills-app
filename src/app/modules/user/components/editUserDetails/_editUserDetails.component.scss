@@ -1,5 +1,5 @@
 @import '~materialize-css/dist/css/materialize.min';
-@import '../../../commonStyles/_forms';
+@import '../../../../commonStyles/_forms';
 
 :host {
   flex: 1 0 auto;
@@ -55,8 +55,8 @@
     }
   }
 
-  .user-profile-container{
-    @extend .row;
+  .user-profile-card-wrapper {
+
     opacity: 1;
     transition: opacity .3s ease;
 
@@ -64,56 +64,47 @@
       opacity: 0;
     }
 
-    .user-profile-card-wrapper {
-      @extend .col;
-      @extend .s12;
-      @extend .m8;
-      @extend .l6;
-      @extend .offset-m2;
-      @extend .offset-l3;
+    .user-profile-card {
+      @extend .card;
+      @extend .grey;
+      @extend .lighten-4;
 
-      .user-profile-card {
-        @extend .card;
-        @extend .grey;
-        @extend .lighten-4;
+      .card-content{
+        @extend .card-content;
 
-        .card-content{
-          @extend .card-content;
+        .title {
+          @extend .card-title;
+        }
 
-          .title {
-            @extend .card-title;
-          }
+        .user-details, .credentials{
+          @extend .row;
+          margin-bottom: 0;
 
-          .user-details, .credentials{
-            @extend .row;
-            margin-bottom: 0;
-
-            .input-field{
-              @extend .col;
-              @extend .m6;
-              @extend .s12;
-            }
-          }
-
-          .submitting-form-card-content{
-            position: absolute;
-            bottom: 0;
-            top:0;
-            left: 0;
-            right: 0;
-            text-align: center;
-
-            circular-loading {
-              position: relative;
-              top: 9rem;
-              $size: 36px;
-              width: $size;
-              height: $size;
-            }
+          .input-field{
+            @extend .col;
+            @extend .m6;
+            @extend .s12;
           }
         }
 
+        .submitting-form-card-content{
+          position: absolute;
+          bottom: 0;
+          top:0;
+          left: 0;
+          right: 0;
+          text-align: center;
+
+          circular-loading {
+            position: relative;
+            top: 9rem;
+            $size: 36px;
+            width: $size;
+            height: $size;
+          }
+        }
       }
+
     }
   }
 

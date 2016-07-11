@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var userProfile_component_1 = require("../../../user/components/userProfile.component");
+var userProfile_component_1 = require("../../../user/components/userProfile/userProfile.component");
 var home_component_1 = require("../home/home.component");
 var core_1 = require('@angular/core');
 var navigation_component_1 = require("../../../common/components/navigation/navigation.component");

@@ -1,0 +1,129 @@
+<circular-loading class="loading-user-details-indicator"
+                  [ngClass]="{ loading: gettingUserDetails }"></circular-loading>
+
+<div class="error-loading-user-details-wrapper"
+    [ngClass]="{ 'has-error': !!gettingUserDetailsError }"
+     *ngIf="gettingUserDetailsError">
+  <div class="error">{{gettingUserDetailsError}}</div>
+  <button class="retry-button" (click)="loadUserDetails()">
+   Try Again
+  </button>
+</div>
+
+<div *ngIf="!!model"
+     class="user-profile-card-wrapper"
+     [ngClass]="{ loading: gettingUserDetails }">
+
+  <div class="user-profile-card">
+
+    <div class="card-content">
+
+      <div class="filling-form-card-content"
+           [ngClass]="{ submitting: updatingUserDetails, 'has-submit-error': !!updatingUserDetailsError }">
+
+        <span class="title">User Details</span>
+
+        <form id="user-details-form"
+              [formGroup]="userDetailsFormGroup"
+              (ngSubmit)="updateUserDetails()">
+
+          <div class="user-details">
+
+            <div class="input-field username">
+              <input id="username"
+                     type="text"
+                     name="username"
+                     [(ngModel)]="model.username"
+                     #username="ngModel"
+                     [ngClass]="{ 'validation-pending': userDetailsFormGroup.controls.username.pending }"/>
+              <label for="username">Username</label>
+              <div class="async-validation-indicator" [ngClass]="{ 'pending': userDetailsFormGroup.controls.username.pending }">
+                <circular-loading></circular-loading>
+              </div>
+              <div class="form-validation-errors">
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(username, 'required') }">
+                  Username is required
+                </div>
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(username, 'usernameTaken', false) }">
+                  Username is taken
+                </div>
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(username, 'usernameTakenCheckFailed', false) }">
+                  Failed checking if username exists
+                </div>
+              </div>
+            </div>
+
+            <div class="input-field email">
+              <input id="email"
+                     type="email"
+                     name="email"
+                     [(ngModel)]="model.email"
+                     #email="ngModel"/>
+              <label for="email">Email</label>
+              <div class="form-validation-errors">
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(email) }">
+                  The email is not valid
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="credentials">
+
+            <div class="input-field first-name">
+              <input id="first-name"
+                     type="text"
+                     name="firstName"
+                     [(ngModel)]="model.firstName"
+                     #firstName="ngModel"/>
+              <label for="first-name">First name</label>
+              <div class="form-validation-errors">
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(firstName) }">
+                  First name is required
+                </div>
+              </div>
+            </div>
+
+            <div class="input-field last-name">
+              <input id="last-name"
+                     type="text"
+                     name="lastName"
+                     [(ngModel)]="model.lastName"
+                     #lastName="ngModel"/>
+              <label for="last-name">Last name</label>
+              <div class="form-validation-errors">
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(lastName) }">
+                  Last name is required
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="submit-error">
+            {{updatingUserDetailsError}}
+          </div>
+
+          <div class="submit-wrapper">
+            <button type="submit"
+                    class="submit-button"
+                    [disabled]="!canUpdateUserDetails()"
+                    [ngClass]="{ disabled: !canUpdateUserDetails() }">
+                   Update Profile
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+
+      <div class="submitting-form-card-content" [ngClass]="{ submitting: updatingUserDetails }">
+        <circular-loading></circular-loading>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

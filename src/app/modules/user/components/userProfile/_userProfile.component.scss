@@ -1,0 +1,20 @@
+@import '~materialize-css/dist/css/materialize.min';
+@import '../../../../commonStyles/_forms';
+
+:host {
+  flex: 1 0 auto;
+
+  .edit-user-details-wrapper{
+    @extend .row;
+
+    edit-user-details {
+      @extend .col;
+      @extend .s12;
+      @extend .m8;
+      @extend .l6;
+      @extend .offset-m2;
+      @extend .offset-l3;
+    }
+  }
+
+}

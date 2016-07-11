@@ -1,20 +1,20 @@
-import {FormComponentBase} from "../../common/components/formComponentBase/formComponentBase";
-import {CircularLoadingComponent} from "../../common/components/circularLoading/circularLoading.component";
-import {EditUserProfile} from "../models/editUserProfileModel";
-import {UserService, IUserDetails} from "../../common/services/userService";
+import {FormComponentBase} from "../../../common/components/formComponentBase/formComponentBase";
+import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
+import {EditUserProfile} from "../../models/editUserProfileModel";
+import {UserService, IUserDetails} from "../../../common/services/userService";
 import { Component, OnInit } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import {IUsernameExistsValidator, UsernameExistsValidator, UsernameExistsValidatorFactory} from "../../common/validators/usernameExistsValidator";
-import {EmailValidator} from "../../common/validators/emailValidator";
+import {IUsernameExistsValidator, UsernameExistsValidator, UsernameExistsValidatorFactory} from "../../../common/validators/usernameExistsValidator";
+import {EmailValidator} from "../../../common/validators/emailValidator";
 
 @Component({
-  selector: 'user-profile',
-  template: require('./userProfile.component.html'),
-  styles: [require('./_userProfile.component.scss')],
+  selector: 'edit-user-details',
+  template: require('./editUserDetails.component.html'),
+  styles: [require('./_editUserDetails.component.scss')],
   directives: [REACTIVE_FORM_DIRECTIVES, CircularLoadingComponent],
   providers: [FormBuilder, UsernameExistsValidatorFactory]
 })
-export class UserProfileComponent extends FormComponentBase implements OnInit {
+export class EditUserDetailsComponent extends FormComponentBase implements OnInit {
   private _originalUserDetails: IUserDetails;
 
   public model: EditUserProfile;

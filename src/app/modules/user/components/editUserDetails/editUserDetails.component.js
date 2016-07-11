@@ -13,27 +13,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var formComponentBase_1 = require("../../common/components/formComponentBase/formComponentBase");
-var circularLoading_component_1 = require("../../common/components/circularLoading/circularLoading.component");
-var editUserProfileModel_1 = require("../models/editUserProfileModel");
-var userService_1 = require("../../common/services/userService");
+var formComponentBase_1 = require("../../../common/components/formComponentBase/formComponentBase");
+var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
+var editUserProfileModel_1 = require("../../models/editUserProfileModel");
+var userService_1 = require("../../../common/services/userService");
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
-var usernameExistsValidator_1 = require("../../common/validators/usernameExistsValidator");
-var emailValidator_1 = require("../../common/validators/emailValidator");
-var UserProfileComponent = (function (_super) {
-    __extends(UserProfileComponent, _super);
-    function UserProfileComponent(userService, formBuilder, usernameExistsValidatorFactory) {
+var usernameExistsValidator_1 = require("../../../common/validators/usernameExistsValidator");
+var emailValidator_1 = require("../../../common/validators/emailValidator");
+var EditUserDetailsComponent = (function (_super) {
+    __extends(EditUserDetailsComponent, _super);
+    function EditUserDetailsComponent(userService, formBuilder, usernameExistsValidatorFactory) {
         _super.call(this);
         this.userService = userService;
         this.formBuilder = formBuilder;
         this.usernameExistsValidatorFactory = usernameExistsValidatorFactory;
     }
-    UserProfileComponent.prototype.ngOnInit = function () {
+    EditUserDetailsComponent.prototype.ngOnInit = function () {
         this.updatingUserDetails = false;
         this.loadUserDetails();
     };
-    UserProfileComponent.prototype.loadUserDetails = function () {
+    EditUserDetailsComponent.prototype.loadUserDetails = function () {
         var _this = this;
         this.gettingUserDetailsError = null;
         this.gettingUserDetails = true;
@@ -41,10 +41,10 @@ var UserProfileComponent = (function (_super) {
             .finally(function () { return _this._setAsNotGettingUserDetails(); })
             .subscribe(function (userDetails) { return _this._initializeEditUserProfile(userDetails); }, function (error) { return _this._setGettingUserDetailsError(error); });
     };
-    UserProfileComponent.prototype.canUpdateUserDetails = function () {
+    EditUserDetailsComponent.prototype.canUpdateUserDetails = function () {
         return this.userDetailsFormGroup.valid && this._isUserDetailsChanged();
     };
-    UserProfileComponent.prototype.updateUserDetails = function () {
+    EditUserDetailsComponent.prototype.updateUserDetails = function () {
         var _this = this;
         this.updatingUserDetails = true;
         this.updatingUserDetailsError = null;
@@ -52,19 +52,19 @@ var UserProfileComponent = (function (_super) {
             .finally(function () { return _this._setAsNotUpdatingUserDetails(); })
             .subscribe(function () { return _this._updateTheOriginalUserDetailsByModel(); }, function (error) { return _this._setUpdatingUserDetailsError(error); });
     };
-    UserProfileComponent.prototype._setAsNotGettingUserDetails = function () {
+    EditUserDetailsComponent.prototype._setAsNotGettingUserDetails = function () {
         this.gettingUserDetails = false;
     };
-    UserProfileComponent.prototype._initializeEditUserProfile = function (userDetails) {
+    EditUserDetailsComponent.prototype._initializeEditUserProfile = function (userDetails) {
         this._originalUserDetails = userDetails;
         this.model = editUserProfileModel_1.EditUserProfile.fromUserDetails(userDetails);
         this._initializeFormGroup();
         setTimeout(function () { return Materialize.updateTextFields(); }, 0);
     };
-    UserProfileComponent.prototype._setGettingUserDetailsError = function (error) {
+    EditUserDetailsComponent.prototype._setGettingUserDetailsError = function (error) {
         this.gettingUserDetailsError = error;
     };
-    UserProfileComponent.prototype._initializeFormGroup = function () {
+    EditUserDetailsComponent.prototype._initializeFormGroup = function () {
         var usernameExistsValidator = this.usernameExistsValidatorFactory.createWithAllowedUsers([this.model.username]);
         this.userDetailsFormGroup = this.formBuilder.group({
             username: [this.model.username, forms_1.Validators.required, usernameExistsValidator.usernameExists.bind(usernameExistsValidator)],
@@ -74,13 +74,13 @@ var UserProfileComponent = (function (_super) {
         });
         usernameExistsValidator.bindControl(this.userDetailsFormGroup.controls['username']);
     };
-    UserProfileComponent.prototype._isUserDetailsChanged = function () {
+    EditUserDetailsComponent.prototype._isUserDetailsChanged = function () {
         return this._originalUserDetails.username !== this.model.username ||
             this._isEmailDifferent() ||
             this._originalUserDetails.firstName !== this.model.firstName ||
             this._originalUserDetails.lastName !== this.model.lastName;
     };
-    UserProfileComponent.prototype._isEmailDifferent = function () {
+    EditUserDetailsComponent.prototype._isEmailDifferent = function () {
         if (this._originalUserDetails.email === this.model.email) {
             return false;
         }
@@ -90,32 +90,32 @@ var UserProfileComponent = (function (_super) {
         }
         return true;
     };
-    UserProfileComponent.prototype._isNullUndefinedOrEmptyString = function (value) {
+    EditUserDetailsComponent.prototype._isNullUndefinedOrEmptyString = function (value) {
         return value === null || value === undefined || value === '';
     };
-    UserProfileComponent.prototype._setAsNotUpdatingUserDetails = function () {
+    EditUserDetailsComponent.prototype._setAsNotUpdatingUserDetails = function () {
         this.updatingUserDetails = false;
     };
-    UserProfileComponent.prototype._setUpdatingUserDetailsError = function (error) {
+    EditUserDetailsComponent.prototype._setUpdatingUserDetailsError = function (error) {
         this.updatingUserDetailsError = error;
     };
-    UserProfileComponent.prototype._updateTheOriginalUserDetailsByModel = function () {
+    EditUserDetailsComponent.prototype._updateTheOriginalUserDetailsByModel = function () {
         this._originalUserDetails.username = this.model.username;
         this._originalUserDetails.email = this.model.email;
         this._originalUserDetails.firstName = this.model.firstName;
         this._originalUserDetails.lastName = this.model.lastName;
     };
-    UserProfileComponent = __decorate([
+    EditUserDetailsComponent = __decorate([
         core_1.Component({
-            selector: 'user-profile',
-            template: require('./userProfile.component.html'),
-            styles: [require('./_userProfile.component.scss')],
+            selector: 'edit-user-details',
+            template: require('./editUserDetails.component.html'),
+            styles: [require('./_editUserDetails.component.scss')],
             directives: [forms_1.REACTIVE_FORM_DIRECTIVES, circularLoading_component_1.CircularLoadingComponent],
             providers: [forms_1.FormBuilder, usernameExistsValidator_1.UsernameExistsValidatorFactory]
         }), 
         __metadata('design:paramtypes', [userService_1.UserService, forms_1.FormBuilder, usernameExistsValidator_1.UsernameExistsValidatorFactory])
-    ], UserProfileComponent);
-    return UserProfileComponent;
+    ], EditUserDetailsComponent);
+    return EditUserDetailsComponent;
 }(formComponentBase_1.FormComponentBase));
-exports.UserProfileComponent = UserProfileComponent;
-//# sourceMappingURL=userProfile.component.js.map
+exports.EditUserDetailsComponent = EditUserDetailsComponent;
+//# sourceMappingURL=editUserDetails.component.js.map
