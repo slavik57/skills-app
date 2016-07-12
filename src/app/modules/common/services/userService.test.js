@@ -95,6 +95,13 @@ testing_1.describe('UserService', function () {
         });
         chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
     });
+    testing_1.it('updateUserPassword should use correct url', function () {
+        var id = 123;
+        userService.updateUserPassword(id, '', '');
+        chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+        chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Put);
+        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + id + '/password');
+    });
     testing_1.describe('on UNAUTHORIZED error', function () {
         testing_1.beforeEach(function () {
             var error = new httpError_1.HttpError();
@@ -115,6 +122,9 @@ testing_1.describe('UserService', function () {
         });
         testing_1.it('updateUserDetails should fail correctly', function () {
             userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Anauthorized performing the operation.'); });
+        });
+        testing_1.it('updateUserPassword should fail correctly', function () {
+            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Anauthorized performing the operation.'); });
         });
     });
     testing_1.describe('on INTERNAL_SERVER_ERROR error', function () {
@@ -137,6 +147,9 @@ testing_1.describe('UserService', function () {
         });
         testing_1.it('updateUserDetails should fail correctly', function () {
             userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+        });
+        testing_1.it('updateUserPassword should fail correctly', function () {
+            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
         });
     });
     testing_1.describe('on success with UNAUTHORIZED', function () {
@@ -162,6 +175,9 @@ testing_1.describe('UserService', function () {
         testing_1.it('updateUserDetails should fail correctly', function () {
             userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
         });
+        testing_1.it('updateUserPassword should fail correctly', function () {
+            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+        });
     });
     testing_1.describe('on success with OK', function () {
         var responseOptions;
@@ -177,6 +193,12 @@ testing_1.describe('UserService', function () {
             mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
             var wasResolved = false;
             userService.updateUserDetails(1, '', '', '', '').subscribe(function () { wasResolved = true; }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
+            chai_1.expect(wasResolved).to.be.true;
+        });
+        testing_1.it('updateUserPassword should succeed', function () {
+            mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+            var wasResolved = false;
+            userService.updateUserPassword(1, '', '').subscribe(function () { wasResolved = true; }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
             chai_1.expect(wasResolved).to.be.true;
         });
         testing_1.describe('without redirect-path header', function () {
@@ -339,6 +361,9 @@ testing_1.describe('UserService', function () {
             userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(reasonForError); });
         });
         testing_1.it('updateUserDetails should fail correctly', function () {
+            userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(reasonForError); });
+        });
+        testing_1.it('updateUserPassword should fail correctly', function () {
             userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(reasonForError); });
         });
     });

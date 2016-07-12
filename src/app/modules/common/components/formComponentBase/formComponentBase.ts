@@ -1,3 +1,5 @@
+import { AbstractControl } from '@angular/forms';
+
 export class FormComponentBase {
   public isFieldInvalid(field: any, checkTouched: boolean = true): boolean {
     return this.wasFieldEdited(field, checkTouched) && !field.valid;
@@ -19,5 +21,11 @@ export class FormComponentBase {
     return this.isFieldInvalid(field, checkTouched) &&
       !!field.errors &&
       errorName in field.errors;
+  }
+
+  protected resetControlAsUntouchedAndNotDirty(control: AbstractControl): void {
+    // NOTE: Workaround untill angular team resolves: https://github.com/angular/angular/issues/4933
+    control['_touched'] = false;
+    control['_pristine'] = true;
   }
 }

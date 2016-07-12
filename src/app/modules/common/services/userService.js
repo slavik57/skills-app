@@ -19,6 +19,7 @@ var UserService = (function () {
         this._registerUrl = '/api/register';
         this._userControllerUrl = '/api/user/';
         this._userExistsUrlSuffix = '/exists';
+        this._changePasswordUrlSuffix = '/password';
     }
     UserService.prototype.signinUser = function (username, password) {
         var _this = this;
@@ -64,6 +65,17 @@ var UserService = (function () {
             email: email,
             firstName: firstName,
             lastName: lastName
+        });
+        return this._put(url, body)
+            .map(function (response) { return _this._throwErrorIfStatusIsNotOk(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
+    };
+    UserService.prototype.updateUserPassword = function (userId, currentPassword, newPassword) {
+        var _this = this;
+        var url = this._userControllerUrl + userId + this._changePasswordUrlSuffix;
+        var body = JSON.stringify({
+            password: currentPassword,
+            newPassword: newPassword
         });
         return this._put(url, body)
             .map(function (response) { return _this._throwErrorIfStatusIsNotOk(response); })

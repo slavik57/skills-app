@@ -1,0 +1,55 @@
+@import '~materialize-css/dist/css/materialize.min';
+@import '../../../../commonStyles/_forms';
+
+:host {
+  .user-profile-card-wrapper {
+
+    .user-profile-card {
+      @extend .card;
+      @extend .grey;
+      @extend .lighten-4;
+
+      .card-content{
+        @extend .card-content;
+
+        .title {
+          @extend .card-title;
+        }
+
+        .user-details, .credentials{
+          @extend .row;
+          margin-bottom: 0;
+
+          .input-field{
+            @extend .col;
+            @extend .m6;
+            @extend .s12;
+          }
+        }
+
+        .user-details-updated{
+          @extend .green-text;
+        }
+
+        .submitting-form-card-content{
+          position: absolute;
+          bottom: 0;
+          top:0;
+          left: 0;
+          right: 0;
+          text-align: center;
+
+          circular-loading {
+            position: relative;
+            top: 9rem;
+            $size: 36px;
+            width: $size;
+            height: $size;
+          }
+        }
+      }
+
+    }
+  }
+
+}

@@ -1,5 +1,5 @@
-import {IValidationResult} from "../../common/validators/iValidationResult";
-import {FormFiller} from "../../../testUtils/formFiller";
+import {IValidationResult} from "../../../common/validators/iValidationResult";
+import {FormFiller} from "../../../../testUtils/formFiller";
 import {
   it,
   inject,
@@ -11,10 +11,10 @@ import {
   fakeAsync
 } from '@angular/core/testing';
 import {provide} from '@angular/core';
-import {IUserService, UserService, IUserDetails} from "../../common/services/userService";
+import {IUserService, UserService, IUserDetails} from "../../../common/services/userService";
 import {SinonSpy, stub, spy} from 'sinon';
 import {expect} from 'chai';
-import { UserProfileComponent } from './userProfile.component';
+import { EditUserDetailsComponent } from './editUserDetails.component';
 import { Subject } from 'rxjs/Subject';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import {
@@ -22,14 +22,13 @@ import {
   UsernameExistsValidator,
   IUsernameExistsValidatorFactory,
   UsernameExistsValidatorFactory
-} from "../../common/validators/usernameExistsValidator";
+} from "../../../common/validators/usernameExistsValidator";
 
-describe('UserProfileComponent', () => {
+describe('EditUserDetailsComponent', () => {
 
+  var userDetails: IUserDetails;
   var userServiceMock: IUserService;
-  var userProfileComponent: UserProfileComponent;
-  var getUserDetailsSpy: SinonSpy;
-  var getUserDetailsResult: Subject<IUserDetails>;
+  var component: EditUserDetailsComponent;
   var usernameExistsResult: Subject<IValidationResult>;
   var usernameExistsValidatorMock: IUsernameExistsValidator;
   var usernameExistsValidatorFactoryMock: IUsernameExistsValidatorFactory;
@@ -37,18 +36,22 @@ describe('UserProfileComponent', () => {
   var createUsernameExistsValidatorSpy: SinonSpy;
 
   beforeEachProviders(() => {
-
-    getUserDetailsResult = new Subject<IUserDetails>()
+    userDetails = {
+      id: 1,
+      username: 'some username',
+      email: 'some@mail.com',
+      firstName: 'some firstName',
+      lastName: 'some lastName'
+    };
 
     userServiceMock = {
       signinUser: () => null,
       registerUser: () => null,
       isUsernameExists: () => null,
-      getUserDetails: () => getUserDetailsResult,
-      updateUserDetails: () => null
+      getUserDetails: () => null,
+      updateUserDetails: () => null,
+      updateUserPassword: () => null
     };
-
-    getUserDetailsSpy = spy(userServiceMock, 'getUserDetails');
 
     usernameExistsValidatorMock = {
       bindControl: () => { },
@@ -74,95 +77,28 @@ describe('UserProfileComponent', () => {
       FormBuilder,
       provide(UserService, { useValue: userServiceMock }),
       provide(UsernameExistsValidatorFactory, { useValue: usernameExistsValidatorFactoryMock }),
-      UserProfileComponent
+      EditUserDetailsComponent
     ];
   });
 
-  beforeEach(inject([UserProfileComponent], (_userProfileComponent: UserProfileComponent) => {
-    userProfileComponent = _userProfileComponent;
-    userProfileComponent.ngOnInit();
+  beforeEach(inject([EditUserDetailsComponent], (_component: EditUserDetailsComponent) => {
+    component = _component;
   }));
 
-  it('should initialize correctly', () => {
-    expect(userProfileComponent.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
-    expect(userProfileComponent.model, 'editUserProfileModel should be correct').to.be.undefined;
-    expect(userProfileComponent.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
-    expect(userProfileComponent.userDetailsFormGroup).to.be.undefined;
-    expect(userProfileComponent.updatingUserDetails, 'updatingUserDetails should be correct').to.be.false;
-    expect(userProfileComponent.updatingUserDetailsError, 'updatingUserDetailsError should be correct').to.be.undefined;
-  });
+  it('initializing without the user details should throw error', inject([EditUserDetailsComponent], (_component: EditUserDetailsComponent) => {
+    _component.userDetails = null;
+    expect(() => _component.ngOnInit()).to.throw('userDetails is not set');
+  }));
 
-  it('should fetch userDetails', () => {
-    expect(getUserDetailsSpy.callCount).to.be.equal(1);
-  });
+  describe('full user', () => {
 
-  describe('fetching user details failed', () => {
-
-    var error: any;
-
-    beforeEach(() => {
-      error = 'some error';
-      getUserDetailsResult.error(error);
-    });
-
-    it('should set gettingUserDetails to false', () => {
-      expect(userProfileComponent.gettingUserDetails).to.be.false;
-    });
-
-    it('model should still be undefined', () => {
-      expect(userProfileComponent.model).to.be.undefined;
-    });
-
-    it('userDetailsFormGroup should still be undefined', () => {
-      expect(userProfileComponent.userDetailsFormGroup).to.be.undefined;
-    })
-
-    it('should set error correctly', () => {
-      expect(userProfileComponent.gettingUserDetailsError).to.be.equal(error);
-    });
-
-    describe('reload user details', () => {
-
-      beforeEach(() => {
-        getUserDetailsSpy.reset();
-        getUserDetailsResult = new Subject<IUserDetails>();
-
-        userProfileComponent.loadUserDetails();
-      });
-
-      it('should set properties correctly', () => {
-        expect(userProfileComponent.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
-        expect(userProfileComponent.model, 'editUserProfileModel should be correct').to.be.undefined;
-        expect(userProfileComponent.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
-        expect(userProfileComponent.userDetailsFormGroup).to.be.undefined;
-      });
-
-      it('should fetch userDetails', () => {
-        expect(getUserDetailsSpy.callCount).to.be.equal(1);
-      });
-
-    });
-
-  });
-
-  describe('fetching user details succeeds', () => {
-
-    var userDetails: IUserDetails;
     var updateTextFieldsSpy: SinonSpy;
 
     beforeEach(fakeAsync(() => {
-      userDetails = {
-        id: 1,
-        username: 'some username',
-        email: 'some@email.com',
-        firstName: 'some firstName',
-        lastName: 'some lastName'
-      };
+      component.userDetails = userDetails;
+      component.ngOnInit();
 
       updateTextFieldsSpy = spy(Materialize, 'updateTextFields');
-
-      getUserDetailsResult.next(userDetails);
-      getUserDetailsResult.complete();
 
       tick(0);
 
@@ -174,20 +110,24 @@ describe('UserProfileComponent', () => {
       updateTextFieldsSpy.restore();
     });
 
-    it('should set gettingUserDetails to false', () => {
-      expect(userProfileComponent.gettingUserDetails).to.be.false;
+    it('updatingUserDetailsError should be correct', () => {
+      expect(component.updatingUserDetailsError).to.be.undefined;
     });
 
-    it('should set error correctly', () => {
-      expect(userProfileComponent.gettingUserDetailsError).to.be.null
+    it('updatingUserDetails should be correct', () => {
+      expect(component.updatingUserDetails).to.be.false;
+    });
+
+    it('isUserDetailsUpdated should be correct', () => {
+      expect(component.isUserDetailsUpdated).to.be.false;
     });
 
     it('the model should be correct', () => {
-      expect(userProfileComponent.model).to.be.deep.equal(userDetails);
+      expect(component.model).to.be.deep.equal(userDetails);
     });
 
     it('should initialize the userDetailsFormGroup', () => {
-      expect(userProfileComponent.userDetailsFormGroup).to.exist;
+      expect(component.userDetailsFormGroup).to.exist;
     });
 
     it('should call Materialize.updateTextFields()', () => {
@@ -195,7 +135,7 @@ describe('UserProfileComponent', () => {
     });
 
     it('canUpdateUserDetails should return false', () => {
-      expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+      expect(component.canUpdateUserDetails()).to.be.false;
     });
 
     describe('username', () => {
@@ -204,7 +144,7 @@ describe('UserProfileComponent', () => {
 
       beforeEach(() => {
         usernameControl =
-          <FormControl>userProfileComponent.userDetailsFormGroup.controls['username'];
+          <FormControl>component.userDetailsFormGroup.controls['username'];
       });
 
       it('value should be correct', () => {
@@ -227,8 +167,8 @@ describe('UserProfileComponent', () => {
 
           beforeEach(() => {
             var value = '';
-            FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, usernameControl, value);
-            userProfileComponent.model.username = value;
+            FormFiller.fillFormControl(component.userDetailsFormGroup, usernameControl, value);
+            component.model.username = value;
           });
 
           it('control should be invalid', () => {
@@ -236,7 +176,7 @@ describe('UserProfileComponent', () => {
           });
 
           it('canUpdateUserDetails should return false', () => {
-            expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+            expect(component.canUpdateUserDetails()).to.be.false;
           });
 
         });
@@ -245,8 +185,8 @@ describe('UserProfileComponent', () => {
 
           beforeEach(() => {
             var value = 'some other user';
-            FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, usernameControl, value);
-            userProfileComponent.model.username = value;
+            FormFiller.fillFormControl(component.userDetailsFormGroup, usernameControl, value);
+            component.model.username = value;
 
             usernameExistsResult.next(null);
             usernameExistsResult.complete();
@@ -257,15 +197,15 @@ describe('UserProfileComponent', () => {
           });
 
           it('canUpdateUserDetails should return true', () => {
-            expect(userProfileComponent.canUpdateUserDetails()).to.be.true;
+            expect(component.canUpdateUserDetails()).to.be.true;
           });
 
           describe('restore username', () => {
 
             beforeEach(() => {
               var value = userDetails.username;
-              FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, usernameControl, value);
-              userProfileComponent.model.username = value;
+              FormFiller.fillFormControl(component.userDetailsFormGroup, usernameControl, value);
+              component.model.username = value;
 
               usernameExistsResult.next(null);
               usernameExistsResult.complete();
@@ -276,7 +216,7 @@ describe('UserProfileComponent', () => {
             });
 
             it('canUpdateUserDetails should return false', () => {
-              expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+              expect(component.canUpdateUserDetails()).to.be.false;
             });
 
           });
@@ -287,8 +227,8 @@ describe('UserProfileComponent', () => {
 
           beforeEach(() => {
             var value = 'existing username';
-            FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, usernameControl, value);
-            userProfileComponent.model.username = value;
+            FormFiller.fillFormControl(component.userDetailsFormGroup, usernameControl, value);
+            component.model.username = value;
 
             usernameExistsResult.next({ 'someError': true });
             usernameExistsResult.complete();
@@ -299,7 +239,7 @@ describe('UserProfileComponent', () => {
           });
 
           it('canUpdateUserDetails should return false', () => {
-            expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+            expect(component.canUpdateUserDetails()).to.be.false;
           });
 
         });
@@ -314,7 +254,7 @@ describe('UserProfileComponent', () => {
 
       beforeEach(() => {
         emailControl =
-          <FormControl>userProfileComponent.userDetailsFormGroup.controls['email'];
+          <FormControl>component.userDetailsFormGroup.controls['email'];
       });
 
       it('value should be correct', () => {
@@ -327,8 +267,8 @@ describe('UserProfileComponent', () => {
 
           beforeEach(() => {
             var value = '';
-            FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, value);
-            userProfileComponent.model.email = value;
+            FormFiller.fillFormControl(component.userDetailsFormGroup, emailControl, value);
+            component.model.email = value;
           });
 
           it('control should be valid', () => {
@@ -336,7 +276,7 @@ describe('UserProfileComponent', () => {
           });
 
           it('canUpdateUserDetails should return true', () => {
-            expect(userProfileComponent.canUpdateUserDetails()).to.be.true;
+            expect(component.canUpdateUserDetails()).to.be.true;
           });
 
         });
@@ -345,8 +285,8 @@ describe('UserProfileComponent', () => {
 
           beforeEach(() => {
             var value = 'someOther@email.com';
-            FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, value);
-            userProfileComponent.model.email = value;
+            FormFiller.fillFormControl(component.userDetailsFormGroup, emailControl, value);
+            component.model.email = value;
           });
 
           it('control should be valid', () => {
@@ -354,15 +294,15 @@ describe('UserProfileComponent', () => {
           });
 
           it('canUpdateUserDetails should return true', () => {
-            expect(userProfileComponent.canUpdateUserDetails()).to.be.true;
+            expect(component.canUpdateUserDetails()).to.be.true;
           });
 
           describe('restore email', () => {
 
             beforeEach(() => {
               var value = userDetails.email;
-              FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, value);
-              userProfileComponent.model.email = value;
+              FormFiller.fillFormControl(component.userDetailsFormGroup, emailControl, value);
+              component.model.email = value;
             });
 
             it('control should be valid', () => {
@@ -370,7 +310,7 @@ describe('UserProfileComponent', () => {
             });
 
             it('canUpdateUserDetails should return false', () => {
-              expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+              expect(component.canUpdateUserDetails()).to.be.false;
             });
 
           });
@@ -381,8 +321,8 @@ describe('UserProfileComponent', () => {
 
           beforeEach(() => {
             var value = 'invlaid email';
-            FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, value);
-            userProfileComponent.model.email = value;
+            FormFiller.fillFormControl(component.userDetailsFormGroup, emailControl, value);
+            component.model.email = value;
           });
 
           it('control should be invalid', () => {
@@ -390,7 +330,7 @@ describe('UserProfileComponent', () => {
           });
 
           it('canUpdateUserDetails should return false', () => {
-            expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+            expect(component.canUpdateUserDetails()).to.be.false;
           });
 
         });
@@ -405,7 +345,7 @@ describe('UserProfileComponent', () => {
 
       beforeEach(() => {
         firstNameControl =
-          <FormControl>userProfileComponent.userDetailsFormGroup.controls['firstName'];
+          <FormControl>component.userDetailsFormGroup.controls['firstName'];
       });
 
       it('value should be correct', () => {
@@ -418,8 +358,8 @@ describe('UserProfileComponent', () => {
 
           beforeEach(() => {
             var value = '';
-            FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, firstNameControl, value);
-            userProfileComponent.model.firstName = value;
+            FormFiller.fillFormControl(component.userDetailsFormGroup, firstNameControl, value);
+            component.model.firstName = value;
           });
 
           it('control should be invalid', () => {
@@ -427,7 +367,7 @@ describe('UserProfileComponent', () => {
           });
 
           it('canUpdateUserDetails should return false', () => {
-            expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+            expect(component.canUpdateUserDetails()).to.be.false;
           });
 
         });
@@ -436,8 +376,8 @@ describe('UserProfileComponent', () => {
 
           beforeEach(() => {
             var value = 'some other first name';
-            FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, firstNameControl, value);
-            userProfileComponent.model.firstName = value;
+            FormFiller.fillFormControl(component.userDetailsFormGroup, firstNameControl, value);
+            component.model.firstName = value;
           });
 
           it('control should be valid', () => {
@@ -445,15 +385,15 @@ describe('UserProfileComponent', () => {
           });
 
           it('canUpdateUserDetails should return true', () => {
-            expect(userProfileComponent.canUpdateUserDetails()).to.be.true;
+            expect(component.canUpdateUserDetails()).to.be.true;
           });
 
           describe('restore first name', () => {
 
             beforeEach(() => {
               var value = userDetails.firstName;
-              FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, firstNameControl, value);
-              userProfileComponent.model.firstName = value;
+              FormFiller.fillFormControl(component.userDetailsFormGroup, firstNameControl, value);
+              component.model.firstName = value;
             });
 
             it('control should be valid', () => {
@@ -461,7 +401,7 @@ describe('UserProfileComponent', () => {
             });
 
             it('canUpdateUserDetails should return false', () => {
-              expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+              expect(component.canUpdateUserDetails()).to.be.false;
             });
 
           });
@@ -478,7 +418,7 @@ describe('UserProfileComponent', () => {
 
       beforeEach(() => {
         lastNameControl =
-          <FormControl>userProfileComponent.userDetailsFormGroup.controls['lastName'];
+          <FormControl>component.userDetailsFormGroup.controls['lastName'];
       });
 
       it('value should be correct', () => {
@@ -491,8 +431,8 @@ describe('UserProfileComponent', () => {
 
           beforeEach(() => {
             var value = '';
-            FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, lastNameControl, value);
-            userProfileComponent.model.lastName = value;
+            FormFiller.fillFormControl(component.userDetailsFormGroup, lastNameControl, value);
+            component.model.lastName = value;
           });
 
           it('control should be invalid', () => {
@@ -500,7 +440,7 @@ describe('UserProfileComponent', () => {
           });
 
           it('canUpdateUserDetails should return false', () => {
-            expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+            expect(component.canUpdateUserDetails()).to.be.false;
           });
 
         });
@@ -509,8 +449,8 @@ describe('UserProfileComponent', () => {
 
           beforeEach(() => {
             var value = 'some other last name';
-            FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, lastNameControl, value);
-            userProfileComponent.model.lastName = value;
+            FormFiller.fillFormControl(component.userDetailsFormGroup, lastNameControl, value);
+            component.model.lastName = value;
           });
 
           it('control should be valid', () => {
@@ -518,15 +458,15 @@ describe('UserProfileComponent', () => {
           });
 
           it('canUpdateUserDetails should return true', () => {
-            expect(userProfileComponent.canUpdateUserDetails()).to.be.true;
+            expect(component.canUpdateUserDetails()).to.be.true;
           });
 
           describe('restore last name', () => {
 
             beforeEach(() => {
               var value = userDetails.lastName;
-              FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, lastNameControl, value);
-              userProfileComponent.model.lastName = value;
+              FormFiller.fillFormControl(component.userDetailsFormGroup, lastNameControl, value);
+              component.model.lastName = value;
             });
 
             it('control should be valid', () => {
@@ -534,7 +474,7 @@ describe('UserProfileComponent', () => {
             });
 
             it('canUpdateUserDetails should return false', () => {
-              expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+              expect(component.canUpdateUserDetails()).to.be.false;
             });
 
           });
@@ -559,31 +499,32 @@ describe('UserProfileComponent', () => {
           lastName: 'new last name'
         }
 
-        var usernameControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['username'];
-        var emailControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['email'];
-        var firstNameControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['firstName'];
-        var lastNameControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['lastName'];
+        var usernameControl = <FormControl>component.userDetailsFormGroup.controls['username'];
+        var emailControl = <FormControl>component.userDetailsFormGroup.controls['email'];
+        var firstNameControl = <FormControl>component.userDetailsFormGroup.controls['firstName'];
+        var lastNameControl = <FormControl>component.userDetailsFormGroup.controls['lastName'];
 
-        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, usernameControl, newUserDetails.username);
-        userProfileComponent.model.username = newUserDetails.username;
+        FormFiller.fillFormControl(component.userDetailsFormGroup, usernameControl, newUserDetails.username);
+        component.model.username = newUserDetails.username;
         usernameExistsResult.next(null);
         usernameExistsResult.complete();
 
-        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, newUserDetails.email);
-        userProfileComponent.model.email = newUserDetails.email;
+        FormFiller.fillFormControl(component.userDetailsFormGroup, emailControl, newUserDetails.email);
+        component.model.email = newUserDetails.email;
 
-        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, firstNameControl, newUserDetails.firstName);
-        userProfileComponent.model.firstName = newUserDetails.firstName;
+        FormFiller.fillFormControl(component.userDetailsFormGroup, firstNameControl, newUserDetails.firstName);
+        component.model.firstName = newUserDetails.firstName;
 
-        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, lastNameControl, newUserDetails.lastName);
-        userProfileComponent.model.lastName = newUserDetails.lastName;
-
-        updateUserDetailsResult = new Subject<void>();
+        FormFiller.fillFormControl(component.userDetailsFormGroup, lastNameControl, newUserDetails.lastName);
+        component.model.lastName = newUserDetails.lastName;
 
         updateUserDetailsStub =
-          stub(userServiceMock, 'updateUserDetails', () => updateUserDetailsResult);
+          stub(userServiceMock, 'updateUserDetails', () => {
+            updateUserDetailsResult = new Subject<void>();
+            return updateUserDetailsResult;
+          });
 
-        userProfileComponent.updateUserDetails();
+        component.updateUserDetails();
       });
 
       afterEach(() => {
@@ -604,11 +545,15 @@ describe('UserProfileComponent', () => {
       });
 
       it('should set updatingUserDetails to true', () => {
-        expect(userProfileComponent.updatingUserDetails).to.be.true;
+        expect(component.updatingUserDetails).to.be.true;
       });
 
       it('should set updatingUserDetailsError to null', () => {
-        expect(userProfileComponent.updatingUserDetailsError).to.be.null;
+        expect(component.updatingUserDetailsError).to.be.null;
+      });
+
+      it('isUserDetailsUpdated should be correct', () => {
+        expect(component.isUserDetailsUpdated).to.be.false;
       });
 
       describe('updating fails', () => {
@@ -622,11 +567,15 @@ describe('UserProfileComponent', () => {
         });
 
         it('should set updatingUserDetails to false', () => {
-          expect(userProfileComponent.updatingUserDetails).to.be.false;
+          expect(component.updatingUserDetails).to.be.false;
         });
 
         it('should set updatingUserDetailsError correctly', () => {
-          expect(userProfileComponent.updatingUserDetailsError).to.be.equal(error);
+          expect(component.updatingUserDetailsError).to.be.equal(error);
+        });
+
+        it('isUserDetailsUpdated should be correct', () => {
+          expect(component.isUserDetailsUpdated).to.be.false;
         });
 
       });
@@ -639,15 +588,43 @@ describe('UserProfileComponent', () => {
         });
 
         it('should set updatingUserDetails to false', () => {
-          expect(userProfileComponent.updatingUserDetails).to.be.false;
+          expect(component.updatingUserDetails).to.be.false;
         });
 
         it('should set updatingUserDetailsError to null', () => {
-          expect(userProfileComponent.updatingUserDetailsError).to.be.null;
+          expect(component.updatingUserDetailsError).to.be.null;
         });
 
         it('canUpdateUserDetails should return false', () => {
-          expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+          expect(component.canUpdateUserDetails()).to.be.false;
+        });
+
+        it('should not change the userDetails reference', () => {
+          expect(component.userDetails).to.be.equal(userDetails);
+        });
+
+        it('should update the userDetails', () => {
+          expect(component.userDetails).to.be.deep.equal(newUserDetails);
+        });
+
+        it('isUserDetailsUpdated should be correct', () => {
+          expect(component.isUserDetailsUpdated).to.be.true;
+        });
+
+        describe('updateUserDetails()', () => {
+
+          beforeEach(() => {
+            component.updateUserDetails();
+          });
+
+          it('isUserDetailsUpdated should be correct', () => {
+            expect(component.isUserDetailsUpdated).to.be.false;
+          });
+
+          it('should set updatingUserDetails to true', () => {
+            expect(component.updatingUserDetails).to.be.true;
+          });
+
         });
 
       });
@@ -658,22 +635,14 @@ describe('UserProfileComponent', () => {
 
   describe('fetching user details succeeds with null email', () => {
 
-    var userDetails: IUserDetails;
     var updateTextFieldsSpy: SinonSpy;
 
     beforeEach(fakeAsync(() => {
-      userDetails = {
-        id: 1,
-        username: 'some username',
-        email: null,
-        firstName: 'some firstName',
-        lastName: 'some lastName'
-      };
+      userDetails.email = null;
+      component.userDetails = userDetails;
+      component.ngOnInit();
 
       updateTextFieldsSpy = spy(Materialize, 'updateTextFields');
-
-      getUserDetailsResult.next(userDetails);
-      getUserDetailsResult.complete();
 
       tick(0);
 
@@ -685,20 +654,12 @@ describe('UserProfileComponent', () => {
       updateTextFieldsSpy.restore();
     });
 
-    it('should set gettingUserDetails to false', () => {
-      expect(userProfileComponent.gettingUserDetails).to.be.false;
-    });
-
-    it('should set error correctly', () => {
-      expect(userProfileComponent.gettingUserDetailsError).to.be.null
-    });
-
     it('the model should be correct', () => {
-      expect(userProfileComponent.model).to.be.deep.equal(userDetails);
+      expect(component.model).to.be.deep.equal(userDetails);
     });
 
     it('should initialize the userDetailsFormGroup', () => {
-      expect(userProfileComponent.userDetailsFormGroup).to.exist;
+      expect(component.userDetailsFormGroup).to.exist;
     });
 
     it('should call Materialize.updateTextFields()', () => {
@@ -706,7 +667,19 @@ describe('UserProfileComponent', () => {
     });
 
     it('canUpdateUserDetails should return false', () => {
-      expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+      expect(component.canUpdateUserDetails()).to.be.false;
+    });
+
+    it('updatingUserDetailsError should be correct', () => {
+      expect(component.updatingUserDetailsError).to.be.undefined;
+    });
+
+    it('updatingUserDetails should be correct', () => {
+      expect(component.updatingUserDetails).to.be.false;
+    });
+
+    it('isUserDetailsUpdated should be correct', () => {
+      expect(component.isUserDetailsUpdated).to.be.false;
     });
 
     describe('email', () => {
@@ -715,7 +688,7 @@ describe('UserProfileComponent', () => {
 
       beforeEach(() => {
         emailControl =
-          <FormControl>userProfileComponent.userDetailsFormGroup.controls['email'];
+          <FormControl>component.userDetailsFormGroup.controls['email'];
       });
 
       it('value should be correct', () => {
@@ -728,8 +701,8 @@ describe('UserProfileComponent', () => {
 
           beforeEach(() => {
             var value = '';
-            FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, value);
-            userProfileComponent.model.email = value;
+            FormFiller.fillFormControl(component.userDetailsFormGroup, emailControl, value);
+            component.model.email = value;
           });
 
           it('control should be valid', () => {
@@ -737,7 +710,7 @@ describe('UserProfileComponent', () => {
           });
 
           it('canUpdateUserDetails should return false', () => {
-            expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+            expect(component.canUpdateUserDetails()).to.be.false;
           });
 
         });
@@ -746,8 +719,8 @@ describe('UserProfileComponent', () => {
 
           beforeEach(() => {
             var value = 'someOther@email.com';
-            FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, value);
-            userProfileComponent.model.email = value;
+            FormFiller.fillFormControl(component.userDetailsFormGroup, emailControl, value);
+            component.model.email = value;
           });
 
           it('control should be valid', () => {
@@ -755,15 +728,15 @@ describe('UserProfileComponent', () => {
           });
 
           it('canUpdateUserDetails should return true', () => {
-            expect(userProfileComponent.canUpdateUserDetails()).to.be.true;
+            expect(component.canUpdateUserDetails()).to.be.true;
           });
 
           describe('restore email', () => {
 
             beforeEach(() => {
               var value = userDetails.email;
-              FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, value);
-              userProfileComponent.model.email = value;
+              FormFiller.fillFormControl(component.userDetailsFormGroup, emailControl, value);
+              component.model.email = value;
             });
 
             it('control should be valid', () => {
@@ -771,7 +744,7 @@ describe('UserProfileComponent', () => {
             });
 
             it('canUpdateUserDetails should return false', () => {
-              expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+              expect(component.canUpdateUserDetails()).to.be.false;
             });
 
           });
@@ -782,8 +755,8 @@ describe('UserProfileComponent', () => {
 
           beforeEach(() => {
             var value = 'invlaid email';
-            FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, value);
-            userProfileComponent.model.email = value;
+            FormFiller.fillFormControl(component.userDetailsFormGroup, emailControl, value);
+            component.model.email = value;
           });
 
           it('control should be invalid', () => {
@@ -791,7 +764,7 @@ describe('UserProfileComponent', () => {
           });
 
           it('canUpdateUserDetails should return false', () => {
-            expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+            expect(component.canUpdateUserDetails()).to.be.false;
           });
 
         });
@@ -815,31 +788,32 @@ describe('UserProfileComponent', () => {
           lastName: 'new last name'
         }
 
-        var usernameControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['username'];
-        var emailControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['email'];
-        var firstNameControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['firstName'];
-        var lastNameControl = <FormControl>userProfileComponent.userDetailsFormGroup.controls['lastName'];
+        var usernameControl = <FormControl>component.userDetailsFormGroup.controls['username'];
+        var emailControl = <FormControl>component.userDetailsFormGroup.controls['email'];
+        var firstNameControl = <FormControl>component.userDetailsFormGroup.controls['firstName'];
+        var lastNameControl = <FormControl>component.userDetailsFormGroup.controls['lastName'];
 
-        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, usernameControl, newUserDetails.username);
-        userProfileComponent.model.username = newUserDetails.username;
+        FormFiller.fillFormControl(component.userDetailsFormGroup, usernameControl, newUserDetails.username);
+        component.model.username = newUserDetails.username;
         usernameExistsResult.next(null);
         usernameExistsResult.complete();
 
-        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, emailControl, newUserDetails.email);
-        userProfileComponent.model.email = newUserDetails.email;
+        FormFiller.fillFormControl(component.userDetailsFormGroup, emailControl, newUserDetails.email);
+        component.model.email = newUserDetails.email;
 
-        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, firstNameControl, newUserDetails.firstName);
-        userProfileComponent.model.firstName = newUserDetails.firstName;
+        FormFiller.fillFormControl(component.userDetailsFormGroup, firstNameControl, newUserDetails.firstName);
+        component.model.firstName = newUserDetails.firstName;
 
-        FormFiller.fillFormControl(userProfileComponent.userDetailsFormGroup, lastNameControl, newUserDetails.lastName);
-        userProfileComponent.model.lastName = newUserDetails.lastName;
-
-        updateUserDetailsResult = new Subject<void>();
+        FormFiller.fillFormControl(component.userDetailsFormGroup, lastNameControl, newUserDetails.lastName);
+        component.model.lastName = newUserDetails.lastName;
 
         updateUserDetailsStub =
-          stub(userServiceMock, 'updateUserDetails', () => updateUserDetailsResult);
+          stub(userServiceMock, 'updateUserDetails', () => {
+            updateUserDetailsResult = new Subject<void>();
+            return updateUserDetailsResult;
+          });
 
-        userProfileComponent.updateUserDetails();
+        component.updateUserDetails();
       });
 
       afterEach(() => {
@@ -860,11 +834,15 @@ describe('UserProfileComponent', () => {
       });
 
       it('should set updatingUserDetails to true', () => {
-        expect(userProfileComponent.updatingUserDetails).to.be.true;
+        expect(component.updatingUserDetails).to.be.true;
       });
 
       it('should set updatingUserDetailsError to null', () => {
-        expect(userProfileComponent.updatingUserDetailsError).to.be.null;
+        expect(component.updatingUserDetailsError).to.be.null;
+      });
+
+      it('isUserDetailsUpdated should be correct', () => {
+        expect(component.isUserDetailsUpdated).to.be.false;
       });
 
       describe('updating fails', () => {
@@ -878,11 +856,15 @@ describe('UserProfileComponent', () => {
         });
 
         it('should set updatingUserDetails to false', () => {
-          expect(userProfileComponent.updatingUserDetails).to.be.false;
+          expect(component.updatingUserDetails).to.be.false;
         });
 
         it('should set updatingUserDetailsError correctly', () => {
-          expect(userProfileComponent.updatingUserDetailsError).to.be.equal(error);
+          expect(component.updatingUserDetailsError).to.be.equal(error);
+        });
+
+        it('isUserDetailsUpdated should be correct', () => {
+          expect(component.isUserDetailsUpdated).to.be.false;
         });
 
       });
@@ -895,15 +877,43 @@ describe('UserProfileComponent', () => {
         });
 
         it('should set updatingUserDetails to false', () => {
-          expect(userProfileComponent.updatingUserDetails).to.be.false;
+          expect(component.updatingUserDetails).to.be.false;
         });
 
         it('should set updatingUserDetailsError to null', () => {
-          expect(userProfileComponent.updatingUserDetailsError).to.be.null;
+          expect(component.updatingUserDetailsError).to.be.null;
         });
 
         it('canUpdateUserDetails should return false', () => {
-          expect(userProfileComponent.canUpdateUserDetails()).to.be.false;
+          expect(component.canUpdateUserDetails()).to.be.false;
+        });
+
+        it('should not change the userDetails reference', () => {
+          expect(component.userDetails).to.be.equal(userDetails);
+        });
+
+        it('should update the userDetails', () => {
+          expect(component.userDetails).to.be.deep.equal(newUserDetails);
+        });
+
+        it('isUserDetailsUpdated should be correct', () => {
+          expect(component.isUserDetailsUpdated).to.be.true;
+        });
+
+        describe('updateUserDetails()', () => {
+
+          beforeEach(() => {
+            component.updateUserDetails();
+          });
+
+          it('isUserDetailsUpdated should be correct', () => {
+            expect(component.isUserDetailsUpdated).to.be.false;
+          });
+
+          it('should set updatingUserDetails to true', () => {
+            expect(component.updatingUserDetails).to.be.true;
+          });
+
         });
 
       });

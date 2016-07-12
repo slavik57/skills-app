@@ -15,6 +15,11 @@ interface IUpdateUserInfo {
   lastName: string;
 }
 
+interface IUpdateUserPassword {
+  password: string;
+  newPassword: string;
+}
+
 interface IRegistrationInfo {
   username: string;
   password: string;
@@ -49,6 +54,9 @@ export interface IUserService {
     email: string,
     firstName: string,
     lastName: string): Observable<void>;
+  updateUserPassword(userId: number,
+    currentPassword: string,
+    newPassword: string): Observable<void>;
 }
 
 @Injectable()
@@ -57,6 +65,7 @@ export class UserService implements IUserService {
   private _registerUrl = '/api/register';
   private _userControllerUrl = '/api/user/';
   private _userExistsUrlSuffix = '/exists'
+  private _changePasswordUrlSuffix = '/password';
 
   constructor(private http: Http) {
   }
@@ -118,6 +127,22 @@ export class UserService implements IUserService {
       email: email,
       firstName: firstName,
       lastName: lastName
+    });
+
+    return this._put(url, body)
+      .map((response: Response) => this._throwErrorIfStatusIsNotOk(response))
+      .catch((error: any) => this._handleServerError<void>(error));
+  }
+
+  public updateUserPassword(userId: number,
+    currentPassword: string,
+    newPassword: string): Observable<void> {
+
+    let url = this._userControllerUrl + userId + this._changePasswordUrlSuffix;
+
+    let body: string = JSON.stringify(<IUpdateUserPassword>{
+      password: currentPassword,
+      newPassword: newPassword
     });
 
     return this._put(url, body)
