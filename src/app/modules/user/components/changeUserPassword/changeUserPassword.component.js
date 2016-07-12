@@ -65,8 +65,13 @@ var ChangeUserPasswordComponent = (function (_super) {
     };
     ChangeUserPasswordComponent.prototype._setAsPasswordUpdated = function () {
         this.isPasswordUpdated = true;
-        this._createEmptyModel();
-        this._createEmptyForm();
+        this.model.password = '';
+        this.model.newPassword = '';
+        this.model.newPasswordRepeated = '';
+        this.resetControlAsUntouchedAndNotDirty(this.userPasswordFormGroup.controls['password']);
+        this.resetControlAsUntouchedAndNotDirty(this.newPasswordsGroup.controls['newPassword']);
+        this.resetControlAsUntouchedAndNotDirty(this.newPasswordsGroup.controls['newPasswordRepeated']);
+        setTimeout(function () { return Materialize.updateTextFields(); }, 0);
     };
     ChangeUserPasswordComponent.prototype._setUpdatingUserDetailsError = function (error) {
         this.updateUserPasswordError = error;

@@ -76,6 +76,15 @@ testing_1.describe('EditUserDetailsComponent', function () {
         testing_1.afterEach(function () {
             updateTextFieldsSpy.restore();
         });
+        testing_1.it('updatingUserDetailsError should be correct', function () {
+            chai_1.expect(component.updatingUserDetailsError).to.be.undefined;
+        });
+        testing_1.it('updatingUserDetails should be correct', function () {
+            chai_1.expect(component.updatingUserDetails).to.be.false;
+        });
+        testing_1.it('isUserDetailsUpdated should be correct', function () {
+            chai_1.expect(component.isUserDetailsUpdated).to.be.false;
+        });
         testing_1.it('the model should be correct', function () {
             chai_1.expect(component.model).to.be.deep.equal(userDetails);
         });
@@ -358,9 +367,11 @@ testing_1.describe('EditUserDetailsComponent', function () {
                 component.model.firstName = newUserDetails.firstName;
                 formFiller_1.FormFiller.fillFormControl(component.userDetailsFormGroup, lastNameControl, newUserDetails.lastName);
                 component.model.lastName = newUserDetails.lastName;
-                updateUserDetailsResult = new Subject_1.Subject();
                 updateUserDetailsStub =
-                    sinon_1.stub(userServiceMock, 'updateUserDetails', function () { return updateUserDetailsResult; });
+                    sinon_1.stub(userServiceMock, 'updateUserDetails', function () {
+                        updateUserDetailsResult = new Subject_1.Subject();
+                        return updateUserDetailsResult;
+                    });
                 component.updateUserDetails();
             });
             testing_1.afterEach(function () {
@@ -383,6 +394,9 @@ testing_1.describe('EditUserDetailsComponent', function () {
             testing_1.it('should set updatingUserDetailsError to null', function () {
                 chai_1.expect(component.updatingUserDetailsError).to.be.null;
             });
+            testing_1.it('isUserDetailsUpdated should be correct', function () {
+                chai_1.expect(component.isUserDetailsUpdated).to.be.false;
+            });
             testing_1.describe('updating fails', function () {
                 var error;
                 testing_1.beforeEach(function () {
@@ -394,6 +408,9 @@ testing_1.describe('EditUserDetailsComponent', function () {
                 });
                 testing_1.it('should set updatingUserDetailsError correctly', function () {
                     chai_1.expect(component.updatingUserDetailsError).to.be.equal(error);
+                });
+                testing_1.it('isUserDetailsUpdated should be correct', function () {
+                    chai_1.expect(component.isUserDetailsUpdated).to.be.false;
                 });
             });
             testing_1.describe('updating succeeds', function () {
@@ -415,6 +432,20 @@ testing_1.describe('EditUserDetailsComponent', function () {
                 });
                 testing_1.it('should update the userDetails', function () {
                     chai_1.expect(component.userDetails).to.be.deep.equal(newUserDetails);
+                });
+                testing_1.it('isUserDetailsUpdated should be correct', function () {
+                    chai_1.expect(component.isUserDetailsUpdated).to.be.true;
+                });
+                testing_1.describe('updateUserDetails()', function () {
+                    testing_1.beforeEach(function () {
+                        component.updateUserDetails();
+                    });
+                    testing_1.it('isUserDetailsUpdated should be correct', function () {
+                        chai_1.expect(component.isUserDetailsUpdated).to.be.false;
+                    });
+                    testing_1.it('should set updatingUserDetails to true', function () {
+                        chai_1.expect(component.updatingUserDetails).to.be.true;
+                    });
                 });
             });
         });
@@ -444,6 +475,15 @@ testing_1.describe('EditUserDetailsComponent', function () {
         });
         testing_1.it('canUpdateUserDetails should return false', function () {
             chai_1.expect(component.canUpdateUserDetails()).to.be.false;
+        });
+        testing_1.it('updatingUserDetailsError should be correct', function () {
+            chai_1.expect(component.updatingUserDetailsError).to.be.undefined;
+        });
+        testing_1.it('updatingUserDetails should be correct', function () {
+            chai_1.expect(component.updatingUserDetails).to.be.false;
+        });
+        testing_1.it('isUserDetailsUpdated should be correct', function () {
+            chai_1.expect(component.isUserDetailsUpdated).to.be.false;
         });
         testing_1.describe('email', function () {
             var emailControl;
@@ -535,9 +575,11 @@ testing_1.describe('EditUserDetailsComponent', function () {
                 component.model.firstName = newUserDetails.firstName;
                 formFiller_1.FormFiller.fillFormControl(component.userDetailsFormGroup, lastNameControl, newUserDetails.lastName);
                 component.model.lastName = newUserDetails.lastName;
-                updateUserDetailsResult = new Subject_1.Subject();
                 updateUserDetailsStub =
-                    sinon_1.stub(userServiceMock, 'updateUserDetails', function () { return updateUserDetailsResult; });
+                    sinon_1.stub(userServiceMock, 'updateUserDetails', function () {
+                        updateUserDetailsResult = new Subject_1.Subject();
+                        return updateUserDetailsResult;
+                    });
                 component.updateUserDetails();
             });
             testing_1.afterEach(function () {
@@ -560,6 +602,9 @@ testing_1.describe('EditUserDetailsComponent', function () {
             testing_1.it('should set updatingUserDetailsError to null', function () {
                 chai_1.expect(component.updatingUserDetailsError).to.be.null;
             });
+            testing_1.it('isUserDetailsUpdated should be correct', function () {
+                chai_1.expect(component.isUserDetailsUpdated).to.be.false;
+            });
             testing_1.describe('updating fails', function () {
                 var error;
                 testing_1.beforeEach(function () {
@@ -571,6 +616,9 @@ testing_1.describe('EditUserDetailsComponent', function () {
                 });
                 testing_1.it('should set updatingUserDetailsError correctly', function () {
                     chai_1.expect(component.updatingUserDetailsError).to.be.equal(error);
+                });
+                testing_1.it('isUserDetailsUpdated should be correct', function () {
+                    chai_1.expect(component.isUserDetailsUpdated).to.be.false;
                 });
             });
             testing_1.describe('updating succeeds', function () {
@@ -592,6 +640,20 @@ testing_1.describe('EditUserDetailsComponent', function () {
                 });
                 testing_1.it('should update the userDetails', function () {
                     chai_1.expect(component.userDetails).to.be.deep.equal(newUserDetails);
+                });
+                testing_1.it('isUserDetailsUpdated should be correct', function () {
+                    chai_1.expect(component.isUserDetailsUpdated).to.be.true;
+                });
+                testing_1.describe('updateUserDetails()', function () {
+                    testing_1.beforeEach(function () {
+                        component.updateUserDetails();
+                    });
+                    testing_1.it('isUserDetailsUpdated should be correct', function () {
+                        chai_1.expect(component.isUserDetailsUpdated).to.be.false;
+                    });
+                    testing_1.it('should set updatingUserDetails to true', function () {
+                        chai_1.expect(component.updatingUserDetails).to.be.true;
+                    });
                 });
             });
         });

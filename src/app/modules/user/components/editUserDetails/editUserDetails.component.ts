@@ -21,6 +21,7 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
   public userDetailsFormGroup: FormGroup;
   public updatingUserDetails: boolean;
   public updatingUserDetailsError: any;
+  public isUserDetailsUpdated: boolean;
 
   constructor(private userService: UserService,
     private formBuilder: FormBuilder,
@@ -29,15 +30,12 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
   }
 
   public ngOnInit(): void {
-    this.updatingUserDetails = false;
-
-    this.loadUserDetails();
-  }
-
-  public loadUserDetails(): void {
     if (!this.userDetails) {
       throw 'userDetails is not set';
     }
+
+    this.updatingUserDetails = false;
+    this.isUserDetailsUpdated = false;
 
     this._initializeEditUserProfile();
   }
@@ -49,6 +47,7 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
   public updateUserDetails(): void {
     this.updatingUserDetails = true;
     this.updatingUserDetailsError = null;
+    this.isUserDetailsUpdated = false;
 
     this.userService.updateUserDetails(this.userDetails.id,
       this.model.username,
@@ -57,7 +56,7 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
       this.model.lastName)
       .finally(() => this._setAsNotUpdatingUserDetails())
       .subscribe(
-      () => this._updateTheOriginalUserDetailsByModel(),
+      () => this._setUserDetailsAsUpdated(),
       (error: any) => this._setUpdatingUserDetailsError(error));
   }
 
@@ -113,10 +112,12 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
     this.updatingUserDetailsError = error;
   }
 
-  private _updateTheOriginalUserDetailsByModel(): void {
+  private _setUserDetailsAsUpdated(): void {
     this.userDetails.username = this.model.username;
     this.userDetails.email = this.model.email;
     this.userDetails.firstName = this.model.firstName;
     this.userDetails.lastName = this.model.lastName;
+
+    this.isUserDetailsUpdated = true;
   }
 }

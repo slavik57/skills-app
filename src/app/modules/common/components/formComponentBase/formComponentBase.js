@@ -24,6 +24,10 @@ var FormComponentBase = (function () {
             !!field.errors &&
             errorName in field.errors;
     };
+    FormComponentBase.prototype.resetControlAsUntouchedAndNotDirty = function (control) {
+        control['_touched'] = false;
+        control['_pristine'] = true;
+    };
     return FormComponentBase;
 }());
 exports.FormComponentBase = FormComponentBase;

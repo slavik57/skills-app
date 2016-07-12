@@ -30,13 +30,11 @@ var EditUserDetailsComponent = (function (_super) {
         this.usernameExistsValidatorFactory = usernameExistsValidatorFactory;
     }
     EditUserDetailsComponent.prototype.ngOnInit = function () {
-        this.updatingUserDetails = false;
-        this.loadUserDetails();
-    };
-    EditUserDetailsComponent.prototype.loadUserDetails = function () {
         if (!this.userDetails) {
             throw 'userDetails is not set';
         }
+        this.updatingUserDetails = false;
+        this.isUserDetailsUpdated = false;
         this._initializeEditUserProfile();
     };
     EditUserDetailsComponent.prototype.canUpdateUserDetails = function () {
@@ -46,9 +44,10 @@ var EditUserDetailsComponent = (function (_super) {
         var _this = this;
         this.updatingUserDetails = true;
         this.updatingUserDetailsError = null;
+        this.isUserDetailsUpdated = false;
         this.userService.updateUserDetails(this.userDetails.id, this.model.username, this.model.email, this.model.firstName, this.model.lastName)
             .finally(function () { return _this._setAsNotUpdatingUserDetails(); })
-            .subscribe(function () { return _this._updateTheOriginalUserDetailsByModel(); }, function (error) { return _this._setUpdatingUserDetailsError(error); });
+            .subscribe(function () { return _this._setUserDetailsAsUpdated(); }, function (error) { return _this._setUpdatingUserDetailsError(error); });
     };
     EditUserDetailsComponent.prototype._initializeEditUserProfile = function () {
         this.model = editUserProfileModel_1.EditUserProfile.fromUserDetails(this.userDetails);
@@ -90,11 +89,12 @@ var EditUserDetailsComponent = (function (_super) {
     EditUserDetailsComponent.prototype._setUpdatingUserDetailsError = function (error) {
         this.updatingUserDetailsError = error;
     };
-    EditUserDetailsComponent.prototype._updateTheOriginalUserDetailsByModel = function () {
+    EditUserDetailsComponent.prototype._setUserDetailsAsUpdated = function () {
         this.userDetails.username = this.model.username;
         this.userDetails.email = this.model.email;
         this.userDetails.firstName = this.model.firstName;
         this.userDetails.lastName = this.model.lastName;
+        this.isUserDetailsUpdated = true;
     };
     __decorate([
         core_1.Input(), 

@@ -110,6 +110,18 @@ describe('EditUserDetailsComponent', () => {
       updateTextFieldsSpy.restore();
     });
 
+    it('updatingUserDetailsError should be correct', () => {
+      expect(component.updatingUserDetailsError).to.be.undefined;
+    });
+
+    it('updatingUserDetails should be correct', () => {
+      expect(component.updatingUserDetails).to.be.false;
+    });
+
+    it('isUserDetailsUpdated should be correct', () => {
+      expect(component.isUserDetailsUpdated).to.be.false;
+    });
+
     it('the model should be correct', () => {
       expect(component.model).to.be.deep.equal(userDetails);
     });
@@ -506,10 +518,11 @@ describe('EditUserDetailsComponent', () => {
         FormFiller.fillFormControl(component.userDetailsFormGroup, lastNameControl, newUserDetails.lastName);
         component.model.lastName = newUserDetails.lastName;
 
-        updateUserDetailsResult = new Subject<void>();
-
         updateUserDetailsStub =
-          stub(userServiceMock, 'updateUserDetails', () => updateUserDetailsResult);
+          stub(userServiceMock, 'updateUserDetails', () => {
+            updateUserDetailsResult = new Subject<void>();
+            return updateUserDetailsResult;
+          });
 
         component.updateUserDetails();
       });
@@ -539,6 +552,10 @@ describe('EditUserDetailsComponent', () => {
         expect(component.updatingUserDetailsError).to.be.null;
       });
 
+      it('isUserDetailsUpdated should be correct', () => {
+        expect(component.isUserDetailsUpdated).to.be.false;
+      });
+
       describe('updating fails', () => {
 
         var error: string;
@@ -555,6 +572,10 @@ describe('EditUserDetailsComponent', () => {
 
         it('should set updatingUserDetailsError correctly', () => {
           expect(component.updatingUserDetailsError).to.be.equal(error);
+        });
+
+        it('isUserDetailsUpdated should be correct', () => {
+          expect(component.isUserDetailsUpdated).to.be.false;
         });
 
       });
@@ -584,6 +605,26 @@ describe('EditUserDetailsComponent', () => {
 
         it('should update the userDetails', () => {
           expect(component.userDetails).to.be.deep.equal(newUserDetails);
+        });
+
+        it('isUserDetailsUpdated should be correct', () => {
+          expect(component.isUserDetailsUpdated).to.be.true;
+        });
+
+        describe('updateUserDetails()', () => {
+
+          beforeEach(() => {
+            component.updateUserDetails();
+          });
+
+          it('isUserDetailsUpdated should be correct', () => {
+            expect(component.isUserDetailsUpdated).to.be.false;
+          });
+
+          it('should set updatingUserDetails to true', () => {
+            expect(component.updatingUserDetails).to.be.true;
+          });
+
         });
 
       });
@@ -627,6 +668,18 @@ describe('EditUserDetailsComponent', () => {
 
     it('canUpdateUserDetails should return false', () => {
       expect(component.canUpdateUserDetails()).to.be.false;
+    });
+
+    it('updatingUserDetailsError should be correct', () => {
+      expect(component.updatingUserDetailsError).to.be.undefined;
+    });
+
+    it('updatingUserDetails should be correct', () => {
+      expect(component.updatingUserDetails).to.be.false;
+    });
+
+    it('isUserDetailsUpdated should be correct', () => {
+      expect(component.isUserDetailsUpdated).to.be.false;
     });
 
     describe('email', () => {
@@ -754,10 +807,11 @@ describe('EditUserDetailsComponent', () => {
         FormFiller.fillFormControl(component.userDetailsFormGroup, lastNameControl, newUserDetails.lastName);
         component.model.lastName = newUserDetails.lastName;
 
-        updateUserDetailsResult = new Subject<void>();
-
         updateUserDetailsStub =
-          stub(userServiceMock, 'updateUserDetails', () => updateUserDetailsResult);
+          stub(userServiceMock, 'updateUserDetails', () => {
+            updateUserDetailsResult = new Subject<void>();
+            return updateUserDetailsResult;
+          });
 
         component.updateUserDetails();
       });
@@ -787,6 +841,10 @@ describe('EditUserDetailsComponent', () => {
         expect(component.updatingUserDetailsError).to.be.null;
       });
 
+      it('isUserDetailsUpdated should be correct', () => {
+        expect(component.isUserDetailsUpdated).to.be.false;
+      });
+
       describe('updating fails', () => {
 
         var error: string;
@@ -803,6 +861,10 @@ describe('EditUserDetailsComponent', () => {
 
         it('should set updatingUserDetailsError correctly', () => {
           expect(component.updatingUserDetailsError).to.be.equal(error);
+        });
+
+        it('isUserDetailsUpdated should be correct', () => {
+          expect(component.isUserDetailsUpdated).to.be.false;
         });
 
       });
@@ -832,6 +894,26 @@ describe('EditUserDetailsComponent', () => {
 
         it('should update the userDetails', () => {
           expect(component.userDetails).to.be.deep.equal(newUserDetails);
+        });
+
+        it('isUserDetailsUpdated should be correct', () => {
+          expect(component.isUserDetailsUpdated).to.be.true;
+        });
+
+        describe('updateUserDetails()', () => {
+
+          beforeEach(() => {
+            component.updateUserDetails();
+          });
+
+          it('isUserDetailsUpdated should be correct', () => {
+            expect(component.isUserDetailsUpdated).to.be.false;
+          });
+
+          it('should set updatingUserDetails to true', () => {
+            expect(component.updatingUserDetails).to.be.true;
+          });
+
         });
 
       });

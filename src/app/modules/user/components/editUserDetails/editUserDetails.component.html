@@ -91,6 +91,10 @@
             {{updatingUserDetailsError}}
           </div>
 
+          <div class="user-details-updated" *ngIf="isUserDetailsUpdated">
+            The user details were successfully updated
+          </div>
+
           <div class="submit-wrapper">
             <button type="submit"
                     class="submit-button"

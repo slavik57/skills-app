@@ -244,9 +244,15 @@ testing_1.describe('ChangeUserPasswordComponent', function () {
                 });
             });
             testing_1.describe('updating succeeds', function () {
-                testing_1.beforeEach(function () {
+                var updateTextFieldsSpy;
+                testing_1.beforeEach(testing_1.fakeAsync(function () {
+                    updateTextFieldsSpy = sinon_1.spy(Materialize, 'updateTextFields');
                     updateUserPassrowdResult.next(null);
                     updateUserPassrowdResult.complete();
+                    testing_1.tick(0);
+                }));
+                afterEach(function () {
+                    updateTextFieldsSpy.restore();
                 });
                 testing_1.it('should set the error correctly', function () {
                     chai_1.expect(component.updateUserPasswordError).to.be.null;
@@ -255,17 +261,25 @@ testing_1.describe('ChangeUserPasswordComponent', function () {
                     chai_1.expect(component.isPasswordUpdated).to.be.true;
                 });
                 testing_1.it('should clear the model', function () {
-                    chai_1.expect(component.model.password).to.be.null;
-                    chai_1.expect(component.model.newPassword).to.be.null;
-                    chai_1.expect(component.model.newPasswordRepeated).to.be.null;
+                    chai_1.expect(component.model.password).to.be.empty;
+                    chai_1.expect(component.model.newPassword).to.be.empty;
+                    chai_1.expect(component.model.newPasswordRepeated).to.be.empty;
                 });
-                testing_1.it('should clear the form', function () {
-                    chai_1.expect(component.userPasswordFormGroup.controls['password'].value).to.be.empty;
-                    chai_1.expect(component.newPasswordsGroup.controls['newPassword'].value).to.be.empty;
-                    chai_1.expect(component.newPasswordsGroup.controls['newPasswordRepeated'].value).to.be.empty;
+                testing_1.it('should set the form controls as untouched', function () {
+                    chai_1.expect(passwordControl.touched).to.be.false;
+                    chai_1.expect(newPasswordControl.touched).to.be.false;
+                    chai_1.expect(newPasswordRepeatedControl.touched).to.be.false;
+                });
+                testing_1.it('should set the form controls as pristine', function () {
+                    chai_1.expect(passwordControl.pristine).to.be.true;
+                    chai_1.expect(newPasswordControl.pristine).to.be.true;
+                    chai_1.expect(newPasswordRepeatedControl.pristine).to.be.true;
                 });
                 testing_1.it('should initialize isUpdatingPassword correctly', function () {
                     chai_1.expect(component.isUpdatingPassword).to.be.false;
+                });
+                testing_1.it('should call Materialize.updateTextFields()', function () {
+                    chai_1.expect(updateTextFieldsSpy.callCount).to.be.equal(1);
                 });
                 testing_1.describe('change the password again', function () {
                     testing_1.beforeEach(function () {

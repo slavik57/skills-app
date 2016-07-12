@@ -5,7 +5,9 @@ import {
   inject,
   describe,
   beforeEach,
-  beforeEachProviders
+  beforeEachProviders,
+  tick,
+  fakeAsync
 } from '@angular/core/testing';
 import {provide} from '@angular/core';
 import {IUserDetails, IUserService, UserService} from "../../../common/services/userService";
@@ -339,10 +341,20 @@ describe('ChangeUserPasswordComponent', () => {
 
       describe('updating succeeds', () => {
 
-        beforeEach(() => {
+        var updateTextFieldsSpy: SinonSpy;
+
+        beforeEach(fakeAsync(() => {
+          updateTextFieldsSpy = spy(Materialize, 'updateTextFields');
+
           updateUserPassrowdResult.next(null);
           updateUserPassrowdResult.complete();
-        });
+
+          tick(0);
+        }));
+
+        afterEach(() => {
+          updateTextFieldsSpy.restore();
+        })
 
         it('should set the error correctly', () => {
           expect(component.updateUserPasswordError).to.be.null;
@@ -353,19 +365,29 @@ describe('ChangeUserPasswordComponent', () => {
         });
 
         it('should clear the model', () => {
-          expect(component.model.password).to.be.null;
-          expect(component.model.newPassword).to.be.null;
-          expect(component.model.newPasswordRepeated).to.be.null;
+          expect(component.model.password).to.be.empty;
+          expect(component.model.newPassword).to.be.empty;
+          expect(component.model.newPasswordRepeated).to.be.empty;
         });
 
-        it('should clear the form', () => {
-          expect(component.userPasswordFormGroup.controls['password'].value).to.be.empty;
-          expect(component.newPasswordsGroup.controls['newPassword'].value).to.be.empty;
-          expect(component.newPasswordsGroup.controls['newPasswordRepeated'].value).to.be.empty;
+        it('should set the form controls as untouched', () => {
+          expect(passwordControl.touched).to.be.false;
+          expect(newPasswordControl.touched).to.be.false;
+          expect(newPasswordRepeatedControl.touched).to.be.false;
+        });
+
+        it('should set the form controls as pristine', () => {
+          expect(passwordControl.pristine).to.be.true;
+          expect(newPasswordControl.pristine).to.be.true;
+          expect(newPasswordRepeatedControl.pristine).to.be.true;
         });
 
         it('should initialize isUpdatingPassword correctly', () => {
           expect(component.isUpdatingPassword).to.be.false;
+        });
+
+        it('should call Materialize.updateTextFields()', () => {
+          expect(updateTextFieldsSpy.callCount).to.be.equal(1);
         });
 
         describe('change the password again', () => {

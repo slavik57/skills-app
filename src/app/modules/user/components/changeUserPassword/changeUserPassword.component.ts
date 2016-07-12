@@ -75,8 +75,15 @@ export class ChangeUserPasswordComponent extends FormComponentBase implements On
   private _setAsPasswordUpdated(): void {
     this.isPasswordUpdated = true;
 
-    this._createEmptyModel();
-    this._createEmptyForm();
+    this.model.password = '';
+    this.model.newPassword = '';
+    this.model.newPasswordRepeated = '';
+
+    this.resetControlAsUntouchedAndNotDirty(this.userPasswordFormGroup.controls['password']);
+    this.resetControlAsUntouchedAndNotDirty(this.newPasswordsGroup.controls['newPassword']);
+    this.resetControlAsUntouchedAndNotDirty(this.newPasswordsGroup.controls['newPasswordRepeated']);
+
+    setTimeout(() => Materialize.updateTextFields(), 0);
   }
 
   private _setUpdatingUserDetailsError(error: any): void {
