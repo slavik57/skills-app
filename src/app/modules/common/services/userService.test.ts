@@ -154,35 +154,35 @@ describe('UserService', () => {
     it('register should fail correctly', () => {
       userService.registerUser('', '', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Anauthorized performing the operation.')
+        (error) => expect(error).to.be.equal('Unauthorized performing the operation')
       );
     });
 
     it('isUsernameExists should fail correctly', () => {
       userService.isUsernameExists('').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
     });
 
     it('getUserDetails should fail correctly', () => {
       userService.getUserDetails().subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Unauthorized getting user details.')
+        (error) => expect(error).to.be.equal('Unauthorized getting user details')
       );
     });
 
     it('updateUserDetails should fail correctly', () => {
       userService.updateUserDetails(1, '', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Anauthorized performing the operation.')
+        (error) => expect(error).to.be.equal('Unauthorized performing the operation')
       );
     });
 
     it('updateUserPassword should fail correctly', () => {
       userService.updateUserPassword(1, '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Anauthorized performing the operation.')
+        (error) => expect(error).to.be.equal('Unauthorized performing the operation')
       );
     });
 
@@ -201,42 +201,42 @@ describe('UserService', () => {
     it('signin should fail correctly', () => {
       userService.signinUser('', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
     });
 
     it('register should fail correctly', () => {
       userService.registerUser('', '', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
     });
 
     it('isUsernameExists should fail correctly', () => {
       userService.isUsernameExists('').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
     });
 
     it('getUserDetails should fail correctly', () => {
       userService.getUserDetails().subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
     });
 
     it('updateUserDetails should fail correctly', () => {
       userService.updateUserDetails(1, '', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
     });
 
     it('updateUserPassword should fail correctly', () => {
       userService.updateUserPassword(1, '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
     });
 
@@ -258,42 +258,42 @@ describe('UserService', () => {
     it('signin should fail correctly', () => {
       userService.signinUser('', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
     });
 
     it('register should fail correctly', () => {
       userService.registerUser('', '', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
     });
 
     it('isUsernameExists should fail correctly', () => {
       userService.isUsernameExists('').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
     });
 
     it('getUserDetails should fail correctly', () => {
       userService.getUserDetails().subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
     });
 
     it('updateUserDetails should fail correctly', () => {
       userService.updateUserDetails(1, '', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
     });
 
     it('updateUserPassword should fail correctly', () => {
       userService.updateUserPassword(1, '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
     });
 
@@ -347,14 +347,14 @@ describe('UserService', () => {
       it('sigin should fail correctly', () => {
         userService.signinUser('', '').subscribe(
           () => expect(true, 'should fail').to.be.false,
-          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
         );
       });
 
       it('register should fail correctly', () => {
         userService.registerUser('', '', '', '', '').subscribe(
           () => expect(true, 'should fail').to.be.false,
-          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
         );
       });
 
@@ -396,7 +396,7 @@ describe('UserService', () => {
       it('isUsernameExists should fail correctly', () => {
         userService.isUsernameExists('').subscribe(
           () => expect(true, 'should fail').to.be.false,
-          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
         );
       });
 
@@ -439,7 +439,7 @@ describe('UserService', () => {
       it('getUserDetails should fail correctly', () => {
         userService.getUserDetails().subscribe(
           () => expect(true, 'should fail').to.be.false,
-          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
         );
       });
 
@@ -475,7 +475,7 @@ describe('UserService', () => {
       it('getUserDetails should fail correctly', () => {
         userService.getUserDetails().subscribe(
           () => expect(true, 'should fail').to.be.false,
-          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again.')
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
         );
       });
 

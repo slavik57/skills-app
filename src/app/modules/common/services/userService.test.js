@@ -112,19 +112,19 @@ testing_1.describe('UserService', function () {
             userService.signinUser('', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Invalid credentials'); });
         });
         testing_1.it('register should fail correctly', function () {
-            userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Anauthorized performing the operation.'); });
+            userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized performing the operation'); });
         });
         testing_1.it('isUsernameExists should fail correctly', function () {
-            userService.isUsernameExists('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+            userService.isUsernameExists('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
         });
         testing_1.it('getUserDetails should fail correctly', function () {
-            userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized getting user details.'); });
+            userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized getting user details'); });
         });
         testing_1.it('updateUserDetails should fail correctly', function () {
-            userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Anauthorized performing the operation.'); });
+            userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized performing the operation'); });
         });
         testing_1.it('updateUserPassword should fail correctly', function () {
-            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Anauthorized performing the operation.'); });
+            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized performing the operation'); });
         });
     });
     testing_1.describe('on INTERNAL_SERVER_ERROR error', function () {
@@ -134,22 +134,22 @@ testing_1.describe('UserService', function () {
             mockBackend.connections.subscribe(function (connection) { return connection.mockError(error); });
         });
         testing_1.it('signin should fail correctly', function () {
-            userService.signinUser('', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+            userService.signinUser('', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
         });
         testing_1.it('register should fail correctly', function () {
-            userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+            userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
         });
         testing_1.it('isUsernameExists should fail correctly', function () {
-            userService.isUsernameExists('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+            userService.isUsernameExists('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
         });
         testing_1.it('getUserDetails should fail correctly', function () {
-            userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+            userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
         });
         testing_1.it('updateUserDetails should fail correctly', function () {
-            userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+            userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
         });
         testing_1.it('updateUserPassword should fail correctly', function () {
-            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
         });
     });
     testing_1.describe('on success with UNAUTHORIZED', function () {
@@ -161,22 +161,22 @@ testing_1.describe('UserService', function () {
             mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
         });
         testing_1.it('signin should fail correctly', function () {
-            userService.signinUser('', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+            userService.signinUser('', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
         });
         testing_1.it('register should fail correctly', function () {
-            userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+            userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
         });
         testing_1.it('isUsernameExists should fail correctly', function () {
-            userService.isUsernameExists('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+            userService.isUsernameExists('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
         });
         testing_1.it('getUserDetails should fail correctly', function () {
-            userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+            userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
         });
         testing_1.it('updateUserDetails should fail correctly', function () {
-            userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+            userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
         });
         testing_1.it('updateUserPassword should fail correctly', function () {
-            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
         });
     });
     testing_1.describe('on success with OK', function () {
@@ -206,10 +206,10 @@ testing_1.describe('UserService', function () {
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
             });
             testing_1.it('sigin should fail correctly', function () {
-                userService.signinUser('', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+                userService.signinUser('', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
             });
             testing_1.it('register should fail correctly', function () {
-                userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+                userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
             });
         });
         testing_1.describe('with redirect-path header', function () {
@@ -231,7 +231,7 @@ testing_1.describe('UserService', function () {
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
             });
             testing_1.it('isUsernameExists should fail correctly', function () {
-                userService.isUsernameExists('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+                userService.isUsernameExists('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
             });
         });
         testing_1.describe('with the user existance result', function () {
@@ -255,7 +255,7 @@ testing_1.describe('UserService', function () {
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
             });
             testing_1.it('getUserDetails should fail correctly', function () {
-                userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+                userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
             });
         });
         testing_1.describe('with partial user details result', function () {
@@ -278,7 +278,7 @@ testing_1.describe('UserService', function () {
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
             });
             testing_1.it('getUserDetails should fail correctly', function () {
-                userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again.'); });
+                userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
             });
         });
         testing_1.describe('with the user details result and some fields empty', function () {

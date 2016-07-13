@@ -187,11 +187,11 @@ export class UserService implements IUserService {
     console.log(error);
 
     if (error.status === StatusCode.UNAUTHORIZED) {
-      return Observable.throw('Anauthorized performing the operation.');
+      return Observable.throw('Unauthorized performing the operation');
     }
 
     if (typeof error === 'string') {
-      return Observable.throw('Oops. Something went wrong. Please try again.');
+      return Observable.throw('Oops. Something went wrong. Please try again');
     }
 
     var result: IServerError = error.json();
@@ -199,7 +199,7 @@ export class UserService implements IUserService {
       return Observable.throw(result.error);
     }
 
-    return Observable.throw('Oops. Something went wrong. Please try again.');
+    return Observable.throw('Oops. Something went wrong. Please try again');
   }
 
   private _failSignin(error: any): Observable<string> {
@@ -208,7 +208,7 @@ export class UserService implements IUserService {
     if (error.status === StatusCode.UNAUTHORIZED) {
       return Observable.throw('Invalid credentials');
     } else {
-      return Observable.throw('Oops. Something went wrong. Please try again.');
+      return Observable.throw('Oops. Something went wrong. Please try again');
     }
   }
 
@@ -239,14 +239,14 @@ export class UserService implements IUserService {
   private _failUsernameExistanceCheck(error: any): Observable<boolean> {
     console.log(error);
 
-    return Observable.throw('Oops. Something went wrong. Please try again.');
+    return Observable.throw('Oops. Something went wrong. Please try again');
   }
 
   private _failGettingUserDetails(error: any): Observable<IUserDetails> {
     if (error.status === StatusCode.UNAUTHORIZED) {
-      return Observable.throw('Unauthorized getting user details.');
+      return Observable.throw('Unauthorized getting user details');
     } else {
-      return Observable.throw('Oops. Something went wrong. Please try again.');
+      return Observable.throw('Oops. Something went wrong. Please try again');
     }
   }
 

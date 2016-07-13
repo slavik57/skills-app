@@ -107,16 +107,16 @@ var UserService = (function () {
     UserService.prototype._handleServerError = function (error) {
         console.log(error);
         if (error.status === statusCode_1.StatusCode.UNAUTHORIZED) {
-            return Observable_1.Observable.throw('Anauthorized performing the operation.');
+            return Observable_1.Observable.throw('Unauthorized performing the operation');
         }
         if (typeof error === 'string') {
-            return Observable_1.Observable.throw('Oops. Something went wrong. Please try again.');
+            return Observable_1.Observable.throw('Oops. Something went wrong. Please try again');
         }
         var result = error.json();
         if (!!result && !!result.error) {
             return Observable_1.Observable.throw(result.error);
         }
-        return Observable_1.Observable.throw('Oops. Something went wrong. Please try again.');
+        return Observable_1.Observable.throw('Oops. Something went wrong. Please try again');
     };
     UserService.prototype._failSignin = function (error) {
         console.log(error);
@@ -124,7 +124,7 @@ var UserService = (function () {
             return Observable_1.Observable.throw('Invalid credentials');
         }
         else {
-            return Observable_1.Observable.throw('Oops. Something went wrong. Please try again.');
+            return Observable_1.Observable.throw('Oops. Something went wrong. Please try again');
         }
     };
     UserService.prototype._extractIsUserExists = function (response) {
@@ -145,14 +145,14 @@ var UserService = (function () {
     };
     UserService.prototype._failUsernameExistanceCheck = function (error) {
         console.log(error);
-        return Observable_1.Observable.throw('Oops. Something went wrong. Please try again.');
+        return Observable_1.Observable.throw('Oops. Something went wrong. Please try again');
     };
     UserService.prototype._failGettingUserDetails = function (error) {
         if (error.status === statusCode_1.StatusCode.UNAUTHORIZED) {
-            return Observable_1.Observable.throw('Unauthorized getting user details.');
+            return Observable_1.Observable.throw('Unauthorized getting user details');
         }
         else {
-            return Observable_1.Observable.throw('Oops. Something went wrong. Please try again.');
+            return Observable_1.Observable.throw('Oops. Something went wrong. Please try again');
         }
     };
     UserService.prototype._isResponseHasAllUserDetails = function (response) {
