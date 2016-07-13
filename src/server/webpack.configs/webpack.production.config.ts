@@ -5,15 +5,23 @@ import {Configuration} from 'webpack';
 import {webpackCommonConfiguration} from './webpack.common.config'
 import {PathHelper} from '../../common/pathHelper';
 
-var config: Configuration = {
+interface IProductionConfiguration extends Configuration {
+  htmlLoader: any;
+}
 
-  devtool: '#inline-source-map',
+var config: IProductionConfiguration = {
+
+  devtool: 'source-map',
 
   output: {
     path: PathHelper.getPathFromRoot('dist'),
     publicPath: '/dist/',
     filename: '[name].[hash].js',
     chunkFilename: '[id].[hash].chunk.js'
+  },
+
+  htmlLoader: {
+    minimize: false // workaround for ng2
   },
 
   plugins: [

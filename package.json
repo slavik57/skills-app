@@ -7,7 +7,8 @@
     "test": "set NODE_ENV=tests&& npm run app-tests && npm run server-tests",
     "app-tests": ".\\node_modules\\.bin\\karma start --capture-console=true karma.config.js",
     "server-tests": ".\\node_modules\\.bin\\mocha -c -b src/server/**/*.test.js",
-    "start": "set NODE_ENV=development&& node src/server/server.js"
+    "start": "set NODE_ENV=development&& node src/server/server.js",
+    "prodStart": "set NODE_ENV=production&& node src/server/server.js"
   },
   "repository": {
     "type": "git",
@@ -55,7 +56,7 @@
     "raw-loader": "^0.5.1",
     "reflect-metadata": "^0.1.3",
     "resolve-url-loader": "^1.4.3",
-    "sass-loader": "^3.2.1",
+    "sass-loader": "^3.2.3",
     "style-loader": "^0.13.1",
     "ts-loader": "^0.8.2",
     "typescript": "^1.8.10",

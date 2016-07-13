@@ -28,9 +28,21 @@ export interface ITestEnvironmentConfig extends IEnvironmentConfig {
   webpackTestTimeout: number;
 }
 
-export var config = {
-  development: <IEnvironmentConfig>{
-    appConfig: <IAppConfig>{
+interface IConfig {
+  development: IEnvironmentConfig;
+  production: IEnvironmentConfig;
+  tests: ITestEnvironmentConfig;
+
+  currentEnvironment: string;
+
+  getCurrentEnvironment: () => IEnvironmentConfig;
+
+  getSessionDbConnectionString: () => string;
+}
+
+export var config: IConfig = {
+  development: {
+    appConfig: {
       hostName: 'localhost',
       port: 8020,
       certificate: {
@@ -38,14 +50,30 @@ export var config = {
         certificateFilePath: PathHelper.getPathFromRoot('ssl', 'development-localhost.cert')
       },
     },
-    sessionDatabaseConfig: <ISessionDatabaseConfig>{
+    sessionDatabaseConfig: {
       databaseName: 'skills_development',
       databaseUsername: '',
       databasePassword: '',
       databaseHost: ''
     }
   },
-  tests: <ITestEnvironmentConfig>{
+  production: {
+    appConfig: {
+      hostName: 'localhost',
+      port: 8020,
+      certificate: {
+        keyFilePath: PathHelper.getPathFromRoot('ssl', 'development-localhost.key'),
+        certificateFilePath: PathHelper.getPathFromRoot('ssl', 'development-localhost.cert')
+      },
+    },
+    sessionDatabaseConfig: {
+      databaseName: 'skills_production',
+      databaseUsername: '',
+      databasePassword: '',
+      databaseHost: ''
+    }
+  },
+  tests: {
     webpackInitializationTimeout: 100000,
     webpackTestTimeout: 3000,
     appConfig: <IAppConfig>{
@@ -56,7 +84,7 @@ export var config = {
         certificateFilePath: PathHelper.getPathFromRoot('ssl', 'development-localhost.cert')
       },
     },
-    sessionDatabaseConfig: <ISessionDatabaseConfig>{
+    sessionDatabaseConfig: {
       databaseName: 'skills_tests',
       databaseUsername: '',
       databasePassword: '',
@@ -74,6 +102,7 @@ export var config = {
 
     return this[this.currentEnvironment];
   },
+
   getSessionDbConnectionString: function(): string {
     var sessionDatabaseConfig: ISessionDatabaseConfig =
       config.getCurrentEnvironment().sessionDatabaseConfig;

@@ -5,6 +5,8 @@ import {PathHelper} from '../../common/pathHelper';
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
+process.env.ENV = process.env.NODE_ENV;
+
 export var webpackCommonConfiguration: Configuration = {
   entry: {
     'polyfills': './src/app/polyfills.ts',
@@ -55,11 +57,13 @@ export var webpackCommonConfiguration: Configuration = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'signinCommon',
-      chunks: ['signin', 'vendor', 'design']
+      chunks: ['signin', 'vendor', 'design'],
+      minChunks: Infinity
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'homeCommon',
-      chunks: ['app', 'vendor', 'design']
+      chunks: ['app', 'vendor', 'design'],
+      minChunks: Infinity
     }),
     new webpack.DefinePlugin({
       'process.env': {

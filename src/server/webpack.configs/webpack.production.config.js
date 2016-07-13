@@ -5,12 +5,15 @@ var webpack = require('webpack');
 var webpack_common_config_1 = require('./webpack.common.config');
 var pathHelper_1 = require('../../common/pathHelper');
 var config = {
-    devtool: '#inline-source-map',
+    devtool: 'source-map',
     output: {
         path: pathHelper_1.PathHelper.getPathFromRoot('dist'),
         publicPath: '/dist/',
         filename: '[name].[hash].js',
         chunkFilename: '[id].[hash].chunk.js'
+    },
+    htmlLoader: {
+        minimize: false
     },
     plugins: [
         new webpack.NoErrorsPlugin(),

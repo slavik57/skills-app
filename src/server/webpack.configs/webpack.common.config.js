@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var pathHelper_1 = require('../../common/pathHelper');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+process.env.ENV = process.env.NODE_ENV;
 exports.webpackCommonConfiguration = {
     entry: {
         'polyfills': './src/app/polyfills.ts',
@@ -53,11 +54,13 @@ exports.webpackCommonConfiguration = {
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
             name: 'signinCommon',
-            chunks: ['signin', 'vendor', 'design']
+            chunks: ['signin', 'vendor', 'design'],
+            minChunks: Infinity
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'homeCommon',
-            chunks: ['app', 'vendor', 'design']
+            chunks: ['app', 'vendor', 'design'],
+            minChunks: Infinity
         }),
         new webpack.DefinePlugin({
             'process.env': {

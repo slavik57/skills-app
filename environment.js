@@ -17,6 +17,22 @@ exports.config = {
             databaseHost: ''
         }
     },
+    production: {
+        appConfig: {
+            hostName: 'localhost',
+            port: 8020,
+            certificate: {
+                keyFilePath: pathHelper_1.PathHelper.getPathFromRoot('ssl', 'development-localhost.key'),
+                certificateFilePath: pathHelper_1.PathHelper.getPathFromRoot('ssl', 'development-localhost.cert')
+            },
+        },
+        sessionDatabaseConfig: {
+            databaseName: 'skills_production',
+            databaseUsername: '',
+            databasePassword: '',
+            databaseHost: ''
+        }
+    },
     tests: {
         webpackInitializationTimeout: 100000,
         webpackTestTimeout: 3000,
