@@ -9,7 +9,7 @@ import {IUserDetails, UserService} from "../../../common/services/userService";
 @Component({
   selector: 'change-user-password',
   template: require('./changeUserPassword.component.html'),
-  styles: [require('./_changeUserPassword.component.scss')],
+  styles: [require('./changeUserPassword.component.css')],
   directives: [REACTIVE_FORM_DIRECTIVES, CircularLoadingComponent],
   providers: [FormBuilder]
 })

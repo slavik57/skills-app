@@ -22,7 +22,7 @@ var NavigationComponent = (function () {
         core_1.Component({
             selector: 'navigation-bar',
             template: require('./navigation.component.html'),
-            styles: [require('./_navigation.component.scss')],
+            styles: [require('./navigation.component.css')],
             directives: [router_deprecated_1.ROUTER_DIRECTIVES]
         }), 
         __metadata('design:paramtypes', [])

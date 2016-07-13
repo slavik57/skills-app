@@ -10,7 +10,7 @@ import {EmailValidator} from "../../../common/validators/emailValidator";
 @Component({
   selector: 'edit-user-details',
   template: require('./editUserDetails.component.html'),
-  styles: [require('./_editUserDetails.component.scss')],
+  styles: [require('./editUserDetails.component.css')],
   directives: [REACTIVE_FORM_DIRECTIVES, CircularLoadingComponent],
   providers: [FormBuilder, UsernameExistsValidatorFactory]
 })

@@ -104,7 +104,7 @@ var EditUserDetailsComponent = (function (_super) {
         core_1.Component({
             selector: 'edit-user-details',
             template: require('./editUserDetails.component.html'),
-            styles: [require('./_editUserDetails.component.scss')],
+            styles: [require('./editUserDetails.component.css')],
             directives: [forms_1.REACTIVE_FORM_DIRECTIVES, circularLoading_component_1.CircularLoadingComponent],
             providers: [forms_1.FormBuilder, usernameExistsValidator_1.UsernameExistsValidatorFactory]
         }), 

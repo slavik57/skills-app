@@ -1,18 +1,18 @@
-@import '~materialize-css/dist/css/materialize.min';
+@import '../../../../../../node_modules/materialize-css/dist/css/materialize.min';
 @import '../../../../commonStyles/_forms';
 
-.signin-container {
+.register-container {
   @extend .row;
 
-  .sign-in-card-wrapper {
+  .register-card-wrapper {
     @extend .col;
     @extend .s12;
-    @extend .m6;
+    @extend .m8;
     @extend .l6;
-    @extend .offset-m3;
+    @extend .offset-m2;
     @extend .offset-l3;
 
-    .sign-in-card {
+    .register-card {
       @extend .card;
       @extend .grey;
       @extend .lighten-4;
@@ -24,11 +24,14 @@
           @extend .card-title;
         }
 
-        .filling-form-card-content{
-          max-height: 17rem;
+        .user-details, .passwords, .credentials{
+          @extend .row;
+          margin-bottom: 0;
 
-          &.has-submit-error{
-            max-height: 19rem;
+          .input-field{
+            @extend .col;
+            @extend .m6;
+            @extend .s12;
           }
         }
 

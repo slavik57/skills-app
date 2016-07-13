@@ -16,7 +16,7 @@ var CreditsComponent = (function () {
         core_1.Component({
             selector: 'credits',
             template: require('./credits.component.html'),
-            styles: [require('./_credits.component.scss')]
+            styles: [require('./credits.component.css')]
         }), 
         __metadata('design:paramtypes', [])
     ], CreditsComponent);

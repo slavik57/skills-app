@@ -1,5 +1,5 @@
 @import "../../../../commonStyles/_colors";
-@import '~materialize-css/dist/css/materialize.min';
+@import '../../../../../../node_modules/materialize-css/dist/css/materialize.min';
 
 nav{
   @extend .blue;
@@ -24,7 +24,7 @@ nav{
 
     .dropdown-content{
       width: auto;
-      
+
       li{
         a{
           @extend .blue-text;

@@ -84,7 +84,7 @@ var ChangeUserPasswordComponent = (function (_super) {
         core_1.Component({
             selector: 'change-user-password',
             template: require('./changeUserPassword.component.html'),
-            styles: [require('./_changeUserPassword.component.scss')],
+            styles: [require('./changeUserPassword.component.css')],
             directives: [forms_1.REACTIVE_FORM_DIRECTIVES, circularLoading_component_1.CircularLoadingComponent],
             providers: [forms_1.FormBuilder]
         }), 

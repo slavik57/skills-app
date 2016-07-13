@@ -13,7 +13,7 @@ import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormContr
 @Component({
   selector: 'register',
   template: require('./register.component.html'),
-  styles: [require('./_register.component.scss')],
+  styles: [require('./register.component.css')],
   directives: [ROUTER_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, CircularLoadingComponent],
   providers: [FormBuilder, UsernameExistsValidatorFactory]
 })

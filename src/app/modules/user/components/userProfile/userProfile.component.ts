@@ -8,7 +8,7 @@ import { IUserDetails} from '../../../common/services/userService';
 @Component({
   selector: 'user-profile',
   template: require('./userProfile.component.html'),
-  styles: [require('./_userProfile.component.scss')],
+  styles: [require('./userProfile.component.css')],
   directives: [EditUserDetailsComponent, ChangeUserPasswordComponent, CircularLoadingComponent],
 })
 export class UserProfileComponent implements OnInit {

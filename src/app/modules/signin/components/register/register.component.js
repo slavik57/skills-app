@@ -74,7 +74,7 @@ var RegisterComponent = (function (_super) {
         core_1.Component({
             selector: 'register',
             template: require('./register.component.html'),
-            styles: [require('./_register.component.scss')],
+            styles: [require('./register.component.css')],
             directives: [router_deprecated_1.ROUTER_DIRECTIVES, forms_1.REACTIVE_FORM_DIRECTIVES, circularLoading_component_1.CircularLoadingComponent],
             providers: [forms_1.FormBuilder, usernameExistsValidator_1.UsernameExistsValidatorFactory]
         }), 
