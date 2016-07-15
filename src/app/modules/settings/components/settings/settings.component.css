@@ -1,0 +1,9 @@
+.skills-area-title {
+  display: block;
+  margin: 1rem;
+}
+
+.skills-area-title .text {
+  vertical-align: super;
+  font-size: 1.5rem;
+}

@@ -1,3 +1,4 @@
+import {SettingsComponent} from "../../../settings/components/settings/settings.component";
 import {UserProfileComponent} from "../../../user/components/userProfile/userProfile.component";
 import {HomeComponent} from "../home/home.component";
 import { Component } from '@angular/core';
@@ -33,7 +34,7 @@ import * as _ from 'lodash';
   {
     path: '/settings',
     name: 'Settings',
-    component: HomeComponent
+    component: SettingsComponent
   },
   {
     path: '/skillsPrerequisites',
