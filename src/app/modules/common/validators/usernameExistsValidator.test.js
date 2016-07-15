@@ -181,5 +181,38 @@ testing_1.describe('UsernameExistsValidator', function () {
             chai_1.expect(actualResult).to.be.null;
         });
     });
+    testing_1.describe('destroy', function () {
+        testing_1.beforeEach(function () {
+            validator.destroy();
+        });
+        testing_1.it('calling destroy before binding to control should not fail', function () {
+            new usernameExistsValidator_1.UsernameExistsValidator(validUsernames, userServiceMock).destroy();
+        });
+        testing_1.describe('usernameExists', function () {
+            testing_1.it('on subscribtion should not return anything', function () {
+                var numberOfTimesCalled = 0;
+                validator.usernameExists(control).subscribe(function (_result) {
+                    numberOfTimesCalled++;
+                });
+                username = 'some username';
+                control.updateValue(username);
+                control.updateValueAndValidity();
+                chai_1.expect(numberOfTimesCalled).to.equal(0);
+            });
+            testing_1.it('value changes should not fail', function () {
+                username = 'some username';
+                control.updateValue(username);
+                control.updateValueAndValidity();
+            });
+            testing_1.it('on valid username should not use the user service', function () {
+                validator.usernameExists(control).subscribe(function (_result) {
+                });
+                username = 'some username';
+                control.updateValue(username);
+                control.updateValueAndValidity();
+                chai_1.expect(isUsernameExistsSpy.callCount).to.be.equal(0);
+            });
+        });
+    });
 });
 //# sourceMappingURL=usernameExistsValidator.test.js.map

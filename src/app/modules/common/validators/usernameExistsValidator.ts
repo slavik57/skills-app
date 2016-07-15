@@ -4,36 +4,40 @@ import { AbstractControl } from '@angular/forms';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Subscriber} from 'rxjs/Subscriber';
+import {Subscription} from 'rxjs/Subscription';
 
 export interface IUsernameExistsValidator {
   bindControl(control: AbstractControl): void;
   usernameExists(control: AbstractControl): Observable<IValidationResult>;
+  destroy(): void;
 }
 
 export class UsernameExistsValidator implements IUsernameExistsValidator {
 
-  private _subscriber: Subscriber<IValidationResult>
+  private _subscriber: Subscriber<IValidationResult>;
+  private _valueChangesSubscription: Subscription;
 
   constructor(private allowedUsernames: string[],
     private userService: IUserService) {
   }
 
   public bindControl(control: AbstractControl): void {
-    control.valueChanges
-      .debounceTime(2000)
-      .subscribe((username: string) => {
-        if (!this._subscriber) {
-          return;
-        }
-        if (!username) {
-          this._resolveSubscriber(this._subscriber, null);
-          return;
-        }
+    this._valueChangesSubscription =
+      control.valueChanges
+        .debounceTime(2000)
+        .subscribe((username: string) => {
+          if (!this._subscriber) {
+            return;
+          }
+          if (!username) {
+            this._resolveSubscriber(this._subscriber, null);
+            return;
+          }
 
-        this.userService.isUsernameExists(username)
-          .subscribe((isUsernameExist: boolean) => this._handleResult(isUsernameExist, this._subscriber),
-          (error: any) => this._handleError(error, this._subscriber))
-      });
+          this.userService.isUsernameExists(username)
+            .subscribe((isUsernameExist: boolean) => this._handleResult(isUsernameExist, this._subscriber),
+            (error: any) => this._handleError(error, this._subscriber))
+        });
   }
 
   public usernameExists(control: AbstractControl): Observable<IValidationResult> {
@@ -47,6 +51,16 @@ export class UsernameExistsValidator implements IUsernameExistsValidator {
 
       this._subscriber = subscriber;
     });
+  }
+
+  public destroy(): void {
+    this._subscriber = null;
+
+    if (this._valueChangesSubscription) {
+      this._valueChangesSubscription.unsubscribe();
+    }
+
+    this._valueChangesSubscription = null;
   }
 
   private _handleResult(isUsernameExist: boolean, subscriber: Subscriber<IValidationResult>): void {

@@ -268,4 +268,54 @@ describe('UsernameExistsValidator', () => {
 
   });
 
+  describe('destroy', () => {
+
+    beforeEach(() => {
+      validator.destroy();
+    });
+
+    it('calling destroy before binding to control should not fail', () => {
+      new UsernameExistsValidator(validUsernames, userServiceMock).destroy();
+    });
+
+    describe('usernameExists', () => {
+
+      it('on subscribtion should not return anything', () => {
+        var numberOfTimesCalled = 0;
+        validator.usernameExists(control).subscribe(
+          (_result) => {
+            numberOfTimesCalled++;
+          }
+        )
+
+        username = 'some username';
+        control.updateValue(username);
+        control.updateValueAndValidity();
+
+        expect(numberOfTimesCalled).to.equal(0);
+      });
+
+      it('value changes should not fail', () => {
+        username = 'some username';
+        control.updateValue(username);
+        control.updateValueAndValidity();
+      });
+
+      it('on valid username should not use the user service', () => {
+        validator.usernameExists(control).subscribe(
+          (_result) => {
+          }
+        );
+
+        username = 'some username';
+        control.updateValue(username);
+        control.updateValueAndValidity();
+
+        expect(isUsernameExistsSpy.callCount).to.be.equal(0);
+      });
+
+    });
+
+  });
+
 });

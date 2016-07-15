@@ -39,7 +39,8 @@ testing_1.describe('EditUserDetailsComponent', function () {
             usernameExists: function () {
                 usernameExistsResult = new Subject_1.Subject();
                 return usernameExistsResult;
-            }
+            },
+            destroy: function () { return null; }
         };
         usernameExistsValidatorBindControlSpy =
             sinon_1.spy(usernameExistsValidatorMock, 'bindControl');

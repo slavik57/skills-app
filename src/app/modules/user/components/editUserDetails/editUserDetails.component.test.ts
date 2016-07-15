@@ -59,7 +59,8 @@ describe('EditUserDetailsComponent', () => {
         usernameExistsResult = new Subject<IValidationResult>();
 
         return usernameExistsResult;
-      }
+      },
+      destroy: () => null
     }
 
     usernameExistsValidatorBindControlSpy =

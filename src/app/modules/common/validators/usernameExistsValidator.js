@@ -18,19 +18,20 @@ var UsernameExistsValidator = (function () {
     }
     UsernameExistsValidator.prototype.bindControl = function (control) {
         var _this = this;
-        control.valueChanges
-            .debounceTime(2000)
-            .subscribe(function (username) {
-            if (!_this._subscriber) {
-                return;
-            }
-            if (!username) {
-                _this._resolveSubscriber(_this._subscriber, null);
-                return;
-            }
-            _this.userService.isUsernameExists(username)
-                .subscribe(function (isUsernameExist) { return _this._handleResult(isUsernameExist, _this._subscriber); }, function (error) { return _this._handleError(error, _this._subscriber); });
-        });
+        this._valueChangesSubscription =
+            control.valueChanges
+                .debounceTime(2000)
+                .subscribe(function (username) {
+                if (!_this._subscriber) {
+                    return;
+                }
+                if (!username) {
+                    _this._resolveSubscriber(_this._subscriber, null);
+                    return;
+                }
+                _this.userService.isUsernameExists(username)
+                    .subscribe(function (isUsernameExist) { return _this._handleResult(isUsernameExist, _this._subscriber); }, function (error) { return _this._handleError(error, _this._subscriber); });
+            });
     };
     UsernameExistsValidator.prototype.usernameExists = function (control) {
         var _this = this;
@@ -42,6 +43,13 @@ var UsernameExistsValidator = (function () {
             }
             _this._subscriber = subscriber;
         });
+    };
+    UsernameExistsValidator.prototype.destroy = function () {
+        this._subscriber = null;
+        if (this._valueChangesSubscription) {
+            this._valueChangesSubscription.unsubscribe();
+        }
+        this._valueChangesSubscription = null;
     };
     UsernameExistsValidator.prototype._handleResult = function (isUsernameExist, subscriber) {
         if (!isUsernameExist) {

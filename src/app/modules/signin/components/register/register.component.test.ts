@@ -56,7 +56,8 @@ describe('RegisterComponent', () => {
     usernameExistsResult = new Subject<IValidationResult>();
     usernameExistsValidatorMock = {
       bindControl: () => { },
-      usernameExists: () => usernameExistsResult
+      usernameExists: () => usernameExistsResult,
+      destroy: () => null
     }
 
     usernameExistsValidatorBindControlSpy =

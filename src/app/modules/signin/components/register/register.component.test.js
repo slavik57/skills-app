@@ -34,7 +34,8 @@ testing_1.describe('RegisterComponent', function () {
         usernameExistsResult = new Subject_1.Subject();
         usernameExistsValidatorMock = {
             bindControl: function () { },
-            usernameExists: function () { return usernameExistsResult; }
+            usernameExists: function () { return usernameExistsResult; },
+            destroy: function () { return null; }
         };
         usernameExistsValidatorBindControlSpy =
             sinon_1.spy(usernameExistsValidatorMock, 'bindControl');
