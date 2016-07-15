@@ -187,7 +187,7 @@ export class UserService implements IUserService {
     console.log(error);
 
     if (error.status === StatusCode.UNAUTHORIZED) {
-      return Observable.throw('Unauthorized performing the operation');
+      return Observable.throw('Unauthorized to perform the operation');
     }
 
     if (typeof error === 'string') {

@@ -154,7 +154,7 @@ describe('UserService', () => {
     it('register should fail correctly', () => {
       userService.registerUser('', '', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Unauthorized performing the operation')
+        (error) => expect(error).to.be.equal('Unauthorized to perform the operation')
       );
     });
 
@@ -175,14 +175,14 @@ describe('UserService', () => {
     it('updateUserDetails should fail correctly', () => {
       userService.updateUserDetails(1, '', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Unauthorized performing the operation')
+        (error) => expect(error).to.be.equal('Unauthorized to perform the operation')
       );
     });
 
     it('updateUserPassword should fail correctly', () => {
       userService.updateUserPassword(1, '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Unauthorized performing the operation')
+        (error) => expect(error).to.be.equal('Unauthorized to perform the operation')
       );
     });
 

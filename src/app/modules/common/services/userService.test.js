@@ -112,7 +112,7 @@ testing_1.describe('UserService', function () {
             userService.signinUser('', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Invalid credentials'); });
         });
         testing_1.it('register should fail correctly', function () {
-            userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized performing the operation'); });
+            userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized to perform the operation'); });
         });
         testing_1.it('isUsernameExists should fail correctly', function () {
             userService.isUsernameExists('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
@@ -121,10 +121,10 @@ testing_1.describe('UserService', function () {
             userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized getting user details'); });
         });
         testing_1.it('updateUserDetails should fail correctly', function () {
-            userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized performing the operation'); });
+            userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized to perform the operation'); });
         });
         testing_1.it('updateUserPassword should fail correctly', function () {
-            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized performing the operation'); });
+            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized to perform the operation'); });
         });
     });
     testing_1.describe('on INTERNAL_SERVER_ERROR error', function () {

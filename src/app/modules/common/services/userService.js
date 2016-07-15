@@ -107,7 +107,7 @@ var UserService = (function () {
     UserService.prototype._handleServerError = function (error) {
         console.log(error);
         if (error.status === statusCode_1.StatusCode.UNAUTHORIZED) {
-            return Observable_1.Observable.throw('Unauthorized performing the operation');
+            return Observable_1.Observable.throw('Unauthorized to perform the operation');
         }
         if (typeof error === 'string') {
             return Observable_1.Observable.throw('Oops. Something went wrong. Please try again');
