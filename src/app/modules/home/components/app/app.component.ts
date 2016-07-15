@@ -12,7 +12,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'skills-app',
   template: require('./app.component.html'),
-  styles: [require('./app.component.css')],
+  styles: [require('./app.component.scss')],
   directives: _.union(ROUTER_DIRECTIVES, [NavigationComponent, CreditsComponent]),
   providers: [
     ROUTER_PROVIDERS,

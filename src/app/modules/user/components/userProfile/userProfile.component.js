@@ -41,7 +41,7 @@ var UserProfileComponent = (function () {
         core_1.Component({
             selector: 'user-profile',
             template: require('./userProfile.component.html'),
-            styles: [require('./userProfile.component.css')],
+            styles: [require('./userProfile.component.scss')],
             directives: [editUserDetails_component_1.EditUserDetailsComponent, changeUserPassword_component_1.ChangeUserPasswordComponent, circularLoading_component_1.CircularLoadingComponent],
         }), 
         __metadata('design:paramtypes', [userService_1.UserService])

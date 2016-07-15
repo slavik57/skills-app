@@ -16,7 +16,7 @@ var HomeComponent = (function () {
         core_1.Component({
             selector: 'home',
             template: require('./home.component.html'),
-            styles: [require('./home.component.css')],
+            styles: [require('./home.component.scss')],
         }), 
         __metadata('design:paramtypes', [])
     ], HomeComponent);

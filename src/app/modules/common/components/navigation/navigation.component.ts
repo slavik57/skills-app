@@ -4,7 +4,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 @Component({
   selector: 'navigation-bar',
   template: require('./navigation.component.html'),
-  styles: [require('./navigation.component.css')],
+  styles: [require('./navigation.component.scss')],
   directives: [ROUTER_DIRECTIVES]
 })
 
