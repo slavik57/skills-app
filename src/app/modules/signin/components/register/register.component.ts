@@ -6,7 +6,7 @@ import {EqualFieldsValidator} from "../../../common/validators/equalFieldsValida
 import {FormComponentBase} from "../../../common/components/formComponentBase/formComponentBase";
 import {EmailValidator} from "../../../common/validators/emailValidator";
 import {RegisterModel} from "../../models/registerModel";
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
@@ -18,12 +18,14 @@ import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormContr
   providers: [FormBuilder, UsernameExistsValidatorFactory]
 })
 
-export class RegisterComponent extends FormComponentBase implements OnInit {
+export class RegisterComponent extends FormComponentBase implements OnInit, OnDestroy {
   public error = undefined;
   public submitting = false;
   public model = new RegisterModel();
   public registerFormGroup: FormGroup;
   public passwordsGroup: FormGroup;
+
+  private _usernameExistsValidator: IUsernameExistsValidator;
 
   constructor(private formBuilder: FormBuilder,
     private usernameExistsValidatorFactory: UsernameExistsValidatorFactory,
@@ -40,18 +42,22 @@ export class RegisterComponent extends FormComponentBase implements OnInit {
         validator: EqualFieldsValidator.allFieldsEqual
       });
 
-    var usernameExistsValidator: IUsernameExistsValidator =
+    this._usernameExistsValidator =
       this.usernameExistsValidatorFactory.create();
 
     this.registerFormGroup = this.formBuilder.group({
-      username: ['', Validators.required, usernameExistsValidator.usernameExists.bind(usernameExistsValidator)],
+      username: ['', Validators.required, this._usernameExistsValidator.usernameExists.bind(this._usernameExistsValidator)],
       firstName: ['', Validators.required],
       passwordsGroup: this.passwordsGroup,
       lastName: ['', Validators.required],
       email: ['', EmailValidator.mailFormat]
     });
 
-    usernameExistsValidator.bindControl(this.registerFormGroup.controls['username']);
+    this._usernameExistsValidator.bindControl(this.registerFormGroup.controls['username']);
+  }
+
+  public ngOnDestroy(): void {
+    this._usernameExistsValidator.destroy();
   }
 
   public onSubmit(): void {

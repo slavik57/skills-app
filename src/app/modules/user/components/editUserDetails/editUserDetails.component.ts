@@ -2,7 +2,7 @@ import {FormComponentBase} from "../../../common/components/formComponentBase/fo
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {EditUserProfile} from "../../models/editUserProfileModel";
 import {UserService, IUserDetails} from "../../../common/services/userService";
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import {IUsernameExistsValidator, UsernameExistsValidator, UsernameExistsValidatorFactory} from "../../../common/validators/usernameExistsValidator";
 import {EmailValidator} from "../../../common/validators/emailValidator";
@@ -14,7 +14,7 @@ import {EmailValidator} from "../../../common/validators/emailValidator";
   directives: [REACTIVE_FORM_DIRECTIVES, CircularLoadingComponent],
   providers: [FormBuilder, UsernameExistsValidatorFactory]
 })
-export class EditUserDetailsComponent extends FormComponentBase implements OnInit {
+export class EditUserDetailsComponent extends FormComponentBase implements OnInit, OnDestroy {
   @Input() public userDetails: IUserDetails;
 
   public model: EditUserProfile;
@@ -22,6 +22,8 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
   public updatingUserDetails: boolean;
   public updatingUserDetailsError: any;
   public isUserDetailsUpdated: boolean;
+
+  private _usernameExistsValidator: IUsernameExistsValidator;
 
   constructor(private userService: UserService,
     private formBuilder: FormBuilder,
@@ -38,6 +40,10 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
     this.isUserDetailsUpdated = false;
 
     this._initializeEditUserProfile();
+  }
+
+  public ngOnDestroy(): void {
+    this._usernameExistsValidator.destroy();
   }
 
   public canUpdateUserDetails(): boolean {
@@ -67,17 +73,17 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
   }
 
   private _initializeFormGroup(): void {
-    var usernameExistsValidator: IUsernameExistsValidator =
+    this._usernameExistsValidator =
       this.usernameExistsValidatorFactory.createWithAllowedUsers([this.model.username]);
 
     this.userDetailsFormGroup = this.formBuilder.group({
-      username: [this.model.username, Validators.required, usernameExistsValidator.usernameExists.bind(usernameExistsValidator)],
+      username: [this.model.username, Validators.required, this._usernameExistsValidator.usernameExists.bind(this._usernameExistsValidator)],
       email: [this.model.email, EmailValidator.mailFormat],
       firstName: [this.model.firstName, Validators.required],
       lastName: [this.model.lastName, Validators.required]
     });
 
-    usernameExistsValidator.bindControl(this.userDetailsFormGroup.controls['username']);
+    this._usernameExistsValidator.bindControl(this.userDetailsFormGroup.controls['username']);
   }
 
   private _isUserDetailsChanged(): boolean {

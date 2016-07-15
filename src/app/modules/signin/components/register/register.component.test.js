@@ -17,6 +17,7 @@ testing_1.describe('RegisterComponent', function () {
     var usernameExistsValidatorMock;
     var usernameExistsValidatorFactoryMock;
     var usernameExistsValidatorBindControlSpy;
+    var destroyUsernameExistsValidatorSpy;
     var registerComponent;
     testing_1.beforeEachProviders(function () {
         registerUserResult = new Subject_1.Subject();
@@ -43,6 +44,8 @@ testing_1.describe('RegisterComponent', function () {
             create: function () { return usernameExistsValidatorMock; },
             createWithAllowedUsers: function () { return null; }
         };
+        destroyUsernameExistsValidatorSpy =
+            sinon_1.spy(usernameExistsValidatorMock, 'destroy');
         return [
             forms_1.FormBuilder,
             core_1.provide(userService_1.UserService, { useValue: userServiceMock }),
@@ -70,6 +73,10 @@ testing_1.describe('RegisterComponent', function () {
     testing_1.it('should bind the username control to the usernameExistsValidator', function () {
         chai_1.expect(usernameExistsValidatorBindControlSpy.callCount).to.be.equal(1);
         chai_1.expect(usernameExistsValidatorBindControlSpy.args[0][0]).to.be.equal(registerComponent.registerFormGroup.controls['username']);
+    });
+    testing_1.it('destroying the component should destroy the usernameExistsValidator', function () {
+        registerComponent.ngOnDestroy();
+        chai_1.expect(destroyUsernameExistsValidatorSpy.callCount).to.be.equal(1);
     });
     testing_1.describe('form validations', function () {
         var validEmail;

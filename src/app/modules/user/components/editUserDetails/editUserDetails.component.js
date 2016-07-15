@@ -37,6 +37,9 @@ var EditUserDetailsComponent = (function (_super) {
         this.isUserDetailsUpdated = false;
         this._initializeEditUserProfile();
     };
+    EditUserDetailsComponent.prototype.ngOnDestroy = function () {
+        this._usernameExistsValidator.destroy();
+    };
     EditUserDetailsComponent.prototype.canUpdateUserDetails = function () {
         return this.userDetailsFormGroup.valid && this._isUserDetailsChanged();
     };
@@ -55,14 +58,15 @@ var EditUserDetailsComponent = (function (_super) {
         setTimeout(function () { return Materialize.updateTextFields(); }, 0);
     };
     EditUserDetailsComponent.prototype._initializeFormGroup = function () {
-        var usernameExistsValidator = this.usernameExistsValidatorFactory.createWithAllowedUsers([this.model.username]);
+        this._usernameExistsValidator =
+            this.usernameExistsValidatorFactory.createWithAllowedUsers([this.model.username]);
         this.userDetailsFormGroup = this.formBuilder.group({
-            username: [this.model.username, forms_1.Validators.required, usernameExistsValidator.usernameExists.bind(usernameExistsValidator)],
+            username: [this.model.username, forms_1.Validators.required, this._usernameExistsValidator.usernameExists.bind(this._usernameExistsValidator)],
             email: [this.model.email, emailValidator_1.EmailValidator.mailFormat],
             firstName: [this.model.firstName, forms_1.Validators.required],
             lastName: [this.model.lastName, forms_1.Validators.required]
         });
-        usernameExistsValidator.bindControl(this.userDetailsFormGroup.controls['username']);
+        this._usernameExistsValidator.bindControl(this.userDetailsFormGroup.controls['username']);
     };
     EditUserDetailsComponent.prototype._isUserDetailsChanged = function () {
         return this.userDetails.username !== this.model.username ||

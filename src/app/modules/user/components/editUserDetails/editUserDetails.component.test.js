@@ -18,6 +18,7 @@ testing_1.describe('EditUserDetailsComponent', function () {
     var usernameExistsValidatorFactoryMock;
     var usernameExistsValidatorBindControlSpy;
     var createUsernameExistsValidatorSpy;
+    var destroyUsernameExistsValidatorSpy;
     testing_1.beforeEachProviders(function () {
         userDetails = {
             id: 1,
@@ -50,6 +51,8 @@ testing_1.describe('EditUserDetailsComponent', function () {
         };
         createUsernameExistsValidatorSpy =
             sinon_1.spy(usernameExistsValidatorFactoryMock, 'createWithAllowedUsers');
+        destroyUsernameExistsValidatorSpy =
+            sinon_1.spy(usernameExistsValidatorMock, 'destroy');
         return [
             forms_1.FormBuilder,
             core_1.provide(userService_1.UserService, { useValue: userServiceMock }),
@@ -76,6 +79,10 @@ testing_1.describe('EditUserDetailsComponent', function () {
         }));
         testing_1.afterEach(function () {
             updateTextFieldsSpy.restore();
+        });
+        testing_1.it('when the component is destroyed should destroy the UsernameExistsValidator', function () {
+            component.ngOnDestroy();
+            chai_1.expect(destroyUsernameExistsValidatorSpy.callCount).to.be.equal(1);
         });
         testing_1.it('updatingUserDetailsError should be correct', function () {
             chai_1.expect(component.updatingUserDetailsError).to.be.undefined;
@@ -464,6 +471,10 @@ testing_1.describe('EditUserDetailsComponent', function () {
         }));
         testing_1.afterEach(function () {
             updateTextFieldsSpy.restore();
+        });
+        testing_1.it('when the component is destroyed should destroy the UsernameExistsValidator', function () {
+            component.ngOnDestroy();
+            chai_1.expect(destroyUsernameExistsValidatorSpy.callCount).to.be.equal(1);
         });
         testing_1.it('the model should be correct', function () {
             chai_1.expect(component.model).to.be.deep.equal(userDetails);

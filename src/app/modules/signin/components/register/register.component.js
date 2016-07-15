@@ -43,15 +43,19 @@ var RegisterComponent = (function (_super) {
         }, {
             validator: equalFieldsValidator_1.EqualFieldsValidator.allFieldsEqual
         });
-        var usernameExistsValidator = this.usernameExistsValidatorFactory.create();
+        this._usernameExistsValidator =
+            this.usernameExistsValidatorFactory.create();
         this.registerFormGroup = this.formBuilder.group({
-            username: ['', forms_1.Validators.required, usernameExistsValidator.usernameExists.bind(usernameExistsValidator)],
+            username: ['', forms_1.Validators.required, this._usernameExistsValidator.usernameExists.bind(this._usernameExistsValidator)],
             firstName: ['', forms_1.Validators.required],
             passwordsGroup: this.passwordsGroup,
             lastName: ['', forms_1.Validators.required],
             email: ['', emailValidator_1.EmailValidator.mailFormat]
         });
-        usernameExistsValidator.bindControl(this.registerFormGroup.controls['username']);
+        this._usernameExistsValidator.bindControl(this.registerFormGroup.controls['username']);
+    };
+    RegisterComponent.prototype.ngOnDestroy = function () {
+        this._usernameExistsValidator.destroy();
     };
     RegisterComponent.prototype.onSubmit = function () {
         var _this = this;

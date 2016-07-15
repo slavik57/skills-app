@@ -34,6 +34,7 @@ describe('EditUserDetailsComponent', () => {
   var usernameExistsValidatorFactoryMock: IUsernameExistsValidatorFactory;
   var usernameExistsValidatorBindControlSpy: SinonSpy;
   var createUsernameExistsValidatorSpy: SinonSpy;
+  var destroyUsernameExistsValidatorSpy: SinonSpy;
 
   beforeEachProviders(() => {
     userDetails = {
@@ -74,6 +75,9 @@ describe('EditUserDetailsComponent', () => {
     createUsernameExistsValidatorSpy =
       spy(usernameExistsValidatorFactoryMock, 'createWithAllowedUsers');
 
+    destroyUsernameExistsValidatorSpy =
+      spy(usernameExistsValidatorMock, 'destroy');
+
     return [
       FormBuilder,
       provide(UserService, { useValue: userServiceMock }),
@@ -109,6 +113,12 @@ describe('EditUserDetailsComponent', () => {
 
     afterEach(() => {
       updateTextFieldsSpy.restore();
+    });
+
+    it('when the component is destroyed should destroy the UsernameExistsValidator', () => {
+      component.ngOnDestroy();
+
+      expect(destroyUsernameExistsValidatorSpy.callCount).to.be.equal(1);
     });
 
     it('updatingUserDetailsError should be correct', () => {
@@ -653,6 +663,12 @@ describe('EditUserDetailsComponent', () => {
 
     afterEach(() => {
       updateTextFieldsSpy.restore();
+    });
+
+    it('when the component is destroyed should destroy the UsernameExistsValidator', () => {
+      component.ngOnDestroy();
+
+      expect(destroyUsernameExistsValidatorSpy.callCount).to.be.equal(1);
     });
 
     it('the model should be correct', () => {

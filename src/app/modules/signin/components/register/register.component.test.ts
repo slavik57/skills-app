@@ -33,6 +33,7 @@ describe('RegisterComponent', () => {
   var usernameExistsValidatorMock: IUsernameExistsValidator;
   var usernameExistsValidatorFactoryMock: IUsernameExistsValidatorFactory;
   var usernameExistsValidatorBindControlSpy: SinonSpy;
+  var destroyUsernameExistsValidatorSpy: SinonSpy;
 
   var registerComponent: RegisterComponent;
 
@@ -68,6 +69,9 @@ describe('RegisterComponent', () => {
       createWithAllowedUsers: () => null
     }
 
+    destroyUsernameExistsValidatorSpy =
+      spy(usernameExistsValidatorMock, 'destroy');
+
     return [
       FormBuilder,
       provide(UserService, { useValue: userServiceMock }),
@@ -98,6 +102,12 @@ describe('RegisterComponent', () => {
   it('should bind the username control to the usernameExistsValidator', () => {
     expect(usernameExistsValidatorBindControlSpy.callCount).to.be.equal(1);
     expect(usernameExistsValidatorBindControlSpy.args[0][0]).to.be.equal(registerComponent.registerFormGroup.controls['username']);
+  });
+
+  it('destroying the component should destroy the usernameExistsValidator', () => {
+    registerComponent.ngOnDestroy();
+
+    expect(destroyUsernameExistsValidatorSpy.callCount).to.be.equal(1);
   });
 
   describe('form validations', () => {
