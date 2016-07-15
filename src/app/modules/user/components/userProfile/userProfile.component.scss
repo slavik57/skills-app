@@ -2,7 +2,7 @@
 @import '../../../../commonStyles/_forms';
 
 :host {
-  flex: 1 0 auto;
+  @extend .row;
 
   .loading-user-details-indicator {
     $size: 2rem;
@@ -56,29 +56,21 @@
   }
 
   .edit-user-details-wrapper{
-    @extend .row;
-
-    edit-user-details {
-      @extend .col;
-      @extend .s12;
-      @extend .m8;
-      @extend .l6;
-      @extend .offset-m2;
-      @extend .offset-l3;
-    }
+    @extend .col;
+    @extend .s12;
+    @extend .m8;
+    @extend .l6;
+    @extend .offset-m2;
+    @extend .offset-l3;
   }
 
   .edit-user-password-wrapper{
-    @extend .row;
-
-    change-user-password {
-      @extend .col;
-      @extend .s12;
-      @extend .m8;
-      @extend .l6;
-      @extend .offset-m2;
-      @extend .offset-l3;
-    }
+    @extend .col;
+    @extend .s12;
+    @extend .m8;
+    @extend .l6;
+    @extend .offset-m2;
+    @extend .offset-l3;
   }
 
 }

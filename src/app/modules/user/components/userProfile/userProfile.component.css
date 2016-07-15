@@ -3137,7 +3137,7 @@ nav ul a span.badge {
   }
 }
 
-.container .row, .container .submit-wrapper, .container :host .edit-user-details-wrapper, :host .container .edit-user-details-wrapper, .container :host .edit-user-password-wrapper, :host .container .edit-user-password-wrapper {
+.container .row, .container .submit-wrapper, .container :host {
   margin-left: -0.75rem;
   margin-right: -0.75rem;
 }
@@ -3159,618 +3159,618 @@ nav ul a span.badge {
   padding-top: 0;
 }
 
-.row, .submit-wrapper, :host .edit-user-details-wrapper, :host .edit-user-password-wrapper {
+.row, .submit-wrapper, :host {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
 }
 
-.row:after, .submit-wrapper:after, :host .edit-user-details-wrapper:after, :host .edit-user-password-wrapper:after {
+.row:after, .submit-wrapper:after, :host:after {
   content: "";
   display: table;
   clear: both;
 }
 
-.row .col, .submit-wrapper .col, :host .edit-user-details-wrapper .col, :host .edit-user-password-wrapper .col, .submit-wrapper .submit-button, :host .edit-user-details-wrapper edit-user-details, :host .edit-user-password-wrapper change-user-password {
+.row .col, .submit-wrapper .col, :host .col, .submit-wrapper .submit-button, :host .edit-user-details-wrapper, :host .edit-user-password-wrapper {
   float: left;
   box-sizing: border-box;
   padding: 0 0.75rem;
 }
 
-.row .col[class*="push-"], .submit-wrapper .col[class*="push-"], :host .edit-user-details-wrapper .col[class*="push-"], :host .edit-user-password-wrapper .col[class*="push-"], .submit-wrapper [class*="push-"].submit-button, :host .edit-user-details-wrapper edit-user-details[class*="push-"], :host .edit-user-password-wrapper change-user-password[class*="push-"], .row .col[class*="pull-"], .submit-wrapper .col[class*="pull-"], :host .edit-user-details-wrapper .col[class*="pull-"], :host .edit-user-password-wrapper .col[class*="pull-"], .submit-wrapper [class*="pull-"].submit-button, :host .edit-user-details-wrapper edit-user-details[class*="pull-"], :host .edit-user-password-wrapper change-user-password[class*="pull-"] {
+.row .col[class*="push-"], .submit-wrapper .col[class*="push-"], :host .col[class*="push-"], .submit-wrapper [class*="push-"].submit-button, :host [class*="push-"].edit-user-details-wrapper, :host [class*="push-"].edit-user-password-wrapper, .row .col[class*="pull-"], .submit-wrapper .col[class*="pull-"], :host .col[class*="pull-"], .submit-wrapper [class*="pull-"].submit-button, :host [class*="pull-"].edit-user-details-wrapper, :host [class*="pull-"].edit-user-password-wrapper {
   position: relative;
 }
 
-.row .col.s1, .submit-wrapper .col.s1, :host .edit-user-details-wrapper .col.s1, :host .edit-user-password-wrapper .col.s1, .submit-wrapper .s1.submit-button, :host .edit-user-details-wrapper edit-user-details.s1, :host .edit-user-password-wrapper change-user-password.s1 {
+.row .col.s1, .submit-wrapper .col.s1, :host .col.s1, .submit-wrapper .s1.submit-button, :host .s1.edit-user-details-wrapper, :host .s1.edit-user-password-wrapper {
   width: 8.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s2, .submit-wrapper .col.s2, :host .edit-user-details-wrapper .col.s2, :host .edit-user-password-wrapper .col.s2, .submit-wrapper .s2.submit-button, :host .edit-user-details-wrapper edit-user-details.s2, :host .edit-user-password-wrapper change-user-password.s2 {
+.row .col.s2, .submit-wrapper .col.s2, :host .col.s2, .submit-wrapper .s2.submit-button, :host .s2.edit-user-details-wrapper, :host .s2.edit-user-password-wrapper {
   width: 16.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s3, .submit-wrapper .col.s3, :host .edit-user-details-wrapper .col.s3, :host .edit-user-password-wrapper .col.s3, .submit-wrapper .s3.submit-button, :host .edit-user-details-wrapper edit-user-details.s3, :host .edit-user-password-wrapper change-user-password.s3 {
+.row .col.s3, .submit-wrapper .col.s3, :host .col.s3, .submit-wrapper .s3.submit-button, :host .s3.edit-user-details-wrapper, :host .s3.edit-user-password-wrapper {
   width: 25%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s4, .submit-wrapper .col.s4, :host .edit-user-details-wrapper .col.s4, :host .edit-user-password-wrapper .col.s4, .submit-wrapper .s4.submit-button, :host .edit-user-details-wrapper edit-user-details.s4, :host .edit-user-password-wrapper change-user-password.s4 {
+.row .col.s4, .submit-wrapper .col.s4, :host .col.s4, .submit-wrapper .s4.submit-button, :host .s4.edit-user-details-wrapper, :host .s4.edit-user-password-wrapper {
   width: 33.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s5, .submit-wrapper .col.s5, :host .edit-user-details-wrapper .col.s5, :host .edit-user-password-wrapper .col.s5, .submit-wrapper .s5.submit-button, :host .edit-user-details-wrapper edit-user-details.s5, :host .edit-user-password-wrapper change-user-password.s5 {
+.row .col.s5, .submit-wrapper .col.s5, :host .col.s5, .submit-wrapper .s5.submit-button, :host .s5.edit-user-details-wrapper, :host .s5.edit-user-password-wrapper {
   width: 41.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s6, .submit-wrapper .col.s6, :host .edit-user-details-wrapper .col.s6, :host .edit-user-password-wrapper .col.s6, .submit-wrapper .s6.submit-button, :host .edit-user-details-wrapper edit-user-details.s6, :host .edit-user-password-wrapper change-user-password.s6 {
+.row .col.s6, .submit-wrapper .col.s6, :host .col.s6, .submit-wrapper .s6.submit-button, :host .s6.edit-user-details-wrapper, :host .s6.edit-user-password-wrapper {
   width: 50%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s7, .submit-wrapper .col.s7, :host .edit-user-details-wrapper .col.s7, :host .edit-user-password-wrapper .col.s7, .submit-wrapper .s7.submit-button, :host .edit-user-details-wrapper edit-user-details.s7, :host .edit-user-password-wrapper change-user-password.s7 {
+.row .col.s7, .submit-wrapper .col.s7, :host .col.s7, .submit-wrapper .s7.submit-button, :host .s7.edit-user-details-wrapper, :host .s7.edit-user-password-wrapper {
   width: 58.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s8, .submit-wrapper .col.s8, :host .edit-user-details-wrapper .col.s8, :host .edit-user-password-wrapper .col.s8, .submit-wrapper .s8.submit-button, :host .edit-user-details-wrapper edit-user-details.s8, :host .edit-user-password-wrapper change-user-password.s8 {
+.row .col.s8, .submit-wrapper .col.s8, :host .col.s8, .submit-wrapper .s8.submit-button, :host .s8.edit-user-details-wrapper, :host .s8.edit-user-password-wrapper {
   width: 66.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s9, .submit-wrapper .col.s9, :host .edit-user-details-wrapper .col.s9, :host .edit-user-password-wrapper .col.s9, .submit-wrapper .s9.submit-button, :host .edit-user-details-wrapper edit-user-details.s9, :host .edit-user-password-wrapper change-user-password.s9 {
+.row .col.s9, .submit-wrapper .col.s9, :host .col.s9, .submit-wrapper .s9.submit-button, :host .s9.edit-user-details-wrapper, :host .s9.edit-user-password-wrapper {
   width: 75%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s10, .submit-wrapper .col.s10, :host .edit-user-details-wrapper .col.s10, :host .edit-user-password-wrapper .col.s10, .submit-wrapper .s10.submit-button, :host .edit-user-details-wrapper edit-user-details.s10, :host .edit-user-password-wrapper change-user-password.s10 {
+.row .col.s10, .submit-wrapper .col.s10, :host .col.s10, .submit-wrapper .s10.submit-button, :host .s10.edit-user-details-wrapper, :host .s10.edit-user-password-wrapper {
   width: 83.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s11, .submit-wrapper .col.s11, :host .edit-user-details-wrapper .col.s11, :host .edit-user-password-wrapper .col.s11, .submit-wrapper .s11.submit-button, :host .edit-user-details-wrapper edit-user-details.s11, :host .edit-user-password-wrapper change-user-password.s11 {
+.row .col.s11, .submit-wrapper .col.s11, :host .col.s11, .submit-wrapper .s11.submit-button, :host .s11.edit-user-details-wrapper, :host .s11.edit-user-password-wrapper {
   width: 91.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s12, .submit-wrapper .col.s12, :host .edit-user-details-wrapper .col.s12, :host .edit-user-password-wrapper .col.s12, .submit-wrapper .s12.submit-button, .row :host .edit-user-details-wrapper edit-user-details, :host .edit-user-details-wrapper .row edit-user-details, :host .edit-user-details-wrapper edit-user-details, .row :host .edit-user-password-wrapper change-user-password, :host .edit-user-password-wrapper .row change-user-password, :host .edit-user-password-wrapper change-user-password {
+.row .col.s12, .submit-wrapper .col.s12, :host .col.s12, .submit-wrapper .s12.submit-button, .row :host .edit-user-details-wrapper, :host .row .edit-user-details-wrapper, :host .edit-user-details-wrapper, .row :host .edit-user-password-wrapper, :host .row .edit-user-password-wrapper, :host .edit-user-password-wrapper {
   width: 100%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.offset-s1, .submit-wrapper .col.offset-s1, :host .edit-user-details-wrapper .col.offset-s1, :host .edit-user-password-wrapper .col.offset-s1, .submit-wrapper .offset-s1.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-s1, :host .edit-user-password-wrapper change-user-password.offset-s1 {
+.row .col.offset-s1, .submit-wrapper .col.offset-s1, :host .col.offset-s1, .submit-wrapper .offset-s1.submit-button, :host .offset-s1.edit-user-details-wrapper, :host .offset-s1.edit-user-password-wrapper {
   margin-left: 8.3333333333%;
 }
 
-.row .col.pull-s1, .submit-wrapper .col.pull-s1, :host .edit-user-details-wrapper .col.pull-s1, :host .edit-user-password-wrapper .col.pull-s1, .submit-wrapper .pull-s1.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-s1, :host .edit-user-password-wrapper change-user-password.pull-s1 {
+.row .col.pull-s1, .submit-wrapper .col.pull-s1, :host .col.pull-s1, .submit-wrapper .pull-s1.submit-button, :host .pull-s1.edit-user-details-wrapper, :host .pull-s1.edit-user-password-wrapper {
   right: 8.3333333333%;
 }
 
-.row .col.push-s1, .submit-wrapper .col.push-s1, :host .edit-user-details-wrapper .col.push-s1, :host .edit-user-password-wrapper .col.push-s1, .submit-wrapper .push-s1.submit-button, :host .edit-user-details-wrapper edit-user-details.push-s1, :host .edit-user-password-wrapper change-user-password.push-s1 {
+.row .col.push-s1, .submit-wrapper .col.push-s1, :host .col.push-s1, .submit-wrapper .push-s1.submit-button, :host .push-s1.edit-user-details-wrapper, :host .push-s1.edit-user-password-wrapper {
   left: 8.3333333333%;
 }
 
-.row .col.offset-s2, .submit-wrapper .col.offset-s2, :host .edit-user-details-wrapper .col.offset-s2, :host .edit-user-password-wrapper .col.offset-s2, .submit-wrapper .offset-s2.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-s2, :host .edit-user-password-wrapper change-user-password.offset-s2 {
+.row .col.offset-s2, .submit-wrapper .col.offset-s2, :host .col.offset-s2, .submit-wrapper .offset-s2.submit-button, :host .offset-s2.edit-user-details-wrapper, :host .offset-s2.edit-user-password-wrapper {
   margin-left: 16.6666666667%;
 }
 
-.row .col.pull-s2, .submit-wrapper .col.pull-s2, :host .edit-user-details-wrapper .col.pull-s2, :host .edit-user-password-wrapper .col.pull-s2, .submit-wrapper .pull-s2.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-s2, :host .edit-user-password-wrapper change-user-password.pull-s2 {
+.row .col.pull-s2, .submit-wrapper .col.pull-s2, :host .col.pull-s2, .submit-wrapper .pull-s2.submit-button, :host .pull-s2.edit-user-details-wrapper, :host .pull-s2.edit-user-password-wrapper {
   right: 16.6666666667%;
 }
 
-.row .col.push-s2, .submit-wrapper .col.push-s2, :host .edit-user-details-wrapper .col.push-s2, :host .edit-user-password-wrapper .col.push-s2, .submit-wrapper .push-s2.submit-button, :host .edit-user-details-wrapper edit-user-details.push-s2, :host .edit-user-password-wrapper change-user-password.push-s2 {
+.row .col.push-s2, .submit-wrapper .col.push-s2, :host .col.push-s2, .submit-wrapper .push-s2.submit-button, :host .push-s2.edit-user-details-wrapper, :host .push-s2.edit-user-password-wrapper {
   left: 16.6666666667%;
 }
 
-.row .col.offset-s3, .submit-wrapper .col.offset-s3, :host .edit-user-details-wrapper .col.offset-s3, :host .edit-user-password-wrapper .col.offset-s3, .submit-wrapper .offset-s3.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-s3, :host .edit-user-password-wrapper change-user-password.offset-s3 {
+.row .col.offset-s3, .submit-wrapper .col.offset-s3, :host .col.offset-s3, .submit-wrapper .offset-s3.submit-button, :host .offset-s3.edit-user-details-wrapper, :host .offset-s3.edit-user-password-wrapper {
   margin-left: 25%;
 }
 
-.row .col.pull-s3, .submit-wrapper .col.pull-s3, :host .edit-user-details-wrapper .col.pull-s3, :host .edit-user-password-wrapper .col.pull-s3, .submit-wrapper .pull-s3.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-s3, :host .edit-user-password-wrapper change-user-password.pull-s3 {
+.row .col.pull-s3, .submit-wrapper .col.pull-s3, :host .col.pull-s3, .submit-wrapper .pull-s3.submit-button, :host .pull-s3.edit-user-details-wrapper, :host .pull-s3.edit-user-password-wrapper {
   right: 25%;
 }
 
-.row .col.push-s3, .submit-wrapper .col.push-s3, :host .edit-user-details-wrapper .col.push-s3, :host .edit-user-password-wrapper .col.push-s3, .submit-wrapper .push-s3.submit-button, :host .edit-user-details-wrapper edit-user-details.push-s3, :host .edit-user-password-wrapper change-user-password.push-s3 {
+.row .col.push-s3, .submit-wrapper .col.push-s3, :host .col.push-s3, .submit-wrapper .push-s3.submit-button, :host .push-s3.edit-user-details-wrapper, :host .push-s3.edit-user-password-wrapper {
   left: 25%;
 }
 
-.row .col.offset-s4, .submit-wrapper .col.offset-s4, :host .edit-user-details-wrapper .col.offset-s4, :host .edit-user-password-wrapper .col.offset-s4, .submit-wrapper .offset-s4.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-s4, :host .edit-user-password-wrapper change-user-password.offset-s4 {
+.row .col.offset-s4, .submit-wrapper .col.offset-s4, :host .col.offset-s4, .submit-wrapper .offset-s4.submit-button, :host .offset-s4.edit-user-details-wrapper, :host .offset-s4.edit-user-password-wrapper {
   margin-left: 33.3333333333%;
 }
 
-.row .col.pull-s4, .submit-wrapper .col.pull-s4, :host .edit-user-details-wrapper .col.pull-s4, :host .edit-user-password-wrapper .col.pull-s4, .submit-wrapper .pull-s4.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-s4, :host .edit-user-password-wrapper change-user-password.pull-s4 {
+.row .col.pull-s4, .submit-wrapper .col.pull-s4, :host .col.pull-s4, .submit-wrapper .pull-s4.submit-button, :host .pull-s4.edit-user-details-wrapper, :host .pull-s4.edit-user-password-wrapper {
   right: 33.3333333333%;
 }
 
-.row .col.push-s4, .submit-wrapper .col.push-s4, :host .edit-user-details-wrapper .col.push-s4, :host .edit-user-password-wrapper .col.push-s4, .submit-wrapper .push-s4.submit-button, :host .edit-user-details-wrapper edit-user-details.push-s4, :host .edit-user-password-wrapper change-user-password.push-s4 {
+.row .col.push-s4, .submit-wrapper .col.push-s4, :host .col.push-s4, .submit-wrapper .push-s4.submit-button, :host .push-s4.edit-user-details-wrapper, :host .push-s4.edit-user-password-wrapper {
   left: 33.3333333333%;
 }
 
-.row .col.offset-s5, .submit-wrapper .col.offset-s5, :host .edit-user-details-wrapper .col.offset-s5, :host .edit-user-password-wrapper .col.offset-s5, .submit-wrapper .offset-s5.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-s5, :host .edit-user-password-wrapper change-user-password.offset-s5 {
+.row .col.offset-s5, .submit-wrapper .col.offset-s5, :host .col.offset-s5, .submit-wrapper .offset-s5.submit-button, :host .offset-s5.edit-user-details-wrapper, :host .offset-s5.edit-user-password-wrapper {
   margin-left: 41.6666666667%;
 }
 
-.row .col.pull-s5, .submit-wrapper .col.pull-s5, :host .edit-user-details-wrapper .col.pull-s5, :host .edit-user-password-wrapper .col.pull-s5, .submit-wrapper .pull-s5.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-s5, :host .edit-user-password-wrapper change-user-password.pull-s5 {
+.row .col.pull-s5, .submit-wrapper .col.pull-s5, :host .col.pull-s5, .submit-wrapper .pull-s5.submit-button, :host .pull-s5.edit-user-details-wrapper, :host .pull-s5.edit-user-password-wrapper {
   right: 41.6666666667%;
 }
 
-.row .col.push-s5, .submit-wrapper .col.push-s5, :host .edit-user-details-wrapper .col.push-s5, :host .edit-user-password-wrapper .col.push-s5, .submit-wrapper .push-s5.submit-button, :host .edit-user-details-wrapper edit-user-details.push-s5, :host .edit-user-password-wrapper change-user-password.push-s5 {
+.row .col.push-s5, .submit-wrapper .col.push-s5, :host .col.push-s5, .submit-wrapper .push-s5.submit-button, :host .push-s5.edit-user-details-wrapper, :host .push-s5.edit-user-password-wrapper {
   left: 41.6666666667%;
 }
 
-.row .col.offset-s6, .submit-wrapper .col.offset-s6, :host .edit-user-details-wrapper .col.offset-s6, :host .edit-user-password-wrapper .col.offset-s6, .submit-wrapper .offset-s6.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-s6, :host .edit-user-password-wrapper change-user-password.offset-s6 {
+.row .col.offset-s6, .submit-wrapper .col.offset-s6, :host .col.offset-s6, .submit-wrapper .offset-s6.submit-button, :host .offset-s6.edit-user-details-wrapper, :host .offset-s6.edit-user-password-wrapper {
   margin-left: 50%;
 }
 
-.row .col.pull-s6, .submit-wrapper .col.pull-s6, :host .edit-user-details-wrapper .col.pull-s6, :host .edit-user-password-wrapper .col.pull-s6, .submit-wrapper .pull-s6.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-s6, :host .edit-user-password-wrapper change-user-password.pull-s6 {
+.row .col.pull-s6, .submit-wrapper .col.pull-s6, :host .col.pull-s6, .submit-wrapper .pull-s6.submit-button, :host .pull-s6.edit-user-details-wrapper, :host .pull-s6.edit-user-password-wrapper {
   right: 50%;
 }
 
-.row .col.push-s6, .submit-wrapper .col.push-s6, :host .edit-user-details-wrapper .col.push-s6, :host .edit-user-password-wrapper .col.push-s6, .submit-wrapper .push-s6.submit-button, :host .edit-user-details-wrapper edit-user-details.push-s6, :host .edit-user-password-wrapper change-user-password.push-s6 {
+.row .col.push-s6, .submit-wrapper .col.push-s6, :host .col.push-s6, .submit-wrapper .push-s6.submit-button, :host .push-s6.edit-user-details-wrapper, :host .push-s6.edit-user-password-wrapper {
   left: 50%;
 }
 
-.row .col.offset-s7, .submit-wrapper .col.offset-s7, :host .edit-user-details-wrapper .col.offset-s7, :host .edit-user-password-wrapper .col.offset-s7, .submit-wrapper .offset-s7.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-s7, :host .edit-user-password-wrapper change-user-password.offset-s7 {
+.row .col.offset-s7, .submit-wrapper .col.offset-s7, :host .col.offset-s7, .submit-wrapper .offset-s7.submit-button, :host .offset-s7.edit-user-details-wrapper, :host .offset-s7.edit-user-password-wrapper {
   margin-left: 58.3333333333%;
 }
 
-.row .col.pull-s7, .submit-wrapper .col.pull-s7, :host .edit-user-details-wrapper .col.pull-s7, :host .edit-user-password-wrapper .col.pull-s7, .submit-wrapper .pull-s7.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-s7, :host .edit-user-password-wrapper change-user-password.pull-s7 {
+.row .col.pull-s7, .submit-wrapper .col.pull-s7, :host .col.pull-s7, .submit-wrapper .pull-s7.submit-button, :host .pull-s7.edit-user-details-wrapper, :host .pull-s7.edit-user-password-wrapper {
   right: 58.3333333333%;
 }
 
-.row .col.push-s7, .submit-wrapper .col.push-s7, :host .edit-user-details-wrapper .col.push-s7, :host .edit-user-password-wrapper .col.push-s7, .submit-wrapper .push-s7.submit-button, :host .edit-user-details-wrapper edit-user-details.push-s7, :host .edit-user-password-wrapper change-user-password.push-s7 {
+.row .col.push-s7, .submit-wrapper .col.push-s7, :host .col.push-s7, .submit-wrapper .push-s7.submit-button, :host .push-s7.edit-user-details-wrapper, :host .push-s7.edit-user-password-wrapper {
   left: 58.3333333333%;
 }
 
-.row .col.offset-s8, .submit-wrapper .col.offset-s8, :host .edit-user-details-wrapper .col.offset-s8, :host .edit-user-password-wrapper .col.offset-s8, .submit-wrapper .offset-s8.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-s8, :host .edit-user-password-wrapper change-user-password.offset-s8 {
+.row .col.offset-s8, .submit-wrapper .col.offset-s8, :host .col.offset-s8, .submit-wrapper .offset-s8.submit-button, :host .offset-s8.edit-user-details-wrapper, :host .offset-s8.edit-user-password-wrapper {
   margin-left: 66.6666666667%;
 }
 
-.row .col.pull-s8, .submit-wrapper .col.pull-s8, :host .edit-user-details-wrapper .col.pull-s8, :host .edit-user-password-wrapper .col.pull-s8, .submit-wrapper .pull-s8.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-s8, :host .edit-user-password-wrapper change-user-password.pull-s8 {
+.row .col.pull-s8, .submit-wrapper .col.pull-s8, :host .col.pull-s8, .submit-wrapper .pull-s8.submit-button, :host .pull-s8.edit-user-details-wrapper, :host .pull-s8.edit-user-password-wrapper {
   right: 66.6666666667%;
 }
 
-.row .col.push-s8, .submit-wrapper .col.push-s8, :host .edit-user-details-wrapper .col.push-s8, :host .edit-user-password-wrapper .col.push-s8, .submit-wrapper .push-s8.submit-button, :host .edit-user-details-wrapper edit-user-details.push-s8, :host .edit-user-password-wrapper change-user-password.push-s8 {
+.row .col.push-s8, .submit-wrapper .col.push-s8, :host .col.push-s8, .submit-wrapper .push-s8.submit-button, :host .push-s8.edit-user-details-wrapper, :host .push-s8.edit-user-password-wrapper {
   left: 66.6666666667%;
 }
 
-.row .col.offset-s9, .submit-wrapper .col.offset-s9, :host .edit-user-details-wrapper .col.offset-s9, :host .edit-user-password-wrapper .col.offset-s9, .submit-wrapper .offset-s9.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-s9, :host .edit-user-password-wrapper change-user-password.offset-s9 {
+.row .col.offset-s9, .submit-wrapper .col.offset-s9, :host .col.offset-s9, .submit-wrapper .offset-s9.submit-button, :host .offset-s9.edit-user-details-wrapper, :host .offset-s9.edit-user-password-wrapper {
   margin-left: 75%;
 }
 
-.row .col.pull-s9, .submit-wrapper .col.pull-s9, :host .edit-user-details-wrapper .col.pull-s9, :host .edit-user-password-wrapper .col.pull-s9, .submit-wrapper .pull-s9.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-s9, :host .edit-user-password-wrapper change-user-password.pull-s9 {
+.row .col.pull-s9, .submit-wrapper .col.pull-s9, :host .col.pull-s9, .submit-wrapper .pull-s9.submit-button, :host .pull-s9.edit-user-details-wrapper, :host .pull-s9.edit-user-password-wrapper {
   right: 75%;
 }
 
-.row .col.push-s9, .submit-wrapper .col.push-s9, :host .edit-user-details-wrapper .col.push-s9, :host .edit-user-password-wrapper .col.push-s9, .submit-wrapper .push-s9.submit-button, :host .edit-user-details-wrapper edit-user-details.push-s9, :host .edit-user-password-wrapper change-user-password.push-s9 {
+.row .col.push-s9, .submit-wrapper .col.push-s9, :host .col.push-s9, .submit-wrapper .push-s9.submit-button, :host .push-s9.edit-user-details-wrapper, :host .push-s9.edit-user-password-wrapper {
   left: 75%;
 }
 
-.row .col.offset-s10, .submit-wrapper .col.offset-s10, :host .edit-user-details-wrapper .col.offset-s10, :host .edit-user-password-wrapper .col.offset-s10, .submit-wrapper .offset-s10.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-s10, :host .edit-user-password-wrapper change-user-password.offset-s10 {
+.row .col.offset-s10, .submit-wrapper .col.offset-s10, :host .col.offset-s10, .submit-wrapper .offset-s10.submit-button, :host .offset-s10.edit-user-details-wrapper, :host .offset-s10.edit-user-password-wrapper {
   margin-left: 83.3333333333%;
 }
 
-.row .col.pull-s10, .submit-wrapper .col.pull-s10, :host .edit-user-details-wrapper .col.pull-s10, :host .edit-user-password-wrapper .col.pull-s10, .submit-wrapper .pull-s10.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-s10, :host .edit-user-password-wrapper change-user-password.pull-s10 {
+.row .col.pull-s10, .submit-wrapper .col.pull-s10, :host .col.pull-s10, .submit-wrapper .pull-s10.submit-button, :host .pull-s10.edit-user-details-wrapper, :host .pull-s10.edit-user-password-wrapper {
   right: 83.3333333333%;
 }
 
-.row .col.push-s10, .submit-wrapper .col.push-s10, :host .edit-user-details-wrapper .col.push-s10, :host .edit-user-password-wrapper .col.push-s10, .submit-wrapper .push-s10.submit-button, :host .edit-user-details-wrapper edit-user-details.push-s10, :host .edit-user-password-wrapper change-user-password.push-s10 {
+.row .col.push-s10, .submit-wrapper .col.push-s10, :host .col.push-s10, .submit-wrapper .push-s10.submit-button, :host .push-s10.edit-user-details-wrapper, :host .push-s10.edit-user-password-wrapper {
   left: 83.3333333333%;
 }
 
-.row .col.offset-s11, .submit-wrapper .col.offset-s11, :host .edit-user-details-wrapper .col.offset-s11, :host .edit-user-password-wrapper .col.offset-s11, .submit-wrapper .offset-s11.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-s11, :host .edit-user-password-wrapper change-user-password.offset-s11 {
+.row .col.offset-s11, .submit-wrapper .col.offset-s11, :host .col.offset-s11, .submit-wrapper .offset-s11.submit-button, :host .offset-s11.edit-user-details-wrapper, :host .offset-s11.edit-user-password-wrapper {
   margin-left: 91.6666666667%;
 }
 
-.row .col.pull-s11, .submit-wrapper .col.pull-s11, :host .edit-user-details-wrapper .col.pull-s11, :host .edit-user-password-wrapper .col.pull-s11, .submit-wrapper .pull-s11.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-s11, :host .edit-user-password-wrapper change-user-password.pull-s11 {
+.row .col.pull-s11, .submit-wrapper .col.pull-s11, :host .col.pull-s11, .submit-wrapper .pull-s11.submit-button, :host .pull-s11.edit-user-details-wrapper, :host .pull-s11.edit-user-password-wrapper {
   right: 91.6666666667%;
 }
 
-.row .col.push-s11, .submit-wrapper .col.push-s11, :host .edit-user-details-wrapper .col.push-s11, :host .edit-user-password-wrapper .col.push-s11, .submit-wrapper .push-s11.submit-button, :host .edit-user-details-wrapper edit-user-details.push-s11, :host .edit-user-password-wrapper change-user-password.push-s11 {
+.row .col.push-s11, .submit-wrapper .col.push-s11, :host .col.push-s11, .submit-wrapper .push-s11.submit-button, :host .push-s11.edit-user-details-wrapper, :host .push-s11.edit-user-password-wrapper {
   left: 91.6666666667%;
 }
 
-.row .col.offset-s12, .submit-wrapper .col.offset-s12, :host .edit-user-details-wrapper .col.offset-s12, :host .edit-user-password-wrapper .col.offset-s12, .submit-wrapper .offset-s12.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-s12, :host .edit-user-password-wrapper change-user-password.offset-s12 {
+.row .col.offset-s12, .submit-wrapper .col.offset-s12, :host .col.offset-s12, .submit-wrapper .offset-s12.submit-button, :host .offset-s12.edit-user-details-wrapper, :host .offset-s12.edit-user-password-wrapper {
   margin-left: 100%;
 }
 
-.row .col.pull-s12, .submit-wrapper .col.pull-s12, :host .edit-user-details-wrapper .col.pull-s12, :host .edit-user-password-wrapper .col.pull-s12, .submit-wrapper .pull-s12.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-s12, :host .edit-user-password-wrapper change-user-password.pull-s12 {
+.row .col.pull-s12, .submit-wrapper .col.pull-s12, :host .col.pull-s12, .submit-wrapper .pull-s12.submit-button, :host .pull-s12.edit-user-details-wrapper, :host .pull-s12.edit-user-password-wrapper {
   right: 100%;
 }
 
-.row .col.push-s12, .submit-wrapper .col.push-s12, :host .edit-user-details-wrapper .col.push-s12, :host .edit-user-password-wrapper .col.push-s12, .submit-wrapper .push-s12.submit-button, :host .edit-user-details-wrapper edit-user-details.push-s12, :host .edit-user-password-wrapper change-user-password.push-s12 {
+.row .col.push-s12, .submit-wrapper .col.push-s12, :host .col.push-s12, .submit-wrapper .push-s12.submit-button, :host .push-s12.edit-user-details-wrapper, :host .push-s12.edit-user-password-wrapper {
   left: 100%;
 }
 
 @media only screen and (min-width: 601px) {
-  .row .col.m1, .submit-wrapper .col.m1, :host .edit-user-details-wrapper .col.m1, :host .edit-user-password-wrapper .col.m1, .submit-wrapper .m1.submit-button, :host .edit-user-details-wrapper edit-user-details.m1, :host .edit-user-password-wrapper change-user-password.m1 {
+  .row .col.m1, .submit-wrapper .col.m1, :host .col.m1, .submit-wrapper .m1.submit-button, :host .m1.edit-user-details-wrapper, :host .m1.edit-user-password-wrapper {
     width: 8.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m2, .submit-wrapper .col.m2, :host .edit-user-details-wrapper .col.m2, :host .edit-user-password-wrapper .col.m2, .submit-wrapper .m2.submit-button, :host .edit-user-details-wrapper edit-user-details.m2, :host .edit-user-password-wrapper change-user-password.m2 {
+  .row .col.m2, .submit-wrapper .col.m2, :host .col.m2, .submit-wrapper .m2.submit-button, :host .m2.edit-user-details-wrapper, :host .m2.edit-user-password-wrapper {
     width: 16.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m3, .submit-wrapper .col.m3, :host .edit-user-details-wrapper .col.m3, :host .edit-user-password-wrapper .col.m3, .submit-wrapper .m3.submit-button, :host .edit-user-details-wrapper edit-user-details.m3, :host .edit-user-password-wrapper change-user-password.m3 {
+  .row .col.m3, .submit-wrapper .col.m3, :host .col.m3, .submit-wrapper .m3.submit-button, :host .m3.edit-user-details-wrapper, :host .m3.edit-user-password-wrapper {
     width: 25%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m4, .submit-wrapper .col.m4, :host .edit-user-details-wrapper .col.m4, :host .edit-user-password-wrapper .col.m4, .submit-wrapper .m4.submit-button, :host .edit-user-details-wrapper edit-user-details.m4, :host .edit-user-password-wrapper change-user-password.m4 {
+  .row .col.m4, .submit-wrapper .col.m4, :host .col.m4, .submit-wrapper .m4.submit-button, :host .m4.edit-user-details-wrapper, :host .m4.edit-user-password-wrapper {
     width: 33.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m5, .submit-wrapper .col.m5, :host .edit-user-details-wrapper .col.m5, :host .edit-user-password-wrapper .col.m5, .submit-wrapper .m5.submit-button, :host .edit-user-details-wrapper edit-user-details.m5, :host .edit-user-password-wrapper change-user-password.m5 {
+  .row .col.m5, .submit-wrapper .col.m5, :host .col.m5, .submit-wrapper .m5.submit-button, :host .m5.edit-user-details-wrapper, :host .m5.edit-user-password-wrapper {
     width: 41.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m6, .submit-wrapper .col.m6, :host .edit-user-details-wrapper .col.m6, :host .edit-user-password-wrapper .col.m6, .submit-wrapper .m6.submit-button, :host .edit-user-details-wrapper edit-user-details.m6, :host .edit-user-password-wrapper change-user-password.m6 {
+  .row .col.m6, .submit-wrapper .col.m6, :host .col.m6, .submit-wrapper .m6.submit-button, :host .m6.edit-user-details-wrapper, :host .m6.edit-user-password-wrapper {
     width: 50%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m7, .submit-wrapper .col.m7, :host .edit-user-details-wrapper .col.m7, :host .edit-user-password-wrapper .col.m7, .submit-wrapper .m7.submit-button, :host .edit-user-details-wrapper edit-user-details.m7, :host .edit-user-password-wrapper change-user-password.m7 {
+  .row .col.m7, .submit-wrapper .col.m7, :host .col.m7, .submit-wrapper .m7.submit-button, :host .m7.edit-user-details-wrapper, :host .m7.edit-user-password-wrapper {
     width: 58.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m8, .submit-wrapper .col.m8, :host .edit-user-details-wrapper .col.m8, :host .edit-user-password-wrapper .col.m8, .submit-wrapper .m8.submit-button, .row :host .edit-user-details-wrapper edit-user-details, :host .edit-user-details-wrapper .row edit-user-details, :host .edit-user-details-wrapper edit-user-details, .row :host .edit-user-password-wrapper change-user-password, :host .edit-user-password-wrapper .row change-user-password, :host .edit-user-password-wrapper change-user-password {
+  .row .col.m8, .submit-wrapper .col.m8, :host .col.m8, .submit-wrapper .m8.submit-button, .row :host .edit-user-details-wrapper, :host .row .edit-user-details-wrapper, :host .edit-user-details-wrapper, .row :host .edit-user-password-wrapper, :host .row .edit-user-password-wrapper, :host .edit-user-password-wrapper {
     width: 66.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m9, .submit-wrapper .col.m9, :host .edit-user-details-wrapper .col.m9, :host .edit-user-password-wrapper .col.m9, .submit-wrapper .m9.submit-button, :host .edit-user-details-wrapper edit-user-details.m9, :host .edit-user-password-wrapper change-user-password.m9 {
+  .row .col.m9, .submit-wrapper .col.m9, :host .col.m9, .submit-wrapper .m9.submit-button, :host .m9.edit-user-details-wrapper, :host .m9.edit-user-password-wrapper {
     width: 75%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m10, .submit-wrapper .col.m10, :host .edit-user-details-wrapper .col.m10, :host .edit-user-password-wrapper .col.m10, .submit-wrapper .m10.submit-button, :host .edit-user-details-wrapper edit-user-details.m10, :host .edit-user-password-wrapper change-user-password.m10 {
+  .row .col.m10, .submit-wrapper .col.m10, :host .col.m10, .submit-wrapper .m10.submit-button, :host .m10.edit-user-details-wrapper, :host .m10.edit-user-password-wrapper {
     width: 83.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m11, .submit-wrapper .col.m11, :host .edit-user-details-wrapper .col.m11, :host .edit-user-password-wrapper .col.m11, .submit-wrapper .m11.submit-button, :host .edit-user-details-wrapper edit-user-details.m11, :host .edit-user-password-wrapper change-user-password.m11 {
+  .row .col.m11, .submit-wrapper .col.m11, :host .col.m11, .submit-wrapper .m11.submit-button, :host .m11.edit-user-details-wrapper, :host .m11.edit-user-password-wrapper {
     width: 91.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m12, .submit-wrapper .col.m12, :host .edit-user-details-wrapper .col.m12, :host .edit-user-password-wrapper .col.m12, .submit-wrapper .m12.submit-button, :host .edit-user-details-wrapper edit-user-details.m12, :host .edit-user-password-wrapper change-user-password.m12 {
+  .row .col.m12, .submit-wrapper .col.m12, :host .col.m12, .submit-wrapper .m12.submit-button, :host .m12.edit-user-details-wrapper, :host .m12.edit-user-password-wrapper {
     width: 100%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.offset-m1, .submit-wrapper .col.offset-m1, :host .edit-user-details-wrapper .col.offset-m1, :host .edit-user-password-wrapper .col.offset-m1, .submit-wrapper .offset-m1.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-m1, :host .edit-user-password-wrapper change-user-password.offset-m1 {
+  .row .col.offset-m1, .submit-wrapper .col.offset-m1, :host .col.offset-m1, .submit-wrapper .offset-m1.submit-button, :host .offset-m1.edit-user-details-wrapper, :host .offset-m1.edit-user-password-wrapper {
     margin-left: 8.3333333333%;
   }
-  .row .col.pull-m1, .submit-wrapper .col.pull-m1, :host .edit-user-details-wrapper .col.pull-m1, :host .edit-user-password-wrapper .col.pull-m1, .submit-wrapper .pull-m1.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-m1, :host .edit-user-password-wrapper change-user-password.pull-m1 {
+  .row .col.pull-m1, .submit-wrapper .col.pull-m1, :host .col.pull-m1, .submit-wrapper .pull-m1.submit-button, :host .pull-m1.edit-user-details-wrapper, :host .pull-m1.edit-user-password-wrapper {
     right: 8.3333333333%;
   }
-  .row .col.push-m1, .submit-wrapper .col.push-m1, :host .edit-user-details-wrapper .col.push-m1, :host .edit-user-password-wrapper .col.push-m1, .submit-wrapper .push-m1.submit-button, :host .edit-user-details-wrapper edit-user-details.push-m1, :host .edit-user-password-wrapper change-user-password.push-m1 {
+  .row .col.push-m1, .submit-wrapper .col.push-m1, :host .col.push-m1, .submit-wrapper .push-m1.submit-button, :host .push-m1.edit-user-details-wrapper, :host .push-m1.edit-user-password-wrapper {
     left: 8.3333333333%;
   }
-  .row .col.offset-m2, .submit-wrapper .col.offset-m2, :host .edit-user-details-wrapper .col.offset-m2, :host .edit-user-password-wrapper .col.offset-m2, .submit-wrapper .offset-m2.submit-button, .row :host .edit-user-details-wrapper edit-user-details, :host .edit-user-details-wrapper .row edit-user-details, :host .edit-user-details-wrapper edit-user-details, .row :host .edit-user-password-wrapper change-user-password, :host .edit-user-password-wrapper .row change-user-password, :host .edit-user-password-wrapper change-user-password {
+  .row .col.offset-m2, .submit-wrapper .col.offset-m2, :host .col.offset-m2, .submit-wrapper .offset-m2.submit-button, .row :host .edit-user-details-wrapper, :host .row .edit-user-details-wrapper, :host .edit-user-details-wrapper, .row :host .edit-user-password-wrapper, :host .row .edit-user-password-wrapper, :host .edit-user-password-wrapper {
     margin-left: 16.6666666667%;
   }
-  .row .col.pull-m2, .submit-wrapper .col.pull-m2, :host .edit-user-details-wrapper .col.pull-m2, :host .edit-user-password-wrapper .col.pull-m2, .submit-wrapper .pull-m2.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-m2, :host .edit-user-password-wrapper change-user-password.pull-m2 {
+  .row .col.pull-m2, .submit-wrapper .col.pull-m2, :host .col.pull-m2, .submit-wrapper .pull-m2.submit-button, :host .pull-m2.edit-user-details-wrapper, :host .pull-m2.edit-user-password-wrapper {
     right: 16.6666666667%;
   }
-  .row .col.push-m2, .submit-wrapper .col.push-m2, :host .edit-user-details-wrapper .col.push-m2, :host .edit-user-password-wrapper .col.push-m2, .submit-wrapper .push-m2.submit-button, :host .edit-user-details-wrapper edit-user-details.push-m2, :host .edit-user-password-wrapper change-user-password.push-m2 {
+  .row .col.push-m2, .submit-wrapper .col.push-m2, :host .col.push-m2, .submit-wrapper .push-m2.submit-button, :host .push-m2.edit-user-details-wrapper, :host .push-m2.edit-user-password-wrapper {
     left: 16.6666666667%;
   }
-  .row .col.offset-m3, .submit-wrapper .col.offset-m3, :host .edit-user-details-wrapper .col.offset-m3, :host .edit-user-password-wrapper .col.offset-m3, .submit-wrapper .offset-m3.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-m3, :host .edit-user-password-wrapper change-user-password.offset-m3 {
+  .row .col.offset-m3, .submit-wrapper .col.offset-m3, :host .col.offset-m3, .submit-wrapper .offset-m3.submit-button, :host .offset-m3.edit-user-details-wrapper, :host .offset-m3.edit-user-password-wrapper {
     margin-left: 25%;
   }
-  .row .col.pull-m3, .submit-wrapper .col.pull-m3, :host .edit-user-details-wrapper .col.pull-m3, :host .edit-user-password-wrapper .col.pull-m3, .submit-wrapper .pull-m3.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-m3, :host .edit-user-password-wrapper change-user-password.pull-m3 {
+  .row .col.pull-m3, .submit-wrapper .col.pull-m3, :host .col.pull-m3, .submit-wrapper .pull-m3.submit-button, :host .pull-m3.edit-user-details-wrapper, :host .pull-m3.edit-user-password-wrapper {
     right: 25%;
   }
-  .row .col.push-m3, .submit-wrapper .col.push-m3, :host .edit-user-details-wrapper .col.push-m3, :host .edit-user-password-wrapper .col.push-m3, .submit-wrapper .push-m3.submit-button, :host .edit-user-details-wrapper edit-user-details.push-m3, :host .edit-user-password-wrapper change-user-password.push-m3 {
+  .row .col.push-m3, .submit-wrapper .col.push-m3, :host .col.push-m3, .submit-wrapper .push-m3.submit-button, :host .push-m3.edit-user-details-wrapper, :host .push-m3.edit-user-password-wrapper {
     left: 25%;
   }
-  .row .col.offset-m4, .submit-wrapper .col.offset-m4, :host .edit-user-details-wrapper .col.offset-m4, :host .edit-user-password-wrapper .col.offset-m4, .submit-wrapper .offset-m4.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-m4, :host .edit-user-password-wrapper change-user-password.offset-m4 {
+  .row .col.offset-m4, .submit-wrapper .col.offset-m4, :host .col.offset-m4, .submit-wrapper .offset-m4.submit-button, :host .offset-m4.edit-user-details-wrapper, :host .offset-m4.edit-user-password-wrapper {
     margin-left: 33.3333333333%;
   }
-  .row .col.pull-m4, .submit-wrapper .col.pull-m4, :host .edit-user-details-wrapper .col.pull-m4, :host .edit-user-password-wrapper .col.pull-m4, .submit-wrapper .pull-m4.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-m4, :host .edit-user-password-wrapper change-user-password.pull-m4 {
+  .row .col.pull-m4, .submit-wrapper .col.pull-m4, :host .col.pull-m4, .submit-wrapper .pull-m4.submit-button, :host .pull-m4.edit-user-details-wrapper, :host .pull-m4.edit-user-password-wrapper {
     right: 33.3333333333%;
   }
-  .row .col.push-m4, .submit-wrapper .col.push-m4, :host .edit-user-details-wrapper .col.push-m4, :host .edit-user-password-wrapper .col.push-m4, .submit-wrapper .push-m4.submit-button, :host .edit-user-details-wrapper edit-user-details.push-m4, :host .edit-user-password-wrapper change-user-password.push-m4 {
+  .row .col.push-m4, .submit-wrapper .col.push-m4, :host .col.push-m4, .submit-wrapper .push-m4.submit-button, :host .push-m4.edit-user-details-wrapper, :host .push-m4.edit-user-password-wrapper {
     left: 33.3333333333%;
   }
-  .row .col.offset-m5, .submit-wrapper .col.offset-m5, :host .edit-user-details-wrapper .col.offset-m5, :host .edit-user-password-wrapper .col.offset-m5, .submit-wrapper .offset-m5.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-m5, :host .edit-user-password-wrapper change-user-password.offset-m5 {
+  .row .col.offset-m5, .submit-wrapper .col.offset-m5, :host .col.offset-m5, .submit-wrapper .offset-m5.submit-button, :host .offset-m5.edit-user-details-wrapper, :host .offset-m5.edit-user-password-wrapper {
     margin-left: 41.6666666667%;
   }
-  .row .col.pull-m5, .submit-wrapper .col.pull-m5, :host .edit-user-details-wrapper .col.pull-m5, :host .edit-user-password-wrapper .col.pull-m5, .submit-wrapper .pull-m5.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-m5, :host .edit-user-password-wrapper change-user-password.pull-m5 {
+  .row .col.pull-m5, .submit-wrapper .col.pull-m5, :host .col.pull-m5, .submit-wrapper .pull-m5.submit-button, :host .pull-m5.edit-user-details-wrapper, :host .pull-m5.edit-user-password-wrapper {
     right: 41.6666666667%;
   }
-  .row .col.push-m5, .submit-wrapper .col.push-m5, :host .edit-user-details-wrapper .col.push-m5, :host .edit-user-password-wrapper .col.push-m5, .submit-wrapper .push-m5.submit-button, :host .edit-user-details-wrapper edit-user-details.push-m5, :host .edit-user-password-wrapper change-user-password.push-m5 {
+  .row .col.push-m5, .submit-wrapper .col.push-m5, :host .col.push-m5, .submit-wrapper .push-m5.submit-button, :host .push-m5.edit-user-details-wrapper, :host .push-m5.edit-user-password-wrapper {
     left: 41.6666666667%;
   }
-  .row .col.offset-m6, .submit-wrapper .col.offset-m6, :host .edit-user-details-wrapper .col.offset-m6, :host .edit-user-password-wrapper .col.offset-m6, .submit-wrapper .offset-m6.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-m6, :host .edit-user-password-wrapper change-user-password.offset-m6 {
+  .row .col.offset-m6, .submit-wrapper .col.offset-m6, :host .col.offset-m6, .submit-wrapper .offset-m6.submit-button, :host .offset-m6.edit-user-details-wrapper, :host .offset-m6.edit-user-password-wrapper {
     margin-left: 50%;
   }
-  .row .col.pull-m6, .submit-wrapper .col.pull-m6, :host .edit-user-details-wrapper .col.pull-m6, :host .edit-user-password-wrapper .col.pull-m6, .submit-wrapper .pull-m6.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-m6, :host .edit-user-password-wrapper change-user-password.pull-m6 {
+  .row .col.pull-m6, .submit-wrapper .col.pull-m6, :host .col.pull-m6, .submit-wrapper .pull-m6.submit-button, :host .pull-m6.edit-user-details-wrapper, :host .pull-m6.edit-user-password-wrapper {
     right: 50%;
   }
-  .row .col.push-m6, .submit-wrapper .col.push-m6, :host .edit-user-details-wrapper .col.push-m6, :host .edit-user-password-wrapper .col.push-m6, .submit-wrapper .push-m6.submit-button, :host .edit-user-details-wrapper edit-user-details.push-m6, :host .edit-user-password-wrapper change-user-password.push-m6 {
+  .row .col.push-m6, .submit-wrapper .col.push-m6, :host .col.push-m6, .submit-wrapper .push-m6.submit-button, :host .push-m6.edit-user-details-wrapper, :host .push-m6.edit-user-password-wrapper {
     left: 50%;
   }
-  .row .col.offset-m7, .submit-wrapper .col.offset-m7, :host .edit-user-details-wrapper .col.offset-m7, :host .edit-user-password-wrapper .col.offset-m7, .submit-wrapper .offset-m7.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-m7, :host .edit-user-password-wrapper change-user-password.offset-m7 {
+  .row .col.offset-m7, .submit-wrapper .col.offset-m7, :host .col.offset-m7, .submit-wrapper .offset-m7.submit-button, :host .offset-m7.edit-user-details-wrapper, :host .offset-m7.edit-user-password-wrapper {
     margin-left: 58.3333333333%;
   }
-  .row .col.pull-m7, .submit-wrapper .col.pull-m7, :host .edit-user-details-wrapper .col.pull-m7, :host .edit-user-password-wrapper .col.pull-m7, .submit-wrapper .pull-m7.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-m7, :host .edit-user-password-wrapper change-user-password.pull-m7 {
+  .row .col.pull-m7, .submit-wrapper .col.pull-m7, :host .col.pull-m7, .submit-wrapper .pull-m7.submit-button, :host .pull-m7.edit-user-details-wrapper, :host .pull-m7.edit-user-password-wrapper {
     right: 58.3333333333%;
   }
-  .row .col.push-m7, .submit-wrapper .col.push-m7, :host .edit-user-details-wrapper .col.push-m7, :host .edit-user-password-wrapper .col.push-m7, .submit-wrapper .push-m7.submit-button, :host .edit-user-details-wrapper edit-user-details.push-m7, :host .edit-user-password-wrapper change-user-password.push-m7 {
+  .row .col.push-m7, .submit-wrapper .col.push-m7, :host .col.push-m7, .submit-wrapper .push-m7.submit-button, :host .push-m7.edit-user-details-wrapper, :host .push-m7.edit-user-password-wrapper {
     left: 58.3333333333%;
   }
-  .row .col.offset-m8, .submit-wrapper .col.offset-m8, :host .edit-user-details-wrapper .col.offset-m8, :host .edit-user-password-wrapper .col.offset-m8, .submit-wrapper .offset-m8.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-m8, :host .edit-user-password-wrapper change-user-password.offset-m8 {
+  .row .col.offset-m8, .submit-wrapper .col.offset-m8, :host .col.offset-m8, .submit-wrapper .offset-m8.submit-button, :host .offset-m8.edit-user-details-wrapper, :host .offset-m8.edit-user-password-wrapper {
     margin-left: 66.6666666667%;
   }
-  .row .col.pull-m8, .submit-wrapper .col.pull-m8, :host .edit-user-details-wrapper .col.pull-m8, :host .edit-user-password-wrapper .col.pull-m8, .submit-wrapper .pull-m8.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-m8, :host .edit-user-password-wrapper change-user-password.pull-m8 {
+  .row .col.pull-m8, .submit-wrapper .col.pull-m8, :host .col.pull-m8, .submit-wrapper .pull-m8.submit-button, :host .pull-m8.edit-user-details-wrapper, :host .pull-m8.edit-user-password-wrapper {
     right: 66.6666666667%;
   }
-  .row .col.push-m8, .submit-wrapper .col.push-m8, :host .edit-user-details-wrapper .col.push-m8, :host .edit-user-password-wrapper .col.push-m8, .submit-wrapper .push-m8.submit-button, :host .edit-user-details-wrapper edit-user-details.push-m8, :host .edit-user-password-wrapper change-user-password.push-m8 {
+  .row .col.push-m8, .submit-wrapper .col.push-m8, :host .col.push-m8, .submit-wrapper .push-m8.submit-button, :host .push-m8.edit-user-details-wrapper, :host .push-m8.edit-user-password-wrapper {
     left: 66.6666666667%;
   }
-  .row .col.offset-m9, .submit-wrapper .col.offset-m9, :host .edit-user-details-wrapper .col.offset-m9, :host .edit-user-password-wrapper .col.offset-m9, .submit-wrapper .offset-m9.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-m9, :host .edit-user-password-wrapper change-user-password.offset-m9 {
+  .row .col.offset-m9, .submit-wrapper .col.offset-m9, :host .col.offset-m9, .submit-wrapper .offset-m9.submit-button, :host .offset-m9.edit-user-details-wrapper, :host .offset-m9.edit-user-password-wrapper {
     margin-left: 75%;
   }
-  .row .col.pull-m9, .submit-wrapper .col.pull-m9, :host .edit-user-details-wrapper .col.pull-m9, :host .edit-user-password-wrapper .col.pull-m9, .submit-wrapper .pull-m9.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-m9, :host .edit-user-password-wrapper change-user-password.pull-m9 {
+  .row .col.pull-m9, .submit-wrapper .col.pull-m9, :host .col.pull-m9, .submit-wrapper .pull-m9.submit-button, :host .pull-m9.edit-user-details-wrapper, :host .pull-m9.edit-user-password-wrapper {
     right: 75%;
   }
-  .row .col.push-m9, .submit-wrapper .col.push-m9, :host .edit-user-details-wrapper .col.push-m9, :host .edit-user-password-wrapper .col.push-m9, .submit-wrapper .push-m9.submit-button, :host .edit-user-details-wrapper edit-user-details.push-m9, :host .edit-user-password-wrapper change-user-password.push-m9 {
+  .row .col.push-m9, .submit-wrapper .col.push-m9, :host .col.push-m9, .submit-wrapper .push-m9.submit-button, :host .push-m9.edit-user-details-wrapper, :host .push-m9.edit-user-password-wrapper {
     left: 75%;
   }
-  .row .col.offset-m10, .submit-wrapper .col.offset-m10, :host .edit-user-details-wrapper .col.offset-m10, :host .edit-user-password-wrapper .col.offset-m10, .submit-wrapper .offset-m10.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-m10, :host .edit-user-password-wrapper change-user-password.offset-m10 {
+  .row .col.offset-m10, .submit-wrapper .col.offset-m10, :host .col.offset-m10, .submit-wrapper .offset-m10.submit-button, :host .offset-m10.edit-user-details-wrapper, :host .offset-m10.edit-user-password-wrapper {
     margin-left: 83.3333333333%;
   }
-  .row .col.pull-m10, .submit-wrapper .col.pull-m10, :host .edit-user-details-wrapper .col.pull-m10, :host .edit-user-password-wrapper .col.pull-m10, .submit-wrapper .pull-m10.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-m10, :host .edit-user-password-wrapper change-user-password.pull-m10 {
+  .row .col.pull-m10, .submit-wrapper .col.pull-m10, :host .col.pull-m10, .submit-wrapper .pull-m10.submit-button, :host .pull-m10.edit-user-details-wrapper, :host .pull-m10.edit-user-password-wrapper {
     right: 83.3333333333%;
   }
-  .row .col.push-m10, .submit-wrapper .col.push-m10, :host .edit-user-details-wrapper .col.push-m10, :host .edit-user-password-wrapper .col.push-m10, .submit-wrapper .push-m10.submit-button, :host .edit-user-details-wrapper edit-user-details.push-m10, :host .edit-user-password-wrapper change-user-password.push-m10 {
+  .row .col.push-m10, .submit-wrapper .col.push-m10, :host .col.push-m10, .submit-wrapper .push-m10.submit-button, :host .push-m10.edit-user-details-wrapper, :host .push-m10.edit-user-password-wrapper {
     left: 83.3333333333%;
   }
-  .row .col.offset-m11, .submit-wrapper .col.offset-m11, :host .edit-user-details-wrapper .col.offset-m11, :host .edit-user-password-wrapper .col.offset-m11, .submit-wrapper .offset-m11.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-m11, :host .edit-user-password-wrapper change-user-password.offset-m11 {
+  .row .col.offset-m11, .submit-wrapper .col.offset-m11, :host .col.offset-m11, .submit-wrapper .offset-m11.submit-button, :host .offset-m11.edit-user-details-wrapper, :host .offset-m11.edit-user-password-wrapper {
     margin-left: 91.6666666667%;
   }
-  .row .col.pull-m11, .submit-wrapper .col.pull-m11, :host .edit-user-details-wrapper .col.pull-m11, :host .edit-user-password-wrapper .col.pull-m11, .submit-wrapper .pull-m11.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-m11, :host .edit-user-password-wrapper change-user-password.pull-m11 {
+  .row .col.pull-m11, .submit-wrapper .col.pull-m11, :host .col.pull-m11, .submit-wrapper .pull-m11.submit-button, :host .pull-m11.edit-user-details-wrapper, :host .pull-m11.edit-user-password-wrapper {
     right: 91.6666666667%;
   }
-  .row .col.push-m11, .submit-wrapper .col.push-m11, :host .edit-user-details-wrapper .col.push-m11, :host .edit-user-password-wrapper .col.push-m11, .submit-wrapper .push-m11.submit-button, :host .edit-user-details-wrapper edit-user-details.push-m11, :host .edit-user-password-wrapper change-user-password.push-m11 {
+  .row .col.push-m11, .submit-wrapper .col.push-m11, :host .col.push-m11, .submit-wrapper .push-m11.submit-button, :host .push-m11.edit-user-details-wrapper, :host .push-m11.edit-user-password-wrapper {
     left: 91.6666666667%;
   }
-  .row .col.offset-m12, .submit-wrapper .col.offset-m12, :host .edit-user-details-wrapper .col.offset-m12, :host .edit-user-password-wrapper .col.offset-m12, .submit-wrapper .offset-m12.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-m12, :host .edit-user-password-wrapper change-user-password.offset-m12 {
+  .row .col.offset-m12, .submit-wrapper .col.offset-m12, :host .col.offset-m12, .submit-wrapper .offset-m12.submit-button, :host .offset-m12.edit-user-details-wrapper, :host .offset-m12.edit-user-password-wrapper {
     margin-left: 100%;
   }
-  .row .col.pull-m12, .submit-wrapper .col.pull-m12, :host .edit-user-details-wrapper .col.pull-m12, :host .edit-user-password-wrapper .col.pull-m12, .submit-wrapper .pull-m12.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-m12, :host .edit-user-password-wrapper change-user-password.pull-m12 {
+  .row .col.pull-m12, .submit-wrapper .col.pull-m12, :host .col.pull-m12, .submit-wrapper .pull-m12.submit-button, :host .pull-m12.edit-user-details-wrapper, :host .pull-m12.edit-user-password-wrapper {
     right: 100%;
   }
-  .row .col.push-m12, .submit-wrapper .col.push-m12, :host .edit-user-details-wrapper .col.push-m12, :host .edit-user-password-wrapper .col.push-m12, .submit-wrapper .push-m12.submit-button, :host .edit-user-details-wrapper edit-user-details.push-m12, :host .edit-user-password-wrapper change-user-password.push-m12 {
+  .row .col.push-m12, .submit-wrapper .col.push-m12, :host .col.push-m12, .submit-wrapper .push-m12.submit-button, :host .push-m12.edit-user-details-wrapper, :host .push-m12.edit-user-password-wrapper {
     left: 100%;
   }
 }
 
 @media only screen and (min-width: 993px) {
-  .row .col.l1, .submit-wrapper .col.l1, :host .edit-user-details-wrapper .col.l1, :host .edit-user-password-wrapper .col.l1, .submit-wrapper .l1.submit-button, :host .edit-user-details-wrapper edit-user-details.l1, :host .edit-user-password-wrapper change-user-password.l1 {
+  .row .col.l1, .submit-wrapper .col.l1, :host .col.l1, .submit-wrapper .l1.submit-button, :host .l1.edit-user-details-wrapper, :host .l1.edit-user-password-wrapper {
     width: 8.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l2, .submit-wrapper .col.l2, :host .edit-user-details-wrapper .col.l2, :host .edit-user-password-wrapper .col.l2, .submit-wrapper .l2.submit-button, :host .edit-user-details-wrapper edit-user-details.l2, :host .edit-user-password-wrapper change-user-password.l2 {
+  .row .col.l2, .submit-wrapper .col.l2, :host .col.l2, .submit-wrapper .l2.submit-button, :host .l2.edit-user-details-wrapper, :host .l2.edit-user-password-wrapper {
     width: 16.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l3, .submit-wrapper .col.l3, :host .edit-user-details-wrapper .col.l3, :host .edit-user-password-wrapper .col.l3, .submit-wrapper .l3.submit-button, :host .edit-user-details-wrapper edit-user-details.l3, :host .edit-user-password-wrapper change-user-password.l3 {
+  .row .col.l3, .submit-wrapper .col.l3, :host .col.l3, .submit-wrapper .l3.submit-button, :host .l3.edit-user-details-wrapper, :host .l3.edit-user-password-wrapper {
     width: 25%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l4, .submit-wrapper .col.l4, :host .edit-user-details-wrapper .col.l4, :host .edit-user-password-wrapper .col.l4, .submit-wrapper .l4.submit-button, :host .edit-user-details-wrapper edit-user-details.l4, :host .edit-user-password-wrapper change-user-password.l4 {
+  .row .col.l4, .submit-wrapper .col.l4, :host .col.l4, .submit-wrapper .l4.submit-button, :host .l4.edit-user-details-wrapper, :host .l4.edit-user-password-wrapper {
     width: 33.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l5, .submit-wrapper .col.l5, :host .edit-user-details-wrapper .col.l5, :host .edit-user-password-wrapper .col.l5, .submit-wrapper .l5.submit-button, :host .edit-user-details-wrapper edit-user-details.l5, :host .edit-user-password-wrapper change-user-password.l5 {
+  .row .col.l5, .submit-wrapper .col.l5, :host .col.l5, .submit-wrapper .l5.submit-button, :host .l5.edit-user-details-wrapper, :host .l5.edit-user-password-wrapper {
     width: 41.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l6, .submit-wrapper .col.l6, :host .edit-user-details-wrapper .col.l6, :host .edit-user-password-wrapper .col.l6, .submit-wrapper .l6.submit-button, .row :host .edit-user-details-wrapper edit-user-details, :host .edit-user-details-wrapper .row edit-user-details, :host .edit-user-details-wrapper edit-user-details, .row :host .edit-user-password-wrapper change-user-password, :host .edit-user-password-wrapper .row change-user-password, :host .edit-user-password-wrapper change-user-password {
+  .row .col.l6, .submit-wrapper .col.l6, :host .col.l6, .submit-wrapper .l6.submit-button, .row :host .edit-user-details-wrapper, :host .row .edit-user-details-wrapper, :host .edit-user-details-wrapper, .row :host .edit-user-password-wrapper, :host .row .edit-user-password-wrapper, :host .edit-user-password-wrapper {
     width: 50%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l7, .submit-wrapper .col.l7, :host .edit-user-details-wrapper .col.l7, :host .edit-user-password-wrapper .col.l7, .submit-wrapper .l7.submit-button, :host .edit-user-details-wrapper edit-user-details.l7, :host .edit-user-password-wrapper change-user-password.l7 {
+  .row .col.l7, .submit-wrapper .col.l7, :host .col.l7, .submit-wrapper .l7.submit-button, :host .l7.edit-user-details-wrapper, :host .l7.edit-user-password-wrapper {
     width: 58.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l8, .submit-wrapper .col.l8, :host .edit-user-details-wrapper .col.l8, :host .edit-user-password-wrapper .col.l8, .submit-wrapper .l8.submit-button, :host .edit-user-details-wrapper edit-user-details.l8, :host .edit-user-password-wrapper change-user-password.l8 {
+  .row .col.l8, .submit-wrapper .col.l8, :host .col.l8, .submit-wrapper .l8.submit-button, :host .l8.edit-user-details-wrapper, :host .l8.edit-user-password-wrapper {
     width: 66.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l9, .submit-wrapper .col.l9, :host .edit-user-details-wrapper .col.l9, :host .edit-user-password-wrapper .col.l9, .submit-wrapper .l9.submit-button, :host .edit-user-details-wrapper edit-user-details.l9, :host .edit-user-password-wrapper change-user-password.l9 {
+  .row .col.l9, .submit-wrapper .col.l9, :host .col.l9, .submit-wrapper .l9.submit-button, :host .l9.edit-user-details-wrapper, :host .l9.edit-user-password-wrapper {
     width: 75%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l10, .submit-wrapper .col.l10, :host .edit-user-details-wrapper .col.l10, :host .edit-user-password-wrapper .col.l10, .submit-wrapper .l10.submit-button, :host .edit-user-details-wrapper edit-user-details.l10, :host .edit-user-password-wrapper change-user-password.l10 {
+  .row .col.l10, .submit-wrapper .col.l10, :host .col.l10, .submit-wrapper .l10.submit-button, :host .l10.edit-user-details-wrapper, :host .l10.edit-user-password-wrapper {
     width: 83.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l11, .submit-wrapper .col.l11, :host .edit-user-details-wrapper .col.l11, :host .edit-user-password-wrapper .col.l11, .submit-wrapper .l11.submit-button, :host .edit-user-details-wrapper edit-user-details.l11, :host .edit-user-password-wrapper change-user-password.l11 {
+  .row .col.l11, .submit-wrapper .col.l11, :host .col.l11, .submit-wrapper .l11.submit-button, :host .l11.edit-user-details-wrapper, :host .l11.edit-user-password-wrapper {
     width: 91.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l12, .submit-wrapper .col.l12, :host .edit-user-details-wrapper .col.l12, :host .edit-user-password-wrapper .col.l12, .row .submit-wrapper .submit-button, .submit-wrapper .row .submit-button, .submit-wrapper .submit-button, :host .edit-user-details-wrapper edit-user-details.l12, :host .edit-user-details-wrapper .submit-wrapper edit-user-details.submit-button, .submit-wrapper :host .edit-user-details-wrapper edit-user-details.submit-button, :host .edit-user-password-wrapper change-user-password.l12, :host .edit-user-password-wrapper .submit-wrapper change-user-password.submit-button, .submit-wrapper :host .edit-user-password-wrapper change-user-password.submit-button {
+  .row .col.l12, .submit-wrapper .col.l12, :host .col.l12, .row .submit-wrapper .submit-button, .submit-wrapper .row .submit-button, .submit-wrapper .submit-button, :host .l12.edit-user-details-wrapper, :host .l12.edit-user-password-wrapper {
     width: 100%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.offset-l1, .submit-wrapper .col.offset-l1, :host .edit-user-details-wrapper .col.offset-l1, :host .edit-user-password-wrapper .col.offset-l1, .submit-wrapper .offset-l1.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-l1, :host .edit-user-password-wrapper change-user-password.offset-l1 {
+  .row .col.offset-l1, .submit-wrapper .col.offset-l1, :host .col.offset-l1, .submit-wrapper .offset-l1.submit-button, :host .offset-l1.edit-user-details-wrapper, :host .offset-l1.edit-user-password-wrapper {
     margin-left: 8.3333333333%;
   }
-  .row .col.pull-l1, .submit-wrapper .col.pull-l1, :host .edit-user-details-wrapper .col.pull-l1, :host .edit-user-password-wrapper .col.pull-l1, .submit-wrapper .pull-l1.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-l1, :host .edit-user-password-wrapper change-user-password.pull-l1 {
+  .row .col.pull-l1, .submit-wrapper .col.pull-l1, :host .col.pull-l1, .submit-wrapper .pull-l1.submit-button, :host .pull-l1.edit-user-details-wrapper, :host .pull-l1.edit-user-password-wrapper {
     right: 8.3333333333%;
   }
-  .row .col.push-l1, .submit-wrapper .col.push-l1, :host .edit-user-details-wrapper .col.push-l1, :host .edit-user-password-wrapper .col.push-l1, .submit-wrapper .push-l1.submit-button, :host .edit-user-details-wrapper edit-user-details.push-l1, :host .edit-user-password-wrapper change-user-password.push-l1 {
+  .row .col.push-l1, .submit-wrapper .col.push-l1, :host .col.push-l1, .submit-wrapper .push-l1.submit-button, :host .push-l1.edit-user-details-wrapper, :host .push-l1.edit-user-password-wrapper {
     left: 8.3333333333%;
   }
-  .row .col.offset-l2, .submit-wrapper .col.offset-l2, :host .edit-user-details-wrapper .col.offset-l2, :host .edit-user-password-wrapper .col.offset-l2, .submit-wrapper .offset-l2.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-l2, :host .edit-user-password-wrapper change-user-password.offset-l2 {
+  .row .col.offset-l2, .submit-wrapper .col.offset-l2, :host .col.offset-l2, .submit-wrapper .offset-l2.submit-button, :host .offset-l2.edit-user-details-wrapper, :host .offset-l2.edit-user-password-wrapper {
     margin-left: 16.6666666667%;
   }
-  .row .col.pull-l2, .submit-wrapper .col.pull-l2, :host .edit-user-details-wrapper .col.pull-l2, :host .edit-user-password-wrapper .col.pull-l2, .submit-wrapper .pull-l2.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-l2, :host .edit-user-password-wrapper change-user-password.pull-l2 {
+  .row .col.pull-l2, .submit-wrapper .col.pull-l2, :host .col.pull-l2, .submit-wrapper .pull-l2.submit-button, :host .pull-l2.edit-user-details-wrapper, :host .pull-l2.edit-user-password-wrapper {
     right: 16.6666666667%;
   }
-  .row .col.push-l2, .submit-wrapper .col.push-l2, :host .edit-user-details-wrapper .col.push-l2, :host .edit-user-password-wrapper .col.push-l2, .submit-wrapper .push-l2.submit-button, :host .edit-user-details-wrapper edit-user-details.push-l2, :host .edit-user-password-wrapper change-user-password.push-l2 {
+  .row .col.push-l2, .submit-wrapper .col.push-l2, :host .col.push-l2, .submit-wrapper .push-l2.submit-button, :host .push-l2.edit-user-details-wrapper, :host .push-l2.edit-user-password-wrapper {
     left: 16.6666666667%;
   }
-  .row .col.offset-l3, .submit-wrapper .col.offset-l3, :host .edit-user-details-wrapper .col.offset-l3, :host .edit-user-password-wrapper .col.offset-l3, .submit-wrapper .offset-l3.submit-button, .row :host .edit-user-details-wrapper edit-user-details, :host .edit-user-details-wrapper .row edit-user-details, :host .edit-user-details-wrapper edit-user-details, .row :host .edit-user-password-wrapper change-user-password, :host .edit-user-password-wrapper .row change-user-password, :host .edit-user-password-wrapper change-user-password {
+  .row .col.offset-l3, .submit-wrapper .col.offset-l3, :host .col.offset-l3, .submit-wrapper .offset-l3.submit-button, .row :host .edit-user-details-wrapper, :host .row .edit-user-details-wrapper, :host .edit-user-details-wrapper, .row :host .edit-user-password-wrapper, :host .row .edit-user-password-wrapper, :host .edit-user-password-wrapper {
     margin-left: 25%;
   }
-  .row .col.pull-l3, .submit-wrapper .col.pull-l3, :host .edit-user-details-wrapper .col.pull-l3, :host .edit-user-password-wrapper .col.pull-l3, .submit-wrapper .pull-l3.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-l3, :host .edit-user-password-wrapper change-user-password.pull-l3 {
+  .row .col.pull-l3, .submit-wrapper .col.pull-l3, :host .col.pull-l3, .submit-wrapper .pull-l3.submit-button, :host .pull-l3.edit-user-details-wrapper, :host .pull-l3.edit-user-password-wrapper {
     right: 25%;
   }
-  .row .col.push-l3, .submit-wrapper .col.push-l3, :host .edit-user-details-wrapper .col.push-l3, :host .edit-user-password-wrapper .col.push-l3, .submit-wrapper .push-l3.submit-button, :host .edit-user-details-wrapper edit-user-details.push-l3, :host .edit-user-password-wrapper change-user-password.push-l3 {
+  .row .col.push-l3, .submit-wrapper .col.push-l3, :host .col.push-l3, .submit-wrapper .push-l3.submit-button, :host .push-l3.edit-user-details-wrapper, :host .push-l3.edit-user-password-wrapper {
     left: 25%;
   }
-  .row .col.offset-l4, .submit-wrapper .col.offset-l4, :host .edit-user-details-wrapper .col.offset-l4, :host .edit-user-password-wrapper .col.offset-l4, .submit-wrapper .offset-l4.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-l4, :host .edit-user-password-wrapper change-user-password.offset-l4 {
+  .row .col.offset-l4, .submit-wrapper .col.offset-l4, :host .col.offset-l4, .submit-wrapper .offset-l4.submit-button, :host .offset-l4.edit-user-details-wrapper, :host .offset-l4.edit-user-password-wrapper {
     margin-left: 33.3333333333%;
   }
-  .row .col.pull-l4, .submit-wrapper .col.pull-l4, :host .edit-user-details-wrapper .col.pull-l4, :host .edit-user-password-wrapper .col.pull-l4, .submit-wrapper .pull-l4.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-l4, :host .edit-user-password-wrapper change-user-password.pull-l4 {
+  .row .col.pull-l4, .submit-wrapper .col.pull-l4, :host .col.pull-l4, .submit-wrapper .pull-l4.submit-button, :host .pull-l4.edit-user-details-wrapper, :host .pull-l4.edit-user-password-wrapper {
     right: 33.3333333333%;
   }
-  .row .col.push-l4, .submit-wrapper .col.push-l4, :host .edit-user-details-wrapper .col.push-l4, :host .edit-user-password-wrapper .col.push-l4, .submit-wrapper .push-l4.submit-button, :host .edit-user-details-wrapper edit-user-details.push-l4, :host .edit-user-password-wrapper change-user-password.push-l4 {
+  .row .col.push-l4, .submit-wrapper .col.push-l4, :host .col.push-l4, .submit-wrapper .push-l4.submit-button, :host .push-l4.edit-user-details-wrapper, :host .push-l4.edit-user-password-wrapper {
     left: 33.3333333333%;
   }
-  .row .col.offset-l5, .submit-wrapper .col.offset-l5, :host .edit-user-details-wrapper .col.offset-l5, :host .edit-user-password-wrapper .col.offset-l5, .submit-wrapper .offset-l5.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-l5, :host .edit-user-password-wrapper change-user-password.offset-l5 {
+  .row .col.offset-l5, .submit-wrapper .col.offset-l5, :host .col.offset-l5, .submit-wrapper .offset-l5.submit-button, :host .offset-l5.edit-user-details-wrapper, :host .offset-l5.edit-user-password-wrapper {
     margin-left: 41.6666666667%;
   }
-  .row .col.pull-l5, .submit-wrapper .col.pull-l5, :host .edit-user-details-wrapper .col.pull-l5, :host .edit-user-password-wrapper .col.pull-l5, .submit-wrapper .pull-l5.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-l5, :host .edit-user-password-wrapper change-user-password.pull-l5 {
+  .row .col.pull-l5, .submit-wrapper .col.pull-l5, :host .col.pull-l5, .submit-wrapper .pull-l5.submit-button, :host .pull-l5.edit-user-details-wrapper, :host .pull-l5.edit-user-password-wrapper {
     right: 41.6666666667%;
   }
-  .row .col.push-l5, .submit-wrapper .col.push-l5, :host .edit-user-details-wrapper .col.push-l5, :host .edit-user-password-wrapper .col.push-l5, .submit-wrapper .push-l5.submit-button, :host .edit-user-details-wrapper edit-user-details.push-l5, :host .edit-user-password-wrapper change-user-password.push-l5 {
+  .row .col.push-l5, .submit-wrapper .col.push-l5, :host .col.push-l5, .submit-wrapper .push-l5.submit-button, :host .push-l5.edit-user-details-wrapper, :host .push-l5.edit-user-password-wrapper {
     left: 41.6666666667%;
   }
-  .row .col.offset-l6, .submit-wrapper .col.offset-l6, :host .edit-user-details-wrapper .col.offset-l6, :host .edit-user-password-wrapper .col.offset-l6, .submit-wrapper .offset-l6.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-l6, :host .edit-user-password-wrapper change-user-password.offset-l6 {
+  .row .col.offset-l6, .submit-wrapper .col.offset-l6, :host .col.offset-l6, .submit-wrapper .offset-l6.submit-button, :host .offset-l6.edit-user-details-wrapper, :host .offset-l6.edit-user-password-wrapper {
     margin-left: 50%;
   }
-  .row .col.pull-l6, .submit-wrapper .col.pull-l6, :host .edit-user-details-wrapper .col.pull-l6, :host .edit-user-password-wrapper .col.pull-l6, .submit-wrapper .pull-l6.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-l6, :host .edit-user-password-wrapper change-user-password.pull-l6 {
+  .row .col.pull-l6, .submit-wrapper .col.pull-l6, :host .col.pull-l6, .submit-wrapper .pull-l6.submit-button, :host .pull-l6.edit-user-details-wrapper, :host .pull-l6.edit-user-password-wrapper {
     right: 50%;
   }
-  .row .col.push-l6, .submit-wrapper .col.push-l6, :host .edit-user-details-wrapper .col.push-l6, :host .edit-user-password-wrapper .col.push-l6, .submit-wrapper .push-l6.submit-button, :host .edit-user-details-wrapper edit-user-details.push-l6, :host .edit-user-password-wrapper change-user-password.push-l6 {
+  .row .col.push-l6, .submit-wrapper .col.push-l6, :host .col.push-l6, .submit-wrapper .push-l6.submit-button, :host .push-l6.edit-user-details-wrapper, :host .push-l6.edit-user-password-wrapper {
     left: 50%;
   }
-  .row .col.offset-l7, .submit-wrapper .col.offset-l7, :host .edit-user-details-wrapper .col.offset-l7, :host .edit-user-password-wrapper .col.offset-l7, .submit-wrapper .offset-l7.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-l7, :host .edit-user-password-wrapper change-user-password.offset-l7 {
+  .row .col.offset-l7, .submit-wrapper .col.offset-l7, :host .col.offset-l7, .submit-wrapper .offset-l7.submit-button, :host .offset-l7.edit-user-details-wrapper, :host .offset-l7.edit-user-password-wrapper {
     margin-left: 58.3333333333%;
   }
-  .row .col.pull-l7, .submit-wrapper .col.pull-l7, :host .edit-user-details-wrapper .col.pull-l7, :host .edit-user-password-wrapper .col.pull-l7, .submit-wrapper .pull-l7.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-l7, :host .edit-user-password-wrapper change-user-password.pull-l7 {
+  .row .col.pull-l7, .submit-wrapper .col.pull-l7, :host .col.pull-l7, .submit-wrapper .pull-l7.submit-button, :host .pull-l7.edit-user-details-wrapper, :host .pull-l7.edit-user-password-wrapper {
     right: 58.3333333333%;
   }
-  .row .col.push-l7, .submit-wrapper .col.push-l7, :host .edit-user-details-wrapper .col.push-l7, :host .edit-user-password-wrapper .col.push-l7, .submit-wrapper .push-l7.submit-button, :host .edit-user-details-wrapper edit-user-details.push-l7, :host .edit-user-password-wrapper change-user-password.push-l7 {
+  .row .col.push-l7, .submit-wrapper .col.push-l7, :host .col.push-l7, .submit-wrapper .push-l7.submit-button, :host .push-l7.edit-user-details-wrapper, :host .push-l7.edit-user-password-wrapper {
     left: 58.3333333333%;
   }
-  .row .col.offset-l8, .submit-wrapper .col.offset-l8, :host .edit-user-details-wrapper .col.offset-l8, :host .edit-user-password-wrapper .col.offset-l8, .submit-wrapper .offset-l8.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-l8, :host .edit-user-password-wrapper change-user-password.offset-l8 {
+  .row .col.offset-l8, .submit-wrapper .col.offset-l8, :host .col.offset-l8, .submit-wrapper .offset-l8.submit-button, :host .offset-l8.edit-user-details-wrapper, :host .offset-l8.edit-user-password-wrapper {
     margin-left: 66.6666666667%;
   }
-  .row .col.pull-l8, .submit-wrapper .col.pull-l8, :host .edit-user-details-wrapper .col.pull-l8, :host .edit-user-password-wrapper .col.pull-l8, .submit-wrapper .pull-l8.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-l8, :host .edit-user-password-wrapper change-user-password.pull-l8 {
+  .row .col.pull-l8, .submit-wrapper .col.pull-l8, :host .col.pull-l8, .submit-wrapper .pull-l8.submit-button, :host .pull-l8.edit-user-details-wrapper, :host .pull-l8.edit-user-password-wrapper {
     right: 66.6666666667%;
   }
-  .row .col.push-l8, .submit-wrapper .col.push-l8, :host .edit-user-details-wrapper .col.push-l8, :host .edit-user-password-wrapper .col.push-l8, .submit-wrapper .push-l8.submit-button, :host .edit-user-details-wrapper edit-user-details.push-l8, :host .edit-user-password-wrapper change-user-password.push-l8 {
+  .row .col.push-l8, .submit-wrapper .col.push-l8, :host .col.push-l8, .submit-wrapper .push-l8.submit-button, :host .push-l8.edit-user-details-wrapper, :host .push-l8.edit-user-password-wrapper {
     left: 66.6666666667%;
   }
-  .row .col.offset-l9, .submit-wrapper .col.offset-l9, :host .edit-user-details-wrapper .col.offset-l9, :host .edit-user-password-wrapper .col.offset-l9, .submit-wrapper .offset-l9.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-l9, :host .edit-user-password-wrapper change-user-password.offset-l9 {
+  .row .col.offset-l9, .submit-wrapper .col.offset-l9, :host .col.offset-l9, .submit-wrapper .offset-l9.submit-button, :host .offset-l9.edit-user-details-wrapper, :host .offset-l9.edit-user-password-wrapper {
     margin-left: 75%;
   }
-  .row .col.pull-l9, .submit-wrapper .col.pull-l9, :host .edit-user-details-wrapper .col.pull-l9, :host .edit-user-password-wrapper .col.pull-l9, .submit-wrapper .pull-l9.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-l9, :host .edit-user-password-wrapper change-user-password.pull-l9 {
+  .row .col.pull-l9, .submit-wrapper .col.pull-l9, :host .col.pull-l9, .submit-wrapper .pull-l9.submit-button, :host .pull-l9.edit-user-details-wrapper, :host .pull-l9.edit-user-password-wrapper {
     right: 75%;
   }
-  .row .col.push-l9, .submit-wrapper .col.push-l9, :host .edit-user-details-wrapper .col.push-l9, :host .edit-user-password-wrapper .col.push-l9, .submit-wrapper .push-l9.submit-button, :host .edit-user-details-wrapper edit-user-details.push-l9, :host .edit-user-password-wrapper change-user-password.push-l9 {
+  .row .col.push-l9, .submit-wrapper .col.push-l9, :host .col.push-l9, .submit-wrapper .push-l9.submit-button, :host .push-l9.edit-user-details-wrapper, :host .push-l9.edit-user-password-wrapper {
     left: 75%;
   }
-  .row .col.offset-l10, .submit-wrapper .col.offset-l10, :host .edit-user-details-wrapper .col.offset-l10, :host .edit-user-password-wrapper .col.offset-l10, .submit-wrapper .offset-l10.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-l10, :host .edit-user-password-wrapper change-user-password.offset-l10 {
+  .row .col.offset-l10, .submit-wrapper .col.offset-l10, :host .col.offset-l10, .submit-wrapper .offset-l10.submit-button, :host .offset-l10.edit-user-details-wrapper, :host .offset-l10.edit-user-password-wrapper {
     margin-left: 83.3333333333%;
   }
-  .row .col.pull-l10, .submit-wrapper .col.pull-l10, :host .edit-user-details-wrapper .col.pull-l10, :host .edit-user-password-wrapper .col.pull-l10, .submit-wrapper .pull-l10.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-l10, :host .edit-user-password-wrapper change-user-password.pull-l10 {
+  .row .col.pull-l10, .submit-wrapper .col.pull-l10, :host .col.pull-l10, .submit-wrapper .pull-l10.submit-button, :host .pull-l10.edit-user-details-wrapper, :host .pull-l10.edit-user-password-wrapper {
     right: 83.3333333333%;
   }
-  .row .col.push-l10, .submit-wrapper .col.push-l10, :host .edit-user-details-wrapper .col.push-l10, :host .edit-user-password-wrapper .col.push-l10, .submit-wrapper .push-l10.submit-button, :host .edit-user-details-wrapper edit-user-details.push-l10, :host .edit-user-password-wrapper change-user-password.push-l10 {
+  .row .col.push-l10, .submit-wrapper .col.push-l10, :host .col.push-l10, .submit-wrapper .push-l10.submit-button, :host .push-l10.edit-user-details-wrapper, :host .push-l10.edit-user-password-wrapper {
     left: 83.3333333333%;
   }
-  .row .col.offset-l11, .submit-wrapper .col.offset-l11, :host .edit-user-details-wrapper .col.offset-l11, :host .edit-user-password-wrapper .col.offset-l11, .submit-wrapper .offset-l11.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-l11, :host .edit-user-password-wrapper change-user-password.offset-l11 {
+  .row .col.offset-l11, .submit-wrapper .col.offset-l11, :host .col.offset-l11, .submit-wrapper .offset-l11.submit-button, :host .offset-l11.edit-user-details-wrapper, :host .offset-l11.edit-user-password-wrapper {
     margin-left: 91.6666666667%;
   }
-  .row .col.pull-l11, .submit-wrapper .col.pull-l11, :host .edit-user-details-wrapper .col.pull-l11, :host .edit-user-password-wrapper .col.pull-l11, .submit-wrapper .pull-l11.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-l11, :host .edit-user-password-wrapper change-user-password.pull-l11 {
+  .row .col.pull-l11, .submit-wrapper .col.pull-l11, :host .col.pull-l11, .submit-wrapper .pull-l11.submit-button, :host .pull-l11.edit-user-details-wrapper, :host .pull-l11.edit-user-password-wrapper {
     right: 91.6666666667%;
   }
-  .row .col.push-l11, .submit-wrapper .col.push-l11, :host .edit-user-details-wrapper .col.push-l11, :host .edit-user-password-wrapper .col.push-l11, .submit-wrapper .push-l11.submit-button, :host .edit-user-details-wrapper edit-user-details.push-l11, :host .edit-user-password-wrapper change-user-password.push-l11 {
+  .row .col.push-l11, .submit-wrapper .col.push-l11, :host .col.push-l11, .submit-wrapper .push-l11.submit-button, :host .push-l11.edit-user-details-wrapper, :host .push-l11.edit-user-password-wrapper {
     left: 91.6666666667%;
   }
-  .row .col.offset-l12, .submit-wrapper .col.offset-l12, :host .edit-user-details-wrapper .col.offset-l12, :host .edit-user-password-wrapper .col.offset-l12, .submit-wrapper .offset-l12.submit-button, :host .edit-user-details-wrapper edit-user-details.offset-l12, :host .edit-user-password-wrapper change-user-password.offset-l12 {
+  .row .col.offset-l12, .submit-wrapper .col.offset-l12, :host .col.offset-l12, .submit-wrapper .offset-l12.submit-button, :host .offset-l12.edit-user-details-wrapper, :host .offset-l12.edit-user-password-wrapper {
     margin-left: 100%;
   }
-  .row .col.pull-l12, .submit-wrapper .col.pull-l12, :host .edit-user-details-wrapper .col.pull-l12, :host .edit-user-password-wrapper .col.pull-l12, .submit-wrapper .pull-l12.submit-button, :host .edit-user-details-wrapper edit-user-details.pull-l12, :host .edit-user-password-wrapper change-user-password.pull-l12 {
+  .row .col.pull-l12, .submit-wrapper .col.pull-l12, :host .col.pull-l12, .submit-wrapper .pull-l12.submit-button, :host .pull-l12.edit-user-details-wrapper, :host .pull-l12.edit-user-password-wrapper {
     right: 100%;
   }
-  .row .col.push-l12, .submit-wrapper .col.push-l12, :host .edit-user-details-wrapper .col.push-l12, :host .edit-user-password-wrapper .col.push-l12, .submit-wrapper .push-l12.submit-button, :host .edit-user-details-wrapper edit-user-details.push-l12, :host .edit-user-password-wrapper change-user-password.push-l12 {
+  .row .col.push-l12, .submit-wrapper .col.push-l12, :host .col.push-l12, .submit-wrapper .push-l12.submit-button, :host .push-l12.edit-user-details-wrapper, :host .push-l12.edit-user-password-wrapper {
     left: 100%;
   }
 }
@@ -7422,10 +7422,6 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 .form-validation-errors .form-validation-error.has-errors {
   opacity: 1;
-}
-
-:host {
-  flex: 1 0 auto;
 }
 
 :host .loading-user-details-indicator {
