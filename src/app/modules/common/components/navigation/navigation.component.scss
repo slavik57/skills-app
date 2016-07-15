@@ -28,6 +28,8 @@ nav{
       li{
         a{
           @extend .blue-text;
+          display: block;
+          padding: 14px 16px;
 
           i.material-icons{
             display: inline;

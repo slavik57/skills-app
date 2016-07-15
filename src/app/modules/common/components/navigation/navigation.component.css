@@ -7359,6 +7359,11 @@ nav .navigation-options .dropdown-content {
   width: auto;
 }
 
+nav .navigation-options .dropdown-content li a {
+  display: block;
+  padding: 14px 16px;
+}
+
 nav .navigation-options .dropdown-content li a i.material-icons {
   display: inline;
   vertical-align: middle;
