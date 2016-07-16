@@ -11,11 +11,10 @@ import { Component, OnInit, AfterViewChecked, ViewChild, ElementRef } from '@ang
   directives: [ROUTER_DIRECTIVES],
   precompile: [UsersSettingsComponent, SkillsSettingsComponent, TeamsSettingsComponent]
 })
-export class SettingsComponent implements AfterViewChecked {
+export class SettingsComponent implements OnInit {
   @ViewChild('availableSettings') availableSettings: ElementRef;
 
-  public ngAfterViewChecked(): void {
-    // TODO: Use different tab system or solve the transitions correctly...
+  public ngOnInit(): void {
     $(this.availableSettings.nativeElement).tabs();
   }
 }

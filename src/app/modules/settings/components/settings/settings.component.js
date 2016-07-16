@@ -16,7 +16,7 @@ var core_1 = require('@angular/core');
 var SettingsComponent = (function () {
     function SettingsComponent() {
     }
-    SettingsComponent.prototype.ngAfterViewChecked = function () {
+    SettingsComponent.prototype.ngOnInit = function () {
         $(this.availableSettings.nativeElement).tabs();
     };
     __decorate([

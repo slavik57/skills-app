@@ -67,6 +67,11 @@ exports.webpackCommonConfiguration = {
                 'ENV': JSON.stringify(process.env.NODE_ENV)
             }
         }),
+        new webpack.ProvidePlugin({
+            "window.$": "jquery",
+            "window.jQuery": "jquery",
+            "root.jQuery": "jquery"
+        }),
         new HtmlWebpackPlugin({
             template: pathHelper_1.PathHelper.getPathFromRoot('src', 'app', 'views', 'signin.html'),
             filename: 'signin.html',

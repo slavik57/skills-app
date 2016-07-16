@@ -70,6 +70,12 @@ export var webpackCommonConfiguration: Configuration = {
         'ENV': JSON.stringify(process.env.NODE_ENV)
       }
     }),
+    new webpack.ProvidePlugin({
+      // Required for the velocity plugin to be loaded correctly (used in materialize css)
+      "window.$": "jquery",
+      "window.jQuery": "jquery",
+      "root.jQuery": "jquery"
+    }),
     new HtmlWebpackPlugin({
       template: PathHelper.getPathFromRoot('src', 'app', 'views', 'signin.html'),
       filename: 'signin.html',
