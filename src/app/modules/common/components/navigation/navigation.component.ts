@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
   selector: 'navigation-bar',

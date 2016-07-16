@@ -19,7 +19,7 @@ var circularLoading_component_1 = require("../../../common/components/circularLo
 var userService_1 = require("../../../common/services/userService");
 var signinModel_1 = require("../../models/signinModel");
 var core_1 = require('@angular/core');
-var router_deprecated_1 = require('@angular/router-deprecated');
+var router_1 = require('@angular/router');
 var common_1 = require('@angular/common');
 var SigninComponent = (function (_super) {
     __extends(SigninComponent, _super);
@@ -53,7 +53,7 @@ var SigninComponent = (function (_super) {
             selector: 'signin',
             template: require('./signin.component.html'),
             styles: [require('./signin.component.scss')],
-            directives: [router_deprecated_1.ROUTER_DIRECTIVES, common_1.NgClass, circularLoading_component_1.CircularLoadingComponent],
+            directives: [router_1.ROUTER_DIRECTIVES, common_1.NgClass, circularLoading_component_1.CircularLoadingComponent],
         }), 
         __metadata('design:paramtypes', [userService_1.UserService, locationService_1.LocationService])
     ], SigninComponent);

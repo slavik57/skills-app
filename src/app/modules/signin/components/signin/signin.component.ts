@@ -4,7 +4,7 @@ import {CircularLoadingComponent} from "../../../common/components/circularLoadi
 import {UserService} from "../../../common/services/userService";
 import {SigninModel} from "../../models/signinModel";
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 import { NgClass }    from '@angular/common';
 
 @Component({

@@ -11,13 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var locationService_1 = require("../../../common/services/locationService");
 var userService_1 = require("../../../common/services/userService");
 var credits_component_1 = require("../../../common/components/credits/credits.component");
-var register_component_1 = require("../register/register.component");
-var signin_component_1 = require("../signin/signin.component");
 var navigation_component_1 = require("../../../common/components/navigation/navigation.component");
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var router_deprecated_1 = require('@angular/router-deprecated');
 var _ = require('lodash');
+var router_1 = require('@angular/router');
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -26,26 +24,13 @@ var AppComponent = (function () {
             selector: 'signin-app',
             template: require('./app.component.html'),
             styles: [require('./app.component.scss')],
-            directives: _.union(router_deprecated_1.ROUTER_DIRECTIVES, [navigation_component_1.NavigationComponent, credits_component_1.CreditsComponent]),
+            directives: _.union(router_1.ROUTER_DIRECTIVES, [navigation_component_1.NavigationComponent, credits_component_1.CreditsComponent]),
             providers: [
-                router_deprecated_1.ROUTER_PROVIDERS,
                 http_1.HTTP_PROVIDERS,
                 userService_1.UserService,
                 locationService_1.LocationService
             ]
-        }),
-        router_deprecated_1.RouteConfig([
-            {
-                path: '/',
-                name: 'Home',
-                component: signin_component_1.SigninComponent
-            },
-            {
-                path: '/register',
-                name: 'Register',
-                component: register_component_1.RegisterComponent
-            }
-        ]), 
+        }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;

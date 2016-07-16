@@ -1,1 +1,18 @@
-@import "../../../../commonStyles/_titles.scss";
+@import '../../../../../../node_modules/materialize-css/dist/css/materialize.min';
+
+:host{
+  @extend .row;
+
+  .settings-card-wrapper{
+    @extend .col;
+    @extend .s12;
+    @extend .m12;
+    @extend .l12;
+
+    .card{
+      @extend .grey;
+      @extend .lighten-4;
+
+    }
+  }
+}

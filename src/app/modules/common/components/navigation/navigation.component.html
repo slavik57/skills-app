@@ -1,25 +1,25 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper">
-      <a href="#!" [routerLink]="['Home']" class="brand-logo">Skills</a>
+      <a href="#!" [routerLink]="['']" class="brand-logo">Skills</a>
 
       <ul *ngIf="isUserLoggedIn"
           class="navigation-options">
 
           <li>
-            <a [routerLink]="['SkillsPrerequisites']">
+            <a [routerLink]="['skillsPrerequisites']">
               <i class="material-icons">timeline</i>
             </a>
           </li>
 
         <li>
-          <a [routerLink]="['Skills']">
+          <a [routerLink]="['skills']">
             <i class="material-icons">card_membership</i>
           </a>
         </li>
 
         <li>
-          <a [routerLink]="['Teams']">
+          <a [routerLink]="['teams']">
             <i class="material-icons">supervisor_account</i>
           </a>
         </li>
@@ -36,12 +36,12 @@
               *ngIf="isUserLoggedIn">
 
             <li>
-              <a [routerLink]="['UserProfile']">
+              <a [routerLink]="['profile']">
                 <i class="material-icons">account_circle</i><span class="text">Profile</span>
               </a>
             </li>
             <li>
-              <a [routerLink]="['Settings']">
+              <a [routerLink]="['settings']">
                 <i class="material-icons">settings</i><span class="text">Settings</span>
               </a>
             </li>
@@ -49,7 +49,7 @@
             <li><a href="/logout">Log Out</a></li>
 
           </ul>
-          
+
         </li>
 
       </ul>

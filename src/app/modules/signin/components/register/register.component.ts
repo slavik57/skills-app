@@ -7,7 +7,7 @@ import {FormComponentBase} from "../../../common/components/formComponentBase/fo
 import {EmailValidator} from "../../../common/validators/emailValidator";
 import {RegisterModel} from "../../models/registerModel";
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({

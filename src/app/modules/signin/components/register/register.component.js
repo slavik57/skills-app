@@ -22,7 +22,7 @@ var formComponentBase_1 = require("../../../common/components/formComponentBase/
 var emailValidator_1 = require("../../../common/validators/emailValidator");
 var registerModel_1 = require("../../models/registerModel");
 var core_1 = require('@angular/core');
-var router_deprecated_1 = require('@angular/router-deprecated');
+var router_1 = require('@angular/router');
 var forms_1 = require('@angular/forms');
 var RegisterComponent = (function (_super) {
     __extends(RegisterComponent, _super);
@@ -79,7 +79,7 @@ var RegisterComponent = (function (_super) {
             selector: 'register',
             template: require('./register.component.html'),
             styles: [require('./register.component.scss')],
-            directives: [router_deprecated_1.ROUTER_DIRECTIVES, forms_1.REACTIVE_FORM_DIRECTIVES, circularLoading_component_1.CircularLoadingComponent],
+            directives: [router_1.ROUTER_DIRECTIVES, forms_1.REACTIVE_FORM_DIRECTIVES, circularLoading_component_1.CircularLoadingComponent],
             providers: [forms_1.FormBuilder, usernameExistsValidator_1.UsernameExistsValidatorFactory]
         }), 
         __metadata('design:paramtypes', [forms_1.FormBuilder, usernameExistsValidator_1.UsernameExistsValidatorFactory, userService_1.UserService, locationService_1.LocationService])
