@@ -2,7 +2,7 @@ import {TeamsSettingsComponent} from "../teamsSettings/teamsSettings.component";
 import {SkillsSettingsComponent} from "../skillsSettings/skillsSettings.component";
 import {UsersSettingsComponent} from "../usersSettings/usersSettings.component";
 import { ROUTER_DIRECTIVES } from '@angular/router';
-import { Component, OnInit, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'settings',
@@ -11,10 +11,11 @@ import { Component, OnInit, AfterViewChecked, ViewChild, ElementRef } from '@ang
   directives: [ROUTER_DIRECTIVES],
   precompile: [UsersSettingsComponent, SkillsSettingsComponent, TeamsSettingsComponent]
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements AfterViewInit {
   @ViewChild('availableSettings') availableSettings: ElementRef;
 
-  public ngOnInit(): void {
+  public ngAfterViewInit(): void {
+    // TOOD: test it...
     $(this.availableSettings.nativeElement).tabs();
   }
 }

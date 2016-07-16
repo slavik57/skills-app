@@ -11,11 +11,10 @@
 
       <div class="row">
        <div class="col s12">
-         <!-- // TODO: Use different tab system or solve the transitions correctly... -->
          <ul #availableSettings class="tabs">
-           <li class="tab col s3"><a class="active"  [routerLink]="['users']">Users</a></li>
-           <li class="tab col s3"><a [routerLink]="['teams']">Teams</a></li>
-           <li class="tab col s3"><a [routerLink]="['skills']">Skills</a></li>
+           <li class="tab col s3"><a [routerLinkActive]="['active']" [routerLink]="['users']">Users</a></li>
+           <li class="tab col s3"><a [routerLinkActive]="['active']" [routerLink]="['teams']">Teams</a></li>
+           <li class="tab col s3"><a [routerLinkActive]="['active']" [routerLink]="['skills']">Skills</a></li>
          </ul>
        </div>
        <router-outlet></router-outlet>
