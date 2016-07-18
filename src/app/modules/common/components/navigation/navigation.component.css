@@ -7346,6 +7346,15 @@ nav .brand-logo {
   margin-right: 1rem;
 }
 
+nav .brand-logo .icon {
+  display: inline-block;
+  vertical-align: top;
+}
+
+nav .brand-logo .text {
+  vertical-align: top;
+}
+
 nav .navigation-options .dropdown-button {
   padding: 0;
 }

@@ -8,6 +8,15 @@ nav{
     @extend .left;
     margin-left: 1rem;
     margin-right: 1rem;
+
+    .icon{
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .text{
+      vertical-align: top;
+    }
   }
 
   .navigation-options {

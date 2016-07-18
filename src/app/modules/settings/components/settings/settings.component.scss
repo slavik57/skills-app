@@ -3,6 +3,18 @@
 :host{
   @extend .row;
 
+  .tabs{
+    div.indicator{
+      @extend .blue;
+    }
+
+    .tab a{
+      @extend .blue-text;
+      @extend .col;
+      @extend .s3;
+    }
+  }
+
   .settings-card-wrapper{
     @extend .col;
     @extend .s12;
@@ -12,7 +24,7 @@
     .card{
       @extend .grey;
       @extend .lighten-4;
-
     }
+
   }
 }

@@ -15,7 +15,6 @@ export class SettingsComponent implements AfterViewInit {
   @ViewChild('availableSettings') availableSettings: ElementRef;
 
   public ngAfterViewInit(): void {
-    // TOOD: test it...
     $(this.availableSettings.nativeElement).tabs();
   }
 }

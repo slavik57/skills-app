@@ -1,7 +1,10 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper">
-      <a href="#!" [routerLink]="['']" class="brand-logo">Skills</a>
+      <a [routerLink]="['']" class="brand-logo">
+        <i *ngIf="isActiveRoute('/settings')" class="icon material-icons">settings</i>
+        <span class="text">Skills</span>
+      </a>
 
       <ul *ngIf="isUserLoggedIn"
           class="navigation-options">

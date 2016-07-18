@@ -11,9 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var NavigationComponent = (function () {
-    function NavigationComponent() {
+    function NavigationComponent(router) {
+        this.router = router;
         this.isUserLoggedIn = false;
     }
+    NavigationComponent.prototype.isActiveRoute = function (route) {
+        return this.router.url.toLowerCase().startsWith(route.toLowerCase());
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Boolean)
@@ -25,7 +29,7 @@ var NavigationComponent = (function () {
             styles: [require('./navigation.component.scss')],
             directives: [router_1.ROUTER_DIRECTIVES]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], NavigationComponent);
     return NavigationComponent;
 }());

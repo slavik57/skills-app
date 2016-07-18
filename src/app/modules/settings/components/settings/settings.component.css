@@ -643,115 +643,115 @@
   color: #304ffe !important;
 }
 
-.blue {
+.blue, :host .tabs div.indicator {
   background-color: #2196F3 !important;
 }
 
-.blue-text {
+.blue-text, :host .tabs .tab a {
   color: #2196F3 !important;
 }
 
-.blue.lighten-5 {
+.blue.lighten-5, :host .tabs div.lighten-5.indicator {
   background-color: #E3F2FD !important;
 }
 
-.blue-text.text-lighten-5 {
+.blue-text.text-lighten-5, :host .tabs .tab a.text-lighten-5 {
   color: #E3F2FD !important;
 }
 
-.blue.lighten-4, :host .settings-card-wrapper .blue.card {
+.blue.lighten-4, :host .tabs div.lighten-4.indicator, :host .tabs .settings-card-wrapper div.indicator.card, :host .settings-card-wrapper .tabs div.indicator.card, :host .settings-card-wrapper .blue.card {
   background-color: #BBDEFB !important;
 }
 
-.blue-text.text-lighten-4 {
+.blue-text.text-lighten-4, :host .tabs .tab a.text-lighten-4 {
   color: #BBDEFB !important;
 }
 
-.blue.lighten-3 {
+.blue.lighten-3, :host .tabs div.lighten-3.indicator {
   background-color: #90CAF9 !important;
 }
 
-.blue-text.text-lighten-3 {
+.blue-text.text-lighten-3, :host .tabs .tab a.text-lighten-3 {
   color: #90CAF9 !important;
 }
 
-.blue.lighten-2 {
+.blue.lighten-2, :host .tabs div.lighten-2.indicator {
   background-color: #64B5F6 !important;
 }
 
-.blue-text.text-lighten-2 {
+.blue-text.text-lighten-2, :host .tabs .tab a.text-lighten-2 {
   color: #64B5F6 !important;
 }
 
-.blue.lighten-1 {
+.blue.lighten-1, :host .tabs div.lighten-1.indicator {
   background-color: #42A5F5 !important;
 }
 
-.blue-text.text-lighten-1 {
+.blue-text.text-lighten-1, :host .tabs .tab a.text-lighten-1 {
   color: #42A5F5 !important;
 }
 
-.blue.darken-1 {
+.blue.darken-1, :host .tabs div.darken-1.indicator {
   background-color: #1E88E5 !important;
 }
 
-.blue-text.text-darken-1 {
+.blue-text.text-darken-1, :host .tabs .tab a.text-darken-1 {
   color: #1E88E5 !important;
 }
 
-.blue.darken-2 {
+.blue.darken-2, :host .tabs div.darken-2.indicator {
   background-color: #1976D2 !important;
 }
 
-.blue-text.text-darken-2 {
+.blue-text.text-darken-2, :host .tabs .tab a.text-darken-2 {
   color: #1976D2 !important;
 }
 
-.blue.darken-3 {
+.blue.darken-3, :host .tabs div.darken-3.indicator {
   background-color: #1565C0 !important;
 }
 
-.blue-text.text-darken-3 {
+.blue-text.text-darken-3, :host .tabs .tab a.text-darken-3 {
   color: #1565C0 !important;
 }
 
-.blue.darken-4 {
+.blue.darken-4, :host .tabs div.darken-4.indicator {
   background-color: #0D47A1 !important;
 }
 
-.blue-text.text-darken-4 {
+.blue-text.text-darken-4, :host .tabs .tab a.text-darken-4 {
   color: #0D47A1 !important;
 }
 
-.blue.accent-1 {
+.blue.accent-1, :host .tabs div.accent-1.indicator {
   background-color: #82B1FF !important;
 }
 
-.blue-text.text-accent-1 {
+.blue-text.text-accent-1, :host .tabs .tab a.text-accent-1 {
   color: #82B1FF !important;
 }
 
-.blue.accent-2 {
+.blue.accent-2, :host .tabs div.accent-2.indicator {
   background-color: #448AFF !important;
 }
 
-.blue-text.text-accent-2 {
+.blue-text.text-accent-2, :host .tabs .tab a.text-accent-2 {
   color: #448AFF !important;
 }
 
-.blue.accent-3 {
+.blue.accent-3, :host .tabs div.accent-3.indicator {
   background-color: #2979FF !important;
 }
 
-.blue-text.text-accent-3 {
+.blue-text.text-accent-3, :host .tabs .tab a.text-accent-3 {
   color: #2979FF !important;
 }
 
-.blue.accent-4 {
+.blue.accent-4, :host .tabs div.accent-4.indicator {
   background-color: #2962FF !important;
 }
 
-.blue-text.text-accent-4 {
+.blue-text.text-accent-4, :host .tabs .tab a.text-accent-4 {
   color: #2962FF !important;
 }
 
@@ -3171,606 +3171,606 @@ nav ul a span.badge {
   clear: both;
 }
 
-.row .col, :host .col, :host .settings-card-wrapper {
+.row .col, :host .col, :host .tabs .tab a, :host .settings-card-wrapper {
   float: left;
   box-sizing: border-box;
   padding: 0 0.75rem;
 }
 
-.row .col[class*="push-"], :host .col[class*="push-"], :host [class*="push-"].settings-card-wrapper, .row .col[class*="pull-"], :host .col[class*="pull-"], :host [class*="pull-"].settings-card-wrapper {
+.row .col[class*="push-"], :host .col[class*="push-"], :host .tabs .tab a[class*="push-"], :host [class*="push-"].settings-card-wrapper, .row .col[class*="pull-"], :host .col[class*="pull-"], :host .tabs .tab a[class*="pull-"], :host [class*="pull-"].settings-card-wrapper {
   position: relative;
 }
 
-.row .col.s1, :host .col.s1, :host .s1.settings-card-wrapper {
+.row .col.s1, :host .col.s1, :host .tabs .tab a.s1, :host .s1.settings-card-wrapper {
   width: 8.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s2, :host .col.s2, :host .s2.settings-card-wrapper {
+.row .col.s2, :host .col.s2, :host .tabs .tab a.s2, :host .s2.settings-card-wrapper {
   width: 16.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s3, :host .col.s3, :host .s3.settings-card-wrapper {
+.row .col.s3, :host .col.s3, :host .tabs .tab a, :host .s3.settings-card-wrapper {
   width: 25%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s4, :host .col.s4, :host .s4.settings-card-wrapper {
+.row .col.s4, :host .col.s4, :host .tabs .tab a.s4, :host .s4.settings-card-wrapper {
   width: 33.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s5, :host .col.s5, :host .s5.settings-card-wrapper {
+.row .col.s5, :host .col.s5, :host .tabs .tab a.s5, :host .s5.settings-card-wrapper {
   width: 41.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s6, :host .col.s6, :host .s6.settings-card-wrapper {
+.row .col.s6, :host .col.s6, :host .tabs .tab a.s6, :host .s6.settings-card-wrapper {
   width: 50%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s7, :host .col.s7, :host .s7.settings-card-wrapper {
+.row .col.s7, :host .col.s7, :host .tabs .tab a.s7, :host .s7.settings-card-wrapper {
   width: 58.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s8, :host .col.s8, :host .s8.settings-card-wrapper {
+.row .col.s8, :host .col.s8, :host .tabs .tab a.s8, :host .s8.settings-card-wrapper {
   width: 66.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s9, :host .col.s9, :host .s9.settings-card-wrapper {
+.row .col.s9, :host .col.s9, :host .tabs .tab a.s9, :host .s9.settings-card-wrapper {
   width: 75%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s10, :host .col.s10, :host .s10.settings-card-wrapper {
+.row .col.s10, :host .col.s10, :host .tabs .tab a.s10, :host .s10.settings-card-wrapper {
   width: 83.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s11, :host .col.s11, :host .s11.settings-card-wrapper {
+.row .col.s11, :host .col.s11, :host .tabs .tab a.s11, :host .s11.settings-card-wrapper {
   width: 91.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s12, :host .col.s12, .row :host .settings-card-wrapper, :host .row .settings-card-wrapper, :host .settings-card-wrapper {
+.row .col.s12, :host .col.s12, :host .tabs .tab a.s12, :host .tabs .tab a.settings-card-wrapper, .row :host .settings-card-wrapper, :host .row .settings-card-wrapper, :host .settings-card-wrapper {
   width: 100%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.offset-s1, :host .col.offset-s1, :host .offset-s1.settings-card-wrapper {
+.row .col.offset-s1, :host .col.offset-s1, :host .tabs .tab a.offset-s1, :host .offset-s1.settings-card-wrapper {
   margin-left: 8.3333333333%;
 }
 
-.row .col.pull-s1, :host .col.pull-s1, :host .pull-s1.settings-card-wrapper {
+.row .col.pull-s1, :host .col.pull-s1, :host .tabs .tab a.pull-s1, :host .pull-s1.settings-card-wrapper {
   right: 8.3333333333%;
 }
 
-.row .col.push-s1, :host .col.push-s1, :host .push-s1.settings-card-wrapper {
+.row .col.push-s1, :host .col.push-s1, :host .tabs .tab a.push-s1, :host .push-s1.settings-card-wrapper {
   left: 8.3333333333%;
 }
 
-.row .col.offset-s2, :host .col.offset-s2, :host .offset-s2.settings-card-wrapper {
+.row .col.offset-s2, :host .col.offset-s2, :host .tabs .tab a.offset-s2, :host .offset-s2.settings-card-wrapper {
   margin-left: 16.6666666667%;
 }
 
-.row .col.pull-s2, :host .col.pull-s2, :host .pull-s2.settings-card-wrapper {
+.row .col.pull-s2, :host .col.pull-s2, :host .tabs .tab a.pull-s2, :host .pull-s2.settings-card-wrapper {
   right: 16.6666666667%;
 }
 
-.row .col.push-s2, :host .col.push-s2, :host .push-s2.settings-card-wrapper {
+.row .col.push-s2, :host .col.push-s2, :host .tabs .tab a.push-s2, :host .push-s2.settings-card-wrapper {
   left: 16.6666666667%;
 }
 
-.row .col.offset-s3, :host .col.offset-s3, :host .offset-s3.settings-card-wrapper {
+.row .col.offset-s3, :host .col.offset-s3, :host .tabs .tab a.offset-s3, :host .offset-s3.settings-card-wrapper {
   margin-left: 25%;
 }
 
-.row .col.pull-s3, :host .col.pull-s3, :host .pull-s3.settings-card-wrapper {
+.row .col.pull-s3, :host .col.pull-s3, :host .tabs .tab a.pull-s3, :host .pull-s3.settings-card-wrapper {
   right: 25%;
 }
 
-.row .col.push-s3, :host .col.push-s3, :host .push-s3.settings-card-wrapper {
+.row .col.push-s3, :host .col.push-s3, :host .tabs .tab a.push-s3, :host .push-s3.settings-card-wrapper {
   left: 25%;
 }
 
-.row .col.offset-s4, :host .col.offset-s4, :host .offset-s4.settings-card-wrapper {
+.row .col.offset-s4, :host .col.offset-s4, :host .tabs .tab a.offset-s4, :host .offset-s4.settings-card-wrapper {
   margin-left: 33.3333333333%;
 }
 
-.row .col.pull-s4, :host .col.pull-s4, :host .pull-s4.settings-card-wrapper {
+.row .col.pull-s4, :host .col.pull-s4, :host .tabs .tab a.pull-s4, :host .pull-s4.settings-card-wrapper {
   right: 33.3333333333%;
 }
 
-.row .col.push-s4, :host .col.push-s4, :host .push-s4.settings-card-wrapper {
+.row .col.push-s4, :host .col.push-s4, :host .tabs .tab a.push-s4, :host .push-s4.settings-card-wrapper {
   left: 33.3333333333%;
 }
 
-.row .col.offset-s5, :host .col.offset-s5, :host .offset-s5.settings-card-wrapper {
+.row .col.offset-s5, :host .col.offset-s5, :host .tabs .tab a.offset-s5, :host .offset-s5.settings-card-wrapper {
   margin-left: 41.6666666667%;
 }
 
-.row .col.pull-s5, :host .col.pull-s5, :host .pull-s5.settings-card-wrapper {
+.row .col.pull-s5, :host .col.pull-s5, :host .tabs .tab a.pull-s5, :host .pull-s5.settings-card-wrapper {
   right: 41.6666666667%;
 }
 
-.row .col.push-s5, :host .col.push-s5, :host .push-s5.settings-card-wrapper {
+.row .col.push-s5, :host .col.push-s5, :host .tabs .tab a.push-s5, :host .push-s5.settings-card-wrapper {
   left: 41.6666666667%;
 }
 
-.row .col.offset-s6, :host .col.offset-s6, :host .offset-s6.settings-card-wrapper {
+.row .col.offset-s6, :host .col.offset-s6, :host .tabs .tab a.offset-s6, :host .offset-s6.settings-card-wrapper {
   margin-left: 50%;
 }
 
-.row .col.pull-s6, :host .col.pull-s6, :host .pull-s6.settings-card-wrapper {
+.row .col.pull-s6, :host .col.pull-s6, :host .tabs .tab a.pull-s6, :host .pull-s6.settings-card-wrapper {
   right: 50%;
 }
 
-.row .col.push-s6, :host .col.push-s6, :host .push-s6.settings-card-wrapper {
+.row .col.push-s6, :host .col.push-s6, :host .tabs .tab a.push-s6, :host .push-s6.settings-card-wrapper {
   left: 50%;
 }
 
-.row .col.offset-s7, :host .col.offset-s7, :host .offset-s7.settings-card-wrapper {
+.row .col.offset-s7, :host .col.offset-s7, :host .tabs .tab a.offset-s7, :host .offset-s7.settings-card-wrapper {
   margin-left: 58.3333333333%;
 }
 
-.row .col.pull-s7, :host .col.pull-s7, :host .pull-s7.settings-card-wrapper {
+.row .col.pull-s7, :host .col.pull-s7, :host .tabs .tab a.pull-s7, :host .pull-s7.settings-card-wrapper {
   right: 58.3333333333%;
 }
 
-.row .col.push-s7, :host .col.push-s7, :host .push-s7.settings-card-wrapper {
+.row .col.push-s7, :host .col.push-s7, :host .tabs .tab a.push-s7, :host .push-s7.settings-card-wrapper {
   left: 58.3333333333%;
 }
 
-.row .col.offset-s8, :host .col.offset-s8, :host .offset-s8.settings-card-wrapper {
+.row .col.offset-s8, :host .col.offset-s8, :host .tabs .tab a.offset-s8, :host .offset-s8.settings-card-wrapper {
   margin-left: 66.6666666667%;
 }
 
-.row .col.pull-s8, :host .col.pull-s8, :host .pull-s8.settings-card-wrapper {
+.row .col.pull-s8, :host .col.pull-s8, :host .tabs .tab a.pull-s8, :host .pull-s8.settings-card-wrapper {
   right: 66.6666666667%;
 }
 
-.row .col.push-s8, :host .col.push-s8, :host .push-s8.settings-card-wrapper {
+.row .col.push-s8, :host .col.push-s8, :host .tabs .tab a.push-s8, :host .push-s8.settings-card-wrapper {
   left: 66.6666666667%;
 }
 
-.row .col.offset-s9, :host .col.offset-s9, :host .offset-s9.settings-card-wrapper {
+.row .col.offset-s9, :host .col.offset-s9, :host .tabs .tab a.offset-s9, :host .offset-s9.settings-card-wrapper {
   margin-left: 75%;
 }
 
-.row .col.pull-s9, :host .col.pull-s9, :host .pull-s9.settings-card-wrapper {
+.row .col.pull-s9, :host .col.pull-s9, :host .tabs .tab a.pull-s9, :host .pull-s9.settings-card-wrapper {
   right: 75%;
 }
 
-.row .col.push-s9, :host .col.push-s9, :host .push-s9.settings-card-wrapper {
+.row .col.push-s9, :host .col.push-s9, :host .tabs .tab a.push-s9, :host .push-s9.settings-card-wrapper {
   left: 75%;
 }
 
-.row .col.offset-s10, :host .col.offset-s10, :host .offset-s10.settings-card-wrapper {
+.row .col.offset-s10, :host .col.offset-s10, :host .tabs .tab a.offset-s10, :host .offset-s10.settings-card-wrapper {
   margin-left: 83.3333333333%;
 }
 
-.row .col.pull-s10, :host .col.pull-s10, :host .pull-s10.settings-card-wrapper {
+.row .col.pull-s10, :host .col.pull-s10, :host .tabs .tab a.pull-s10, :host .pull-s10.settings-card-wrapper {
   right: 83.3333333333%;
 }
 
-.row .col.push-s10, :host .col.push-s10, :host .push-s10.settings-card-wrapper {
+.row .col.push-s10, :host .col.push-s10, :host .tabs .tab a.push-s10, :host .push-s10.settings-card-wrapper {
   left: 83.3333333333%;
 }
 
-.row .col.offset-s11, :host .col.offset-s11, :host .offset-s11.settings-card-wrapper {
+.row .col.offset-s11, :host .col.offset-s11, :host .tabs .tab a.offset-s11, :host .offset-s11.settings-card-wrapper {
   margin-left: 91.6666666667%;
 }
 
-.row .col.pull-s11, :host .col.pull-s11, :host .pull-s11.settings-card-wrapper {
+.row .col.pull-s11, :host .col.pull-s11, :host .tabs .tab a.pull-s11, :host .pull-s11.settings-card-wrapper {
   right: 91.6666666667%;
 }
 
-.row .col.push-s11, :host .col.push-s11, :host .push-s11.settings-card-wrapper {
+.row .col.push-s11, :host .col.push-s11, :host .tabs .tab a.push-s11, :host .push-s11.settings-card-wrapper {
   left: 91.6666666667%;
 }
 
-.row .col.offset-s12, :host .col.offset-s12, :host .offset-s12.settings-card-wrapper {
+.row .col.offset-s12, :host .col.offset-s12, :host .tabs .tab a.offset-s12, :host .offset-s12.settings-card-wrapper {
   margin-left: 100%;
 }
 
-.row .col.pull-s12, :host .col.pull-s12, :host .pull-s12.settings-card-wrapper {
+.row .col.pull-s12, :host .col.pull-s12, :host .tabs .tab a.pull-s12, :host .pull-s12.settings-card-wrapper {
   right: 100%;
 }
 
-.row .col.push-s12, :host .col.push-s12, :host .push-s12.settings-card-wrapper {
+.row .col.push-s12, :host .col.push-s12, :host .tabs .tab a.push-s12, :host .push-s12.settings-card-wrapper {
   left: 100%;
 }
 
 @media only screen and (min-width: 601px) {
-  .row .col.m1, :host .col.m1, :host .m1.settings-card-wrapper {
+  .row .col.m1, :host .col.m1, :host .tabs .tab a.m1, :host .m1.settings-card-wrapper {
     width: 8.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m2, :host .col.m2, :host .m2.settings-card-wrapper {
+  .row .col.m2, :host .col.m2, :host .tabs .tab a.m2, :host .m2.settings-card-wrapper {
     width: 16.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m3, :host .col.m3, :host .m3.settings-card-wrapper {
+  .row .col.m3, :host .col.m3, :host .tabs .tab a.m3, :host .m3.settings-card-wrapper {
     width: 25%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m4, :host .col.m4, :host .m4.settings-card-wrapper {
+  .row .col.m4, :host .col.m4, :host .tabs .tab a.m4, :host .m4.settings-card-wrapper {
     width: 33.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m5, :host .col.m5, :host .m5.settings-card-wrapper {
+  .row .col.m5, :host .col.m5, :host .tabs .tab a.m5, :host .m5.settings-card-wrapper {
     width: 41.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m6, :host .col.m6, :host .m6.settings-card-wrapper {
+  .row .col.m6, :host .col.m6, :host .tabs .tab a.m6, :host .m6.settings-card-wrapper {
     width: 50%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m7, :host .col.m7, :host .m7.settings-card-wrapper {
+  .row .col.m7, :host .col.m7, :host .tabs .tab a.m7, :host .m7.settings-card-wrapper {
     width: 58.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m8, :host .col.m8, :host .m8.settings-card-wrapper {
+  .row .col.m8, :host .col.m8, :host .tabs .tab a.m8, :host .m8.settings-card-wrapper {
     width: 66.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m9, :host .col.m9, :host .m9.settings-card-wrapper {
+  .row .col.m9, :host .col.m9, :host .tabs .tab a.m9, :host .m9.settings-card-wrapper {
     width: 75%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m10, :host .col.m10, :host .m10.settings-card-wrapper {
+  .row .col.m10, :host .col.m10, :host .tabs .tab a.m10, :host .m10.settings-card-wrapper {
     width: 83.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m11, :host .col.m11, :host .m11.settings-card-wrapper {
+  .row .col.m11, :host .col.m11, :host .tabs .tab a.m11, :host .m11.settings-card-wrapper {
     width: 91.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m12, :host .col.m12, .row :host .settings-card-wrapper, :host .row .settings-card-wrapper, :host .settings-card-wrapper {
+  .row .col.m12, :host .col.m12, :host .tabs .tab a.m12, :host .tabs .tab a.settings-card-wrapper, .row :host .settings-card-wrapper, :host .row .settings-card-wrapper, :host .settings-card-wrapper {
     width: 100%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.offset-m1, :host .col.offset-m1, :host .offset-m1.settings-card-wrapper {
+  .row .col.offset-m1, :host .col.offset-m1, :host .tabs .tab a.offset-m1, :host .offset-m1.settings-card-wrapper {
     margin-left: 8.3333333333%;
   }
-  .row .col.pull-m1, :host .col.pull-m1, :host .pull-m1.settings-card-wrapper {
+  .row .col.pull-m1, :host .col.pull-m1, :host .tabs .tab a.pull-m1, :host .pull-m1.settings-card-wrapper {
     right: 8.3333333333%;
   }
-  .row .col.push-m1, :host .col.push-m1, :host .push-m1.settings-card-wrapper {
+  .row .col.push-m1, :host .col.push-m1, :host .tabs .tab a.push-m1, :host .push-m1.settings-card-wrapper {
     left: 8.3333333333%;
   }
-  .row .col.offset-m2, :host .col.offset-m2, :host .offset-m2.settings-card-wrapper {
+  .row .col.offset-m2, :host .col.offset-m2, :host .tabs .tab a.offset-m2, :host .offset-m2.settings-card-wrapper {
     margin-left: 16.6666666667%;
   }
-  .row .col.pull-m2, :host .col.pull-m2, :host .pull-m2.settings-card-wrapper {
+  .row .col.pull-m2, :host .col.pull-m2, :host .tabs .tab a.pull-m2, :host .pull-m2.settings-card-wrapper {
     right: 16.6666666667%;
   }
-  .row .col.push-m2, :host .col.push-m2, :host .push-m2.settings-card-wrapper {
+  .row .col.push-m2, :host .col.push-m2, :host .tabs .tab a.push-m2, :host .push-m2.settings-card-wrapper {
     left: 16.6666666667%;
   }
-  .row .col.offset-m3, :host .col.offset-m3, :host .offset-m3.settings-card-wrapper {
+  .row .col.offset-m3, :host .col.offset-m3, :host .tabs .tab a.offset-m3, :host .offset-m3.settings-card-wrapper {
     margin-left: 25%;
   }
-  .row .col.pull-m3, :host .col.pull-m3, :host .pull-m3.settings-card-wrapper {
+  .row .col.pull-m3, :host .col.pull-m3, :host .tabs .tab a.pull-m3, :host .pull-m3.settings-card-wrapper {
     right: 25%;
   }
-  .row .col.push-m3, :host .col.push-m3, :host .push-m3.settings-card-wrapper {
+  .row .col.push-m3, :host .col.push-m3, :host .tabs .tab a.push-m3, :host .push-m3.settings-card-wrapper {
     left: 25%;
   }
-  .row .col.offset-m4, :host .col.offset-m4, :host .offset-m4.settings-card-wrapper {
+  .row .col.offset-m4, :host .col.offset-m4, :host .tabs .tab a.offset-m4, :host .offset-m4.settings-card-wrapper {
     margin-left: 33.3333333333%;
   }
-  .row .col.pull-m4, :host .col.pull-m4, :host .pull-m4.settings-card-wrapper {
+  .row .col.pull-m4, :host .col.pull-m4, :host .tabs .tab a.pull-m4, :host .pull-m4.settings-card-wrapper {
     right: 33.3333333333%;
   }
-  .row .col.push-m4, :host .col.push-m4, :host .push-m4.settings-card-wrapper {
+  .row .col.push-m4, :host .col.push-m4, :host .tabs .tab a.push-m4, :host .push-m4.settings-card-wrapper {
     left: 33.3333333333%;
   }
-  .row .col.offset-m5, :host .col.offset-m5, :host .offset-m5.settings-card-wrapper {
+  .row .col.offset-m5, :host .col.offset-m5, :host .tabs .tab a.offset-m5, :host .offset-m5.settings-card-wrapper {
     margin-left: 41.6666666667%;
   }
-  .row .col.pull-m5, :host .col.pull-m5, :host .pull-m5.settings-card-wrapper {
+  .row .col.pull-m5, :host .col.pull-m5, :host .tabs .tab a.pull-m5, :host .pull-m5.settings-card-wrapper {
     right: 41.6666666667%;
   }
-  .row .col.push-m5, :host .col.push-m5, :host .push-m5.settings-card-wrapper {
+  .row .col.push-m5, :host .col.push-m5, :host .tabs .tab a.push-m5, :host .push-m5.settings-card-wrapper {
     left: 41.6666666667%;
   }
-  .row .col.offset-m6, :host .col.offset-m6, :host .offset-m6.settings-card-wrapper {
+  .row .col.offset-m6, :host .col.offset-m6, :host .tabs .tab a.offset-m6, :host .offset-m6.settings-card-wrapper {
     margin-left: 50%;
   }
-  .row .col.pull-m6, :host .col.pull-m6, :host .pull-m6.settings-card-wrapper {
+  .row .col.pull-m6, :host .col.pull-m6, :host .tabs .tab a.pull-m6, :host .pull-m6.settings-card-wrapper {
     right: 50%;
   }
-  .row .col.push-m6, :host .col.push-m6, :host .push-m6.settings-card-wrapper {
+  .row .col.push-m6, :host .col.push-m6, :host .tabs .tab a.push-m6, :host .push-m6.settings-card-wrapper {
     left: 50%;
   }
-  .row .col.offset-m7, :host .col.offset-m7, :host .offset-m7.settings-card-wrapper {
+  .row .col.offset-m7, :host .col.offset-m7, :host .tabs .tab a.offset-m7, :host .offset-m7.settings-card-wrapper {
     margin-left: 58.3333333333%;
   }
-  .row .col.pull-m7, :host .col.pull-m7, :host .pull-m7.settings-card-wrapper {
+  .row .col.pull-m7, :host .col.pull-m7, :host .tabs .tab a.pull-m7, :host .pull-m7.settings-card-wrapper {
     right: 58.3333333333%;
   }
-  .row .col.push-m7, :host .col.push-m7, :host .push-m7.settings-card-wrapper {
+  .row .col.push-m7, :host .col.push-m7, :host .tabs .tab a.push-m7, :host .push-m7.settings-card-wrapper {
     left: 58.3333333333%;
   }
-  .row .col.offset-m8, :host .col.offset-m8, :host .offset-m8.settings-card-wrapper {
+  .row .col.offset-m8, :host .col.offset-m8, :host .tabs .tab a.offset-m8, :host .offset-m8.settings-card-wrapper {
     margin-left: 66.6666666667%;
   }
-  .row .col.pull-m8, :host .col.pull-m8, :host .pull-m8.settings-card-wrapper {
+  .row .col.pull-m8, :host .col.pull-m8, :host .tabs .tab a.pull-m8, :host .pull-m8.settings-card-wrapper {
     right: 66.6666666667%;
   }
-  .row .col.push-m8, :host .col.push-m8, :host .push-m8.settings-card-wrapper {
+  .row .col.push-m8, :host .col.push-m8, :host .tabs .tab a.push-m8, :host .push-m8.settings-card-wrapper {
     left: 66.6666666667%;
   }
-  .row .col.offset-m9, :host .col.offset-m9, :host .offset-m9.settings-card-wrapper {
+  .row .col.offset-m9, :host .col.offset-m9, :host .tabs .tab a.offset-m9, :host .offset-m9.settings-card-wrapper {
     margin-left: 75%;
   }
-  .row .col.pull-m9, :host .col.pull-m9, :host .pull-m9.settings-card-wrapper {
+  .row .col.pull-m9, :host .col.pull-m9, :host .tabs .tab a.pull-m9, :host .pull-m9.settings-card-wrapper {
     right: 75%;
   }
-  .row .col.push-m9, :host .col.push-m9, :host .push-m9.settings-card-wrapper {
+  .row .col.push-m9, :host .col.push-m9, :host .tabs .tab a.push-m9, :host .push-m9.settings-card-wrapper {
     left: 75%;
   }
-  .row .col.offset-m10, :host .col.offset-m10, :host .offset-m10.settings-card-wrapper {
+  .row .col.offset-m10, :host .col.offset-m10, :host .tabs .tab a.offset-m10, :host .offset-m10.settings-card-wrapper {
     margin-left: 83.3333333333%;
   }
-  .row .col.pull-m10, :host .col.pull-m10, :host .pull-m10.settings-card-wrapper {
+  .row .col.pull-m10, :host .col.pull-m10, :host .tabs .tab a.pull-m10, :host .pull-m10.settings-card-wrapper {
     right: 83.3333333333%;
   }
-  .row .col.push-m10, :host .col.push-m10, :host .push-m10.settings-card-wrapper {
+  .row .col.push-m10, :host .col.push-m10, :host .tabs .tab a.push-m10, :host .push-m10.settings-card-wrapper {
     left: 83.3333333333%;
   }
-  .row .col.offset-m11, :host .col.offset-m11, :host .offset-m11.settings-card-wrapper {
+  .row .col.offset-m11, :host .col.offset-m11, :host .tabs .tab a.offset-m11, :host .offset-m11.settings-card-wrapper {
     margin-left: 91.6666666667%;
   }
-  .row .col.pull-m11, :host .col.pull-m11, :host .pull-m11.settings-card-wrapper {
+  .row .col.pull-m11, :host .col.pull-m11, :host .tabs .tab a.pull-m11, :host .pull-m11.settings-card-wrapper {
     right: 91.6666666667%;
   }
-  .row .col.push-m11, :host .col.push-m11, :host .push-m11.settings-card-wrapper {
+  .row .col.push-m11, :host .col.push-m11, :host .tabs .tab a.push-m11, :host .push-m11.settings-card-wrapper {
     left: 91.6666666667%;
   }
-  .row .col.offset-m12, :host .col.offset-m12, :host .offset-m12.settings-card-wrapper {
+  .row .col.offset-m12, :host .col.offset-m12, :host .tabs .tab a.offset-m12, :host .offset-m12.settings-card-wrapper {
     margin-left: 100%;
   }
-  .row .col.pull-m12, :host .col.pull-m12, :host .pull-m12.settings-card-wrapper {
+  .row .col.pull-m12, :host .col.pull-m12, :host .tabs .tab a.pull-m12, :host .pull-m12.settings-card-wrapper {
     right: 100%;
   }
-  .row .col.push-m12, :host .col.push-m12, :host .push-m12.settings-card-wrapper {
+  .row .col.push-m12, :host .col.push-m12, :host .tabs .tab a.push-m12, :host .push-m12.settings-card-wrapper {
     left: 100%;
   }
 }
 
 @media only screen and (min-width: 993px) {
-  .row .col.l1, :host .col.l1, :host .l1.settings-card-wrapper {
+  .row .col.l1, :host .col.l1, :host .tabs .tab a.l1, :host .l1.settings-card-wrapper {
     width: 8.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l2, :host .col.l2, :host .l2.settings-card-wrapper {
+  .row .col.l2, :host .col.l2, :host .tabs .tab a.l2, :host .l2.settings-card-wrapper {
     width: 16.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l3, :host .col.l3, :host .l3.settings-card-wrapper {
+  .row .col.l3, :host .col.l3, :host .tabs .tab a.l3, :host .l3.settings-card-wrapper {
     width: 25%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l4, :host .col.l4, :host .l4.settings-card-wrapper {
+  .row .col.l4, :host .col.l4, :host .tabs .tab a.l4, :host .l4.settings-card-wrapper {
     width: 33.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l5, :host .col.l5, :host .l5.settings-card-wrapper {
+  .row .col.l5, :host .col.l5, :host .tabs .tab a.l5, :host .l5.settings-card-wrapper {
     width: 41.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l6, :host .col.l6, :host .l6.settings-card-wrapper {
+  .row .col.l6, :host .col.l6, :host .tabs .tab a.l6, :host .l6.settings-card-wrapper {
     width: 50%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l7, :host .col.l7, :host .l7.settings-card-wrapper {
+  .row .col.l7, :host .col.l7, :host .tabs .tab a.l7, :host .l7.settings-card-wrapper {
     width: 58.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l8, :host .col.l8, :host .l8.settings-card-wrapper {
+  .row .col.l8, :host .col.l8, :host .tabs .tab a.l8, :host .l8.settings-card-wrapper {
     width: 66.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l9, :host .col.l9, :host .l9.settings-card-wrapper {
+  .row .col.l9, :host .col.l9, :host .tabs .tab a.l9, :host .l9.settings-card-wrapper {
     width: 75%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l10, :host .col.l10, :host .l10.settings-card-wrapper {
+  .row .col.l10, :host .col.l10, :host .tabs .tab a.l10, :host .l10.settings-card-wrapper {
     width: 83.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l11, :host .col.l11, :host .l11.settings-card-wrapper {
+  .row .col.l11, :host .col.l11, :host .tabs .tab a.l11, :host .l11.settings-card-wrapper {
     width: 91.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l12, :host .col.l12, .row :host .settings-card-wrapper, :host .row .settings-card-wrapper, :host .settings-card-wrapper {
+  .row .col.l12, :host .col.l12, :host .tabs .tab a.l12, :host .tabs .tab a.settings-card-wrapper, .row :host .settings-card-wrapper, :host .row .settings-card-wrapper, :host .settings-card-wrapper {
     width: 100%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.offset-l1, :host .col.offset-l1, :host .offset-l1.settings-card-wrapper {
+  .row .col.offset-l1, :host .col.offset-l1, :host .tabs .tab a.offset-l1, :host .offset-l1.settings-card-wrapper {
     margin-left: 8.3333333333%;
   }
-  .row .col.pull-l1, :host .col.pull-l1, :host .pull-l1.settings-card-wrapper {
+  .row .col.pull-l1, :host .col.pull-l1, :host .tabs .tab a.pull-l1, :host .pull-l1.settings-card-wrapper {
     right: 8.3333333333%;
   }
-  .row .col.push-l1, :host .col.push-l1, :host .push-l1.settings-card-wrapper {
+  .row .col.push-l1, :host .col.push-l1, :host .tabs .tab a.push-l1, :host .push-l1.settings-card-wrapper {
     left: 8.3333333333%;
   }
-  .row .col.offset-l2, :host .col.offset-l2, :host .offset-l2.settings-card-wrapper {
+  .row .col.offset-l2, :host .col.offset-l2, :host .tabs .tab a.offset-l2, :host .offset-l2.settings-card-wrapper {
     margin-left: 16.6666666667%;
   }
-  .row .col.pull-l2, :host .col.pull-l2, :host .pull-l2.settings-card-wrapper {
+  .row .col.pull-l2, :host .col.pull-l2, :host .tabs .tab a.pull-l2, :host .pull-l2.settings-card-wrapper {
     right: 16.6666666667%;
   }
-  .row .col.push-l2, :host .col.push-l2, :host .push-l2.settings-card-wrapper {
+  .row .col.push-l2, :host .col.push-l2, :host .tabs .tab a.push-l2, :host .push-l2.settings-card-wrapper {
     left: 16.6666666667%;
   }
-  .row .col.offset-l3, :host .col.offset-l3, :host .offset-l3.settings-card-wrapper {
+  .row .col.offset-l3, :host .col.offset-l3, :host .tabs .tab a.offset-l3, :host .offset-l3.settings-card-wrapper {
     margin-left: 25%;
   }
-  .row .col.pull-l3, :host .col.pull-l3, :host .pull-l3.settings-card-wrapper {
+  .row .col.pull-l3, :host .col.pull-l3, :host .tabs .tab a.pull-l3, :host .pull-l3.settings-card-wrapper {
     right: 25%;
   }
-  .row .col.push-l3, :host .col.push-l3, :host .push-l3.settings-card-wrapper {
+  .row .col.push-l3, :host .col.push-l3, :host .tabs .tab a.push-l3, :host .push-l3.settings-card-wrapper {
     left: 25%;
   }
-  .row .col.offset-l4, :host .col.offset-l4, :host .offset-l4.settings-card-wrapper {
+  .row .col.offset-l4, :host .col.offset-l4, :host .tabs .tab a.offset-l4, :host .offset-l4.settings-card-wrapper {
     margin-left: 33.3333333333%;
   }
-  .row .col.pull-l4, :host .col.pull-l4, :host .pull-l4.settings-card-wrapper {
+  .row .col.pull-l4, :host .col.pull-l4, :host .tabs .tab a.pull-l4, :host .pull-l4.settings-card-wrapper {
     right: 33.3333333333%;
   }
-  .row .col.push-l4, :host .col.push-l4, :host .push-l4.settings-card-wrapper {
+  .row .col.push-l4, :host .col.push-l4, :host .tabs .tab a.push-l4, :host .push-l4.settings-card-wrapper {
     left: 33.3333333333%;
   }
-  .row .col.offset-l5, :host .col.offset-l5, :host .offset-l5.settings-card-wrapper {
+  .row .col.offset-l5, :host .col.offset-l5, :host .tabs .tab a.offset-l5, :host .offset-l5.settings-card-wrapper {
     margin-left: 41.6666666667%;
   }
-  .row .col.pull-l5, :host .col.pull-l5, :host .pull-l5.settings-card-wrapper {
+  .row .col.pull-l5, :host .col.pull-l5, :host .tabs .tab a.pull-l5, :host .pull-l5.settings-card-wrapper {
     right: 41.6666666667%;
   }
-  .row .col.push-l5, :host .col.push-l5, :host .push-l5.settings-card-wrapper {
+  .row .col.push-l5, :host .col.push-l5, :host .tabs .tab a.push-l5, :host .push-l5.settings-card-wrapper {
     left: 41.6666666667%;
   }
-  .row .col.offset-l6, :host .col.offset-l6, :host .offset-l6.settings-card-wrapper {
+  .row .col.offset-l6, :host .col.offset-l6, :host .tabs .tab a.offset-l6, :host .offset-l6.settings-card-wrapper {
     margin-left: 50%;
   }
-  .row .col.pull-l6, :host .col.pull-l6, :host .pull-l6.settings-card-wrapper {
+  .row .col.pull-l6, :host .col.pull-l6, :host .tabs .tab a.pull-l6, :host .pull-l6.settings-card-wrapper {
     right: 50%;
   }
-  .row .col.push-l6, :host .col.push-l6, :host .push-l6.settings-card-wrapper {
+  .row .col.push-l6, :host .col.push-l6, :host .tabs .tab a.push-l6, :host .push-l6.settings-card-wrapper {
     left: 50%;
   }
-  .row .col.offset-l7, :host .col.offset-l7, :host .offset-l7.settings-card-wrapper {
+  .row .col.offset-l7, :host .col.offset-l7, :host .tabs .tab a.offset-l7, :host .offset-l7.settings-card-wrapper {
     margin-left: 58.3333333333%;
   }
-  .row .col.pull-l7, :host .col.pull-l7, :host .pull-l7.settings-card-wrapper {
+  .row .col.pull-l7, :host .col.pull-l7, :host .tabs .tab a.pull-l7, :host .pull-l7.settings-card-wrapper {
     right: 58.3333333333%;
   }
-  .row .col.push-l7, :host .col.push-l7, :host .push-l7.settings-card-wrapper {
+  .row .col.push-l7, :host .col.push-l7, :host .tabs .tab a.push-l7, :host .push-l7.settings-card-wrapper {
     left: 58.3333333333%;
   }
-  .row .col.offset-l8, :host .col.offset-l8, :host .offset-l8.settings-card-wrapper {
+  .row .col.offset-l8, :host .col.offset-l8, :host .tabs .tab a.offset-l8, :host .offset-l8.settings-card-wrapper {
     margin-left: 66.6666666667%;
   }
-  .row .col.pull-l8, :host .col.pull-l8, :host .pull-l8.settings-card-wrapper {
+  .row .col.pull-l8, :host .col.pull-l8, :host .tabs .tab a.pull-l8, :host .pull-l8.settings-card-wrapper {
     right: 66.6666666667%;
   }
-  .row .col.push-l8, :host .col.push-l8, :host .push-l8.settings-card-wrapper {
+  .row .col.push-l8, :host .col.push-l8, :host .tabs .tab a.push-l8, :host .push-l8.settings-card-wrapper {
     left: 66.6666666667%;
   }
-  .row .col.offset-l9, :host .col.offset-l9, :host .offset-l9.settings-card-wrapper {
+  .row .col.offset-l9, :host .col.offset-l9, :host .tabs .tab a.offset-l9, :host .offset-l9.settings-card-wrapper {
     margin-left: 75%;
   }
-  .row .col.pull-l9, :host .col.pull-l9, :host .pull-l9.settings-card-wrapper {
+  .row .col.pull-l9, :host .col.pull-l9, :host .tabs .tab a.pull-l9, :host .pull-l9.settings-card-wrapper {
     right: 75%;
   }
-  .row .col.push-l9, :host .col.push-l9, :host .push-l9.settings-card-wrapper {
+  .row .col.push-l9, :host .col.push-l9, :host .tabs .tab a.push-l9, :host .push-l9.settings-card-wrapper {
     left: 75%;
   }
-  .row .col.offset-l10, :host .col.offset-l10, :host .offset-l10.settings-card-wrapper {
+  .row .col.offset-l10, :host .col.offset-l10, :host .tabs .tab a.offset-l10, :host .offset-l10.settings-card-wrapper {
     margin-left: 83.3333333333%;
   }
-  .row .col.pull-l10, :host .col.pull-l10, :host .pull-l10.settings-card-wrapper {
+  .row .col.pull-l10, :host .col.pull-l10, :host .tabs .tab a.pull-l10, :host .pull-l10.settings-card-wrapper {
     right: 83.3333333333%;
   }
-  .row .col.push-l10, :host .col.push-l10, :host .push-l10.settings-card-wrapper {
+  .row .col.push-l10, :host .col.push-l10, :host .tabs .tab a.push-l10, :host .push-l10.settings-card-wrapper {
     left: 83.3333333333%;
   }
-  .row .col.offset-l11, :host .col.offset-l11, :host .offset-l11.settings-card-wrapper {
+  .row .col.offset-l11, :host .col.offset-l11, :host .tabs .tab a.offset-l11, :host .offset-l11.settings-card-wrapper {
     margin-left: 91.6666666667%;
   }
-  .row .col.pull-l11, :host .col.pull-l11, :host .pull-l11.settings-card-wrapper {
+  .row .col.pull-l11, :host .col.pull-l11, :host .tabs .tab a.pull-l11, :host .pull-l11.settings-card-wrapper {
     right: 91.6666666667%;
   }
-  .row .col.push-l11, :host .col.push-l11, :host .push-l11.settings-card-wrapper {
+  .row .col.push-l11, :host .col.push-l11, :host .tabs .tab a.push-l11, :host .push-l11.settings-card-wrapper {
     left: 91.6666666667%;
   }
-  .row .col.offset-l12, :host .col.offset-l12, :host .offset-l12.settings-card-wrapper {
+  .row .col.offset-l12, :host .col.offset-l12, :host .tabs .tab a.offset-l12, :host .offset-l12.settings-card-wrapper {
     margin-left: 100%;
   }
-  .row .col.pull-l12, :host .col.pull-l12, :host .pull-l12.settings-card-wrapper {
+  .row .col.pull-l12, :host .col.pull-l12, :host .tabs .tab a.pull-l12, :host .pull-l12.settings-card-wrapper {
     right: 100%;
   }
-  .row .col.push-l12, :host .col.push-l12, :host .push-l12.settings-card-wrapper {
+  .row .col.push-l12, :host .col.push-l12, :host .tabs .tab a.push-l12, :host .push-l12.settings-card-wrapper {
     left: 100%;
   }
 }
