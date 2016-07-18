@@ -9,7 +9,7 @@ testing_1.describe('NavigationComponent', function () {
     var routerMock;
     var urlPrefix;
     testing_1.beforeEachProviders(function () {
-        var urlPrefix = 'Some Url';
+        urlPrefix = 'Some Url';
         routerMock = {
             url: urlPrefix + 'suffix'
         };
@@ -32,7 +32,7 @@ testing_1.describe('NavigationComponent', function () {
             chai_1.expect(component.isActiveRoute(urlPrefix.toUpperCase())).to.be.true;
         });
         testing_1.it('on route that does not start with same url should return false', function () {
-            chai_1.expect(component.isActiveRoute(routerMock.url + 'some other suffix')).to.be.false;
+            chai_1.expect(component.isActiveRoute(urlPrefix + 'some other suffix')).to.be.false;
         });
     });
 });

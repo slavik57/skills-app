@@ -18,7 +18,7 @@ describe('NavigationComponent', () => {
   var urlPrefix: string;
 
   beforeEachProviders(() => {
-    var urlPrefix = 'Some Url';
+    urlPrefix = 'Some Url';
 
     routerMock = <any>{
       url: urlPrefix + 'suffix'
@@ -50,7 +50,7 @@ describe('NavigationComponent', () => {
     });
 
     it('on route that does not start with same url should return false', () => {
-      expect(component.isActiveRoute(routerMock.url + 'some other suffix')).to.be.false;
+      expect(component.isActiveRoute(urlPrefix + 'some other suffix')).to.be.false;
     });
 
   });
