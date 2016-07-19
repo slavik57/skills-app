@@ -23,7 +23,7 @@ describe('SettingsComponent', () => {
   beforeEach(inject([SettingsComponent], (_component: SettingsComponent) => {
     component = _component;
 
-    component.availableSettings = <any>{
+    component.availableSettings = {
       nativeElement: {}
     };
   }));

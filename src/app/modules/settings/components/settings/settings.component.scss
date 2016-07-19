@@ -15,16 +15,12 @@
     }
   }
 
-  .settings-card-wrapper{
+  .settings-content-wrapper{
     @extend .col;
     @extend .s12;
     @extend .m12;
     @extend .l12;
 
-    .card{
-      @extend .grey;
-      @extend .lighten-4;
-    }
-
+    padding-top: 1rem;
   }
 }

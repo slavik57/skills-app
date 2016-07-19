@@ -1,16 +1,20 @@
+import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {IUsernameDetails} from "../../../common/interfaces/iUsernameDetails";
 import {UserService} from "../../../common/services/userService";
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'users-settings',
   template: require('./usersSettings.component.html'),
-  // styles: [require('./usersSettings.component.scss')],
+  styles: [require('./usersSettings.component.scss')],
+  directives: [CircularLoadingComponent],
 })
 export class UsersSettingsComponent implements OnInit {
   public isLoadingUsers: boolean;
   public loadingUsersError: any;
   public usersDetails: IUsernameDetails[];
+  @ViewChild('userDetailsList') public userDetailsList: ElementRef;
 
   constructor(private userService: UserService) {
   }
@@ -40,6 +44,10 @@ export class UsersSettingsComponent implements OnInit {
 
   private _setUserDetails(usersDetails: IUsernameDetails[]): void {
     this.usersDetails = usersDetails;
+
+    setTimeout(() => {
+      $(this.userDetailsList.nativeElement).collapsible();
+    }, 0);
   }
 
   private _setGettingUsersError(error: any): void {

@@ -1,1 +1,37 @@
-Hi users settings...
+<div class="users-settings-wrapper"
+     [ngClass]="{loading: isLoadingUsers, error: loadingUsersError}">
+
+  <div class="loading-users-details">
+    <span class="text">Loading users details...</span>
+    <circular-loading></circular-loading>
+  </div>
+
+  <div class="loading-users-details-error">
+    <span class="text">{{loadingUsersError}}</span>
+    <button class="retry-button" (click)="reloadUsersDetails()">
+     Try Again
+    </button>
+  </div>
+
+  <div class="user-details-wrapper">
+
+    <ul #userDetailsList class="collapsible popout" *ngIf="usersDetails">
+
+      <li class="item"
+          *ngFor="let userDetails of usersDetails">
+
+        <div class="collapsible-header">
+          <i class="material-icons">filter_drama</i>
+          {{userDetails.username}}
+        </div>
+        <div class="collapsible-body">
+          <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+
+      </li>
+
+    </ul>
+
+  </div>
+
+</div>

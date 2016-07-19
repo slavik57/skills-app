@@ -1,0 +1,101 @@
+@import "../../../../commonStyles/_loading";
+
+:host {
+  display: flex;
+
+  .users-settings-wrapper{
+    width: 100%;
+
+    &.loading{
+      height: 6rem;
+
+      .loading-users-details{
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .user-details-wrapper{
+        opacity: 0;
+        display: none;
+      }
+    }
+
+    &.error{
+      height: 6rem;
+
+      .loading-users-details-error{
+        opacity: 1;
+        pointer-events: auto;
+        visibility: visible;
+      }
+
+      .user-details-wrapper{
+        opacity: 0;
+        display: none;
+      }
+    }
+
+    .loading-users-details{
+      @extend .loading-wrapper;
+      top: 2rem;
+      visibility: collapse;
+      opacity: 0;
+      transition: opacity .3s ease, visibility 0s ease .3s;
+
+      .text{
+        display: block;
+      }
+
+      circular-loading {
+        display: block;
+        margin: auto;
+        $size: 2rem;
+        width: $size;
+        height: $size;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .loading-users-details-error{
+
+      @extend .loading-wrapper;
+      top: 2rem;
+      visibility: collapse;
+      opacity: 0;
+      transition: opacity .3s ease, visibility 0s ease .3s;
+      color: red;
+      pointer-events: none;
+
+      .text{
+        display: block;
+        margin-bottom: 1rem;
+        min-height: 1.5rem;
+      }
+
+      .retry-button{
+        @extend .btn;
+        @extend .blue;
+        @extend .lighten-1;
+        @extend .text-white;
+      }
+    }
+
+    .user-details-wrapper {
+      opacity: 1;
+      transition: opacity .3s ease;
+
+      .collapsible{
+
+        .item .collapsible-header{
+          user-select: none;
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+          cursor: pointer;
+        }
+      }
+    }
+
+  }
+}

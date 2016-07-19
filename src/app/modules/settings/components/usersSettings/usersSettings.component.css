@@ -35,7 +35,7 @@
   color: #f3989b !important;
 }
 
-.materialize-red.lighten-2 {
+.materialize-red.lighten-2, .materialize-red.progress {
   background-color: #ee6e73 !important;
 }
 
@@ -43,7 +43,7 @@
   color: #ee6e73 !important;
 }
 
-.materialize-red.lighten-1 {
+.materialize-red.lighten-1, :host .users-settings-wrapper .loading-users-details-error .materialize-red.retry-button {
   background-color: #ea454b !important;
 }
 
@@ -115,7 +115,7 @@
   color: #EF9A9A !important;
 }
 
-.red.lighten-2 {
+.red.lighten-2, .red.progress {
   background-color: #E57373 !important;
 }
 
@@ -123,7 +123,7 @@
   color: #E57373 !important;
 }
 
-.red.lighten-1 {
+.red.lighten-1, :host .users-settings-wrapper .loading-users-details-error .red.retry-button {
   background-color: #EF5350 !important;
 }
 
@@ -227,7 +227,7 @@
   color: #f48fb1 !important;
 }
 
-.pink.lighten-2 {
+.pink.lighten-2, .pink.progress {
   background-color: #f06292 !important;
 }
 
@@ -235,7 +235,7 @@
   color: #f06292 !important;
 }
 
-.pink.lighten-1 {
+.pink.lighten-1, :host .users-settings-wrapper .loading-users-details-error .pink.retry-button {
   background-color: #ec407a !important;
 }
 
@@ -339,7 +339,7 @@
   color: #ce93d8 !important;
 }
 
-.purple.lighten-2 {
+.purple.lighten-2, .purple.progress {
   background-color: #ba68c8 !important;
 }
 
@@ -347,7 +347,7 @@
   color: #ba68c8 !important;
 }
 
-.purple.lighten-1 {
+.purple.lighten-1, :host .users-settings-wrapper .loading-users-details-error .purple.retry-button {
   background-color: #ab47bc !important;
 }
 
@@ -451,7 +451,7 @@
   color: #b39ddb !important;
 }
 
-.deep-purple.lighten-2 {
+.deep-purple.lighten-2, .deep-purple.progress {
   background-color: #9575cd !important;
 }
 
@@ -459,7 +459,7 @@
   color: #9575cd !important;
 }
 
-.deep-purple.lighten-1 {
+.deep-purple.lighten-1, :host .users-settings-wrapper .loading-users-details-error .deep-purple.retry-button {
   background-color: #7e57c2 !important;
 }
 
@@ -563,7 +563,7 @@
   color: #9fa8da !important;
 }
 
-.indigo.lighten-2 {
+.indigo.lighten-2, .indigo.progress {
   background-color: #7986cb !important;
 }
 
@@ -571,7 +571,7 @@
   color: #7986cb !important;
 }
 
-.indigo.lighten-1 {
+.indigo.lighten-1, :host .users-settings-wrapper .loading-users-details-error .indigo.retry-button {
   background-color: #5c6bc0 !important;
 }
 
@@ -643,115 +643,115 @@
   color: #304ffe !important;
 }
 
-.blue, :host .tabs div.indicator {
+.blue, .progress .indeterminate, :host .users-settings-wrapper .loading-users-details-error .retry-button {
   background-color: #2196F3 !important;
 }
 
-.blue-text, :host .tabs .tab a {
+.blue-text {
   color: #2196F3 !important;
 }
 
-.blue.lighten-5, :host .tabs div.lighten-5.indicator {
+.blue.lighten-5, .progress .lighten-5.indeterminate, :host .users-settings-wrapper .loading-users-details-error .lighten-5.retry-button {
   background-color: #E3F2FD !important;
 }
 
-.blue-text.text-lighten-5, :host .tabs .tab a.text-lighten-5 {
+.blue-text.text-lighten-5 {
   color: #E3F2FD !important;
 }
 
-.blue.lighten-4, :host .tabs div.lighten-4.indicator {
+.blue.lighten-4, .progress .lighten-4.indeterminate, :host .users-settings-wrapper .loading-users-details-error .lighten-4.retry-button {
   background-color: #BBDEFB !important;
 }
 
-.blue-text.text-lighten-4, :host .tabs .tab a.text-lighten-4 {
+.blue-text.text-lighten-4 {
   color: #BBDEFB !important;
 }
 
-.blue.lighten-3, :host .tabs div.lighten-3.indicator {
+.blue.lighten-3, .progress .lighten-3.indeterminate, :host .users-settings-wrapper .loading-users-details-error .lighten-3.retry-button {
   background-color: #90CAF9 !important;
 }
 
-.blue-text.text-lighten-3, :host .tabs .tab a.text-lighten-3 {
+.blue-text.text-lighten-3 {
   color: #90CAF9 !important;
 }
 
-.blue.lighten-2, :host .tabs div.lighten-2.indicator {
+.blue.lighten-2, .blue.progress, .progress .progress.indeterminate, :host .users-settings-wrapper .loading-users-details-error .progress.retry-button, .progress .lighten-2.indeterminate, :host .users-settings-wrapper .loading-users-details-error .lighten-2.retry-button {
   background-color: #64B5F6 !important;
 }
 
-.blue-text.text-lighten-2, :host .tabs .tab a.text-lighten-2 {
+.blue-text.text-lighten-2 {
   color: #64B5F6 !important;
 }
 
-.blue.lighten-1, :host .tabs div.lighten-1.indicator {
+.blue.lighten-1, .progress .lighten-1.indeterminate, :host .users-settings-wrapper .loading-users-details-error .retry-button {
   background-color: #42A5F5 !important;
 }
 
-.blue-text.text-lighten-1, :host .tabs .tab a.text-lighten-1 {
+.blue-text.text-lighten-1 {
   color: #42A5F5 !important;
 }
 
-.blue.darken-1, :host .tabs div.darken-1.indicator {
+.blue.darken-1, .progress .darken-1.indeterminate, :host .users-settings-wrapper .loading-users-details-error .darken-1.retry-button {
   background-color: #1E88E5 !important;
 }
 
-.blue-text.text-darken-1, :host .tabs .tab a.text-darken-1 {
+.blue-text.text-darken-1 {
   color: #1E88E5 !important;
 }
 
-.blue.darken-2, :host .tabs div.darken-2.indicator {
+.blue.darken-2, .progress .darken-2.indeterminate, :host .users-settings-wrapper .loading-users-details-error .darken-2.retry-button {
   background-color: #1976D2 !important;
 }
 
-.blue-text.text-darken-2, :host .tabs .tab a.text-darken-2 {
+.blue-text.text-darken-2 {
   color: #1976D2 !important;
 }
 
-.blue.darken-3, :host .tabs div.darken-3.indicator {
+.blue.darken-3, .progress .darken-3.indeterminate, :host .users-settings-wrapper .loading-users-details-error .darken-3.retry-button {
   background-color: #1565C0 !important;
 }
 
-.blue-text.text-darken-3, :host .tabs .tab a.text-darken-3 {
+.blue-text.text-darken-3 {
   color: #1565C0 !important;
 }
 
-.blue.darken-4, :host .tabs div.darken-4.indicator {
+.blue.darken-4, .progress .darken-4.indeterminate, :host .users-settings-wrapper .loading-users-details-error .darken-4.retry-button {
   background-color: #0D47A1 !important;
 }
 
-.blue-text.text-darken-4, :host .tabs .tab a.text-darken-4 {
+.blue-text.text-darken-4 {
   color: #0D47A1 !important;
 }
 
-.blue.accent-1, :host .tabs div.accent-1.indicator {
+.blue.accent-1, .progress .accent-1.indeterminate, :host .users-settings-wrapper .loading-users-details-error .accent-1.retry-button {
   background-color: #82B1FF !important;
 }
 
-.blue-text.text-accent-1, :host .tabs .tab a.text-accent-1 {
+.blue-text.text-accent-1 {
   color: #82B1FF !important;
 }
 
-.blue.accent-2, :host .tabs div.accent-2.indicator {
+.blue.accent-2, .progress .accent-2.indeterminate, :host .users-settings-wrapper .loading-users-details-error .accent-2.retry-button {
   background-color: #448AFF !important;
 }
 
-.blue-text.text-accent-2, :host .tabs .tab a.text-accent-2 {
+.blue-text.text-accent-2 {
   color: #448AFF !important;
 }
 
-.blue.accent-3, :host .tabs div.accent-3.indicator {
+.blue.accent-3, .progress .accent-3.indeterminate, :host .users-settings-wrapper .loading-users-details-error .accent-3.retry-button {
   background-color: #2979FF !important;
 }
 
-.blue-text.text-accent-3, :host .tabs .tab a.text-accent-3 {
+.blue-text.text-accent-3 {
   color: #2979FF !important;
 }
 
-.blue.accent-4, :host .tabs div.accent-4.indicator {
+.blue.accent-4, .progress .accent-4.indeterminate, :host .users-settings-wrapper .loading-users-details-error .accent-4.retry-button {
   background-color: #2962FF !important;
 }
 
-.blue-text.text-accent-4, :host .tabs .tab a.text-accent-4 {
+.blue-text.text-accent-4 {
   color: #2962FF !important;
 }
 
@@ -787,7 +787,7 @@
   color: #81d4fa !important;
 }
 
-.light-blue.lighten-2 {
+.light-blue.lighten-2, .light-blue.progress {
   background-color: #4fc3f7 !important;
 }
 
@@ -795,7 +795,7 @@
   color: #4fc3f7 !important;
 }
 
-.light-blue.lighten-1 {
+.light-blue.lighten-1, :host .users-settings-wrapper .loading-users-details-error .light-blue.retry-button {
   background-color: #29b6f6 !important;
 }
 
@@ -899,7 +899,7 @@
   color: #80deea !important;
 }
 
-.cyan.lighten-2 {
+.cyan.lighten-2, .cyan.progress {
   background-color: #4dd0e1 !important;
 }
 
@@ -907,7 +907,7 @@
   color: #4dd0e1 !important;
 }
 
-.cyan.lighten-1 {
+.cyan.lighten-1, :host .users-settings-wrapper .loading-users-details-error .cyan.retry-button {
   background-color: #26c6da !important;
 }
 
@@ -1011,7 +1011,7 @@
   color: #80cbc4 !important;
 }
 
-.teal.lighten-2 {
+.teal.lighten-2, .teal.progress {
   background-color: #4db6ac !important;
 }
 
@@ -1019,7 +1019,7 @@
   color: #4db6ac !important;
 }
 
-.teal.lighten-1 {
+.teal.lighten-1, :host .users-settings-wrapper .loading-users-details-error .teal.retry-button {
   background-color: #26a69a !important;
 }
 
@@ -1123,7 +1123,7 @@
   color: #A5D6A7 !important;
 }
 
-.green.lighten-2 {
+.green.lighten-2, .green.progress {
   background-color: #81C784 !important;
 }
 
@@ -1131,7 +1131,7 @@
   color: #81C784 !important;
 }
 
-.green.lighten-1 {
+.green.lighten-1, :host .users-settings-wrapper .loading-users-details-error .green.retry-button {
   background-color: #66BB6A !important;
 }
 
@@ -1235,7 +1235,7 @@
   color: #c5e1a5 !important;
 }
 
-.light-green.lighten-2 {
+.light-green.lighten-2, .light-green.progress {
   background-color: #aed581 !important;
 }
 
@@ -1243,7 +1243,7 @@
   color: #aed581 !important;
 }
 
-.light-green.lighten-1 {
+.light-green.lighten-1, :host .users-settings-wrapper .loading-users-details-error .light-green.retry-button {
   background-color: #9ccc65 !important;
 }
 
@@ -1347,7 +1347,7 @@
   color: #e6ee9c !important;
 }
 
-.lime.lighten-2 {
+.lime.lighten-2, .lime.progress {
   background-color: #dce775 !important;
 }
 
@@ -1355,7 +1355,7 @@
   color: #dce775 !important;
 }
 
-.lime.lighten-1 {
+.lime.lighten-1, :host .users-settings-wrapper .loading-users-details-error .lime.retry-button {
   background-color: #d4e157 !important;
 }
 
@@ -1459,7 +1459,7 @@
   color: #fff59d !important;
 }
 
-.yellow.lighten-2 {
+.yellow.lighten-2, .yellow.progress {
   background-color: #fff176 !important;
 }
 
@@ -1467,7 +1467,7 @@
   color: #fff176 !important;
 }
 
-.yellow.lighten-1 {
+.yellow.lighten-1, :host .users-settings-wrapper .loading-users-details-error .yellow.retry-button {
   background-color: #ffee58 !important;
 }
 
@@ -1571,7 +1571,7 @@
   color: #ffe082 !important;
 }
 
-.amber.lighten-2 {
+.amber.lighten-2, .amber.progress {
   background-color: #ffd54f !important;
 }
 
@@ -1579,7 +1579,7 @@
   color: #ffd54f !important;
 }
 
-.amber.lighten-1 {
+.amber.lighten-1, :host .users-settings-wrapper .loading-users-details-error .amber.retry-button {
   background-color: #ffca28 !important;
 }
 
@@ -1683,7 +1683,7 @@
   color: #ffcc80 !important;
 }
 
-.orange.lighten-2 {
+.orange.lighten-2, .orange.progress {
   background-color: #ffb74d !important;
 }
 
@@ -1691,7 +1691,7 @@
   color: #ffb74d !important;
 }
 
-.orange.lighten-1 {
+.orange.lighten-1, :host .users-settings-wrapper .loading-users-details-error .orange.retry-button {
   background-color: #ffa726 !important;
 }
 
@@ -1795,7 +1795,7 @@
   color: #ffab91 !important;
 }
 
-.deep-orange.lighten-2 {
+.deep-orange.lighten-2, .deep-orange.progress {
   background-color: #ff8a65 !important;
 }
 
@@ -1803,7 +1803,7 @@
   color: #ff8a65 !important;
 }
 
-.deep-orange.lighten-1 {
+.deep-orange.lighten-1, :host .users-settings-wrapper .loading-users-details-error .deep-orange.retry-button {
   background-color: #ff7043 !important;
 }
 
@@ -1907,7 +1907,7 @@
   color: #bcaaa4 !important;
 }
 
-.brown.lighten-2 {
+.brown.lighten-2, .brown.progress {
   background-color: #a1887f !important;
 }
 
@@ -1915,7 +1915,7 @@
   color: #a1887f !important;
 }
 
-.brown.lighten-1 {
+.brown.lighten-1, :host .users-settings-wrapper .loading-users-details-error .brown.retry-button {
   background-color: #8d6e63 !important;
 }
 
@@ -1987,7 +1987,7 @@
   color: #b0bec5 !important;
 }
 
-.blue-grey.lighten-2 {
+.blue-grey.lighten-2, .blue-grey.progress {
   background-color: #90a4ae !important;
 }
 
@@ -1995,7 +1995,7 @@
   color: #90a4ae !important;
 }
 
-.blue-grey.lighten-1 {
+.blue-grey.lighten-1, :host .users-settings-wrapper .loading-users-details-error .blue-grey.retry-button {
   background-color: #78909c !important;
 }
 
@@ -2035,7 +2035,7 @@
   color: #263238 !important;
 }
 
-.grey {
+.grey, .progress {
   background-color: #9e9e9e !important;
 }
 
@@ -2043,7 +2043,7 @@
   color: #9e9e9e !important;
 }
 
-.grey.lighten-5 {
+.grey.lighten-5, .lighten-5.progress {
   background-color: #fafafa !important;
 }
 
@@ -2051,7 +2051,7 @@
   color: #fafafa !important;
 }
 
-.grey.lighten-4 {
+.grey.lighten-4, .lighten-4.progress {
   background-color: #f5f5f5 !important;
 }
 
@@ -2059,7 +2059,7 @@
   color: #f5f5f5 !important;
 }
 
-.grey.lighten-3 {
+.grey.lighten-3, .lighten-3.progress {
   background-color: #eee !important;
 }
 
@@ -2067,7 +2067,7 @@
   color: #eee !important;
 }
 
-.grey.lighten-2 {
+.grey.lighten-2, .progress {
   background-color: #e0e0e0 !important;
 }
 
@@ -2075,7 +2075,7 @@
   color: #e0e0e0 !important;
 }
 
-.grey.lighten-1 {
+.grey.lighten-1, .lighten-1.progress, :host .users-settings-wrapper .loading-users-details-error .progress.retry-button, :host .users-settings-wrapper .loading-users-details-error .grey.retry-button {
   background-color: #bdbdbd !important;
 }
 
@@ -2083,7 +2083,7 @@
   color: #bdbdbd !important;
 }
 
-.grey.darken-1 {
+.grey.darken-1, .darken-1.progress {
   background-color: #757575 !important;
 }
 
@@ -2091,7 +2091,7 @@
   color: #757575 !important;
 }
 
-.grey.darken-2 {
+.grey.darken-2, .darken-2.progress {
   background-color: #616161 !important;
 }
 
@@ -2099,7 +2099,7 @@
   color: #616161 !important;
 }
 
-.grey.darken-3 {
+.grey.darken-3, .darken-3.progress {
   background-color: #424242 !important;
 }
 
@@ -2107,7 +2107,7 @@
   color: #424242 !important;
 }
 
-.grey.darken-4 {
+.grey.darken-4, .darken-4.progress {
   background-color: #212121 !important;
 }
 
@@ -2127,7 +2127,7 @@
   background-color: #fff !important;
 }
 
-.shades-text.text-white {
+.shades-text.text-white, :host .users-settings-wrapper .loading-users-details-error .shades-text.retry-button {
   color: #fff !important;
 }
 
@@ -2396,11 +2396,11 @@ ul li {
   box-shadow: none !important;
 }
 
-.z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
+.z-depth-1, nav, .card-panel, .card, .toast, .btn, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-.z-depth-1-half, .btn:hover, .btn-large:hover, .btn-floating:hover {
+.z-depth-1-half, .btn:hover, :host .users-settings-wrapper .loading-users-details-error .retry-button:hover, .btn-large:hover, .btn-floating:hover {
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -3137,7 +3137,7 @@ nav ul a span.badge {
   }
 }
 
-.container .row, .container :host {
+.container .row {
   margin-left: -0.75rem;
   margin-right: -0.75rem;
 }
@@ -3159,618 +3159,618 @@ nav ul a span.badge {
   padding-top: 0;
 }
 
-.row, :host {
+.row {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
 }
 
-.row:after, :host:after {
+.row:after {
   content: "";
   display: table;
   clear: both;
 }
 
-.row .col, :host .col, :host .tabs .tab a, :host .settings-content-wrapper {
+.row .col {
   float: left;
   box-sizing: border-box;
   padding: 0 0.75rem;
 }
 
-.row .col[class*="push-"], :host .col[class*="push-"], :host .tabs .tab a[class*="push-"], :host [class*="push-"].settings-content-wrapper, .row .col[class*="pull-"], :host .col[class*="pull-"], :host .tabs .tab a[class*="pull-"], :host [class*="pull-"].settings-content-wrapper {
+.row .col[class*="push-"], .row .col[class*="pull-"] {
   position: relative;
 }
 
-.row .col.s1, :host .col.s1, :host .tabs .tab a.s1, :host .s1.settings-content-wrapper {
+.row .col.s1 {
   width: 8.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s2, :host .col.s2, :host .tabs .tab a.s2, :host .s2.settings-content-wrapper {
+.row .col.s2 {
   width: 16.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s3, :host .col.s3, :host .tabs .tab a, :host .s3.settings-content-wrapper {
+.row .col.s3 {
   width: 25%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s4, :host .col.s4, :host .tabs .tab a.s4, :host .s4.settings-content-wrapper {
+.row .col.s4 {
   width: 33.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s5, :host .col.s5, :host .tabs .tab a.s5, :host .s5.settings-content-wrapper {
+.row .col.s5 {
   width: 41.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s6, :host .col.s6, :host .tabs .tab a.s6, :host .s6.settings-content-wrapper {
+.row .col.s6 {
   width: 50%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s7, :host .col.s7, :host .tabs .tab a.s7, :host .s7.settings-content-wrapper {
+.row .col.s7 {
   width: 58.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s8, :host .col.s8, :host .tabs .tab a.s8, :host .s8.settings-content-wrapper {
+.row .col.s8 {
   width: 66.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s9, :host .col.s9, :host .tabs .tab a.s9, :host .s9.settings-content-wrapper {
+.row .col.s9 {
   width: 75%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s10, :host .col.s10, :host .tabs .tab a.s10, :host .s10.settings-content-wrapper {
+.row .col.s10 {
   width: 83.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s11, :host .col.s11, :host .tabs .tab a.s11, :host .s11.settings-content-wrapper {
+.row .col.s11 {
   width: 91.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s12, :host .col.s12, :host .tabs .tab a.s12, :host .tabs .tab a.settings-content-wrapper, .row :host .settings-content-wrapper, :host .row .settings-content-wrapper, :host .settings-content-wrapper {
+.row .col.s12 {
   width: 100%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.offset-s1, :host .col.offset-s1, :host .tabs .tab a.offset-s1, :host .offset-s1.settings-content-wrapper {
+.row .col.offset-s1 {
   margin-left: 8.3333333333%;
 }
 
-.row .col.pull-s1, :host .col.pull-s1, :host .tabs .tab a.pull-s1, :host .pull-s1.settings-content-wrapper {
+.row .col.pull-s1 {
   right: 8.3333333333%;
 }
 
-.row .col.push-s1, :host .col.push-s1, :host .tabs .tab a.push-s1, :host .push-s1.settings-content-wrapper {
+.row .col.push-s1 {
   left: 8.3333333333%;
 }
 
-.row .col.offset-s2, :host .col.offset-s2, :host .tabs .tab a.offset-s2, :host .offset-s2.settings-content-wrapper {
+.row .col.offset-s2 {
   margin-left: 16.6666666667%;
 }
 
-.row .col.pull-s2, :host .col.pull-s2, :host .tabs .tab a.pull-s2, :host .pull-s2.settings-content-wrapper {
+.row .col.pull-s2 {
   right: 16.6666666667%;
 }
 
-.row .col.push-s2, :host .col.push-s2, :host .tabs .tab a.push-s2, :host .push-s2.settings-content-wrapper {
+.row .col.push-s2 {
   left: 16.6666666667%;
 }
 
-.row .col.offset-s3, :host .col.offset-s3, :host .tabs .tab a.offset-s3, :host .offset-s3.settings-content-wrapper {
+.row .col.offset-s3 {
   margin-left: 25%;
 }
 
-.row .col.pull-s3, :host .col.pull-s3, :host .tabs .tab a.pull-s3, :host .pull-s3.settings-content-wrapper {
+.row .col.pull-s3 {
   right: 25%;
 }
 
-.row .col.push-s3, :host .col.push-s3, :host .tabs .tab a.push-s3, :host .push-s3.settings-content-wrapper {
+.row .col.push-s3 {
   left: 25%;
 }
 
-.row .col.offset-s4, :host .col.offset-s4, :host .tabs .tab a.offset-s4, :host .offset-s4.settings-content-wrapper {
+.row .col.offset-s4 {
   margin-left: 33.3333333333%;
 }
 
-.row .col.pull-s4, :host .col.pull-s4, :host .tabs .tab a.pull-s4, :host .pull-s4.settings-content-wrapper {
+.row .col.pull-s4 {
   right: 33.3333333333%;
 }
 
-.row .col.push-s4, :host .col.push-s4, :host .tabs .tab a.push-s4, :host .push-s4.settings-content-wrapper {
+.row .col.push-s4 {
   left: 33.3333333333%;
 }
 
-.row .col.offset-s5, :host .col.offset-s5, :host .tabs .tab a.offset-s5, :host .offset-s5.settings-content-wrapper {
+.row .col.offset-s5 {
   margin-left: 41.6666666667%;
 }
 
-.row .col.pull-s5, :host .col.pull-s5, :host .tabs .tab a.pull-s5, :host .pull-s5.settings-content-wrapper {
+.row .col.pull-s5 {
   right: 41.6666666667%;
 }
 
-.row .col.push-s5, :host .col.push-s5, :host .tabs .tab a.push-s5, :host .push-s5.settings-content-wrapper {
+.row .col.push-s5 {
   left: 41.6666666667%;
 }
 
-.row .col.offset-s6, :host .col.offset-s6, :host .tabs .tab a.offset-s6, :host .offset-s6.settings-content-wrapper {
+.row .col.offset-s6 {
   margin-left: 50%;
 }
 
-.row .col.pull-s6, :host .col.pull-s6, :host .tabs .tab a.pull-s6, :host .pull-s6.settings-content-wrapper {
+.row .col.pull-s6 {
   right: 50%;
 }
 
-.row .col.push-s6, :host .col.push-s6, :host .tabs .tab a.push-s6, :host .push-s6.settings-content-wrapper {
+.row .col.push-s6 {
   left: 50%;
 }
 
-.row .col.offset-s7, :host .col.offset-s7, :host .tabs .tab a.offset-s7, :host .offset-s7.settings-content-wrapper {
+.row .col.offset-s7 {
   margin-left: 58.3333333333%;
 }
 
-.row .col.pull-s7, :host .col.pull-s7, :host .tabs .tab a.pull-s7, :host .pull-s7.settings-content-wrapper {
+.row .col.pull-s7 {
   right: 58.3333333333%;
 }
 
-.row .col.push-s7, :host .col.push-s7, :host .tabs .tab a.push-s7, :host .push-s7.settings-content-wrapper {
+.row .col.push-s7 {
   left: 58.3333333333%;
 }
 
-.row .col.offset-s8, :host .col.offset-s8, :host .tabs .tab a.offset-s8, :host .offset-s8.settings-content-wrapper {
+.row .col.offset-s8 {
   margin-left: 66.6666666667%;
 }
 
-.row .col.pull-s8, :host .col.pull-s8, :host .tabs .tab a.pull-s8, :host .pull-s8.settings-content-wrapper {
+.row .col.pull-s8 {
   right: 66.6666666667%;
 }
 
-.row .col.push-s8, :host .col.push-s8, :host .tabs .tab a.push-s8, :host .push-s8.settings-content-wrapper {
+.row .col.push-s8 {
   left: 66.6666666667%;
 }
 
-.row .col.offset-s9, :host .col.offset-s9, :host .tabs .tab a.offset-s9, :host .offset-s9.settings-content-wrapper {
+.row .col.offset-s9 {
   margin-left: 75%;
 }
 
-.row .col.pull-s9, :host .col.pull-s9, :host .tabs .tab a.pull-s9, :host .pull-s9.settings-content-wrapper {
+.row .col.pull-s9 {
   right: 75%;
 }
 
-.row .col.push-s9, :host .col.push-s9, :host .tabs .tab a.push-s9, :host .push-s9.settings-content-wrapper {
+.row .col.push-s9 {
   left: 75%;
 }
 
-.row .col.offset-s10, :host .col.offset-s10, :host .tabs .tab a.offset-s10, :host .offset-s10.settings-content-wrapper {
+.row .col.offset-s10 {
   margin-left: 83.3333333333%;
 }
 
-.row .col.pull-s10, :host .col.pull-s10, :host .tabs .tab a.pull-s10, :host .pull-s10.settings-content-wrapper {
+.row .col.pull-s10 {
   right: 83.3333333333%;
 }
 
-.row .col.push-s10, :host .col.push-s10, :host .tabs .tab a.push-s10, :host .push-s10.settings-content-wrapper {
+.row .col.push-s10 {
   left: 83.3333333333%;
 }
 
-.row .col.offset-s11, :host .col.offset-s11, :host .tabs .tab a.offset-s11, :host .offset-s11.settings-content-wrapper {
+.row .col.offset-s11 {
   margin-left: 91.6666666667%;
 }
 
-.row .col.pull-s11, :host .col.pull-s11, :host .tabs .tab a.pull-s11, :host .pull-s11.settings-content-wrapper {
+.row .col.pull-s11 {
   right: 91.6666666667%;
 }
 
-.row .col.push-s11, :host .col.push-s11, :host .tabs .tab a.push-s11, :host .push-s11.settings-content-wrapper {
+.row .col.push-s11 {
   left: 91.6666666667%;
 }
 
-.row .col.offset-s12, :host .col.offset-s12, :host .tabs .tab a.offset-s12, :host .offset-s12.settings-content-wrapper {
+.row .col.offset-s12 {
   margin-left: 100%;
 }
 
-.row .col.pull-s12, :host .col.pull-s12, :host .tabs .tab a.pull-s12, :host .pull-s12.settings-content-wrapper {
+.row .col.pull-s12 {
   right: 100%;
 }
 
-.row .col.push-s12, :host .col.push-s12, :host .tabs .tab a.push-s12, :host .push-s12.settings-content-wrapper {
+.row .col.push-s12 {
   left: 100%;
 }
 
 @media only screen and (min-width: 601px) {
-  .row .col.m1, :host .col.m1, :host .tabs .tab a.m1, :host .m1.settings-content-wrapper {
+  .row .col.m1 {
     width: 8.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m2, :host .col.m2, :host .tabs .tab a.m2, :host .m2.settings-content-wrapper {
+  .row .col.m2 {
     width: 16.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m3, :host .col.m3, :host .tabs .tab a.m3, :host .m3.settings-content-wrapper {
+  .row .col.m3 {
     width: 25%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m4, :host .col.m4, :host .tabs .tab a.m4, :host .m4.settings-content-wrapper {
+  .row .col.m4 {
     width: 33.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m5, :host .col.m5, :host .tabs .tab a.m5, :host .m5.settings-content-wrapper {
+  .row .col.m5 {
     width: 41.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m6, :host .col.m6, :host .tabs .tab a.m6, :host .m6.settings-content-wrapper {
+  .row .col.m6 {
     width: 50%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m7, :host .col.m7, :host .tabs .tab a.m7, :host .m7.settings-content-wrapper {
+  .row .col.m7 {
     width: 58.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m8, :host .col.m8, :host .tabs .tab a.m8, :host .m8.settings-content-wrapper {
+  .row .col.m8 {
     width: 66.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m9, :host .col.m9, :host .tabs .tab a.m9, :host .m9.settings-content-wrapper {
+  .row .col.m9 {
     width: 75%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m10, :host .col.m10, :host .tabs .tab a.m10, :host .m10.settings-content-wrapper {
+  .row .col.m10 {
     width: 83.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m11, :host .col.m11, :host .tabs .tab a.m11, :host .m11.settings-content-wrapper {
+  .row .col.m11 {
     width: 91.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m12, :host .col.m12, :host .tabs .tab a.m12, :host .tabs .tab a.settings-content-wrapper, .row :host .settings-content-wrapper, :host .row .settings-content-wrapper, :host .settings-content-wrapper {
+  .row .col.m12 {
     width: 100%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.offset-m1, :host .col.offset-m1, :host .tabs .tab a.offset-m1, :host .offset-m1.settings-content-wrapper {
+  .row .col.offset-m1 {
     margin-left: 8.3333333333%;
   }
-  .row .col.pull-m1, :host .col.pull-m1, :host .tabs .tab a.pull-m1, :host .pull-m1.settings-content-wrapper {
+  .row .col.pull-m1 {
     right: 8.3333333333%;
   }
-  .row .col.push-m1, :host .col.push-m1, :host .tabs .tab a.push-m1, :host .push-m1.settings-content-wrapper {
+  .row .col.push-m1 {
     left: 8.3333333333%;
   }
-  .row .col.offset-m2, :host .col.offset-m2, :host .tabs .tab a.offset-m2, :host .offset-m2.settings-content-wrapper {
+  .row .col.offset-m2 {
     margin-left: 16.6666666667%;
   }
-  .row .col.pull-m2, :host .col.pull-m2, :host .tabs .tab a.pull-m2, :host .pull-m2.settings-content-wrapper {
+  .row .col.pull-m2 {
     right: 16.6666666667%;
   }
-  .row .col.push-m2, :host .col.push-m2, :host .tabs .tab a.push-m2, :host .push-m2.settings-content-wrapper {
+  .row .col.push-m2 {
     left: 16.6666666667%;
   }
-  .row .col.offset-m3, :host .col.offset-m3, :host .tabs .tab a.offset-m3, :host .offset-m3.settings-content-wrapper {
+  .row .col.offset-m3 {
     margin-left: 25%;
   }
-  .row .col.pull-m3, :host .col.pull-m3, :host .tabs .tab a.pull-m3, :host .pull-m3.settings-content-wrapper {
+  .row .col.pull-m3 {
     right: 25%;
   }
-  .row .col.push-m3, :host .col.push-m3, :host .tabs .tab a.push-m3, :host .push-m3.settings-content-wrapper {
+  .row .col.push-m3 {
     left: 25%;
   }
-  .row .col.offset-m4, :host .col.offset-m4, :host .tabs .tab a.offset-m4, :host .offset-m4.settings-content-wrapper {
+  .row .col.offset-m4 {
     margin-left: 33.3333333333%;
   }
-  .row .col.pull-m4, :host .col.pull-m4, :host .tabs .tab a.pull-m4, :host .pull-m4.settings-content-wrapper {
+  .row .col.pull-m4 {
     right: 33.3333333333%;
   }
-  .row .col.push-m4, :host .col.push-m4, :host .tabs .tab a.push-m4, :host .push-m4.settings-content-wrapper {
+  .row .col.push-m4 {
     left: 33.3333333333%;
   }
-  .row .col.offset-m5, :host .col.offset-m5, :host .tabs .tab a.offset-m5, :host .offset-m5.settings-content-wrapper {
+  .row .col.offset-m5 {
     margin-left: 41.6666666667%;
   }
-  .row .col.pull-m5, :host .col.pull-m5, :host .tabs .tab a.pull-m5, :host .pull-m5.settings-content-wrapper {
+  .row .col.pull-m5 {
     right: 41.6666666667%;
   }
-  .row .col.push-m5, :host .col.push-m5, :host .tabs .tab a.push-m5, :host .push-m5.settings-content-wrapper {
+  .row .col.push-m5 {
     left: 41.6666666667%;
   }
-  .row .col.offset-m6, :host .col.offset-m6, :host .tabs .tab a.offset-m6, :host .offset-m6.settings-content-wrapper {
+  .row .col.offset-m6 {
     margin-left: 50%;
   }
-  .row .col.pull-m6, :host .col.pull-m6, :host .tabs .tab a.pull-m6, :host .pull-m6.settings-content-wrapper {
+  .row .col.pull-m6 {
     right: 50%;
   }
-  .row .col.push-m6, :host .col.push-m6, :host .tabs .tab a.push-m6, :host .push-m6.settings-content-wrapper {
+  .row .col.push-m6 {
     left: 50%;
   }
-  .row .col.offset-m7, :host .col.offset-m7, :host .tabs .tab a.offset-m7, :host .offset-m7.settings-content-wrapper {
+  .row .col.offset-m7 {
     margin-left: 58.3333333333%;
   }
-  .row .col.pull-m7, :host .col.pull-m7, :host .tabs .tab a.pull-m7, :host .pull-m7.settings-content-wrapper {
+  .row .col.pull-m7 {
     right: 58.3333333333%;
   }
-  .row .col.push-m7, :host .col.push-m7, :host .tabs .tab a.push-m7, :host .push-m7.settings-content-wrapper {
+  .row .col.push-m7 {
     left: 58.3333333333%;
   }
-  .row .col.offset-m8, :host .col.offset-m8, :host .tabs .tab a.offset-m8, :host .offset-m8.settings-content-wrapper {
+  .row .col.offset-m8 {
     margin-left: 66.6666666667%;
   }
-  .row .col.pull-m8, :host .col.pull-m8, :host .tabs .tab a.pull-m8, :host .pull-m8.settings-content-wrapper {
+  .row .col.pull-m8 {
     right: 66.6666666667%;
   }
-  .row .col.push-m8, :host .col.push-m8, :host .tabs .tab a.push-m8, :host .push-m8.settings-content-wrapper {
+  .row .col.push-m8 {
     left: 66.6666666667%;
   }
-  .row .col.offset-m9, :host .col.offset-m9, :host .tabs .tab a.offset-m9, :host .offset-m9.settings-content-wrapper {
+  .row .col.offset-m9 {
     margin-left: 75%;
   }
-  .row .col.pull-m9, :host .col.pull-m9, :host .tabs .tab a.pull-m9, :host .pull-m9.settings-content-wrapper {
+  .row .col.pull-m9 {
     right: 75%;
   }
-  .row .col.push-m9, :host .col.push-m9, :host .tabs .tab a.push-m9, :host .push-m9.settings-content-wrapper {
+  .row .col.push-m9 {
     left: 75%;
   }
-  .row .col.offset-m10, :host .col.offset-m10, :host .tabs .tab a.offset-m10, :host .offset-m10.settings-content-wrapper {
+  .row .col.offset-m10 {
     margin-left: 83.3333333333%;
   }
-  .row .col.pull-m10, :host .col.pull-m10, :host .tabs .tab a.pull-m10, :host .pull-m10.settings-content-wrapper {
+  .row .col.pull-m10 {
     right: 83.3333333333%;
   }
-  .row .col.push-m10, :host .col.push-m10, :host .tabs .tab a.push-m10, :host .push-m10.settings-content-wrapper {
+  .row .col.push-m10 {
     left: 83.3333333333%;
   }
-  .row .col.offset-m11, :host .col.offset-m11, :host .tabs .tab a.offset-m11, :host .offset-m11.settings-content-wrapper {
+  .row .col.offset-m11 {
     margin-left: 91.6666666667%;
   }
-  .row .col.pull-m11, :host .col.pull-m11, :host .tabs .tab a.pull-m11, :host .pull-m11.settings-content-wrapper {
+  .row .col.pull-m11 {
     right: 91.6666666667%;
   }
-  .row .col.push-m11, :host .col.push-m11, :host .tabs .tab a.push-m11, :host .push-m11.settings-content-wrapper {
+  .row .col.push-m11 {
     left: 91.6666666667%;
   }
-  .row .col.offset-m12, :host .col.offset-m12, :host .tabs .tab a.offset-m12, :host .offset-m12.settings-content-wrapper {
+  .row .col.offset-m12 {
     margin-left: 100%;
   }
-  .row .col.pull-m12, :host .col.pull-m12, :host .tabs .tab a.pull-m12, :host .pull-m12.settings-content-wrapper {
+  .row .col.pull-m12 {
     right: 100%;
   }
-  .row .col.push-m12, :host .col.push-m12, :host .tabs .tab a.push-m12, :host .push-m12.settings-content-wrapper {
+  .row .col.push-m12 {
     left: 100%;
   }
 }
 
 @media only screen and (min-width: 993px) {
-  .row .col.l1, :host .col.l1, :host .tabs .tab a.l1, :host .l1.settings-content-wrapper {
+  .row .col.l1 {
     width: 8.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l2, :host .col.l2, :host .tabs .tab a.l2, :host .l2.settings-content-wrapper {
+  .row .col.l2 {
     width: 16.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l3, :host .col.l3, :host .tabs .tab a.l3, :host .l3.settings-content-wrapper {
+  .row .col.l3 {
     width: 25%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l4, :host .col.l4, :host .tabs .tab a.l4, :host .l4.settings-content-wrapper {
+  .row .col.l4 {
     width: 33.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l5, :host .col.l5, :host .tabs .tab a.l5, :host .l5.settings-content-wrapper {
+  .row .col.l5 {
     width: 41.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l6, :host .col.l6, :host .tabs .tab a.l6, :host .l6.settings-content-wrapper {
+  .row .col.l6 {
     width: 50%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l7, :host .col.l7, :host .tabs .tab a.l7, :host .l7.settings-content-wrapper {
+  .row .col.l7 {
     width: 58.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l8, :host .col.l8, :host .tabs .tab a.l8, :host .l8.settings-content-wrapper {
+  .row .col.l8 {
     width: 66.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l9, :host .col.l9, :host .tabs .tab a.l9, :host .l9.settings-content-wrapper {
+  .row .col.l9 {
     width: 75%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l10, :host .col.l10, :host .tabs .tab a.l10, :host .l10.settings-content-wrapper {
+  .row .col.l10 {
     width: 83.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l11, :host .col.l11, :host .tabs .tab a.l11, :host .l11.settings-content-wrapper {
+  .row .col.l11 {
     width: 91.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l12, :host .col.l12, :host .tabs .tab a.l12, :host .tabs .tab a.settings-content-wrapper, .row :host .settings-content-wrapper, :host .row .settings-content-wrapper, :host .settings-content-wrapper {
+  .row .col.l12 {
     width: 100%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.offset-l1, :host .col.offset-l1, :host .tabs .tab a.offset-l1, :host .offset-l1.settings-content-wrapper {
+  .row .col.offset-l1 {
     margin-left: 8.3333333333%;
   }
-  .row .col.pull-l1, :host .col.pull-l1, :host .tabs .tab a.pull-l1, :host .pull-l1.settings-content-wrapper {
+  .row .col.pull-l1 {
     right: 8.3333333333%;
   }
-  .row .col.push-l1, :host .col.push-l1, :host .tabs .tab a.push-l1, :host .push-l1.settings-content-wrapper {
+  .row .col.push-l1 {
     left: 8.3333333333%;
   }
-  .row .col.offset-l2, :host .col.offset-l2, :host .tabs .tab a.offset-l2, :host .offset-l2.settings-content-wrapper {
+  .row .col.offset-l2 {
     margin-left: 16.6666666667%;
   }
-  .row .col.pull-l2, :host .col.pull-l2, :host .tabs .tab a.pull-l2, :host .pull-l2.settings-content-wrapper {
+  .row .col.pull-l2 {
     right: 16.6666666667%;
   }
-  .row .col.push-l2, :host .col.push-l2, :host .tabs .tab a.push-l2, :host .push-l2.settings-content-wrapper {
+  .row .col.push-l2 {
     left: 16.6666666667%;
   }
-  .row .col.offset-l3, :host .col.offset-l3, :host .tabs .tab a.offset-l3, :host .offset-l3.settings-content-wrapper {
+  .row .col.offset-l3 {
     margin-left: 25%;
   }
-  .row .col.pull-l3, :host .col.pull-l3, :host .tabs .tab a.pull-l3, :host .pull-l3.settings-content-wrapper {
+  .row .col.pull-l3 {
     right: 25%;
   }
-  .row .col.push-l3, :host .col.push-l3, :host .tabs .tab a.push-l3, :host .push-l3.settings-content-wrapper {
+  .row .col.push-l3 {
     left: 25%;
   }
-  .row .col.offset-l4, :host .col.offset-l4, :host .tabs .tab a.offset-l4, :host .offset-l4.settings-content-wrapper {
+  .row .col.offset-l4 {
     margin-left: 33.3333333333%;
   }
-  .row .col.pull-l4, :host .col.pull-l4, :host .tabs .tab a.pull-l4, :host .pull-l4.settings-content-wrapper {
+  .row .col.pull-l4 {
     right: 33.3333333333%;
   }
-  .row .col.push-l4, :host .col.push-l4, :host .tabs .tab a.push-l4, :host .push-l4.settings-content-wrapper {
+  .row .col.push-l4 {
     left: 33.3333333333%;
   }
-  .row .col.offset-l5, :host .col.offset-l5, :host .tabs .tab a.offset-l5, :host .offset-l5.settings-content-wrapper {
+  .row .col.offset-l5 {
     margin-left: 41.6666666667%;
   }
-  .row .col.pull-l5, :host .col.pull-l5, :host .tabs .tab a.pull-l5, :host .pull-l5.settings-content-wrapper {
+  .row .col.pull-l5 {
     right: 41.6666666667%;
   }
-  .row .col.push-l5, :host .col.push-l5, :host .tabs .tab a.push-l5, :host .push-l5.settings-content-wrapper {
+  .row .col.push-l5 {
     left: 41.6666666667%;
   }
-  .row .col.offset-l6, :host .col.offset-l6, :host .tabs .tab a.offset-l6, :host .offset-l6.settings-content-wrapper {
+  .row .col.offset-l6 {
     margin-left: 50%;
   }
-  .row .col.pull-l6, :host .col.pull-l6, :host .tabs .tab a.pull-l6, :host .pull-l6.settings-content-wrapper {
+  .row .col.pull-l6 {
     right: 50%;
   }
-  .row .col.push-l6, :host .col.push-l6, :host .tabs .tab a.push-l6, :host .push-l6.settings-content-wrapper {
+  .row .col.push-l6 {
     left: 50%;
   }
-  .row .col.offset-l7, :host .col.offset-l7, :host .tabs .tab a.offset-l7, :host .offset-l7.settings-content-wrapper {
+  .row .col.offset-l7 {
     margin-left: 58.3333333333%;
   }
-  .row .col.pull-l7, :host .col.pull-l7, :host .tabs .tab a.pull-l7, :host .pull-l7.settings-content-wrapper {
+  .row .col.pull-l7 {
     right: 58.3333333333%;
   }
-  .row .col.push-l7, :host .col.push-l7, :host .tabs .tab a.push-l7, :host .push-l7.settings-content-wrapper {
+  .row .col.push-l7 {
     left: 58.3333333333%;
   }
-  .row .col.offset-l8, :host .col.offset-l8, :host .tabs .tab a.offset-l8, :host .offset-l8.settings-content-wrapper {
+  .row .col.offset-l8 {
     margin-left: 66.6666666667%;
   }
-  .row .col.pull-l8, :host .col.pull-l8, :host .tabs .tab a.pull-l8, :host .pull-l8.settings-content-wrapper {
+  .row .col.pull-l8 {
     right: 66.6666666667%;
   }
-  .row .col.push-l8, :host .col.push-l8, :host .tabs .tab a.push-l8, :host .push-l8.settings-content-wrapper {
+  .row .col.push-l8 {
     left: 66.6666666667%;
   }
-  .row .col.offset-l9, :host .col.offset-l9, :host .tabs .tab a.offset-l9, :host .offset-l9.settings-content-wrapper {
+  .row .col.offset-l9 {
     margin-left: 75%;
   }
-  .row .col.pull-l9, :host .col.pull-l9, :host .tabs .tab a.pull-l9, :host .pull-l9.settings-content-wrapper {
+  .row .col.pull-l9 {
     right: 75%;
   }
-  .row .col.push-l9, :host .col.push-l9, :host .tabs .tab a.push-l9, :host .push-l9.settings-content-wrapper {
+  .row .col.push-l9 {
     left: 75%;
   }
-  .row .col.offset-l10, :host .col.offset-l10, :host .tabs .tab a.offset-l10, :host .offset-l10.settings-content-wrapper {
+  .row .col.offset-l10 {
     margin-left: 83.3333333333%;
   }
-  .row .col.pull-l10, :host .col.pull-l10, :host .tabs .tab a.pull-l10, :host .pull-l10.settings-content-wrapper {
+  .row .col.pull-l10 {
     right: 83.3333333333%;
   }
-  .row .col.push-l10, :host .col.push-l10, :host .tabs .tab a.push-l10, :host .push-l10.settings-content-wrapper {
+  .row .col.push-l10 {
     left: 83.3333333333%;
   }
-  .row .col.offset-l11, :host .col.offset-l11, :host .tabs .tab a.offset-l11, :host .offset-l11.settings-content-wrapper {
+  .row .col.offset-l11 {
     margin-left: 91.6666666667%;
   }
-  .row .col.pull-l11, :host .col.pull-l11, :host .tabs .tab a.pull-l11, :host .pull-l11.settings-content-wrapper {
+  .row .col.pull-l11 {
     right: 91.6666666667%;
   }
-  .row .col.push-l11, :host .col.push-l11, :host .tabs .tab a.push-l11, :host .push-l11.settings-content-wrapper {
+  .row .col.push-l11 {
     left: 91.6666666667%;
   }
-  .row .col.offset-l12, :host .col.offset-l12, :host .tabs .tab a.offset-l12, :host .offset-l12.settings-content-wrapper {
+  .row .col.offset-l12 {
     margin-left: 100%;
   }
-  .row .col.pull-l12, :host .col.pull-l12, :host .tabs .tab a.pull-l12, :host .pull-l12.settings-content-wrapper {
+  .row .col.pull-l12 {
     right: 100%;
   }
-  .row .col.push-l12, :host .col.push-l12, :host .tabs .tab a.push-l12, :host .push-l12.settings-content-wrapper {
+  .row .col.push-l12 {
     left: 100%;
   }
 }
@@ -3881,7 +3881,7 @@ nav ul a {
   cursor: pointer;
 }
 
-nav ul a.btn, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul a.btn-floating {
+nav ul a.btn, nav ul :host .users-settings-wrapper .loading-users-details-error a.retry-button, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul a.btn-floating {
   margin-top: -2px;
   margin-left: 15px;
   margin-right: 15px;
@@ -4318,14 +4318,14 @@ small {
   z-index: 2;
 }
 
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+.card .card-action a:not(.btn):not(:host .users-settings-wrapper .loading-users-details-error .retry-button):not(.btn-large):not(.btn-floating) {
   color: #ffab40;
   margin-right: 20px;
   transition: color .3s ease;
   text-transform: uppercase;
 }
 
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover {
+.card .card-action a:not(.btn):not(:host .users-settings-wrapper .loading-users-details-error .retry-button):not(.btn-large):not(.btn-floating):hover {
   color: #ffd8a6;
 }
 
@@ -4408,7 +4408,7 @@ small {
   justify-content: space-between;
 }
 
-.toast .btn, .toast .btn-large, .toast .btn-flat {
+.toast .btn, .toast :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .toast .retry-button, .toast .btn-large, .toast .btn-flat {
   margin: 0;
   margin-left: 3rem;
 }
@@ -4532,7 +4532,7 @@ small {
   will-change: transform, opacity;
 }
 
-.btn, .btn-large, .btn-flat {
+.btn, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large, .btn-flat {
   border: none;
   border-radius: 2px;
   display: inline-block;
@@ -4545,28 +4545,28 @@ small {
   -webkit-tap-highlight-color: transparent;
 }
 
-.btn.disabled, .disabled.btn-large, .btn-floating.disabled, .btn-large.disabled, .btn:disabled .btn-large:disabled, .btn-large:disabled .btn-large:disabled, .btn-floating:disabled {
+.btn.disabled, :host .users-settings-wrapper .loading-users-details-error .disabled.retry-button, .disabled.btn-large, .btn-floating.disabled, .btn-large.disabled, .btn:disabled .btn-large:disabled, :host .users-settings-wrapper .loading-users-details-error .retry-button:disabled .btn-large:disabled, .btn-large:disabled .btn-large:disabled, .btn-floating:disabled {
   background-color: #DFDFDF !important;
   box-shadow: none;
   color: #9F9F9F !important;
   cursor: default;
 }
 
-.btn.disabled *, .disabled.btn-large *, .btn-floating.disabled *, .btn-large.disabled *, .btn:disabled .btn-large:disabled *, .btn-large:disabled .btn-large:disabled *, .btn-floating:disabled * {
+.btn.disabled *, :host .users-settings-wrapper .loading-users-details-error .disabled.retry-button *, .disabled.btn-large *, .btn-floating.disabled *, .btn-large.disabled *, .btn:disabled .btn-large:disabled *, :host .users-settings-wrapper .loading-users-details-error .retry-button:disabled .btn-large:disabled *, .btn-large:disabled .btn-large:disabled *, .btn-floating:disabled * {
   pointer-events: none;
 }
 
-.btn.disabled:hover, .disabled.btn-large:hover, .btn-floating.disabled:hover, .btn-large.disabled:hover, .btn:disabled .btn-large:disabled:hover, .btn-large:disabled .btn-large:disabled:hover, .btn-floating:disabled:hover {
+.btn.disabled:hover, :host .users-settings-wrapper .loading-users-details-error .disabled.retry-button:hover, .disabled.btn-large:hover, .btn-floating.disabled:hover, .btn-large.disabled:hover, .btn:disabled .btn-large:disabled:hover, :host .users-settings-wrapper .loading-users-details-error .retry-button:disabled .btn-large:disabled:hover, .btn-large:disabled .btn-large:disabled:hover, .btn-floating:disabled:hover {
   background-color: #DFDFDF !important;
   color: #9F9F9F !important;
 }
 
-.btn i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i {
+.btn i, :host .users-settings-wrapper .loading-users-details-error .retry-button i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i {
   font-size: 1.3rem;
   line-height: inherit;
 }
 
-.btn, .btn-large {
+.btn, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large {
   text-decoration: none;
   color: #fff;
   background-color: #26a69a;
@@ -4576,7 +4576,7 @@ small {
   cursor: pointer;
 }
 
-.btn:hover, .btn-large:hover {
+.btn:hover, :host .users-settings-wrapper .loading-users-details-error .retry-button:hover, .btn-large:hover {
   background-color: #2bbbad;
 }
 
@@ -4917,7 +4917,7 @@ a.waves-effect .waves-ripple {
   width: 100%;
 }
 
-.modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
+.modal .modal-footer .btn, .modal .modal-footer :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .modal .modal-footer .retry-button, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
   float: right;
   margin: 6px 0;
 }
@@ -5833,7 +5833,7 @@ select:disabled {
   width: 100%;
 }
 
-.file-field .btn, .file-field .btn-large {
+.file-field .btn, .file-field :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .file-field .retry-button, .file-field .btn-large {
   float: left;
   height: 3rem;
   line-height: 3rem;
@@ -6093,11 +6093,11 @@ input[type=range]:focus::-ms-fill-upper {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.side-nav a.btn, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-flat, .side-nav a.btn-floating {
+.side-nav a.btn, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-flat, .side-nav a.btn-floating {
   margin: 10px 15px;
 }
 
-.side-nav a.btn, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-floating {
+.side-nav a.btn, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-floating {
   color: #fff;
 }
 
@@ -6105,7 +6105,7 @@ input[type=range]:focus::-ms-fill-upper {
   color: #343434;
 }
 
-.side-nav a.btn:hover, .side-nav a.btn-large:hover, .side-nav a.btn-large:hover {
+.side-nav a.btn:hover, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button:hover, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button:hover, .side-nav a.btn-large:hover, .side-nav a.btn-large:hover {
   background-color: #2bbbad;
 }
 
@@ -6212,7 +6212,7 @@ input[type=range]:focus::-ms-fill-upper {
   border-color: #26a69a;
 }
 
-.spinner-blue, .spinner-blue-only {
+.spinner-blue, .spinner-blue-only, .spinner-layer {
   border-color: #4285f4;
 }
 
@@ -6248,7 +6248,7 @@ input[type=range]:focus::-ms-fill-upper {
   animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, green-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
 
-.active .spinner-layer, .active .spinner-layer.spinner-blue-only, .active .spinner-layer.spinner-red-only, .active .spinner-layer.spinner-yellow-only, .active .spinner-layer.spinner-green-only {
+.active .spinner-layer, .active .spinner-layer.spinner-blue-only, .active .spinner-layer, .active .spinner-layer.spinner-red-only, .active .spinner-layer.spinner-yellow-only, .active .spinner-layer.spinner-green-only {
   opacity: 1;
   -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
   animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
@@ -7341,6 +7341,100 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   }
 }
 
-:host .settings-content-wrapper {
-  padding-top: 1rem;
+.loading-wrapper, :host .users-settings-wrapper .loading-users-details, :host .users-settings-wrapper .loading-users-details-error {
+  margin-left: 35%;
+  margin-right: 35%;
+  width: 30%;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+}
+
+.progress {
+  margin-top: 1rem;
+}
+
+:host {
+  display: flex;
+}
+
+:host .users-settings-wrapper {
+  width: 100%;
+}
+
+:host .users-settings-wrapper.loading {
+  height: 6rem;
+}
+
+:host .users-settings-wrapper.loading .loading-users-details {
+  opacity: 1;
+  visibility: visible;
+}
+
+:host .users-settings-wrapper.loading .user-details-wrapper {
+  opacity: 0;
+  display: none;
+}
+
+:host .users-settings-wrapper.error {
+  height: 6rem;
+}
+
+:host .users-settings-wrapper.error .loading-users-details-error {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+:host .users-settings-wrapper.error .user-details-wrapper {
+  opacity: 0;
+  display: none;
+}
+
+:host .users-settings-wrapper .loading-users-details {
+  top: 2rem;
+  visibility: collapse;
+  opacity: 0;
+  transition: opacity .3s ease, visibility 0s ease .3s;
+}
+
+:host .users-settings-wrapper .loading-users-details .text {
+  display: block;
+}
+
+:host .users-settings-wrapper .loading-users-details circular-loading {
+  display: block;
+  margin: auto;
+  width: 2rem;
+  height: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+:host .users-settings-wrapper .loading-users-details-error {
+  top: 2rem;
+  visibility: collapse;
+  opacity: 0;
+  transition: opacity .3s ease, visibility 0s ease .3s;
+  color: red;
+  pointer-events: none;
+}
+
+:host .users-settings-wrapper .loading-users-details-error .text {
+  display: block;
+  margin-bottom: 1rem;
+  min-height: 1.5rem;
+}
+
+:host .users-settings-wrapper .user-details-wrapper {
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+
+:host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
 }

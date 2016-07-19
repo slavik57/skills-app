@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
 var userService_1 = require("../../../common/services/userService");
 var core_1 = require('@angular/core');
 var UsersSettingsComponent = (function () {
@@ -33,15 +34,25 @@ var UsersSettingsComponent = (function () {
         this.isLoadingUsers = false;
     };
     UsersSettingsComponent.prototype._setUserDetails = function (usersDetails) {
+        var _this = this;
         this.usersDetails = usersDetails;
+        setTimeout(function () {
+            $(_this.userDetailsList.nativeElement).collapsible();
+        }, 0);
     };
     UsersSettingsComponent.prototype._setGettingUsersError = function (error) {
         this.loadingUsersError = error;
     };
+    __decorate([
+        core_1.ViewChild('userDetailsList'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], UsersSettingsComponent.prototype, "userDetailsList", void 0);
     UsersSettingsComponent = __decorate([
         core_1.Component({
             selector: 'users-settings',
             template: require('./usersSettings.component.html'),
+            styles: [require('./usersSettings.component.scss')],
+            directives: [circularLoading_component_1.CircularLoadingComponent],
         }), 
         __metadata('design:paramtypes', [userService_1.UserService])
     ], UsersSettingsComponent);
