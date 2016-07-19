@@ -93,6 +93,10 @@
           -webkit-user-select: none;
           -ms-user-select: none;
           cursor: pointer;
+
+          .material-icons {
+            @extend .blue-text;
+          }
         }
       }
     }

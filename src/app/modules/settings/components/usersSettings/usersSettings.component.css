@@ -647,7 +647,7 @@
   background-color: #2196F3 !important;
 }
 
-.blue-text {
+.blue-text, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .material-icons {
   color: #2196F3 !important;
 }
 
@@ -655,7 +655,7 @@
   background-color: #E3F2FD !important;
 }
 
-.blue-text.text-lighten-5 {
+.blue-text.text-lighten-5, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-5.material-icons {
   color: #E3F2FD !important;
 }
 
@@ -663,7 +663,7 @@
   background-color: #BBDEFB !important;
 }
 
-.blue-text.text-lighten-4 {
+.blue-text.text-lighten-4, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-4.material-icons {
   color: #BBDEFB !important;
 }
 
@@ -671,7 +671,7 @@
   background-color: #90CAF9 !important;
 }
 
-.blue-text.text-lighten-3 {
+.blue-text.text-lighten-3, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-3.material-icons {
   color: #90CAF9 !important;
 }
 
@@ -679,7 +679,7 @@
   background-color: #64B5F6 !important;
 }
 
-.blue-text.text-lighten-2 {
+.blue-text.text-lighten-2, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-2.material-icons {
   color: #64B5F6 !important;
 }
 
@@ -687,7 +687,7 @@
   background-color: #42A5F5 !important;
 }
 
-.blue-text.text-lighten-1 {
+.blue-text.text-lighten-1, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-1.material-icons {
   color: #42A5F5 !important;
 }
 
@@ -695,7 +695,7 @@
   background-color: #1E88E5 !important;
 }
 
-.blue-text.text-darken-1 {
+.blue-text.text-darken-1, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-1.material-icons {
   color: #1E88E5 !important;
 }
 
@@ -703,7 +703,7 @@
   background-color: #1976D2 !important;
 }
 
-.blue-text.text-darken-2 {
+.blue-text.text-darken-2, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-2.material-icons {
   color: #1976D2 !important;
 }
 
@@ -711,7 +711,7 @@
   background-color: #1565C0 !important;
 }
 
-.blue-text.text-darken-3 {
+.blue-text.text-darken-3, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-3.material-icons {
   color: #1565C0 !important;
 }
 
@@ -719,7 +719,7 @@
   background-color: #0D47A1 !important;
 }
 
-.blue-text.text-darken-4 {
+.blue-text.text-darken-4, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-4.material-icons {
   color: #0D47A1 !important;
 }
 
@@ -727,7 +727,7 @@
   background-color: #82B1FF !important;
 }
 
-.blue-text.text-accent-1 {
+.blue-text.text-accent-1, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-1.material-icons {
   color: #82B1FF !important;
 }
 
@@ -735,7 +735,7 @@
   background-color: #448AFF !important;
 }
 
-.blue-text.text-accent-2 {
+.blue-text.text-accent-2, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-2.material-icons {
   color: #448AFF !important;
 }
 
@@ -743,7 +743,7 @@
   background-color: #2979FF !important;
 }
 
-.blue-text.text-accent-3 {
+.blue-text.text-accent-3, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-3.material-icons {
   color: #2979FF !important;
 }
 
@@ -751,7 +751,7 @@
   background-color: #2962FF !important;
 }
 
-.blue-text.text-accent-4 {
+.blue-text.text-accent-4, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-4.material-icons {
   color: #2962FF !important;
 }
 
