@@ -1,4 +1,4 @@
-import {IUserDetails} from '../../common/services/userService';
+import {IUserDetails} from "../../common/interfaces/iUserDetails";
 
 export class EditUserProfile implements IUserDetails {
   constructor(public id: number,

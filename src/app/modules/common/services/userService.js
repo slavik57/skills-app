@@ -12,11 +12,13 @@ var statusCode_1 = require("../../../../common/statusCode");
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var Observable_1 = require('rxjs/Observable');
+var _ = require('lodash');
 var UserService = (function () {
     function UserService(http) {
         this.http = http;
         this._loginUrl = '/api/login';
         this._registerUrl = '/api/register';
+        this._usersControllerUrl = '/api/users/';
         this._userControllerUrl = '/api/user/';
         this._userExistsUrlSuffix = '/exists';
         this._changePasswordUrlSuffix = '/password';
@@ -55,7 +57,13 @@ var UserService = (function () {
         var _this = this;
         return this._get(this._userControllerUrl)
             .map(function (response) { return _this._extractUserDetails(response); })
-            .catch(function (error) { return _this._failGettingUserDetails(error); });
+            .catch(function (error) { return _this._throwOnUnauthorizedOrGenericError(error); });
+    };
+    UserService.prototype.getUsersDetails = function () {
+        var _this = this;
+        return this._get(this._usersControllerUrl)
+            .map(function (response) { return _this._extractUsersDetails(response); })
+            .catch(function (error) { return _this._throwOnUnauthorizedOrGenericError(error); });
     };
     UserService.prototype.updateUserDetails = function (userId, username, email, firstName, lastName) {
         var _this = this;
@@ -143,11 +151,27 @@ var UserService = (function () {
         }
         return result;
     };
+    UserService.prototype._extractUsersDetails = function (response) {
+        var _this = this;
+        this._throwErrorIfStatusIsNotOk(response);
+        var result = response.json();
+        if (!result || !(result instanceof Array)) {
+            throw 'Unexpected result';
+        }
+        var usernameDetails = _.map(result, function (_serverUsernameDetails) {
+            _this._validateServerUsernameDetails(_serverUsernameDetails);
+            return {
+                id: _serverUsernameDetails.id,
+                username: _serverUsernameDetails.username
+            };
+        });
+        return usernameDetails;
+    };
     UserService.prototype._failUsernameExistanceCheck = function (error) {
         console.log(error);
         return Observable_1.Observable.throw('Oops. Something went wrong. Please try again');
     };
-    UserService.prototype._failGettingUserDetails = function (error) {
+    UserService.prototype._throwOnUnauthorizedOrGenericError = function (error) {
         if (error.status === statusCode_1.StatusCode.UNAUTHORIZED) {
             return Observable_1.Observable.throw('Unauthorized getting user details');
         }
@@ -164,6 +188,14 @@ var UserService = (function () {
     UserService.prototype._throwErrorIfStatusIsNotOk = function (response) {
         if (response.status !== statusCode_1.StatusCode.OK) {
             throw 'Invalid result';
+        }
+    };
+    UserService.prototype._validateServerUsernameDetails = function (serverUsernameDetails) {
+        if (serverUsernameDetails.id === null || serverUsernameDetails.id === undefined) {
+            throw 'User id is missing';
+        }
+        if (!serverUsernameDetails.username) {
+            throw 'Username is missing';
         }
     };
     UserService = __decorate([

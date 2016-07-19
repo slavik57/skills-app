@@ -1,4 +1,5 @@
 "use strict";
+var userServiceMockFactory_1 = require("../../../../testUtils/mockFactories/userServiceMockFactory");
 var formFiller_1 = require("../../../../testUtils/formFiller");
 var testing_1 = require('@angular/core/testing');
 var core_1 = require('@angular/core');
@@ -27,14 +28,7 @@ testing_1.describe('EditUserDetailsComponent', function () {
             firstName: 'some firstName',
             lastName: 'some lastName'
         };
-        userServiceMock = {
-            signinUser: function () { return null; },
-            registerUser: function () { return null; },
-            isUsernameExists: function () { return null; },
-            getUserDetails: function () { return null; },
-            updateUserDetails: function () { return null; },
-            updateUserPassword: function () { return null; }
-        };
+        userServiceMock = userServiceMockFactory_1.UserServiceMockFactory.createUserServiceMock();
         usernameExistsValidatorMock = {
             bindControl: function () { },
             usernameExists: function () {

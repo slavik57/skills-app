@@ -1,3 +1,5 @@
+import {IUserDetails} from "../../../common/interfaces/iUserDetails";
+import {UserServiceMockFactory} from "../../../../testUtils/mockFactories/userServiceMockFactory";
 import {
   it,
   inject,
@@ -6,7 +8,7 @@ import {
   beforeEachProviders
 } from '@angular/core/testing';
 import {provide} from '@angular/core';
-import {IUserService, UserService, IUserDetails} from "../../../common/services/userService";
+import {IUserService, UserService} from "../../../common/services/userService";
 import {SinonSpy, stub, spy} from 'sinon';
 import {expect} from 'chai';
 import { UserProfileComponent } from './userProfile.component';
@@ -23,14 +25,9 @@ describe('UserProfileComponent', () => {
 
     getUserDetailsResult = new Subject<IUserDetails>()
 
-    userServiceMock = {
-      signinUser: () => null,
-      registerUser: () => null,
-      isUsernameExists: () => null,
-      getUserDetails: () => getUserDetailsResult,
-      updateUserDetails: () => null,
-      updateUserPassword: () => null
-    };
+    userServiceMock = UserServiceMockFactory.createUserServiceMock();
+
+    userServiceMock.getUserDetails = () => getUserDetailsResult;
 
     getUserDetailsSpy = spy(userServiceMock, 'getUserDetails');
 

@@ -1,3 +1,5 @@
+import {UserServiceMockFactory} from "../../../../testUtils/mockFactories/userServiceMockFactory";
+import {IUserDetails} from "../../../common/interfaces/iUserDetails";
 import {IValidationResult} from "../../../common/validators/iValidationResult";
 import {FormFiller} from "../../../../testUtils/formFiller";
 import {
@@ -11,7 +13,7 @@ import {
   fakeAsync
 } from '@angular/core/testing';
 import {provide} from '@angular/core';
-import {IUserService, UserService, IUserDetails} from "../../../common/services/userService";
+import {IUserService, UserService} from "../../../common/services/userService";
 import {SinonSpy, stub, spy} from 'sinon';
 import {expect} from 'chai';
 import { EditUserDetailsComponent } from './editUserDetails.component';
@@ -45,14 +47,7 @@ describe('EditUserDetailsComponent', () => {
       lastName: 'some lastName'
     };
 
-    userServiceMock = {
-      signinUser: () => null,
-      registerUser: () => null,
-      isUsernameExists: () => null,
-      getUserDetails: () => null,
-      updateUserDetails: () => null,
-      updateUserPassword: () => null
-    };
+    userServiceMock = UserServiceMockFactory.createUserServiceMock();
 
     usernameExistsValidatorMock = {
       bindControl: () => { },

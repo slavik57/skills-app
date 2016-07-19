@@ -1,4 +1,5 @@
 "use strict";
+var userServiceMockFactory_1 = require("../../../../testUtils/mockFactories/userServiceMockFactory");
 var testing_1 = require('@angular/core/testing');
 var core_1 = require('@angular/core');
 var userService_1 = require("../../../common/services/userService");
@@ -13,14 +14,8 @@ testing_1.describe('UserProfileComponent', function () {
     var getUserDetailsResult;
     testing_1.beforeEachProviders(function () {
         getUserDetailsResult = new Subject_1.Subject();
-        userServiceMock = {
-            signinUser: function () { return null; },
-            registerUser: function () { return null; },
-            isUsernameExists: function () { return null; },
-            getUserDetails: function () { return getUserDetailsResult; },
-            updateUserDetails: function () { return null; },
-            updateUserPassword: function () { return null; }
-        };
+        userServiceMock = userServiceMockFactory_1.UserServiceMockFactory.createUserServiceMock();
+        userServiceMock.getUserDetails = function () { return getUserDetailsResult; };
         getUserDetailsSpy = sinon_1.spy(userServiceMock, 'getUserDetails');
         return [
             core_1.provide(userService_1.UserService, { useValue: userServiceMock }),

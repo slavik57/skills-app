@@ -1,3 +1,4 @@
+import {UserServiceMockFactory} from "../../../../testUtils/mockFactories/userServiceMockFactory";
 import {IValidationResult} from "../../../common/validators/iValidationResult";
 import {RegisterComponent} from "./register.component";
 import {
@@ -41,14 +42,9 @@ describe('RegisterComponent', () => {
 
     registerUserResult = new Subject<string>()
 
-    userServiceMock = {
-      signinUser: () => null,
-      registerUser: () => registerUserResult,
-      isUsernameExists: () => null,
-      getUserDetails: () => null,
-      updateUserDetails: () => null,
-      updateUserPassword: () => null
-    };
+    userServiceMock = UserServiceMockFactory.createUserServiceMock();
+
+    userServiceMock.registerUser = () => registerUserResult;
 
     locationServiceMock = {
       goToUrl: () => { }

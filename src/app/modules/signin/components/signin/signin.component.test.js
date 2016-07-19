@@ -1,4 +1,5 @@
 "use strict";
+var userServiceMockFactory_1 = require("../../../../testUtils/mockFactories/userServiceMockFactory");
 var locationService_1 = require("../../../common/services/locationService");
 var signin_component_1 = require("./signin.component");
 var userService_1 = require("../../../common/services/userService");
@@ -14,14 +15,8 @@ testing_1.describe('SigninComponent', function () {
     var signinUserResult;
     testing_1.beforeEachProviders(function () {
         signinUserResult = new Subject_1.Subject();
-        userServiceMock = {
-            signinUser: function () { return signinUserResult; },
-            isUsernameExists: function () { return null; },
-            registerUser: function () { return null; },
-            getUserDetails: function () { return null; },
-            updateUserDetails: function () { return null; },
-            updateUserPassword: function () { return null; }
-        };
+        userServiceMock = userServiceMockFactory_1.UserServiceMockFactory.createUserServiceMock();
+        userServiceMock.signinUser = function () { return signinUserResult; };
         locationServiceMock = {
             goToUrl: function () { }
         };

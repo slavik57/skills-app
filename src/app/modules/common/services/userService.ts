@@ -1,7 +1,10 @@
+import {IUsernameDetails} from "../interfaces/iUsernameDetails";
+import {IUserDetails} from "../interfaces/iUserDetails";
 import {StatusCode} from "../../../../common/statusCode";
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import * as _ from 'lodash';
 
 interface ILoginInfo {
   username: string;
@@ -32,12 +35,9 @@ interface IServerError {
   error: string;
 }
 
-export interface IUserDetails {
+interface IServerUsernameDetails {
   id: number;
   username: string;
-  email: string;
-  firstName: string;
-  lastName: string;
 }
 
 export interface IUserService {
@@ -49,6 +49,7 @@ export interface IUserService {
     firstName: string,
     lastName: string): Observable<string>;
   getUserDetails(): Observable<IUserDetails>;
+  getUsersDetails(): Observable<IUsernameDetails[]>;
   updateUserDetails(userId: number,
     username: string,
     email: string,
@@ -63,6 +64,7 @@ export interface IUserService {
 export class UserService implements IUserService {
   private _loginUrl = '/api/login';
   private _registerUrl = '/api/register';
+  private _usersControllerUrl = '/api/users/';
   private _userControllerUrl = '/api/user/';
   private _userExistsUrlSuffix = '/exists'
   private _changePasswordUrlSuffix = '/password';
@@ -111,7 +113,13 @@ export class UserService implements IUserService {
   public getUserDetails(): Observable<IUserDetails> {
     return this._get(this._userControllerUrl)
       .map((response: Response) => this._extractUserDetails(response))
-      .catch((error: any) => this._failGettingUserDetails(error));
+      .catch((error: any) => this._throwOnUnauthorizedOrGenericError<IUserDetails>(error));
+  }
+
+  public getUsersDetails(): Observable<IUsernameDetails[]> {
+    return this._get(this._usersControllerUrl)
+      .map((response: Response) => this._extractUsersDetails(response))
+      .catch((error: any) => this._throwOnUnauthorizedOrGenericError<IUsernameDetails[]>(error));
   }
 
   public updateUserDetails(userId: number,
@@ -236,13 +244,35 @@ export class UserService implements IUserService {
     return result;
   }
 
+  private _extractUsersDetails(response: Response): IUsernameDetails[] {
+    this._throwErrorIfStatusIsNotOk(response);
+
+    var result = response.json();
+
+    if (!result || !(result instanceof Array)) {
+      throw 'Unexpected result';
+    }
+
+    var usernameDetails: IUsernameDetails[] =
+      _.map(result, (_serverUsernameDetails: IServerUsernameDetails) => {
+        this._validateServerUsernameDetails(_serverUsernameDetails);
+
+        return {
+          id: _serverUsernameDetails.id,
+          username: _serverUsernameDetails.username
+        }
+      });
+
+    return usernameDetails;
+  }
+
   private _failUsernameExistanceCheck(error: any): Observable<boolean> {
     console.log(error);
 
     return Observable.throw('Oops. Something went wrong. Please try again');
   }
 
-  private _failGettingUserDetails(error: any): Observable<IUserDetails> {
+  private _throwOnUnauthorizedOrGenericError<T>(error: any): Observable<T> {
     if (error.status === StatusCode.UNAUTHORIZED) {
       return Observable.throw('Unauthorized getting user details');
     } else {
@@ -260,6 +290,16 @@ export class UserService implements IUserService {
   private _throwErrorIfStatusIsNotOk<T>(response: Response): void {
     if (response.status !== StatusCode.OK) {
       throw 'Invalid result';
+    }
+  }
+
+  private _validateServerUsernameDetails(serverUsernameDetails: IServerUsernameDetails): void {
+    if (serverUsernameDetails.id === null || serverUsernameDetails.id === undefined) {
+      throw 'User id is missing';
+    }
+
+    if (!serverUsernameDetails.username) {
+      throw 'Username is missing';
     }
   }
 

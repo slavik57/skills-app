@@ -1,10 +1,11 @@
+import {IUserDetails} from "../../../common/interfaces/iUserDetails";
 import {FormComponentBase} from "../../../common/components/formComponentBase/formComponentBase";
 import {EqualFieldsValidator} from "../../../common/validators/equalFieldsValidator";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {EditUserPasswordModel} from "../../models/editUserPasswordModel";
 import { Component, OnInit, Input } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
-import {IUserDetails, UserService} from "../../../common/services/userService";
+import {UserService} from "../../../common/services/userService";
 
 @Component({
   selector: 'change-user-password',

@@ -1,4 +1,5 @@
 "use strict";
+var userServiceMockFactory_1 = require("../../../../testUtils/mockFactories/userServiceMockFactory");
 var formFiller_1 = require("../../../../testUtils/formFiller");
 var testing_1 = require('@angular/core/testing');
 var core_1 = require('@angular/core');
@@ -20,16 +21,10 @@ testing_1.describe('ChangeUserPasswordComponent', function () {
     var newPasswordControl;
     var newPasswordRepeatedControl;
     testing_1.beforeEachProviders(function () {
-        userServiceMock = {
-            signinUser: function () { return null; },
-            registerUser: function () { return null; },
-            isUsernameExists: function () { return null; },
-            getUserDetails: function () { return null; },
-            updateUserDetails: function () { return null; },
-            updateUserPassword: function () {
-                updateUserPassrowdResult = new Subject_1.Subject();
-                return updateUserPassrowdResult;
-            }
+        userServiceMock = userServiceMockFactory_1.UserServiceMockFactory.createUserServiceMock();
+        userServiceMock.updateUserPassword = function () {
+            updateUserPassrowdResult = new Subject_1.Subject();
+            return updateUserPassrowdResult;
         };
         updateUserPasswordSpy = sinon_1.spy(userServiceMock, 'updateUserPassword');
         return [

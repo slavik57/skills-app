@@ -1,7 +1,8 @@
+import {IUserDetails} from "../../../common/interfaces/iUserDetails";
 import {FormComponentBase} from "../../../common/components/formComponentBase/formComponentBase";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {EditUserProfile} from "../../models/editUserProfileModel";
-import {UserService, IUserDetails} from "../../../common/services/userService";
+import {UserService} from "../../../common/services/userService";
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { REACTIVE_FORM_DIRECTIVES, FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import {IUsernameExistsValidator, UsernameExistsValidator, UsernameExistsValidatorFactory} from "../../../common/validators/usernameExistsValidator";

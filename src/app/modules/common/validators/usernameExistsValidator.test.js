@@ -1,4 +1,5 @@
 "use strict";
+var userServiceMockFactory_1 = require("../../../testUtils/mockFactories/userServiceMockFactory");
 var testing_1 = require('@angular/core/testing');
 var core_1 = require('@angular/core');
 var chai_1 = require('chai');
@@ -12,14 +13,7 @@ testing_1.describe('UsernameExistsValidatorFactory', function () {
     var userServiceMock;
     var usernameExistsValidatorFactory;
     testing_1.beforeEachProviders(function () {
-        userServiceMock = {
-            signinUser: function () { return null; },
-            registerUser: function () { return null; },
-            isUsernameExists: function () { return null; },
-            getUserDetails: function () { return null; },
-            updateUserDetails: function () { return null; },
-            updateUserPassword: function () { return null; }
-        };
+        userServiceMock = userServiceMockFactory_1.UserServiceMockFactory.createUserServiceMock();
         return [
             core_1.provide(userService_1.UserService, { useValue: userServiceMock }),
             usernameExistsValidator_1.UsernameExistsValidatorFactory
@@ -61,14 +55,8 @@ testing_1.describe('UsernameExistsValidator', function () {
             return this;
         };
         isUsernameExistsResult = new Subject_1.Subject();
-        userServiceMock = {
-            signinUser: function () { return null; },
-            registerUser: function () { return null; },
-            isUsernameExists: function () { return isUsernameExistsResult; },
-            getUserDetails: function () { return null; },
-            updateUserDetails: function () { return null; },
-            updateUserPassword: function () { return null; }
-        };
+        userServiceMock = userServiceMockFactory_1.UserServiceMockFactory.createUserServiceMock();
+        userServiceMock.isUsernameExists = function () { return isUsernameExistsResult; };
         control = new forms_1.FormControl();
         validUsernames = ['valid username1', 'valid username2'];
         validator = new usernameExistsValidator_1.UsernameExistsValidator(validUsernames, userServiceMock);

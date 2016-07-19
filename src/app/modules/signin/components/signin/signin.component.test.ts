@@ -1,3 +1,4 @@
+import {UserServiceMockFactory} from "../../../../testUtils/mockFactories/userServiceMockFactory";
 import {LocationService, ILocationService} from "../../../common/services/locationService";
 import {SigninComponent} from "./signin.component";
 import {IUserService, UserService} from "../../../common/services/userService";
@@ -26,14 +27,9 @@ describe('SigninComponent', () => {
 
     signinUserResult = new Subject<string>()
 
-    userServiceMock = {
-      signinUser: () => signinUserResult,
-      isUsernameExists: () => null,
-      registerUser: () => null,
-      getUserDetails: () => null,
-      updateUserDetails: () => null,
-      updateUserPassword: () => null
-    };
+    userServiceMock = UserServiceMockFactory.createUserServiceMock();
+
+    userServiceMock.signinUser = () => signinUserResult;
 
     locationServiceMock = {
       goToUrl: () => { }

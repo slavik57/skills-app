@@ -1,3 +1,4 @@
+import {UserServiceMockFactory} from "../../../testUtils/mockFactories/userServiceMockFactory";
 import {
   it,
   inject,
@@ -21,14 +22,7 @@ describe('UsernameExistsValidatorFactory', () => {
   var usernameExistsValidatorFactory: UsernameExistsValidatorFactory;
 
   beforeEachProviders(() => {
-    userServiceMock = {
-      signinUser: () => null,
-      registerUser: () => null,
-      isUsernameExists: () => null,
-      getUserDetails: () => null,
-      updateUserDetails: () => null,
-      updateUserPassword: () => null
-    };
+    userServiceMock = UserServiceMockFactory.createUserServiceMock();
 
     return [
       provide(UserService, { useValue: userServiceMock }),
@@ -86,14 +80,9 @@ describe('UsernameExistsValidator', () => {
 
     isUsernameExistsResult = new Subject<boolean>();
 
-    userServiceMock = {
-      signinUser: () => null,
-      registerUser: () => null,
-      isUsernameExists: () => isUsernameExistsResult,
-      getUserDetails: () => null,
-      updateUserDetails: () => null,
-      updateUserPassword: () => null
-    };
+    userServiceMock = UserServiceMockFactory.createUserServiceMock();
+
+    userServiceMock.isUsernameExists = () => isUsernameExistsResult;
 
     control = new FormControl();
 

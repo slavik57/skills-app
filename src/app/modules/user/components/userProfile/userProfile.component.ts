@@ -1,9 +1,9 @@
+import {IUserDetails} from "../../../common/interfaces/iUserDetails";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {UserService} from "../../../common/services/userService";
 import {ChangeUserPasswordComponent} from "../changeUserPassword/changeUserPassword.component";
 import {EditUserDetailsComponent} from "../editUserDetails/editUserDetails.component";
 import { Component, OnInit } from '@angular/core';
-import { IUserDetails} from '../../../common/services/userService';
 
 @Component({
   selector: 'user-profile',

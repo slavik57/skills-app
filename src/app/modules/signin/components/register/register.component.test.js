@@ -1,4 +1,5 @@
 "use strict";
+var userServiceMockFactory_1 = require("../../../../testUtils/mockFactories/userServiceMockFactory");
 var register_component_1 = require("./register.component");
 var testing_1 = require('@angular/core/testing');
 var core_1 = require('@angular/core');
@@ -21,14 +22,8 @@ testing_1.describe('RegisterComponent', function () {
     var registerComponent;
     testing_1.beforeEachProviders(function () {
         registerUserResult = new Subject_1.Subject();
-        userServiceMock = {
-            signinUser: function () { return null; },
-            registerUser: function () { return registerUserResult; },
-            isUsernameExists: function () { return null; },
-            getUserDetails: function () { return null; },
-            updateUserDetails: function () { return null; },
-            updateUserPassword: function () { return null; }
-        };
+        userServiceMock = userServiceMockFactory_1.UserServiceMockFactory.createUserServiceMock();
+        userServiceMock.registerUser = function () { return registerUserResult; };
         locationServiceMock = {
             goToUrl: function () { }
         };
