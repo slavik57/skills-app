@@ -45,7 +45,7 @@ describe('UserProfileComponent', () => {
   it('should initialize correctly', () => {
     expect(component.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
     expect(component.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
-    expect(component.userDetails, 'userDetails should be correct').to.be.undefined;
+    expect(component.userDetails, 'userDetails should be correct').to.be.null;
   });
 
   it('should fetch userDetails', () => {
@@ -65,8 +65,8 @@ describe('UserProfileComponent', () => {
       expect(component.gettingUserDetails).to.be.false;
     });
 
-    it('userDetails should still be undefined', () => {
-      expect(component.userDetails).to.be.undefined;
+    it('userDetails should still be null', () => {
+      expect(component.userDetails).to.be.null;
     });
 
     it('should set error correctly', () => {
@@ -79,13 +79,13 @@ describe('UserProfileComponent', () => {
         getUserDetailsSpy.reset();
         getUserDetailsResult = new Subject<IUserDetails>();
 
-        component.loadUserDetails();
+        component.reload();
       });
 
       it('should set properties correctly', () => {
         expect(component.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
         expect(component.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
-        expect(component.userDetails, 'userDetails should be correct').to.be.undefined;
+        expect(component.userDetails, 'userDetails should be correct').to.be.null;
       });
 
       it('should fetch userDetails', () => {

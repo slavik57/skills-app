@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,33 +13,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var loadingComponentBase_1 = require("../../../common/components/loadingComponentBase/loadingComponentBase");
 var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
 var userService_1 = require("../../../common/services/userService");
 var changeUserPassword_component_1 = require("../changeUserPassword/changeUserPassword.component");
 var editUserDetails_component_1 = require("../editUserDetails/editUserDetails.component");
 var core_1 = require('@angular/core');
-var UserProfileComponent = (function () {
+var UserProfileComponent = (function (_super) {
+    __extends(UserProfileComponent, _super);
     function UserProfileComponent(userService) {
+        _super.call(this);
         this.userService = userService;
     }
-    UserProfileComponent.prototype.ngOnInit = function () {
-        this.loadUserDetails();
+    UserProfileComponent.prototype.get = function () {
+        return this.userService.getUserDetails();
     };
-    UserProfileComponent.prototype.loadUserDetails = function () {
-        var _this = this;
-        this.gettingUserDetailsError = null;
-        this.gettingUserDetails = true;
-        this.userService.getUserDetails()
-            .finally(function () { return _this._setAsNotGettingUserDetails(); })
-            .subscribe(function (userDetails) { return _this._setUserDetails(userDetails); }, function (error) { return _this._setGettingUserDetailsError(error); });
+    UserProfileComponent.prototype.setIsLoading = function (value) {
+        this.gettingUserDetails = value;
     };
-    UserProfileComponent.prototype._setAsNotGettingUserDetails = function () {
-        this.gettingUserDetails = false;
-    };
-    UserProfileComponent.prototype._setUserDetails = function (userDetails) {
+    UserProfileComponent.prototype.setLoadingResult = function (userDetails) {
         this.userDetails = userDetails;
     };
-    UserProfileComponent.prototype._setGettingUserDetailsError = function (error) {
+    UserProfileComponent.prototype.setLoadingError = function (error) {
         this.gettingUserDetailsError = error;
     };
     UserProfileComponent = __decorate([
@@ -47,6 +47,6 @@ var UserProfileComponent = (function () {
         __metadata('design:paramtypes', [userService_1.UserService])
     ], UserProfileComponent);
     return UserProfileComponent;
-}());
+}(loadingComponentBase_1.LoadingComponentBase));
 exports.UserProfileComponent = UserProfileComponent;
 //# sourceMappingURL=userProfile.component.js.map

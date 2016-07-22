@@ -29,7 +29,7 @@ testing_1.describe('UserProfileComponent', function () {
     testing_1.it('should initialize correctly', function () {
         chai_1.expect(component.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
         chai_1.expect(component.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
-        chai_1.expect(component.userDetails, 'userDetails should be correct').to.be.undefined;
+        chai_1.expect(component.userDetails, 'userDetails should be correct').to.be.null;
     });
     testing_1.it('should fetch userDetails', function () {
         chai_1.expect(getUserDetailsSpy.callCount).to.be.equal(1);
@@ -43,8 +43,8 @@ testing_1.describe('UserProfileComponent', function () {
         testing_1.it('should set gettingUserDetails to false', function () {
             chai_1.expect(component.gettingUserDetails).to.be.false;
         });
-        testing_1.it('userDetails should still be undefined', function () {
-            chai_1.expect(component.userDetails).to.be.undefined;
+        testing_1.it('userDetails should still be null', function () {
+            chai_1.expect(component.userDetails).to.be.null;
         });
         testing_1.it('should set error correctly', function () {
             chai_1.expect(component.gettingUserDetailsError).to.be.equal(error);
@@ -53,12 +53,12 @@ testing_1.describe('UserProfileComponent', function () {
             testing_1.beforeEach(function () {
                 getUserDetailsSpy.reset();
                 getUserDetailsResult = new Subject_1.Subject();
-                component.loadUserDetails();
+                component.reload();
             });
             testing_1.it('should set properties correctly', function () {
                 chai_1.expect(component.gettingUserDetails, 'gettingUserDetails should be correct').to.be.true;
                 chai_1.expect(component.gettingUserDetailsError, 'gettingUserDetailsError should be correct').to.be.null;
-                chai_1.expect(component.userDetails, 'userDetails should be correct').to.be.undefined;
+                chai_1.expect(component.userDetails, 'userDetails should be correct').to.be.null;
             });
             testing_1.it('should fetch userDetails', function () {
                 chai_1.expect(getUserDetailsSpy.callCount).to.be.equal(1);

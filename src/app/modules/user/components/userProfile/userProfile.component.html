@@ -5,7 +5,7 @@
     [ngClass]="{ 'has-error': !!gettingUserDetailsError }"
      *ngIf="gettingUserDetailsError">
   <div class="error">{{gettingUserDetailsError}}</div>
-  <button class="retry-button" (click)="loadUserDetails()">
+  <button class="retry-button" (click)="reload()">
    Try Again
   </button>
 </div>

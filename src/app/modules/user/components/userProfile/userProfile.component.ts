@@ -1,9 +1,11 @@
+import {LoadingComponentBase} from "../../../common/components/loadingComponentBase/loadingComponentBase";
 import {IUserDetails} from "../../../common/interfaces/iUserDetails";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {UserService} from "../../../common/services/userService";
 import {ChangeUserPasswordComponent} from "../changeUserPassword/changeUserPassword.component";
 import {EditUserDetailsComponent} from "../editUserDetails/editUserDetails.component";
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'user-profile',
@@ -11,37 +13,28 @@ import { Component, OnInit } from '@angular/core';
   styles: [require('./userProfile.component.scss')],
   directives: [EditUserDetailsComponent, ChangeUserPasswordComponent, CircularLoadingComponent],
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent extends LoadingComponentBase<IUserDetails> implements OnInit {
   public gettingUserDetails: boolean;
   public gettingUserDetailsError: any;
   public userDetails: IUserDetails;
 
   constructor(private userService: UserService) {
+    super();
   }
 
-  public ngOnInit(): void {
-    this.loadUserDetails();
+  protected get(): Observable<IUserDetails> {
+    return this.userService.getUserDetails();
   }
 
-  public loadUserDetails(): void {
-    this.gettingUserDetailsError = null;
-    this.gettingUserDetails = true;
-
-    this.userService.getUserDetails()
-      .finally(() => this._setAsNotGettingUserDetails())
-      .subscribe((userDetails: IUserDetails) => this._setUserDetails(userDetails),
-      (error: any) => this._setGettingUserDetailsError(error));
+  protected setIsLoading(value: boolean): void {
+    this.gettingUserDetails = value;
   }
 
-  private _setAsNotGettingUserDetails(): void {
-    this.gettingUserDetails = false;
-  }
-
-  private _setUserDetails(userDetails: IUserDetails): void {
+  protected setLoadingResult(userDetails: IUserDetails): void {
     this.userDetails = userDetails;
   }
 
-  private _setGettingUserDetailsError(error: any): void {
+  protected setLoadingError(error: any): void {
     this.gettingUserDetailsError = error;
   }
 }
