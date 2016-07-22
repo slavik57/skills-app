@@ -91,18 +91,39 @@
         margin-right: 2rem;
       }
 
-      .collapsible{
+      .collection{
+        margin-left: 1rem;
+        margin-right: 1rem;
 
-        .item .collapsible-header{
+        .item{
+          $transition-speed: .3s;
           user-select: none;
           -moz-user-select: none;
           -webkit-user-select: none;
           -ms-user-select: none;
           cursor: pointer;
+          @extend .white;
+          transition: background-color $transition-speed ease;
 
-          .material-icons {
-            @extend .blue-text;
+          &.hidden {
+            display: none;
           }
+
+          &.active {
+            @extend .blue;
+
+            .material-icons, .username {
+              @extend .white-text;
+            }
+          }
+
+          .material-icons, .username {
+            @extend .blue-text;
+            vertical-align: middle;
+
+            transition: color $transition-speed ease;
+          }
+
         }
       }
     }

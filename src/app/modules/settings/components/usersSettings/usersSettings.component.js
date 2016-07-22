@@ -34,11 +34,7 @@ var UsersSettingsComponent = (function () {
         this.isLoadingUsers = false;
     };
     UsersSettingsComponent.prototype._setUserDetails = function (usersDetails) {
-        var _this = this;
         this.usersDetails = usersDetails;
-        setTimeout(function () {
-            $(_this.userDetailsList.nativeElement).collapsible();
-        }, 0);
     };
     UsersSettingsComponent.prototype._setGettingUsersError = function (error) {
         this.loadingUsersError = error;

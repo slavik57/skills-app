@@ -44,10 +44,6 @@ export class UsersSettingsComponent implements OnInit {
 
   private _setUserDetails(usersDetails: IUsernameDetails[]): void {
     this.usersDetails = usersDetails;
-
-    setTimeout(() => {
-      $(this.userDetailsList.nativeElement).collapsible();
-    }, 0);
   }
 
   private _setGettingUsersError(error: any): void {

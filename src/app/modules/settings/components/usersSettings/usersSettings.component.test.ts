@@ -24,9 +24,6 @@ describe('UsersSettingsComponent', () => {
   var getUsersDetailsSpy: SinonSpy;
   var getUsersDetailsResult: Subject<IUsernameDetails[]>;
 
-  var jquerySpy: SinonSpy;
-  var jqueryResultCollapsibleSpy: SinonSpy;
-
   var component: UsersSettingsComponent;
 
   beforeEachProviders(() => {
@@ -56,17 +53,8 @@ describe('UsersSettingsComponent', () => {
       collapsible: () => null
     }
 
-    jqueryResultCollapsibleSpy = spy(jqueryResult, 'collapsible');
-    jquerySpy = stub(window, '$', () => {
-      return jqueryResult;
-    });
-
     component.ngOnInit();
   }));
-
-  afterEach(() => {
-    jquerySpy.restore();
-  });
 
   it('isLoadingUsers should be true', () => {
     expect(component.isLoadingUsers).to.be.true;
@@ -159,13 +147,6 @@ describe('UsersSettingsComponent', () => {
 
     it('usersDetails should be correct', () => {
       expect(component.usersDetails).to.deep.equal(usersDetails);
-    });
-
-    it('should initialize collapsible', () => {
-      expect(jquerySpy.callCount).to.be.equal(1);
-      expect(jquerySpy.args[0]).to.be.length(1);
-      expect(jquerySpy.args[0][0]).to.be.equal(component.userDetailsList.nativeElement);
-      expect(jqueryResultCollapsibleSpy.callCount).to.be.equal(1);
     });
 
   });

@@ -643,115 +643,115 @@
   color: #304ffe !important;
 }
 
-.blue, .progress .indeterminate, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button {
+.blue, .progress .indeterminate, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .item.active {
   background-color: #2196F3 !important;
 }
 
-.blue-text, .input-field input:focus + label, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .material-icons {
+.blue-text, .input-field input:focus + label, :host .users-settings-wrapper .user-details-wrapper .collection .item .material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .username {
   color: #2196F3 !important;
 }
 
-.blue.lighten-5, .progress .lighten-5.indeterminate, .submit-wrapper .lighten-5.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-5.retry-button {
+.blue.lighten-5, .progress .lighten-5.indeterminate, .submit-wrapper .lighten-5.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-5.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-5.item.active {
   background-color: #E3F2FD !important;
 }
 
-.blue-text.text-lighten-5, .input-field input:focus + label.text-lighten-5, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-5.material-icons {
+.blue-text.text-lighten-5, .input-field input:focus + label.text-lighten-5, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-lighten-5.material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-lighten-5.username {
   color: #E3F2FD !important;
 }
 
-.blue.lighten-4, .progress .lighten-4.indeterminate, .submit-wrapper .lighten-4.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-4.retry-button {
+.blue.lighten-4, .progress .lighten-4.indeterminate, .submit-wrapper .lighten-4.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-4.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-4.item.active {
   background-color: #BBDEFB !important;
 }
 
-.blue-text.text-lighten-4, .input-field input:focus + label.text-lighten-4, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-4.material-icons {
+.blue-text.text-lighten-4, .input-field input:focus + label.text-lighten-4, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-lighten-4.material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-lighten-4.username {
   color: #BBDEFB !important;
 }
 
-.blue.lighten-3, .progress .lighten-3.indeterminate, .submit-wrapper .lighten-3.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-3.retry-button {
+.blue.lighten-3, .progress .lighten-3.indeterminate, .submit-wrapper .lighten-3.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-3.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-3.item.active {
   background-color: #90CAF9 !important;
 }
 
-.blue-text.text-lighten-3, .input-field input:focus + label.text-lighten-3, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-3.material-icons {
+.blue-text.text-lighten-3, .input-field input:focus + label.text-lighten-3, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-lighten-3.material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-lighten-3.username {
   color: #90CAF9 !important;
 }
 
-.blue.lighten-2, .blue.progress, .progress .progress.indeterminate, .submit-wrapper .progress.submit-button, :host .users-settings-wrapper .loading-users-details-error .progress.retry-button, .progress .lighten-2.indeterminate, .submit-wrapper .lighten-2.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-2.retry-button {
+.blue.lighten-2, .blue.progress, .progress .progress.indeterminate, .submit-wrapper .progress.submit-button, :host .users-settings-wrapper .loading-users-details-error .progress.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .progress.item.active, .progress .lighten-2.indeterminate, .submit-wrapper .lighten-2.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-2.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-2.item.active {
   background-color: #64B5F6 !important;
 }
 
-.blue-text.text-lighten-2, .input-field input:focus + label.text-lighten-2, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-2.material-icons {
+.blue-text.text-lighten-2, .input-field input:focus + label.text-lighten-2, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-lighten-2.material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-lighten-2.username {
   color: #64B5F6 !important;
 }
 
-.blue.lighten-1, .progress .lighten-1.indeterminate, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button {
+.blue.lighten-1, .progress .lighten-1.indeterminate, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-1.item.active, :host .users-settings-wrapper .user-details-wrapper .collection .submit-wrapper .item.active.submit-button, .submit-wrapper :host .users-settings-wrapper .user-details-wrapper .collection .item.active.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .loading-users-details-error .item.active.retry-button, :host .users-settings-wrapper .loading-users-details-error .user-details-wrapper .collection .item.active.retry-button {
   background-color: #42A5F5 !important;
 }
 
-.blue-text.text-lighten-1, .input-field input:focus + label.text-lighten-1, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-1.material-icons {
+.blue-text.text-lighten-1, .input-field input:focus + label.text-lighten-1, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-lighten-1.material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-lighten-1.username {
   color: #42A5F5 !important;
 }
 
-.blue.darken-1, .progress .darken-1.indeterminate, .submit-wrapper .darken-1.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-1.retry-button {
+.blue.darken-1, .progress .darken-1.indeterminate, .submit-wrapper .darken-1.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-1.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .darken-1.item.active {
   background-color: #1E88E5 !important;
 }
 
-.blue-text.text-darken-1, .input-field input:focus + label.text-darken-1, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-1.material-icons {
+.blue-text.text-darken-1, .input-field input:focus + label.text-darken-1, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-darken-1.material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-darken-1.username {
   color: #1E88E5 !important;
 }
 
-.blue.darken-2, .progress .darken-2.indeterminate, .submit-wrapper .darken-2.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-2.retry-button {
+.blue.darken-2, .progress .darken-2.indeterminate, .submit-wrapper .darken-2.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-2.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .darken-2.item.active {
   background-color: #1976D2 !important;
 }
 
-.blue-text.text-darken-2, .input-field input:focus + label.text-darken-2, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-2.material-icons {
+.blue-text.text-darken-2, .input-field input:focus + label.text-darken-2, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-darken-2.material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-darken-2.username {
   color: #1976D2 !important;
 }
 
-.blue.darken-3, .progress .darken-3.indeterminate, .submit-wrapper .darken-3.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-3.retry-button {
+.blue.darken-3, .progress .darken-3.indeterminate, .submit-wrapper .darken-3.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-3.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .darken-3.item.active {
   background-color: #1565C0 !important;
 }
 
-.blue-text.text-darken-3, .input-field input:focus + label.text-darken-3, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-3.material-icons {
+.blue-text.text-darken-3, .input-field input:focus + label.text-darken-3, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-darken-3.material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-darken-3.username {
   color: #1565C0 !important;
 }
 
-.blue.darken-4, .progress .darken-4.indeterminate, .submit-wrapper .darken-4.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-4.retry-button {
+.blue.darken-4, .progress .darken-4.indeterminate, .submit-wrapper .darken-4.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-4.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .darken-4.item.active {
   background-color: #0D47A1 !important;
 }
 
-.blue-text.text-darken-4, .input-field input:focus + label.text-darken-4, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-4.material-icons {
+.blue-text.text-darken-4, .input-field input:focus + label.text-darken-4, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-darken-4.material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-darken-4.username {
   color: #0D47A1 !important;
 }
 
-.blue.accent-1, .progress .accent-1.indeterminate, .submit-wrapper .accent-1.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-1.retry-button {
+.blue.accent-1, .progress .accent-1.indeterminate, .submit-wrapper .accent-1.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-1.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .accent-1.item.active {
   background-color: #82B1FF !important;
 }
 
-.blue-text.text-accent-1, .input-field input:focus + label.text-accent-1, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-1.material-icons {
+.blue-text.text-accent-1, .input-field input:focus + label.text-accent-1, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-accent-1.material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-accent-1.username {
   color: #82B1FF !important;
 }
 
-.blue.accent-2, .progress .accent-2.indeterminate, .submit-wrapper .accent-2.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-2.retry-button {
+.blue.accent-2, .progress .accent-2.indeterminate, .submit-wrapper .accent-2.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-2.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .accent-2.item.active {
   background-color: #448AFF !important;
 }
 
-.blue-text.text-accent-2, .input-field input:focus + label.text-accent-2, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-2.material-icons {
+.blue-text.text-accent-2, .input-field input:focus + label.text-accent-2, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-accent-2.material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-accent-2.username {
   color: #448AFF !important;
 }
 
-.blue.accent-3, .progress .accent-3.indeterminate, .submit-wrapper .accent-3.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-3.retry-button {
+.blue.accent-3, .progress .accent-3.indeterminate, .submit-wrapper .accent-3.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-3.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .accent-3.item.active {
   background-color: #2979FF !important;
 }
 
-.blue-text.text-accent-3, .input-field input:focus + label.text-accent-3, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-3.material-icons {
+.blue-text.text-accent-3, .input-field input:focus + label.text-accent-3, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-accent-3.material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-accent-3.username {
   color: #2979FF !important;
 }
 
-.blue.accent-4, .progress .accent-4.indeterminate, .submit-wrapper .accent-4.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-4.retry-button {
+.blue.accent-4, .progress .accent-4.indeterminate, .submit-wrapper .accent-4.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-4.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .accent-4.item.active {
   background-color: #2962FF !important;
 }
 
-.blue-text.text-accent-4, .input-field input:focus + label.text-accent-4, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-4.material-icons {
+.blue-text.text-accent-4, .input-field input:focus + label.text-accent-4, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-accent-4.material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .text-accent-4.username {
   color: #2962FF !important;
 }
 
@@ -2123,7 +2123,7 @@
   color: #000 !important;
 }
 
-.shades.white {
+.shades.white, :host .users-settings-wrapper .user-details-wrapper .collection .shades.item {
   background-color: #fff !important;
 }
 
@@ -2147,11 +2147,11 @@
   color: #000 !important;
 }
 
-.white {
+.white, :host .users-settings-wrapper .user-details-wrapper .collection .item {
   background-color: #fff !important;
 }
 
-.white-text {
+.white-text, :host .users-settings-wrapper .user-details-wrapper .collection .item.active .material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item.active .username {
   color: #fff !important;
 }
 
@@ -7519,10 +7519,25 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   margin-right: 2rem;
 }
 
-:host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header {
+:host .users-settings-wrapper .user-details-wrapper .collection {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+:host .users-settings-wrapper .user-details-wrapper .collection .item {
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+:host .users-settings-wrapper .user-details-wrapper .collection .item.hidden {
+  display: none;
+}
+
+:host .users-settings-wrapper .user-details-wrapper .collection .item .material-icons, :host .users-settings-wrapper .user-details-wrapper .collection .item .username {
+  vertical-align: middle;
+  transition: color 0.3s ease;
 }

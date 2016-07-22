@@ -12,8 +12,6 @@ testing_1.describe('UsersSettingsComponent', function () {
     var userServiceMock;
     var getUsersDetailsSpy;
     var getUsersDetailsResult;
-    var jquerySpy;
-    var jqueryResultCollapsibleSpy;
     var component;
     testing_1.beforeEachProviders(function () {
         userServiceMock = userServiceMockFactory_1.UserServiceMockFactory.createUserServiceMock();
@@ -35,15 +33,8 @@ testing_1.describe('UsersSettingsComponent', function () {
         var jqueryResult = {
             collapsible: function () { return null; }
         };
-        jqueryResultCollapsibleSpy = sinon_1.spy(jqueryResult, 'collapsible');
-        jquerySpy = sinon_1.stub(window, '$', function () {
-            return jqueryResult;
-        });
         component.ngOnInit();
     }));
-    testing_1.afterEach(function () {
-        jquerySpy.restore();
-    });
     testing_1.it('isLoadingUsers should be true', function () {
         chai_1.expect(component.isLoadingUsers).to.be.true;
     });
@@ -109,12 +100,6 @@ testing_1.describe('UsersSettingsComponent', function () {
         });
         testing_1.it('usersDetails should be correct', function () {
             chai_1.expect(component.usersDetails).to.deep.equal(usersDetails);
-        });
-        testing_1.it('should initialize collapsible', function () {
-            chai_1.expect(jquerySpy.callCount).to.be.equal(1);
-            chai_1.expect(jquerySpy.args[0]).to.be.length(1);
-            chai_1.expect(jquerySpy.args[0][0]).to.be.equal(component.userDetailsList.nativeElement);
-            chai_1.expect(jqueryResultCollapsibleSpy.callCount).to.be.equal(1);
         });
     });
 });
