@@ -13,6 +13,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var globalPermissionsNamePipe_1 = require("../../../common/pipes/globalPermissionsNamePipe");
 var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
 var loadingComponentBase_1 = require("../../../common/components/loadingComponentBase/loadingComponentBase");
 var userService_1 = require("../../../common/services/userService");
@@ -44,7 +45,8 @@ var UserPermissionsSettingsComponent = (function (_super) {
             selector: 'user-permissions-settings',
             template: require('./userPermissionsSettings.component.html'),
             styles: [require('./userPermissionsSettings.component.scss')],
-            directives: [circularLoading_component_1.CircularLoadingComponent]
+            directives: [circularLoading_component_1.CircularLoadingComponent],
+            pipes: [globalPermissionsNamePipe_1.GlobalPermissionsNamePipe]
         }), 
         __metadata('design:paramtypes', [userService_1.UserService])
     ], UserPermissionsSettingsComponent);

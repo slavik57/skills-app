@@ -1,3 +1,4 @@
+import {GlobalPermissionsNamePipe} from "../../../common/pipes/globalPermissionsNamePipe";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {LoadingComponentBase} from "../../../common/components/loadingComponentBase/loadingComponentBase";
 import {UserService} from "../../../common/services/userService";
@@ -9,7 +10,8 @@ import { Observable } from 'rxjs/Observable';
   selector: 'user-permissions-settings',
   template: require('./userPermissionsSettings.component.html'),
   styles: [require('./userPermissionsSettings.component.scss')],
-  directives: [CircularLoadingComponent]
+  directives: [CircularLoadingComponent],
+  pipes: [GlobalPermissionsNamePipe]
 })
 export class UserPermissionsSettingsComponent extends LoadingComponentBase<string[]> implements OnInit {
   @Input() public userDetails: IUsernameDetails;
