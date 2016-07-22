@@ -62,10 +62,10 @@ testing_1.describe('UsersSettingsComponent', function () {
         testing_1.it('userPermissions should be null', function () {
             chai_1.expect(component.userPermissions).to.be.null;
         });
-        testing_1.describe('reloadUserPermissions', function () {
+        testing_1.describe('reload', function () {
             testing_1.beforeEach(function () {
                 getUserPermissionsSpy.reset();
-                component.reloadUserPermissions();
+                component.reload();
             });
             testing_1.it('isLoadingUserPermissions should be true', function () {
                 chai_1.expect(component.isLoadingUserPermissions).to.be.true;

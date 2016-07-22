@@ -92,12 +92,12 @@ describe('UsersSettingsComponent', () => {
       expect(component.userPermissions).to.be.null;
     });
 
-    describe('reloadUserPermissions', () => {
+    describe('reload', () => {
 
       beforeEach(() => {
         getUserPermissionsSpy.reset();
 
-        component.reloadUserPermissions();
+        component.reload();
       });
 
       it('isLoadingUserPermissions should be true', () => {
