@@ -1,4 +1,5 @@
 @import "../../../../commonStyles/_loading";
+@import "../../../../commonStyles/_forms";
 
 :host {
   display: flex;
@@ -84,6 +85,11 @@
     .user-details-wrapper {
       opacity: 1;
       transition: opacity .3s ease;
+
+      .input-field {
+        margin-left: 2rem;
+        margin-right: 2rem;
+      }
 
       .collapsible{
 

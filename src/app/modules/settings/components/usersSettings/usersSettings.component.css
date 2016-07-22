@@ -43,7 +43,7 @@
   color: #ee6e73 !important;
 }
 
-.materialize-red.lighten-1, :host .users-settings-wrapper .loading-users-details-error .materialize-red.retry-button {
+.materialize-red.lighten-1, .submit-wrapper .materialize-red.submit-button, :host .users-settings-wrapper .loading-users-details-error .materialize-red.retry-button {
   background-color: #ea454b !important;
 }
 
@@ -123,7 +123,7 @@
   color: #E57373 !important;
 }
 
-.red.lighten-1, :host .users-settings-wrapper .loading-users-details-error .red.retry-button {
+.red.lighten-1, .submit-wrapper .red.submit-button, :host .users-settings-wrapper .loading-users-details-error .red.retry-button {
   background-color: #EF5350 !important;
 }
 
@@ -235,7 +235,7 @@
   color: #f06292 !important;
 }
 
-.pink.lighten-1, :host .users-settings-wrapper .loading-users-details-error .pink.retry-button {
+.pink.lighten-1, .submit-wrapper .pink.submit-button, :host .users-settings-wrapper .loading-users-details-error .pink.retry-button {
   background-color: #ec407a !important;
 }
 
@@ -347,7 +347,7 @@
   color: #ba68c8 !important;
 }
 
-.purple.lighten-1, :host .users-settings-wrapper .loading-users-details-error .purple.retry-button {
+.purple.lighten-1, .submit-wrapper .purple.submit-button, :host .users-settings-wrapper .loading-users-details-error .purple.retry-button {
   background-color: #ab47bc !important;
 }
 
@@ -459,7 +459,7 @@
   color: #9575cd !important;
 }
 
-.deep-purple.lighten-1, :host .users-settings-wrapper .loading-users-details-error .deep-purple.retry-button {
+.deep-purple.lighten-1, .submit-wrapper .deep-purple.submit-button, :host .users-settings-wrapper .loading-users-details-error .deep-purple.retry-button {
   background-color: #7e57c2 !important;
 }
 
@@ -571,7 +571,7 @@
   color: #7986cb !important;
 }
 
-.indigo.lighten-1, :host .users-settings-wrapper .loading-users-details-error .indigo.retry-button {
+.indigo.lighten-1, .submit-wrapper .indigo.submit-button, :host .users-settings-wrapper .loading-users-details-error .indigo.retry-button {
   background-color: #5c6bc0 !important;
 }
 
@@ -643,115 +643,115 @@
   color: #304ffe !important;
 }
 
-.blue, .progress .indeterminate, :host .users-settings-wrapper .loading-users-details-error .retry-button {
+.blue, .progress .indeterminate, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button {
   background-color: #2196F3 !important;
 }
 
-.blue-text, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .material-icons {
+.blue-text, .input-field input:focus + label, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .material-icons {
   color: #2196F3 !important;
 }
 
-.blue.lighten-5, .progress .lighten-5.indeterminate, :host .users-settings-wrapper .loading-users-details-error .lighten-5.retry-button {
+.blue.lighten-5, .progress .lighten-5.indeterminate, .submit-wrapper .lighten-5.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-5.retry-button {
   background-color: #E3F2FD !important;
 }
 
-.blue-text.text-lighten-5, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-5.material-icons {
+.blue-text.text-lighten-5, .input-field input:focus + label.text-lighten-5, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-5.material-icons {
   color: #E3F2FD !important;
 }
 
-.blue.lighten-4, .progress .lighten-4.indeterminate, :host .users-settings-wrapper .loading-users-details-error .lighten-4.retry-button {
+.blue.lighten-4, .progress .lighten-4.indeterminate, .submit-wrapper .lighten-4.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-4.retry-button {
   background-color: #BBDEFB !important;
 }
 
-.blue-text.text-lighten-4, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-4.material-icons {
+.blue-text.text-lighten-4, .input-field input:focus + label.text-lighten-4, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-4.material-icons {
   color: #BBDEFB !important;
 }
 
-.blue.lighten-3, .progress .lighten-3.indeterminate, :host .users-settings-wrapper .loading-users-details-error .lighten-3.retry-button {
+.blue.lighten-3, .progress .lighten-3.indeterminate, .submit-wrapper .lighten-3.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-3.retry-button {
   background-color: #90CAF9 !important;
 }
 
-.blue-text.text-lighten-3, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-3.material-icons {
+.blue-text.text-lighten-3, .input-field input:focus + label.text-lighten-3, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-3.material-icons {
   color: #90CAF9 !important;
 }
 
-.blue.lighten-2, .blue.progress, .progress .progress.indeterminate, :host .users-settings-wrapper .loading-users-details-error .progress.retry-button, .progress .lighten-2.indeterminate, :host .users-settings-wrapper .loading-users-details-error .lighten-2.retry-button {
+.blue.lighten-2, .blue.progress, .progress .progress.indeterminate, .submit-wrapper .progress.submit-button, :host .users-settings-wrapper .loading-users-details-error .progress.retry-button, .progress .lighten-2.indeterminate, .submit-wrapper .lighten-2.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-2.retry-button {
   background-color: #64B5F6 !important;
 }
 
-.blue-text.text-lighten-2, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-2.material-icons {
+.blue-text.text-lighten-2, .input-field input:focus + label.text-lighten-2, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-2.material-icons {
   color: #64B5F6 !important;
 }
 
-.blue.lighten-1, .progress .lighten-1.indeterminate, :host .users-settings-wrapper .loading-users-details-error .retry-button {
+.blue.lighten-1, .progress .lighten-1.indeterminate, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button {
   background-color: #42A5F5 !important;
 }
 
-.blue-text.text-lighten-1, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-1.material-icons {
+.blue-text.text-lighten-1, .input-field input:focus + label.text-lighten-1, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-lighten-1.material-icons {
   color: #42A5F5 !important;
 }
 
-.blue.darken-1, .progress .darken-1.indeterminate, :host .users-settings-wrapper .loading-users-details-error .darken-1.retry-button {
+.blue.darken-1, .progress .darken-1.indeterminate, .submit-wrapper .darken-1.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-1.retry-button {
   background-color: #1E88E5 !important;
 }
 
-.blue-text.text-darken-1, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-1.material-icons {
+.blue-text.text-darken-1, .input-field input:focus + label.text-darken-1, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-1.material-icons {
   color: #1E88E5 !important;
 }
 
-.blue.darken-2, .progress .darken-2.indeterminate, :host .users-settings-wrapper .loading-users-details-error .darken-2.retry-button {
+.blue.darken-2, .progress .darken-2.indeterminate, .submit-wrapper .darken-2.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-2.retry-button {
   background-color: #1976D2 !important;
 }
 
-.blue-text.text-darken-2, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-2.material-icons {
+.blue-text.text-darken-2, .input-field input:focus + label.text-darken-2, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-2.material-icons {
   color: #1976D2 !important;
 }
 
-.blue.darken-3, .progress .darken-3.indeterminate, :host .users-settings-wrapper .loading-users-details-error .darken-3.retry-button {
+.blue.darken-3, .progress .darken-3.indeterminate, .submit-wrapper .darken-3.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-3.retry-button {
   background-color: #1565C0 !important;
 }
 
-.blue-text.text-darken-3, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-3.material-icons {
+.blue-text.text-darken-3, .input-field input:focus + label.text-darken-3, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-3.material-icons {
   color: #1565C0 !important;
 }
 
-.blue.darken-4, .progress .darken-4.indeterminate, :host .users-settings-wrapper .loading-users-details-error .darken-4.retry-button {
+.blue.darken-4, .progress .darken-4.indeterminate, .submit-wrapper .darken-4.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-4.retry-button {
   background-color: #0D47A1 !important;
 }
 
-.blue-text.text-darken-4, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-4.material-icons {
+.blue-text.text-darken-4, .input-field input:focus + label.text-darken-4, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-darken-4.material-icons {
   color: #0D47A1 !important;
 }
 
-.blue.accent-1, .progress .accent-1.indeterminate, :host .users-settings-wrapper .loading-users-details-error .accent-1.retry-button {
+.blue.accent-1, .progress .accent-1.indeterminate, .submit-wrapper .accent-1.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-1.retry-button {
   background-color: #82B1FF !important;
 }
 
-.blue-text.text-accent-1, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-1.material-icons {
+.blue-text.text-accent-1, .input-field input:focus + label.text-accent-1, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-1.material-icons {
   color: #82B1FF !important;
 }
 
-.blue.accent-2, .progress .accent-2.indeterminate, :host .users-settings-wrapper .loading-users-details-error .accent-2.retry-button {
+.blue.accent-2, .progress .accent-2.indeterminate, .submit-wrapper .accent-2.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-2.retry-button {
   background-color: #448AFF !important;
 }
 
-.blue-text.text-accent-2, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-2.material-icons {
+.blue-text.text-accent-2, .input-field input:focus + label.text-accent-2, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-2.material-icons {
   color: #448AFF !important;
 }
 
-.blue.accent-3, .progress .accent-3.indeterminate, :host .users-settings-wrapper .loading-users-details-error .accent-3.retry-button {
+.blue.accent-3, .progress .accent-3.indeterminate, .submit-wrapper .accent-3.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-3.retry-button {
   background-color: #2979FF !important;
 }
 
-.blue-text.text-accent-3, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-3.material-icons {
+.blue-text.text-accent-3, .input-field input:focus + label.text-accent-3, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-3.material-icons {
   color: #2979FF !important;
 }
 
-.blue.accent-4, .progress .accent-4.indeterminate, :host .users-settings-wrapper .loading-users-details-error .accent-4.retry-button {
+.blue.accent-4, .progress .accent-4.indeterminate, .submit-wrapper .accent-4.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-4.retry-button {
   background-color: #2962FF !important;
 }
 
-.blue-text.text-accent-4, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-4.material-icons {
+.blue-text.text-accent-4, .input-field input:focus + label.text-accent-4, :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header .text-accent-4.material-icons {
   color: #2962FF !important;
 }
 
@@ -795,7 +795,7 @@
   color: #4fc3f7 !important;
 }
 
-.light-blue.lighten-1, :host .users-settings-wrapper .loading-users-details-error .light-blue.retry-button {
+.light-blue.lighten-1, .submit-wrapper .light-blue.submit-button, :host .users-settings-wrapper .loading-users-details-error .light-blue.retry-button {
   background-color: #29b6f6 !important;
 }
 
@@ -907,7 +907,7 @@
   color: #4dd0e1 !important;
 }
 
-.cyan.lighten-1, :host .users-settings-wrapper .loading-users-details-error .cyan.retry-button {
+.cyan.lighten-1, .submit-wrapper .cyan.submit-button, :host .users-settings-wrapper .loading-users-details-error .cyan.retry-button {
   background-color: #26c6da !important;
 }
 
@@ -1019,7 +1019,7 @@
   color: #4db6ac !important;
 }
 
-.teal.lighten-1, :host .users-settings-wrapper .loading-users-details-error .teal.retry-button {
+.teal.lighten-1, .submit-wrapper .teal.submit-button, :host .users-settings-wrapper .loading-users-details-error .teal.retry-button {
   background-color: #26a69a !important;
 }
 
@@ -1131,7 +1131,7 @@
   color: #81C784 !important;
 }
 
-.green.lighten-1, :host .users-settings-wrapper .loading-users-details-error .green.retry-button {
+.green.lighten-1, .submit-wrapper .green.submit-button, :host .users-settings-wrapper .loading-users-details-error .green.retry-button {
   background-color: #66BB6A !important;
 }
 
@@ -1243,7 +1243,7 @@
   color: #aed581 !important;
 }
 
-.light-green.lighten-1, :host .users-settings-wrapper .loading-users-details-error .light-green.retry-button {
+.light-green.lighten-1, .submit-wrapper .light-green.submit-button, :host .users-settings-wrapper .loading-users-details-error .light-green.retry-button {
   background-color: #9ccc65 !important;
 }
 
@@ -1355,7 +1355,7 @@
   color: #dce775 !important;
 }
 
-.lime.lighten-1, :host .users-settings-wrapper .loading-users-details-error .lime.retry-button {
+.lime.lighten-1, .submit-wrapper .lime.submit-button, :host .users-settings-wrapper .loading-users-details-error .lime.retry-button {
   background-color: #d4e157 !important;
 }
 
@@ -1467,7 +1467,7 @@
   color: #fff176 !important;
 }
 
-.yellow.lighten-1, :host .users-settings-wrapper .loading-users-details-error .yellow.retry-button {
+.yellow.lighten-1, .submit-wrapper .yellow.submit-button, :host .users-settings-wrapper .loading-users-details-error .yellow.retry-button {
   background-color: #ffee58 !important;
 }
 
@@ -1579,7 +1579,7 @@
   color: #ffd54f !important;
 }
 
-.amber.lighten-1, :host .users-settings-wrapper .loading-users-details-error .amber.retry-button {
+.amber.lighten-1, .submit-wrapper .amber.submit-button, :host .users-settings-wrapper .loading-users-details-error .amber.retry-button {
   background-color: #ffca28 !important;
 }
 
@@ -1691,7 +1691,7 @@
   color: #ffb74d !important;
 }
 
-.orange.lighten-1, :host .users-settings-wrapper .loading-users-details-error .orange.retry-button {
+.orange.lighten-1, .submit-wrapper .orange.submit-button, :host .users-settings-wrapper .loading-users-details-error .orange.retry-button {
   background-color: #ffa726 !important;
 }
 
@@ -1803,7 +1803,7 @@
   color: #ff8a65 !important;
 }
 
-.deep-orange.lighten-1, :host .users-settings-wrapper .loading-users-details-error .deep-orange.retry-button {
+.deep-orange.lighten-1, .submit-wrapper .deep-orange.submit-button, :host .users-settings-wrapper .loading-users-details-error .deep-orange.retry-button {
   background-color: #ff7043 !important;
 }
 
@@ -1915,7 +1915,7 @@
   color: #a1887f !important;
 }
 
-.brown.lighten-1, :host .users-settings-wrapper .loading-users-details-error .brown.retry-button {
+.brown.lighten-1, .submit-wrapper .brown.submit-button, :host .users-settings-wrapper .loading-users-details-error .brown.retry-button {
   background-color: #8d6e63 !important;
 }
 
@@ -1995,7 +1995,7 @@
   color: #90a4ae !important;
 }
 
-.blue-grey.lighten-1, :host .users-settings-wrapper .loading-users-details-error .blue-grey.retry-button {
+.blue-grey.lighten-1, .submit-wrapper .blue-grey.submit-button, :host .users-settings-wrapper .loading-users-details-error .blue-grey.retry-button {
   background-color: #78909c !important;
 }
 
@@ -2075,7 +2075,7 @@
   color: #e0e0e0 !important;
 }
 
-.grey.lighten-1, .lighten-1.progress, :host .users-settings-wrapper .loading-users-details-error .progress.retry-button, :host .users-settings-wrapper .loading-users-details-error .grey.retry-button {
+.grey.lighten-1, .lighten-1.progress, .submit-wrapper .progress.submit-button, :host .users-settings-wrapper .loading-users-details-error .progress.retry-button, .submit-wrapper .grey.submit-button, :host .users-settings-wrapper .loading-users-details-error .grey.retry-button {
   background-color: #bdbdbd !important;
 }
 
@@ -2127,7 +2127,7 @@
   background-color: #fff !important;
 }
 
-.shades-text.text-white, :host .users-settings-wrapper .loading-users-details-error .shades-text.retry-button {
+.shades-text.text-white, .submit-wrapper .shades-text.submit-button, :host .users-settings-wrapper .loading-users-details-error .shades-text.retry-button {
   color: #fff !important;
 }
 
@@ -2396,11 +2396,11 @@ ul li {
   box-shadow: none !important;
 }
 
-.z-depth-1, nav, .card-panel, .card, .toast, .btn, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
+.z-depth-1, nav, .card-panel, .card, .toast, .btn, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-.z-depth-1-half, .btn:hover, :host .users-settings-wrapper .loading-users-details-error .retry-button:hover, .btn-large:hover, .btn-floating:hover {
+.z-depth-1-half, .btn:hover, .submit-wrapper .submit-button:hover, :host .users-settings-wrapper .loading-users-details-error .retry-button:hover, .btn-large:hover, .btn-floating:hover {
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -3137,7 +3137,7 @@ nav ul a span.badge {
   }
 }
 
-.container .row {
+.container .row, .container .submit-wrapper {
   margin-left: -0.75rem;
   margin-right: -0.75rem;
 }
@@ -3159,618 +3159,618 @@ nav ul a span.badge {
   padding-top: 0;
 }
 
-.row {
+.row, .submit-wrapper {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
 }
 
-.row:after {
+.row:after, .submit-wrapper:after {
   content: "";
   display: table;
   clear: both;
 }
 
-.row .col {
+.row .col, .submit-wrapper .col, .submit-wrapper .submit-button {
   float: left;
   box-sizing: border-box;
   padding: 0 0.75rem;
 }
 
-.row .col[class*="push-"], .row .col[class*="pull-"] {
+.row .col[class*="push-"], .submit-wrapper .col[class*="push-"], .submit-wrapper [class*="push-"].submit-button, .row .col[class*="pull-"], .submit-wrapper .col[class*="pull-"], .submit-wrapper [class*="pull-"].submit-button {
   position: relative;
 }
 
-.row .col.s1 {
+.row .col.s1, .submit-wrapper .col.s1, .submit-wrapper .s1.submit-button {
   width: 8.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s2 {
+.row .col.s2, .submit-wrapper .col.s2, .submit-wrapper .s2.submit-button {
   width: 16.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s3 {
+.row .col.s3, .submit-wrapper .col.s3, .submit-wrapper .s3.submit-button {
   width: 25%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s4 {
+.row .col.s4, .submit-wrapper .col.s4, .submit-wrapper .s4.submit-button {
   width: 33.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s5 {
+.row .col.s5, .submit-wrapper .col.s5, .submit-wrapper .s5.submit-button {
   width: 41.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s6 {
+.row .col.s6, .submit-wrapper .col.s6, .submit-wrapper .s6.submit-button {
   width: 50%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s7 {
+.row .col.s7, .submit-wrapper .col.s7, .submit-wrapper .s7.submit-button {
   width: 58.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s8 {
+.row .col.s8, .submit-wrapper .col.s8, .submit-wrapper .s8.submit-button {
   width: 66.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s9 {
+.row .col.s9, .submit-wrapper .col.s9, .submit-wrapper .s9.submit-button {
   width: 75%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s10 {
+.row .col.s10, .submit-wrapper .col.s10, .submit-wrapper .s10.submit-button {
   width: 83.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s11 {
+.row .col.s11, .submit-wrapper .col.s11, .submit-wrapper .s11.submit-button {
   width: 91.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s12 {
+.row .col.s12, .submit-wrapper .col.s12, .submit-wrapper .s12.submit-button {
   width: 100%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.offset-s1 {
+.row .col.offset-s1, .submit-wrapper .col.offset-s1, .submit-wrapper .offset-s1.submit-button {
   margin-left: 8.3333333333%;
 }
 
-.row .col.pull-s1 {
+.row .col.pull-s1, .submit-wrapper .col.pull-s1, .submit-wrapper .pull-s1.submit-button {
   right: 8.3333333333%;
 }
 
-.row .col.push-s1 {
+.row .col.push-s1, .submit-wrapper .col.push-s1, .submit-wrapper .push-s1.submit-button {
   left: 8.3333333333%;
 }
 
-.row .col.offset-s2 {
+.row .col.offset-s2, .submit-wrapper .col.offset-s2, .submit-wrapper .offset-s2.submit-button {
   margin-left: 16.6666666667%;
 }
 
-.row .col.pull-s2 {
+.row .col.pull-s2, .submit-wrapper .col.pull-s2, .submit-wrapper .pull-s2.submit-button {
   right: 16.6666666667%;
 }
 
-.row .col.push-s2 {
+.row .col.push-s2, .submit-wrapper .col.push-s2, .submit-wrapper .push-s2.submit-button {
   left: 16.6666666667%;
 }
 
-.row .col.offset-s3 {
+.row .col.offset-s3, .submit-wrapper .col.offset-s3, .submit-wrapper .offset-s3.submit-button {
   margin-left: 25%;
 }
 
-.row .col.pull-s3 {
+.row .col.pull-s3, .submit-wrapper .col.pull-s3, .submit-wrapper .pull-s3.submit-button {
   right: 25%;
 }
 
-.row .col.push-s3 {
+.row .col.push-s3, .submit-wrapper .col.push-s3, .submit-wrapper .push-s3.submit-button {
   left: 25%;
 }
 
-.row .col.offset-s4 {
+.row .col.offset-s4, .submit-wrapper .col.offset-s4, .submit-wrapper .offset-s4.submit-button {
   margin-left: 33.3333333333%;
 }
 
-.row .col.pull-s4 {
+.row .col.pull-s4, .submit-wrapper .col.pull-s4, .submit-wrapper .pull-s4.submit-button {
   right: 33.3333333333%;
 }
 
-.row .col.push-s4 {
+.row .col.push-s4, .submit-wrapper .col.push-s4, .submit-wrapper .push-s4.submit-button {
   left: 33.3333333333%;
 }
 
-.row .col.offset-s5 {
+.row .col.offset-s5, .submit-wrapper .col.offset-s5, .submit-wrapper .offset-s5.submit-button {
   margin-left: 41.6666666667%;
 }
 
-.row .col.pull-s5 {
+.row .col.pull-s5, .submit-wrapper .col.pull-s5, .submit-wrapper .pull-s5.submit-button {
   right: 41.6666666667%;
 }
 
-.row .col.push-s5 {
+.row .col.push-s5, .submit-wrapper .col.push-s5, .submit-wrapper .push-s5.submit-button {
   left: 41.6666666667%;
 }
 
-.row .col.offset-s6 {
+.row .col.offset-s6, .submit-wrapper .col.offset-s6, .submit-wrapper .offset-s6.submit-button {
   margin-left: 50%;
 }
 
-.row .col.pull-s6 {
+.row .col.pull-s6, .submit-wrapper .col.pull-s6, .submit-wrapper .pull-s6.submit-button {
   right: 50%;
 }
 
-.row .col.push-s6 {
+.row .col.push-s6, .submit-wrapper .col.push-s6, .submit-wrapper .push-s6.submit-button {
   left: 50%;
 }
 
-.row .col.offset-s7 {
+.row .col.offset-s7, .submit-wrapper .col.offset-s7, .submit-wrapper .offset-s7.submit-button {
   margin-left: 58.3333333333%;
 }
 
-.row .col.pull-s7 {
+.row .col.pull-s7, .submit-wrapper .col.pull-s7, .submit-wrapper .pull-s7.submit-button {
   right: 58.3333333333%;
 }
 
-.row .col.push-s7 {
+.row .col.push-s7, .submit-wrapper .col.push-s7, .submit-wrapper .push-s7.submit-button {
   left: 58.3333333333%;
 }
 
-.row .col.offset-s8 {
+.row .col.offset-s8, .submit-wrapper .col.offset-s8, .submit-wrapper .offset-s8.submit-button {
   margin-left: 66.6666666667%;
 }
 
-.row .col.pull-s8 {
+.row .col.pull-s8, .submit-wrapper .col.pull-s8, .submit-wrapper .pull-s8.submit-button {
   right: 66.6666666667%;
 }
 
-.row .col.push-s8 {
+.row .col.push-s8, .submit-wrapper .col.push-s8, .submit-wrapper .push-s8.submit-button {
   left: 66.6666666667%;
 }
 
-.row .col.offset-s9 {
+.row .col.offset-s9, .submit-wrapper .col.offset-s9, .submit-wrapper .offset-s9.submit-button {
   margin-left: 75%;
 }
 
-.row .col.pull-s9 {
+.row .col.pull-s9, .submit-wrapper .col.pull-s9, .submit-wrapper .pull-s9.submit-button {
   right: 75%;
 }
 
-.row .col.push-s9 {
+.row .col.push-s9, .submit-wrapper .col.push-s9, .submit-wrapper .push-s9.submit-button {
   left: 75%;
 }
 
-.row .col.offset-s10 {
+.row .col.offset-s10, .submit-wrapper .col.offset-s10, .submit-wrapper .offset-s10.submit-button {
   margin-left: 83.3333333333%;
 }
 
-.row .col.pull-s10 {
+.row .col.pull-s10, .submit-wrapper .col.pull-s10, .submit-wrapper .pull-s10.submit-button {
   right: 83.3333333333%;
 }
 
-.row .col.push-s10 {
+.row .col.push-s10, .submit-wrapper .col.push-s10, .submit-wrapper .push-s10.submit-button {
   left: 83.3333333333%;
 }
 
-.row .col.offset-s11 {
+.row .col.offset-s11, .submit-wrapper .col.offset-s11, .submit-wrapper .offset-s11.submit-button {
   margin-left: 91.6666666667%;
 }
 
-.row .col.pull-s11 {
+.row .col.pull-s11, .submit-wrapper .col.pull-s11, .submit-wrapper .pull-s11.submit-button {
   right: 91.6666666667%;
 }
 
-.row .col.push-s11 {
+.row .col.push-s11, .submit-wrapper .col.push-s11, .submit-wrapper .push-s11.submit-button {
   left: 91.6666666667%;
 }
 
-.row .col.offset-s12 {
+.row .col.offset-s12, .submit-wrapper .col.offset-s12, .submit-wrapper .offset-s12.submit-button {
   margin-left: 100%;
 }
 
-.row .col.pull-s12 {
+.row .col.pull-s12, .submit-wrapper .col.pull-s12, .submit-wrapper .pull-s12.submit-button {
   right: 100%;
 }
 
-.row .col.push-s12 {
+.row .col.push-s12, .submit-wrapper .col.push-s12, .submit-wrapper .push-s12.submit-button {
   left: 100%;
 }
 
 @media only screen and (min-width: 601px) {
-  .row .col.m1 {
+  .row .col.m1, .submit-wrapper .col.m1, .submit-wrapper .m1.submit-button {
     width: 8.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m2 {
+  .row .col.m2, .submit-wrapper .col.m2, .submit-wrapper .m2.submit-button {
     width: 16.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m3 {
+  .row .col.m3, .submit-wrapper .col.m3, .submit-wrapper .m3.submit-button {
     width: 25%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m4 {
+  .row .col.m4, .submit-wrapper .col.m4, .submit-wrapper .m4.submit-button {
     width: 33.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m5 {
+  .row .col.m5, .submit-wrapper .col.m5, .submit-wrapper .m5.submit-button {
     width: 41.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m6 {
+  .row .col.m6, .submit-wrapper .col.m6, .submit-wrapper .m6.submit-button {
     width: 50%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m7 {
+  .row .col.m7, .submit-wrapper .col.m7, .submit-wrapper .m7.submit-button {
     width: 58.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m8 {
+  .row .col.m8, .submit-wrapper .col.m8, .submit-wrapper .m8.submit-button {
     width: 66.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m9 {
+  .row .col.m9, .submit-wrapper .col.m9, .submit-wrapper .m9.submit-button {
     width: 75%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m10 {
+  .row .col.m10, .submit-wrapper .col.m10, .submit-wrapper .m10.submit-button {
     width: 83.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m11 {
+  .row .col.m11, .submit-wrapper .col.m11, .submit-wrapper .m11.submit-button {
     width: 91.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m12 {
+  .row .col.m12, .submit-wrapper .col.m12, .submit-wrapper .m12.submit-button {
     width: 100%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.offset-m1 {
+  .row .col.offset-m1, .submit-wrapper .col.offset-m1, .submit-wrapper .offset-m1.submit-button {
     margin-left: 8.3333333333%;
   }
-  .row .col.pull-m1 {
+  .row .col.pull-m1, .submit-wrapper .col.pull-m1, .submit-wrapper .pull-m1.submit-button {
     right: 8.3333333333%;
   }
-  .row .col.push-m1 {
+  .row .col.push-m1, .submit-wrapper .col.push-m1, .submit-wrapper .push-m1.submit-button {
     left: 8.3333333333%;
   }
-  .row .col.offset-m2 {
+  .row .col.offset-m2, .submit-wrapper .col.offset-m2, .submit-wrapper .offset-m2.submit-button {
     margin-left: 16.6666666667%;
   }
-  .row .col.pull-m2 {
+  .row .col.pull-m2, .submit-wrapper .col.pull-m2, .submit-wrapper .pull-m2.submit-button {
     right: 16.6666666667%;
   }
-  .row .col.push-m2 {
+  .row .col.push-m2, .submit-wrapper .col.push-m2, .submit-wrapper .push-m2.submit-button {
     left: 16.6666666667%;
   }
-  .row .col.offset-m3 {
+  .row .col.offset-m3, .submit-wrapper .col.offset-m3, .submit-wrapper .offset-m3.submit-button {
     margin-left: 25%;
   }
-  .row .col.pull-m3 {
+  .row .col.pull-m3, .submit-wrapper .col.pull-m3, .submit-wrapper .pull-m3.submit-button {
     right: 25%;
   }
-  .row .col.push-m3 {
+  .row .col.push-m3, .submit-wrapper .col.push-m3, .submit-wrapper .push-m3.submit-button {
     left: 25%;
   }
-  .row .col.offset-m4 {
+  .row .col.offset-m4, .submit-wrapper .col.offset-m4, .submit-wrapper .offset-m4.submit-button {
     margin-left: 33.3333333333%;
   }
-  .row .col.pull-m4 {
+  .row .col.pull-m4, .submit-wrapper .col.pull-m4, .submit-wrapper .pull-m4.submit-button {
     right: 33.3333333333%;
   }
-  .row .col.push-m4 {
+  .row .col.push-m4, .submit-wrapper .col.push-m4, .submit-wrapper .push-m4.submit-button {
     left: 33.3333333333%;
   }
-  .row .col.offset-m5 {
+  .row .col.offset-m5, .submit-wrapper .col.offset-m5, .submit-wrapper .offset-m5.submit-button {
     margin-left: 41.6666666667%;
   }
-  .row .col.pull-m5 {
+  .row .col.pull-m5, .submit-wrapper .col.pull-m5, .submit-wrapper .pull-m5.submit-button {
     right: 41.6666666667%;
   }
-  .row .col.push-m5 {
+  .row .col.push-m5, .submit-wrapper .col.push-m5, .submit-wrapper .push-m5.submit-button {
     left: 41.6666666667%;
   }
-  .row .col.offset-m6 {
+  .row .col.offset-m6, .submit-wrapper .col.offset-m6, .submit-wrapper .offset-m6.submit-button {
     margin-left: 50%;
   }
-  .row .col.pull-m6 {
+  .row .col.pull-m6, .submit-wrapper .col.pull-m6, .submit-wrapper .pull-m6.submit-button {
     right: 50%;
   }
-  .row .col.push-m6 {
+  .row .col.push-m6, .submit-wrapper .col.push-m6, .submit-wrapper .push-m6.submit-button {
     left: 50%;
   }
-  .row .col.offset-m7 {
+  .row .col.offset-m7, .submit-wrapper .col.offset-m7, .submit-wrapper .offset-m7.submit-button {
     margin-left: 58.3333333333%;
   }
-  .row .col.pull-m7 {
+  .row .col.pull-m7, .submit-wrapper .col.pull-m7, .submit-wrapper .pull-m7.submit-button {
     right: 58.3333333333%;
   }
-  .row .col.push-m7 {
+  .row .col.push-m7, .submit-wrapper .col.push-m7, .submit-wrapper .push-m7.submit-button {
     left: 58.3333333333%;
   }
-  .row .col.offset-m8 {
+  .row .col.offset-m8, .submit-wrapper .col.offset-m8, .submit-wrapper .offset-m8.submit-button {
     margin-left: 66.6666666667%;
   }
-  .row .col.pull-m8 {
+  .row .col.pull-m8, .submit-wrapper .col.pull-m8, .submit-wrapper .pull-m8.submit-button {
     right: 66.6666666667%;
   }
-  .row .col.push-m8 {
+  .row .col.push-m8, .submit-wrapper .col.push-m8, .submit-wrapper .push-m8.submit-button {
     left: 66.6666666667%;
   }
-  .row .col.offset-m9 {
+  .row .col.offset-m9, .submit-wrapper .col.offset-m9, .submit-wrapper .offset-m9.submit-button {
     margin-left: 75%;
   }
-  .row .col.pull-m9 {
+  .row .col.pull-m9, .submit-wrapper .col.pull-m9, .submit-wrapper .pull-m9.submit-button {
     right: 75%;
   }
-  .row .col.push-m9 {
+  .row .col.push-m9, .submit-wrapper .col.push-m9, .submit-wrapper .push-m9.submit-button {
     left: 75%;
   }
-  .row .col.offset-m10 {
+  .row .col.offset-m10, .submit-wrapper .col.offset-m10, .submit-wrapper .offset-m10.submit-button {
     margin-left: 83.3333333333%;
   }
-  .row .col.pull-m10 {
+  .row .col.pull-m10, .submit-wrapper .col.pull-m10, .submit-wrapper .pull-m10.submit-button {
     right: 83.3333333333%;
   }
-  .row .col.push-m10 {
+  .row .col.push-m10, .submit-wrapper .col.push-m10, .submit-wrapper .push-m10.submit-button {
     left: 83.3333333333%;
   }
-  .row .col.offset-m11 {
+  .row .col.offset-m11, .submit-wrapper .col.offset-m11, .submit-wrapper .offset-m11.submit-button {
     margin-left: 91.6666666667%;
   }
-  .row .col.pull-m11 {
+  .row .col.pull-m11, .submit-wrapper .col.pull-m11, .submit-wrapper .pull-m11.submit-button {
     right: 91.6666666667%;
   }
-  .row .col.push-m11 {
+  .row .col.push-m11, .submit-wrapper .col.push-m11, .submit-wrapper .push-m11.submit-button {
     left: 91.6666666667%;
   }
-  .row .col.offset-m12 {
+  .row .col.offset-m12, .submit-wrapper .col.offset-m12, .submit-wrapper .offset-m12.submit-button {
     margin-left: 100%;
   }
-  .row .col.pull-m12 {
+  .row .col.pull-m12, .submit-wrapper .col.pull-m12, .submit-wrapper .pull-m12.submit-button {
     right: 100%;
   }
-  .row .col.push-m12 {
+  .row .col.push-m12, .submit-wrapper .col.push-m12, .submit-wrapper .push-m12.submit-button {
     left: 100%;
   }
 }
 
 @media only screen and (min-width: 993px) {
-  .row .col.l1 {
+  .row .col.l1, .submit-wrapper .col.l1, .submit-wrapper .l1.submit-button {
     width: 8.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l2 {
+  .row .col.l2, .submit-wrapper .col.l2, .submit-wrapper .l2.submit-button {
     width: 16.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l3 {
+  .row .col.l3, .submit-wrapper .col.l3, .submit-wrapper .l3.submit-button {
     width: 25%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l4 {
+  .row .col.l4, .submit-wrapper .col.l4, .submit-wrapper .l4.submit-button {
     width: 33.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l5 {
+  .row .col.l5, .submit-wrapper .col.l5, .submit-wrapper .l5.submit-button {
     width: 41.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l6 {
+  .row .col.l6, .submit-wrapper .col.l6, .submit-wrapper .l6.submit-button {
     width: 50%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l7 {
+  .row .col.l7, .submit-wrapper .col.l7, .submit-wrapper .l7.submit-button {
     width: 58.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l8 {
+  .row .col.l8, .submit-wrapper .col.l8, .submit-wrapper .l8.submit-button {
     width: 66.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l9 {
+  .row .col.l9, .submit-wrapper .col.l9, .submit-wrapper .l9.submit-button {
     width: 75%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l10 {
+  .row .col.l10, .submit-wrapper .col.l10, .submit-wrapper .l10.submit-button {
     width: 83.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l11 {
+  .row .col.l11, .submit-wrapper .col.l11, .submit-wrapper .l11.submit-button {
     width: 91.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l12 {
+  .row .col.l12, .submit-wrapper .col.l12, .row .submit-wrapper .submit-button, .submit-wrapper .row .submit-button, .submit-wrapper .submit-button {
     width: 100%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.offset-l1 {
+  .row .col.offset-l1, .submit-wrapper .col.offset-l1, .submit-wrapper .offset-l1.submit-button {
     margin-left: 8.3333333333%;
   }
-  .row .col.pull-l1 {
+  .row .col.pull-l1, .submit-wrapper .col.pull-l1, .submit-wrapper .pull-l1.submit-button {
     right: 8.3333333333%;
   }
-  .row .col.push-l1 {
+  .row .col.push-l1, .submit-wrapper .col.push-l1, .submit-wrapper .push-l1.submit-button {
     left: 8.3333333333%;
   }
-  .row .col.offset-l2 {
+  .row .col.offset-l2, .submit-wrapper .col.offset-l2, .submit-wrapper .offset-l2.submit-button {
     margin-left: 16.6666666667%;
   }
-  .row .col.pull-l2 {
+  .row .col.pull-l2, .submit-wrapper .col.pull-l2, .submit-wrapper .pull-l2.submit-button {
     right: 16.6666666667%;
   }
-  .row .col.push-l2 {
+  .row .col.push-l2, .submit-wrapper .col.push-l2, .submit-wrapper .push-l2.submit-button {
     left: 16.6666666667%;
   }
-  .row .col.offset-l3 {
+  .row .col.offset-l3, .submit-wrapper .col.offset-l3, .submit-wrapper .offset-l3.submit-button {
     margin-left: 25%;
   }
-  .row .col.pull-l3 {
+  .row .col.pull-l3, .submit-wrapper .col.pull-l3, .submit-wrapper .pull-l3.submit-button {
     right: 25%;
   }
-  .row .col.push-l3 {
+  .row .col.push-l3, .submit-wrapper .col.push-l3, .submit-wrapper .push-l3.submit-button {
     left: 25%;
   }
-  .row .col.offset-l4 {
+  .row .col.offset-l4, .submit-wrapper .col.offset-l4, .submit-wrapper .offset-l4.submit-button {
     margin-left: 33.3333333333%;
   }
-  .row .col.pull-l4 {
+  .row .col.pull-l4, .submit-wrapper .col.pull-l4, .submit-wrapper .pull-l4.submit-button {
     right: 33.3333333333%;
   }
-  .row .col.push-l4 {
+  .row .col.push-l4, .submit-wrapper .col.push-l4, .submit-wrapper .push-l4.submit-button {
     left: 33.3333333333%;
   }
-  .row .col.offset-l5 {
+  .row .col.offset-l5, .submit-wrapper .col.offset-l5, .submit-wrapper .offset-l5.submit-button {
     margin-left: 41.6666666667%;
   }
-  .row .col.pull-l5 {
+  .row .col.pull-l5, .submit-wrapper .col.pull-l5, .submit-wrapper .pull-l5.submit-button {
     right: 41.6666666667%;
   }
-  .row .col.push-l5 {
+  .row .col.push-l5, .submit-wrapper .col.push-l5, .submit-wrapper .push-l5.submit-button {
     left: 41.6666666667%;
   }
-  .row .col.offset-l6 {
+  .row .col.offset-l6, .submit-wrapper .col.offset-l6, .submit-wrapper .offset-l6.submit-button {
     margin-left: 50%;
   }
-  .row .col.pull-l6 {
+  .row .col.pull-l6, .submit-wrapper .col.pull-l6, .submit-wrapper .pull-l6.submit-button {
     right: 50%;
   }
-  .row .col.push-l6 {
+  .row .col.push-l6, .submit-wrapper .col.push-l6, .submit-wrapper .push-l6.submit-button {
     left: 50%;
   }
-  .row .col.offset-l7 {
+  .row .col.offset-l7, .submit-wrapper .col.offset-l7, .submit-wrapper .offset-l7.submit-button {
     margin-left: 58.3333333333%;
   }
-  .row .col.pull-l7 {
+  .row .col.pull-l7, .submit-wrapper .col.pull-l7, .submit-wrapper .pull-l7.submit-button {
     right: 58.3333333333%;
   }
-  .row .col.push-l7 {
+  .row .col.push-l7, .submit-wrapper .col.push-l7, .submit-wrapper .push-l7.submit-button {
     left: 58.3333333333%;
   }
-  .row .col.offset-l8 {
+  .row .col.offset-l8, .submit-wrapper .col.offset-l8, .submit-wrapper .offset-l8.submit-button {
     margin-left: 66.6666666667%;
   }
-  .row .col.pull-l8 {
+  .row .col.pull-l8, .submit-wrapper .col.pull-l8, .submit-wrapper .pull-l8.submit-button {
     right: 66.6666666667%;
   }
-  .row .col.push-l8 {
+  .row .col.push-l8, .submit-wrapper .col.push-l8, .submit-wrapper .push-l8.submit-button {
     left: 66.6666666667%;
   }
-  .row .col.offset-l9 {
+  .row .col.offset-l9, .submit-wrapper .col.offset-l9, .submit-wrapper .offset-l9.submit-button {
     margin-left: 75%;
   }
-  .row .col.pull-l9 {
+  .row .col.pull-l9, .submit-wrapper .col.pull-l9, .submit-wrapper .pull-l9.submit-button {
     right: 75%;
   }
-  .row .col.push-l9 {
+  .row .col.push-l9, .submit-wrapper .col.push-l9, .submit-wrapper .push-l9.submit-button {
     left: 75%;
   }
-  .row .col.offset-l10 {
+  .row .col.offset-l10, .submit-wrapper .col.offset-l10, .submit-wrapper .offset-l10.submit-button {
     margin-left: 83.3333333333%;
   }
-  .row .col.pull-l10 {
+  .row .col.pull-l10, .submit-wrapper .col.pull-l10, .submit-wrapper .pull-l10.submit-button {
     right: 83.3333333333%;
   }
-  .row .col.push-l10 {
+  .row .col.push-l10, .submit-wrapper .col.push-l10, .submit-wrapper .push-l10.submit-button {
     left: 83.3333333333%;
   }
-  .row .col.offset-l11 {
+  .row .col.offset-l11, .submit-wrapper .col.offset-l11, .submit-wrapper .offset-l11.submit-button {
     margin-left: 91.6666666667%;
   }
-  .row .col.pull-l11 {
+  .row .col.pull-l11, .submit-wrapper .col.pull-l11, .submit-wrapper .pull-l11.submit-button {
     right: 91.6666666667%;
   }
-  .row .col.push-l11 {
+  .row .col.push-l11, .submit-wrapper .col.push-l11, .submit-wrapper .push-l11.submit-button {
     left: 91.6666666667%;
   }
-  .row .col.offset-l12 {
+  .row .col.offset-l12, .submit-wrapper .col.offset-l12, .submit-wrapper .offset-l12.submit-button {
     margin-left: 100%;
   }
-  .row .col.pull-l12 {
+  .row .col.pull-l12, .submit-wrapper .col.pull-l12, .submit-wrapper .pull-l12.submit-button {
     right: 100%;
   }
-  .row .col.push-l12 {
+  .row .col.push-l12, .submit-wrapper .col.push-l12, .submit-wrapper .push-l12.submit-button {
     left: 100%;
   }
 }
@@ -3881,7 +3881,7 @@ nav ul a {
   cursor: pointer;
 }
 
-nav ul a.btn, nav ul :host .users-settings-wrapper .loading-users-details-error a.retry-button, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul a.btn-floating {
+nav ul a.btn, nav ul .submit-wrapper a.submit-button, .submit-wrapper nav ul a.submit-button, nav ul :host .users-settings-wrapper .loading-users-details-error a.retry-button, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul a.btn-floating {
   margin-top: -2px;
   margin-left: 15px;
   margin-right: 15px;
@@ -4318,14 +4318,14 @@ small {
   z-index: 2;
 }
 
-.card .card-action a:not(.btn):not(:host .users-settings-wrapper .loading-users-details-error .retry-button):not(.btn-large):not(.btn-floating) {
+.card .card-action a:not(.btn):not(.submit-wrapper .submit-button):not(:host .users-settings-wrapper .loading-users-details-error .retry-button):not(.btn-large):not(.btn-floating) {
   color: #ffab40;
   margin-right: 20px;
   transition: color .3s ease;
   text-transform: uppercase;
 }
 
-.card .card-action a:not(.btn):not(:host .users-settings-wrapper .loading-users-details-error .retry-button):not(.btn-large):not(.btn-floating):hover {
+.card .card-action a:not(.btn):not(.submit-wrapper .submit-button):not(:host .users-settings-wrapper .loading-users-details-error .retry-button):not(.btn-large):not(.btn-floating):hover {
   color: #ffd8a6;
 }
 
@@ -4408,7 +4408,7 @@ small {
   justify-content: space-between;
 }
 
-.toast .btn, .toast :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .toast .retry-button, .toast .btn-large, .toast .btn-flat {
+.toast .btn, .toast .submit-wrapper .submit-button, .submit-wrapper .toast .submit-button, .toast :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .toast .retry-button, .toast .btn-large, .toast .btn-flat {
   margin: 0;
   margin-left: 3rem;
 }
@@ -4532,7 +4532,7 @@ small {
   will-change: transform, opacity;
 }
 
-.btn, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large, .btn-flat {
+.btn, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large, .btn-flat {
   border: none;
   border-radius: 2px;
   display: inline-block;
@@ -4545,28 +4545,28 @@ small {
   -webkit-tap-highlight-color: transparent;
 }
 
-.btn.disabled, :host .users-settings-wrapper .loading-users-details-error .disabled.retry-button, .disabled.btn-large, .btn-floating.disabled, .btn-large.disabled, .btn:disabled .btn-large:disabled, :host .users-settings-wrapper .loading-users-details-error .retry-button:disabled .btn-large:disabled, .btn-large:disabled .btn-large:disabled, .btn-floating:disabled {
+.btn.disabled, .submit-wrapper .disabled.submit-button, :host .users-settings-wrapper .loading-users-details-error .disabled.retry-button, .disabled.btn-large, .btn-floating.disabled, .btn-large.disabled, .btn:disabled .btn-large:disabled, .submit-wrapper .submit-button:disabled .btn-large:disabled, :host .users-settings-wrapper .loading-users-details-error .retry-button:disabled .btn-large:disabled, .btn-large:disabled .btn-large:disabled, .btn-floating:disabled {
   background-color: #DFDFDF !important;
   box-shadow: none;
   color: #9F9F9F !important;
   cursor: default;
 }
 
-.btn.disabled *, :host .users-settings-wrapper .loading-users-details-error .disabled.retry-button *, .disabled.btn-large *, .btn-floating.disabled *, .btn-large.disabled *, .btn:disabled .btn-large:disabled *, :host .users-settings-wrapper .loading-users-details-error .retry-button:disabled .btn-large:disabled *, .btn-large:disabled .btn-large:disabled *, .btn-floating:disabled * {
+.btn.disabled *, .submit-wrapper .disabled.submit-button *, :host .users-settings-wrapper .loading-users-details-error .disabled.retry-button *, .disabled.btn-large *, .btn-floating.disabled *, .btn-large.disabled *, .btn:disabled .btn-large:disabled *, .submit-wrapper .submit-button:disabled .btn-large:disabled *, :host .users-settings-wrapper .loading-users-details-error .retry-button:disabled .btn-large:disabled *, .btn-large:disabled .btn-large:disabled *, .btn-floating:disabled * {
   pointer-events: none;
 }
 
-.btn.disabled:hover, :host .users-settings-wrapper .loading-users-details-error .disabled.retry-button:hover, .disabled.btn-large:hover, .btn-floating.disabled:hover, .btn-large.disabled:hover, .btn:disabled .btn-large:disabled:hover, :host .users-settings-wrapper .loading-users-details-error .retry-button:disabled .btn-large:disabled:hover, .btn-large:disabled .btn-large:disabled:hover, .btn-floating:disabled:hover {
+.btn.disabled:hover, .submit-wrapper .disabled.submit-button:hover, :host .users-settings-wrapper .loading-users-details-error .disabled.retry-button:hover, .disabled.btn-large:hover, .btn-floating.disabled:hover, .btn-large.disabled:hover, .btn:disabled .btn-large:disabled:hover, .submit-wrapper .submit-button:disabled .btn-large:disabled:hover, :host .users-settings-wrapper .loading-users-details-error .retry-button:disabled .btn-large:disabled:hover, .btn-large:disabled .btn-large:disabled:hover, .btn-floating:disabled:hover {
   background-color: #DFDFDF !important;
   color: #9F9F9F !important;
 }
 
-.btn i, :host .users-settings-wrapper .loading-users-details-error .retry-button i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i {
+.btn i, .submit-wrapper .submit-button i, :host .users-settings-wrapper .loading-users-details-error .retry-button i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i {
   font-size: 1.3rem;
   line-height: inherit;
 }
 
-.btn, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large {
+.btn, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large {
   text-decoration: none;
   color: #fff;
   background-color: #26a69a;
@@ -4576,7 +4576,7 @@ small {
   cursor: pointer;
 }
 
-.btn:hover, :host .users-settings-wrapper .loading-users-details-error .retry-button:hover, .btn-large:hover {
+.btn:hover, .submit-wrapper .submit-button:hover, :host .users-settings-wrapper .loading-users-details-error .retry-button:hover, .btn-large:hover {
   background-color: #2bbbad;
 }
 
@@ -4917,7 +4917,7 @@ a.waves-effect .waves-ripple {
   width: 100%;
 }
 
-.modal .modal-footer .btn, .modal .modal-footer :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .modal .modal-footer .retry-button, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
+.modal .modal-footer .btn, .modal .modal-footer .submit-wrapper .submit-button, .submit-wrapper .modal .modal-footer .submit-button, .modal .modal-footer :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .modal .modal-footer .retry-button, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
   float: right;
   margin: 6px 0;
 }
@@ -5833,7 +5833,7 @@ select:disabled {
   width: 100%;
 }
 
-.file-field .btn, .file-field :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .file-field .retry-button, .file-field .btn-large {
+.file-field .btn, .file-field .submit-wrapper .submit-button, .submit-wrapper .file-field .submit-button, .file-field :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .file-field .retry-button, .file-field .btn-large {
   float: left;
   height: 3rem;
   line-height: 3rem;
@@ -6093,11 +6093,11 @@ input[type=range]:focus::-ms-fill-upper {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.side-nav a.btn, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-flat, .side-nav a.btn-floating {
+.side-nav a.btn, .side-nav .submit-wrapper a.submit-button, .submit-wrapper .side-nav a.submit-button, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-flat, .side-nav a.btn-floating {
   margin: 10px 15px;
 }
 
-.side-nav a.btn, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-floating {
+.side-nav a.btn, .side-nav .submit-wrapper a.submit-button, .submit-wrapper .side-nav a.submit-button, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-floating {
   color: #fff;
 }
 
@@ -6105,7 +6105,7 @@ input[type=range]:focus::-ms-fill-upper {
   color: #343434;
 }
 
-.side-nav a.btn:hover, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button:hover, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button:hover, .side-nav a.btn-large:hover, .side-nav a.btn-large:hover {
+.side-nav a.btn:hover, .side-nav .submit-wrapper a.submit-button:hover, .submit-wrapper .side-nav a.submit-button:hover, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button:hover, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button:hover, .side-nav a.btn-large:hover, .side-nav a.btn-large:hover {
   background-color: #2bbbad;
 }
 
@@ -7354,6 +7354,89 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   margin-top: 1rem;
 }
 
+.input-field input:not(.ng-pristine).ng-touched.ng-invalid:not(.validation-pending) {
+  border-bottom: 1px solid red;
+}
+
+.input-field input + label {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.input-field input:focus {
+  border-bottom: 1px solid #9e9e9e;
+  box-shadow: none;
+}
+
+.input-field .async-validation-indicator {
+  opacity: 0;
+  position: relative;
+  transition: opacity .3s ease;
+}
+
+.input-field .async-validation-indicator.pending {
+  opacity: 1;
+}
+
+.input-field .async-validation-indicator circular-loading {
+  position: absolute;
+  right: 0;
+  bottom: 2rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.submit-wrapper {
+  margin-top: 1rem;
+}
+
+.submit-error {
+  color: red;
+}
+
+.filling-form-card-content {
+  opacity: 1;
+  overflow: hidden;
+  transition: opacity .3s ease;
+}
+
+.filling-form-card-content.submitting {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.submitting-form-card-content {
+  overflow: hidden;
+  display: none;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.submitting-form-card-content.submitting {
+  display: block;
+  opacity: 1;
+}
+
+.form-validation-errors {
+  position: relative;
+}
+
+.form-validation-errors .form-validation-error {
+  position: absolute;
+  color: red;
+  font-size: 0.8rem;
+  bottom: -0.1rem;
+  right: 0;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.form-validation-errors .form-validation-error.has-errors {
+  opacity: 1;
+}
+
 :host {
   display: flex;
 }
@@ -7429,6 +7512,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 :host .users-settings-wrapper .user-details-wrapper {
   opacity: 1;
   transition: opacity .3s ease;
+}
+
+:host .users-settings-wrapper .user-details-wrapper .input-field {
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 :host .users-settings-wrapper .user-details-wrapper .collapsible .item .collapsible-header {
