@@ -24,7 +24,7 @@ export class UserPermissionsSettingsComponent implements OnInit {
     this._loadUserPermissions();
   }
 
-  private _loadUserPermissions(): void{
+  private _loadUserPermissions(): void {
     this.isLoadingUserPermissions = true;
     this.loadingUserPermissionsError = null;
     this.userPermissions = null;
@@ -35,15 +35,15 @@ export class UserPermissionsSettingsComponent implements OnInit {
       (_error: any) => this._setLoadingUserPermissionsError(_error));
   }
 
-  private _setAsNotLoadingUSerPermissions(): void{
+  private _setAsNotLoadingUSerPermissions(): void {
     this.isLoadingUserPermissions = false;
   }
 
-  private _setUserPermissions(permissions: string[]):void{
+  private _setUserPermissions(permissions: string[]): void {
     this.userPermissions = permissions;
   }
 
-  private _setLoadingUserPermissionsError(error: any):void{
+  private _setLoadingUserPermissionsError(error: any): void {
     this.loadingUserPermissionsError = error;
   }
 }
