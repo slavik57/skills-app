@@ -9,7 +9,8 @@ export class UserServiceMockFactory {
       getUserDetails: () => null,
       getUsersDetails: () => null,
       updateUserDetails: () => null,
-      updateUserPassword: () => null
+      updateUserPassword: () => null,
+      getUserPermissions: () => null
     }
   }
 }

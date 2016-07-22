@@ -145,6 +145,15 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/users/');
   });
 
+  it('getUserPermissions should use correct url', () => {
+    var userId = 1234321;
+    userService.getUserPermissions(userId);
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + userId + '/permissions');
+  });
+
   describe('on UNAUTHORIZED error', () => {
 
     beforeEach(() => {
@@ -165,7 +174,7 @@ describe('UserService', () => {
     it('register should fail correctly', () => {
       userService.registerUser('', '', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Unauthorized to perform the operation')
+        (error) => expect(error).to.be.equal('Unauthorized')
       );
     });
 
@@ -179,28 +188,35 @@ describe('UserService', () => {
     it('getUserDetails should fail correctly', () => {
       userService.getUserDetails().subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Unauthorized getting user details')
+        (error) => expect(error).to.be.equal('Unauthorized')
       );
     });
 
     it('updateUserDetails should fail correctly', () => {
       userService.updateUserDetails(1, '', '', '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Unauthorized to perform the operation')
+        (error) => expect(error).to.be.equal('Unauthorized')
       );
     });
 
     it('updateUserPassword should fail correctly', () => {
       userService.updateUserPassword(1, '', '').subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Unauthorized to perform the operation')
+        (error) => expect(error).to.be.equal('Unauthorized')
       );
     });
 
     it('getUserDetails should fail correctly', () => {
       userService.getUsersDetails().subscribe(
         () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Unauthorized getting user details')
+        (error) => expect(error).to.be.equal('Unauthorized')
+      );
+    });
+
+    it('getUserPermissions should fail correctly', () => {
+      userService.getUserPermissions(1).subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Unauthorized')
       );
     });
 
@@ -265,6 +281,13 @@ describe('UserService', () => {
       );
     });
 
+    it('getUserPermissions should fail correctly', () => {
+      userService.getUserPermissions(1).subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
   });
 
   describe('on success with UNAUTHORIZED', () => {
@@ -324,6 +347,13 @@ describe('UserService', () => {
 
     it('getUsersDetails should fail correctly', () => {
       userService.getUsersDetails().subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
+    it('getUserPermissions should fail correctly', () => {
+      userService.getUserPermissions(1).subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
@@ -685,6 +715,58 @@ describe('UserService', () => {
           () => expect(true, 'should succeed').to.be.false)
       });
 
+
+    });
+
+    describe('getUserPermissions', () => {
+
+      it('without the permissions result getUserPermissions should fail correctly', () => {
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getUserPermissions(1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with empty user permissions result getUserPermissions should return correct value', () => {
+        var result = [];
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getUserPermissions(1).subscribe(
+          (_result: string[]) => expect(_result).to.be.deep.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
+
+      it('with the user permissions result getUserPermissions should return correct value', () => {
+        var result = ['a', 'b', 'c'];
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getUserPermissions(1).subscribe(
+          (_result: string[]) => expect(_result).to.be.deep.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
 
     });
 

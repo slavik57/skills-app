@@ -58,16 +58,21 @@ export interface IUserService {
   updateUserPassword(userId: number,
     currentPassword: string,
     newPassword: string): Observable<void>;
+  getUserPermissions(userId: number): Observable<string[]>;
 }
 
 @Injectable()
 export class UserService implements IUserService {
+  private static UNAUTHORIZED_ERROR = 'Unauthorized';
+  private static GENERIC_ERROR = 'Oops. Something went wrong. Please try again';
+
   private _loginUrl = '/api/login';
   private _registerUrl = '/api/register';
   private _usersControllerUrl = '/api/users/';
   private _userControllerUrl = '/api/user/';
   private _userExistsUrlSuffix = '/exists'
   private _changePasswordUrlSuffix = '/password';
+  private _userPermissionsUrlSuffix = '/permissions';
 
   constructor(private http: Http) {
   }
@@ -158,6 +163,14 @@ export class UserService implements IUserService {
       .catch((error: any) => this._handleServerError<void>(error));
   }
 
+  public getUserPermissions(userId: number): Observable<string[]> {
+    let url = this._userControllerUrl + userId + this._userPermissionsUrlSuffix;
+
+    return this._get(url)
+      .map((response: Response) => this._extractUserPermissions(response))
+      .catch((error: any) => this._handleServerError<string[]>(error));
+  }
+
   private _get(url): Observable<Response> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -195,11 +208,11 @@ export class UserService implements IUserService {
     console.log(error);
 
     if (error.status === StatusCode.UNAUTHORIZED) {
-      return Observable.throw('Unauthorized to perform the operation');
+      return Observable.throw(UserService.UNAUTHORIZED_ERROR);
     }
 
     if (typeof error === 'string') {
-      return Observable.throw('Oops. Something went wrong. Please try again');
+      return Observable.throw(UserService.GENERIC_ERROR);
     }
 
     var result: IServerError = error.json();
@@ -207,7 +220,7 @@ export class UserService implements IUserService {
       return Observable.throw(result.error);
     }
 
-    return Observable.throw('Oops. Something went wrong. Please try again');
+    return Observable.throw(UserService.GENERIC_ERROR);
   }
 
   private _failSignin(error: any): Observable<string> {
@@ -216,7 +229,7 @@ export class UserService implements IUserService {
     if (error.status === StatusCode.UNAUTHORIZED) {
       return Observable.throw('Invalid credentials');
     } else {
-      return Observable.throw('Oops. Something went wrong. Please try again');
+      return Observable.throw(UserService.GENERIC_ERROR);
     }
   }
 
@@ -266,17 +279,29 @@ export class UserService implements IUserService {
     return usernameDetails;
   }
 
+  private _extractUserPermissions(response: Response): string[] {
+    this._throwErrorIfStatusIsNotOk(response);
+
+    var result = response.json();
+
+    if (!result || !(result instanceof Array)) {
+      throw 'Unexpected result';
+    }
+
+    return result;
+  }
+
   private _failUsernameExistanceCheck(error: any): Observable<boolean> {
     console.log(error);
 
-    return Observable.throw('Oops. Something went wrong. Please try again');
+    return Observable.throw(UserService.GENERIC_ERROR);
   }
 
   private _throwOnUnauthorizedOrGenericError<T>(error: any): Observable<T> {
     if (error.status === StatusCode.UNAUTHORIZED) {
-      return Observable.throw('Unauthorized getting user details');
+      return Observable.throw(UserService.UNAUTHORIZED_ERROR);
     } else {
-      return Observable.throw('Oops. Something went wrong. Please try again');
+      return Observable.throw(UserService.GENERIC_ERROR);
     }
   }
 

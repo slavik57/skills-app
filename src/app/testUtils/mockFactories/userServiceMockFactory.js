@@ -10,7 +10,8 @@ var UserServiceMockFactory = (function () {
             getUserDetails: function () { return null; },
             getUsersDetails: function () { return null; },
             updateUserDetails: function () { return null; },
-            updateUserPassword: function () { return null; }
+            updateUserPassword: function () { return null; },
+            getUserPermissions: function () { return null; }
         };
     };
     return UserServiceMockFactory;
