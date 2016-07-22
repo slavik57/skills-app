@@ -49,7 +49,7 @@
       <div class="modal-content">
         <div *ngIf="userSettingsModal.className.split(' ').indexOf('open') >= 0">
           <h4>{{selectedUser.username}}</h4>
-          <p>Show permissions here</p>
+          <user-permissions-settings [userDetails]="selectedUser"></user-permissions-settings>
           <p>Change the password here</p>
         </div>
       </div>

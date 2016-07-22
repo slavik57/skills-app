@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var userPermissionsSettings_component_1 = require("../userPermissionsSettings/userPermissionsSettings.component");
 var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
 var userService_1 = require("../../../common/services/userService");
 var core_1 = require('@angular/core');
@@ -57,7 +58,7 @@ var UsersSettingsComponent = (function () {
             selector: 'users-settings',
             template: require('./usersSettings.component.html'),
             styles: [require('./usersSettings.component.scss')],
-            directives: [circularLoading_component_1.CircularLoadingComponent],
+            directives: [circularLoading_component_1.CircularLoadingComponent, userPermissionsSettings_component_1.UserPermissionsSettingsComponent]
         }), 
         __metadata('design:paramtypes', [userService_1.UserService])
     ], UsersSettingsComponent);
