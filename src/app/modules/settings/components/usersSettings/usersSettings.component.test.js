@@ -30,8 +30,8 @@ testing_1.describe('UsersSettingsComponent', function () {
         component.userDetailsList = {
             nativeElement: {}
         };
-        var jqueryResult = {
-            collapsible: function () { return null; }
+        component.userSettingsModal = {
+            nativeElement: {}
         };
         component.ngOnInit();
     }));
@@ -47,6 +47,9 @@ testing_1.describe('UsersSettingsComponent', function () {
     testing_1.it('usersDetails should be null', function () {
         chai_1.expect(component.usersDetails).to.be.null;
     });
+    testing_1.it('selectedUser should be null', function () {
+        chai_1.expect(component.selectedUser).to.be.null;
+    });
     testing_1.describe('getting users details fails', function () {
         var error;
         testing_1.beforeEach(function () {
@@ -61,6 +64,9 @@ testing_1.describe('UsersSettingsComponent', function () {
         });
         testing_1.it('usersDetails should be null', function () {
             chai_1.expect(component.usersDetails).to.be.null;
+        });
+        testing_1.it('selectedUser should be null', function () {
+            chai_1.expect(component.selectedUser).to.be.null;
         });
         testing_1.describe('reloadUserDetails', function () {
             testing_1.beforeEach(function () {
@@ -78,6 +84,9 @@ testing_1.describe('UsersSettingsComponent', function () {
             });
             testing_1.it('usersDetails should be null', function () {
                 chai_1.expect(component.usersDetails).to.be.null;
+            });
+            testing_1.it('selectedUser should be null', function () {
+                chai_1.expect(component.selectedUser).to.be.null;
             });
         });
     });
@@ -100,6 +109,43 @@ testing_1.describe('UsersSettingsComponent', function () {
         });
         testing_1.it('usersDetails should be correct', function () {
             chai_1.expect(component.usersDetails).to.deep.equal(usersDetails);
+        });
+        testing_1.it('selectedUser should be null', function () {
+            chai_1.expect(component.selectedUser).to.be.null;
+        });
+        testing_1.describe('selectUser', function () {
+            var userToSelect;
+            var jquerySpy;
+            var openModalSpy;
+            testing_1.beforeEach(function () {
+                userToSelect = usersDetails[1];
+                var jqueryResult = {
+                    openModal: function () { return null; }
+                };
+                openModalSpy = sinon_1.spy(jqueryResult, 'openModal');
+                jquerySpy = sinon_1.stub(window, '$', function () { return jqueryResult; });
+                component.selectUser(userToSelect);
+            });
+            testing_1.afterEach(function () {
+                jquerySpy.restore();
+            });
+            testing_1.it('should update the selctedUser correctly', function () {
+                chai_1.expect(component.selectedUser).to.be.equal(userToSelect);
+            });
+            testing_1.it('should open the modal', function () {
+                chai_1.expect(jquerySpy.callCount).to.be.equal(1);
+                chai_1.expect(jquerySpy.args[0].length).to.be.equal(1);
+                chai_1.expect(jquerySpy.args[0][0]).to.be.equal(component.userSettingsModal.nativeElement);
+                chai_1.expect(openModalSpy.callCount).to.be.equal(1);
+            });
+            testing_1.describe('reloadUsersDetails', function () {
+                testing_1.beforeEach(function () {
+                    component.reloadUsersDetails();
+                });
+                testing_1.it('should set selectedUser to null', function () {
+                    chai_1.expect(component.selectedUser).to.be.null;
+                });
+            });
         });
     });
 });

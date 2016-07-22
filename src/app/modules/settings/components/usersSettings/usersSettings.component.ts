@@ -14,7 +14,9 @@ export class UsersSettingsComponent implements OnInit {
   public isLoadingUsers: boolean;
   public loadingUsersError: any;
   public usersDetails: IUsernameDetails[];
+  public selectedUser: IUsernameDetails;
   @ViewChild('userDetailsList') public userDetailsList: ElementRef;
+  @ViewChild('userSettingsModal') public userSettingsModal: ElementRef;
 
   constructor(private userService: UserService) {
   }
@@ -27,10 +29,17 @@ export class UsersSettingsComponent implements OnInit {
     this._loadUserDetails();
   }
 
+  public selectUser(userDetails: IUsernameDetails): void {
+    this.selectedUser = userDetails;
+
+    $(this.userSettingsModal.nativeElement).openModal();
+  }
+
   private _loadUserDetails(): void {
     this.isLoadingUsers = true;
     this.loadingUsersError = null;
     this.usersDetails = null;
+    this.selectedUser = null;
 
     this.userService.getUsersDetails()
       .finally(() => this._setAsFinishedLoadingUsers())

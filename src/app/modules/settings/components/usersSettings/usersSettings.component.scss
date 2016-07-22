@@ -128,5 +128,16 @@
       }
     }
 
+    .modal {
+
+      .modal-footer {
+
+        a{
+          @extend .btn-flat;
+        }
+      }
+
+    }
+
   }
 }

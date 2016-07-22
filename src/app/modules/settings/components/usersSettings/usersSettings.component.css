@@ -3881,7 +3881,7 @@ nav ul a {
   cursor: pointer;
 }
 
-nav ul a.btn, nav ul .submit-wrapper a.submit-button, .submit-wrapper nav ul a.submit-button, nav ul :host .users-settings-wrapper .loading-users-details-error a.retry-button, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul a.btn-floating {
+nav ul a.btn, nav ul .submit-wrapper a.submit-button, .submit-wrapper nav ul a.submit-button, nav ul :host .users-settings-wrapper .loading-users-details-error a.retry-button, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul :host .users-settings-wrapper .modal .modal-footer a, nav ul a.btn-floating {
   margin-top: -2px;
   margin-left: 15px;
   margin-right: 15px;
@@ -4408,7 +4408,7 @@ small {
   justify-content: space-between;
 }
 
-.toast .btn, .toast .submit-wrapper .submit-button, .submit-wrapper .toast .submit-button, .toast :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .toast .retry-button, .toast .btn-large, .toast .btn-flat {
+.toast .btn, .toast .submit-wrapper .submit-button, .submit-wrapper .toast .submit-button, .toast :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .toast .retry-button, .toast .btn-large, .toast .btn-flat, .toast :host .users-settings-wrapper .modal .modal-footer a, :host .users-settings-wrapper .modal .modal-footer .toast a {
   margin: 0;
   margin-left: 3rem;
 }
@@ -4532,7 +4532,7 @@ small {
   will-change: transform, opacity;
 }
 
-.btn, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large, .btn-flat {
+.btn, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large, .btn-flat, :host .users-settings-wrapper .modal .modal-footer a {
   border: none;
   border-radius: 2px;
   display: inline-block;
@@ -4561,7 +4561,7 @@ small {
   color: #9F9F9F !important;
 }
 
-.btn i, .submit-wrapper .submit-button i, :host .users-settings-wrapper .loading-users-details-error .retry-button i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i {
+.btn i, .submit-wrapper .submit-button i, :host .users-settings-wrapper .loading-users-details-error .retry-button i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i, :host .users-settings-wrapper .modal .modal-footer a i {
   font-size: 1.3rem;
   line-height: inherit;
 }
@@ -4678,14 +4678,14 @@ button.btn-floating {
   opacity: 0;
 }
 
-.btn-flat {
+.btn-flat, :host .users-settings-wrapper .modal .modal-footer a {
   box-shadow: none;
   background-color: transparent;
   color: #343434;
   cursor: pointer;
 }
 
-.btn-flat.disabled {
+.btn-flat.disabled, :host .users-settings-wrapper .modal .modal-footer a.disabled {
   color: #b3b3b3;
   cursor: default;
 }
@@ -4917,7 +4917,7 @@ a.waves-effect .waves-ripple {
   width: 100%;
 }
 
-.modal .modal-footer .btn, .modal .modal-footer .submit-wrapper .submit-button, .submit-wrapper .modal .modal-footer .submit-button, .modal .modal-footer :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .modal .modal-footer .retry-button, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
+.modal .modal-footer .btn, .modal .modal-footer .submit-wrapper .submit-button, .submit-wrapper .modal .modal-footer .submit-button, .modal .modal-footer :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .modal .modal-footer .retry-button, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat, :host .users-settings-wrapper .modal .modal-footer a {
   float: right;
   margin: 6px 0;
 }
@@ -6093,7 +6093,7 @@ input[type=range]:focus::-ms-fill-upper {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.side-nav a.btn, .side-nav .submit-wrapper a.submit-button, .submit-wrapper .side-nav a.submit-button, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-flat, .side-nav a.btn-floating {
+.side-nav a.btn, .side-nav .submit-wrapper a.submit-button, .submit-wrapper .side-nav a.submit-button, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-flat, .side-nav :host .users-settings-wrapper .modal .modal-footer a, :host .users-settings-wrapper .modal .modal-footer .side-nav a, .side-nav a.btn-floating {
   margin: 10px 15px;
 }
 
@@ -6101,7 +6101,7 @@ input[type=range]:focus::-ms-fill-upper {
   color: #fff;
 }
 
-.side-nav a.btn-flat {
+.side-nav a.btn-flat, .side-nav :host .users-settings-wrapper .modal .modal-footer a, :host .users-settings-wrapper .modal .modal-footer .side-nav a {
   color: #343434;
 }
 

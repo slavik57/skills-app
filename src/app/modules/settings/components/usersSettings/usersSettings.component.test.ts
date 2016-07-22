@@ -49,8 +49,8 @@ describe('UsersSettingsComponent', () => {
       nativeElement: {}
     }
 
-    var jqueryResult = {
-      collapsible: () => null
+    component.userSettingsModal = {
+      nativeElement: {}
     }
 
     component.ngOnInit();
@@ -72,6 +72,10 @@ describe('UsersSettingsComponent', () => {
     expect(component.usersDetails).to.be.null;
   });
 
+  it('selectedUser should be null', () => {
+    expect(component.selectedUser).to.be.null;
+  });
+
   describe('getting users details fails', () => {
 
     var error: string;
@@ -91,6 +95,10 @@ describe('UsersSettingsComponent', () => {
 
     it('usersDetails should be null', () => {
       expect(component.usersDetails).to.be.null;
+    });
+
+    it('selectedUser should be null', () => {
+      expect(component.selectedUser).to.be.null;
     });
 
     describe('reloadUserDetails', () => {
@@ -115,6 +123,10 @@ describe('UsersSettingsComponent', () => {
 
       it('usersDetails should be null', () => {
         expect(component.usersDetails).to.be.null;
+      });
+
+      it('selectedUser should be null', () => {
+        expect(component.selectedUser).to.be.null;
       });
 
     })
@@ -147,6 +159,59 @@ describe('UsersSettingsComponent', () => {
 
     it('usersDetails should be correct', () => {
       expect(component.usersDetails).to.deep.equal(usersDetails);
+    });
+
+    it('selectedUser should be null', () => {
+      expect(component.selectedUser).to.be.null;
+    });
+
+    describe('selectUser', () => {
+
+      var userToSelect: IUsernameDetails;
+      var jquerySpy: SinonSpy;
+      var openModalSpy: SinonSpy;
+
+      beforeEach(() => {
+        userToSelect = usersDetails[1];
+
+        var jqueryResult = {
+          openModal: () => null
+        }
+
+        openModalSpy = spy(jqueryResult, 'openModal');
+
+        jquerySpy = stub(window, '$', () => jqueryResult);
+
+        component.selectUser(userToSelect);
+      });
+
+      afterEach(() => {
+        jquerySpy.restore();
+      });
+
+      it('should update the selctedUser correctly', () => {
+        expect(component.selectedUser).to.be.equal(userToSelect);
+      });
+
+      it('should open the modal', () => {
+        expect(jquerySpy.callCount).to.be.equal(1);
+        expect(jquerySpy.args[0].length).to.be.equal(1);
+        expect(jquerySpy.args[0][0]).to.be.equal(component.userSettingsModal.nativeElement);
+        expect(openModalSpy.callCount).to.be.equal(1);
+      });
+
+      describe('reloadUsersDetails', () => {
+
+        beforeEach(() => {
+          component.reloadUsersDetails();
+        });
+
+        it('should set selectedUser to null', () => {
+          expect(component.selectedUser).to.be.null;
+        });
+
+      });
+
     });
 
   });

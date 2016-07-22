@@ -21,11 +21,16 @@ var UsersSettingsComponent = (function () {
     UsersSettingsComponent.prototype.reloadUsersDetails = function () {
         this._loadUserDetails();
     };
+    UsersSettingsComponent.prototype.selectUser = function (userDetails) {
+        this.selectedUser = userDetails;
+        $(this.userSettingsModal.nativeElement).openModal();
+    };
     UsersSettingsComponent.prototype._loadUserDetails = function () {
         var _this = this;
         this.isLoadingUsers = true;
         this.loadingUsersError = null;
         this.usersDetails = null;
+        this.selectedUser = null;
         this.userService.getUsersDetails()
             .finally(function () { return _this._setAsFinishedLoadingUsers(); })
             .subscribe(function (_usersDetails) { return _this._setUserDetails(_usersDetails); }, function (_error) { return _this._setGettingUsersError(_error); });
@@ -43,6 +48,10 @@ var UsersSettingsComponent = (function () {
         core_1.ViewChild('userDetailsList'), 
         __metadata('design:type', core_1.ElementRef)
     ], UsersSettingsComponent.prototype, "userDetailsList", void 0);
+    __decorate([
+        core_1.ViewChild('userSettingsModal'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], UsersSettingsComponent.prototype, "userSettingsModal", void 0);
     UsersSettingsComponent = __decorate([
         core_1.Component({
             selector: 'users-settings',
