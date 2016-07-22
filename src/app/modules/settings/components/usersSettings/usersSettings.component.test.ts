@@ -95,12 +95,12 @@ describe('UsersSettingsComponent', () => {
       expect(component.selectedUser).to.be.null;
     });
 
-    describe('reloadUserDetails', () => {
+    describe('reload', () => {
 
       beforeEach(() => {
         getUsersDetailsSpy.reset();
 
-        component.reloadUsersDetails();
+        component.reload();
       });
 
       it('isLoadingUsers should be true', () => {
@@ -193,10 +193,10 @@ describe('UsersSettingsComponent', () => {
         expect(openModalSpy.callCount).to.be.equal(1);
       });
 
-      describe('reloadUsersDetails', () => {
+      describe('reload', () => {
 
         beforeEach(() => {
-          component.reloadUsersDetails();
+          component.reload();
         });
 
         it('should set selectedUser to null', () => {

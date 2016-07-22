@@ -5,14 +5,14 @@ import { Observable } from 'rxjs/Observable';
 
 export abstract class LoadingComponentBase<T> implements OnInit {
   public ngOnInit(): void {
-    this._load();
+    this.load();
   }
 
   public reload(): void {
-    this._load();
+    this.load();
   }
 
-  private _load(): void {
+  protected load(): void {
     this.setIsLoading(true);
     this.setLoadingError(null);
     this.setLoadingResult(null);

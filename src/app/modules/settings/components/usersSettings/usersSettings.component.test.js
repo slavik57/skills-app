@@ -65,10 +65,10 @@ testing_1.describe('UsersSettingsComponent', function () {
         testing_1.it('selectedUser should be null', function () {
             chai_1.expect(component.selectedUser).to.be.null;
         });
-        testing_1.describe('reloadUserDetails', function () {
+        testing_1.describe('reload', function () {
             testing_1.beforeEach(function () {
                 getUsersDetailsSpy.reset();
-                component.reloadUsersDetails();
+                component.reload();
             });
             testing_1.it('isLoadingUsers should be true', function () {
                 chai_1.expect(component.isLoadingUsers).to.be.true;
@@ -134,9 +134,9 @@ testing_1.describe('UsersSettingsComponent', function () {
                 chai_1.expect(jquerySpy.args[0][0]).to.be.equal(component.userSettingsModal.nativeElement);
                 chai_1.expect(openModalSpy.callCount).to.be.equal(1);
             });
-            testing_1.describe('reloadUsersDetails', function () {
+            testing_1.describe('reload', function () {
                 testing_1.beforeEach(function () {
-                    component.reloadUsersDetails();
+                    component.reload();
                 });
                 testing_1.it('should set selectedUser to null', function () {
                     chai_1.expect(component.selectedUser).to.be.null;

@@ -3,12 +3,12 @@ var LoadingComponentBase = (function () {
     function LoadingComponentBase() {
     }
     LoadingComponentBase.prototype.ngOnInit = function () {
-        this._load();
+        this.load();
     };
     LoadingComponentBase.prototype.reload = function () {
-        this._load();
+        this.load();
     };
-    LoadingComponentBase.prototype._load = function () {
+    LoadingComponentBase.prototype.load = function () {
         var _this = this;
         this.setIsLoading(true);
         this.setLoadingError(null);
