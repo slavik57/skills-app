@@ -1,3 +1,4 @@
+import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {LoadingComponentBase} from "../../../common/components/loadingComponentBase/loadingComponentBase";
 import {UserService} from "../../../common/services/userService";
 import {IUsernameDetails} from "../../../common/interfaces/iUsernameDetails";
@@ -8,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
   selector: 'user-permissions-settings',
   template: require('./userPermissionsSettings.component.html'),
   styles: [require('./userPermissionsSettings.component.scss')],
+  directives: [CircularLoadingComponent]
 })
 export class UserPermissionsSettingsComponent extends LoadingComponentBase<string[]> implements OnInit {
   @Input() public userDetails: IUsernameDetails;

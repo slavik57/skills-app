@@ -6,6 +6,7 @@
 
   .users-settings-wrapper{
     width: 100%;
+    position: relative;
 
     &.loading{
       height: 6rem;
@@ -38,24 +39,9 @@
 
     .loading-users-details{
       @extend .loading-wrapper;
-      top: 2rem;
       visibility: collapse;
       opacity: 0;
       transition: opacity .3s ease, visibility 0s ease .3s;
-
-      .text{
-        display: block;
-      }
-
-      circular-loading {
-        display: block;
-        margin: auto;
-        $size: 2rem;
-        width: $size;
-        height: $size;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-      }
     }
 
     .loading-users-details-error{
