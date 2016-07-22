@@ -27,9 +27,6 @@ testing_1.describe('UsersSettingsComponent', function () {
     });
     testing_1.beforeEach(testing_1.inject([usersSettings_component_1.UsersSettingsComponent], function (_component) {
         component = _component;
-        component.userDetailsList = {
-            nativeElement: {}
-        };
         component.userSettingsModal = {
             nativeElement: {}
         };
@@ -92,15 +89,14 @@ testing_1.describe('UsersSettingsComponent', function () {
     });
     testing_1.describe('getting users details succeeds', function () {
         var usersDetails;
-        testing_1.beforeEach(testing_1.fakeAsync(function () {
+        testing_1.beforeEach(function () {
             usersDetails =
                 _.map([1, 2, 3], function (_id) {
                     return { id: _id, username: _id.toString() };
                 });
             getUsersDetailsResult.next(usersDetails);
             getUsersDetailsResult.complete();
-            testing_1.tick(0);
-        }));
+        });
         testing_1.it('isLoadingUsers should be false', function () {
             chai_1.expect(component.isLoadingUsers).to.be.false;
         });

@@ -8,8 +8,6 @@ import {
   beforeEach,
   afterEach,
   beforeEachProviders,
-  tick,
-  fakeAsync
 } from '@angular/core/testing';
 import {provide} from '@angular/core';
 import {expect} from 'chai';
@@ -44,10 +42,6 @@ describe('UsersSettingsComponent', () => {
 
   beforeEach(inject([UsersSettingsComponent], (_component: UsersSettingsComponent) => {
     component = _component;
-
-    component.userDetailsList = {
-      nativeElement: {}
-    }
 
     component.userSettingsModal = {
       nativeElement: {}
@@ -137,7 +131,7 @@ describe('UsersSettingsComponent', () => {
 
     var usersDetails: IUsernameDetails[];
 
-    beforeEach(fakeAsync(() => {
+    beforeEach(() => {
       usersDetails =
         _.map([1, 2, 3], (_id) => {
           return { id: _id, username: _id.toString() };
@@ -146,8 +140,7 @@ describe('UsersSettingsComponent', () => {
       getUsersDetailsResult.next(usersDetails);
       getUsersDetailsResult.complete();
 
-      tick(0);
-    }));
+    });
 
     it('isLoadingUsers should be false', () => {
       expect(component.isLoadingUsers).to.be.false;

@@ -16,7 +16,6 @@ export class UsersSettingsComponent implements OnInit {
   public loadingUsersError: any;
   public usersDetails: IUsernameDetails[];
   public selectedUser: IUsernameDetails;
-  @ViewChild('userDetailsList') public userDetailsList: ElementRef;
   @ViewChild('userSettingsModal') public userSettingsModal: ElementRef;
 
   constructor(private userService: UserService) {

@@ -46,10 +46,6 @@ var UsersSettingsComponent = (function () {
         this.loadingUsersError = error;
     };
     __decorate([
-        core_1.ViewChild('userDetailsList'), 
-        __metadata('design:type', core_1.ElementRef)
-    ], UsersSettingsComponent.prototype, "userDetailsList", void 0);
-    __decorate([
         core_1.ViewChild('userSettingsModal'), 
         __metadata('design:type', core_1.ElementRef)
     ], UsersSettingsComponent.prototype, "userSettingsModal", void 0);
