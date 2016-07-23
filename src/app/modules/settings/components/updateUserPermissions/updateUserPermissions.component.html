@@ -19,13 +19,14 @@
       <ul class="collection">
 
         <li class="item collection-item"
-           *ngFor="let userPermissionRule of userPermissionsRules">
+            *ngFor="let userPermissionRule of userPermissionsRules">
 
             <input id="user-permission-rule-{{userPermissionRule.value}}"
                   type="checkbox"
                   [disabled]="!canEditPermission(userPermissionRule)"
                   [checked]="hasPermission(userPermissionRule)"/>
             <label attr.for="user-permission-rule-{{userPermissionRule.value}}"
+                   [ngClass]="{disabled:!canEditPermission(userPermissionRule)}"
                    class="permission-rule">
               {{userPermissionRule | globalPermissionsName}}
             </label>

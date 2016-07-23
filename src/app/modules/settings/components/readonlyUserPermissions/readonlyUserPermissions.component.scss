@@ -1,5 +1,6 @@
 @import "../../../../commonStyles/_loading";
 @import "../../../../commonStyles/_forms";
+@import "../../../../commonStyles/_collections";
 
 :host {
   display: flex;
@@ -26,6 +27,7 @@
       .collection{
 
         .item{
+          @extend .small-item;
           $transition-speed: .3s;
           user-select: none;
           -moz-user-select: none;
