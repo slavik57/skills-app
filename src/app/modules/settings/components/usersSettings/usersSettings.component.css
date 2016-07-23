@@ -43,7 +43,7 @@
   color: #ee6e73 !important;
 }
 
-.materialize-red.lighten-1, .submit-wrapper .materialize-red.submit-button, :host .users-settings-wrapper .loading-users-details-error .materialize-red.retry-button {
+.materialize-red.lighten-1, .loaded-content-wrapper .loading-content-error .materialize-red.retry-button, .submit-wrapper .materialize-red.submit-button {
   background-color: #ea454b !important;
 }
 
@@ -123,7 +123,7 @@
   color: #E57373 !important;
 }
 
-.red.lighten-1, .submit-wrapper .red.submit-button, :host .users-settings-wrapper .loading-users-details-error .red.retry-button {
+.red.lighten-1, .loaded-content-wrapper .loading-content-error .red.retry-button, .submit-wrapper .red.submit-button {
   background-color: #EF5350 !important;
 }
 
@@ -235,7 +235,7 @@
   color: #f06292 !important;
 }
 
-.pink.lighten-1, .submit-wrapper .pink.submit-button, :host .users-settings-wrapper .loading-users-details-error .pink.retry-button {
+.pink.lighten-1, .loaded-content-wrapper .loading-content-error .pink.retry-button, .submit-wrapper .pink.submit-button {
   background-color: #ec407a !important;
 }
 
@@ -347,7 +347,7 @@
   color: #ba68c8 !important;
 }
 
-.purple.lighten-1, .submit-wrapper .purple.submit-button, :host .users-settings-wrapper .loading-users-details-error .purple.retry-button {
+.purple.lighten-1, .loaded-content-wrapper .loading-content-error .purple.retry-button, .submit-wrapper .purple.submit-button {
   background-color: #ab47bc !important;
 }
 
@@ -459,7 +459,7 @@
   color: #9575cd !important;
 }
 
-.deep-purple.lighten-1, .submit-wrapper .deep-purple.submit-button, :host .users-settings-wrapper .loading-users-details-error .deep-purple.retry-button {
+.deep-purple.lighten-1, .loaded-content-wrapper .loading-content-error .deep-purple.retry-button, .submit-wrapper .deep-purple.submit-button {
   background-color: #7e57c2 !important;
 }
 
@@ -571,7 +571,7 @@
   color: #7986cb !important;
 }
 
-.indigo.lighten-1, .submit-wrapper .indigo.submit-button, :host .users-settings-wrapper .loading-users-details-error .indigo.retry-button {
+.indigo.lighten-1, .loaded-content-wrapper .loading-content-error .indigo.retry-button, .submit-wrapper .indigo.submit-button {
   background-color: #5c6bc0 !important;
 }
 
@@ -643,7 +643,7 @@
   color: #304ffe !important;
 }
 
-.blue, .progress .indeterminate, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .item.active {
+.blue, .progress .indeterminate, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .item.active {
   background-color: #2196F3 !important;
 }
 
@@ -651,7 +651,7 @@
   color: #2196F3 !important;
 }
 
-.blue.lighten-5, .progress .lighten-5.indeterminate, .submit-wrapper .lighten-5.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-5.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-5.item.active {
+.blue.lighten-5, .progress .lighten-5.indeterminate, .loaded-content-wrapper .loading-content-error .lighten-5.retry-button, .submit-wrapper .lighten-5.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-5.item.active {
   background-color: #E3F2FD !important;
 }
 
@@ -659,7 +659,7 @@
   color: #E3F2FD !important;
 }
 
-.blue.lighten-4, .progress .lighten-4.indeterminate, .submit-wrapper .lighten-4.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-4.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-4.item.active {
+.blue.lighten-4, .progress .lighten-4.indeterminate, .loaded-content-wrapper .loading-content-error .lighten-4.retry-button, .submit-wrapper .lighten-4.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-4.item.active {
   background-color: #BBDEFB !important;
 }
 
@@ -667,7 +667,7 @@
   color: #BBDEFB !important;
 }
 
-.blue.lighten-3, .progress .lighten-3.indeterminate, .submit-wrapper .lighten-3.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-3.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-3.item.active {
+.blue.lighten-3, .progress .lighten-3.indeterminate, .loaded-content-wrapper .loading-content-error .lighten-3.retry-button, .submit-wrapper .lighten-3.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-3.item.active {
   background-color: #90CAF9 !important;
 }
 
@@ -675,7 +675,7 @@
   color: #90CAF9 !important;
 }
 
-.blue.lighten-2, .blue.progress, .progress .progress.indeterminate, .submit-wrapper .progress.submit-button, :host .users-settings-wrapper .loading-users-details-error .progress.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .progress.item.active, .progress .lighten-2.indeterminate, .submit-wrapper .lighten-2.submit-button, :host .users-settings-wrapper .loading-users-details-error .lighten-2.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-2.item.active {
+.blue.lighten-2, .blue.progress, .progress .progress.indeterminate, .loaded-content-wrapper .loading-content-error .progress.retry-button, .submit-wrapper .progress.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .progress.item.active, .progress .lighten-2.indeterminate, .loaded-content-wrapper .loading-content-error .lighten-2.retry-button, .submit-wrapper .lighten-2.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-2.item.active {
   background-color: #64B5F6 !important;
 }
 
@@ -683,7 +683,7 @@
   color: #64B5F6 !important;
 }
 
-.blue.lighten-1, .progress .lighten-1.indeterminate, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-1.item.active, :host .users-settings-wrapper .user-details-wrapper .collection .submit-wrapper .item.active.submit-button, .submit-wrapper :host .users-settings-wrapper .user-details-wrapper .collection .item.active.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .loading-users-details-error .item.active.retry-button, :host .users-settings-wrapper .loading-users-details-error .user-details-wrapper .collection .item.active.retry-button {
+.blue.lighten-1, .progress .lighten-1.indeterminate, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .lighten-1.item.active, :host .users-settings-wrapper .user-details-wrapper .collection .loaded-content-wrapper .loading-content-error .item.active.retry-button, .loaded-content-wrapper .loading-content-error :host .users-settings-wrapper .user-details-wrapper .collection .item.active.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .submit-wrapper .item.active.submit-button, .submit-wrapper :host .users-settings-wrapper .user-details-wrapper .collection .item.active.submit-button {
   background-color: #42A5F5 !important;
 }
 
@@ -691,7 +691,7 @@
   color: #42A5F5 !important;
 }
 
-.blue.darken-1, .progress .darken-1.indeterminate, .submit-wrapper .darken-1.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-1.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .darken-1.item.active {
+.blue.darken-1, .progress .darken-1.indeterminate, .loaded-content-wrapper .loading-content-error .darken-1.retry-button, .submit-wrapper .darken-1.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .darken-1.item.active {
   background-color: #1E88E5 !important;
 }
 
@@ -699,7 +699,7 @@
   color: #1E88E5 !important;
 }
 
-.blue.darken-2, .progress .darken-2.indeterminate, .submit-wrapper .darken-2.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-2.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .darken-2.item.active {
+.blue.darken-2, .progress .darken-2.indeterminate, .loaded-content-wrapper .loading-content-error .darken-2.retry-button, .submit-wrapper .darken-2.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .darken-2.item.active {
   background-color: #1976D2 !important;
 }
 
@@ -707,7 +707,7 @@
   color: #1976D2 !important;
 }
 
-.blue.darken-3, .progress .darken-3.indeterminate, .submit-wrapper .darken-3.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-3.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .darken-3.item.active {
+.blue.darken-3, .progress .darken-3.indeterminate, .loaded-content-wrapper .loading-content-error .darken-3.retry-button, .submit-wrapper .darken-3.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .darken-3.item.active {
   background-color: #1565C0 !important;
 }
 
@@ -715,7 +715,7 @@
   color: #1565C0 !important;
 }
 
-.blue.darken-4, .progress .darken-4.indeterminate, .submit-wrapper .darken-4.submit-button, :host .users-settings-wrapper .loading-users-details-error .darken-4.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .darken-4.item.active {
+.blue.darken-4, .progress .darken-4.indeterminate, .loaded-content-wrapper .loading-content-error .darken-4.retry-button, .submit-wrapper .darken-4.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .darken-4.item.active {
   background-color: #0D47A1 !important;
 }
 
@@ -723,7 +723,7 @@
   color: #0D47A1 !important;
 }
 
-.blue.accent-1, .progress .accent-1.indeterminate, .submit-wrapper .accent-1.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-1.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .accent-1.item.active {
+.blue.accent-1, .progress .accent-1.indeterminate, .loaded-content-wrapper .loading-content-error .accent-1.retry-button, .submit-wrapper .accent-1.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .accent-1.item.active {
   background-color: #82B1FF !important;
 }
 
@@ -731,7 +731,7 @@
   color: #82B1FF !important;
 }
 
-.blue.accent-2, .progress .accent-2.indeterminate, .submit-wrapper .accent-2.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-2.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .accent-2.item.active {
+.blue.accent-2, .progress .accent-2.indeterminate, .loaded-content-wrapper .loading-content-error .accent-2.retry-button, .submit-wrapper .accent-2.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .accent-2.item.active {
   background-color: #448AFF !important;
 }
 
@@ -739,7 +739,7 @@
   color: #448AFF !important;
 }
 
-.blue.accent-3, .progress .accent-3.indeterminate, .submit-wrapper .accent-3.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-3.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .accent-3.item.active {
+.blue.accent-3, .progress .accent-3.indeterminate, .loaded-content-wrapper .loading-content-error .accent-3.retry-button, .submit-wrapper .accent-3.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .accent-3.item.active {
   background-color: #2979FF !important;
 }
 
@@ -747,7 +747,7 @@
   color: #2979FF !important;
 }
 
-.blue.accent-4, .progress .accent-4.indeterminate, .submit-wrapper .accent-4.submit-button, :host .users-settings-wrapper .loading-users-details-error .accent-4.retry-button, :host .users-settings-wrapper .user-details-wrapper .collection .accent-4.item.active {
+.blue.accent-4, .progress .accent-4.indeterminate, .loaded-content-wrapper .loading-content-error .accent-4.retry-button, .submit-wrapper .accent-4.submit-button, :host .users-settings-wrapper .user-details-wrapper .collection .accent-4.item.active {
   background-color: #2962FF !important;
 }
 
@@ -795,7 +795,7 @@
   color: #4fc3f7 !important;
 }
 
-.light-blue.lighten-1, .submit-wrapper .light-blue.submit-button, :host .users-settings-wrapper .loading-users-details-error .light-blue.retry-button {
+.light-blue.lighten-1, .loaded-content-wrapper .loading-content-error .light-blue.retry-button, .submit-wrapper .light-blue.submit-button {
   background-color: #29b6f6 !important;
 }
 
@@ -907,7 +907,7 @@
   color: #4dd0e1 !important;
 }
 
-.cyan.lighten-1, .submit-wrapper .cyan.submit-button, :host .users-settings-wrapper .loading-users-details-error .cyan.retry-button {
+.cyan.lighten-1, .loaded-content-wrapper .loading-content-error .cyan.retry-button, .submit-wrapper .cyan.submit-button {
   background-color: #26c6da !important;
 }
 
@@ -1019,7 +1019,7 @@
   color: #4db6ac !important;
 }
 
-.teal.lighten-1, .submit-wrapper .teal.submit-button, :host .users-settings-wrapper .loading-users-details-error .teal.retry-button {
+.teal.lighten-1, .loaded-content-wrapper .loading-content-error .teal.retry-button, .submit-wrapper .teal.submit-button {
   background-color: #26a69a !important;
 }
 
@@ -1131,7 +1131,7 @@
   color: #81C784 !important;
 }
 
-.green.lighten-1, .submit-wrapper .green.submit-button, :host .users-settings-wrapper .loading-users-details-error .green.retry-button {
+.green.lighten-1, .loaded-content-wrapper .loading-content-error .green.retry-button, .submit-wrapper .green.submit-button {
   background-color: #66BB6A !important;
 }
 
@@ -1243,7 +1243,7 @@
   color: #aed581 !important;
 }
 
-.light-green.lighten-1, .submit-wrapper .light-green.submit-button, :host .users-settings-wrapper .loading-users-details-error .light-green.retry-button {
+.light-green.lighten-1, .loaded-content-wrapper .loading-content-error .light-green.retry-button, .submit-wrapper .light-green.submit-button {
   background-color: #9ccc65 !important;
 }
 
@@ -1355,7 +1355,7 @@
   color: #dce775 !important;
 }
 
-.lime.lighten-1, .submit-wrapper .lime.submit-button, :host .users-settings-wrapper .loading-users-details-error .lime.retry-button {
+.lime.lighten-1, .loaded-content-wrapper .loading-content-error .lime.retry-button, .submit-wrapper .lime.submit-button {
   background-color: #d4e157 !important;
 }
 
@@ -1467,7 +1467,7 @@
   color: #fff176 !important;
 }
 
-.yellow.lighten-1, .submit-wrapper .yellow.submit-button, :host .users-settings-wrapper .loading-users-details-error .yellow.retry-button {
+.yellow.lighten-1, .loaded-content-wrapper .loading-content-error .yellow.retry-button, .submit-wrapper .yellow.submit-button {
   background-color: #ffee58 !important;
 }
 
@@ -1579,7 +1579,7 @@
   color: #ffd54f !important;
 }
 
-.amber.lighten-1, .submit-wrapper .amber.submit-button, :host .users-settings-wrapper .loading-users-details-error .amber.retry-button {
+.amber.lighten-1, .loaded-content-wrapper .loading-content-error .amber.retry-button, .submit-wrapper .amber.submit-button {
   background-color: #ffca28 !important;
 }
 
@@ -1691,7 +1691,7 @@
   color: #ffb74d !important;
 }
 
-.orange.lighten-1, .submit-wrapper .orange.submit-button, :host .users-settings-wrapper .loading-users-details-error .orange.retry-button {
+.orange.lighten-1, .loaded-content-wrapper .loading-content-error .orange.retry-button, .submit-wrapper .orange.submit-button {
   background-color: #ffa726 !important;
 }
 
@@ -1803,7 +1803,7 @@
   color: #ff8a65 !important;
 }
 
-.deep-orange.lighten-1, .submit-wrapper .deep-orange.submit-button, :host .users-settings-wrapper .loading-users-details-error .deep-orange.retry-button {
+.deep-orange.lighten-1, .loaded-content-wrapper .loading-content-error .deep-orange.retry-button, .submit-wrapper .deep-orange.submit-button {
   background-color: #ff7043 !important;
 }
 
@@ -1915,7 +1915,7 @@
   color: #a1887f !important;
 }
 
-.brown.lighten-1, .submit-wrapper .brown.submit-button, :host .users-settings-wrapper .loading-users-details-error .brown.retry-button {
+.brown.lighten-1, .loaded-content-wrapper .loading-content-error .brown.retry-button, .submit-wrapper .brown.submit-button {
   background-color: #8d6e63 !important;
 }
 
@@ -1995,7 +1995,7 @@
   color: #90a4ae !important;
 }
 
-.blue-grey.lighten-1, .submit-wrapper .blue-grey.submit-button, :host .users-settings-wrapper .loading-users-details-error .blue-grey.retry-button {
+.blue-grey.lighten-1, .loaded-content-wrapper .loading-content-error .blue-grey.retry-button, .submit-wrapper .blue-grey.submit-button {
   background-color: #78909c !important;
 }
 
@@ -2075,7 +2075,7 @@
   color: #e0e0e0 !important;
 }
 
-.grey.lighten-1, .lighten-1.progress, .submit-wrapper .progress.submit-button, :host .users-settings-wrapper .loading-users-details-error .progress.retry-button, .submit-wrapper .grey.submit-button, :host .users-settings-wrapper .loading-users-details-error .grey.retry-button {
+.grey.lighten-1, .lighten-1.progress, .loaded-content-wrapper .loading-content-error .progress.retry-button, .submit-wrapper .progress.submit-button, .loaded-content-wrapper .loading-content-error .grey.retry-button, .submit-wrapper .grey.submit-button {
   background-color: #bdbdbd !important;
 }
 
@@ -2127,7 +2127,7 @@
   background-color: #fff !important;
 }
 
-.shades-text.text-white, .submit-wrapper .shades-text.submit-button, :host .users-settings-wrapper .loading-users-details-error .shades-text.retry-button {
+.shades-text.text-white, .loaded-content-wrapper .loading-content-error .shades-text.retry-button, .submit-wrapper .shades-text.submit-button {
   color: #fff !important;
 }
 
@@ -2396,11 +2396,11 @@ ul li {
   box-shadow: none !important;
 }
 
-.z-depth-1, nav, .card-panel, .card, .toast, .btn, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
+.z-depth-1, nav, .card-panel, .card, .toast, .btn, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-.z-depth-1-half, .btn:hover, .submit-wrapper .submit-button:hover, :host .users-settings-wrapper .loading-users-details-error .retry-button:hover, .btn-large:hover, .btn-floating:hover {
+.z-depth-1-half, .btn:hover, .loaded-content-wrapper .loading-content-error .retry-button:hover, .submit-wrapper .submit-button:hover, .btn-large:hover, .btn-floating:hover {
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -2714,7 +2714,7 @@ table.highlight > tbody > tr:hover {
   background-color: #f2f2f2;
 }
 
-table.centered thead tr th, table.centered tbody tr td {
+table.centered thead tr th, table.loading-wrapper thead tr th, .loaded-content-wrapper table.loading-content-error thead tr th, table.centered tbody tr td, table.loading-wrapper tbody tr td, .loaded-content-wrapper table.loading-content-error tbody tr td {
   text-align: center;
 }
 
@@ -3881,7 +3881,7 @@ nav ul a {
   cursor: pointer;
 }
 
-nav ul a.btn, nav ul .submit-wrapper a.submit-button, .submit-wrapper nav ul a.submit-button, nav ul :host .users-settings-wrapper .loading-users-details-error a.retry-button, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul :host .users-settings-wrapper .modal .modal-footer a, nav ul a.btn-floating {
+nav ul a.btn, nav ul .loaded-content-wrapper .loading-content-error a.retry-button, .loaded-content-wrapper .loading-content-error nav ul a.retry-button, nav ul .submit-wrapper a.submit-button, .submit-wrapper nav ul a.submit-button, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul :host .users-settings-wrapper .modal .modal-footer a, nav ul a.btn-floating {
   margin-top: -2px;
   margin-left: 15px;
   margin-right: 15px;
@@ -4318,14 +4318,14 @@ small {
   z-index: 2;
 }
 
-.card .card-action a:not(.btn):not(.submit-wrapper .submit-button):not(:host .users-settings-wrapper .loading-users-details-error .retry-button):not(.btn-large):not(.btn-floating) {
+.card .card-action a:not(.btn):not(.loaded-content-wrapper .loading-content-error .retry-button):not(.submit-wrapper .submit-button):not(.btn-large):not(.btn-floating) {
   color: #ffab40;
   margin-right: 20px;
   transition: color .3s ease;
   text-transform: uppercase;
 }
 
-.card .card-action a:not(.btn):not(.submit-wrapper .submit-button):not(:host .users-settings-wrapper .loading-users-details-error .retry-button):not(.btn-large):not(.btn-floating):hover {
+.card .card-action a:not(.btn):not(.loaded-content-wrapper .loading-content-error .retry-button):not(.submit-wrapper .submit-button):not(.btn-large):not(.btn-floating):hover {
   color: #ffd8a6;
 }
 
@@ -4408,7 +4408,7 @@ small {
   justify-content: space-between;
 }
 
-.toast .btn, .toast .submit-wrapper .submit-button, .submit-wrapper .toast .submit-button, .toast :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .toast .retry-button, .toast .btn-large, .toast .btn-flat, .toast :host .users-settings-wrapper .modal .modal-footer a, :host .users-settings-wrapper .modal .modal-footer .toast a {
+.toast .btn, .toast .loaded-content-wrapper .loading-content-error .retry-button, .loaded-content-wrapper .loading-content-error .toast .retry-button, .toast .submit-wrapper .submit-button, .submit-wrapper .toast .submit-button, .toast .btn-large, .toast .btn-flat, .toast :host .users-settings-wrapper .modal .modal-footer a, :host .users-settings-wrapper .modal .modal-footer .toast a {
   margin: 0;
   margin-left: 3rem;
 }
@@ -4532,7 +4532,7 @@ small {
   will-change: transform, opacity;
 }
 
-.btn, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large, .btn-flat, :host .users-settings-wrapper .modal .modal-footer a {
+.btn, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button, .btn-large, .btn-flat, :host .users-settings-wrapper .modal .modal-footer a {
   border: none;
   border-radius: 2px;
   display: inline-block;
@@ -4545,28 +4545,28 @@ small {
   -webkit-tap-highlight-color: transparent;
 }
 
-.btn.disabled, .submit-wrapper .disabled.submit-button, :host .users-settings-wrapper .loading-users-details-error .disabled.retry-button, .disabled.btn-large, .btn-floating.disabled, .btn-large.disabled, .btn:disabled .btn-large:disabled, .submit-wrapper .submit-button:disabled .btn-large:disabled, :host .users-settings-wrapper .loading-users-details-error .retry-button:disabled .btn-large:disabled, .btn-large:disabled .btn-large:disabled, .btn-floating:disabled {
+.btn.disabled, .loaded-content-wrapper .loading-content-error .disabled.retry-button, .submit-wrapper .disabled.submit-button, .disabled.btn-large, .btn-floating.disabled, .btn-large.disabled, .btn:disabled .btn-large:disabled, .loaded-content-wrapper .loading-content-error .retry-button:disabled .btn-large:disabled, .submit-wrapper .submit-button:disabled .btn-large:disabled, .btn-large:disabled .btn-large:disabled, .btn-floating:disabled {
   background-color: #DFDFDF !important;
   box-shadow: none;
   color: #9F9F9F !important;
   cursor: default;
 }
 
-.btn.disabled *, .submit-wrapper .disabled.submit-button *, :host .users-settings-wrapper .loading-users-details-error .disabled.retry-button *, .disabled.btn-large *, .btn-floating.disabled *, .btn-large.disabled *, .btn:disabled .btn-large:disabled *, .submit-wrapper .submit-button:disabled .btn-large:disabled *, :host .users-settings-wrapper .loading-users-details-error .retry-button:disabled .btn-large:disabled *, .btn-large:disabled .btn-large:disabled *, .btn-floating:disabled * {
+.btn.disabled *, .loaded-content-wrapper .loading-content-error .disabled.retry-button *, .submit-wrapper .disabled.submit-button *, .disabled.btn-large *, .btn-floating.disabled *, .btn-large.disabled *, .btn:disabled .btn-large:disabled *, .loaded-content-wrapper .loading-content-error .retry-button:disabled .btn-large:disabled *, .submit-wrapper .submit-button:disabled .btn-large:disabled *, .btn-large:disabled .btn-large:disabled *, .btn-floating:disabled * {
   pointer-events: none;
 }
 
-.btn.disabled:hover, .submit-wrapper .disabled.submit-button:hover, :host .users-settings-wrapper .loading-users-details-error .disabled.retry-button:hover, .disabled.btn-large:hover, .btn-floating.disabled:hover, .btn-large.disabled:hover, .btn:disabled .btn-large:disabled:hover, .submit-wrapper .submit-button:disabled .btn-large:disabled:hover, :host .users-settings-wrapper .loading-users-details-error .retry-button:disabled .btn-large:disabled:hover, .btn-large:disabled .btn-large:disabled:hover, .btn-floating:disabled:hover {
+.btn.disabled:hover, .loaded-content-wrapper .loading-content-error .disabled.retry-button:hover, .submit-wrapper .disabled.submit-button:hover, .disabled.btn-large:hover, .btn-floating.disabled:hover, .btn-large.disabled:hover, .btn:disabled .btn-large:disabled:hover, .loaded-content-wrapper .loading-content-error .retry-button:disabled .btn-large:disabled:hover, .submit-wrapper .submit-button:disabled .btn-large:disabled:hover, .btn-large:disabled .btn-large:disabled:hover, .btn-floating:disabled:hover {
   background-color: #DFDFDF !important;
   color: #9F9F9F !important;
 }
 
-.btn i, .submit-wrapper .submit-button i, :host .users-settings-wrapper .loading-users-details-error .retry-button i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i, :host .users-settings-wrapper .modal .modal-footer a i {
+.btn i, .loaded-content-wrapper .loading-content-error .retry-button i, .submit-wrapper .submit-button i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i, :host .users-settings-wrapper .modal .modal-footer a i {
   font-size: 1.3rem;
   line-height: inherit;
 }
 
-.btn, .submit-wrapper .submit-button, :host .users-settings-wrapper .loading-users-details-error .retry-button, .btn-large {
+.btn, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button, .btn-large {
   text-decoration: none;
   color: #fff;
   background-color: #26a69a;
@@ -4576,7 +4576,7 @@ small {
   cursor: pointer;
 }
 
-.btn:hover, .submit-wrapper .submit-button:hover, :host .users-settings-wrapper .loading-users-details-error .retry-button:hover, .btn-large:hover {
+.btn:hover, .loaded-content-wrapper .loading-content-error .retry-button:hover, .submit-wrapper .submit-button:hover, .btn-large:hover {
   background-color: #2bbbad;
 }
 
@@ -4917,7 +4917,7 @@ a.waves-effect .waves-ripple {
   width: 100%;
 }
 
-.modal .modal-footer .btn, .modal .modal-footer .submit-wrapper .submit-button, .submit-wrapper .modal .modal-footer .submit-button, .modal .modal-footer :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .modal .modal-footer .retry-button, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat, :host .users-settings-wrapper .modal .modal-footer a {
+.modal .modal-footer .btn, .modal .modal-footer .loaded-content-wrapper .loading-content-error .retry-button, .loaded-content-wrapper .loading-content-error .modal .modal-footer .retry-button, .modal .modal-footer .submit-wrapper .submit-button, .submit-wrapper .modal .modal-footer .submit-button, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat, :host .users-settings-wrapper .modal .modal-footer a {
   float: right;
   margin: 6px 0;
 }
@@ -5833,7 +5833,7 @@ select:disabled {
   width: 100%;
 }
 
-.file-field .btn, .file-field .submit-wrapper .submit-button, .submit-wrapper .file-field .submit-button, .file-field :host .users-settings-wrapper .loading-users-details-error .retry-button, :host .users-settings-wrapper .loading-users-details-error .file-field .retry-button, .file-field .btn-large {
+.file-field .btn, .file-field .loaded-content-wrapper .loading-content-error .retry-button, .loaded-content-wrapper .loading-content-error .file-field .retry-button, .file-field .submit-wrapper .submit-button, .submit-wrapper .file-field .submit-button, .file-field .btn-large {
   float: left;
   height: 3rem;
   line-height: 3rem;
@@ -6093,11 +6093,11 @@ input[type=range]:focus::-ms-fill-upper {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.side-nav a.btn, .side-nav .submit-wrapper a.submit-button, .submit-wrapper .side-nav a.submit-button, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-flat, .side-nav :host .users-settings-wrapper .modal .modal-footer a, :host .users-settings-wrapper .modal .modal-footer .side-nav a, .side-nav a.btn-floating {
+.side-nav a.btn, .side-nav .loaded-content-wrapper .loading-content-error a.retry-button, .loaded-content-wrapper .loading-content-error .side-nav a.retry-button, .side-nav .submit-wrapper a.submit-button, .submit-wrapper .side-nav a.submit-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-flat, .side-nav :host .users-settings-wrapper .modal .modal-footer a, :host .users-settings-wrapper .modal .modal-footer .side-nav a, .side-nav a.btn-floating {
   margin: 10px 15px;
 }
 
-.side-nav a.btn, .side-nav .submit-wrapper a.submit-button, .submit-wrapper .side-nav a.submit-button, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-floating {
+.side-nav a.btn, .side-nav .loaded-content-wrapper .loading-content-error a.retry-button, .loaded-content-wrapper .loading-content-error .side-nav a.retry-button, .side-nav .submit-wrapper a.submit-button, .submit-wrapper .side-nav a.submit-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-floating {
   color: #fff;
 }
 
@@ -6105,7 +6105,7 @@ input[type=range]:focus::-ms-fill-upper {
   color: #343434;
 }
 
-.side-nav a.btn:hover, .side-nav .submit-wrapper a.submit-button:hover, .submit-wrapper .side-nav a.submit-button:hover, .side-nav :host .users-settings-wrapper .loading-users-details-error a.retry-button:hover, :host .users-settings-wrapper .loading-users-details-error .side-nav a.retry-button:hover, .side-nav a.btn-large:hover, .side-nav a.btn-large:hover {
+.side-nav a.btn:hover, .side-nav .loaded-content-wrapper .loading-content-error a.retry-button:hover, .loaded-content-wrapper .loading-content-error .side-nav a.retry-button:hover, .side-nav .submit-wrapper a.submit-button:hover, .submit-wrapper .side-nav a.submit-button:hover, .side-nav a.btn-large:hover, .side-nav a.btn-large:hover {
   background-color: #2bbbad;
 }
 
@@ -7341,24 +7341,24 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   }
 }
 
-.loading-wrapper, :host .users-settings-wrapper .loading-users-details, :host .users-settings-wrapper .loading-users-details-error {
+.centered, .loading-wrapper, .loaded-content-wrapper .loading-content-error {
   width: 100%;
   text-align: center;
   position: absolute;
   top: 40%;
 }
 
-.loading-wrapper .text, :host .users-settings-wrapper .loading-users-details .text, :host .users-settings-wrapper .loading-users-details-error .text {
+.loading-wrapper .text {
   display: block;
 }
 
-.loading-wrapper .progress, :host .users-settings-wrapper .loading-users-details .progress, :host .users-settings-wrapper .loading-users-details-error .progress {
+.loading-wrapper .progress {
   margin-left: 35%;
   margin-right: 35%;
   width: 30%;
 }
 
-.loading-wrapper circular-loading, :host .users-settings-wrapper .loading-users-details circular-loading, :host .users-settings-wrapper .loading-users-details-error circular-loading {
+.loading-wrapper circular-loading {
   display: block;
   margin: auto;
   width: 2rem;
@@ -7369,6 +7369,57 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 .progress {
   margin-top: 1rem;
+}
+
+.loaded-content-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.loaded-content-wrapper.loading .loading-wrapper {
+  opacity: 1;
+  visibility: visible;
+}
+
+.loaded-content-wrapper.loading .content-wrapper {
+  opacity: 0;
+  display: none;
+}
+
+.loaded-content-wrapper.error .loading-content-error {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.loaded-content-wrapper.error .content-wrapper {
+  opacity: 0;
+  display: none;
+}
+
+.loaded-content-wrapper .loading-wrapper {
+  visibility: collapse;
+  opacity: 0;
+  transition: opacity .3s ease, visibility 0s ease .3s;
+}
+
+.loaded-content-wrapper .loading-content-error {
+  visibility: collapse;
+  opacity: 0;
+  transition: opacity .3s ease, visibility 0s ease .3s;
+  color: red;
+  pointer-events: none;
+}
+
+.loaded-content-wrapper .loading-content-error .text {
+  display: block;
+  margin-bottom: 1rem;
+  min-height: 1.5rem;
+}
+
+.loaded-content-wrapper .content-wrapper {
+  opacity: 1;
+  transition: opacity .3s ease;
 }
 
 .input-field input:not(.ng-pristine).ng-touched.ng-invalid:not(.validation-pending) {
@@ -7458,64 +7509,16 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   display: flex;
 }
 
-:host .users-settings-wrapper {
-  width: 100%;
-  position: relative;
-}
-
 :host .users-settings-wrapper.loading {
   height: 6rem;
-}
-
-:host .users-settings-wrapper.loading .loading-users-details {
-  opacity: 1;
-  visibility: visible;
-}
-
-:host .users-settings-wrapper.loading .user-details-wrapper {
-  opacity: 0;
-  display: none;
 }
 
 :host .users-settings-wrapper.error {
   height: 6rem;
 }
 
-:host .users-settings-wrapper.error .loading-users-details-error {
-  opacity: 1;
-  pointer-events: auto;
-  visibility: visible;
-}
-
-:host .users-settings-wrapper.error .user-details-wrapper {
-  opacity: 0;
-  display: none;
-}
-
-:host .users-settings-wrapper .loading-users-details {
-  visibility: collapse;
-  opacity: 0;
-  transition: opacity .3s ease, visibility 0s ease .3s;
-}
-
 :host .users-settings-wrapper .loading-users-details-error {
   top: 2rem;
-  visibility: collapse;
-  opacity: 0;
-  transition: opacity .3s ease, visibility 0s ease .3s;
-  color: red;
-  pointer-events: none;
-}
-
-:host .users-settings-wrapper .loading-users-details-error .text {
-  display: block;
-  margin-bottom: 1rem;
-  min-height: 1.5rem;
-}
-
-:host .users-settings-wrapper .user-details-wrapper {
-  opacity: 1;
-  transition: opacity .3s ease;
 }
 
 :host .users-settings-wrapper .user-details-wrapper .input-field {

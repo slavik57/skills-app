@@ -5,73 +5,19 @@
   display: flex;
 
   .users-settings-wrapper{
-    width: 100%;
-    position: relative;
-
     &.loading{
       height: 6rem;
-
-      .loading-users-details{
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .user-details-wrapper{
-        opacity: 0;
-        display: none;
-      }
     }
 
     &.error{
       height: 6rem;
-
-      .loading-users-details-error{
-        opacity: 1;
-        pointer-events: auto;
-        visibility: visible;
-      }
-
-      .user-details-wrapper{
-        opacity: 0;
-        display: none;
-      }
-    }
-
-    .loading-users-details{
-      @extend .loading-wrapper;
-      visibility: collapse;
-      opacity: 0;
-      transition: opacity .3s ease, visibility 0s ease .3s;
     }
 
     .loading-users-details-error{
-
-      @extend .loading-wrapper;
       top: 2rem;
-      visibility: collapse;
-      opacity: 0;
-      transition: opacity .3s ease, visibility 0s ease .3s;
-      color: red;
-      pointer-events: none;
-
-      .text{
-        display: block;
-        margin-bottom: 1rem;
-        min-height: 1.5rem;
-      }
-
-      .retry-button{
-        @extend .btn;
-        @extend .blue;
-        @extend .lighten-1;
-        @extend .text-white;
-      }
     }
 
     .user-details-wrapper {
-      opacity: 1;
-      transition: opacity .3s ease;
-
       .input-field {
         margin-left: 2rem;
         margin-right: 2rem;

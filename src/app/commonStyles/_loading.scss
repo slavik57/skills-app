@@ -1,10 +1,14 @@
 @import "../../../node_modules/materialize-css/dist/css/materialize.min";
 
-.loading-wrapper {
+.centered{
   width: 100%;
   text-align: center;
   position: absolute;
   top: 40%;
+}
+
+.loading-wrapper {
+  @extend .centered;
 
   .text{
     display: block;
@@ -39,4 +43,68 @@
 
 .spinner-layer{
   @extend .spinner-blue-only;
+}
+
+.loaded-content-wrapper {
+  width: 100%;
+  position: relative;
+
+  &.loading{
+    .loading-wrapper{
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .content-wrapper{
+      opacity: 0;
+      display: none;
+    }
+  }
+
+  &.error{
+    .loading-content-error{
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+    }
+
+    .content-wrapper{
+      opacity: 0;
+      display: none;
+    }
+  }
+
+  .loading-wrapper{
+    visibility: collapse;
+    opacity: 0;
+    transition: opacity .3s ease, visibility 0s ease .3s;
+  }
+
+  .loading-content-error{
+    @extend .centered;
+    visibility: collapse;
+    opacity: 0;
+    transition: opacity .3s ease, visibility 0s ease .3s;
+    color: red;
+    pointer-events: none;
+
+    .text{
+      display: block;
+      margin-bottom: 1rem;
+      min-height: 1.5rem;
+    }
+
+    .retry-button{
+      @extend .btn;
+      @extend .blue;
+      @extend .lighten-1;
+      @extend .text-white;
+    }
+  }
+
+  .content-wrapper {
+    opacity: 1;
+    transition: opacity .3s ease;
+  }
+
 }

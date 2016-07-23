@@ -5,74 +5,23 @@
   display: flex;
 
   .user-permissions-settings-wrapper{
-    width: 100%;
-    position: relative;
-
     &.loading{
       height: 6rem;
-
-      .loading-user-permissions{
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .user-permissions-wrapper{
-        opacity: 0;
-        display: none;
-      }
     }
 
     &.error{
       height: 6rem;
-
-      .loading-user-permissions-error{
-        opacity: 1;
-        pointer-events: auto;
-        visibility: visible;
-      }
-
-      .user-permissions-wrapper{
-        opacity: 0;
-        display: none;
-      }
     }
 
     .loading-user-permissions{
-      @extend .loading-wrapper;
       top: 0;
-      visibility: collapse;
-      opacity: 0;
-      transition: opacity .3s ease, visibility 0s ease .3s;
     }
 
-    .loading-user-permissions-error{
-
-      @extend .loading-wrapper;
+    .loading-user-permissions-error.loading-content-error{
       top: 0;
-      visibility: collapse;
-      opacity: 0;
-      transition: opacity .3s ease, visibility 0s ease .3s;
-      color: red;
-      pointer-events: none;
-
-      .text{
-        display: block;
-        margin-bottom: 1rem;
-        min-height: 1.5rem;
-      }
-
-      .retry-button{
-        @extend .btn;
-        @extend .blue;
-        @extend .lighten-1;
-        @extend .text-white;
-      }
     }
 
     .user-permissions-wrapper {
-      opacity: 1;
-      transition: opacity .3s ease;
-
       .collection{
         margin-left: 1rem;
         margin-right: 1rem;
