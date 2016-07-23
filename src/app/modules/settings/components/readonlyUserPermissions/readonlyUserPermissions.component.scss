@@ -1,0 +1,46 @@
+@import "../../../../commonStyles/_loading";
+@import "../../../../commonStyles/_forms";
+
+:host {
+  display: flex;
+
+  .readonly-user-permissions-wrapper{
+    &.loading{
+      height: 6rem;
+    }
+
+    &.error{
+      height: 6rem;
+    }
+
+    .loading-user-permissions{
+      top: 0;
+    }
+
+    .loading-user-permissions-error.loading-content-error{
+      top: 0;
+    }
+
+    .user-permissions-wrapper {
+      .collection{
+        margin-left: 1rem;
+        margin-right: 1rem;
+
+        .item{
+          $transition-speed: .3s;
+          user-select: none;
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+
+          .permission {
+            @extend .blue-text;
+            vertical-align: middle;
+          }
+
+        }
+      }
+    }
+
+  }
+}
