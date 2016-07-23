@@ -53,7 +53,7 @@ var UpdateUserPermissionsComponent = (function (_super) {
     ], UpdateUserPermissionsComponent.prototype, "userPermissions", void 0);
     UpdateUserPermissionsComponent = __decorate([
         core_1.Component({
-            selector: 'readonly-user-permissions',
+            selector: 'update-user-permissions',
             template: require('./updateUserPermissions.component.html'),
             styles: [require('./updateUserPermissions.component.scss')],
             directives: [circularLoading_component_1.CircularLoadingComponent],

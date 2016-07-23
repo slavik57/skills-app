@@ -23,6 +23,7 @@ describe('ReadonlyUserPermissionsComponent', () => {
   var getUserPermissionsSpy: SinonSpy;
   var getUserPermissionsResult: Subject<IUserPermission[]>;
   var userDetails: IUsernameDetails;
+  var userPermissionsChangedRaises: IUserPermission[][];
 
   var component: ReadonlyUserPermissionsComponent;
 
@@ -51,6 +52,10 @@ describe('ReadonlyUserPermissionsComponent', () => {
     };
 
     component.userDetails = userDetails;
+    userPermissionsChangedRaises = [];
+    component.userPermissionsChanged.subscribe((_userPermissions: IUserPermission[]) => {
+      userPermissionsChangedRaises.push(_userPermissions);
+    });
 
     component.ngOnInit();
   }));
@@ -72,6 +77,14 @@ describe('ReadonlyUserPermissionsComponent', () => {
     expect(component.userPermissions).to.be.null;
   });
 
+  it('userPermissionsChanged should exist', () => {
+    expect(component.userPermissionsChanged).to.exist;
+  });
+
+  it('userPermissionsChanged should not be raised', () => {
+    expect(userPermissionsChangedRaises).to.deep.equal([]);
+  });
+
   describe('getting user permissions fails', () => {
 
     var error: string;
@@ -91,6 +104,10 @@ describe('ReadonlyUserPermissionsComponent', () => {
 
     it('userPermissions should be null', () => {
       expect(component.userPermissions).to.be.null;
+    });
+
+    it('userPermissionsChanged should not be raised', () => {
+      expect(userPermissionsChangedRaises).to.deep.equal([]);
     });
 
     describe('reload', () => {
@@ -116,6 +133,10 @@ describe('ReadonlyUserPermissionsComponent', () => {
 
       it('userPermissions should be null', () => {
         expect(component.userPermissions).to.be.null;
+      });
+
+      it('userPermissionsChanged should not be raised', () => {
+        expect(userPermissionsChangedRaises).to.deep.equal([]);
       });
 
     })
@@ -147,6 +168,10 @@ describe('ReadonlyUserPermissionsComponent', () => {
 
     it('userPermissions should be correct', () => {
       expect(component.userPermissions).to.deep.equal(userPermissions);
+    });
+
+    it('userPermissionsChanged should be raised correctly', () => {
+      expect(userPermissionsChangedRaises).to.deep.equal([userPermissions]);
     });
 
   });

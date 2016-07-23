@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var updateUserPermissions_component_1 = require("../updateUserPermissions/updateUserPermissions.component");
 var readonlyUserPermissions_component_1 = require("../readonlyUserPermissions/readonlyUserPermissions.component");
 var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
 var core_1 = require('@angular/core');
@@ -23,6 +24,12 @@ var UserPermissionsSettingsComponent = (function () {
         this.UserPermissionsSettingsState = UserPermissionsSettingsState;
         this.state = UserPermissionsSettingsState.READONLY;
     };
+    UserPermissionsSettingsComponent.prototype.updatePermissions = function () {
+        this.state = UserPermissionsSettingsState.UPDATE;
+    };
+    UserPermissionsSettingsComponent.prototype.cancelUpdatingPermissions = function () {
+        this.state = UserPermissionsSettingsState.READONLY;
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
@@ -32,7 +39,7 @@ var UserPermissionsSettingsComponent = (function () {
             selector: 'user-permissions-settings',
             template: require('./userPermissionsSettings.component.html'),
             styles: [require('./userPermissionsSettings.component.scss')],
-            directives: [circularLoading_component_1.CircularLoadingComponent, readonlyUserPermissions_component_1.ReadonlyUserPermissionsComponent],
+            directives: [circularLoading_component_1.CircularLoadingComponent, readonlyUserPermissions_component_1.ReadonlyUserPermissionsComponent, updateUserPermissions_component_1.UpdateUserPermissionsComponent],
         }), 
         __metadata('design:paramtypes', [])
     ], UserPermissionsSettingsComponent);

@@ -23,6 +23,7 @@ var ReadonlyUserPermissionsComponent = (function (_super) {
     function ReadonlyUserPermissionsComponent(userService) {
         _super.call(this);
         this.userService = userService;
+        this.userPermissionsChanged = new core_1.EventEmitter();
     }
     ReadonlyUserPermissionsComponent.prototype.setIsLoading = function (value) {
         this.isLoadingUserPermissions = value;
@@ -32,6 +33,9 @@ var ReadonlyUserPermissionsComponent = (function (_super) {
     };
     ReadonlyUserPermissionsComponent.prototype.setLoadingResult = function (result) {
         this.userPermissions = result;
+        if (result) {
+            this.userPermissionsChanged.emit(result);
+        }
     };
     ReadonlyUserPermissionsComponent.prototype.get = function () {
         return this.userService.getUserPermissions(this.userDetails.id);
@@ -40,6 +44,10 @@ var ReadonlyUserPermissionsComponent = (function (_super) {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], ReadonlyUserPermissionsComponent.prototype, "userDetails", void 0);
+    __decorate([
+        core_1.Output('userPermissions'), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], ReadonlyUserPermissionsComponent.prototype, "userPermissionsChanged", void 0);
     ReadonlyUserPermissionsComponent = __decorate([
         core_1.Component({
             selector: 'readonly-user-permissions',

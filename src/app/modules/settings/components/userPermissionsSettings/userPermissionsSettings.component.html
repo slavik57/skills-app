@@ -1,1 +1,16 @@
-<readonly-user-permissions [userDetails]="userDetails" *ngIf="state === UserPermissionsSettingsState.READONLY"></readonly-user-permissions>
+<readonly-user-permissions [userDetails]="userDetails"
+                           (userPermissions)="userPermissions = $event"
+                           *ngIf="state === UserPermissionsSettingsState.READONLY"></readonly-user-permissions>
+
+<update-user-permissions [userDetails]="userDetails"
+                         [userPermissions]="userPermissions"
+                         *ngIf="state === UserPermissionsSettingsState.UPDATE"></update-user-permissions>
+
+<button *ngIf="state === UserPermissionsSettingsState.READONLY && userPermissions"
+        (click)="updatePermissions()">
+  Update
+</button>
+<button *ngIf="state === UserPermissionsSettingsState.UPDATE"
+        (click)="cancelUpdatingPermissions()">
+  Cancel
+</button>

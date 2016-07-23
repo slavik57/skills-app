@@ -4,7 +4,7 @@ import {CircularLoadingComponent} from "../../../common/components/circularLoadi
 import {LoadingComponentBase} from "../../../common/components/loadingComponentBase/loadingComponentBase";
 import {UserService} from "../../../common/services/userService";
 import {IUsernameDetails} from "../../../common/interfaces/iUsernameDetails";
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -16,12 +16,15 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ReadonlyUserPermissionsComponent extends LoadingComponentBase<IUserPermission[]> implements OnInit {
   @Input() public userDetails: IUsernameDetails;
+  @Output('userPermissions') public userPermissionsChanged: EventEmitter<IUserPermission[]>;
   public isLoadingUserPermissions: boolean;
   public loadingUserPermissionsError: any;
   public userPermissions: IUserPermission[];
 
   constructor(private userService: UserService) {
     super();
+
+    this.userPermissionsChanged = new EventEmitter<IUserPermission[]>();
   }
 
   protected setIsLoading(value: boolean): void {
@@ -34,6 +37,10 @@ export class ReadonlyUserPermissionsComponent extends LoadingComponentBase<IUser
 
   protected setLoadingResult(result: IUserPermission[]): void {
     this.userPermissions = result;
+
+    if (result) {
+      this.userPermissionsChanged.emit(result);
+    }
   }
 
   protected get(): Observable<IUserPermission[]> {

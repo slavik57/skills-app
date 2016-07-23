@@ -12,6 +12,7 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
     var getUserPermissionsSpy;
     var getUserPermissionsResult;
     var userDetails;
+    var userPermissionsChangedRaises;
     var component;
     testing_1.beforeEachProviders(function () {
         userServiceMock = userServiceMockFactory_1.UserServiceMockFactory.createUserServiceMock();
@@ -32,6 +33,10 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
             username: 'some username'
         };
         component.userDetails = userDetails;
+        userPermissionsChangedRaises = [];
+        component.userPermissionsChanged.subscribe(function (_userPermissions) {
+            userPermissionsChangedRaises.push(_userPermissions);
+        });
         component.ngOnInit();
     }));
     testing_1.it('isLoadingUserPermissions should be true', function () {
@@ -47,6 +52,12 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
     testing_1.it('userPermissions should be null', function () {
         chai_1.expect(component.userPermissions).to.be.null;
     });
+    testing_1.it('userPermissionsChanged should exist', function () {
+        chai_1.expect(component.userPermissionsChanged).to.exist;
+    });
+    testing_1.it('userPermissionsChanged should not be raised', function () {
+        chai_1.expect(userPermissionsChangedRaises).to.deep.equal([]);
+    });
     testing_1.describe('getting user permissions fails', function () {
         var error;
         testing_1.beforeEach(function () {
@@ -61,6 +72,9 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
         });
         testing_1.it('userPermissions should be null', function () {
             chai_1.expect(component.userPermissions).to.be.null;
+        });
+        testing_1.it('userPermissionsChanged should not be raised', function () {
+            chai_1.expect(userPermissionsChangedRaises).to.deep.equal([]);
         });
         testing_1.describe('reload', function () {
             testing_1.beforeEach(function () {
@@ -79,6 +93,9 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
             });
             testing_1.it('userPermissions should be null', function () {
                 chai_1.expect(component.userPermissions).to.be.null;
+            });
+            testing_1.it('userPermissionsChanged should not be raised', function () {
+                chai_1.expect(userPermissionsChangedRaises).to.deep.equal([]);
             });
         });
     });
@@ -101,6 +118,9 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
         });
         testing_1.it('userPermissions should be correct', function () {
             chai_1.expect(component.userPermissions).to.deep.equal(userPermissions);
+        });
+        testing_1.it('userPermissionsChanged should be raised correctly', function () {
+            chai_1.expect(userPermissionsChangedRaises).to.deep.equal([userPermissions]);
         });
     });
 });

@@ -25,5 +25,21 @@ testing_1.describe('UsersSettingsComponent', function () {
     testing_1.it('state should be correct', function () {
         chai_1.expect(component.state).to.be.equal(userPermissionsSettings_component_1.UserPermissionsSettingsState.READONLY);
     });
+    testing_1.describe('updatePermissions', function () {
+        testing_1.beforeEach(function () {
+            component.updatePermissions();
+        });
+        testing_1.it('should set state correctly', function () {
+            chai_1.expect(component.state).to.be.equal(userPermissionsSettings_component_1.UserPermissionsSettingsState.UPDATE);
+        });
+        testing_1.describe('cancelUpdatingPermissions', function () {
+            testing_1.beforeEach(function () {
+                component.cancelUpdatingPermissions();
+            });
+            testing_1.it('should set state correctly', function () {
+                chai_1.expect(component.state).to.be.equal(userPermissionsSettings_component_1.UserPermissionsSettingsState.READONLY);
+            });
+        });
+    });
 });
 //# sourceMappingURL=userPermissionsSettings.component.test.js.map

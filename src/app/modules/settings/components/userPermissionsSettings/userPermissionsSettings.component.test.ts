@@ -44,4 +44,28 @@ describe('UsersSettingsComponent', () => {
     expect(component.state).to.be.equal(UserPermissionsSettingsState.READONLY);
   });
 
+  describe('updatePermissions', () => {
+
+    beforeEach(() => {
+      component.updatePermissions();
+    });
+
+    it('should set state correctly', () => {
+      expect(component.state).to.be.equal(UserPermissionsSettingsState.UPDATE);
+    });
+
+    describe('cancelUpdatingPermissions', () => {
+
+      beforeEach(() => {
+        component.cancelUpdatingPermissions();
+      });
+
+      it('should set state correctly', () => {
+        expect(component.state).to.be.equal(UserPermissionsSettingsState.READONLY);
+      });
+
+    })
+
+  });
+
 });
