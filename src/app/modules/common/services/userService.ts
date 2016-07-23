@@ -1,3 +1,4 @@
+import {IUserPermission} from "../interfaces/iUserPermission";
 import {IUsernameDetails} from "../interfaces/iUsernameDetails";
 import {IUserDetails} from "../interfaces/iUserDetails";
 import {StatusCode} from "../../../../common/statusCode";
@@ -58,7 +59,7 @@ export interface IUserService {
   updateUserPassword(userId: number,
     currentPassword: string,
     newPassword: string): Observable<void>;
-  getUserPermissions(userId: number): Observable<string[]>;
+  getUserPermissions(userId: number): Observable<IUserPermission[]>;
 }
 
 @Injectable()
@@ -163,12 +164,12 @@ export class UserService implements IUserService {
       .catch((error: any) => this._handleServerError<void>(error));
   }
 
-  public getUserPermissions(userId: number): Observable<string[]> {
+  public getUserPermissions(userId: number): Observable<IUserPermission[]> {
     let url = this._userControllerUrl + userId + this._userPermissionsUrlSuffix;
 
     return this._get(url)
       .map((response: Response) => this._extractUserPermissions(response))
-      .catch((error: any) => this._handleServerError<string[]>(error));
+      .catch((error: any) => this._handleServerError<IUserPermission[]>(error));
   }
 
   private _get(url): Observable<Response> {
@@ -279,7 +280,7 @@ export class UserService implements IUserService {
     return usernameDetails;
   }
 
-  private _extractUserPermissions(response: Response): string[] {
+  private _extractUserPermissions(response: Response): IUserPermission[] {
     this._throwErrorIfStatusIsNotOk(response);
 
     var result = response.json();

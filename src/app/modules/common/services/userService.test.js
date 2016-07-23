@@ -439,7 +439,11 @@ testing_1.describe('UserService', function () {
                 userService.getUserPermissions(1).subscribe(function (_result) { return chai_1.expect(_result).to.be.deep.equal(result); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
             });
             testing_1.it('with the user permissions result getUserPermissions should return correct value', function () {
-                var result = ['a', 'b', 'c'];
+                var result = [
+                    { value: 0, name: 'a', description: 'a description' },
+                    { value: 1, name: 'b', description: 'b description' },
+                    { value: 2, name: 'c', description: 'c description' }
+                ];
                 responseOptions = new http_2.ResponseOptions({
                     status: statusCode_1.StatusCode.OK,
                     headers: new http_1.Headers(),

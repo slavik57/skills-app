@@ -1,3 +1,4 @@
+import {IUserPermission} from "../interfaces/iUserPermission";
 import {IUsernameDetails} from "../interfaces/iUsernameDetails";
 import {HttpError} from "../errors/httpError";
 import {StatusCode} from "../../../../common/statusCode";
@@ -745,12 +746,16 @@ describe('UserService', () => {
           (connection: MockConnection) => connection.mockRespond(response));
 
         userService.getUserPermissions(1).subscribe(
-          (_result: string[]) => expect(_result).to.be.deep.equal(result),
+          (_result: IUserPermission[]) => expect(_result).to.be.deep.equal(result),
           () => expect(true, 'should succeed').to.be.false)
       });
 
       it('with the user permissions result getUserPermissions should return correct value', () => {
-        var result = ['a', 'b', 'c'];
+        var result: IUserPermission[] = [
+          { value: 0, name: 'a', description: 'a description' },
+          { value: 1, name: 'b', description: 'b description' },
+          { value: 2, name: 'c', description: 'c description' }
+        ];
 
         responseOptions = new ResponseOptions({
           status: StatusCode.OK,
@@ -764,7 +769,7 @@ describe('UserService', () => {
           (connection: MockConnection) => connection.mockRespond(response));
 
         userService.getUserPermissions(1).subscribe(
-          (_result: string[]) => expect(_result).to.be.deep.equal(result),
+          (_result: IUserPermission[]) => expect(_result).to.be.deep.equal(result),
           () => expect(true, 'should succeed').to.be.false)
       });
 

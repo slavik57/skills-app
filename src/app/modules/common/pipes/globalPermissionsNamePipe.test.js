@@ -1,6 +1,4 @@
 "use strict";
-var enumUtils_1 = require("../enums/enumUtils");
-var globalPermissions_1 = require("../enums/globalPermissions");
 var globalPermissionsNamePipe_1 = require("./globalPermissionsNamePipe");
 var testing_1 = require('@angular/core/testing');
 var chai_1 = require('chai');
@@ -10,12 +8,13 @@ testing_1.describe('GlobalPermissionsNamePipe', function () {
         pipe = new globalPermissionsNamePipe_1.GlobalPermissionsNamePipe();
     });
     testing_1.describe('transform', function () {
-        testing_1.it('transforming all permissions should have a known value', function () {
-            var permissionStrings = enumUtils_1.EnumUtils.getNames(globalPermissions_1.GlobalPermission);
-            permissionStrings.forEach(function (_permissionString) {
-                var message = 'The permission ' + _permissionString + ' has no transformation';
-                chai_1.expect(pipe.transform(_permissionString), message).to.not.contain('Unknown permission');
-            });
+        testing_1.it('should return correct string', function () {
+            var userPermission = {
+                value: 0,
+                name: 'name',
+                description: 'description'
+            };
+            chai_1.expect(pipe.transform(userPermission)).to.be.equal('name - description');
         });
     });
 });

@@ -1,5 +1,4 @@
-import {EnumUtils} from "../enums/enumUtils";
-import {GlobalPermission} from "../enums/globalPermissions";
+import {IUserPermission} from "../interfaces/iUserPermission";
 import {GlobalPermissionsNamePipe} from "./globalPermissionsNamePipe";
 import {
   it,
@@ -19,13 +18,14 @@ describe('GlobalPermissionsNamePipe', () => {
 
   describe('transform', () => {
 
-    it('transforming all permissions should have a known value', () => {
-      var permissionStrings: string[] = EnumUtils.getNames(GlobalPermission);
+    it('should return correct string', () => {
+      var userPermission: IUserPermission = {
+        value: 0,
+        name: 'name',
+        description: 'description'
+      };
 
-      permissionStrings.forEach((_permissionString) => {
-        var message = 'The permission ' + _permissionString + ' has no transformation';
-        expect(pipe.transform(_permissionString), message).to.not.contain('Unknown permission');
-      });
+      expect(pipe.transform(userPermission)).to.be.equal('name - description');
     });
 
   });

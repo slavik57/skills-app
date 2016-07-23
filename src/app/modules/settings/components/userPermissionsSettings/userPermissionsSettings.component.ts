@@ -1,3 +1,4 @@
+import {IUserPermission} from "../../../common/interfaces/iUserPermission";
 import {GlobalPermissionsNamePipe} from "../../../common/pipes/globalPermissionsNamePipe";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {LoadingComponentBase} from "../../../common/components/loadingComponentBase/loadingComponentBase";
@@ -13,11 +14,11 @@ import { Observable } from 'rxjs/Observable';
   directives: [CircularLoadingComponent],
   pipes: [GlobalPermissionsNamePipe]
 })
-export class UserPermissionsSettingsComponent extends LoadingComponentBase<string[]> implements OnInit {
+export class UserPermissionsSettingsComponent extends LoadingComponentBase<IUserPermission[]> implements OnInit {
   @Input() public userDetails: IUsernameDetails;
   public isLoadingUserPermissions: boolean;
   public loadingUserPermissionsError: any;
-  public userPermissions: string[];
+  public userPermissions: IUserPermission[];
 
   constructor(private userService: UserService) {
     super();
@@ -31,11 +32,11 @@ export class UserPermissionsSettingsComponent extends LoadingComponentBase<strin
     this.loadingUserPermissionsError = error;
   }
 
-  protected setLoadingResult(result: string[]): void {
+  protected setLoadingResult(result: IUserPermission[]): void {
     this.userPermissions = result;
   }
 
-  protected get(): Observable<string[]> {
+  protected get(): Observable<IUserPermission[]> {
     return this.userService.getUserPermissions(this.userDetails.id);
   }
 }

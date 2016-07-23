@@ -85,7 +85,11 @@ testing_1.describe('UsersSettingsComponent', function () {
     testing_1.describe('getting user permissions succeeds', function () {
         var userPermissions;
         testing_1.beforeEach(function () {
-            userPermissions = ['a', 'b', 'c'];
+            userPermissions = [
+                { value: 0, name: 'a', description: 'a description' },
+                { value: 1, name: 'b', description: 'b description' },
+                { value: 2, name: 'c', description: 'c description' },
+            ];
             getUserPermissionsResult.next(userPermissions);
             getUserPermissionsResult.complete();
         });

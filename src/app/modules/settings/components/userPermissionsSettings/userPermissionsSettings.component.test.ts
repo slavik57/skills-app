@@ -1,3 +1,4 @@
+import {IUserPermission} from "../../../common/interfaces/iUserPermission";
 import {IUsernameDetails} from "../../../common/interfaces/iUsernameDetails";
 import {UserPermissionsSettingsComponent} from "./userPermissionsSettings.component";
 import {UserServiceMockFactory} from "../../../../testUtils/mockFactories/userServiceMockFactory";
@@ -20,7 +21,7 @@ describe('UsersSettingsComponent', () => {
 
   var userServiceMock: IUserService;
   var getUserPermissionsSpy: SinonSpy;
-  var getUserPermissionsResult: Subject<string[]>;
+  var getUserPermissionsResult: Subject<IUserPermission[]>;
   var userDetails: IUsernameDetails;
 
   var component: UserPermissionsSettingsComponent;
@@ -31,7 +32,7 @@ describe('UsersSettingsComponent', () => {
 
     getUserPermissionsSpy =
       stub(userServiceMock, 'getUserPermissions', () => {
-        getUserPermissionsResult = new Subject<string[]>();
+        getUserPermissionsResult = new Subject<IUserPermission[]>();
         return getUserPermissionsResult;
       });
 
@@ -123,10 +124,14 @@ describe('UsersSettingsComponent', () => {
 
   describe('getting user permissions succeeds', () => {
 
-    var userPermissions: string[];
+    var userPermissions: IUserPermission[];
 
     beforeEach(() => {
-      userPermissions = ['a', 'b', 'c'];
+      userPermissions = [
+        { value: 0, name: 'a', description: 'a description' },
+        { value: 1, name: 'b', description: 'b description' },
+        { value: 2, name: 'c', description: 'c description' },
+      ];
 
       getUserPermissionsResult.next(userPermissions);
       getUserPermissionsResult.complete();
