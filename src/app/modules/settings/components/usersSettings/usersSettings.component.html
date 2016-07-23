@@ -46,7 +46,8 @@
        class="modal">
 
       <div class="modal-content">
-        <div *ngIf="userSettingsModal.className.split(' ').indexOf('open') >= 0">
+        <div *ngIf="userSettingsModal.className.split(' ').indexOf('open') >= 0"
+              class="modal-inner-content">
           <h4>{{selectedUser.username}}</h4>
           <user-permissions-settings [userDetails]="selectedUser"></user-permissions-settings>
         </div>

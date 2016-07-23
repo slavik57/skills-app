@@ -58,6 +58,11 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
             chai_1.expect(component.canEditPermission(_permission)).to.be.false;
         });
     });
+    testing_1.it('hasPermission - should return true on every permission', function () {
+        userPermissions.forEach(function (_permission) {
+            chai_1.expect(component.hasPermission(_permission)).to.be.true;
+        });
+    });
     testing_1.describe('getting user permissions rules fails', function () {
         var error;
         testing_1.beforeEach(function () {
@@ -76,6 +81,11 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
         testing_1.it('canEditPermission - should return false on every permission', function () {
             userPermissions.forEach(function (_permission) {
                 chai_1.expect(component.canEditPermission(_permission)).to.be.false;
+            });
+        });
+        testing_1.it('hasPermission - should return true on every permission', function () {
+            userPermissions.forEach(function (_permission) {
+                chai_1.expect(component.hasPermission(_permission)).to.be.true;
             });
         });
         testing_1.describe('reload', function () {
@@ -100,6 +110,11 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
                     chai_1.expect(component.canEditPermission(_permission)).to.be.false;
                 });
             });
+            testing_1.it('hasPermission - should return true on every permission', function () {
+                userPermissions.forEach(function (_permission) {
+                    chai_1.expect(component.hasPermission(_permission)).to.be.true;
+                });
+            });
         });
     });
     testing_1.describe('getting user permissions rules succeeds', function () {
@@ -108,7 +123,8 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
             userPermissionsRules = [
                 { value: 0, name: 'a', description: 'a description', allowedToChange: true },
                 { value: 1, name: 'b', description: 'b description', allowedToChange: false },
-                { value: 2, name: 'c', description: 'c description', allowedToChange: false }
+                { value: 2, name: 'c', description: 'c description', allowedToChange: false },
+                { value: 3, name: 'd', description: 'd description', allowedToChange: false }
             ];
             getUserPermissionsRulesResult.next(userPermissionsRules);
             getUserPermissionsRulesResult.complete();
@@ -123,10 +139,16 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
             chai_1.expect(component.userPermissionsRules).to.deep.equal(userPermissionsRules);
         });
         testing_1.it('canEditPermission - on allowed should return true', function () {
-            chai_1.expect(component.canEditPermission(userPermissions[0])).to.be.true;
+            chai_1.expect(component.canEditPermission(userPermissionsRules[0])).to.be.true;
         });
         testing_1.it('canEditPermission - on not allowed should return false', function () {
-            chai_1.expect(component.canEditPermission(userPermissions[1])).to.be.false;
+            chai_1.expect(component.canEditPermission(userPermissionsRules[1])).to.be.false;
+        });
+        testing_1.it('hasPermission - on permission the user has should return true', function () {
+            chai_1.expect(component.hasPermission(userPermissionsRules[0])).to.be.true;
+        });
+        testing_1.it('hasPermission - on permission the user does not have should return false', function () {
+            chai_1.expect(component.hasPermission(userPermissionsRules[3])).to.be.false;
         });
     });
 });

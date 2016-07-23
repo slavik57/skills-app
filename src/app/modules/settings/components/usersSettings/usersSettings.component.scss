@@ -61,8 +61,21 @@
     }
 
     .modal {
+      @extend .modal-fixed-footer;
+
+      .modal-inner-content{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        user-permissions-settings{
+          flex: 1;
+        }
+      }
 
       .modal-footer {
+        @extend .grey;
+        @extend .lighten-3;
 
         a{
           @extend .btn-flat;

@@ -37,6 +37,13 @@ export class UpdateUserPermissionsComponent extends LoadingComponentBase<IUserPe
     return permissionRule.allowedToChange;
   }
 
+  public hasPermission(permission: IUserPermission): boolean {
+    var userPermissionValues =
+      this.userPermissions.map(_ => _.value);
+
+    return userPermissionValues.indexOf(permission.value) >= 0;
+  }
+
   protected setIsLoading(value: boolean): void {
     this.isLoadingUserPermissionsRules = value;
   }

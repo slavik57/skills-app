@@ -6,11 +6,15 @@
                          [userPermissions]="userPermissions"
                          *ngIf="state === UserPermissionsSettingsState.UPDATE"></update-user-permissions>
 
-<button *ngIf="state === UserPermissionsSettingsState.READONLY && userPermissions"
-        (click)="updatePermissions()">
-  Update
-</button>
-<button *ngIf="state === UserPermissionsSettingsState.UPDATE"
-        (click)="cancelUpdatingPermissions()">
-  Cancel
-</button>
+<div class="user-permissions-actions">
+  <button *ngIf="state === UserPermissionsSettingsState.READONLY && userPermissions"
+          class="update-user-permissions"
+          (click)="updatePermissions()">
+    Change
+  </button>
+  <button *ngIf="state === UserPermissionsSettingsState.UPDATE"
+          class="cancel"
+          (click)="cancelUpdatingPermissions()">
+    Cancel
+  </button>
+</div>

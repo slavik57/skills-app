@@ -3,6 +3,7 @@
 
 :host {
   display: flex;
+  overflow-y: auto;
 
   .readonly-user-permissions-wrapper{
     &.loading{
@@ -23,8 +24,6 @@
 
     .user-permissions-wrapper {
       .collection{
-        margin-left: 1rem;
-        margin-right: 1rem;
 
         .item{
           $transition-speed: .3s;

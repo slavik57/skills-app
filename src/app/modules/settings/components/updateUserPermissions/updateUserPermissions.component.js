@@ -31,6 +31,10 @@ var UpdateUserPermissionsComponent = (function (_super) {
         var permissionRule = this.userPermissionsRules.find(function (_) { return _.value === permission.value; });
         return permissionRule.allowedToChange;
     };
+    UpdateUserPermissionsComponent.prototype.hasPermission = function (permission) {
+        var userPermissionValues = this.userPermissions.map(function (_) { return _.value; });
+        return userPermissionValues.indexOf(permission.value) >= 0;
+    };
     UpdateUserPermissionsComponent.prototype.setIsLoading = function (value) {
         this.isLoadingUserPermissionsRules = value;
     };

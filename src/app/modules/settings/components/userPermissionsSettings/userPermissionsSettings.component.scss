@@ -1,7 +1,33 @@
+@import "../../../../../../node_modules/materialize-css/dist/css/materialize.min";
+
 :host {
   display: flex;
+  flex-direction: column;;
 
   readonly-user-permissions{
     width: 100%;
+    flex: 1;
   }
+
+  update-user-permissions{
+    width: 100%;
+    flex: 1;
+  }
+
+  .user-permissions-actions{
+    margin-top: 1rem;
+    margin-bottom: 0;
+    @extend .row;
+
+    .update-user-permissions, .cancel{
+      @extend .btn;
+      @extend .blue;
+      @extend .lighten-1;
+      @extend .white-text;
+      @extend .col;
+      @extend .s12;
+    }
+
+  }
+
 }

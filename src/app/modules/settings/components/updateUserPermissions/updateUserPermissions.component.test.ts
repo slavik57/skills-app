@@ -86,6 +86,12 @@ describe('ReadonlyUserPermissionsComponent', () => {
     });
   });
 
+  it('hasPermission - should return true on every permission', () => {
+    userPermissions.forEach((_permission) => {
+      expect(component.hasPermission(_permission)).to.be.true;
+    });
+  });
+
   describe('getting user permissions rules fails', () => {
 
     var error: string;
@@ -110,6 +116,12 @@ describe('ReadonlyUserPermissionsComponent', () => {
     it('canEditPermission - should return false on every permission', () => {
       userPermissions.forEach((_permission) => {
         expect(component.canEditPermission(_permission)).to.be.false;
+      });
+    });
+
+    it('hasPermission - should return true on every permission', () => {
+      userPermissions.forEach((_permission) => {
+        expect(component.hasPermission(_permission)).to.be.true;
       });
     });
 
@@ -143,6 +155,12 @@ describe('ReadonlyUserPermissionsComponent', () => {
         });
       });
 
+      it('hasPermission - should return true on every permission', () => {
+        userPermissions.forEach((_permission) => {
+          expect(component.hasPermission(_permission)).to.be.true;
+        });
+      });
+
     })
 
   });
@@ -155,7 +173,8 @@ describe('ReadonlyUserPermissionsComponent', () => {
       userPermissionsRules = [
         { value: 0, name: 'a', description: 'a description', allowedToChange: true },
         { value: 1, name: 'b', description: 'b description', allowedToChange: false },
-        { value: 2, name: 'c', description: 'c description', allowedToChange: false }
+        { value: 2, name: 'c', description: 'c description', allowedToChange: false },
+        { value: 3, name: 'd', description: 'd description', allowedToChange: false }
       ]
 
       getUserPermissionsRulesResult.next(userPermissionsRules);
@@ -175,11 +194,19 @@ describe('ReadonlyUserPermissionsComponent', () => {
     });
 
     it('canEditPermission - on allowed should return true', () => {
-      expect(component.canEditPermission(userPermissions[0])).to.be.true;
+      expect(component.canEditPermission(userPermissionsRules[0])).to.be.true;
     });
 
     it('canEditPermission - on not allowed should return false', () => {
-      expect(component.canEditPermission(userPermissions[1])).to.be.false;
+      expect(component.canEditPermission(userPermissionsRules[1])).to.be.false;
+    });
+
+    it('hasPermission - on permission the user has should return true', () => {
+      expect(component.hasPermission(userPermissionsRules[0])).to.be.true;
+    });
+
+    it('hasPermission - on permission the user does not have should return false', () => {
+      expect(component.hasPermission(userPermissionsRules[3])).to.be.false;
     });
 
   });
