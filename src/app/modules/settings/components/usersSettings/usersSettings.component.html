@@ -29,7 +29,7 @@
         <a class="item collection-item"
            *ngFor="let userDetails of usersDetails"
            (click)="selectUser(userDetails)"
-           [ngClass]="{ hidden: filter && userDetails.username.indexOf(filter) < 0 , active: selectedUser === userDetails}">
+           [ngClass]="{ hidden: filter && userDetails.username.toLowerCase().indexOf(filter.toLowerCase()) < 0 , active: selectedUser === userDetails}">
 
             <i class="material-icons">account_circle</i>
             <span class="username">{{userDetails.username}}</span>
