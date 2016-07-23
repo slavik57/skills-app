@@ -1,3 +1,4 @@
+import {IUserPermissionRule} from "../interfaces/iUserPermissionRule";
 import {IUserPermission} from "../interfaces/iUserPermission";
 import {IUsernameDetails} from "../interfaces/iUsernameDetails";
 import {HttpError} from "../errors/httpError";
@@ -155,6 +156,14 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + userId + '/permissions');
   });
 
+  it('getUserPermissionsModificationRules should use correct url', () => {
+    userService.getUserPermissionsModificationRules();
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/permissions-modification-rules');
+  });
+
   describe('on UNAUTHORIZED error', () => {
 
     beforeEach(() => {
@@ -216,6 +225,13 @@ describe('UserService', () => {
 
     it('getUserPermissions should fail correctly', () => {
       userService.getUserPermissions(1).subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Unauthorized')
+      );
+    });
+
+    it('getUserPermissionsModificationRules should fail correctly', () => {
+      userService.getUserPermissionsModificationRules().subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Unauthorized')
       );
@@ -289,6 +305,13 @@ describe('UserService', () => {
       );
     });
 
+    it('getUserPermissionsModificationRules should fail correctly', () => {
+      userService.getUserPermissionsModificationRules().subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
   });
 
   describe('on success with UNAUTHORIZED', () => {
@@ -355,6 +378,13 @@ describe('UserService', () => {
 
     it('getUserPermissions should fail correctly', () => {
       userService.getUserPermissions(1).subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
+    it('getUserPermissionsModificationRules should fail correctly', () => {
+      userService.getUserPermissionsModificationRules().subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
@@ -770,6 +800,62 @@ describe('UserService', () => {
 
         userService.getUserPermissions(1).subscribe(
           (_result: IUserPermission[]) => expect(_result).to.be.deep.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
+
+    });
+
+    describe('getUserPermissionsModificationRules', () => {
+
+      it('without the permissions rules result getUserPermissionsModificationRules should fail correctly', () => {
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getUserPermissionsModificationRules().subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with empty user permissions rules result getUserPermissionsModificationRules should return correct value', () => {
+        var result = [];
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getUserPermissionsModificationRules().subscribe(
+          (_result: IUserPermission[]) => expect(_result).to.be.deep.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
+
+      it('with the user permissions rules result getUserPermissionsModificationRules should return correct value', () => {
+        var result: IUserPermissionRule[] = [
+          { value: 0, name: 'a', description: 'a description', allowedToChange: true },
+          { value: 1, name: 'b', description: 'b description', allowedToChange: false },
+          { value: 2, name: 'c', description: 'c description', allowedToChange: true }
+        ];
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getUserPermissionsModificationRules().subscribe(
+          (_result: IUserPermissionRule[]) => expect(_result).to.be.deep.equal(result),
           () => expect(true, 'should succeed').to.be.false)
       });
 

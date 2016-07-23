@@ -1,3 +1,4 @@
+import {IUserPermissionRule} from "../interfaces/iUserPermissionRule";
 import {IUserPermission} from "../interfaces/iUserPermission";
 import {IUsernameDetails} from "../interfaces/iUsernameDetails";
 import {IUserDetails} from "../interfaces/iUserDetails";
@@ -60,6 +61,7 @@ export interface IUserService {
     currentPassword: string,
     newPassword: string): Observable<void>;
   getUserPermissions(userId: number): Observable<IUserPermission[]>;
+  getUserPermissionsModificationRules(): Observable<IUserPermissionRule[]>;
 }
 
 @Injectable()
@@ -74,6 +76,7 @@ export class UserService implements IUserService {
   private _userExistsUrlSuffix = '/exists'
   private _changePasswordUrlSuffix = '/password';
   private _userPermissionsUrlSuffix = '/permissions';
+  private _userPermissionsModificationRulesUrlSuffix = 'permissions-modification-rules'
 
   constructor(private http: Http) {
   }
@@ -168,8 +171,16 @@ export class UserService implements IUserService {
     let url = this._userControllerUrl + userId + this._userPermissionsUrlSuffix;
 
     return this._get(url)
-      .map((response: Response) => this._extractUserPermissions(response))
+      .map((response: Response) => this._parseBodyAsArray<IUserPermission>(response))
       .catch((error: any) => this._handleServerError<IUserPermission[]>(error));
+  }
+
+  public getUserPermissionsModificationRules(): Observable<IUserPermissionRule[]> {
+    let url = this._userControllerUrl + this._userPermissionsModificationRulesUrlSuffix;
+
+    return this._get(url)
+      .map((response: Response) => this._parseBodyAsArray<IUserPermissionRule>(response))
+      .catch((error: any) => this._handleServerError<IUserPermissionRule[]>(error));
   }
 
   private _get(url): Observable<Response> {
@@ -280,7 +291,7 @@ export class UserService implements IUserService {
     return usernameDetails;
   }
 
-  private _extractUserPermissions(response: Response): IUserPermission[] {
+  private _parseBodyAsArray<T>(response: Response): T[] {
     this._throwErrorIfStatusIsNotOk(response);
 
     var result = response.json();

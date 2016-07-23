@@ -23,6 +23,7 @@ var UserService = (function () {
         this._userExistsUrlSuffix = '/exists';
         this._changePasswordUrlSuffix = '/password';
         this._userPermissionsUrlSuffix = '/permissions';
+        this._userPermissionsModificationRulesUrlSuffix = 'permissions-modification-rules';
     }
     UserService.prototype.signinUser = function (username, password) {
         var _this = this;
@@ -94,7 +95,14 @@ var UserService = (function () {
         var _this = this;
         var url = this._userControllerUrl + userId + this._userPermissionsUrlSuffix;
         return this._get(url)
-            .map(function (response) { return _this._extractUserPermissions(response); })
+            .map(function (response) { return _this._parseBodyAsArray(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
+    };
+    UserService.prototype.getUserPermissionsModificationRules = function () {
+        var _this = this;
+        var url = this._userControllerUrl + this._userPermissionsModificationRulesUrlSuffix;
+        return this._get(url)
+            .map(function (response) { return _this._parseBodyAsArray(response); })
             .catch(function (error) { return _this._handleServerError(error); });
     };
     UserService.prototype._get = function (url) {
@@ -175,7 +183,7 @@ var UserService = (function () {
         });
         return usernameDetails;
     };
-    UserService.prototype._extractUserPermissions = function (response) {
+    UserService.prototype._parseBodyAsArray = function (response) {
         this._throwErrorIfStatusIsNotOk(response);
         var result = response.json();
         if (!result || !(result instanceof Array)) {
