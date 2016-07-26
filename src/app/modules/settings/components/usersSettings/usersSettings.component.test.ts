@@ -9,7 +9,7 @@ import {
   afterEach,
   beforeEachProviders,
 } from '@angular/core/testing';
-import {provide} from '@angular/core';
+import {provide, NgZone} from '@angular/core';
 import {expect} from 'chai';
 import {IUserService, UserService} from "../../../common/services/userService";
 import {SinonSpy, spy, stub} from 'sinon';
@@ -21,6 +21,8 @@ describe('UsersSettingsComponent', () => {
   var userServiceMock: IUserService;
   var getUsersDetailsSpy: SinonSpy;
   var getUsersDetailsResult: Subject<IUsernameDetails[]>;
+  var zoneMock: NgZone;
+  var zoneRunSpy: SinonSpy;
 
   var component: UsersSettingsComponent;
 
@@ -34,7 +36,14 @@ describe('UsersSettingsComponent', () => {
         return getUsersDetailsResult;
       });
 
+    zoneMock = <any>{
+      run: () => null
+    }
+
+    zoneRunSpy = spy(zoneMock, 'run');
+
     return [
+      provide(NgZone, { useValue: zoneMock }),
       provide(UserService, { useValue: userServiceMock }),
       UsersSettingsComponent
     ];
@@ -191,6 +200,8 @@ describe('UsersSettingsComponent', () => {
         expect(jquerySpy.args[0].length).to.be.equal(1);
         expect(jquerySpy.args[0][0]).to.be.equal(component.userSettingsModal.nativeElement);
         expect(openModalSpy.callCount).to.be.equal(1);
+        expect(openModalSpy.args[0]).to.be.length(1);
+        expect(openModalSpy.args[0][0].complete).to.exist;
       });
 
       describe('reload', () => {
@@ -201,6 +212,18 @@ describe('UsersSettingsComponent', () => {
 
         it('should set selectedUser to null', () => {
           expect(component.selectedUser).to.be.null;
+        });
+
+      });
+
+      describe('close the modal', () => {
+
+        beforeEach(() => {
+          openModalSpy.args[0][0].complete();
+        });
+
+        it('should call zone.run()', () => {
+          expect(zoneRunSpy.callCount).to.be.equal(1);
         });
 
       });

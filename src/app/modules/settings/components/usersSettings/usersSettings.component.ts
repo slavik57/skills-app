@@ -3,7 +3,7 @@ import {UserPermissionsSettingsComponent} from "../userPermissionsSettings/userP
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {IUsernameDetails} from "../../../common/interfaces/iUsernameDetails";
 import {UserService} from "../../../common/services/userService";
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 
@@ -20,14 +20,19 @@ export class UsersSettingsComponent extends LoadingComponentBase<IUsernameDetail
   public selectedUser: IUsernameDetails;
   @ViewChild('userSettingsModal') public userSettingsModal: ElementRef;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+    private zone: NgZone) {
     super();
   }
 
   public selectUser(userDetails: IUsernameDetails): void {
     this.selectedUser = userDetails;
 
-    $(this.userSettingsModal.nativeElement).openModal();
+    $(this.userSettingsModal.nativeElement).openModal({
+      complete: () => {
+        this.zone.run(() => { });
+      }
+    });
   }
 
   protected load(): void {

@@ -12,6 +12,8 @@ testing_1.describe('UsersSettingsComponent', function () {
     var userServiceMock;
     var getUsersDetailsSpy;
     var getUsersDetailsResult;
+    var zoneMock;
+    var zoneRunSpy;
     var component;
     testing_1.beforeEachProviders(function () {
         userServiceMock = userServiceMockFactory_1.UserServiceMockFactory.createUserServiceMock();
@@ -20,7 +22,12 @@ testing_1.describe('UsersSettingsComponent', function () {
                 getUsersDetailsResult = new Subject_1.Subject();
                 return getUsersDetailsResult;
             });
+        zoneMock = {
+            run: function () { return null; }
+        };
+        zoneRunSpy = sinon_1.spy(zoneMock, 'run');
         return [
+            core_1.provide(core_1.NgZone, { useValue: zoneMock }),
             core_1.provide(userService_1.UserService, { useValue: userServiceMock }),
             usersSettings_component_1.UsersSettingsComponent
         ];
@@ -133,6 +140,8 @@ testing_1.describe('UsersSettingsComponent', function () {
                 chai_1.expect(jquerySpy.args[0].length).to.be.equal(1);
                 chai_1.expect(jquerySpy.args[0][0]).to.be.equal(component.userSettingsModal.nativeElement);
                 chai_1.expect(openModalSpy.callCount).to.be.equal(1);
+                chai_1.expect(openModalSpy.args[0]).to.be.length(1);
+                chai_1.expect(openModalSpy.args[0][0].complete).to.exist;
             });
             testing_1.describe('reload', function () {
                 testing_1.beforeEach(function () {
@@ -140,6 +149,14 @@ testing_1.describe('UsersSettingsComponent', function () {
                 });
                 testing_1.it('should set selectedUser to null', function () {
                     chai_1.expect(component.selectedUser).to.be.null;
+                });
+            });
+            testing_1.describe('close the modal', function () {
+                testing_1.beforeEach(function () {
+                    openModalSpy.args[0][0].complete();
+                });
+                testing_1.it('should call zone.run()', function () {
+                    chai_1.expect(zoneRunSpy.callCount).to.be.equal(1);
                 });
             });
         });

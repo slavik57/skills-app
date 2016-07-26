@@ -20,13 +20,19 @@ var userService_1 = require("../../../common/services/userService");
 var core_1 = require('@angular/core');
 var UsersSettingsComponent = (function (_super) {
     __extends(UsersSettingsComponent, _super);
-    function UsersSettingsComponent(userService) {
+    function UsersSettingsComponent(userService, zone) {
         _super.call(this);
         this.userService = userService;
+        this.zone = zone;
     }
     UsersSettingsComponent.prototype.selectUser = function (userDetails) {
+        var _this = this;
         this.selectedUser = userDetails;
-        $(this.userSettingsModal.nativeElement).openModal();
+        $(this.userSettingsModal.nativeElement).openModal({
+            complete: function () {
+                _this.zone.run(function () { });
+            }
+        });
     };
     UsersSettingsComponent.prototype.load = function () {
         this.selectedUser = null;
@@ -55,7 +61,7 @@ var UsersSettingsComponent = (function (_super) {
             styles: [require('./usersSettings.component.scss')],
             directives: [circularLoading_component_1.CircularLoadingComponent, userPermissionsSettings_component_1.UserPermissionsSettingsComponent]
         }), 
-        __metadata('design:paramtypes', [userService_1.UserService])
+        __metadata('design:paramtypes', [userService_1.UserService, core_1.NgZone])
     ], UsersSettingsComponent);
     return UsersSettingsComponent;
 }(loadingComponentBase_1.LoadingComponentBase));
