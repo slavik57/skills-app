@@ -71,9 +71,13 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
+    "diff": "^2.2.3",
     "jasmine-core": "^2.4.1",
     "karma": "^1.0.0",
+    "karma-chai": "^0.1.0",
     "karma-jasmine": "^1.0.2",
+    "karma-mocha": "^1.1.1",
+    "karma-mocha-reporter": "^2.0.4",
     "karma-phantomjs-launcher": "^1.0.1",
     "karma-sinon": "^1.0.5",
     "karma-sourcemap-loader": "^0.3.7",

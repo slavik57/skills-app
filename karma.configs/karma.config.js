@@ -3,7 +3,7 @@ var webpack_test_config_1 = require('./webpack.test.config');
 exports.karmaConfig = function (config) {
     var _config = {
         basePath: '',
-        frameworks: ['jasmine', 'sinon'],
+        frameworks: ['mocha', 'jasmine', 'sinon'],
         files: [
             { pattern: './karma.configs/karma-test-shim.js', watched: false }
         ],
@@ -14,10 +14,25 @@ exports.karmaConfig = function (config) {
         webpackMiddleware: {
             stats: 'errors-only'
         },
+        mochaReporter: {
+            output: 'autowatch',
+            showDiff: true
+        },
         webpackServer: {
             noInfo: true
         },
-        reporters: ['progress'],
+        plugins: [
+            'karma-chai',
+            'karma-mocha',
+            'karma-mocha-reporter',
+            'karma-webpack',
+            'karma-sinon',
+            'karma-jasmine',
+            'karma-phantomjs-launcher',
+            'karma-sourcemap-loader',
+            'karma-webpack'
+        ],
+        reporters: ['mocha'],
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
