@@ -91,6 +91,17 @@ var UserService = (function () {
             .map(function (response) { return _this._throwErrorIfStatusIsNotOk(response); })
             .catch(function (error) { return _this._handleServerError(error); });
     };
+    UserService.prototype.updateUserPermissions = function (userId, userPermissionsToAdd, userPermissionsToRemove) {
+        var _this = this;
+        var url = this._userControllerUrl + userId + this._userPermissionsUrlSuffix;
+        var body = JSON.stringify({
+            permissionsToAdd: _.map(userPermissionsToAdd, function (_) { return _.value; }),
+            permissionsToRemove: _.map(userPermissionsToRemove, function (_) { return _.value; })
+        });
+        return this._put(url, body)
+            .map(function (response) { return _this._throwErrorIfStatusIsNotOk(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
+    };
     UserService.prototype.getUserPermissions = function (userId) {
         var _this = this;
         var url = this._userControllerUrl + userId + this._userPermissionsUrlSuffix;
@@ -136,9 +147,13 @@ var UserService = (function () {
         if (typeof error === 'string') {
             return Observable_1.Observable.throw(UserService.GENERIC_ERROR);
         }
-        var result = error.json();
-        if (!!result && !!result.error) {
-            return Observable_1.Observable.throw(result.error);
+        try {
+            var result = error.json();
+            if (!!result && !!result.error) {
+                return Observable_1.Observable.throw(result.error);
+            }
+        }
+        catch (e) {
         }
         return Observable_1.Observable.throw(UserService.GENERIC_ERROR);
     };

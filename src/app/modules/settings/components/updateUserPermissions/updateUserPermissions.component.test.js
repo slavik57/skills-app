@@ -7,12 +7,14 @@ var chai_1 = require('chai');
 var userService_1 = require("../../../common/services/userService");
 var sinon_1 = require('sinon');
 var Subject_1 = require('rxjs/Subject');
+var _ = require('lodash');
 testing_1.describe('ReadonlyUserPermissionsComponent', function () {
     var userServiceMock;
     var getUserPermissionsRulesSpy;
     var getUserPermissionsRulesResult;
     var userDetails;
     var userPermissions;
+    var zoneRunSpy;
     var component;
     testing_1.beforeEachProviders(function () {
         userServiceMock = userServiceMockFactory_1.UserServiceMockFactory.createUserServiceMock();
@@ -21,7 +23,12 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
                 getUserPermissionsRulesResult = new Subject_1.Subject();
                 return getUserPermissionsRulesResult;
             });
+        var zoneMock = {
+            run: function () { return null; }
+        };
+        zoneRunSpy = sinon_1.spy(zoneMock, 'run');
         return [
+            core_1.provide(core_1.NgZone, { useValue: zoneMock }),
             core_1.provide(userService_1.UserService, { useValue: userServiceMock }),
             updateUserPermissions_component_1.UpdateUserPermissionsComponent
         ];
@@ -63,6 +70,23 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
             chai_1.expect(component.hasPermission(_permission)).to.be.true;
         });
     });
+    testing_1.it('isPermissionsChanged should be false', function () {
+        chai_1.expect(component.isPermissionsChanged()).to.be.false;
+    });
+    testing_1.it('isSavingUserPermissions should be false', function () {
+        chai_1.expect(component.isSavingUserPermissions).to.be.false;
+    });
+    testing_1.it('savingUserPermissionsError should be null', function () {
+        chai_1.expect(component.savingUserPermissionsError).to.be.null;
+    });
+    testing_1.it('cancel should emit cancel event', function () {
+        var numberOfTimesEmitted = 0;
+        component.cancelEvent.subscribe(function () {
+            numberOfTimesEmitted++;
+        });
+        component.cancel();
+        chai_1.expect(numberOfTimesEmitted).to.be.equal(1);
+    });
     testing_1.describe('getting user permissions rules fails', function () {
         var error;
         testing_1.beforeEach(function () {
@@ -87,6 +111,15 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
             userPermissions.forEach(function (_permission) {
                 chai_1.expect(component.hasPermission(_permission)).to.be.true;
             });
+        });
+        testing_1.it('isPermissionsChanged should be false', function () {
+            chai_1.expect(component.isPermissionsChanged()).to.be.false;
+        });
+        testing_1.it('isSavingUserPermissions should be false', function () {
+            chai_1.expect(component.isSavingUserPermissions).to.be.false;
+        });
+        testing_1.it('savingUserPermissionsError should be null', function () {
+            chai_1.expect(component.savingUserPermissionsError).to.be.null;
         });
         testing_1.describe('reload', function () {
             testing_1.beforeEach(function () {
@@ -114,6 +147,15 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
                 userPermissions.forEach(function (_permission) {
                     chai_1.expect(component.hasPermission(_permission)).to.be.true;
                 });
+            });
+            testing_1.it('isPermissionsChanged should be false', function () {
+                chai_1.expect(component.isPermissionsChanged()).to.be.false;
+            });
+            testing_1.it('isSavingUserPermissions should be false', function () {
+                chai_1.expect(component.isSavingUserPermissions).to.be.false;
+            });
+            testing_1.it('savingUserPermissionsError should be null', function () {
+                chai_1.expect(component.savingUserPermissionsError).to.be.null;
             });
         });
     });
@@ -149,6 +191,120 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
         });
         testing_1.it('hasPermission - on permission the user does not have should return false', function () {
             chai_1.expect(component.hasPermission(userPermissionsRules[3])).to.be.false;
+        });
+        testing_1.it('isPermissionsChanged should be false', function () {
+            chai_1.expect(component.isPermissionsChanged()).to.be.false;
+        });
+        testing_1.it('isSavingUserPermissions should be false', function () {
+            chai_1.expect(component.isSavingUserPermissions).to.be.false;
+        });
+        testing_1.it('savingUserPermissionsError should be null', function () {
+            chai_1.expect(component.savingUserPermissionsError).to.be.null;
+        });
+        testing_1.describe('change permissions', function () {
+            var permissionRuleChangedFromNotHavingToHaving;
+            var permissionRuleChangedFromHavingToNotHaving;
+            testing_1.beforeEach(function () {
+                permissionRuleChangedFromNotHavingToHaving = _.find(userPermissionsRules, function (_) { return !component.hasPermission(_); });
+                permissionRuleChangedFromHavingToNotHaving = _.find(userPermissionsRules, function (_) { return component.hasPermission(_); });
+                component.setPermission(permissionRuleChangedFromNotHavingToHaving, true);
+                component.setPermission(permissionRuleChangedFromHavingToNotHaving, false);
+            });
+            testing_1.it('should set isPermissionsChanged to true', function () {
+                chai_1.expect(component.isPermissionsChanged()).to.be.true;
+            });
+            testing_1.it('restore not all permissions should leave isPermissionsChanged being true', function () {
+                component.setPermission(permissionRuleChangedFromNotHavingToHaving, false);
+                chai_1.expect(component.isPermissionsChanged()).to.be.true;
+            });
+            testing_1.it('restore all permission should change isPermissionsChanged to false', function () {
+                component.setPermission(permissionRuleChangedFromNotHavingToHaving, false);
+                component.setPermission(permissionRuleChangedFromHavingToNotHaving, true);
+                chai_1.expect(component.isPermissionsChanged()).to.be.false;
+            });
+            testing_1.it('isSavingUserPermissions should be false', function () {
+                chai_1.expect(component.isSavingUserPermissions).to.be.false;
+            });
+            testing_1.it('savingUserPermissionsError should be null', function () {
+                chai_1.expect(component.savingUserPermissionsError).to.be.null;
+            });
+            testing_1.it('should call zone.run', function () {
+                chai_1.expect(zoneRunSpy.callCount).to.be.equal(2);
+            });
+            testing_1.describe('save permissions', function () {
+                var updateUserPermissionsSpy;
+                var updateUserPermissionsResult;
+                testing_1.beforeEach(function () {
+                    userServiceMock.updateUserPermissions = function () {
+                        updateUserPermissionsResult = new Subject_1.Subject();
+                        return updateUserPermissionsResult;
+                    };
+                    updateUserPermissionsSpy = sinon_1.spy(userServiceMock, 'updateUserPermissions');
+                    component.savePermissions();
+                });
+                testing_1.it('should set isSavingUserPermissions to true', function () {
+                    chai_1.expect(component.isSavingUserPermissions).to.be.true;
+                });
+                testing_1.it('should call userService.updateUserPermissions correctly', function () {
+                    chai_1.expect(updateUserPermissionsSpy.callCount).to.be.equal(1);
+                    chai_1.expect(updateUserPermissionsSpy.args[0]).to.be.deep.equal([
+                        userDetails.id,
+                        [permissionRuleChangedFromNotHavingToHaving],
+                        [permissionRuleChangedFromHavingToNotHaving]
+                    ]);
+                });
+                testing_1.it('savingUserPermissionsError should be null', function () {
+                    chai_1.expect(component.savingUserPermissionsError).to.be.null;
+                });
+                testing_1.describe('saving fails', function () {
+                    var error;
+                    testing_1.beforeEach(function () {
+                        error = 'some error';
+                        updateUserPermissionsResult.error(error);
+                    });
+                    testing_1.it('should set isSavingUserPermissions to false', function () {
+                        chai_1.expect(component.isSavingUserPermissions).to.be.false;
+                    });
+                    testing_1.it('should set savingUserPermissionsError correctly', function () {
+                        chai_1.expect(component.savingUserPermissionsError).to.be.equal(error);
+                    });
+                    testing_1.describe('save again', function () {
+                        testing_1.beforeEach(function () {
+                            updateUserPermissionsSpy.reset();
+                            component.savePermissions();
+                        });
+                        testing_1.it('should set isSavingUserPermissions to true', function () {
+                            chai_1.expect(component.isSavingUserPermissions).to.be.true;
+                        });
+                        testing_1.it('should call userService.updateUserPermissions correctly', function () {
+                            chai_1.expect(updateUserPermissionsSpy.callCount).to.be.equal(1);
+                            chai_1.expect(updateUserPermissionsSpy.args[0]).to.be.deep.equal([
+                                userDetails.id,
+                                [permissionRuleChangedFromNotHavingToHaving],
+                                [permissionRuleChangedFromHavingToNotHaving]
+                            ]);
+                        });
+                        testing_1.it('savingUserPermissionsError should be null', function () {
+                            chai_1.expect(component.savingUserPermissionsError).to.be.null;
+                        });
+                    });
+                });
+                testing_1.describe('saving succeeds', function () {
+                    testing_1.beforeEach(function () {
+                        updateUserPermissionsResult.next(null);
+                        updateUserPermissionsResult.complete();
+                    });
+                    testing_1.it('should set isSavingUserPermissions to false', function () {
+                        chai_1.expect(component.isSavingUserPermissions).to.be.false;
+                    });
+                    testing_1.it('savingUserPermissionsError should be null', function () {
+                        chai_1.expect(component.savingUserPermissionsError).to.be.null;
+                    });
+                    testing_1.it('should set isPermissionsChanged to false', function () {
+                        chai_1.expect(component.isPermissionsChanged()).to.be.false;
+                    });
+                });
+            });
         });
     });
 });

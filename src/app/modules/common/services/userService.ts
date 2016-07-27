@@ -25,6 +25,11 @@ interface IUpdateUserPassword {
   newPassword: string;
 }
 
+interface IUpdateUserPermissions {
+  permissionsToAdd: number[];
+  permissionsToRemove: number[];
+}
+
 interface IRegistrationInfo {
   username: string;
   password: string;
@@ -62,6 +67,9 @@ export interface IUserService {
     newPassword: string): Observable<void>;
   getUserPermissions(userId: number): Observable<IUserPermission[]>;
   getUserPermissionsModificationRules(): Observable<IUserPermissionRule[]>;
+  updateUserPermissions(userId: number,
+    userPermissionsToAdd: IUserPermission[],
+    userPermissionsToRemove: IUserPermission[]): Observable<void>;
 }
 
 @Injectable()
@@ -167,6 +175,22 @@ export class UserService implements IUserService {
       .catch((error: any) => this._handleServerError<void>(error));
   }
 
+  public updateUserPermissions(userId: number,
+    userPermissionsToAdd: IUserPermission[],
+    userPermissionsToRemove: IUserPermission[]): Observable<void> {
+
+    let url = this._userControllerUrl + userId + this._userPermissionsUrlSuffix;
+
+    let body: string = JSON.stringify(<IUpdateUserPermissions>{
+      permissionsToAdd: _.map(userPermissionsToAdd, _ => _.value),
+      permissionsToRemove: _.map(userPermissionsToRemove, _ => _.value)
+    });
+
+    return this._put(url, body)
+      .map((response: Response) => this._throwErrorIfStatusIsNotOk(response))
+      .catch((error: any) => this._handleServerError<void>(error));
+  }
+
   public getUserPermissions(userId: number): Observable<IUserPermission[]> {
     let url = this._userControllerUrl + userId + this._userPermissionsUrlSuffix;
 
@@ -227,9 +251,12 @@ export class UserService implements IUserService {
       return Observable.throw(UserService.GENERIC_ERROR);
     }
 
-    var result: IServerError = error.json();
-    if (!!result && !!result.error) {
-      return Observable.throw(result.error);
+    try {
+      var result: IServerError = error.json();
+      if (!!result && !!result.error) {
+        return Observable.throw(result.error);
+      }
+    } catch (e) {
     }
 
     return Observable.throw(UserService.GENERIC_ERROR);

@@ -15,19 +15,22 @@
   }
 
   .user-permissions-actions{
-    margin-top: 1rem;
     margin-bottom: 0;
-    @extend .row;
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
 
-    .update-user-permissions, .cancel{
+    .update-user-permissions{
       @extend .btn;
       @extend .blue;
       @extend .lighten-1;
       @extend .white-text;
-      @extend .col;
-      @extend .s12;
     }
 
+    .update-user-permissions{
+      margin-top: 1rem;
+      margin-left: 1rem;
+    }
   }
 
 }

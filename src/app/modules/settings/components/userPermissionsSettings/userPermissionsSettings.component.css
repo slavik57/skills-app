@@ -43,7 +43,7 @@
   color: #ee6e73 !important;
 }
 
-.materialize-red.lighten-1, :host .user-permissions-actions .materialize-red.update-user-permissions, :host .user-permissions-actions .materialize-red.cancel {
+.materialize-red.lighten-1, :host .user-permissions-actions .materialize-red.update-user-permissions {
   background-color: #ea454b !important;
 }
 
@@ -123,7 +123,7 @@
   color: #E57373 !important;
 }
 
-.red.lighten-1, :host .user-permissions-actions .red.update-user-permissions, :host .user-permissions-actions .red.cancel {
+.red.lighten-1, :host .user-permissions-actions .red.update-user-permissions {
   background-color: #EF5350 !important;
 }
 
@@ -235,7 +235,7 @@
   color: #f06292 !important;
 }
 
-.pink.lighten-1, :host .user-permissions-actions .pink.update-user-permissions, :host .user-permissions-actions .pink.cancel {
+.pink.lighten-1, :host .user-permissions-actions .pink.update-user-permissions {
   background-color: #ec407a !important;
 }
 
@@ -347,7 +347,7 @@
   color: #ba68c8 !important;
 }
 
-.purple.lighten-1, :host .user-permissions-actions .purple.update-user-permissions, :host .user-permissions-actions .purple.cancel {
+.purple.lighten-1, :host .user-permissions-actions .purple.update-user-permissions {
   background-color: #ab47bc !important;
 }
 
@@ -459,7 +459,7 @@
   color: #9575cd !important;
 }
 
-.deep-purple.lighten-1, :host .user-permissions-actions .deep-purple.update-user-permissions, :host .user-permissions-actions .deep-purple.cancel {
+.deep-purple.lighten-1, :host .user-permissions-actions .deep-purple.update-user-permissions {
   background-color: #7e57c2 !important;
 }
 
@@ -571,7 +571,7 @@
   color: #7986cb !important;
 }
 
-.indigo.lighten-1, :host .user-permissions-actions .indigo.update-user-permissions, :host .user-permissions-actions .indigo.cancel {
+.indigo.lighten-1, :host .user-permissions-actions .indigo.update-user-permissions {
   background-color: #5c6bc0 !important;
 }
 
@@ -643,7 +643,7 @@
   color: #304ffe !important;
 }
 
-.blue, :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .cancel {
+.blue, :host .user-permissions-actions .update-user-permissions {
   background-color: #2196F3 !important;
 }
 
@@ -651,7 +651,7 @@
   color: #2196F3 !important;
 }
 
-.blue.lighten-5, :host .user-permissions-actions .lighten-5.update-user-permissions, :host .user-permissions-actions .lighten-5.cancel {
+.blue.lighten-5, :host .user-permissions-actions .lighten-5.update-user-permissions {
   background-color: #E3F2FD !important;
 }
 
@@ -659,7 +659,7 @@
   color: #E3F2FD !important;
 }
 
-.blue.lighten-4, :host .user-permissions-actions .lighten-4.update-user-permissions, :host .user-permissions-actions .lighten-4.cancel {
+.blue.lighten-4, :host .user-permissions-actions .lighten-4.update-user-permissions {
   background-color: #BBDEFB !important;
 }
 
@@ -667,7 +667,7 @@
   color: #BBDEFB !important;
 }
 
-.blue.lighten-3, :host .user-permissions-actions .lighten-3.update-user-permissions, :host .user-permissions-actions .lighten-3.cancel {
+.blue.lighten-3, :host .user-permissions-actions .lighten-3.update-user-permissions {
   background-color: #90CAF9 !important;
 }
 
@@ -675,7 +675,7 @@
   color: #90CAF9 !important;
 }
 
-.blue.lighten-2, :host .user-permissions-actions .lighten-2.update-user-permissions, :host .user-permissions-actions .lighten-2.cancel {
+.blue.lighten-2, :host .user-permissions-actions .lighten-2.update-user-permissions {
   background-color: #64B5F6 !important;
 }
 
@@ -683,7 +683,7 @@
   color: #64B5F6 !important;
 }
 
-.blue.lighten-1, :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .cancel {
+.blue.lighten-1, :host .user-permissions-actions .update-user-permissions {
   background-color: #42A5F5 !important;
 }
 
@@ -691,7 +691,7 @@
   color: #42A5F5 !important;
 }
 
-.blue.darken-1, :host .user-permissions-actions .darken-1.update-user-permissions, :host .user-permissions-actions .darken-1.cancel {
+.blue.darken-1, :host .user-permissions-actions .darken-1.update-user-permissions {
   background-color: #1E88E5 !important;
 }
 
@@ -699,7 +699,7 @@
   color: #1E88E5 !important;
 }
 
-.blue.darken-2, :host .user-permissions-actions .darken-2.update-user-permissions, :host .user-permissions-actions .darken-2.cancel {
+.blue.darken-2, :host .user-permissions-actions .darken-2.update-user-permissions {
   background-color: #1976D2 !important;
 }
 
@@ -707,7 +707,7 @@
   color: #1976D2 !important;
 }
 
-.blue.darken-3, :host .user-permissions-actions .darken-3.update-user-permissions, :host .user-permissions-actions .darken-3.cancel {
+.blue.darken-3, :host .user-permissions-actions .darken-3.update-user-permissions {
   background-color: #1565C0 !important;
 }
 
@@ -715,7 +715,7 @@
   color: #1565C0 !important;
 }
 
-.blue.darken-4, :host .user-permissions-actions .darken-4.update-user-permissions, :host .user-permissions-actions .darken-4.cancel {
+.blue.darken-4, :host .user-permissions-actions .darken-4.update-user-permissions {
   background-color: #0D47A1 !important;
 }
 
@@ -723,7 +723,7 @@
   color: #0D47A1 !important;
 }
 
-.blue.accent-1, :host .user-permissions-actions .accent-1.update-user-permissions, :host .user-permissions-actions .accent-1.cancel {
+.blue.accent-1, :host .user-permissions-actions .accent-1.update-user-permissions {
   background-color: #82B1FF !important;
 }
 
@@ -731,7 +731,7 @@
   color: #82B1FF !important;
 }
 
-.blue.accent-2, :host .user-permissions-actions .accent-2.update-user-permissions, :host .user-permissions-actions .accent-2.cancel {
+.blue.accent-2, :host .user-permissions-actions .accent-2.update-user-permissions {
   background-color: #448AFF !important;
 }
 
@@ -739,7 +739,7 @@
   color: #448AFF !important;
 }
 
-.blue.accent-3, :host .user-permissions-actions .accent-3.update-user-permissions, :host .user-permissions-actions .accent-3.cancel {
+.blue.accent-3, :host .user-permissions-actions .accent-3.update-user-permissions {
   background-color: #2979FF !important;
 }
 
@@ -747,7 +747,7 @@
   color: #2979FF !important;
 }
 
-.blue.accent-4, :host .user-permissions-actions .accent-4.update-user-permissions, :host .user-permissions-actions .accent-4.cancel {
+.blue.accent-4, :host .user-permissions-actions .accent-4.update-user-permissions {
   background-color: #2962FF !important;
 }
 
@@ -795,7 +795,7 @@
   color: #4fc3f7 !important;
 }
 
-.light-blue.lighten-1, :host .user-permissions-actions .light-blue.update-user-permissions, :host .user-permissions-actions .light-blue.cancel {
+.light-blue.lighten-1, :host .user-permissions-actions .light-blue.update-user-permissions {
   background-color: #29b6f6 !important;
 }
 
@@ -907,7 +907,7 @@
   color: #4dd0e1 !important;
 }
 
-.cyan.lighten-1, :host .user-permissions-actions .cyan.update-user-permissions, :host .user-permissions-actions .cyan.cancel {
+.cyan.lighten-1, :host .user-permissions-actions .cyan.update-user-permissions {
   background-color: #26c6da !important;
 }
 
@@ -1019,7 +1019,7 @@
   color: #4db6ac !important;
 }
 
-.teal.lighten-1, :host .user-permissions-actions .teal.update-user-permissions, :host .user-permissions-actions .teal.cancel {
+.teal.lighten-1, :host .user-permissions-actions .teal.update-user-permissions {
   background-color: #26a69a !important;
 }
 
@@ -1131,7 +1131,7 @@
   color: #81C784 !important;
 }
 
-.green.lighten-1, :host .user-permissions-actions .green.update-user-permissions, :host .user-permissions-actions .green.cancel {
+.green.lighten-1, :host .user-permissions-actions .green.update-user-permissions {
   background-color: #66BB6A !important;
 }
 
@@ -1243,7 +1243,7 @@
   color: #aed581 !important;
 }
 
-.light-green.lighten-1, :host .user-permissions-actions .light-green.update-user-permissions, :host .user-permissions-actions .light-green.cancel {
+.light-green.lighten-1, :host .user-permissions-actions .light-green.update-user-permissions {
   background-color: #9ccc65 !important;
 }
 
@@ -1355,7 +1355,7 @@
   color: #dce775 !important;
 }
 
-.lime.lighten-1, :host .user-permissions-actions .lime.update-user-permissions, :host .user-permissions-actions .lime.cancel {
+.lime.lighten-1, :host .user-permissions-actions .lime.update-user-permissions {
   background-color: #d4e157 !important;
 }
 
@@ -1467,7 +1467,7 @@
   color: #fff176 !important;
 }
 
-.yellow.lighten-1, :host .user-permissions-actions .yellow.update-user-permissions, :host .user-permissions-actions .yellow.cancel {
+.yellow.lighten-1, :host .user-permissions-actions .yellow.update-user-permissions {
   background-color: #ffee58 !important;
 }
 
@@ -1579,7 +1579,7 @@
   color: #ffd54f !important;
 }
 
-.amber.lighten-1, :host .user-permissions-actions .amber.update-user-permissions, :host .user-permissions-actions .amber.cancel {
+.amber.lighten-1, :host .user-permissions-actions .amber.update-user-permissions {
   background-color: #ffca28 !important;
 }
 
@@ -1691,7 +1691,7 @@
   color: #ffb74d !important;
 }
 
-.orange.lighten-1, :host .user-permissions-actions .orange.update-user-permissions, :host .user-permissions-actions .orange.cancel {
+.orange.lighten-1, :host .user-permissions-actions .orange.update-user-permissions {
   background-color: #ffa726 !important;
 }
 
@@ -1803,7 +1803,7 @@
   color: #ff8a65 !important;
 }
 
-.deep-orange.lighten-1, :host .user-permissions-actions .deep-orange.update-user-permissions, :host .user-permissions-actions .deep-orange.cancel {
+.deep-orange.lighten-1, :host .user-permissions-actions .deep-orange.update-user-permissions {
   background-color: #ff7043 !important;
 }
 
@@ -1915,7 +1915,7 @@
   color: #a1887f !important;
 }
 
-.brown.lighten-1, :host .user-permissions-actions .brown.update-user-permissions, :host .user-permissions-actions .brown.cancel {
+.brown.lighten-1, :host .user-permissions-actions .brown.update-user-permissions {
   background-color: #8d6e63 !important;
 }
 
@@ -1995,7 +1995,7 @@
   color: #90a4ae !important;
 }
 
-.blue-grey.lighten-1, :host .user-permissions-actions .blue-grey.update-user-permissions, :host .user-permissions-actions .blue-grey.cancel {
+.blue-grey.lighten-1, :host .user-permissions-actions .blue-grey.update-user-permissions {
   background-color: #78909c !important;
 }
 
@@ -2075,7 +2075,7 @@
   color: #e0e0e0 !important;
 }
 
-.grey.lighten-1, :host .user-permissions-actions .grey.update-user-permissions, :host .user-permissions-actions .grey.cancel {
+.grey.lighten-1, :host .user-permissions-actions .grey.update-user-permissions {
   background-color: #bdbdbd !important;
 }
 
@@ -2151,7 +2151,7 @@
   background-color: #fff !important;
 }
 
-.white-text, :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .cancel {
+.white-text, :host .user-permissions-actions .update-user-permissions {
   color: #fff !important;
 }
 
@@ -2396,11 +2396,11 @@ ul li {
   box-shadow: none !important;
 }
 
-.z-depth-1, nav, .card-panel, .card, .toast, .btn, :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .cancel, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
+.z-depth-1, nav, .card-panel, .card, .toast, .btn, :host .user-permissions-actions .update-user-permissions, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-.z-depth-1-half, .btn:hover, :host .user-permissions-actions .update-user-permissions:hover, :host .user-permissions-actions .cancel:hover, .btn-large:hover, .btn-floating:hover {
+.z-depth-1-half, .btn:hover, :host .user-permissions-actions .update-user-permissions:hover, .btn-large:hover, .btn-floating:hover {
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -3137,7 +3137,7 @@ nav ul a span.badge {
   }
 }
 
-.container .row, .container :host .user-permissions-actions, :host .container .user-permissions-actions {
+.container .row {
   margin-left: -0.75rem;
   margin-right: -0.75rem;
 }
@@ -3159,618 +3159,618 @@ nav ul a span.badge {
   padding-top: 0;
 }
 
-.row, :host .user-permissions-actions {
+.row {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
 }
 
-.row:after, :host .user-permissions-actions:after {
+.row:after {
   content: "";
   display: table;
   clear: both;
 }
 
-.row .col, :host .user-permissions-actions .col, :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .cancel {
+.row .col {
   float: left;
   box-sizing: border-box;
   padding: 0 0.75rem;
 }
 
-.row .col[class*="push-"], :host .user-permissions-actions .col[class*="push-"], :host .user-permissions-actions [class*="push-"].update-user-permissions, :host .user-permissions-actions [class*="push-"].cancel, .row .col[class*="pull-"], :host .user-permissions-actions .col[class*="pull-"], :host .user-permissions-actions [class*="pull-"].update-user-permissions, :host .user-permissions-actions [class*="pull-"].cancel {
+.row .col[class*="push-"], .row .col[class*="pull-"] {
   position: relative;
 }
 
-.row .col.s1, :host .user-permissions-actions .col.s1, :host .user-permissions-actions .s1.update-user-permissions, :host .user-permissions-actions .s1.cancel {
+.row .col.s1 {
   width: 8.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s2, :host .user-permissions-actions .col.s2, :host .user-permissions-actions .s2.update-user-permissions, :host .user-permissions-actions .s2.cancel {
+.row .col.s2 {
   width: 16.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s3, :host .user-permissions-actions .col.s3, :host .user-permissions-actions .s3.update-user-permissions, :host .user-permissions-actions .s3.cancel {
+.row .col.s3 {
   width: 25%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s4, :host .user-permissions-actions .col.s4, :host .user-permissions-actions .s4.update-user-permissions, :host .user-permissions-actions .s4.cancel {
+.row .col.s4 {
   width: 33.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s5, :host .user-permissions-actions .col.s5, :host .user-permissions-actions .s5.update-user-permissions, :host .user-permissions-actions .s5.cancel {
+.row .col.s5 {
   width: 41.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s6, :host .user-permissions-actions .col.s6, :host .user-permissions-actions .s6.update-user-permissions, :host .user-permissions-actions .s6.cancel {
+.row .col.s6 {
   width: 50%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s7, :host .user-permissions-actions .col.s7, :host .user-permissions-actions .s7.update-user-permissions, :host .user-permissions-actions .s7.cancel {
+.row .col.s7 {
   width: 58.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s8, :host .user-permissions-actions .col.s8, :host .user-permissions-actions .s8.update-user-permissions, :host .user-permissions-actions .s8.cancel {
+.row .col.s8 {
   width: 66.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s9, :host .user-permissions-actions .col.s9, :host .user-permissions-actions .s9.update-user-permissions, :host .user-permissions-actions .s9.cancel {
+.row .col.s9 {
   width: 75%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s10, :host .user-permissions-actions .col.s10, :host .user-permissions-actions .s10.update-user-permissions, :host .user-permissions-actions .s10.cancel {
+.row .col.s10 {
   width: 83.3333333333%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s11, :host .user-permissions-actions .col.s11, :host .user-permissions-actions .s11.update-user-permissions, :host .user-permissions-actions .s11.cancel {
+.row .col.s11 {
   width: 91.6666666667%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s12, :host .user-permissions-actions .col.s12, :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .cancel {
+.row .col.s12 {
   width: 100%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.offset-s1, :host .user-permissions-actions .col.offset-s1, :host .user-permissions-actions .offset-s1.update-user-permissions, :host .user-permissions-actions .offset-s1.cancel {
+.row .col.offset-s1 {
   margin-left: 8.3333333333%;
 }
 
-.row .col.pull-s1, :host .user-permissions-actions .col.pull-s1, :host .user-permissions-actions .pull-s1.update-user-permissions, :host .user-permissions-actions .pull-s1.cancel {
+.row .col.pull-s1 {
   right: 8.3333333333%;
 }
 
-.row .col.push-s1, :host .user-permissions-actions .col.push-s1, :host .user-permissions-actions .push-s1.update-user-permissions, :host .user-permissions-actions .push-s1.cancel {
+.row .col.push-s1 {
   left: 8.3333333333%;
 }
 
-.row .col.offset-s2, :host .user-permissions-actions .col.offset-s2, :host .user-permissions-actions .offset-s2.update-user-permissions, :host .user-permissions-actions .offset-s2.cancel {
+.row .col.offset-s2 {
   margin-left: 16.6666666667%;
 }
 
-.row .col.pull-s2, :host .user-permissions-actions .col.pull-s2, :host .user-permissions-actions .pull-s2.update-user-permissions, :host .user-permissions-actions .pull-s2.cancel {
+.row .col.pull-s2 {
   right: 16.6666666667%;
 }
 
-.row .col.push-s2, :host .user-permissions-actions .col.push-s2, :host .user-permissions-actions .push-s2.update-user-permissions, :host .user-permissions-actions .push-s2.cancel {
+.row .col.push-s2 {
   left: 16.6666666667%;
 }
 
-.row .col.offset-s3, :host .user-permissions-actions .col.offset-s3, :host .user-permissions-actions .offset-s3.update-user-permissions, :host .user-permissions-actions .offset-s3.cancel {
+.row .col.offset-s3 {
   margin-left: 25%;
 }
 
-.row .col.pull-s3, :host .user-permissions-actions .col.pull-s3, :host .user-permissions-actions .pull-s3.update-user-permissions, :host .user-permissions-actions .pull-s3.cancel {
+.row .col.pull-s3 {
   right: 25%;
 }
 
-.row .col.push-s3, :host .user-permissions-actions .col.push-s3, :host .user-permissions-actions .push-s3.update-user-permissions, :host .user-permissions-actions .push-s3.cancel {
+.row .col.push-s3 {
   left: 25%;
 }
 
-.row .col.offset-s4, :host .user-permissions-actions .col.offset-s4, :host .user-permissions-actions .offset-s4.update-user-permissions, :host .user-permissions-actions .offset-s4.cancel {
+.row .col.offset-s4 {
   margin-left: 33.3333333333%;
 }
 
-.row .col.pull-s4, :host .user-permissions-actions .col.pull-s4, :host .user-permissions-actions .pull-s4.update-user-permissions, :host .user-permissions-actions .pull-s4.cancel {
+.row .col.pull-s4 {
   right: 33.3333333333%;
 }
 
-.row .col.push-s4, :host .user-permissions-actions .col.push-s4, :host .user-permissions-actions .push-s4.update-user-permissions, :host .user-permissions-actions .push-s4.cancel {
+.row .col.push-s4 {
   left: 33.3333333333%;
 }
 
-.row .col.offset-s5, :host .user-permissions-actions .col.offset-s5, :host .user-permissions-actions .offset-s5.update-user-permissions, :host .user-permissions-actions .offset-s5.cancel {
+.row .col.offset-s5 {
   margin-left: 41.6666666667%;
 }
 
-.row .col.pull-s5, :host .user-permissions-actions .col.pull-s5, :host .user-permissions-actions .pull-s5.update-user-permissions, :host .user-permissions-actions .pull-s5.cancel {
+.row .col.pull-s5 {
   right: 41.6666666667%;
 }
 
-.row .col.push-s5, :host .user-permissions-actions .col.push-s5, :host .user-permissions-actions .push-s5.update-user-permissions, :host .user-permissions-actions .push-s5.cancel {
+.row .col.push-s5 {
   left: 41.6666666667%;
 }
 
-.row .col.offset-s6, :host .user-permissions-actions .col.offset-s6, :host .user-permissions-actions .offset-s6.update-user-permissions, :host .user-permissions-actions .offset-s6.cancel {
+.row .col.offset-s6 {
   margin-left: 50%;
 }
 
-.row .col.pull-s6, :host .user-permissions-actions .col.pull-s6, :host .user-permissions-actions .pull-s6.update-user-permissions, :host .user-permissions-actions .pull-s6.cancel {
+.row .col.pull-s6 {
   right: 50%;
 }
 
-.row .col.push-s6, :host .user-permissions-actions .col.push-s6, :host .user-permissions-actions .push-s6.update-user-permissions, :host .user-permissions-actions .push-s6.cancel {
+.row .col.push-s6 {
   left: 50%;
 }
 
-.row .col.offset-s7, :host .user-permissions-actions .col.offset-s7, :host .user-permissions-actions .offset-s7.update-user-permissions, :host .user-permissions-actions .offset-s7.cancel {
+.row .col.offset-s7 {
   margin-left: 58.3333333333%;
 }
 
-.row .col.pull-s7, :host .user-permissions-actions .col.pull-s7, :host .user-permissions-actions .pull-s7.update-user-permissions, :host .user-permissions-actions .pull-s7.cancel {
+.row .col.pull-s7 {
   right: 58.3333333333%;
 }
 
-.row .col.push-s7, :host .user-permissions-actions .col.push-s7, :host .user-permissions-actions .push-s7.update-user-permissions, :host .user-permissions-actions .push-s7.cancel {
+.row .col.push-s7 {
   left: 58.3333333333%;
 }
 
-.row .col.offset-s8, :host .user-permissions-actions .col.offset-s8, :host .user-permissions-actions .offset-s8.update-user-permissions, :host .user-permissions-actions .offset-s8.cancel {
+.row .col.offset-s8 {
   margin-left: 66.6666666667%;
 }
 
-.row .col.pull-s8, :host .user-permissions-actions .col.pull-s8, :host .user-permissions-actions .pull-s8.update-user-permissions, :host .user-permissions-actions .pull-s8.cancel {
+.row .col.pull-s8 {
   right: 66.6666666667%;
 }
 
-.row .col.push-s8, :host .user-permissions-actions .col.push-s8, :host .user-permissions-actions .push-s8.update-user-permissions, :host .user-permissions-actions .push-s8.cancel {
+.row .col.push-s8 {
   left: 66.6666666667%;
 }
 
-.row .col.offset-s9, :host .user-permissions-actions .col.offset-s9, :host .user-permissions-actions .offset-s9.update-user-permissions, :host .user-permissions-actions .offset-s9.cancel {
+.row .col.offset-s9 {
   margin-left: 75%;
 }
 
-.row .col.pull-s9, :host .user-permissions-actions .col.pull-s9, :host .user-permissions-actions .pull-s9.update-user-permissions, :host .user-permissions-actions .pull-s9.cancel {
+.row .col.pull-s9 {
   right: 75%;
 }
 
-.row .col.push-s9, :host .user-permissions-actions .col.push-s9, :host .user-permissions-actions .push-s9.update-user-permissions, :host .user-permissions-actions .push-s9.cancel {
+.row .col.push-s9 {
   left: 75%;
 }
 
-.row .col.offset-s10, :host .user-permissions-actions .col.offset-s10, :host .user-permissions-actions .offset-s10.update-user-permissions, :host .user-permissions-actions .offset-s10.cancel {
+.row .col.offset-s10 {
   margin-left: 83.3333333333%;
 }
 
-.row .col.pull-s10, :host .user-permissions-actions .col.pull-s10, :host .user-permissions-actions .pull-s10.update-user-permissions, :host .user-permissions-actions .pull-s10.cancel {
+.row .col.pull-s10 {
   right: 83.3333333333%;
 }
 
-.row .col.push-s10, :host .user-permissions-actions .col.push-s10, :host .user-permissions-actions .push-s10.update-user-permissions, :host .user-permissions-actions .push-s10.cancel {
+.row .col.push-s10 {
   left: 83.3333333333%;
 }
 
-.row .col.offset-s11, :host .user-permissions-actions .col.offset-s11, :host .user-permissions-actions .offset-s11.update-user-permissions, :host .user-permissions-actions .offset-s11.cancel {
+.row .col.offset-s11 {
   margin-left: 91.6666666667%;
 }
 
-.row .col.pull-s11, :host .user-permissions-actions .col.pull-s11, :host .user-permissions-actions .pull-s11.update-user-permissions, :host .user-permissions-actions .pull-s11.cancel {
+.row .col.pull-s11 {
   right: 91.6666666667%;
 }
 
-.row .col.push-s11, :host .user-permissions-actions .col.push-s11, :host .user-permissions-actions .push-s11.update-user-permissions, :host .user-permissions-actions .push-s11.cancel {
+.row .col.push-s11 {
   left: 91.6666666667%;
 }
 
-.row .col.offset-s12, :host .user-permissions-actions .col.offset-s12, :host .user-permissions-actions .offset-s12.update-user-permissions, :host .user-permissions-actions .offset-s12.cancel {
+.row .col.offset-s12 {
   margin-left: 100%;
 }
 
-.row .col.pull-s12, :host .user-permissions-actions .col.pull-s12, :host .user-permissions-actions .pull-s12.update-user-permissions, :host .user-permissions-actions .pull-s12.cancel {
+.row .col.pull-s12 {
   right: 100%;
 }
 
-.row .col.push-s12, :host .user-permissions-actions .col.push-s12, :host .user-permissions-actions .push-s12.update-user-permissions, :host .user-permissions-actions .push-s12.cancel {
+.row .col.push-s12 {
   left: 100%;
 }
 
 @media only screen and (min-width: 601px) {
-  .row .col.m1, :host .user-permissions-actions .col.m1, :host .user-permissions-actions .m1.update-user-permissions, :host .user-permissions-actions .m1.cancel {
+  .row .col.m1 {
     width: 8.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m2, :host .user-permissions-actions .col.m2, :host .user-permissions-actions .m2.update-user-permissions, :host .user-permissions-actions .m2.cancel {
+  .row .col.m2 {
     width: 16.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m3, :host .user-permissions-actions .col.m3, :host .user-permissions-actions .m3.update-user-permissions, :host .user-permissions-actions .m3.cancel {
+  .row .col.m3 {
     width: 25%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m4, :host .user-permissions-actions .col.m4, :host .user-permissions-actions .m4.update-user-permissions, :host .user-permissions-actions .m4.cancel {
+  .row .col.m4 {
     width: 33.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m5, :host .user-permissions-actions .col.m5, :host .user-permissions-actions .m5.update-user-permissions, :host .user-permissions-actions .m5.cancel {
+  .row .col.m5 {
     width: 41.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m6, :host .user-permissions-actions .col.m6, :host .user-permissions-actions .m6.update-user-permissions, :host .user-permissions-actions .m6.cancel {
+  .row .col.m6 {
     width: 50%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m7, :host .user-permissions-actions .col.m7, :host .user-permissions-actions .m7.update-user-permissions, :host .user-permissions-actions .m7.cancel {
+  .row .col.m7 {
     width: 58.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m8, :host .user-permissions-actions .col.m8, :host .user-permissions-actions .m8.update-user-permissions, :host .user-permissions-actions .m8.cancel {
+  .row .col.m8 {
     width: 66.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m9, :host .user-permissions-actions .col.m9, :host .user-permissions-actions .m9.update-user-permissions, :host .user-permissions-actions .m9.cancel {
+  .row .col.m9 {
     width: 75%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m10, :host .user-permissions-actions .col.m10, :host .user-permissions-actions .m10.update-user-permissions, :host .user-permissions-actions .m10.cancel {
+  .row .col.m10 {
     width: 83.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m11, :host .user-permissions-actions .col.m11, :host .user-permissions-actions .m11.update-user-permissions, :host .user-permissions-actions .m11.cancel {
+  .row .col.m11 {
     width: 91.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.m12, :host .user-permissions-actions .col.m12, :host .user-permissions-actions .m12.update-user-permissions, :host .user-permissions-actions .m12.cancel {
+  .row .col.m12 {
     width: 100%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.offset-m1, :host .user-permissions-actions .col.offset-m1, :host .user-permissions-actions .offset-m1.update-user-permissions, :host .user-permissions-actions .offset-m1.cancel {
+  .row .col.offset-m1 {
     margin-left: 8.3333333333%;
   }
-  .row .col.pull-m1, :host .user-permissions-actions .col.pull-m1, :host .user-permissions-actions .pull-m1.update-user-permissions, :host .user-permissions-actions .pull-m1.cancel {
+  .row .col.pull-m1 {
     right: 8.3333333333%;
   }
-  .row .col.push-m1, :host .user-permissions-actions .col.push-m1, :host .user-permissions-actions .push-m1.update-user-permissions, :host .user-permissions-actions .push-m1.cancel {
+  .row .col.push-m1 {
     left: 8.3333333333%;
   }
-  .row .col.offset-m2, :host .user-permissions-actions .col.offset-m2, :host .user-permissions-actions .offset-m2.update-user-permissions, :host .user-permissions-actions .offset-m2.cancel {
+  .row .col.offset-m2 {
     margin-left: 16.6666666667%;
   }
-  .row .col.pull-m2, :host .user-permissions-actions .col.pull-m2, :host .user-permissions-actions .pull-m2.update-user-permissions, :host .user-permissions-actions .pull-m2.cancel {
+  .row .col.pull-m2 {
     right: 16.6666666667%;
   }
-  .row .col.push-m2, :host .user-permissions-actions .col.push-m2, :host .user-permissions-actions .push-m2.update-user-permissions, :host .user-permissions-actions .push-m2.cancel {
+  .row .col.push-m2 {
     left: 16.6666666667%;
   }
-  .row .col.offset-m3, :host .user-permissions-actions .col.offset-m3, :host .user-permissions-actions .offset-m3.update-user-permissions, :host .user-permissions-actions .offset-m3.cancel {
+  .row .col.offset-m3 {
     margin-left: 25%;
   }
-  .row .col.pull-m3, :host .user-permissions-actions .col.pull-m3, :host .user-permissions-actions .pull-m3.update-user-permissions, :host .user-permissions-actions .pull-m3.cancel {
+  .row .col.pull-m3 {
     right: 25%;
   }
-  .row .col.push-m3, :host .user-permissions-actions .col.push-m3, :host .user-permissions-actions .push-m3.update-user-permissions, :host .user-permissions-actions .push-m3.cancel {
+  .row .col.push-m3 {
     left: 25%;
   }
-  .row .col.offset-m4, :host .user-permissions-actions .col.offset-m4, :host .user-permissions-actions .offset-m4.update-user-permissions, :host .user-permissions-actions .offset-m4.cancel {
+  .row .col.offset-m4 {
     margin-left: 33.3333333333%;
   }
-  .row .col.pull-m4, :host .user-permissions-actions .col.pull-m4, :host .user-permissions-actions .pull-m4.update-user-permissions, :host .user-permissions-actions .pull-m4.cancel {
+  .row .col.pull-m4 {
     right: 33.3333333333%;
   }
-  .row .col.push-m4, :host .user-permissions-actions .col.push-m4, :host .user-permissions-actions .push-m4.update-user-permissions, :host .user-permissions-actions .push-m4.cancel {
+  .row .col.push-m4 {
     left: 33.3333333333%;
   }
-  .row .col.offset-m5, :host .user-permissions-actions .col.offset-m5, :host .user-permissions-actions .offset-m5.update-user-permissions, :host .user-permissions-actions .offset-m5.cancel {
+  .row .col.offset-m5 {
     margin-left: 41.6666666667%;
   }
-  .row .col.pull-m5, :host .user-permissions-actions .col.pull-m5, :host .user-permissions-actions .pull-m5.update-user-permissions, :host .user-permissions-actions .pull-m5.cancel {
+  .row .col.pull-m5 {
     right: 41.6666666667%;
   }
-  .row .col.push-m5, :host .user-permissions-actions .col.push-m5, :host .user-permissions-actions .push-m5.update-user-permissions, :host .user-permissions-actions .push-m5.cancel {
+  .row .col.push-m5 {
     left: 41.6666666667%;
   }
-  .row .col.offset-m6, :host .user-permissions-actions .col.offset-m6, :host .user-permissions-actions .offset-m6.update-user-permissions, :host .user-permissions-actions .offset-m6.cancel {
+  .row .col.offset-m6 {
     margin-left: 50%;
   }
-  .row .col.pull-m6, :host .user-permissions-actions .col.pull-m6, :host .user-permissions-actions .pull-m6.update-user-permissions, :host .user-permissions-actions .pull-m6.cancel {
+  .row .col.pull-m6 {
     right: 50%;
   }
-  .row .col.push-m6, :host .user-permissions-actions .col.push-m6, :host .user-permissions-actions .push-m6.update-user-permissions, :host .user-permissions-actions .push-m6.cancel {
+  .row .col.push-m6 {
     left: 50%;
   }
-  .row .col.offset-m7, :host .user-permissions-actions .col.offset-m7, :host .user-permissions-actions .offset-m7.update-user-permissions, :host .user-permissions-actions .offset-m7.cancel {
+  .row .col.offset-m7 {
     margin-left: 58.3333333333%;
   }
-  .row .col.pull-m7, :host .user-permissions-actions .col.pull-m7, :host .user-permissions-actions .pull-m7.update-user-permissions, :host .user-permissions-actions .pull-m7.cancel {
+  .row .col.pull-m7 {
     right: 58.3333333333%;
   }
-  .row .col.push-m7, :host .user-permissions-actions .col.push-m7, :host .user-permissions-actions .push-m7.update-user-permissions, :host .user-permissions-actions .push-m7.cancel {
+  .row .col.push-m7 {
     left: 58.3333333333%;
   }
-  .row .col.offset-m8, :host .user-permissions-actions .col.offset-m8, :host .user-permissions-actions .offset-m8.update-user-permissions, :host .user-permissions-actions .offset-m8.cancel {
+  .row .col.offset-m8 {
     margin-left: 66.6666666667%;
   }
-  .row .col.pull-m8, :host .user-permissions-actions .col.pull-m8, :host .user-permissions-actions .pull-m8.update-user-permissions, :host .user-permissions-actions .pull-m8.cancel {
+  .row .col.pull-m8 {
     right: 66.6666666667%;
   }
-  .row .col.push-m8, :host .user-permissions-actions .col.push-m8, :host .user-permissions-actions .push-m8.update-user-permissions, :host .user-permissions-actions .push-m8.cancel {
+  .row .col.push-m8 {
     left: 66.6666666667%;
   }
-  .row .col.offset-m9, :host .user-permissions-actions .col.offset-m9, :host .user-permissions-actions .offset-m9.update-user-permissions, :host .user-permissions-actions .offset-m9.cancel {
+  .row .col.offset-m9 {
     margin-left: 75%;
   }
-  .row .col.pull-m9, :host .user-permissions-actions .col.pull-m9, :host .user-permissions-actions .pull-m9.update-user-permissions, :host .user-permissions-actions .pull-m9.cancel {
+  .row .col.pull-m9 {
     right: 75%;
   }
-  .row .col.push-m9, :host .user-permissions-actions .col.push-m9, :host .user-permissions-actions .push-m9.update-user-permissions, :host .user-permissions-actions .push-m9.cancel {
+  .row .col.push-m9 {
     left: 75%;
   }
-  .row .col.offset-m10, :host .user-permissions-actions .col.offset-m10, :host .user-permissions-actions .offset-m10.update-user-permissions, :host .user-permissions-actions .offset-m10.cancel {
+  .row .col.offset-m10 {
     margin-left: 83.3333333333%;
   }
-  .row .col.pull-m10, :host .user-permissions-actions .col.pull-m10, :host .user-permissions-actions .pull-m10.update-user-permissions, :host .user-permissions-actions .pull-m10.cancel {
+  .row .col.pull-m10 {
     right: 83.3333333333%;
   }
-  .row .col.push-m10, :host .user-permissions-actions .col.push-m10, :host .user-permissions-actions .push-m10.update-user-permissions, :host .user-permissions-actions .push-m10.cancel {
+  .row .col.push-m10 {
     left: 83.3333333333%;
   }
-  .row .col.offset-m11, :host .user-permissions-actions .col.offset-m11, :host .user-permissions-actions .offset-m11.update-user-permissions, :host .user-permissions-actions .offset-m11.cancel {
+  .row .col.offset-m11 {
     margin-left: 91.6666666667%;
   }
-  .row .col.pull-m11, :host .user-permissions-actions .col.pull-m11, :host .user-permissions-actions .pull-m11.update-user-permissions, :host .user-permissions-actions .pull-m11.cancel {
+  .row .col.pull-m11 {
     right: 91.6666666667%;
   }
-  .row .col.push-m11, :host .user-permissions-actions .col.push-m11, :host .user-permissions-actions .push-m11.update-user-permissions, :host .user-permissions-actions .push-m11.cancel {
+  .row .col.push-m11 {
     left: 91.6666666667%;
   }
-  .row .col.offset-m12, :host .user-permissions-actions .col.offset-m12, :host .user-permissions-actions .offset-m12.update-user-permissions, :host .user-permissions-actions .offset-m12.cancel {
+  .row .col.offset-m12 {
     margin-left: 100%;
   }
-  .row .col.pull-m12, :host .user-permissions-actions .col.pull-m12, :host .user-permissions-actions .pull-m12.update-user-permissions, :host .user-permissions-actions .pull-m12.cancel {
+  .row .col.pull-m12 {
     right: 100%;
   }
-  .row .col.push-m12, :host .user-permissions-actions .col.push-m12, :host .user-permissions-actions .push-m12.update-user-permissions, :host .user-permissions-actions .push-m12.cancel {
+  .row .col.push-m12 {
     left: 100%;
   }
 }
 
 @media only screen and (min-width: 993px) {
-  .row .col.l1, :host .user-permissions-actions .col.l1, :host .user-permissions-actions .l1.update-user-permissions, :host .user-permissions-actions .l1.cancel {
+  .row .col.l1 {
     width: 8.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l2, :host .user-permissions-actions .col.l2, :host .user-permissions-actions .l2.update-user-permissions, :host .user-permissions-actions .l2.cancel {
+  .row .col.l2 {
     width: 16.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l3, :host .user-permissions-actions .col.l3, :host .user-permissions-actions .l3.update-user-permissions, :host .user-permissions-actions .l3.cancel {
+  .row .col.l3 {
     width: 25%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l4, :host .user-permissions-actions .col.l4, :host .user-permissions-actions .l4.update-user-permissions, :host .user-permissions-actions .l4.cancel {
+  .row .col.l4 {
     width: 33.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l5, :host .user-permissions-actions .col.l5, :host .user-permissions-actions .l5.update-user-permissions, :host .user-permissions-actions .l5.cancel {
+  .row .col.l5 {
     width: 41.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l6, :host .user-permissions-actions .col.l6, :host .user-permissions-actions .l6.update-user-permissions, :host .user-permissions-actions .l6.cancel {
+  .row .col.l6 {
     width: 50%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l7, :host .user-permissions-actions .col.l7, :host .user-permissions-actions .l7.update-user-permissions, :host .user-permissions-actions .l7.cancel {
+  .row .col.l7 {
     width: 58.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l8, :host .user-permissions-actions .col.l8, :host .user-permissions-actions .l8.update-user-permissions, :host .user-permissions-actions .l8.cancel {
+  .row .col.l8 {
     width: 66.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l9, :host .user-permissions-actions .col.l9, :host .user-permissions-actions .l9.update-user-permissions, :host .user-permissions-actions .l9.cancel {
+  .row .col.l9 {
     width: 75%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l10, :host .user-permissions-actions .col.l10, :host .user-permissions-actions .l10.update-user-permissions, :host .user-permissions-actions .l10.cancel {
+  .row .col.l10 {
     width: 83.3333333333%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l11, :host .user-permissions-actions .col.l11, :host .user-permissions-actions .l11.update-user-permissions, :host .user-permissions-actions .l11.cancel {
+  .row .col.l11 {
     width: 91.6666666667%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.l12, :host .user-permissions-actions .col.l12, :host .user-permissions-actions .l12.update-user-permissions, :host .user-permissions-actions .l12.cancel {
+  .row .col.l12 {
     width: 100%;
     margin-left: auto;
     left: auto;
     right: auto;
   }
-  .row .col.offset-l1, :host .user-permissions-actions .col.offset-l1, :host .user-permissions-actions .offset-l1.update-user-permissions, :host .user-permissions-actions .offset-l1.cancel {
+  .row .col.offset-l1 {
     margin-left: 8.3333333333%;
   }
-  .row .col.pull-l1, :host .user-permissions-actions .col.pull-l1, :host .user-permissions-actions .pull-l1.update-user-permissions, :host .user-permissions-actions .pull-l1.cancel {
+  .row .col.pull-l1 {
     right: 8.3333333333%;
   }
-  .row .col.push-l1, :host .user-permissions-actions .col.push-l1, :host .user-permissions-actions .push-l1.update-user-permissions, :host .user-permissions-actions .push-l1.cancel {
+  .row .col.push-l1 {
     left: 8.3333333333%;
   }
-  .row .col.offset-l2, :host .user-permissions-actions .col.offset-l2, :host .user-permissions-actions .offset-l2.update-user-permissions, :host .user-permissions-actions .offset-l2.cancel {
+  .row .col.offset-l2 {
     margin-left: 16.6666666667%;
   }
-  .row .col.pull-l2, :host .user-permissions-actions .col.pull-l2, :host .user-permissions-actions .pull-l2.update-user-permissions, :host .user-permissions-actions .pull-l2.cancel {
+  .row .col.pull-l2 {
     right: 16.6666666667%;
   }
-  .row .col.push-l2, :host .user-permissions-actions .col.push-l2, :host .user-permissions-actions .push-l2.update-user-permissions, :host .user-permissions-actions .push-l2.cancel {
+  .row .col.push-l2 {
     left: 16.6666666667%;
   }
-  .row .col.offset-l3, :host .user-permissions-actions .col.offset-l3, :host .user-permissions-actions .offset-l3.update-user-permissions, :host .user-permissions-actions .offset-l3.cancel {
+  .row .col.offset-l3 {
     margin-left: 25%;
   }
-  .row .col.pull-l3, :host .user-permissions-actions .col.pull-l3, :host .user-permissions-actions .pull-l3.update-user-permissions, :host .user-permissions-actions .pull-l3.cancel {
+  .row .col.pull-l3 {
     right: 25%;
   }
-  .row .col.push-l3, :host .user-permissions-actions .col.push-l3, :host .user-permissions-actions .push-l3.update-user-permissions, :host .user-permissions-actions .push-l3.cancel {
+  .row .col.push-l3 {
     left: 25%;
   }
-  .row .col.offset-l4, :host .user-permissions-actions .col.offset-l4, :host .user-permissions-actions .offset-l4.update-user-permissions, :host .user-permissions-actions .offset-l4.cancel {
+  .row .col.offset-l4 {
     margin-left: 33.3333333333%;
   }
-  .row .col.pull-l4, :host .user-permissions-actions .col.pull-l4, :host .user-permissions-actions .pull-l4.update-user-permissions, :host .user-permissions-actions .pull-l4.cancel {
+  .row .col.pull-l4 {
     right: 33.3333333333%;
   }
-  .row .col.push-l4, :host .user-permissions-actions .col.push-l4, :host .user-permissions-actions .push-l4.update-user-permissions, :host .user-permissions-actions .push-l4.cancel {
+  .row .col.push-l4 {
     left: 33.3333333333%;
   }
-  .row .col.offset-l5, :host .user-permissions-actions .col.offset-l5, :host .user-permissions-actions .offset-l5.update-user-permissions, :host .user-permissions-actions .offset-l5.cancel {
+  .row .col.offset-l5 {
     margin-left: 41.6666666667%;
   }
-  .row .col.pull-l5, :host .user-permissions-actions .col.pull-l5, :host .user-permissions-actions .pull-l5.update-user-permissions, :host .user-permissions-actions .pull-l5.cancel {
+  .row .col.pull-l5 {
     right: 41.6666666667%;
   }
-  .row .col.push-l5, :host .user-permissions-actions .col.push-l5, :host .user-permissions-actions .push-l5.update-user-permissions, :host .user-permissions-actions .push-l5.cancel {
+  .row .col.push-l5 {
     left: 41.6666666667%;
   }
-  .row .col.offset-l6, :host .user-permissions-actions .col.offset-l6, :host .user-permissions-actions .offset-l6.update-user-permissions, :host .user-permissions-actions .offset-l6.cancel {
+  .row .col.offset-l6 {
     margin-left: 50%;
   }
-  .row .col.pull-l6, :host .user-permissions-actions .col.pull-l6, :host .user-permissions-actions .pull-l6.update-user-permissions, :host .user-permissions-actions .pull-l6.cancel {
+  .row .col.pull-l6 {
     right: 50%;
   }
-  .row .col.push-l6, :host .user-permissions-actions .col.push-l6, :host .user-permissions-actions .push-l6.update-user-permissions, :host .user-permissions-actions .push-l6.cancel {
+  .row .col.push-l6 {
     left: 50%;
   }
-  .row .col.offset-l7, :host .user-permissions-actions .col.offset-l7, :host .user-permissions-actions .offset-l7.update-user-permissions, :host .user-permissions-actions .offset-l7.cancel {
+  .row .col.offset-l7 {
     margin-left: 58.3333333333%;
   }
-  .row .col.pull-l7, :host .user-permissions-actions .col.pull-l7, :host .user-permissions-actions .pull-l7.update-user-permissions, :host .user-permissions-actions .pull-l7.cancel {
+  .row .col.pull-l7 {
     right: 58.3333333333%;
   }
-  .row .col.push-l7, :host .user-permissions-actions .col.push-l7, :host .user-permissions-actions .push-l7.update-user-permissions, :host .user-permissions-actions .push-l7.cancel {
+  .row .col.push-l7 {
     left: 58.3333333333%;
   }
-  .row .col.offset-l8, :host .user-permissions-actions .col.offset-l8, :host .user-permissions-actions .offset-l8.update-user-permissions, :host .user-permissions-actions .offset-l8.cancel {
+  .row .col.offset-l8 {
     margin-left: 66.6666666667%;
   }
-  .row .col.pull-l8, :host .user-permissions-actions .col.pull-l8, :host .user-permissions-actions .pull-l8.update-user-permissions, :host .user-permissions-actions .pull-l8.cancel {
+  .row .col.pull-l8 {
     right: 66.6666666667%;
   }
-  .row .col.push-l8, :host .user-permissions-actions .col.push-l8, :host .user-permissions-actions .push-l8.update-user-permissions, :host .user-permissions-actions .push-l8.cancel {
+  .row .col.push-l8 {
     left: 66.6666666667%;
   }
-  .row .col.offset-l9, :host .user-permissions-actions .col.offset-l9, :host .user-permissions-actions .offset-l9.update-user-permissions, :host .user-permissions-actions .offset-l9.cancel {
+  .row .col.offset-l9 {
     margin-left: 75%;
   }
-  .row .col.pull-l9, :host .user-permissions-actions .col.pull-l9, :host .user-permissions-actions .pull-l9.update-user-permissions, :host .user-permissions-actions .pull-l9.cancel {
+  .row .col.pull-l9 {
     right: 75%;
   }
-  .row .col.push-l9, :host .user-permissions-actions .col.push-l9, :host .user-permissions-actions .push-l9.update-user-permissions, :host .user-permissions-actions .push-l9.cancel {
+  .row .col.push-l9 {
     left: 75%;
   }
-  .row .col.offset-l10, :host .user-permissions-actions .col.offset-l10, :host .user-permissions-actions .offset-l10.update-user-permissions, :host .user-permissions-actions .offset-l10.cancel {
+  .row .col.offset-l10 {
     margin-left: 83.3333333333%;
   }
-  .row .col.pull-l10, :host .user-permissions-actions .col.pull-l10, :host .user-permissions-actions .pull-l10.update-user-permissions, :host .user-permissions-actions .pull-l10.cancel {
+  .row .col.pull-l10 {
     right: 83.3333333333%;
   }
-  .row .col.push-l10, :host .user-permissions-actions .col.push-l10, :host .user-permissions-actions .push-l10.update-user-permissions, :host .user-permissions-actions .push-l10.cancel {
+  .row .col.push-l10 {
     left: 83.3333333333%;
   }
-  .row .col.offset-l11, :host .user-permissions-actions .col.offset-l11, :host .user-permissions-actions .offset-l11.update-user-permissions, :host .user-permissions-actions .offset-l11.cancel {
+  .row .col.offset-l11 {
     margin-left: 91.6666666667%;
   }
-  .row .col.pull-l11, :host .user-permissions-actions .col.pull-l11, :host .user-permissions-actions .pull-l11.update-user-permissions, :host .user-permissions-actions .pull-l11.cancel {
+  .row .col.pull-l11 {
     right: 91.6666666667%;
   }
-  .row .col.push-l11, :host .user-permissions-actions .col.push-l11, :host .user-permissions-actions .push-l11.update-user-permissions, :host .user-permissions-actions .push-l11.cancel {
+  .row .col.push-l11 {
     left: 91.6666666667%;
   }
-  .row .col.offset-l12, :host .user-permissions-actions .col.offset-l12, :host .user-permissions-actions .offset-l12.update-user-permissions, :host .user-permissions-actions .offset-l12.cancel {
+  .row .col.offset-l12 {
     margin-left: 100%;
   }
-  .row .col.pull-l12, :host .user-permissions-actions .col.pull-l12, :host .user-permissions-actions .pull-l12.update-user-permissions, :host .user-permissions-actions .pull-l12.cancel {
+  .row .col.pull-l12 {
     right: 100%;
   }
-  .row .col.push-l12, :host .user-permissions-actions .col.push-l12, :host .user-permissions-actions .push-l12.update-user-permissions, :host .user-permissions-actions .push-l12.cancel {
+  .row .col.push-l12 {
     left: 100%;
   }
 }
@@ -3881,7 +3881,7 @@ nav ul a {
   cursor: pointer;
 }
 
-nav ul a.btn, nav ul :host .user-permissions-actions a.update-user-permissions, nav ul :host .user-permissions-actions a.cancel, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul a.btn-floating {
+nav ul a.btn, nav ul :host .user-permissions-actions a.update-user-permissions, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul a.btn-floating {
   margin-top: -2px;
   margin-left: 15px;
   margin-right: 15px;
@@ -4318,14 +4318,14 @@ small {
   z-index: 2;
 }
 
-.card .card-action a:not(.btn):not(:host .user-permissions-actions .update-user-permissions):not(:host .user-permissions-actions .cancel):not(.btn-large):not(.btn-floating) {
+.card .card-action a:not(.btn):not(:host .user-permissions-actions .update-user-permissions):not(.btn-large):not(.btn-floating) {
   color: #ffab40;
   margin-right: 20px;
   transition: color .3s ease;
   text-transform: uppercase;
 }
 
-.card .card-action a:not(.btn):not(:host .user-permissions-actions .update-user-permissions):not(:host .user-permissions-actions .cancel):not(.btn-large):not(.btn-floating):hover {
+.card .card-action a:not(.btn):not(:host .user-permissions-actions .update-user-permissions):not(.btn-large):not(.btn-floating):hover {
   color: #ffd8a6;
 }
 
@@ -4408,7 +4408,7 @@ small {
   justify-content: space-between;
 }
 
-.toast .btn, .toast :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .toast .update-user-permissions, .toast :host .user-permissions-actions .cancel, :host .user-permissions-actions .toast .cancel, .toast .btn-large, .toast .btn-flat {
+.toast .btn, .toast :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .toast .update-user-permissions, .toast .btn-large, .toast .btn-flat {
   margin: 0;
   margin-left: 3rem;
 }
@@ -4532,7 +4532,7 @@ small {
   will-change: transform, opacity;
 }
 
-.btn, :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .cancel, .btn-large, .btn-flat {
+.btn, :host .user-permissions-actions .update-user-permissions, .btn-large, .btn-flat {
   border: none;
   border-radius: 2px;
   display: inline-block;
@@ -4545,28 +4545,28 @@ small {
   -webkit-tap-highlight-color: transparent;
 }
 
-.btn.disabled, :host .user-permissions-actions .disabled.update-user-permissions, :host .user-permissions-actions .disabled.cancel, .disabled.btn-large, .btn-floating.disabled, .btn-large.disabled, .btn:disabled .btn-large:disabled, :host .user-permissions-actions .update-user-permissions:disabled .btn-large:disabled, :host .user-permissions-actions .cancel:disabled .btn-large:disabled, .btn-large:disabled .btn-large:disabled, .btn-floating:disabled {
+.btn.disabled, :host .user-permissions-actions .disabled.update-user-permissions, .disabled.btn-large, .btn-floating.disabled, .btn-large.disabled, .btn:disabled .btn-large:disabled, :host .user-permissions-actions .update-user-permissions:disabled .btn-large:disabled, .btn-large:disabled .btn-large:disabled, .btn-floating:disabled {
   background-color: #DFDFDF !important;
   box-shadow: none;
   color: #9F9F9F !important;
   cursor: default;
 }
 
-.btn.disabled *, :host .user-permissions-actions .disabled.update-user-permissions *, :host .user-permissions-actions .disabled.cancel *, .disabled.btn-large *, .btn-floating.disabled *, .btn-large.disabled *, .btn:disabled .btn-large:disabled *, :host .user-permissions-actions .update-user-permissions:disabled .btn-large:disabled *, :host .user-permissions-actions .cancel:disabled .btn-large:disabled *, .btn-large:disabled .btn-large:disabled *, .btn-floating:disabled * {
+.btn.disabled *, :host .user-permissions-actions .disabled.update-user-permissions *, .disabled.btn-large *, .btn-floating.disabled *, .btn-large.disabled *, .btn:disabled .btn-large:disabled *, :host .user-permissions-actions .update-user-permissions:disabled .btn-large:disabled *, .btn-large:disabled .btn-large:disabled *, .btn-floating:disabled * {
   pointer-events: none;
 }
 
-.btn.disabled:hover, :host .user-permissions-actions .disabled.update-user-permissions:hover, :host .user-permissions-actions .disabled.cancel:hover, .disabled.btn-large:hover, .btn-floating.disabled:hover, .btn-large.disabled:hover, .btn:disabled .btn-large:disabled:hover, :host .user-permissions-actions .update-user-permissions:disabled .btn-large:disabled:hover, :host .user-permissions-actions .cancel:disabled .btn-large:disabled:hover, .btn-large:disabled .btn-large:disabled:hover, .btn-floating:disabled:hover {
+.btn.disabled:hover, :host .user-permissions-actions .disabled.update-user-permissions:hover, .disabled.btn-large:hover, .btn-floating.disabled:hover, .btn-large.disabled:hover, .btn:disabled .btn-large:disabled:hover, :host .user-permissions-actions .update-user-permissions:disabled .btn-large:disabled:hover, .btn-large:disabled .btn-large:disabled:hover, .btn-floating:disabled:hover {
   background-color: #DFDFDF !important;
   color: #9F9F9F !important;
 }
 
-.btn i, :host .user-permissions-actions .update-user-permissions i, :host .user-permissions-actions .cancel i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i {
+.btn i, :host .user-permissions-actions .update-user-permissions i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i {
   font-size: 1.3rem;
   line-height: inherit;
 }
 
-.btn, :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .cancel, .btn-large {
+.btn, :host .user-permissions-actions .update-user-permissions, .btn-large {
   text-decoration: none;
   color: #fff;
   background-color: #26a69a;
@@ -4576,7 +4576,7 @@ small {
   cursor: pointer;
 }
 
-.btn:hover, :host .user-permissions-actions .update-user-permissions:hover, :host .user-permissions-actions .cancel:hover, .btn-large:hover {
+.btn:hover, :host .user-permissions-actions .update-user-permissions:hover, .btn-large:hover {
   background-color: #2bbbad;
 }
 
@@ -4917,7 +4917,7 @@ a.waves-effect .waves-ripple {
   width: 100%;
 }
 
-.modal .modal-footer .btn, .modal .modal-footer :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .modal .modal-footer .update-user-permissions, .modal .modal-footer :host .user-permissions-actions .cancel, :host .user-permissions-actions .modal .modal-footer .cancel, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
+.modal .modal-footer .btn, .modal .modal-footer :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .modal .modal-footer .update-user-permissions, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
   float: right;
   margin: 6px 0;
 }
@@ -5833,7 +5833,7 @@ select:disabled {
   width: 100%;
 }
 
-.file-field .btn, .file-field :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .file-field .update-user-permissions, .file-field :host .user-permissions-actions .cancel, :host .user-permissions-actions .file-field .cancel, .file-field .btn-large {
+.file-field .btn, .file-field :host .user-permissions-actions .update-user-permissions, :host .user-permissions-actions .file-field .update-user-permissions, .file-field .btn-large {
   float: left;
   height: 3rem;
   line-height: 3rem;
@@ -6093,11 +6093,11 @@ input[type=range]:focus::-ms-fill-upper {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.side-nav a.btn, .side-nav :host .user-permissions-actions a.update-user-permissions, :host .user-permissions-actions .side-nav a.update-user-permissions, .side-nav :host .user-permissions-actions a.cancel, :host .user-permissions-actions .side-nav a.cancel, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-flat, .side-nav a.btn-floating {
+.side-nav a.btn, .side-nav :host .user-permissions-actions a.update-user-permissions, :host .user-permissions-actions .side-nav a.update-user-permissions, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-flat, .side-nav a.btn-floating {
   margin: 10px 15px;
 }
 
-.side-nav a.btn, .side-nav :host .user-permissions-actions a.update-user-permissions, :host .user-permissions-actions .side-nav a.update-user-permissions, .side-nav :host .user-permissions-actions a.cancel, :host .user-permissions-actions .side-nav a.cancel, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-floating {
+.side-nav a.btn, .side-nav :host .user-permissions-actions a.update-user-permissions, :host .user-permissions-actions .side-nav a.update-user-permissions, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-floating {
   color: #fff;
 }
 
@@ -6105,7 +6105,7 @@ input[type=range]:focus::-ms-fill-upper {
   color: #343434;
 }
 
-.side-nav a.btn:hover, .side-nav :host .user-permissions-actions a.update-user-permissions:hover, :host .user-permissions-actions .side-nav a.update-user-permissions:hover, .side-nav :host .user-permissions-actions a.cancel:hover, :host .user-permissions-actions .side-nav a.cancel:hover, .side-nav a.btn-large:hover, .side-nav a.btn-large:hover {
+.side-nav a.btn:hover, .side-nav :host .user-permissions-actions a.update-user-permissions:hover, :host .user-permissions-actions .side-nav a.update-user-permissions:hover, .side-nav a.btn-large:hover, .side-nav a.btn-large:hover {
   background-color: #2bbbad;
 }
 
@@ -7357,6 +7357,13 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 }
 
 :host .user-permissions-actions {
-  margin-top: 1rem;
   margin-bottom: 0;
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+:host .user-permissions-actions .update-user-permissions {
+  margin-top: 1rem;
+  margin-left: 1rem;
 }

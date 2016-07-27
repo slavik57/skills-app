@@ -43,7 +43,7 @@
   color: #ee6e73 !important;
 }
 
-.materialize-red.lighten-1, .loaded-content-wrapper .loading-content-error .materialize-red.retry-button, .submit-wrapper .materialize-red.submit-button {
+.materialize-red.lighten-1, .loaded-content-wrapper .loading-content-error .materialize-red.retry-button, .submit-wrapper .materialize-red.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .materialize-red.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .materialize-red.cancel-button {
   background-color: #ea454b !important;
 }
 
@@ -123,7 +123,7 @@
   color: #E57373 !important;
 }
 
-.red.lighten-1, .loaded-content-wrapper .loading-content-error .red.retry-button, .submit-wrapper .red.submit-button {
+.red.lighten-1, .loaded-content-wrapper .loading-content-error .red.retry-button, .submit-wrapper .red.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .red.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .red.cancel-button {
   background-color: #EF5350 !important;
 }
 
@@ -235,7 +235,7 @@
   color: #f06292 !important;
 }
 
-.pink.lighten-1, .loaded-content-wrapper .loading-content-error .pink.retry-button, .submit-wrapper .pink.submit-button {
+.pink.lighten-1, .loaded-content-wrapper .loading-content-error .pink.retry-button, .submit-wrapper .pink.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .pink.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .pink.cancel-button {
   background-color: #ec407a !important;
 }
 
@@ -347,7 +347,7 @@
   color: #ba68c8 !important;
 }
 
-.purple.lighten-1, .loaded-content-wrapper .loading-content-error .purple.retry-button, .submit-wrapper .purple.submit-button {
+.purple.lighten-1, .loaded-content-wrapper .loading-content-error .purple.retry-button, .submit-wrapper .purple.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .purple.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .purple.cancel-button {
   background-color: #ab47bc !important;
 }
 
@@ -459,7 +459,7 @@
   color: #9575cd !important;
 }
 
-.deep-purple.lighten-1, .loaded-content-wrapper .loading-content-error .deep-purple.retry-button, .submit-wrapper .deep-purple.submit-button {
+.deep-purple.lighten-1, .loaded-content-wrapper .loading-content-error .deep-purple.retry-button, .submit-wrapper .deep-purple.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .deep-purple.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .deep-purple.cancel-button {
   background-color: #7e57c2 !important;
 }
 
@@ -571,7 +571,7 @@
   color: #7986cb !important;
 }
 
-.indigo.lighten-1, .loaded-content-wrapper .loading-content-error .indigo.retry-button, .submit-wrapper .indigo.submit-button {
+.indigo.lighten-1, .loaded-content-wrapper .loading-content-error .indigo.retry-button, .submit-wrapper .indigo.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .indigo.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .indigo.cancel-button {
   background-color: #5c6bc0 !important;
 }
 
@@ -643,115 +643,115 @@
   color: #304ffe !important;
 }
 
-.blue, .progress .indeterminate, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button {
+.blue, .progress .indeterminate, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button {
   background-color: #2196F3 !important;
 }
 
-.blue-text, .input-field input:focus + label, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .permission-rule {
+.blue-text, .input-field input:focus + label, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .permission-rule {
   color: #2196F3 !important;
 }
 
-.blue.lighten-5, .progress .lighten-5.indeterminate, .loaded-content-wrapper .loading-content-error .lighten-5.retry-button, .submit-wrapper .lighten-5.submit-button {
+.blue.lighten-5, .progress .lighten-5.indeterminate, .loaded-content-wrapper .loading-content-error .lighten-5.retry-button, .submit-wrapper .lighten-5.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .lighten-5.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .lighten-5.cancel-button {
   background-color: #E3F2FD !important;
 }
 
-.blue-text.text-lighten-5, .input-field input:focus + label.text-lighten-5, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-lighten-5.permission-rule {
+.blue-text.text-lighten-5, .input-field input:focus + label.text-lighten-5, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-lighten-5.permission-rule {
   color: #E3F2FD !important;
 }
 
-.blue.lighten-4, .progress .lighten-4.indeterminate, .loaded-content-wrapper .loading-content-error .lighten-4.retry-button, .submit-wrapper .lighten-4.submit-button {
+.blue.lighten-4, .progress .lighten-4.indeterminate, .loaded-content-wrapper .loading-content-error .lighten-4.retry-button, .submit-wrapper .lighten-4.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .lighten-4.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .lighten-4.cancel-button {
   background-color: #BBDEFB !important;
 }
 
-.blue-text.text-lighten-4, .input-field input:focus + label.text-lighten-4, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-lighten-4.permission-rule {
+.blue-text.text-lighten-4, .input-field input:focus + label.text-lighten-4, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-lighten-4.permission-rule {
   color: #BBDEFB !important;
 }
 
-.blue.lighten-3, .progress .lighten-3.indeterminate, .loaded-content-wrapper .loading-content-error .lighten-3.retry-button, .submit-wrapper .lighten-3.submit-button {
+.blue.lighten-3, .progress .lighten-3.indeterminate, .loaded-content-wrapper .loading-content-error .lighten-3.retry-button, .submit-wrapper .lighten-3.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .lighten-3.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .lighten-3.cancel-button {
   background-color: #90CAF9 !important;
 }
 
-.blue-text.text-lighten-3, .input-field input:focus + label.text-lighten-3, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-lighten-3.permission-rule {
+.blue-text.text-lighten-3, .input-field input:focus + label.text-lighten-3, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-lighten-3.permission-rule {
   color: #90CAF9 !important;
 }
 
-.blue.lighten-2, .blue.progress, .progress .progress.indeterminate, .loaded-content-wrapper .loading-content-error .progress.retry-button, .submit-wrapper .progress.submit-button, .progress .lighten-2.indeterminate, .loaded-content-wrapper .loading-content-error .lighten-2.retry-button, .submit-wrapper .lighten-2.submit-button {
+.blue.lighten-2, .blue.progress, .progress .progress.indeterminate, .loaded-content-wrapper .loading-content-error .progress.retry-button, .submit-wrapper .progress.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .progress.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .progress.cancel-button, .progress .lighten-2.indeterminate, .loaded-content-wrapper .loading-content-error .lighten-2.retry-button, .submit-wrapper .lighten-2.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .lighten-2.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .lighten-2.cancel-button {
   background-color: #64B5F6 !important;
 }
 
-.blue-text.text-lighten-2, .input-field input:focus + label.text-lighten-2, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-lighten-2.permission-rule {
+.blue-text.text-lighten-2, .input-field input:focus + label.text-lighten-2, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-lighten-2.permission-rule {
   color: #64B5F6 !important;
 }
 
-.blue.lighten-1, .progress .lighten-1.indeterminate, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button {
+.blue.lighten-1, .progress .lighten-1.indeterminate, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button {
   background-color: #42A5F5 !important;
 }
 
-.blue-text.text-lighten-1, .input-field input:focus + label.text-lighten-1, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-lighten-1.permission-rule {
+.blue-text.text-lighten-1, .input-field input:focus + label.text-lighten-1, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-lighten-1.permission-rule {
   color: #42A5F5 !important;
 }
 
-.blue.darken-1, .progress .darken-1.indeterminate, .loaded-content-wrapper .loading-content-error .darken-1.retry-button, .submit-wrapper .darken-1.submit-button {
+.blue.darken-1, .progress .darken-1.indeterminate, .loaded-content-wrapper .loading-content-error .darken-1.retry-button, .submit-wrapper .darken-1.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .darken-1.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .darken-1.cancel-button {
   background-color: #1E88E5 !important;
 }
 
-.blue-text.text-darken-1, .input-field input:focus + label.text-darken-1, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-darken-1.permission-rule {
+.blue-text.text-darken-1, .input-field input:focus + label.text-darken-1, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-darken-1.permission-rule {
   color: #1E88E5 !important;
 }
 
-.blue.darken-2, .progress .darken-2.indeterminate, .loaded-content-wrapper .loading-content-error .darken-2.retry-button, .submit-wrapper .darken-2.submit-button {
+.blue.darken-2, .progress .darken-2.indeterminate, .loaded-content-wrapper .loading-content-error .darken-2.retry-button, .submit-wrapper .darken-2.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .darken-2.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .darken-2.cancel-button {
   background-color: #1976D2 !important;
 }
 
-.blue-text.text-darken-2, .input-field input:focus + label.text-darken-2, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-darken-2.permission-rule {
+.blue-text.text-darken-2, .input-field input:focus + label.text-darken-2, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-darken-2.permission-rule {
   color: #1976D2 !important;
 }
 
-.blue.darken-3, .progress .darken-3.indeterminate, .loaded-content-wrapper .loading-content-error .darken-3.retry-button, .submit-wrapper .darken-3.submit-button {
+.blue.darken-3, .progress .darken-3.indeterminate, .loaded-content-wrapper .loading-content-error .darken-3.retry-button, .submit-wrapper .darken-3.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .darken-3.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .darken-3.cancel-button {
   background-color: #1565C0 !important;
 }
 
-.blue-text.text-darken-3, .input-field input:focus + label.text-darken-3, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-darken-3.permission-rule {
+.blue-text.text-darken-3, .input-field input:focus + label.text-darken-3, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-darken-3.permission-rule {
   color: #1565C0 !important;
 }
 
-.blue.darken-4, .progress .darken-4.indeterminate, .loaded-content-wrapper .loading-content-error .darken-4.retry-button, .submit-wrapper .darken-4.submit-button {
+.blue.darken-4, .progress .darken-4.indeterminate, .loaded-content-wrapper .loading-content-error .darken-4.retry-button, .submit-wrapper .darken-4.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .darken-4.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .darken-4.cancel-button {
   background-color: #0D47A1 !important;
 }
 
-.blue-text.text-darken-4, .input-field input:focus + label.text-darken-4, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-darken-4.permission-rule {
+.blue-text.text-darken-4, .input-field input:focus + label.text-darken-4, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-darken-4.permission-rule {
   color: #0D47A1 !important;
 }
 
-.blue.accent-1, .progress .accent-1.indeterminate, .loaded-content-wrapper .loading-content-error .accent-1.retry-button, .submit-wrapper .accent-1.submit-button {
+.blue.accent-1, .progress .accent-1.indeterminate, .loaded-content-wrapper .loading-content-error .accent-1.retry-button, .submit-wrapper .accent-1.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .accent-1.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .accent-1.cancel-button {
   background-color: #82B1FF !important;
 }
 
-.blue-text.text-accent-1, .input-field input:focus + label.text-accent-1, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-accent-1.permission-rule {
+.blue-text.text-accent-1, .input-field input:focus + label.text-accent-1, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-accent-1.permission-rule {
   color: #82B1FF !important;
 }
 
-.blue.accent-2, .progress .accent-2.indeterminate, .loaded-content-wrapper .loading-content-error .accent-2.retry-button, .submit-wrapper .accent-2.submit-button {
+.blue.accent-2, .progress .accent-2.indeterminate, .loaded-content-wrapper .loading-content-error .accent-2.retry-button, .submit-wrapper .accent-2.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .accent-2.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .accent-2.cancel-button {
   background-color: #448AFF !important;
 }
 
-.blue-text.text-accent-2, .input-field input:focus + label.text-accent-2, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-accent-2.permission-rule {
+.blue-text.text-accent-2, .input-field input:focus + label.text-accent-2, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-accent-2.permission-rule {
   color: #448AFF !important;
 }
 
-.blue.accent-3, .progress .accent-3.indeterminate, .loaded-content-wrapper .loading-content-error .accent-3.retry-button, .submit-wrapper .accent-3.submit-button {
+.blue.accent-3, .progress .accent-3.indeterminate, .loaded-content-wrapper .loading-content-error .accent-3.retry-button, .submit-wrapper .accent-3.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .accent-3.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .accent-3.cancel-button {
   background-color: #2979FF !important;
 }
 
-.blue-text.text-accent-3, .input-field input:focus + label.text-accent-3, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-accent-3.permission-rule {
+.blue-text.text-accent-3, .input-field input:focus + label.text-accent-3, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-accent-3.permission-rule {
   color: #2979FF !important;
 }
 
-.blue.accent-4, .progress .accent-4.indeterminate, .loaded-content-wrapper .loading-content-error .accent-4.retry-button, .submit-wrapper .accent-4.submit-button {
+.blue.accent-4, .progress .accent-4.indeterminate, .loaded-content-wrapper .loading-content-error .accent-4.retry-button, .submit-wrapper .accent-4.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .accent-4.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .accent-4.cancel-button {
   background-color: #2962FF !important;
 }
 
-.blue-text.text-accent-4, .input-field input:focus + label.text-accent-4, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-accent-4.permission-rule {
+.blue-text.text-accent-4, .input-field input:focus + label.text-accent-4, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-accent-4.permission-rule {
   color: #2962FF !important;
 }
 
@@ -795,7 +795,7 @@
   color: #4fc3f7 !important;
 }
 
-.light-blue.lighten-1, .loaded-content-wrapper .loading-content-error .light-blue.retry-button, .submit-wrapper .light-blue.submit-button {
+.light-blue.lighten-1, .loaded-content-wrapper .loading-content-error .light-blue.retry-button, .submit-wrapper .light-blue.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .light-blue.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .light-blue.cancel-button {
   background-color: #29b6f6 !important;
 }
 
@@ -907,7 +907,7 @@
   color: #4dd0e1 !important;
 }
 
-.cyan.lighten-1, .loaded-content-wrapper .loading-content-error .cyan.retry-button, .submit-wrapper .cyan.submit-button {
+.cyan.lighten-1, .loaded-content-wrapper .loading-content-error .cyan.retry-button, .submit-wrapper .cyan.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cyan.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cyan.cancel-button {
   background-color: #26c6da !important;
 }
 
@@ -1019,7 +1019,7 @@
   color: #4db6ac !important;
 }
 
-.teal.lighten-1, .loaded-content-wrapper .loading-content-error .teal.retry-button, .submit-wrapper .teal.submit-button {
+.teal.lighten-1, .loaded-content-wrapper .loading-content-error .teal.retry-button, .submit-wrapper .teal.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .teal.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .teal.cancel-button {
   background-color: #26a69a !important;
 }
 
@@ -1131,7 +1131,7 @@
   color: #81C784 !important;
 }
 
-.green.lighten-1, .loaded-content-wrapper .loading-content-error .green.retry-button, .submit-wrapper .green.submit-button {
+.green.lighten-1, .loaded-content-wrapper .loading-content-error .green.retry-button, .submit-wrapper .green.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .green.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .green.cancel-button {
   background-color: #66BB6A !important;
 }
 
@@ -1243,7 +1243,7 @@
   color: #aed581 !important;
 }
 
-.light-green.lighten-1, .loaded-content-wrapper .loading-content-error .light-green.retry-button, .submit-wrapper .light-green.submit-button {
+.light-green.lighten-1, .loaded-content-wrapper .loading-content-error .light-green.retry-button, .submit-wrapper .light-green.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .light-green.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .light-green.cancel-button {
   background-color: #9ccc65 !important;
 }
 
@@ -1355,7 +1355,7 @@
   color: #dce775 !important;
 }
 
-.lime.lighten-1, .loaded-content-wrapper .loading-content-error .lime.retry-button, .submit-wrapper .lime.submit-button {
+.lime.lighten-1, .loaded-content-wrapper .loading-content-error .lime.retry-button, .submit-wrapper .lime.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .lime.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .lime.cancel-button {
   background-color: #d4e157 !important;
 }
 
@@ -1467,7 +1467,7 @@
   color: #fff176 !important;
 }
 
-.yellow.lighten-1, .loaded-content-wrapper .loading-content-error .yellow.retry-button, .submit-wrapper .yellow.submit-button {
+.yellow.lighten-1, .loaded-content-wrapper .loading-content-error .yellow.retry-button, .submit-wrapper .yellow.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .yellow.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .yellow.cancel-button {
   background-color: #ffee58 !important;
 }
 
@@ -1579,7 +1579,7 @@
   color: #ffd54f !important;
 }
 
-.amber.lighten-1, .loaded-content-wrapper .loading-content-error .amber.retry-button, .submit-wrapper .amber.submit-button {
+.amber.lighten-1, .loaded-content-wrapper .loading-content-error .amber.retry-button, .submit-wrapper .amber.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .amber.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .amber.cancel-button {
   background-color: #ffca28 !important;
 }
 
@@ -1691,7 +1691,7 @@
   color: #ffb74d !important;
 }
 
-.orange.lighten-1, .loaded-content-wrapper .loading-content-error .orange.retry-button, .submit-wrapper .orange.submit-button {
+.orange.lighten-1, .loaded-content-wrapper .loading-content-error .orange.retry-button, .submit-wrapper .orange.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .orange.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .orange.cancel-button {
   background-color: #ffa726 !important;
 }
 
@@ -1803,7 +1803,7 @@
   color: #ff8a65 !important;
 }
 
-.deep-orange.lighten-1, .loaded-content-wrapper .loading-content-error .deep-orange.retry-button, .submit-wrapper .deep-orange.submit-button {
+.deep-orange.lighten-1, .loaded-content-wrapper .loading-content-error .deep-orange.retry-button, .submit-wrapper .deep-orange.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .deep-orange.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .deep-orange.cancel-button {
   background-color: #ff7043 !important;
 }
 
@@ -1915,7 +1915,7 @@
   color: #a1887f !important;
 }
 
-.brown.lighten-1, .loaded-content-wrapper .loading-content-error .brown.retry-button, .submit-wrapper .brown.submit-button {
+.brown.lighten-1, .loaded-content-wrapper .loading-content-error .brown.retry-button, .submit-wrapper .brown.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .brown.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .brown.cancel-button {
   background-color: #8d6e63 !important;
 }
 
@@ -1995,7 +1995,7 @@
   color: #90a4ae !important;
 }
 
-.blue-grey.lighten-1, .loaded-content-wrapper .loading-content-error .blue-grey.retry-button, .submit-wrapper .blue-grey.submit-button {
+.blue-grey.lighten-1, .loaded-content-wrapper .loading-content-error .blue-grey.retry-button, .submit-wrapper .blue-grey.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .blue-grey.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .blue-grey.cancel-button {
   background-color: #78909c !important;
 }
 
@@ -2039,7 +2039,7 @@
   background-color: #9e9e9e !important;
 }
 
-.grey-text, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .permission-rule.disabled {
+.grey-text, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .permission-rule.disabled {
   color: #9e9e9e !important;
 }
 
@@ -2047,7 +2047,7 @@
   background-color: #fafafa !important;
 }
 
-.grey-text.text-lighten-5, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-lighten-5.permission-rule.disabled {
+.grey-text.text-lighten-5, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-lighten-5.permission-rule.disabled {
   color: #fafafa !important;
 }
 
@@ -2055,7 +2055,7 @@
   background-color: #f5f5f5 !important;
 }
 
-.grey-text.text-lighten-4, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-lighten-4.permission-rule.disabled {
+.grey-text.text-lighten-4, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-lighten-4.permission-rule.disabled {
   color: #f5f5f5 !important;
 }
 
@@ -2063,7 +2063,7 @@
   background-color: #eee !important;
 }
 
-.grey-text.text-lighten-3, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-lighten-3.permission-rule.disabled {
+.grey-text.text-lighten-3, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-lighten-3.permission-rule.disabled {
   color: #eee !important;
 }
 
@@ -2071,15 +2071,15 @@
   background-color: #e0e0e0 !important;
 }
 
-.grey-text.text-lighten-2, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-lighten-2.permission-rule.disabled {
+.grey-text.text-lighten-2, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-lighten-2.permission-rule.disabled {
   color: #e0e0e0 !important;
 }
 
-.grey.lighten-1, .lighten-1.progress, .loaded-content-wrapper .loading-content-error .progress.retry-button, .submit-wrapper .progress.submit-button, .loaded-content-wrapper .loading-content-error .grey.retry-button, .submit-wrapper .grey.submit-button {
+.grey.lighten-1, .lighten-1.progress, .loaded-content-wrapper .loading-content-error .progress.retry-button, .submit-wrapper .progress.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .progress.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .progress.cancel-button, .loaded-content-wrapper .loading-content-error .grey.retry-button, .submit-wrapper .grey.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .grey.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .grey.cancel-button {
   background-color: #bdbdbd !important;
 }
 
-.grey-text.text-lighten-1, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-lighten-1.permission-rule.disabled {
+.grey-text.text-lighten-1, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-lighten-1.permission-rule.disabled {
   color: #bdbdbd !important;
 }
 
@@ -2087,7 +2087,7 @@
   background-color: #757575 !important;
 }
 
-.grey-text.text-darken-1, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-darken-1.permission-rule.disabled {
+.grey-text.text-darken-1, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-darken-1.permission-rule.disabled {
   color: #757575 !important;
 }
 
@@ -2095,7 +2095,7 @@
   background-color: #616161 !important;
 }
 
-.grey-text.text-darken-2, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-darken-2.permission-rule.disabled {
+.grey-text.text-darken-2, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-darken-2.permission-rule.disabled {
   color: #616161 !important;
 }
 
@@ -2103,7 +2103,7 @@
   background-color: #424242 !important;
 }
 
-.grey-text.text-darken-3, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-darken-3.permission-rule.disabled {
+.grey-text.text-darken-3, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-darken-3.permission-rule.disabled {
   color: #424242 !important;
 }
 
@@ -2111,7 +2111,7 @@
   background-color: #212121 !important;
 }
 
-.grey-text.text-darken-4, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .text-darken-4.permission-rule.disabled {
+.grey-text.text-darken-4, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .text-darken-4.permission-rule.disabled {
   color: #212121 !important;
 }
 
@@ -2151,7 +2151,7 @@
   background-color: #fff !important;
 }
 
-.white-text {
+.white-text, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button {
   color: #fff !important;
 }
 
@@ -2396,11 +2396,11 @@ ul li {
   box-shadow: none !important;
 }
 
-.z-depth-1, nav, .card-panel, .card, .toast, .btn, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
+.z-depth-1, nav, .card-panel, .card, .toast, .btn, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
-.z-depth-1-half, .btn:hover, .loaded-content-wrapper .loading-content-error .retry-button:hover, .submit-wrapper .submit-button:hover, .btn-large:hover, .btn-floating:hover {
+.z-depth-1-half, .btn:hover, .loaded-content-wrapper .loading-content-error .retry-button:hover, .submit-wrapper .submit-button:hover, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button:hover, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button:hover, .btn-large:hover, .btn-floating:hover {
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
@@ -3881,7 +3881,7 @@ nav ul a {
   cursor: pointer;
 }
 
-nav ul a.btn, nav ul .loaded-content-wrapper .loading-content-error a.retry-button, .loaded-content-wrapper .loading-content-error nav ul a.retry-button, nav ul .submit-wrapper a.submit-button, .submit-wrapper nav ul a.submit-button, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul a.btn-floating {
+nav ul a.btn, nav ul .loaded-content-wrapper .loading-content-error a.retry-button, .loaded-content-wrapper .loading-content-error nav ul a.retry-button, nav ul .submit-wrapper a.submit-button, .submit-wrapper nav ul a.submit-button, nav ul :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules a.update-button, nav ul :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules a.cancel-button, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul a.btn-floating {
   margin-top: -2px;
   margin-left: 15px;
   margin-right: 15px;
@@ -4318,14 +4318,14 @@ small {
   z-index: 2;
 }
 
-.card .card-action a:not(.btn):not(.loaded-content-wrapper .loading-content-error .retry-button):not(.submit-wrapper .submit-button):not(.btn-large):not(.btn-floating) {
+.card .card-action a:not(.btn):not(.loaded-content-wrapper .loading-content-error .retry-button):not(.submit-wrapper .submit-button):not(:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button):not(:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button):not(.btn-large):not(.btn-floating) {
   color: #ffab40;
   margin-right: 20px;
   transition: color .3s ease;
   text-transform: uppercase;
 }
 
-.card .card-action a:not(.btn):not(.loaded-content-wrapper .loading-content-error .retry-button):not(.submit-wrapper .submit-button):not(.btn-large):not(.btn-floating):hover {
+.card .card-action a:not(.btn):not(.loaded-content-wrapper .loading-content-error .retry-button):not(.submit-wrapper .submit-button):not(:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button):not(:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button):not(.btn-large):not(.btn-floating):hover {
   color: #ffd8a6;
 }
 
@@ -4408,7 +4408,7 @@ small {
   justify-content: space-between;
 }
 
-.toast .btn, .toast .loaded-content-wrapper .loading-content-error .retry-button, .loaded-content-wrapper .loading-content-error .toast .retry-button, .toast .submit-wrapper .submit-button, .submit-wrapper .toast .submit-button, .toast .btn-large, .toast .btn-flat {
+.toast .btn, .toast .loaded-content-wrapper .loading-content-error .retry-button, .loaded-content-wrapper .loading-content-error .toast .retry-button, .toast .submit-wrapper .submit-button, .submit-wrapper .toast .submit-button, .toast :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .toast .update-button, .toast :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .toast .cancel-button, .toast .btn-large, .toast .btn-flat {
   margin: 0;
   margin-left: 3rem;
 }
@@ -4532,7 +4532,7 @@ small {
   will-change: transform, opacity;
 }
 
-.btn, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button, .btn-large, .btn-flat {
+.btn, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button, .btn-large, .btn-flat {
   border: none;
   border-radius: 2px;
   display: inline-block;
@@ -4545,28 +4545,28 @@ small {
   -webkit-tap-highlight-color: transparent;
 }
 
-.btn.disabled, .loaded-content-wrapper .loading-content-error .disabled.retry-button, .submit-wrapper .disabled.submit-button, .disabled.btn-large, .btn-floating.disabled, .btn-large.disabled, .btn:disabled .btn-large:disabled, .loaded-content-wrapper .loading-content-error .retry-button:disabled .btn-large:disabled, .submit-wrapper .submit-button:disabled .btn-large:disabled, .btn-large:disabled .btn-large:disabled, .btn-floating:disabled {
+.btn.disabled, .loaded-content-wrapper .loading-content-error .disabled.retry-button, .submit-wrapper .disabled.submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .disabled.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .disabled.cancel-button, .disabled.btn-large, .btn-floating.disabled, .btn-large.disabled, .btn:disabled .btn-large:disabled, .loaded-content-wrapper .loading-content-error .retry-button:disabled .btn-large:disabled, .submit-wrapper .submit-button:disabled .btn-large:disabled, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button:disabled .btn-large:disabled, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button:disabled .btn-large:disabled, .btn-large:disabled .btn-large:disabled, .btn-floating:disabled {
   background-color: #DFDFDF !important;
   box-shadow: none;
   color: #9F9F9F !important;
   cursor: default;
 }
 
-.btn.disabled *, .loaded-content-wrapper .loading-content-error .disabled.retry-button *, .submit-wrapper .disabled.submit-button *, .disabled.btn-large *, .btn-floating.disabled *, .btn-large.disabled *, .btn:disabled .btn-large:disabled *, .loaded-content-wrapper .loading-content-error .retry-button:disabled .btn-large:disabled *, .submit-wrapper .submit-button:disabled .btn-large:disabled *, .btn-large:disabled .btn-large:disabled *, .btn-floating:disabled * {
+.btn.disabled *, .loaded-content-wrapper .loading-content-error .disabled.retry-button *, .submit-wrapper .disabled.submit-button *, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .disabled.update-button *, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .disabled.cancel-button *, .disabled.btn-large *, .btn-floating.disabled *, .btn-large.disabled *, .btn:disabled .btn-large:disabled *, .loaded-content-wrapper .loading-content-error .retry-button:disabled .btn-large:disabled *, .submit-wrapper .submit-button:disabled .btn-large:disabled *, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button:disabled .btn-large:disabled *, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button:disabled .btn-large:disabled *, .btn-large:disabled .btn-large:disabled *, .btn-floating:disabled * {
   pointer-events: none;
 }
 
-.btn.disabled:hover, .loaded-content-wrapper .loading-content-error .disabled.retry-button:hover, .submit-wrapper .disabled.submit-button:hover, .disabled.btn-large:hover, .btn-floating.disabled:hover, .btn-large.disabled:hover, .btn:disabled .btn-large:disabled:hover, .loaded-content-wrapper .loading-content-error .retry-button:disabled .btn-large:disabled:hover, .submit-wrapper .submit-button:disabled .btn-large:disabled:hover, .btn-large:disabled .btn-large:disabled:hover, .btn-floating:disabled:hover {
+.btn.disabled:hover, .loaded-content-wrapper .loading-content-error .disabled.retry-button:hover, .submit-wrapper .disabled.submit-button:hover, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .disabled.update-button:hover, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .disabled.cancel-button:hover, .disabled.btn-large:hover, .btn-floating.disabled:hover, .btn-large.disabled:hover, .btn:disabled .btn-large:disabled:hover, .loaded-content-wrapper .loading-content-error .retry-button:disabled .btn-large:disabled:hover, .submit-wrapper .submit-button:disabled .btn-large:disabled:hover, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button:disabled .btn-large:disabled:hover, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button:disabled .btn-large:disabled:hover, .btn-large:disabled .btn-large:disabled:hover, .btn-floating:disabled:hover {
   background-color: #DFDFDF !important;
   color: #9F9F9F !important;
 }
 
-.btn i, .loaded-content-wrapper .loading-content-error .retry-button i, .submit-wrapper .submit-button i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i {
+.btn i, .loaded-content-wrapper .loading-content-error .retry-button i, .submit-wrapper .submit-button i, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button i, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button i, .btn-large i, .btn-floating i, .btn-large i, .btn-flat i {
   font-size: 1.3rem;
   line-height: inherit;
 }
 
-.btn, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button, .btn-large {
+.btn, .loaded-content-wrapper .loading-content-error .retry-button, .submit-wrapper .submit-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button, .btn-large {
   text-decoration: none;
   color: #fff;
   background-color: #26a69a;
@@ -4576,7 +4576,7 @@ small {
   cursor: pointer;
 }
 
-.btn:hover, .loaded-content-wrapper .loading-content-error .retry-button:hover, .submit-wrapper .submit-button:hover, .btn-large:hover {
+.btn:hover, .loaded-content-wrapper .loading-content-error .retry-button:hover, .submit-wrapper .submit-button:hover, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button:hover, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button:hover, .btn-large:hover {
   background-color: #2bbbad;
 }
 
@@ -4917,7 +4917,7 @@ a.waves-effect .waves-ripple {
   width: 100%;
 }
 
-.modal .modal-footer .btn, .modal .modal-footer .loaded-content-wrapper .loading-content-error .retry-button, .loaded-content-wrapper .loading-content-error .modal .modal-footer .retry-button, .modal .modal-footer .submit-wrapper .submit-button, .submit-wrapper .modal .modal-footer .submit-button, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
+.modal .modal-footer .btn, .modal .modal-footer .loaded-content-wrapper .loading-content-error .retry-button, .loaded-content-wrapper .loading-content-error .modal .modal-footer .retry-button, .modal .modal-footer .submit-wrapper .submit-button, .submit-wrapper .modal .modal-footer .submit-button, .modal .modal-footer :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .modal .modal-footer .update-button, .modal .modal-footer :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .modal .modal-footer .cancel-button, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
   float: right;
   margin: 6px 0;
 }
@@ -5833,7 +5833,7 @@ select:disabled {
   width: 100%;
 }
 
-.file-field .btn, .file-field .loaded-content-wrapper .loading-content-error .retry-button, .loaded-content-wrapper .loading-content-error .file-field .retry-button, .file-field .submit-wrapper .submit-button, .submit-wrapper .file-field .submit-button, .file-field .btn-large {
+.file-field .btn, .file-field .loaded-content-wrapper .loading-content-error .retry-button, .loaded-content-wrapper .loading-content-error .file-field .retry-button, .file-field .submit-wrapper .submit-button, .submit-wrapper .file-field .submit-button, .file-field :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .file-field .update-button, .file-field :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .file-field .cancel-button, .file-field .btn-large {
   float: left;
   height: 3rem;
   line-height: 3rem;
@@ -6093,11 +6093,11 @@ input[type=range]:focus::-ms-fill-upper {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-.side-nav a.btn, .side-nav .loaded-content-wrapper .loading-content-error a.retry-button, .loaded-content-wrapper .loading-content-error .side-nav a.retry-button, .side-nav .submit-wrapper a.submit-button, .submit-wrapper .side-nav a.submit-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-flat, .side-nav a.btn-floating {
+.side-nav a.btn, .side-nav .loaded-content-wrapper .loading-content-error a.retry-button, .loaded-content-wrapper .loading-content-error .side-nav a.retry-button, .side-nav .submit-wrapper a.submit-button, .submit-wrapper .side-nav a.submit-button, .side-nav :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules a.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .side-nav a.update-button, .side-nav :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules a.cancel-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .side-nav a.cancel-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-flat, .side-nav a.btn-floating {
   margin: 10px 15px;
 }
 
-.side-nav a.btn, .side-nav .loaded-content-wrapper .loading-content-error a.retry-button, .loaded-content-wrapper .loading-content-error .side-nav a.retry-button, .side-nav .submit-wrapper a.submit-button, .submit-wrapper .side-nav a.submit-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-floating {
+.side-nav a.btn, .side-nav .loaded-content-wrapper .loading-content-error a.retry-button, .loaded-content-wrapper .loading-content-error .side-nav a.retry-button, .side-nav .submit-wrapper a.submit-button, .submit-wrapper .side-nav a.submit-button, .side-nav :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules a.update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .side-nav a.update-button, .side-nav :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules a.cancel-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .side-nav a.cancel-button, .side-nav a.btn-large, .side-nav a.btn-large, .side-nav a.btn-floating {
   color: #fff;
 }
 
@@ -6105,7 +6105,7 @@ input[type=range]:focus::-ms-fill-upper {
   color: #343434;
 }
 
-.side-nav a.btn:hover, .side-nav .loaded-content-wrapper .loading-content-error a.retry-button:hover, .loaded-content-wrapper .loading-content-error .side-nav a.retry-button:hover, .side-nav .submit-wrapper a.submit-button:hover, .submit-wrapper .side-nav a.submit-button:hover, .side-nav a.btn-large:hover, .side-nav a.btn-large:hover {
+.side-nav a.btn:hover, .side-nav .loaded-content-wrapper .loading-content-error a.retry-button:hover, .loaded-content-wrapper .loading-content-error .side-nav a.retry-button:hover, .side-nav .submit-wrapper a.submit-button:hover, .submit-wrapper .side-nav a.submit-button:hover, .side-nav :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules a.update-button:hover, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .side-nav a.update-button:hover, .side-nav :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules a.cancel-button:hover, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .side-nav a.cancel-button:hover, .side-nav a.btn-large:hover, .side-nav a.btn-large:hover {
   background-color: #2bbbad;
 }
 
@@ -7505,7 +7505,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   opacity: 1;
 }
 
-.small-item, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item {
+.small-item, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item {
   height: 2.4rem;
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
@@ -7513,7 +7513,10 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 :host {
   display: flex;
-  overflow-y: auto;
+}
+
+:host .update-user-permissions-rules-wrapper {
+  display: flex;
 }
 
 :host .update-user-permissions-rules-wrapper.loading {
@@ -7524,25 +7527,74 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   height: 6rem;
 }
 
+:host .update-user-permissions-rules-wrapper.saving {
+  pointer-events: none;
+}
+
+:host .update-user-permissions-rules-wrapper.saving .user-permissions-rules-wrapper {
+  opacity: .3;
+}
+
+:host .update-user-permissions-rules-wrapper.saving .loading-user-permissions-rules {
+  opacity: 1;
+  visibility: visible;
+  margin-top: 3rem;
+}
+
 :host .update-user-permissions-rules-wrapper .loading-user-permissions-rules {
   top: 0;
+  z-index: 100;
 }
 
 :host .update-user-permissions-rules-wrapper .loading-user-permissions-rules-error.loading-content-error {
   top: 0;
 }
 
-:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item {
+:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper {
+  flex: 1;
+  display: flex;
+}
+
+:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper {
+  flex: 1;
+}
+
+:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection {
+  overflow-y: auto;
+}
+
+:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item {
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
 }
 
-:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .permission-rule {
+:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .permission-rule {
   vertical-align: middle;
 }
 
-:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .collection .item .permission-rule.disabled {
+:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .user-premissions-rules-collection-wrapper .collection .item .permission-rule.disabled {
   cursor: default;
+}
+
+:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .saving-error {
+  color: red;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+  display: block;
+}
+
+:host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .update-button, :host .update-user-permissions-rules-wrapper .user-permissions-rules-wrapper .user-permissions-rules .cancel-button {
+  margin-bottom: 1rem;
+  display: inline-block;
+  margin-left: 1rem;
 }

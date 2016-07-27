@@ -1,5 +1,7 @@
 <div class="update-user-permissions-rules-wrapper loaded-content-wrapper"
-     [ngClass]="{loading: isLoadingUserPermissionsRules, error: loadingUserPermissionsRulesError}">
+     [ngClass]="{loading: isLoadingUserPermissionsRules,
+                  error: loadingUserPermissionsRulesError,
+                  saving: isSavingUserPermissions}">
 
   <div class="loading-user-permissions-rules loading-wrapper">
     <circular-loading></circular-loading>
@@ -14,26 +16,46 @@
 
   <div class="user-permissions-rules-wrapper content-wrapper">
 
-    <div *ngIf="userPermissionsRules">
+    <div class="user-permissions-rules"
+         *ngIf="userPermissionsRules">
 
-      <ul class="collection">
+      <div class="user-premissions-rules-collection-wrapper">
+        <ul class="collection">
 
-        <li class="item collection-item"
-            *ngFor="let userPermissionRule of userPermissionsRules">
+          <li class="item collection-item"
+              *ngFor="let userPermissionRule of userPermissionsRules">
 
-            <input id="user-permission-rule-{{userPermissionRule.value}}"
-                  type="checkbox"
-                  [disabled]="!canEditPermission(userPermissionRule)"
-                  [checked]="hasPermission(userPermissionRule)"/>
-            <label attr.for="user-permission-rule-{{userPermissionRule.value}}"
-                   [ngClass]="{disabled:!canEditPermission(userPermissionRule)}"
-                   class="permission-rule">
-              {{userPermissionRule | globalPermissionsName}}
-            </label>
+              <input id="user-permission-rule-{{userPermissionRule.value}}"
+                    type="checkbox"
+                    (change)="setPermission(userPermissionRule, $event.target.checked)"
+                    [disabled]="!canEditPermission(userPermissionRule)"
+                    [checked]="hasPermission(userPermissionRule)"/>
+              <label attr.for="user-permission-rule-{{userPermissionRule.value}}"
+                     [ngClass]="{disabled:!canEditPermission(userPermissionRule)}"
+                     class="permission-rule">
+                {{userPermissionRule.name}}
+              </label>
 
-        </li>
+          </li>
 
-      </ul>
+        </ul>
+      </div>
+      <div>
+        <span class="saving-error"
+              *ngIf="savingUserPermissionsError">
+          {{savingUserPermissionsError}}
+        </span>
+        <button class="update-button"
+                [disabled]="!isPermissionsChanged()"
+                [ngClass]="{disabled: !isPermissionsChanged()}"
+                (click)="savePermissions()">
+          Update
+        </button>
+        <button class="cancel-button"
+                (click)="cancel()">
+          Cancel
+        </button>
+      </div>
 
     </div>
 

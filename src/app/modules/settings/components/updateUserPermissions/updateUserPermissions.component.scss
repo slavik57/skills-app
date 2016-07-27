@@ -4,9 +4,10 @@
 
 :host {
   display: flex;
-  overflow-y: auto;
 
   .update-user-permissions-rules-wrapper{
+    display: flex;
+
     &.loading{
       height: 6rem;
     }
@@ -15,8 +16,23 @@
       height: 6rem;
     }
 
+    &.saving {
+      pointer-events: none;
+
+      .user-permissions-rules-wrapper{
+        opacity: .3;
+      }
+
+      .loading-user-permissions-rules{
+        opacity: 1;
+        visibility: visible;
+        margin-top: 3rem;
+      }
+    }
+
     .loading-user-permissions-rules{
       top: 0;
+      z-index: 100;
     }
 
     .loading-user-permissions-rules-error.loading-content-error{
@@ -24,28 +40,63 @@
     }
 
     .user-permissions-rules-wrapper {
-      .collection{
+      flex: 1;
+      display: flex;
 
-        .item{
-          @extend .small-item;
-          $transition-speed: .3s;
-          user-select: none;
-          -moz-user-select: none;
-          -webkit-user-select: none;
-          -ms-user-select: none;
+      .user-permissions-rules{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
 
-          .permission-rule {
-            @extend .blue-text;
-            vertical-align: middle;
+        .user-premissions-rules-collection-wrapper{
+          flex: 1;
 
-            &.disabled{
-              @extend .grey-text;
-              cursor: default;
+          .collection{
+            overflow-y: auto;
+
+            .item{
+              @extend .small-item;
+              $transition-speed: .3s;
+              user-select: none;
+              -moz-user-select: none;
+              -webkit-user-select: none;
+              -ms-user-select: none;
+
+              .permission-rule {
+                @extend .blue-text;
+                vertical-align: middle;
+
+                &.disabled{
+                  @extend .grey-text;
+                  cursor: default;
+                }
+              }
+
             }
           }
 
         }
+
+        .saving-error{
+          color:red;
+          padding-left: 1rem;
+          padding-bottom: 1rem;
+          padding-right: 1rem;
+          width: 100%;
+          display: block;
+        }
+
+        .update-button, .cancel-button {
+          @extend .btn;
+          @extend .blue;
+          @extend .lighten-1;
+          @extend .white-text;
+          margin-bottom: 1rem;
+          display: inline-block;
+          margin-left: 1rem;
+        }
       }
+
     }
 
   }
