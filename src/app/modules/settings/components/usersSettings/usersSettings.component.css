@@ -7555,6 +7555,6 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   flex-direction: column;
 }
 
-:host .users-settings-wrapper .modal .modal-inner-content user-permissions-settings {
+:host .users-settings-wrapper .modal .modal-inner-content user-settings {
   flex: 1;
 }

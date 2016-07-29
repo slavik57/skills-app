@@ -14,7 +14,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var loadingComponentBase_1 = require("../../../common/components/loadingComponentBase/loadingComponentBase");
-var userPermissionsSettings_component_1 = require("../userPermissionsSettings/userPermissionsSettings.component");
+var userSettings_component_1 = require("../userSettings/userSettings.component");
 var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
 var userService_1 = require("../../../common/services/userService");
 var core_1 = require('@angular/core');
@@ -59,7 +59,7 @@ var UsersSettingsComponent = (function (_super) {
             selector: 'users-settings',
             template: require('./usersSettings.component.html'),
             styles: [require('./usersSettings.component.scss')],
-            directives: [circularLoading_component_1.CircularLoadingComponent, userPermissionsSettings_component_1.UserPermissionsSettingsComponent]
+            directives: [circularLoading_component_1.CircularLoadingComponent, userSettings_component_1.UserSettingsComponent]
         }), 
         __metadata('design:paramtypes', [userService_1.UserService, core_1.NgZone])
     ], UsersSettingsComponent);

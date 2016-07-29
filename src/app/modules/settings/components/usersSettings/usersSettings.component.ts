@@ -1,5 +1,5 @@
 import {LoadingComponentBase} from "../../../common/components/loadingComponentBase/loadingComponentBase";
-import {UserPermissionsSettingsComponent} from "../userPermissionsSettings/userPermissionsSettings.component";
+import {UserSettingsComponent} from "../userSettings/userSettings.component";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {IUsernameDetails} from "../../../common/interfaces/iUsernameDetails";
 import {UserService} from "../../../common/services/userService";
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
   selector: 'users-settings',
   template: require('./usersSettings.component.html'),
   styles: [require('./usersSettings.component.scss')],
-  directives: [CircularLoadingComponent, UserPermissionsSettingsComponent]
+  directives: [CircularLoadingComponent, UserSettingsComponent]
 })
 export class UsersSettingsComponent extends LoadingComponentBase<IUsernameDetails[]> implements OnInit {
   public isLoadingUsers: boolean;

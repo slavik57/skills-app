@@ -1,0 +1,8 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+:host user-permissions-settings {
+  flex: 1;
+}
