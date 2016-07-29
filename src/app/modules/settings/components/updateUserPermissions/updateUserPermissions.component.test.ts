@@ -401,7 +401,15 @@ describe('ReadonlyUserPermissionsComponent', () => {
 
         describe('saving succeeds', () => {
 
+          var numberOfTimesUpdatedUserPermissionsEventWasRaised: number;
+
           beforeEach(() => {
+            numberOfTimesUpdatedUserPermissionsEventWasRaised = 0;
+
+            component.updatedUserPermissionsEvent.subscribe(() => {
+              numberOfTimesUpdatedUserPermissionsEventWasRaised++;
+            });
+
             updateUserPermissionsResult.next(null);
             updateUserPermissionsResult.complete();
           });
@@ -416,6 +424,10 @@ describe('ReadonlyUserPermissionsComponent', () => {
 
           it('should set isPermissionsChanged to false', () => {
             expect(component.isPermissionsChanged()).to.be.false;
+          });
+
+          it('should emit the updatedUserPermissions event', () => {
+            expect(numberOfTimesUpdatedUserPermissionsEventWasRaised).to.be.equal(1);
           });
 
         })

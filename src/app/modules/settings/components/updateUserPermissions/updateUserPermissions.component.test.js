@@ -290,7 +290,12 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
                     });
                 });
                 testing_1.describe('saving succeeds', function () {
+                    var numberOfTimesUpdatedUserPermissionsEventWasRaised;
                     testing_1.beforeEach(function () {
+                        numberOfTimesUpdatedUserPermissionsEventWasRaised = 0;
+                        component.updatedUserPermissionsEvent.subscribe(function () {
+                            numberOfTimesUpdatedUserPermissionsEventWasRaised++;
+                        });
                         updateUserPermissionsResult.next(null);
                         updateUserPermissionsResult.complete();
                     });
@@ -302,6 +307,9 @@ testing_1.describe('ReadonlyUserPermissionsComponent', function () {
                     });
                     testing_1.it('should set isPermissionsChanged to false', function () {
                         chai_1.expect(component.isPermissionsChanged()).to.be.false;
+                    });
+                    testing_1.it('should emit the updatedUserPermissions event', function () {
+                        chai_1.expect(numberOfTimesUpdatedUserPermissionsEventWasRaised).to.be.equal(1);
                     });
                 });
             });

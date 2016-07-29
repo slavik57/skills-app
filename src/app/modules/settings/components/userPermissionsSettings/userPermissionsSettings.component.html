@@ -5,6 +5,7 @@
 <update-user-permissions [userDetails]="userDetails"
                          [userPermissions]="userPermissions"
                          (cancel)="cancelUpdatingPermissions()"
+                         (updatedUserPermissions)="cancelUpdatingPermissions()"
                          *ngIf="state === UserPermissionsSettingsState.UPDATE"></update-user-permissions>
 
 <div class="user-permissions-actions">

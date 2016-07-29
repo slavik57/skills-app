@@ -28,6 +28,7 @@ export class UpdateUserPermissionsComponent extends LoadingComponentBase<IUserPe
   @Input() public userDetails: IUsernameDetails;
   @Input() public userPermissions: IUserPermission[];
   @Output('cancel') public cancelEvent: EventEmitter<void> = new EventEmitter<void>();
+  @Output('updatedUserPermissions') public updatedUserPermissionsEvent: EventEmitter<void> = new EventEmitter<void>();
   public isLoadingUserPermissionsRules: boolean;
   public loadingUserPermissionsRulesError: any;
   public userPermissionsRules: IUserPermissionRule[];
@@ -170,5 +171,7 @@ export class UpdateUserPermissionsComponent extends LoadingComponentBase<IUserPe
         this.userPermissions.push(permission);
       }
     }
+
+    this.updatedUserPermissionsEvent.emit(null);
   }
 }

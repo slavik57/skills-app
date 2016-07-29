@@ -25,6 +25,7 @@ var UpdateUserPermissionsComponent = (function (_super) {
         this.userService = userService;
         this.zone = zone;
         this.cancelEvent = new core_1.EventEmitter();
+        this.updatedUserPermissionsEvent = new core_1.EventEmitter();
     }
     UpdateUserPermissionsComponent.prototype.ngOnInit = function () {
         this.isSavingUserPermissions = false;
@@ -124,6 +125,7 @@ var UpdateUserPermissionsComponent = (function (_super) {
                 this.userPermissions.push(permission);
             }
         }
+        this.updatedUserPermissionsEvent.emit(null);
     };
     __decorate([
         core_1.Input(), 
@@ -137,6 +139,10 @@ var UpdateUserPermissionsComponent = (function (_super) {
         core_1.Output('cancel'), 
         __metadata('design:type', core_1.EventEmitter)
     ], UpdateUserPermissionsComponent.prototype, "cancelEvent", void 0);
+    __decorate([
+        core_1.Output('updatedUserPermissions'), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], UpdateUserPermissionsComponent.prototype, "updatedUserPermissionsEvent", void 0);
     UpdateUserPermissionsComponent = __decorate([
         core_1.Component({
             selector: 'update-user-permissions',
