@@ -18,6 +18,7 @@ export class ChangeUserPasswordComponent extends FormComponentBase implements On
   @Input() public userIdDetails: IUserIdDetails;
   @Input() public shouldVerifyCurrentPassword: boolean;
   @Input() public shouldShowTitle: boolean;
+  @Input() public showInCard: boolean;
   public model: EditUserPasswordModel;
   public newPasswordsGroup: FormGroup;
   public userPasswordFormGroup: FormGroup;
@@ -41,6 +42,10 @@ export class ChangeUserPasswordComponent extends FormComponentBase implements On
 
     if (this.shouldVerifyCurrentPassword === undefined) {
       this.shouldVerifyCurrentPassword = true;
+    }
+
+    if (this.showInCard === undefined) {
+      this.showInCard = true;
     }
 
     this.isPasswordUpdated = false;

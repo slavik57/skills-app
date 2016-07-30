@@ -89,6 +89,9 @@ testing_1.describe('ChangeUserPasswordComponent', function () {
     testing_1.it('shouldVerifyCurrentPassword should be true', function () {
         chai_1.expect(component.shouldVerifyCurrentPassword).to.be.true;
     });
+    testing_1.it('showInCard should be true', function () {
+        chai_1.expect(component.showInCard).to.be.true;
+    });
     testing_1.it('setting shouldShowTitle=false, should not change it', testing_1.inject([changeUserPassword_component_1.ChangeUserPasswordComponent], function (component) {
         component.userIdDetails = userIdDetails;
         component.shouldShowTitle = false;
@@ -112,6 +115,18 @@ testing_1.describe('ChangeUserPasswordComponent', function () {
         component.shouldVerifyCurrentPassword = true;
         component.ngOnInit();
         chai_1.expect(component.shouldVerifyCurrentPassword).to.be.true;
+    }));
+    testing_1.it('setting showInCard=false, should not change it', testing_1.inject([changeUserPassword_component_1.ChangeUserPasswordComponent], function (component) {
+        component.userIdDetails = userIdDetails;
+        component.showInCard = false;
+        component.ngOnInit();
+        chai_1.expect(component.showInCard).to.be.false;
+    }));
+    testing_1.it('setting showInCard=true, should not change it', testing_1.inject([changeUserPassword_component_1.ChangeUserPasswordComponent], function (component) {
+        component.userIdDetails = userIdDetails;
+        component.showInCard = true;
+        component.ngOnInit();
+        chai_1.expect(component.showInCard).to.be.true;
     }));
     testing_1.describe('set password', function () {
         testing_1.beforeEach(function () {

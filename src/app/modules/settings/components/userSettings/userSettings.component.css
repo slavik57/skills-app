@@ -8090,6 +8090,12 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   }
 }
 
-:host user-permissions-settings {
+:host #userPermissionsSettings {
   flex: 1;
+}
+
+:host #userPasswordSettings {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }

@@ -128,6 +128,10 @@ describe('ChangeUserPasswordComponent', () => {
     expect(component.shouldVerifyCurrentPassword).to.be.true;
   });
 
+  it('showInCard should be true', () => {
+    expect(component.showInCard).to.be.true;
+  });
+
   it('setting shouldShowTitle=false, should not change it', inject([ChangeUserPasswordComponent], (component: ChangeUserPasswordComponent) => {
     component.userIdDetails = userIdDetails;
     component.shouldShowTitle = false;
@@ -158,6 +162,22 @@ describe('ChangeUserPasswordComponent', () => {
     component.ngOnInit();
 
     expect(component.shouldVerifyCurrentPassword).to.be.true;
+  }));
+
+  it('setting showInCard=false, should not change it', inject([ChangeUserPasswordComponent], (component: ChangeUserPasswordComponent) => {
+    component.userIdDetails = userIdDetails;
+    component.showInCard = false;
+    component.ngOnInit();
+
+    expect(component.showInCard).to.be.false;
+  }));
+
+  it('setting showInCard=true, should not change it', inject([ChangeUserPasswordComponent], (component: ChangeUserPasswordComponent) => {
+    component.userIdDetails = userIdDetails;
+    component.showInCard = true;
+    component.ngOnInit();
+
+    expect(component.showInCard).to.be.true;
   }));
 
   describe('set password', () => {

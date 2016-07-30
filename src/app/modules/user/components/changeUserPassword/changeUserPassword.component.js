@@ -37,6 +37,9 @@ var ChangeUserPasswordComponent = (function (_super) {
         if (this.shouldVerifyCurrentPassword === undefined) {
             this.shouldVerifyCurrentPassword = true;
         }
+        if (this.showInCard === undefined) {
+            this.showInCard = true;
+        }
         this.isPasswordUpdated = false;
         this.isUpdatingPassword = false;
         this._createEmptyModel();
@@ -98,6 +101,10 @@ var ChangeUserPasswordComponent = (function (_super) {
         core_1.Input(), 
         __metadata('design:type', Boolean)
     ], ChangeUserPasswordComponent.prototype, "shouldShowTitle", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], ChangeUserPasswordComponent.prototype, "showInCard", void 0);
     ChangeUserPasswordComponent = __decorate([
         core_1.Component({
             selector: 'change-user-password',
