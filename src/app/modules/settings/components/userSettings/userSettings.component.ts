@@ -1,13 +1,18 @@
 import {IUsernameDetails} from "../../../common/interfaces/iUsernameDetails";
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import {UserPermissionsSettingsComponent} from "../userPermissionsSettings/userPermissionsSettings.component";
 
 @Component({
   selector: 'user-settings',
   template: require('./userSettings.component.html'),
   styles: [require('./userSettings.component.scss')],
-  directives: [UserPermissionsSettingsComponent]
+  directives: [UserPermissionsSettingsComponent],
 })
-export class UserSettingsComponent {
+export class UserSettingsComponent implements AfterViewInit {
   @Input() public userDetails: IUsernameDetails;
+  @ViewChild('availableUserSettings') availableUserSettings: ElementRef;
+
+  public ngAfterViewInit(): void {
+    $(this.availableUserSettings.nativeElement).tabs();
+  }
 }

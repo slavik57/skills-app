@@ -13,16 +13,23 @@ var userPermissionsSettings_component_1 = require("../userPermissionsSettings/us
 var UserSettingsComponent = (function () {
     function UserSettingsComponent() {
     }
+    UserSettingsComponent.prototype.ngAfterViewInit = function () {
+        $(this.availableUserSettings.nativeElement).tabs();
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
     ], UserSettingsComponent.prototype, "userDetails", void 0);
+    __decorate([
+        core_1.ViewChild('availableUserSettings'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], UserSettingsComponent.prototype, "availableUserSettings", void 0);
     UserSettingsComponent = __decorate([
         core_1.Component({
             selector: 'user-settings',
             template: require('./userSettings.component.html'),
             styles: [require('./userSettings.component.scss')],
-            directives: [userPermissionsSettings_component_1.UserPermissionsSettingsComponent]
+            directives: [userPermissionsSettings_component_1.UserPermissionsSettingsComponent],
         }), 
         __metadata('design:paramtypes', [])
     ], UserSettingsComponent);
