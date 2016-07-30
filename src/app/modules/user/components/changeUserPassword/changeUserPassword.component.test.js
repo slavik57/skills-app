@@ -10,7 +10,7 @@ var Subject_1 = require('rxjs/Subject');
 var forms_1 = require('@angular/forms');
 var changeUserPassword_component_1 = require('./changeUserPassword.component');
 testing_1.describe('ChangeUserPasswordComponent', function () {
-    var userDetails;
+    var userIdDetails;
     var userServiceMock;
     var updateUserPassrowdResult;
     var updateUserPasswordSpy;
@@ -35,14 +35,10 @@ testing_1.describe('ChangeUserPasswordComponent', function () {
     });
     testing_1.beforeEach(testing_1.inject([changeUserPassword_component_1.ChangeUserPasswordComponent], function (_component) {
         component = _component;
-        userDetails = {
-            id: 1234,
-            username: 'some username',
-            email: 'some@email.com',
-            firstName: 'some name',
-            lastName: 'some last name'
+        userIdDetails = {
+            id: 1234
         };
-        component.userDetails = userDetails;
+        component.userIdDetails = userIdDetails;
         component.ngOnInit();
         userPasswordFormGroup = component.userPasswordFormGroup;
         newPasswordsGroup = component.newPasswordsGroup;
@@ -51,8 +47,8 @@ testing_1.describe('ChangeUserPasswordComponent', function () {
         newPasswordRepeatedControl = newPasswordsGroup.controls['newPasswordRepeated'];
     }));
     testing_1.it('initializing without the user details should throw error', testing_1.inject([changeUserPassword_component_1.ChangeUserPasswordComponent], function (_component) {
-        _component.userDetails = null;
-        chai_1.expect(function () { return _component.ngOnInit(); }).to.throw('userDetails is not set');
+        _component.userIdDetails = null;
+        chai_1.expect(function () { return _component.ngOnInit(); }).to.throw('userIdDetails is not set');
     }));
     testing_1.it('should initialize error correctly', function () {
         chai_1.expect(component.updateUserPasswordError).to.be.undefined;
@@ -87,6 +83,36 @@ testing_1.describe('ChangeUserPasswordComponent', function () {
     testing_1.it('form should be invalid', function () {
         chai_1.expect(userPasswordFormGroup.valid).to.be.false;
     });
+    testing_1.it('shouldShowTitle should be true', function () {
+        chai_1.expect(component.shouldShowTitle).to.be.true;
+    });
+    testing_1.it('shouldVerifyCurrentPassword should be true', function () {
+        chai_1.expect(component.shouldVerifyCurrentPassword).to.be.true;
+    });
+    testing_1.it('setting shouldShowTitle=false, should not change it', testing_1.inject([changeUserPassword_component_1.ChangeUserPasswordComponent], function (component) {
+        component.userIdDetails = userIdDetails;
+        component.shouldShowTitle = false;
+        component.ngOnInit();
+        chai_1.expect(component.shouldShowTitle).to.be.false;
+    }));
+    testing_1.it('setting shouldShowTitle=true, should not change it', testing_1.inject([changeUserPassword_component_1.ChangeUserPasswordComponent], function (component) {
+        component.userIdDetails = userIdDetails;
+        component.shouldShowTitle = true;
+        component.ngOnInit();
+        chai_1.expect(component.shouldShowTitle).to.be.true;
+    }));
+    testing_1.it('setting shouldVerifyCurrentPassword=false, should not change it', testing_1.inject([changeUserPassword_component_1.ChangeUserPasswordComponent], function (component) {
+        component.userIdDetails = userIdDetails;
+        component.shouldVerifyCurrentPassword = false;
+        component.ngOnInit();
+        chai_1.expect(component.shouldVerifyCurrentPassword).to.be.false;
+    }));
+    testing_1.it('setting shouldVerifyCurrentPassword=true, should not change it', testing_1.inject([changeUserPassword_component_1.ChangeUserPasswordComponent], function (component) {
+        component.userIdDetails = userIdDetails;
+        component.shouldVerifyCurrentPassword = true;
+        component.ngOnInit();
+        chai_1.expect(component.shouldVerifyCurrentPassword).to.be.true;
+    }));
     testing_1.describe('set password', function () {
         testing_1.beforeEach(function () {
             formFiller_1.FormFiller.fillFormControl(userPasswordFormGroup, passwordControl, 'some password');
@@ -197,7 +223,7 @@ testing_1.describe('ChangeUserPasswordComponent', function () {
             });
             testing_1.it('should call the userService.updateUserPassword correclty', function () {
                 chai_1.expect(updateUserPasswordSpy.callCount).to.be.equal(1);
-                chai_1.expect(updateUserPasswordSpy.args[0]).to.be.deep.equal([userDetails.id, password, newPassword]);
+                chai_1.expect(updateUserPasswordSpy.args[0]).to.be.deep.equal([userIdDetails.id, password, newPassword]);
             });
             testing_1.it('should set error correctly', function () {
                 chai_1.expect(component.updateUserPasswordError).to.be.null;

@@ -28,8 +28,14 @@ var ChangeUserPasswordComponent = (function (_super) {
         this.userService = userService;
     }
     ChangeUserPasswordComponent.prototype.ngOnInit = function () {
-        if (!this.userDetails) {
-            throw 'userDetails is not set';
+        if (!this.userIdDetails) {
+            throw 'userIdDetails is not set';
+        }
+        if (this.shouldShowTitle === undefined) {
+            this.shouldShowTitle = true;
+        }
+        if (this.shouldVerifyCurrentPassword === undefined) {
+            this.shouldVerifyCurrentPassword = true;
         }
         this.isPasswordUpdated = false;
         this.isUpdatingPassword = false;
@@ -41,9 +47,9 @@ var ChangeUserPasswordComponent = (function (_super) {
         this.updateUserPasswordError = null;
         this.isUpdatingPassword = true;
         this.isPasswordUpdated = false;
-        this.userService.updateUserPassword(this.userDetails.id, this.model.password, this.model.newPassword)
+        this.userService.updateUserPassword(this.userIdDetails.id, this.model.password, this.model.newPassword)
             .finally(function () { return _this._setAsFinishedUpdatingPassword(); })
-            .subscribe(function () { return _this._setAsPasswordUpdated(); }, function (error) { return _this._setUpdatingUserDetailsError(error); });
+            .subscribe(function () { return _this._setAsPasswordUpdated(); }, function (error) { return _this._setUpdatingUserPasswordError(error); });
     };
     ChangeUserPasswordComponent.prototype._createEmptyModel = function () {
         this.model = new editUserPasswordModel_1.EditUserPasswordModel();
@@ -55,8 +61,12 @@ var ChangeUserPasswordComponent = (function (_super) {
         }, {
             validator: equalFieldsValidator_1.EqualFieldsValidator.allFieldsEqual
         });
+        var passwordDefinition = [''];
+        if (this.shouldVerifyCurrentPassword) {
+            passwordDefinition.push(forms_1.Validators.required);
+        }
         this.userPasswordFormGroup = this.formBuilder.group({
-            password: ['', forms_1.Validators.required],
+            password: passwordDefinition,
             newPasswordsGroup: this.newPasswordsGroup
         });
     };
@@ -73,13 +83,21 @@ var ChangeUserPasswordComponent = (function (_super) {
         this.resetControlAsUntouchedAndNotDirty(this.newPasswordsGroup.controls['newPasswordRepeated']);
         setTimeout(function () { return Materialize.updateTextFields(); }, 0);
     };
-    ChangeUserPasswordComponent.prototype._setUpdatingUserDetailsError = function (error) {
+    ChangeUserPasswordComponent.prototype._setUpdatingUserPasswordError = function (error) {
         this.updateUserPasswordError = error;
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
-    ], ChangeUserPasswordComponent.prototype, "userDetails", void 0);
+    ], ChangeUserPasswordComponent.prototype, "userIdDetails", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], ChangeUserPasswordComponent.prototype, "shouldVerifyCurrentPassword", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], ChangeUserPasswordComponent.prototype, "shouldShowTitle", void 0);
     ChangeUserPasswordComponent = __decorate([
         core_1.Component({
             selector: 'change-user-password',

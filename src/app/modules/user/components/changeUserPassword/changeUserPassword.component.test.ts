@@ -1,4 +1,4 @@
-import {IUserDetails} from "../../../common/interfaces/iUserDetails";
+import {IUserIdDetails} from "../../../common/interfaces/iUserIdDetails";
 import {UserServiceMockFactory} from "../../../../testUtils/mockFactories/userServiceMockFactory";
 import {IValidationResult} from "../../../common/validators/iValidationResult";
 import {FormFiller} from "../../../../testUtils/formFiller";
@@ -21,7 +21,7 @@ import { ChangeUserPasswordComponent } from './changeUserPassword.component';
 
 describe('ChangeUserPasswordComponent', () => {
 
-  var userDetails: IUserDetails;
+  var userIdDetails: IUserIdDetails;
 
   var userServiceMock: IUserService;
   var updateUserPassrowdResult: Subject<void>;
@@ -58,14 +58,10 @@ describe('ChangeUserPasswordComponent', () => {
   beforeEach(inject([ChangeUserPasswordComponent], (_component: ChangeUserPasswordComponent) => {
     component = _component;
 
-    userDetails = {
-      id: 1234,
-      username: 'some username',
-      email: 'some@email.com',
-      firstName: 'some name',
-      lastName: 'some last name'
+    userIdDetails = {
+      id: 1234
     }
-    component.userDetails = userDetails;
+    component.userIdDetails = userIdDetails;
 
     component.ngOnInit();
 
@@ -77,8 +73,8 @@ describe('ChangeUserPasswordComponent', () => {
   }));
 
   it('initializing without the user details should throw error', inject([ChangeUserPasswordComponent], (_component: ChangeUserPasswordComponent) => {
-    _component.userDetails = null;
-    expect(() => _component.ngOnInit()).to.throw('userDetails is not set');
+    _component.userIdDetails = null;
+    expect(() => _component.ngOnInit()).to.throw('userIdDetails is not set');
   }));
 
   it('should initialize error correctly', () => {
@@ -123,6 +119,46 @@ describe('ChangeUserPasswordComponent', () => {
   it('form should be invalid', () => {
     expect(userPasswordFormGroup.valid).to.be.false;
   });
+
+  it('shouldShowTitle should be true', () => {
+    expect(component.shouldShowTitle).to.be.true;
+  });
+
+  it('shouldVerifyCurrentPassword should be true', () => {
+    expect(component.shouldVerifyCurrentPassword).to.be.true;
+  });
+
+  it('setting shouldShowTitle=false, should not change it', inject([ChangeUserPasswordComponent], (component: ChangeUserPasswordComponent) => {
+    component.userIdDetails = userIdDetails;
+    component.shouldShowTitle = false;
+    component.ngOnInit();
+
+    expect(component.shouldShowTitle).to.be.false;
+  }));
+
+  it('setting shouldShowTitle=true, should not change it', inject([ChangeUserPasswordComponent], (component: ChangeUserPasswordComponent) => {
+    component.userIdDetails = userIdDetails;
+    component.shouldShowTitle = true;
+    component.ngOnInit();
+
+    expect(component.shouldShowTitle).to.be.true;
+  }));
+
+  it('setting shouldVerifyCurrentPassword=false, should not change it', inject([ChangeUserPasswordComponent], (component: ChangeUserPasswordComponent) => {
+    component.userIdDetails = userIdDetails;
+    component.shouldVerifyCurrentPassword = false;
+    component.ngOnInit();
+
+    expect(component.shouldVerifyCurrentPassword).to.be.false;
+  }));
+
+  it('setting shouldVerifyCurrentPassword=true, should not change it', inject([ChangeUserPasswordComponent], (component: ChangeUserPasswordComponent) => {
+    component.userIdDetails = userIdDetails;
+    component.shouldVerifyCurrentPassword = true;
+    component.ngOnInit();
+
+    expect(component.shouldVerifyCurrentPassword).to.be.true;
+  }));
 
   describe('set password', () => {
 
@@ -278,7 +314,7 @@ describe('ChangeUserPasswordComponent', () => {
 
       it('should call the userService.updateUserPassword correclty', () => {
         expect(updateUserPasswordSpy.callCount).to.be.equal(1);
-        expect(updateUserPasswordSpy.args[0]).to.be.deep.equal([userDetails.id, password, newPassword]);
+        expect(updateUserPasswordSpy.args[0]).to.be.deep.equal([userIdDetails.id, password, newPassword]);
       });
 
       it('should set error correctly', () => {

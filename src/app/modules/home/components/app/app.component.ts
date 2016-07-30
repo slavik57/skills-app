@@ -1,3 +1,6 @@
+import {SettingsComponent} from "../../../settings/components/settings/settings.component";
+import {HomeComponent} from "../home/home.component";
+import {UserProfileComponent} from "../../../user/components/userProfile/userProfile.component";
 import { Component } from '@angular/core';
 import {NavigationComponent} from "../../../common/components/navigation/navigation.component";
 import {CreditsComponent} from "../../../common/components/credits/credits.component";
@@ -14,7 +17,8 @@ import * as _ from 'lodash';
   providers: [
     HTTP_PROVIDERS,
     UserService
-  ]
+  ],
+  precompile: [HomeComponent, UserProfileComponent, SettingsComponent]
 })
 export class AppComponent {
 }

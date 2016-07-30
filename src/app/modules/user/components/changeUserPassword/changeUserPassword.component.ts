@@ -1,4 +1,4 @@
-import {IUserDetails} from "../../../common/interfaces/iUserDetails";
+import {IUserIdDetails} from "../../../common/interfaces/iUserIdDetails";
 import {FormComponentBase} from "../../../common/components/formComponentBase/formComponentBase";
 import {EqualFieldsValidator} from "../../../common/validators/equalFieldsValidator";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
@@ -15,7 +15,9 @@ import {UserService} from "../../../common/services/userService";
   providers: [FormBuilder]
 })
 export class ChangeUserPasswordComponent extends FormComponentBase implements OnInit {
-  @Input() public userDetails: IUserDetails;
+  @Input() public userIdDetails: IUserIdDetails;
+  @Input() public shouldVerifyCurrentPassword: boolean;
+  @Input() public shouldShowTitle: boolean;
   public model: EditUserPasswordModel;
   public newPasswordsGroup: FormGroup;
   public userPasswordFormGroup: FormGroup;
@@ -29,8 +31,16 @@ export class ChangeUserPasswordComponent extends FormComponentBase implements On
   }
 
   public ngOnInit(): void {
-    if (!this.userDetails) {
-      throw 'userDetails is not set';
+    if (!this.userIdDetails) {
+      throw 'userIdDetails is not set';
+    }
+
+    if (this.shouldShowTitle === undefined) {
+      this.shouldShowTitle = true;
+    }
+
+    if (this.shouldVerifyCurrentPassword === undefined) {
+      this.shouldVerifyCurrentPassword = true;
     }
 
     this.isPasswordUpdated = false;
@@ -45,10 +55,10 @@ export class ChangeUserPasswordComponent extends FormComponentBase implements On
     this.isUpdatingPassword = true;
     this.isPasswordUpdated = false;
 
-    this.userService.updateUserPassword(this.userDetails.id, this.model.password, this.model.newPassword)
+    this.userService.updateUserPassword(this.userIdDetails.id, this.model.password, this.model.newPassword)
       .finally(() => this._setAsFinishedUpdatingPassword())
       .subscribe(() => this._setAsPasswordUpdated(),
-      (error: any) => this._setUpdatingUserDetailsError(error));
+      (error: any) => this._setUpdatingUserPasswordError(error));
   }
 
   private _createEmptyModel(): void {
@@ -63,8 +73,13 @@ export class ChangeUserPasswordComponent extends FormComponentBase implements On
         validator: EqualFieldsValidator.allFieldsEqual
       });
 
+    var passwordDefinition: any[] = [''];
+    if (this.shouldVerifyCurrentPassword) {
+      passwordDefinition.push(Validators.required);
+    }
+
     this.userPasswordFormGroup = this.formBuilder.group({
-      password: ['', Validators.required],
+      password: passwordDefinition,
       newPasswordsGroup: this.newPasswordsGroup
     });
   }
@@ -87,7 +102,7 @@ export class ChangeUserPasswordComponent extends FormComponentBase implements On
     setTimeout(() => Materialize.updateTextFields(), 0);
   }
 
-  private _setUpdatingUserDetailsError(error: any): void {
+  private _setUpdatingUserPasswordError(error: any): void {
     this.updateUserPasswordError = error;
   }
 }

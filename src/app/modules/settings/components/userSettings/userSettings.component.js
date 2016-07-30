@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var changeUserPassword_component_1 = require("../../../user/components/changeUserPassword/changeUserPassword.component");
 var core_1 = require('@angular/core');
 var userPermissionsSettings_component_1 = require("../userPermissionsSettings/userPermissionsSettings.component");
 var UserSettingsComponent = (function () {
@@ -29,7 +30,7 @@ var UserSettingsComponent = (function () {
             selector: 'user-settings',
             template: require('./userSettings.component.html'),
             styles: [require('./userSettings.component.scss')],
-            directives: [userPermissionsSettings_component_1.UserPermissionsSettingsComponent],
+            directives: [userPermissionsSettings_component_1.UserPermissionsSettingsComponent, changeUserPassword_component_1.ChangeUserPasswordComponent],
         }), 
         __metadata('design:paramtypes', [])
     ], UserSettingsComponent);

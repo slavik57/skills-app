@@ -1,4 +1,5 @@
-export interface IUsernameDetails {
-  id: number;
+import {IUserIdDetails} from "./iUserIdDetails";
+
+export interface IUsernameDetails extends IUserIdDetails {
   username: string;
 }

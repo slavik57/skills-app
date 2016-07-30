@@ -11,4 +11,8 @@
 
 <user-permissions-settings id="userPermissionsSettings" [userDetails]="userDetails"></user-permissions-settings>
 <div id="userTeamsSettings">Here should come the teams</div>
-<div id="userPasswordSettings">Here should come the password</div>
+<change-user-password id="userPasswordSettings"
+                      [userIdDetails]="userDetails"
+                      [shouldShowTitle]="false"
+                      [shouldVerifyCurrentPassword]="false">
+</change-user-password>
