@@ -18,7 +18,8 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
     HTTP_PROVIDERS,
     UserService,
     LocationService
-  ]
+  ],
+  precompile: [SigninComponent, RegisterComponent]
 })
 export class AppComponent {
 }

@@ -18,22 +18,21 @@
             <div class="input-field username">
               <input id="username"
                      type="text"
-                     name="username"
+                     formControlName="username"
                      [(ngModel)]="model.username"
-                     #username="ngModel"
                      [ngClass]="{ 'validation-pending': userDetailsFormGroup.controls.username.pending }"/>
               <label for="username">Username</label>
               <div class="async-validation-indicator" [ngClass]="{ 'pending': userDetailsFormGroup.controls.username.pending }">
                 <circular-loading></circular-loading>
               </div>
               <div class="form-validation-errors">
-                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(username, 'required') }">
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(userDetailsFormGroup.controls.username, 'required') }">
                   Username is required
                 </div>
-                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(username, 'usernameTaken', false) }">
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(userDetailsFormGroup.controls.username, 'usernameTaken', false) }">
                   Username is taken
                 </div>
-                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(username, 'usernameTakenCheckFailed', false) }">
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(userDetailsFormGroup.controls.username, 'usernameTakenCheckFailed', false) }">
                   Failed checking if username exists
                 </div>
               </div>
@@ -42,12 +41,11 @@
             <div class="input-field email">
               <input id="email"
                      type="email"
-                     name="email"
-                     [(ngModel)]="model.email"
-                     #email="ngModel"/>
+                     formControlName="email"
+                     [(ngModel)]="model.email"/>
               <label for="email">Email</label>
               <div class="form-validation-errors">
-                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(email) }">
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(userDetailsFormGroup.controls.email) }">
                   The email is not valid
                 </div>
               </div>
@@ -60,12 +58,11 @@
             <div class="input-field first-name">
               <input id="first-name"
                      type="text"
-                     name="firstName"
-                     [(ngModel)]="model.firstName"
-                     #firstName="ngModel"/>
+                     formControlName="firstName"
+                     [(ngModel)]="model.firstName"/>
               <label for="first-name">First name</label>
               <div class="form-validation-errors">
-                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(firstName) }">
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(userDetailsFormGroup.controls.firstName) }">
                   First name is required
                 </div>
               </div>
@@ -74,12 +71,11 @@
             <div class="input-field last-name">
               <input id="last-name"
                      type="text"
-                     name="lastName"
-                     [(ngModel)]="model.lastName"
-                     #lastName="ngModel"/>
+                     formControlName="lastName"
+                     [(ngModel)]="model.lastName"/>
               <label for="last-name">Last name</label>
               <div class="form-validation-errors">
-                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(lastName) }">
+                <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldInvalid(userDetailsFormGroup.controls.lastName) }">
                   Last name is required
                 </div>
               </div>

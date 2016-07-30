@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var locationService_1 = require("../../../common/services/locationService");
 var userService_1 = require("../../../common/services/userService");
 var credits_component_1 = require("../../../common/components/credits/credits.component");
+var register_component_1 = require("../register/register.component");
+var signin_component_1 = require("../signin/signin.component");
 var navigation_component_1 = require("../../../common/components/navigation/navigation.component");
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
@@ -29,7 +31,8 @@ var AppComponent = (function () {
                 http_1.HTTP_PROVIDERS,
                 userService_1.UserService,
                 locationService_1.LocationService
-            ]
+            ],
+            precompile: [signin_component_1.SigninComponent, register_component_1.RegisterComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
