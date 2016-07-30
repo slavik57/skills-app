@@ -99,7 +99,7 @@ describe('UserService', () => {
 
     expect(mockBackend.connectionsArray).to.be.length(1);
     expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
-    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + userId + '/canUpdatePassword');
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + userId + '/can-update-password');
   });
 
   it('getUserDetails should use correct url', () => {
@@ -741,7 +741,7 @@ describe('UserService', () => {
         responseOptions = new ResponseOptions({
           status: StatusCode.OK,
           headers: new Headers(),
-          body: { canUserUpdatePassword: result }
+          body: { canUpdatePassword: result }
         });
 
         response = new Response(responseOptions);

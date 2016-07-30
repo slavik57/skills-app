@@ -71,7 +71,7 @@ testing_1.describe('UserService', function () {
         userService.canUserUpdatePassword(userId);
         chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
-        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + userId + '/canUpdatePassword');
+        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + userId + '/can-update-password');
     });
     testing_1.it('getUserDetails should use correct url', function () {
         var username = 'some username';
@@ -410,7 +410,7 @@ testing_1.describe('UserService', function () {
                 responseOptions = new http_2.ResponseOptions({
                     status: statusCode_1.StatusCode.OK,
                     headers: new http_1.Headers(),
-                    body: { canUserUpdatePassword: result }
+                    body: { canUpdatePassword: result }
                 });
                 response = new http_2.Response(responseOptions);
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });

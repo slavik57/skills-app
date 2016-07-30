@@ -86,7 +86,7 @@ export class UserService implements IUserService {
   private _changePasswordUrlSuffix = '/password';
   private _userPermissionsUrlSuffix = '/permissions';
   private _userPermissionsModificationRulesUrlSuffix = 'permissions-modification-rules'
-  private _canUserUpdatePasswordSuffix = '/canUpdatePassword';
+  private _canUserUpdatePasswordSuffix = '/can-update-password';
 
   constructor(private http: Http) {
   }
@@ -115,7 +115,7 @@ export class UserService implements IUserService {
       this._userControllerUrl + userIdToUpdatePasswordOf + this._canUserUpdatePasswordSuffix;
 
     return this._get(url)
-      .map((response: Response) => this._extractPropertyFromBody<boolean>(response, 'canUserUpdatePassword'))
+      .map((response: Response) => this._extractPropertyFromBody<boolean>(response, 'canUpdatePassword'))
       .catch((error: any) => this._failWithGenericError<boolean>(error));
   }
 
