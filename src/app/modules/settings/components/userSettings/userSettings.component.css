@@ -15512,17 +15512,33 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   width: 100%;
 }
 
+:host .user-settings-content .tabs {
+  margin-bottom: 0;
+}
+
 @media only screen and (max-width: 600px) {
   :host .user-settings-content .tabs .tab a {
     font-size: 0.7rem;
   }
 }
 
-:host #userPermissionsSettings {
+:host #userPermissionsSettings, :host #userTeamsSettings, :host #userPasswordSettings {
   flex: 1;
+  margin-top: 1rem;
 }
 
 :host #userPasswordSettings {
+  display: flex;
+  flex-direction: column;
+}
+
+:host #userPasswordSettings .content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+:host #userPasswordSettings .content-wrapper change-user-password {
   flex: 1;
   display: flex;
   flex-direction: column;
