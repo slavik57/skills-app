@@ -11,9 +11,33 @@
 
 <user-permissions-settings id="userPermissionsSettings" [userDetails]="userDetails"></user-permissions-settings>
 <div id="userTeamsSettings">Here should come the teams</div>
-<change-user-password id="userPasswordSettings"
-                      [userIdDetails]="userDetails"
-                      [shouldShowTitle]="false"
-                      [shouldVerifyCurrentPassword]="false"
-                      [showInCard]="false">
-</change-user-password>
+
+<div id="userPasswordSettings"
+     class="loaded-content-wrapper"
+     [ngClass]="{loading: isCheckingCanUserUpdatePassword, error: userUpdatePasswordCheckError}">
+
+  <div class="loading-wrapper">
+    <circular-loading></circular-loading>
+  </div>
+
+  <div class="loading-content-error">
+    <span class="text">{{userUpdatePasswordCheckError}}</span>
+    <button class="retry-button" (click)="reload()">
+     Try Again
+    </button>
+  </div>
+
+  <div class="content-wrapper">
+    <change-user-password *ngIf="canUserUpdatePassword"
+                          [userIdDetails]="userDetails"
+                          [shouldShowTitle]="false"
+                          [shouldVerifyCurrentPassword]="false"
+                          [showInCard]="false">
+    </change-user-password>
+
+    <span *ngIf="!canUserUpdatePassword"
+          class="not-allowed-to-change-password-message">
+      You do not have the required permissions to change the password of this user
+    </span>
+  </div>
+</div>

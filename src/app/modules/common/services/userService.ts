@@ -50,6 +50,7 @@ interface IServerUsernameDetails {
 export interface IUserService {
   signinUser(username: string, password: string): Observable<string>;
   isUsernameExists(username: string): Observable<boolean>;
+  canUserUpdatePassword(userIdToUpdatePasswordOf: number): Observable<boolean>;
   registerUser(username: string,
     password: string,
     email: string,
@@ -85,6 +86,7 @@ export class UserService implements IUserService {
   private _changePasswordUrlSuffix = '/password';
   private _userPermissionsUrlSuffix = '/permissions';
   private _userPermissionsModificationRulesUrlSuffix = 'permissions-modification-rules'
+  private _canUserUpdatePasswordSuffix = '/canUpdatePassword';
 
   constructor(private http: Http) {
   }
@@ -104,8 +106,17 @@ export class UserService implements IUserService {
     let url = this._userControllerUrl + username + this._userExistsUrlSuffix;
 
     return this._get(url)
-      .map((response: Response) => this._extractIsUserExists(response))
-      .catch((error: any) => this._failUsernameExistanceCheck(error));
+      .map((response: Response) => this._extractPropertyFromBody<boolean>(response, 'userExists'))
+      .catch((error: any) => this._failWithGenericError<boolean>(error));
+  }
+
+  public canUserUpdatePassword(userIdToUpdatePasswordOf: number): Observable<boolean> {
+    let url =
+      this._userControllerUrl + userIdToUpdatePasswordOf + this._canUserUpdatePasswordSuffix;
+
+    return this._get(url)
+      .map((response: Response) => this._extractPropertyFromBody<boolean>(response, 'canUserUpdatePassword'))
+      .catch((error: any) => this._failWithGenericError<boolean>(error));
   }
 
   public registerUser(username: string,
@@ -272,16 +283,16 @@ export class UserService implements IUserService {
     }
   }
 
-  private _extractIsUserExists(response: Response): boolean {
+  private _extractPropertyFromBody<T>(response: Response, propertyName: string): T {
     this._throwErrorIfStatusIsNotOk(response);
 
     var result = response.json();
 
-    if (!result || !('userExists' in result)) {
+    if (!result || !(propertyName in result)) {
       throw 'Unexpected result';
     }
 
-    return result.userExists;
+    return result[propertyName];
   }
 
   private _extractUserDetails(response: Response): IUserDetails {
@@ -330,7 +341,7 @@ export class UserService implements IUserService {
     return result;
   }
 
-  private _failUsernameExistanceCheck(error: any): Observable<boolean> {
+  private _failWithGenericError<T>(error: any): Observable<T> {
     console.log(error);
 
     return Observable.throw(UserService.GENERIC_ERROR);

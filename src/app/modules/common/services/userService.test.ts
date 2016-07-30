@@ -93,6 +93,15 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + username + '/exists');
   });
 
+  it('canUserUpdatePassword should use correct url', () => {
+    var userId = 123;
+    userService.canUserUpdatePassword(userId);
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + userId + '/canUpdatePassword');
+  });
+
   it('getUserDetails should use correct url', () => {
     var username = 'some username'
     userService.getUserDetails();
@@ -224,6 +233,13 @@ describe('UserService', () => {
       );
     });
 
+    it('canUserUpdatePassword should fail correctly', () => {
+      userService.canUserUpdatePassword(1).subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
     it('getUserDetails should fail correctly', () => {
       userService.getUserDetails().subscribe(
         () => expect(true, 'should fail').to.be.false,
@@ -301,6 +317,13 @@ describe('UserService', () => {
 
     it('isUsernameExists should fail correctly', () => {
       userService.isUsernameExists('').subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
+    it('canUserUpdatePassword should fail correctly', () => {
+      userService.canUserUpdatePassword(1).subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
@@ -384,6 +407,13 @@ describe('UserService', () => {
 
     it('isUsernameExists should fail correctly', () => {
       userService.isUsernameExists('').subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
+    it('canUserUpdatePassword should fail correctly', () => {
+      userService.canUserUpdatePassword(1).subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
@@ -474,6 +504,13 @@ describe('UserService', () => {
       );
     });
 
+    it('canUserUpdatePassword should fail correctly', () => {
+      userService.canUserUpdatePassword(1).subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
     it('getUserDetails should fail correctly', () => {
       userService.getUserDetails().subscribe(
         () => expect(true, 'should fail').to.be.false,
@@ -520,6 +557,43 @@ describe('UserService', () => {
       userService.updateUserPermissions(1, [], []).subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
+  });
+
+  describe('on error with error description', () => {
+
+    var reasonForError: string;
+
+    beforeEach(() => {
+      reasonForError = 'some reason';
+
+      var error = new HttpError();
+      error.body = { error: reasonForError };
+
+      mockBackend.connections.subscribe(
+        (connection: MockConnection) => connection.mockError(error));
+    });
+
+    it('register should fail correctly', () => {
+      userService.registerUser('', '', '', '', '').subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal(reasonForError)
+      );
+    });
+
+    it('updateUserDetails should fail correctly', () => {
+      userService.updateUserDetails(1, '', '', '', '').subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal(reasonForError)
+      );
+    });
+
+    it('updateUserPassword should fail correctly', () => {
+      userService.updateUserDetails(1, '', '', '', '').subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal(reasonForError)
       );
     });
 
@@ -643,6 +717,39 @@ describe('UserService', () => {
           (connection: MockConnection) => connection.mockRespond(response));
 
         userService.isUsernameExists('').subscribe(
+          (_result: boolean) => expect(_result).to.be.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
+
+    });
+
+    describe('canUserUpdatePassword', () => {
+
+      it('without the expected result canUserUpdatePassword should fail correctly', () => {
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.canUserUpdatePassword(1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the expected result canUserUpdatePassword should return correct value', () => {
+        var result = true;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: { canUserUpdatePassword: result }
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.canUserUpdatePassword(1).subscribe(
           (_result: boolean) => expect(_result).to.be.equal(result),
           () => expect(true, 'should succeed').to.be.false)
       });
@@ -1004,43 +1111,6 @@ describe('UserService', () => {
         () => expect(true, 'should succeed').to.be.false);
 
       expect(wasResolved).to.be.true;
-    });
-
-  });
-
-  describe('on error with error description', () => {
-
-    var reasonForError: string;
-
-    beforeEach(() => {
-      reasonForError = 'some reason';
-
-      var error = new HttpError();
-      error.body = { error: reasonForError };
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => connection.mockError(error));
-    });
-
-    it('register should fail correctly', () => {
-      userService.registerUser('', '', '', '', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal(reasonForError)
-      );
-    });
-
-    it('updateUserDetails should fail correctly', () => {
-      userService.updateUserDetails(1, '', '', '', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal(reasonForError)
-      );
-    });
-
-    it('updateUserPassword should fail correctly', () => {
-      userService.updateUserDetails(1, '', '', '', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal(reasonForError)
-      );
     });
 
   });

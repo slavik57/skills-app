@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,14 +13,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
+var userService_1 = require("../../../common/services/userService");
 var changeUserPassword_component_1 = require("../../../user/components/changeUserPassword/changeUserPassword.component");
 var core_1 = require('@angular/core');
 var userPermissionsSettings_component_1 = require("../userPermissionsSettings/userPermissionsSettings.component");
-var UserSettingsComponent = (function () {
-    function UserSettingsComponent() {
+var loadingComponentBase_1 = require("../../../common/components/loadingComponentBase/loadingComponentBase");
+var UserSettingsComponent = (function (_super) {
+    __extends(UserSettingsComponent, _super);
+    function UserSettingsComponent(userService) {
+        _super.call(this);
+        this.userService = userService;
     }
     UserSettingsComponent.prototype.ngAfterViewInit = function () {
         $(this.availableUserSettings.nativeElement).tabs();
+    };
+    UserSettingsComponent.prototype.ngOnInit = function () {
+        this.canUserUpdatePassword = false;
+        _super.prototype.ngOnInit.call(this);
+    };
+    UserSettingsComponent.prototype.get = function () {
+        return this.userService.canUserUpdatePassword(this.userDetails.id);
+    };
+    UserSettingsComponent.prototype.setIsLoading = function (value) {
+        this.isCheckingCanUserUpdatePassword = value;
+    };
+    UserSettingsComponent.prototype.setLoadingError = function (error) {
+        this.userUpdatePasswordCheckError = error;
+    };
+    UserSettingsComponent.prototype.setLoadingResult = function (result) {
+        if (!result) {
+            result = false;
+        }
+        this.canUserUpdatePassword = result;
     };
     __decorate([
         core_1.Input(), 
@@ -30,11 +60,15 @@ var UserSettingsComponent = (function () {
             selector: 'user-settings',
             template: require('./userSettings.component.html'),
             styles: [require('./userSettings.component.scss')],
-            directives: [userPermissionsSettings_component_1.UserPermissionsSettingsComponent, changeUserPassword_component_1.ChangeUserPasswordComponent],
+            directives: [
+                userPermissionsSettings_component_1.UserPermissionsSettingsComponent,
+                changeUserPassword_component_1.ChangeUserPasswordComponent,
+                circularLoading_component_1.CircularLoadingComponent
+            ],
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [userService_1.UserService])
     ], UserSettingsComponent);
     return UserSettingsComponent;
-}());
+}(loadingComponentBase_1.LoadingComponentBase));
 exports.UserSettingsComponent = UserSettingsComponent;
 //# sourceMappingURL=userSettings.component.js.map

@@ -24,6 +24,7 @@ var UserService = (function () {
         this._changePasswordUrlSuffix = '/password';
         this._userPermissionsUrlSuffix = '/permissions';
         this._userPermissionsModificationRulesUrlSuffix = 'permissions-modification-rules';
+        this._canUserUpdatePasswordSuffix = '/canUpdatePassword';
     }
     UserService.prototype.signinUser = function (username, password) {
         var _this = this;
@@ -39,8 +40,15 @@ var UserService = (function () {
         var _this = this;
         var url = this._userControllerUrl + username + this._userExistsUrlSuffix;
         return this._get(url)
-            .map(function (response) { return _this._extractIsUserExists(response); })
-            .catch(function (error) { return _this._failUsernameExistanceCheck(error); });
+            .map(function (response) { return _this._extractPropertyFromBody(response, 'userExists'); })
+            .catch(function (error) { return _this._failWithGenericError(error); });
+    };
+    UserService.prototype.canUserUpdatePassword = function (userIdToUpdatePasswordOf) {
+        var _this = this;
+        var url = this._userControllerUrl + userIdToUpdatePasswordOf + this._canUserUpdatePasswordSuffix;
+        return this._get(url)
+            .map(function (response) { return _this._extractPropertyFromBody(response, 'canUserUpdatePassword'); })
+            .catch(function (error) { return _this._failWithGenericError(error); });
     };
     UserService.prototype.registerUser = function (username, password, email, firstName, lastName) {
         var _this = this;
@@ -166,13 +174,13 @@ var UserService = (function () {
             return Observable_1.Observable.throw(UserService.GENERIC_ERROR);
         }
     };
-    UserService.prototype._extractIsUserExists = function (response) {
+    UserService.prototype._extractPropertyFromBody = function (response, propertyName) {
         this._throwErrorIfStatusIsNotOk(response);
         var result = response.json();
-        if (!result || !('userExists' in result)) {
+        if (!result || !(propertyName in result)) {
             throw 'Unexpected result';
         }
-        return result.userExists;
+        return result[propertyName];
     };
     UserService.prototype._extractUserDetails = function (response) {
         this._throwErrorIfStatusIsNotOk(response);
@@ -206,7 +214,7 @@ var UserService = (function () {
         }
         return result;
     };
-    UserService.prototype._failUsernameExistanceCheck = function (error) {
+    UserService.prototype._failWithGenericError = function (error) {
         console.log(error);
         return Observable_1.Observable.throw(UserService.GENERIC_ERROR);
     };
