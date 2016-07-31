@@ -110,7 +110,6 @@ testing_1.describe('UserService', function () {
         chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + id + '/password');
     });
     testing_1.it('getUsersDetails should use correct url', function () {
-        var username = 'some username';
         userService.getUsersDetails();
         chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
@@ -180,7 +179,7 @@ testing_1.describe('UserService', function () {
         testing_1.it('updateUserPassword should fail correctly', function () {
             userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized'); });
         });
-        testing_1.it('getUserDetails should fail correctly', function () {
+        testing_1.it('getUsersDetails should fail correctly', function () {
             userService.getUsersDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized'); });
         });
         testing_1.it('getUserPermissions should fail correctly', function () {

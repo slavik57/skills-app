@@ -1,4 +1,4 @@
-import {IUserIdDetails} from "../../../common/interfaces/iUserIdDetails";
+import {IIdDetails} from "../../../common/interfaces/iIdDetails";
 import {FormComponentBase} from "../../../common/components/formComponentBase/formComponentBase";
 import {EqualFieldsValidator} from "../../../common/validators/equalFieldsValidator";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
@@ -15,7 +15,7 @@ import {UserService} from "../../../common/services/userService";
   providers: [FormBuilder]
 })
 export class ChangeUserPasswordComponent extends FormComponentBase implements OnInit {
-  @Input() public userIdDetails: IUserIdDetails;
+  @Input() public userIdDetails: IIdDetails;
   @Input() public shouldVerifyCurrentPassword: boolean;
   @Input() public shouldShowTitle: boolean;
   @Input() public showInCard: boolean;

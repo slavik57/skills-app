@@ -3,7 +3,7 @@ import {UserSettingsComponent} from "../userSettings/userSettings.component";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {IUsernameDetails} from "../../../common/interfaces/iUsernameDetails";
 import {UserService} from "../../../common/services/userService";
-import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 
@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
   styles: [require('./usersSettings.component.scss')],
   directives: [CircularLoadingComponent, UserSettingsComponent]
 })
-export class UsersSettingsComponent extends LoadingComponentBase<IUsernameDetails[]> implements OnInit {
+export class UsersSettingsComponent extends LoadingComponentBase<IUsernameDetails[]> {
   public isLoadingUsers: boolean;
   public loadingUsersError: any;
   public usersDetails: IUsernameDetails[];

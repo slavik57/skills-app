@@ -148,7 +148,6 @@ describe('UserService', () => {
   });
 
   it('getUsersDetails should use correct url', () => {
-    var username = 'some username'
     userService.getUsersDetails();
 
     expect(mockBackend.connectionsArray).to.be.length(1);
@@ -261,7 +260,7 @@ describe('UserService', () => {
       );
     });
 
-    it('getUserDetails should fail correctly', () => {
+    it('getUsersDetails should fail correctly', () => {
       userService.getUsersDetails().subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Unauthorized')

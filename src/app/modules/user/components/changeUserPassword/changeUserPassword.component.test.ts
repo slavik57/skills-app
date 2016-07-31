@@ -1,4 +1,4 @@
-import {IUserIdDetails} from "../../../common/interfaces/iUserIdDetails";
+import {IIdDetails} from "../../../common/interfaces/iIdDetails";
 import {UserServiceMockFactory} from "../../../../testUtils/mockFactories/userServiceMockFactory";
 import {IValidationResult} from "../../../common/validators/iValidationResult";
 import {FormFiller} from "../../../../testUtils/formFiller";
@@ -21,7 +21,7 @@ import { ChangeUserPasswordComponent } from './changeUserPassword.component';
 
 describe('ChangeUserPasswordComponent', () => {
 
-  var userIdDetails: IUserIdDetails;
+  var userIdDetails: IIdDetails;
 
   var userServiceMock: IUserService;
   var updateUserPassrowdResult: Subject<void>;

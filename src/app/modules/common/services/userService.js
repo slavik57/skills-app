@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,14 +13,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var httpServiceBase_1 = require("./base/httpServiceBase");
 var statusCode_1 = require("../../../../common/statusCode");
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var Observable_1 = require('rxjs/Observable');
 var _ = require('lodash');
-var UserService = (function () {
+var UserService = (function (_super) {
+    __extends(UserService, _super);
     function UserService(http) {
-        this.http = http;
+        _super.call(this, http);
         this._loginUrl = '/api/login';
         this._registerUrl = '/api/register';
         this._usersControllerUrl = '/api/users/';
@@ -124,21 +131,6 @@ var UserService = (function () {
             .map(function (response) { return _this._parseBodyAsArray(response); })
             .catch(function (error) { return _this._handleServerError(error); });
     };
-    UserService.prototype._get = function (url) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.get(url, options);
-    };
-    UserService.prototype._post = function (url, body) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.post(url, body, options);
-    };
-    UserService.prototype._put = function (url, body) {
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_1.RequestOptions({ headers: headers });
-        return this.http.put(url, body, options);
-    };
     UserService.prototype._getRedirectionLocation = function (response) {
         this._throwErrorIfStatusIsNotOk(response);
         var redirectPath = response.headers.get('redirect-path');
@@ -146,24 +138,6 @@ var UserService = (function () {
             throw 'Unexpected result';
         }
         return redirectPath;
-    };
-    UserService.prototype._handleServerError = function (error) {
-        console.log(error);
-        if (error.status === statusCode_1.StatusCode.UNAUTHORIZED) {
-            return Observable_1.Observable.throw(UserService.UNAUTHORIZED_ERROR);
-        }
-        if (typeof error === 'string') {
-            return Observable_1.Observable.throw(UserService.GENERIC_ERROR);
-        }
-        try {
-            var result = error.json();
-            if (!!result && !!result.error) {
-                return Observable_1.Observable.throw(result.error);
-            }
-        }
-        catch (e) {
-        }
-        return Observable_1.Observable.throw(UserService.GENERIC_ERROR);
     };
     UserService.prototype._failSignin = function (error) {
         console.log(error);
@@ -173,14 +147,6 @@ var UserService = (function () {
         else {
             return Observable_1.Observable.throw(UserService.GENERIC_ERROR);
         }
-    };
-    UserService.prototype._extractPropertyFromBody = function (response, propertyName) {
-        this._throwErrorIfStatusIsNotOk(response);
-        var result = response.json();
-        if (!result || !(propertyName in result)) {
-            throw 'Unexpected result';
-        }
-        return result[propertyName];
     };
     UserService.prototype._extractUserDetails = function (response) {
         this._throwErrorIfStatusIsNotOk(response);
@@ -206,36 +172,11 @@ var UserService = (function () {
         });
         return usernameDetails;
     };
-    UserService.prototype._parseBodyAsArray = function (response) {
-        this._throwErrorIfStatusIsNotOk(response);
-        var result = response.json();
-        if (!result || !(result instanceof Array)) {
-            throw 'Unexpected result';
-        }
-        return result;
-    };
-    UserService.prototype._failWithGenericError = function (error) {
-        console.log(error);
-        return Observable_1.Observable.throw(UserService.GENERIC_ERROR);
-    };
-    UserService.prototype._throwOnUnauthorizedOrGenericError = function (error) {
-        if (error.status === statusCode_1.StatusCode.UNAUTHORIZED) {
-            return Observable_1.Observable.throw(UserService.UNAUTHORIZED_ERROR);
-        }
-        else {
-            return Observable_1.Observable.throw(UserService.GENERIC_ERROR);
-        }
-    };
     UserService.prototype._isResponseHasAllUserDetails = function (response) {
         return ('id' in response) &&
             ('username' in response) &&
             ('firstName' in response) &&
             ('lastName' in response);
-    };
-    UserService.prototype._throwErrorIfStatusIsNotOk = function (response) {
-        if (response.status !== statusCode_1.StatusCode.OK) {
-            throw 'Invalid result';
-        }
     };
     UserService.prototype._validateServerUsernameDetails = function (serverUsernameDetails) {
         if (serverUsernameDetails.id === null || serverUsernameDetails.id === undefined) {
@@ -245,13 +186,11 @@ var UserService = (function () {
             throw 'Username is missing';
         }
     };
-    UserService.UNAUTHORIZED_ERROR = 'Unauthorized';
-    UserService.GENERIC_ERROR = 'Oops. Something went wrong. Please try again';
     UserService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
     ], UserService);
     return UserService;
-}());
+}(httpServiceBase_1.HttpServiceBase));
 exports.UserService = UserService;
 //# sourceMappingURL=userService.js.map

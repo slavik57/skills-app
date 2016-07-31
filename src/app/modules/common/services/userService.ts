@@ -1,3 +1,4 @@
+import {HttpServiceBase} from "./base/httpServiceBase";
 import {IUserPermissionRule} from "../interfaces/iUserPermissionRule";
 import {IUserPermission} from "../interfaces/iUserPermission";
 import {IUsernameDetails} from "../interfaces/iUsernameDetails";
@@ -38,10 +39,6 @@ interface IRegistrationInfo {
   lastName: string;
 }
 
-interface IServerError {
-  error: string;
-}
-
 interface IServerUsernameDetails {
   id: number;
   username: string;
@@ -74,9 +71,7 @@ export interface IUserService {
 }
 
 @Injectable()
-export class UserService implements IUserService {
-  private static UNAUTHORIZED_ERROR = 'Unauthorized';
-  private static GENERIC_ERROR = 'Oops. Something went wrong. Please try again';
+export class UserService extends HttpServiceBase implements IUserService {
 
   private _loginUrl = '/api/login';
   private _registerUrl = '/api/register';
@@ -88,7 +83,8 @@ export class UserService implements IUserService {
   private _userPermissionsModificationRulesUrlSuffix = 'permissions-modification-rules'
   private _canUserUpdatePasswordSuffix = '/can-update-password';
 
-  constructor(private http: Http) {
+  constructor(http: Http) {
+    super(http)
   }
 
   public signinUser(username: string, password: string): Observable<string> {
@@ -218,27 +214,6 @@ export class UserService implements IUserService {
       .catch((error: any) => this._handleServerError<IUserPermissionRule[]>(error));
   }
 
-  private _get(url): Observable<Response> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.get(url, options);
-  }
-
-  private _post(url: string, body: string): Observable<Response> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.post(url, body, options);
-  }
-
-  private _put(url: string, body: string): Observable<Response> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.put(url, body, options);
-  }
-
   private _getRedirectionLocation(response: Response): string {
     this._throwErrorIfStatusIsNotOk(response);
 
@@ -251,28 +226,6 @@ export class UserService implements IUserService {
     return redirectPath;
   }
 
-  private _handleServerError<T>(error: any): Observable<T> {
-    console.log(error);
-
-    if (error.status === StatusCode.UNAUTHORIZED) {
-      return Observable.throw(UserService.UNAUTHORIZED_ERROR);
-    }
-
-    if (typeof error === 'string') {
-      return Observable.throw(UserService.GENERIC_ERROR);
-    }
-
-    try {
-      var result: IServerError = error.json();
-      if (!!result && !!result.error) {
-        return Observable.throw(result.error);
-      }
-    } catch (e) {
-    }
-
-    return Observable.throw(UserService.GENERIC_ERROR);
-  }
-
   private _failSignin(error: any): Observable<string> {
     console.log(error);
 
@@ -281,18 +234,6 @@ export class UserService implements IUserService {
     } else {
       return Observable.throw(UserService.GENERIC_ERROR);
     }
-  }
-
-  private _extractPropertyFromBody<T>(response: Response, propertyName: string): T {
-    this._throwErrorIfStatusIsNotOk(response);
-
-    var result = response.json();
-
-    if (!result || !(propertyName in result)) {
-      throw 'Unexpected result';
-    }
-
-    return result[propertyName];
   }
 
   private _extractUserDetails(response: Response): IUserDetails {
@@ -329,43 +270,11 @@ export class UserService implements IUserService {
     return usernameDetails;
   }
 
-  private _parseBodyAsArray<T>(response: Response): T[] {
-    this._throwErrorIfStatusIsNotOk(response);
-
-    var result = response.json();
-
-    if (!result || !(result instanceof Array)) {
-      throw 'Unexpected result';
-    }
-
-    return result;
-  }
-
-  private _failWithGenericError<T>(error: any): Observable<T> {
-    console.log(error);
-
-    return Observable.throw(UserService.GENERIC_ERROR);
-  }
-
-  private _throwOnUnauthorizedOrGenericError<T>(error: any): Observable<T> {
-    if (error.status === StatusCode.UNAUTHORIZED) {
-      return Observable.throw(UserService.UNAUTHORIZED_ERROR);
-    } else {
-      return Observable.throw(UserService.GENERIC_ERROR);
-    }
-  }
-
   private _isResponseHasAllUserDetails(response: any): boolean {
     return ('id' in response) &&
       ('username' in response) &&
       ('firstName' in response) &&
       ('lastName' in response);
-  }
-
-  private _throwErrorIfStatusIsNotOk<T>(response: Response): void {
-    if (response.status !== StatusCode.OK) {
-      throw 'Invalid result';
-    }
   }
 
   private _validateServerUsernameDetails(serverUsernameDetails: IServerUsernameDetails): void {

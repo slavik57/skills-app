@@ -1,5 +1,5 @@
-import {IUserIdDetails} from "./iUserIdDetails";
+import {IIdDetails} from "./iIdDetails";
 
-export interface IUsernameDetails extends IUserIdDetails {
+export interface IUsernameDetails extends IIdDetails {
   username: string;
 }

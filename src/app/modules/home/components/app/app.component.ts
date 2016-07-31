@@ -1,3 +1,4 @@
+import {TeamService} from "../../../common/services/teamService";
 import {SettingsComponent} from "../../../settings/components/settings/settings.component";
 import {HomeComponent} from "../home/home.component";
 import {UserProfileComponent} from "../../../user/components/userProfile/userProfile.component";
@@ -16,7 +17,8 @@ import * as _ from 'lodash';
   directives: _.union(ROUTER_DIRECTIVES, [NavigationComponent, CreditsComponent]),
   providers: [
     HTTP_PROVIDERS,
-    UserService
+    UserService,
+    TeamService
   ],
   precompile: [HomeComponent, UserProfileComponent, SettingsComponent]
 })

@@ -1,1 +1,61 @@
-Hi teams settings...
+<div class="teams-settings-wrapper loaded-content-wrapper"
+     [ngClass]="{loading: isLoadingTeams, error: loadingTeamsError}">
+
+  <div class="loading-teams-details loading-wrapper">
+    <circular-loading></circular-loading>
+  </div>
+
+  <div class="loading-teams-details-error loading-content-error">
+    <span class="text">{{loadingTeamsError}}</span>
+    <button class="retry-button" (click)="reload()">
+     Try Again
+    </button>
+  </div>
+
+  <div class="team-details-wrapper content-wrapper">
+
+    <div *ngIf="teamsDetails">
+
+      <div class="input-field">
+        <input class="filter"
+               id="team-filter"
+               type="text"
+               [(ngModel)]="filter"/>
+        <label for="team-filter">Filter teams</label>
+      </div>
+
+      <div #teamDetailsList class="collection">
+
+        <a class="item collection-item"
+           *ngFor="let teamDetails of teamsDetails"
+           (click)="selectTeam(teamDetails)"
+           [ngClass]="{ hidden: filter && teamDetails.teamName.toLowerCase().indexOf(filter.toLowerCase()) < 0 , active: selectedTeam === teamDetails}">
+
+            <i class="material-icons">account_circle</i>
+            <span class="team-name">{{teamDetails.teamName}}</span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div #teamSettingsModal
+       class="modal">
+
+      <div class="modal-content">
+        <div *ngIf="teamSettingsModal.className.split(' ').indexOf('open') >= 0"
+              class="modal-inner-content">
+              Here will come the team details...
+          <!-- <team-settings [teamDetails]="selectedTeam"></team-settings> -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="modal-action modal-close">Close</a>
+      </div>
+
+  </div>
+
+</div>
