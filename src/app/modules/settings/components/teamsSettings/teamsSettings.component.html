@@ -31,7 +31,7 @@
            (click)="selectTeam(teamDetails)"
            [ngClass]="{ hidden: filter && teamDetails.teamName.toLowerCase().indexOf(filter.toLowerCase()) < 0 , active: selectedTeam === teamDetails}">
 
-            <i class="material-icons">account_circle</i>
+            <i class="material-icons">supervisor_account</i>
             <span class="team-name">{{teamDetails.teamName}}</span>
 
         </a>
