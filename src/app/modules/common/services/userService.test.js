@@ -64,7 +64,7 @@ testing_1.describe('UserService', function () {
         userService.isUsernameExists(username);
         chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
-        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + username + '/exists');
+        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/users/' + username + '/exists');
     });
     testing_1.it('canUserUpdatePassword should use correct url', function () {
         var userId = 123;
@@ -120,7 +120,7 @@ testing_1.describe('UserService', function () {
         userService.getUserPermissions(userId);
         chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
-        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + userId + '/permissions');
+        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/users/' + userId + '/permissions');
     });
     testing_1.it('getUserPermissionsModificationRules should use correct url', function () {
         userService.getUserPermissionsModificationRules();
@@ -133,7 +133,7 @@ testing_1.describe('UserService', function () {
         userService.updateUserPermissions(id, [], []);
         chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Put);
-        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + id + '/permissions');
+        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/users/' + id + '/permissions');
     });
     testing_1.it('updateUserPermissions should use correct body', function () {
         var id = 123;

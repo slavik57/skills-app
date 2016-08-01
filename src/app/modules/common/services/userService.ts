@@ -99,7 +99,7 @@ export class UserService extends HttpServiceBase implements IUserService {
   }
 
   public isUsernameExists(username: string): Observable<boolean> {
-    let url = this._userControllerUrl + username + this._userExistsUrlSuffix;
+    let url = this._usersControllerUrl + username + this._userExistsUrlSuffix;
 
     return this._get(url)
       .map((response: Response) => this._extractPropertyFromBody<boolean>(response, 'userExists'))
@@ -186,7 +186,7 @@ export class UserService extends HttpServiceBase implements IUserService {
     userPermissionsToAdd: IUserPermission[],
     userPermissionsToRemove: IUserPermission[]): Observable<void> {
 
-    let url = this._userControllerUrl + userId + this._userPermissionsUrlSuffix;
+    let url = this._usersControllerUrl + userId + this._userPermissionsUrlSuffix;
 
     let body: string = JSON.stringify(<IUpdateUserPermissions>{
       permissionsToAdd: _.map(userPermissionsToAdd, _ => _.value),
@@ -199,7 +199,7 @@ export class UserService extends HttpServiceBase implements IUserService {
   }
 
   public getUserPermissions(userId: number): Observable<IUserPermission[]> {
-    let url = this._userControllerUrl + userId + this._userPermissionsUrlSuffix;
+    let url = this._usersControllerUrl + userId + this._userPermissionsUrlSuffix;
 
     return this._get(url)
       .map((response: Response) => this._parseBodyAsArray<IUserPermission>(response))

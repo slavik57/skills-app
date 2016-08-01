@@ -45,7 +45,7 @@ var UserService = (function (_super) {
     };
     UserService.prototype.isUsernameExists = function (username) {
         var _this = this;
-        var url = this._userControllerUrl + username + this._userExistsUrlSuffix;
+        var url = this._usersControllerUrl + username + this._userExistsUrlSuffix;
         return this._get(url)
             .map(function (response) { return _this._extractPropertyFromBody(response, 'userExists'); })
             .catch(function (error) { return _this._failWithGenericError(error); });
@@ -108,7 +108,7 @@ var UserService = (function (_super) {
     };
     UserService.prototype.updateUserPermissions = function (userId, userPermissionsToAdd, userPermissionsToRemove) {
         var _this = this;
-        var url = this._userControllerUrl + userId + this._userPermissionsUrlSuffix;
+        var url = this._usersControllerUrl + userId + this._userPermissionsUrlSuffix;
         var body = JSON.stringify({
             permissionsToAdd: _.map(userPermissionsToAdd, function (_) { return _.value; }),
             permissionsToRemove: _.map(userPermissionsToRemove, function (_) { return _.value; })
@@ -119,7 +119,7 @@ var UserService = (function (_super) {
     };
     UserService.prototype.getUserPermissions = function (userId) {
         var _this = this;
-        var url = this._userControllerUrl + userId + this._userPermissionsUrlSuffix;
+        var url = this._usersControllerUrl + userId + this._userPermissionsUrlSuffix;
         return this._get(url)
             .map(function (response) { return _this._parseBodyAsArray(response); })
             .catch(function (error) { return _this._handleServerError(error); });

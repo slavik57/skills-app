@@ -90,7 +90,7 @@ describe('UserService', () => {
 
     expect(mockBackend.connectionsArray).to.be.length(1);
     expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
-    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + username + '/exists');
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/users/' + username + '/exists');
   });
 
   it('canUserUpdatePassword should use correct url', () => {
@@ -161,7 +161,7 @@ describe('UserService', () => {
 
     expect(mockBackend.connectionsArray).to.be.length(1);
     expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
-    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + userId + '/permissions');
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/users/' + userId + '/permissions');
   });
 
   it('getUserPermissionsModificationRules should use correct url', () => {
@@ -178,7 +178,7 @@ describe('UserService', () => {
 
     expect(mockBackend.connectionsArray).to.be.length(1);
     expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Put);
-    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + id + '/permissions');
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/users/' + id + '/permissions');
   });
 
   it('updateUserPermissions should use correct body', () => {
