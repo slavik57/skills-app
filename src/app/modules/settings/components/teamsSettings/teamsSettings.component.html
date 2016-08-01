@@ -38,6 +38,11 @@
 
       </div>
 
+      <a class="add-button waves-effect waves-light"
+         (click)="setAsCreatingTeam()">
+        <i class="material-icons">add</i>
+      </a>
+
     </div>
 
   </div>
@@ -50,6 +55,21 @@
               class="modal-inner-content">
               Here will come the team details...
           <!-- <team-settings [teamDetails]="selectedTeam"></team-settings> -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="modal-action modal-close">Close</a>
+      </div>
+
+  </div>
+
+  <div #creatingTeamModal
+       class="modal">
+
+      <div class="modal-content">
+        <div *ngIf="creatingTeamModal.className.split(' ').indexOf('open') >= 0"
+              class="modal-inner-content">
+              Here will come the create team form...
         </div>
       </div>
       <div class="modal-footer">

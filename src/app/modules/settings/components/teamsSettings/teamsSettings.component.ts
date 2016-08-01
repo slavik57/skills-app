@@ -12,11 +12,13 @@ import { Observable } from 'rxjs/Observable';
   directives: [CircularLoadingComponent/*, TeamSettingsComponent*/]
 })
 export class TeamsSettingsComponent extends LoadingComponentBase<ITeamNameDetails[]> {
+  @ViewChild('teamSettingsModal') public teamSettingsModal: ElementRef;
+  @ViewChild('creatingTeamModal') public creatingTeamModal: ElementRef;
   public isLoadingTeams: boolean;
   public loadingTeamsError: any;
   public teamsDetails: ITeamNameDetails[];
   public selectedTeam: ITeamNameDetails;
-  @ViewChild('teamSettingsModal') public teamSettingsModal: ElementRef;
+  public isCreatingTeam: boolean;
 
   constructor(private teamService: TeamService,
     private zone: NgZone) {
@@ -26,15 +28,20 @@ export class TeamsSettingsComponent extends LoadingComponentBase<ITeamNameDetail
   public selectTeam(teamDetails: ITeamNameDetails): void {
     this.selectedTeam = teamDetails;
 
-    $(this.teamSettingsModal.nativeElement).openModal({
-      complete: () => {
-        this.zone.run(() => { });
-      }
+    this._openModal(this.teamSettingsModal);
+  }
+
+  public setAsCreatingTeam(): void {
+    this.isCreatingTeam = true;
+
+    this._openModal(this.creatingTeamModal, () => {
+      this.isCreatingTeam = false;
     });
   }
 
   protected load(): void {
     this.selectedTeam = null;
+    this.isCreatingTeam = false;
     super.load();
   }
 
@@ -53,4 +60,13 @@ export class TeamsSettingsComponent extends LoadingComponentBase<ITeamNameDetail
   protected setLoadingError(error: any): void {
     this.loadingTeamsError = error;
   }
+
+  private _openModal(modalElement: ElementRef, closeCallback = () => { }): void {
+    $(modalElement.nativeElement).openModal({
+      complete: () => {
+        this.zone.run(closeCallback);
+      }
+    });
+  }
+
 }

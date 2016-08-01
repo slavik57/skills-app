@@ -1,0 +1,9 @@
+@import "~materialize-css/dist/css/materialize.min";
+
+.add-button {
+  @extend .btn-floating;
+  @extend .btn-large;
+  @extend .waves-effect;
+  @extend .waves-light;
+  @extend .blue;
+}

@@ -3195,14 +3195,14 @@ nav ul a span.badge {
   right: auto;
 }
 
-.row .col.s3, :host .col.s3, :host .tabs .tab a, :host .s3.settings-content-wrapper {
+.row .col.s3, :host .col.s3, :host .tabs .tab a.s3, :host .s3.settings-content-wrapper {
   width: 25%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
 
-.row .col.s4, :host .col.s4, :host .tabs .tab a.s4, :host .s4.settings-content-wrapper {
+.row .col.s4, :host .col.s4, :host .tabs .tab a, :host .s4.settings-content-wrapper {
   width: 33.3333333333%;
   margin-left: auto;
   left: auto;
@@ -7341,6 +7341,17 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   }
 }
 
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 :host .settings-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   padding-top: 1rem;
 }

@@ -25,16 +25,19 @@ var TeamsSettingsComponent = (function (_super) {
         this.zone = zone;
     }
     TeamsSettingsComponent.prototype.selectTeam = function (teamDetails) {
-        var _this = this;
         this.selectedTeam = teamDetails;
-        $(this.teamSettingsModal.nativeElement).openModal({
-            complete: function () {
-                _this.zone.run(function () { });
-            }
+        this._openModal(this.teamSettingsModal);
+    };
+    TeamsSettingsComponent.prototype.setAsCreatingTeam = function () {
+        var _this = this;
+        this.isCreatingTeam = true;
+        this._openModal(this.creatingTeamModal, function () {
+            _this.isCreatingTeam = false;
         });
     };
     TeamsSettingsComponent.prototype.load = function () {
         this.selectedTeam = null;
+        this.isCreatingTeam = false;
         _super.prototype.load.call(this);
     };
     TeamsSettingsComponent.prototype.get = function () {
@@ -49,10 +52,23 @@ var TeamsSettingsComponent = (function (_super) {
     TeamsSettingsComponent.prototype.setLoadingError = function (error) {
         this.loadingTeamsError = error;
     };
+    TeamsSettingsComponent.prototype._openModal = function (modalElement, closeCallback) {
+        var _this = this;
+        if (closeCallback === void 0) { closeCallback = function () { }; }
+        $(modalElement.nativeElement).openModal({
+            complete: function () {
+                _this.zone.run(closeCallback);
+            }
+        });
+    };
     __decorate([
         core_1.ViewChild('teamSettingsModal'), 
         __metadata('design:type', core_1.ElementRef)
     ], TeamsSettingsComponent.prototype, "teamSettingsModal", void 0);
+    __decorate([
+        core_1.ViewChild('creatingTeamModal'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], TeamsSettingsComponent.prototype, "creatingTeamModal", void 0);
     TeamsSettingsComponent = __decorate([
         core_1.Component({
             selector: 'teams-settings',

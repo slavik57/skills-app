@@ -40,7 +40,7 @@ describe('TeamsSettingsComponent', () => {
       run: () => null
     }
 
-    zoneRunSpy = spy(zoneMock, 'run');
+    zoneRunSpy = stub(zoneMock, 'run', (func) => func());
 
     return [
       provide(NgZone, { useValue: zoneMock }),
@@ -53,6 +53,10 @@ describe('TeamsSettingsComponent', () => {
     component = _component;
 
     component.teamSettingsModal = {
+      nativeElement: {}
+    }
+
+    component.creatingTeamModal = {
       nativeElement: {}
     }
 
@@ -79,6 +83,10 @@ describe('TeamsSettingsComponent', () => {
     expect(component.selectedTeam).to.be.null;
   });
 
+  it('isCreatingTeam should be false', () => {
+    expect(component.isCreatingTeam).to.be.false;
+  });
+
   describe('getting teams details fails', () => {
 
     var error: string;
@@ -102,6 +110,10 @@ describe('TeamsSettingsComponent', () => {
 
     it('selectedTeam should be null', () => {
       expect(component.selectedTeam).to.be.null;
+    });
+
+    it('isCreatingTeam should be false', () => {
+      expect(component.isCreatingTeam).to.be.false;
     });
 
     describe('reload', () => {
@@ -130,6 +142,10 @@ describe('TeamsSettingsComponent', () => {
 
       it('selectedTeam should be null', () => {
         expect(component.selectedTeam).to.be.null;
+      });
+
+      it('isCreatingTeam should be false', () => {
+        expect(component.isCreatingTeam).to.be.false;
       });
 
     })
@@ -165,6 +181,10 @@ describe('TeamsSettingsComponent', () => {
 
     it('selectedTeam should be null', () => {
       expect(component.selectedTeam).to.be.null;
+    });
+
+    it('isCreatingTeam should be false', () => {
+      expect(component.isCreatingTeam).to.be.false;
     });
 
     describe('selectTeam', () => {
@@ -204,6 +224,10 @@ describe('TeamsSettingsComponent', () => {
         expect(openModalSpy.args[0][0].complete).to.exist;
       });
 
+      it('isCreatingTeam should be false', () => {
+        expect(component.isCreatingTeam).to.be.false;
+      });
+
       describe('reload', () => {
 
         beforeEach(() => {
@@ -212,6 +236,10 @@ describe('TeamsSettingsComponent', () => {
 
         it('should set selectedTeam to null', () => {
           expect(component.selectedTeam).to.be.null;
+        });
+
+        it('isCreatingTeam should be false', () => {
+          expect(component.isCreatingTeam).to.be.false;
         });
 
       });
@@ -226,7 +254,65 @@ describe('TeamsSettingsComponent', () => {
           expect(zoneRunSpy.callCount).to.be.equal(1);
         });
 
+        it('isCreatingTeam should be false', () => {
+          expect(component.isCreatingTeam).to.be.false;
+        });
+
       });
+
+    });
+
+    describe('setAsCreatingTeam', () => {
+
+      var jquerySpy: SinonSpy;
+      var openModalSpy: SinonSpy;
+
+      beforeEach(() => {
+        var jqueryResult = {
+          openModal: () => null
+        }
+
+        openModalSpy = spy(jqueryResult, 'openModal');
+
+        jquerySpy = stub(window, '$', () => jqueryResult);
+
+        component.setAsCreatingTeam();
+      });
+
+      afterEach(() => {
+        jquerySpy.restore();
+      });
+
+
+      it('should set isCreatingTeam to true', () => {
+        expect(component.isCreatingTeam).to.be.true;
+      });
+
+      it('should open the modal', () => {
+        expect(jquerySpy.callCount).to.be.equal(1);
+        expect(jquerySpy.args[0].length).to.be.equal(1);
+        expect(jquerySpy.args[0][0]).to.be.equal(component.creatingTeamModal.nativeElement);
+        expect(openModalSpy.callCount).to.be.equal(1);
+        expect(openModalSpy.args[0]).to.be.length(1);
+        expect(openModalSpy.args[0][0].complete).to.exist;
+      });
+
+      describe('close the modal', () => {
+
+        beforeEach(() => {
+          openModalSpy.args[0][0].complete();
+        });
+
+        it('should call zone.run()', () => {
+          expect(zoneRunSpy.callCount).to.be.equal(1);
+        });
+
+        it('isCreatingTeam should be false', () => {
+          expect(component.isCreatingTeam).to.be.false;
+        });
+
+      });
+
 
     });
 
