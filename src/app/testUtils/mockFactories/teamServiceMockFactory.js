@@ -4,7 +4,9 @@ var TeamServiceMockFactory = (function () {
     }
     TeamServiceMockFactory.createTeamServiceMock = function () {
         return {
-            getTeamsDetails: function () { return null; }
+            getTeamsDetails: function () { return null; },
+            isTeamExists: function () { return null; },
+            createTeam: function () { return null; }
         };
     };
     return TeamServiceMockFactory;

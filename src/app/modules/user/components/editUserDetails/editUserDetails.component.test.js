@@ -31,7 +31,7 @@ testing_1.describe('EditUserDetailsComponent', function () {
         userServiceMock = userServiceMockFactory_1.UserServiceMockFactory.createUserServiceMock();
         usernameExistsValidatorMock = {
             bindControl: function () { },
-            usernameExists: function () {
+            isExists: function () {
                 usernameExistsResult = new Subject_1.Subject();
                 return usernameExistsResult;
             },

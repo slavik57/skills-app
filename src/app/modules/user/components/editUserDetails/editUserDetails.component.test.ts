@@ -51,7 +51,7 @@ describe('EditUserDetailsComponent', () => {
 
     usernameExistsValidatorMock = {
       bindControl: () => { },
-      usernameExists: () => {
+      isExists: () => {
         usernameExistsResult = new Subject<IValidationResult>();
 
         return usernameExistsResult;

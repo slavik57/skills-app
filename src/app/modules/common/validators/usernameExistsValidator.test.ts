@@ -41,7 +41,7 @@ describe('UsernameExistsValidatorFactory', () => {
 
       expect(validator).to.be.instanceof(UsernameExistsValidator);
       expect(validator['userService']).to.be.equal(userServiceMock);
-      expect(validator['allowedUsernames']).to.be.deep.equal([]);
+      expect(validator['allowedValues']).to.be.deep.equal([]);
     });
 
   });
@@ -54,7 +54,7 @@ describe('UsernameExistsValidatorFactory', () => {
 
       expect(validator).to.be.instanceof(UsernameExistsValidator);
       expect(validator['userService']).to.be.equal(userServiceMock);
-      expect(validator['allowedUsernames']).to.be.deep.equal(usernames);
+      expect(validator['allowedValues']).to.be.deep.equal(usernames);
     });
 
   });
@@ -102,7 +102,7 @@ describe('UsernameExistsValidator', () => {
 
     it('isUsernameExists returns true should return error', () => {
       var actualResult;
-      validator.usernameExists(control).subscribe(
+      validator.isExists(control).subscribe(
         (_result) => {
           actualResult = _result;
         }
@@ -120,7 +120,7 @@ describe('UsernameExistsValidator', () => {
 
     it('isUsernameExists returns false should be null', () => {
       var actualResult;
-      validator.usernameExists(control).subscribe(
+      validator.isExists(control).subscribe(
         (_result) => {
           actualResult = _result;
         }
@@ -138,7 +138,7 @@ describe('UsernameExistsValidator', () => {
 
     it('isUsernameExists rejects should return usernameTakenCheckFailed error', () => {
       var actualResult;
-      validator.usernameExists(control).subscribe(
+      validator.isExists(control).subscribe(
         (_result) => {
           actualResult = _result;
         }
@@ -161,7 +161,7 @@ describe('UsernameExistsValidator', () => {
 
     it('null username should be null', () => {
       var actualResult;
-      validator.usernameExists(control).subscribe(
+      validator.isExists(control).subscribe(
         (_result) => {
           actualResult = _result;
         }
@@ -178,7 +178,7 @@ describe('UsernameExistsValidator', () => {
 
     it('undefined username should be null', () => {
       var actualResult;
-      validator.usernameExists(control).subscribe(
+      validator.isExists(control).subscribe(
         (_result) => {
           actualResult = _result;
         }
@@ -194,7 +194,7 @@ describe('UsernameExistsValidator', () => {
     });
 
     it('empty username should be null', () => {
-      validator.usernameExists(control).subscribe(
+      validator.isExists(control).subscribe(
         (_result) => {
           expect(_result).to.be.null;
         }
@@ -208,7 +208,7 @@ describe('UsernameExistsValidator', () => {
     });
 
     it('on valid username should not use the user service', () => {
-      validator.usernameExists(control);
+      validator.isExists(control);
 
       control.updateValue(validUsernames[0]);
       control.updateValueAndValidity();
@@ -217,7 +217,7 @@ describe('UsernameExistsValidator', () => {
     });
 
     it('on another valid username should not use the user service', () => {
-      validator.usernameExists(control);
+      validator.isExists(control);
 
       control.updateValue(validUsernames[1]);
       control.updateValueAndValidity();
@@ -229,7 +229,7 @@ describe('UsernameExistsValidator', () => {
       control.updateValue(validUsernames[0]);
 
       var actualResult;
-      validator.usernameExists(control).subscribe(
+      validator.isExists(control).subscribe(
         (_result) => {
           actualResult = _result;
         }
@@ -244,7 +244,7 @@ describe('UsernameExistsValidator', () => {
       control.updateValue(validUsernames[1]);
 
       var actualResult;
-      validator.usernameExists(control).subscribe(
+      validator.isExists(control).subscribe(
         (_result) => {
           actualResult = _result;
         }
@@ -271,7 +271,7 @@ describe('UsernameExistsValidator', () => {
 
       it('on subscribtion should not return anything', () => {
         var numberOfTimesCalled = 0;
-        validator.usernameExists(control).subscribe(
+        validator.isExists(control).subscribe(
           (_result) => {
             numberOfTimesCalled++;
           }
@@ -291,7 +291,7 @@ describe('UsernameExistsValidator', () => {
       });
 
       it('on valid username should not use the user service', () => {
-        validator.usernameExists(control).subscribe(
+        validator.isExists(control).subscribe(
           (_result) => {
           }
         );

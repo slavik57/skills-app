@@ -7383,25 +7383,25 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   color: red;
 }
 
-.filling-form-card-content {
+.filling-form-wrapper {
   opacity: 1;
   overflow: hidden;
   transition: opacity .3s ease;
 }
 
-.filling-form-card-content.submitting {
+.filling-form-wrapper.submitting {
   pointer-events: none;
   opacity: 0.5;
 }
 
-.submitting-form-card-content {
+.submitting-form-wrapper {
   overflow: hidden;
   display: none;
   opacity: 0;
   transition: opacity .3s ease;
 }
 
-.submitting-form-card-content.submitting {
+.submitting-form-wrapper.submitting {
   display: block;
   opacity: 1;
 }
@@ -7428,7 +7428,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   margin-bottom: 0;
 }
 
-:host .user-profile-card-wrapper .user-profile-card .card-content .submitting-form-card-content {
+:host .user-profile-card-wrapper .user-profile-card .card-content .submitting-form-wrapper {
   position: absolute;
   bottom: 0;
   top: 0;
@@ -7437,7 +7437,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   text-align: center;
 }
 
-:host .user-profile-card-wrapper .user-profile-card .card-content .submitting-form-card-content circular-loading {
+:host .user-profile-card-wrapper .user-profile-card .card-content .submitting-form-wrapper circular-loading {
   position: relative;
   top: 9rem;
   width: 36px;

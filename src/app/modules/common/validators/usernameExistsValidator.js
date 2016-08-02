@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,68 +13,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var existsValidatorBase_1 = require("./base/existsValidatorBase");
 var userService_1 = require("../services/userService");
 var core_1 = require('@angular/core');
-var Observable_1 = require('rxjs/Observable');
-var UsernameExistsValidator = (function () {
+var UsernameExistsValidator = (function (_super) {
+    __extends(UsernameExistsValidator, _super);
     function UsernameExistsValidator(allowedUsernames, userService) {
-        this.allowedUsernames = allowedUsernames;
+        _super.call(this, allowedUsernames, 'usernameTaken', 'usernameTakenCheckFailed');
         this.userService = userService;
     }
-    UsernameExistsValidator.prototype.bindControl = function (control) {
-        var _this = this;
-        this._valueChangesSubscription =
-            control.valueChanges
-                .debounceTime(2000)
-                .subscribe(function (username) {
-                if (!_this._subscriber) {
-                    return;
-                }
-                if (!username) {
-                    _this._resolveSubscriber(_this._subscriber, null);
-                    return;
-                }
-                _this.userService.isUsernameExists(username)
-                    .subscribe(function (isUsernameExist) { return _this._handleResult(isUsernameExist, _this._subscriber); }, function (error) { return _this._handleError(error, _this._subscriber); });
-            });
-    };
-    UsernameExistsValidator.prototype.usernameExists = function (control) {
-        var _this = this;
-        return new Observable_1.Observable(function (subscriber) {
-            if (_this.allowedUsernames.indexOf(control.value) >= 0) {
-                _this._subscriber = null;
-                _this._resolveSubscriber(subscriber, null);
-                return;
-            }
-            _this._subscriber = subscriber;
-        });
-    };
-    UsernameExistsValidator.prototype.destroy = function () {
-        this._subscriber = null;
-        if (this._valueChangesSubscription) {
-            this._valueChangesSubscription.unsubscribe();
-        }
-        this._valueChangesSubscription = null;
-    };
-    UsernameExistsValidator.prototype._handleResult = function (isUsernameExist, subscriber) {
-        if (!isUsernameExist) {
-            this._resolveSubscriber(subscriber, null);
-        }
-        else {
-            var validationErrorResult = { 'usernameTaken': true };
-            this._resolveSubscriber(subscriber, validationErrorResult);
-        }
-    };
-    UsernameExistsValidator.prototype._handleError = function (error, subscriber) {
-        var validationFailedErrorResult = { 'usernameTakenCheckFailed': true };
-        this._resolveSubscriber(subscriber, validationFailedErrorResult);
-    };
-    UsernameExistsValidator.prototype._resolveSubscriber = function (subscriber, value) {
-        subscriber.next(value);
-        subscriber.complete();
+    UsernameExistsValidator.prototype.isValueExists = function (username) {
+        return this.userService.isUsernameExists(username);
     };
     return UsernameExistsValidator;
-}());
+}(existsValidatorBase_1.ExistsValidatorBase));
 exports.UsernameExistsValidator = UsernameExistsValidator;
 var UsernameExistsValidatorFactory = (function () {
     function UsernameExistsValidatorFactory(userService) {

@@ -12,11 +12,14 @@ interface IServerTeamNameDetails {
 
 export interface ITeamService {
   getTeamsDetails(): Observable<ITeamNameDetails[]>;
+  isTeamExists(teamName: string): Observable<boolean>;
+  createTeam(teamName: string): Observable<ITeamNameDetails>;
 }
 
 @Injectable()
 export class TeamService extends HttpServiceBase implements ITeamService {
   private _teamsControllerUrl = '/api/teams/';
+  private _teamExistsUrlSuffix = '/exists';
 
   constructor(http: Http) {
     super(http)
@@ -26,6 +29,24 @@ export class TeamService extends HttpServiceBase implements ITeamService {
     return this._get(this._teamsControllerUrl)
       .map((response: Response) => this._extractTeamsDetails(response))
       .catch((error: any) => this._throwOnUnauthorizedOrGenericError<ITeamNameDetails[]>(error));
+  }
+
+  public isTeamExists(teamName: string): Observable<boolean> {
+    let url = this._teamsControllerUrl + teamName + this._teamExistsUrlSuffix;
+
+    return this._get(url)
+      .map((response: Response) => this._extractPropertyFromBody<boolean>(response, 'teamExists'))
+      .catch((error: any) => this._failWithGenericError<boolean>(error));
+  }
+
+  public createTeam(teamName: string): Observable<ITeamNameDetails> {
+    let body: string = JSON.stringify({
+      name: teamName
+    });
+
+    return this._post(this._teamsControllerUrl, body)
+      .map((response: Response) => this._extractAllBody<ITeamNameDetails>(response))
+      .catch((error: any) => this._handleServerError<ITeamNameDetails>(error));
   }
 
   private _extractTeamsDetails(response: Response): ITeamNameDetails[] {

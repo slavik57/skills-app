@@ -1,0 +1,55 @@
+<div class="create-team-wrapper">
+  <h4>Create team</h4>
+
+  <div class="filling-form-wrapper"
+    [ngClass]="{ submitting: submitting, 'has-submit-error': !!createTeamError }">
+
+    <form id="create-team-form"
+          [formGroup]="createTeamFormGroup"
+          (ngSubmit)="createTeam()">
+
+      <div class="input-field team-name">
+        <input id="teamName"
+               type="text"
+               formControlName="teamName"
+               [(ngModel)]="teamName"
+               [ngClass]="{ 'validation-pending': createTeamFormGroup.controls.teamName.pending }"/>
+        <label for="teamName">Team name</label>
+        <div class="async-validation-indicator" [ngClass]="{ 'pending': createTeamFormGroup.controls.teamName.pending }">
+          <circular-loading></circular-loading>
+        </div>
+        <div class="form-validation-errors">
+          <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(createTeamFormGroup.controls.teamName, 'required') }">
+            Team name is required
+          </div>
+          <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(createTeamFormGroup.controls.teamName, 'teamNameTaken', false) }">
+            Team already exists
+          </div>
+          <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(createTeamFormGroup.controls.teamName, 'teamNameTakenCheckFailed', false) }"> -->
+            Failed checking if team with this name exists
+          </div>
+        </div>
+      </div>
+
+
+      <div class="submit-error">
+        {{createTeamError}}
+      </div>
+
+      <div class="submit-wrapper">
+        <button type="submit"
+                class="submit-button"
+                [disabled]="!canCreateTeam()"
+                [ngClass]="{ disabled: !canCreateTeam() }">
+               Create
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="submitting-form-wrapper"
+       [ngClass]="{ submitting: submitting }">
+    <circular-loading></circular-loading>
+  </div>
+</div>

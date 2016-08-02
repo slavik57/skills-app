@@ -4,7 +4,7 @@
 
     <div class="card-content">
 
-      <div class="filling-form-card-content"
+      <div class="filling-form-wrapper"
            [ngClass]="{ submitting: updatingUserDetails, 'has-submit-error': !!updatingUserDetailsError }">
 
         <span class="title">User Details</span>
@@ -104,7 +104,7 @@
 
       </div>
 
-      <div class="submitting-form-card-content" [ngClass]="{ submitting: updatingUserDetails }">
+      <div class="submitting-form-wrapper" [ngClass]="{ submitting: updatingUserDetails }">
         <circular-loading></circular-loading>
       </div>
 

@@ -46,7 +46,7 @@ var RegisterComponent = (function (_super) {
         this._usernameExistsValidator =
             this.usernameExistsValidatorFactory.create();
         this.registerFormGroup = this.formBuilder.group({
-            username: ['', forms_1.Validators.required, this._usernameExistsValidator.usernameExists.bind(this._usernameExistsValidator)],
+            username: ['', forms_1.Validators.required, this._usernameExistsValidator.isExists.bind(this._usernameExistsValidator)],
             firstName: ['', forms_1.Validators.required],
             passwordsGroup: this.passwordsGroup,
             lastName: ['', forms_1.Validators.required],

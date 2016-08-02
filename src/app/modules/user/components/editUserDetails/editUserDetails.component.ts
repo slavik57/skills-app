@@ -78,7 +78,7 @@ export class EditUserDetailsComponent extends FormComponentBase implements OnIni
       this.usernameExistsValidatorFactory.createWithAllowedUsers([this.model.username]);
 
     this.userDetailsFormGroup = this.formBuilder.group({
-      username: [this.model.username, Validators.required, this._usernameExistsValidator.usernameExists.bind(this._usernameExistsValidator)],
+      username: [this.model.username, Validators.required, this._usernameExistsValidator.isExists.bind(this._usernameExistsValidator)],
       email: [this.model.email, EmailValidator.mailFormat],
       firstName: [this.model.firstName, Validators.required],
       lastName: [this.model.lastName, Validators.required]

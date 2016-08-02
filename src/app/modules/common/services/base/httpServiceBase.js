@@ -39,6 +39,14 @@ var HttpServiceBase = (function () {
         }
         return Observable_1.Observable.throw(HttpServiceBase.GENERIC_ERROR);
     };
+    HttpServiceBase.prototype._extractAllBody = function (response) {
+        this._throwErrorIfStatusIsNotOk(response);
+        var result = response.json();
+        if (!result) {
+            throw 'Unexpected result';
+        }
+        return result;
+    };
     HttpServiceBase.prototype._extractPropertyFromBody = function (response, propertyName) {
         this._throwErrorIfStatusIsNotOk(response);
         var result = response.json();

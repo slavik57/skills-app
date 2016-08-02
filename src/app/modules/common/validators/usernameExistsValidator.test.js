@@ -27,7 +27,7 @@ testing_1.describe('UsernameExistsValidatorFactory', function () {
             var validator = usernameExistsValidatorFactory.create();
             chai_1.expect(validator).to.be.instanceof(usernameExistsValidator_1.UsernameExistsValidator);
             chai_1.expect(validator['userService']).to.be.equal(userServiceMock);
-            chai_1.expect(validator['allowedUsernames']).to.be.deep.equal([]);
+            chai_1.expect(validator['allowedValues']).to.be.deep.equal([]);
         });
     });
     testing_1.describe('createWithAllowedUsers', function () {
@@ -36,7 +36,7 @@ testing_1.describe('UsernameExistsValidatorFactory', function () {
             var validator = usernameExistsValidatorFactory.createWithAllowedUsers(usernames);
             chai_1.expect(validator).to.be.instanceof(usernameExistsValidator_1.UsernameExistsValidator);
             chai_1.expect(validator['userService']).to.be.equal(userServiceMock);
-            chai_1.expect(validator['allowedUsernames']).to.be.deep.equal(usernames);
+            chai_1.expect(validator['allowedValues']).to.be.deep.equal(usernames);
         });
     });
 });
@@ -69,7 +69,7 @@ testing_1.describe('UsernameExistsValidator', function () {
     testing_1.describe('usernameExists', function () {
         testing_1.it('isUsernameExists returns true should return error', function () {
             var actualResult;
-            validator.usernameExists(control).subscribe(function (_result) {
+            validator.isExists(control).subscribe(function (_result) {
                 actualResult = _result;
             });
             username = 'some username';
@@ -81,7 +81,7 @@ testing_1.describe('UsernameExistsValidator', function () {
         });
         testing_1.it('isUsernameExists returns false should be null', function () {
             var actualResult;
-            validator.usernameExists(control).subscribe(function (_result) {
+            validator.isExists(control).subscribe(function (_result) {
                 actualResult = _result;
             });
             username = 'some username';
@@ -93,7 +93,7 @@ testing_1.describe('UsernameExistsValidator', function () {
         });
         testing_1.it('isUsernameExists rejects should return usernameTakenCheckFailed error', function () {
             var actualResult;
-            validator.usernameExists(control).subscribe(function (_result) {
+            validator.isExists(control).subscribe(function (_result) {
                 actualResult = _result;
             });
             username = 'some username';
@@ -109,7 +109,7 @@ testing_1.describe('UsernameExistsValidator', function () {
         });
         testing_1.it('null username should be null', function () {
             var actualResult;
-            validator.usernameExists(control).subscribe(function (_result) {
+            validator.isExists(control).subscribe(function (_result) {
                 actualResult = _result;
             });
             username = null;
@@ -120,7 +120,7 @@ testing_1.describe('UsernameExistsValidator', function () {
         });
         testing_1.it('undefined username should be null', function () {
             var actualResult;
-            validator.usernameExists(control).subscribe(function (_result) {
+            validator.isExists(control).subscribe(function (_result) {
                 actualResult = _result;
             });
             username = undefined;
@@ -130,7 +130,7 @@ testing_1.describe('UsernameExistsValidator', function () {
             chai_1.expect(actualResult).to.be.null;
         });
         testing_1.it('empty username should be null', function () {
-            validator.usernameExists(control).subscribe(function (_result) {
+            validator.isExists(control).subscribe(function (_result) {
                 chai_1.expect(_result).to.be.null;
             });
             username = '';
@@ -139,13 +139,13 @@ testing_1.describe('UsernameExistsValidator', function () {
             isUsernameExistsResult.error('some error');
         });
         testing_1.it('on valid username should not use the user service', function () {
-            validator.usernameExists(control);
+            validator.isExists(control);
             control.updateValue(validUsernames[0]);
             control.updateValueAndValidity();
             chai_1.expect(isUsernameExistsSpy.callCount).to.be.equal(0);
         });
         testing_1.it('on another valid username should not use the user service', function () {
-            validator.usernameExists(control);
+            validator.isExists(control);
             control.updateValue(validUsernames[1]);
             control.updateValueAndValidity();
             chai_1.expect(isUsernameExistsSpy.callCount).to.be.equal(0);
@@ -153,7 +153,7 @@ testing_1.describe('UsernameExistsValidator', function () {
         testing_1.it('on valid username should return null', function () {
             control.updateValue(validUsernames[0]);
             var actualResult;
-            validator.usernameExists(control).subscribe(function (_result) {
+            validator.isExists(control).subscribe(function (_result) {
                 actualResult = _result;
             });
             control.updateValueAndValidity();
@@ -162,7 +162,7 @@ testing_1.describe('UsernameExistsValidator', function () {
         testing_1.it('on another valid username should return null', function () {
             control.updateValue(validUsernames[1]);
             var actualResult;
-            validator.usernameExists(control).subscribe(function (_result) {
+            validator.isExists(control).subscribe(function (_result) {
                 actualResult = _result;
             });
             control.updateValueAndValidity();
@@ -179,7 +179,7 @@ testing_1.describe('UsernameExistsValidator', function () {
         testing_1.describe('usernameExists', function () {
             testing_1.it('on subscribtion should not return anything', function () {
                 var numberOfTimesCalled = 0;
-                validator.usernameExists(control).subscribe(function (_result) {
+                validator.isExists(control).subscribe(function (_result) {
                     numberOfTimesCalled++;
                 });
                 username = 'some username';
@@ -193,7 +193,7 @@ testing_1.describe('UsernameExistsValidator', function () {
                 control.updateValueAndValidity();
             });
             testing_1.it('on valid username should not use the user service', function () {
-                validator.usernameExists(control).subscribe(function (_result) {
+                validator.isExists(control).subscribe(function (_result) {
                 });
                 username = 'some username';
                 control.updateValue(username);

@@ -30,7 +30,7 @@ testing_1.describe('RegisterComponent', function () {
         usernameExistsResult = new Subject_1.Subject();
         usernameExistsValidatorMock = {
             bindControl: function () { },
-            usernameExists: function () { return usernameExistsResult; },
+            isExists: function () { return usernameExistsResult; },
             destroy: function () { return null; }
         };
         usernameExistsValidatorBindControlSpy =

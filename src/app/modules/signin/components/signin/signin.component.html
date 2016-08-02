@@ -6,7 +6,7 @@
 
       <div class="card-content">
 
-        <div class="filling-form-card-content"
+        <div class="filling-form-wrapper"
              [ngClass]="{ submitting: submitting, 'has-submit-error': !!error }">
           <span class="title">Sign in</span>
           <form id="signin"
@@ -57,7 +57,7 @@
           </form>
         </div>
 
-        <div class="submitting-form-card-content" [ngClass]="{ submitting: submitting }">
+        <div class="submitting-form-wrapper" [ngClass]="{ submitting: submitting }">
           <circular-loading></circular-loading>
         </div>
       </div>

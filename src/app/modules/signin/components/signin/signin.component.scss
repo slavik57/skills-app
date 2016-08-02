@@ -24,7 +24,7 @@
           @extend .card-title;
         }
 
-        .filling-form-card-content{
+        .filling-form-wrapper{
           max-height: 17rem;
 
           &.has-submit-error{
@@ -32,22 +32,6 @@
           }
         }
 
-        .submitting-form-card-content{
-          position: absolute;
-          bottom: 0;
-          top:0;
-          left: 0;
-          right: 0;
-          text-align: center;
-
-          circular-loading {
-            position: relative;
-            top: 9rem;
-            $size: 36px;
-            width: $size;
-            height: $size;
-          }
-        }
       }
 
       .card-action{

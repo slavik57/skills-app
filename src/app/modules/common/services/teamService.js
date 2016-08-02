@@ -22,12 +22,29 @@ var TeamService = (function (_super) {
     function TeamService(http) {
         _super.call(this, http);
         this._teamsControllerUrl = '/api/teams/';
+        this._teamExistsUrlSuffix = '/exists';
     }
     TeamService.prototype.getTeamsDetails = function () {
         var _this = this;
         return this._get(this._teamsControllerUrl)
             .map(function (response) { return _this._extractTeamsDetails(response); })
             .catch(function (error) { return _this._throwOnUnauthorizedOrGenericError(error); });
+    };
+    TeamService.prototype.isTeamExists = function (teamName) {
+        var _this = this;
+        var url = this._teamsControllerUrl + teamName + this._teamExistsUrlSuffix;
+        return this._get(url)
+            .map(function (response) { return _this._extractPropertyFromBody(response, 'teamExists'); })
+            .catch(function (error) { return _this._failWithGenericError(error); });
+    };
+    TeamService.prototype.createTeam = function (teamName) {
+        var _this = this;
+        var body = JSON.stringify({
+            name: teamName
+        });
+        return this._post(this._teamsControllerUrl, body)
+            .map(function (response) { return _this._extractAllBody(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
     };
     TeamService.prototype._extractTeamsDetails = function (response) {
         var _this = this;

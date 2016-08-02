@@ -46,7 +46,7 @@ export class RegisterComponent extends FormComponentBase implements OnInit, OnDe
       this.usernameExistsValidatorFactory.create();
 
     this.registerFormGroup = this.formBuilder.group({
-      username: ['', Validators.required, this._usernameExistsValidator.usernameExists.bind(this._usernameExistsValidator)],
+      username: ['', Validators.required, this._usernameExistsValidator.isExists.bind(this._usernameExistsValidator)],
       firstName: ['', Validators.required],
       passwordsGroup: this.passwordsGroup,
       lastName: ['', Validators.required],

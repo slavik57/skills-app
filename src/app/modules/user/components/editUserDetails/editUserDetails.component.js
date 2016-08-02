@@ -61,7 +61,7 @@ var EditUserDetailsComponent = (function (_super) {
         this._usernameExistsValidator =
             this.usernameExistsValidatorFactory.createWithAllowedUsers([this.model.username]);
         this.userDetailsFormGroup = this.formBuilder.group({
-            username: [this.model.username, forms_1.Validators.required, this._usernameExistsValidator.usernameExists.bind(this._usernameExistsValidator)],
+            username: [this.model.username, forms_1.Validators.required, this._usernameExistsValidator.isExists.bind(this._usernameExistsValidator)],
             email: [this.model.email, emailValidator_1.EmailValidator.mailFormat],
             firstName: [this.model.firstName, forms_1.Validators.required],
             lastName: [this.model.lastName, forms_1.Validators.required]

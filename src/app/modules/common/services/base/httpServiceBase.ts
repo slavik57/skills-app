@@ -56,6 +56,17 @@ export class HttpServiceBase {
     return Observable.throw(HttpServiceBase.GENERIC_ERROR);
   }
 
+  protected _extractAllBody<T>(response: Response): T {
+    this._throwErrorIfStatusIsNotOk(response);
+
+    var result = response.json();
+    if (!result) {
+      throw 'Unexpected result';
+    }
+
+    return result;
+  }
+
   protected _extractPropertyFromBody<T>(response: Response, propertyName: string): T {
     this._throwErrorIfStatusIsNotOk(response);
 

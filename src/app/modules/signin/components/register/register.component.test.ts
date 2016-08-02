@@ -53,7 +53,7 @@ describe('RegisterComponent', () => {
     usernameExistsResult = new Subject<IValidationResult>();
     usernameExistsValidatorMock = {
       bindControl: () => { },
-      usernameExists: () => usernameExistsResult,
+      isExists: () => usernameExistsResult,
       destroy: () => null
     }
 

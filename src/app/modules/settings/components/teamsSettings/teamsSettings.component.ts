@@ -1,3 +1,4 @@
+import {CreateTeamComponent} from "../createTeam/createTeam.component";
 import {TeamService} from "../../../common/services/teamService";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {ITeamNameDetails} from "../../../common/interfaces/iTeamNameDetails";
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
   selector: 'teams-settings',
   template: require('./teamsSettings.component.html'),
   styles: [require('./teamsSettings.component.scss')],
-  directives: [CircularLoadingComponent/*, TeamSettingsComponent*/]
+  directives: [CircularLoadingComponent, CreateTeamComponent]
 })
 export class TeamsSettingsComponent extends LoadingComponentBase<ITeamNameDetails[]> {
   @ViewChild('teamSettingsModal') public teamSettingsModal: ElementRef;
