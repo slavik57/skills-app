@@ -102,6 +102,14 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + userId + '/can-update-password');
   });
 
+  it('canUserModifyTeams should use correct url', () => {
+    userService.canUserModifyTeams();
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/can-modify-teams-list');
+  });
+
   it('getUserDetails should use correct url', () => {
     var username = 'some username'
     userService.getUserDetails();
@@ -239,6 +247,13 @@ describe('UserService', () => {
       );
     });
 
+    it('canUserModifyTeams should fail correctly', () => {
+      userService.canUserModifyTeams().subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
     it('getUserDetails should fail correctly', () => {
       userService.getUserDetails().subscribe(
         () => expect(true, 'should fail').to.be.false,
@@ -323,6 +338,13 @@ describe('UserService', () => {
 
     it('canUserUpdatePassword should fail correctly', () => {
       userService.canUserUpdatePassword(1).subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
+    it('canUserModifyTeams should fail correctly', () => {
+      userService.canUserModifyTeams().subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
@@ -418,6 +440,13 @@ describe('UserService', () => {
       );
     });
 
+    it('canUserModifyTeams should fail correctly', () => {
+      userService.canUserModifyTeams().subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
     it('getUserDetails should fail correctly', () => {
       userService.getUserDetails().subscribe(
         () => expect(true, 'should fail').to.be.false,
@@ -505,6 +534,13 @@ describe('UserService', () => {
 
     it('canUserUpdatePassword should fail correctly', () => {
       userService.canUserUpdatePassword(1).subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
+    it('canUserModifyTeams should fail correctly', () => {
+      userService.canUserModifyTeams().subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
@@ -1110,6 +1146,39 @@ describe('UserService', () => {
         () => expect(true, 'should succeed').to.be.false);
 
       expect(wasResolved).to.be.true;
+    });
+
+    describe('canUserModifyTeams', () => {
+
+      it('without the expected result canUserModifyTeams should fail correctly', () => {
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.canUserModifyTeams().subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the expected result canUserModifyTeams should return correct value', () => {
+        var result = true;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: { canModifyTeamsList: result }
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.canUserModifyTeams().subscribe(
+          (_result: boolean) => expect(_result).to.be.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
+
     });
 
   });

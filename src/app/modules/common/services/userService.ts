@@ -48,6 +48,7 @@ export interface IUserService {
   signinUser(username: string, password: string): Observable<string>;
   isUsernameExists(username: string): Observable<boolean>;
   canUserUpdatePassword(userIdToUpdatePasswordOf: number): Observable<boolean>;
+  canUserModifyTeams(): Observable<boolean>;
   registerUser(username: string,
     password: string,
     email: string,
@@ -82,6 +83,7 @@ export class UserService extends HttpServiceBase implements IUserService {
   private _userPermissionsUrlSuffix = '/permissions';
   private _userPermissionsModificationRulesUrlSuffix = 'permissions-modification-rules'
   private _canUserUpdatePasswordSuffix = '/can-update-password';
+  private _canUserModifyTeamsListSuffix = 'can-modify-teams-list'
 
   constructor(http: Http) {
     super(http)
@@ -112,6 +114,15 @@ export class UserService extends HttpServiceBase implements IUserService {
 
     return this._get(url)
       .map((response: Response) => this._extractPropertyFromBody<boolean>(response, 'canUpdatePassword'))
+      .catch((error: any) => this._failWithGenericError<boolean>(error));
+  }
+
+  public canUserModifyTeams(): Observable<boolean> {
+    let url =
+      this._userControllerUrl + this._canUserModifyTeamsListSuffix;
+
+    return this._get(url)
+      .map((response: Response) => this._extractPropertyFromBody<boolean>(response, 'canModifyTeamsList'))
       .catch((error: any) => this._failWithGenericError<boolean>(error));
   }
 

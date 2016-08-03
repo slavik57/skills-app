@@ -14,7 +14,8 @@ var UserServiceMockFactory = (function () {
             getUserPermissions: function () { return null; },
             getUserPermissionsModificationRules: function () { return null; },
             updateUserPermissions: function () { return null; },
-            canUserUpdatePassword: function () { return null; }
+            canUserUpdatePassword: function () { return null; },
+            canUserModifyTeams: function () { return null; }
         };
     };
     return UserServiceMockFactory;

@@ -32,6 +32,7 @@ var UserService = (function (_super) {
         this._userPermissionsUrlSuffix = '/permissions';
         this._userPermissionsModificationRulesUrlSuffix = 'permissions-modification-rules';
         this._canUserUpdatePasswordSuffix = '/can-update-password';
+        this._canUserModifyTeamsListSuffix = 'can-modify-teams-list';
     }
     UserService.prototype.signinUser = function (username, password) {
         var _this = this;
@@ -55,6 +56,13 @@ var UserService = (function (_super) {
         var url = this._userControllerUrl + userIdToUpdatePasswordOf + this._canUserUpdatePasswordSuffix;
         return this._get(url)
             .map(function (response) { return _this._extractPropertyFromBody(response, 'canUpdatePassword'); })
+            .catch(function (error) { return _this._failWithGenericError(error); });
+    };
+    UserService.prototype.canUserModifyTeams = function () {
+        var _this = this;
+        var url = this._userControllerUrl + this._canUserModifyTeamsListSuffix;
+        return this._get(url)
+            .map(function (response) { return _this._extractPropertyFromBody(response, 'canModifyTeamsList'); })
             .catch(function (error) { return _this._failWithGenericError(error); });
     };
     UserService.prototype.registerUser = function (username, password, email, firstName, lastName) {
