@@ -1,5 +1,11 @@
 @import '~materialize-css/dist/css/materialize.min';
 
-.page-footer{
-  @extend .blue;
+:host{
+
+  .page-footer.credits-footer{
+    @extend .blue;
+    margin: 0;
+    padding: 0;
+
+  }
 }

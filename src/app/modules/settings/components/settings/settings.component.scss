@@ -3,12 +3,13 @@
 :host{
   @extend .row;
   flex: 1;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  margin-left: 0;
-  margin-right: 0;
 
   .tabs{
+    flex-shrink: 0;
+
     div.indicator{
       @extend .blue;
     }
@@ -21,6 +22,7 @@
   }
 
   .settings-content-wrapper{
+    overflow-y: auto;
     @extend .col;
     @extend .s12;
     @extend .m12;
@@ -28,7 +30,5 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-
-    padding-top: 1rem;
   }
 }
