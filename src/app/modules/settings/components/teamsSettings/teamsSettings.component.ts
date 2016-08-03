@@ -1,3 +1,4 @@
+import {UserService} from "../../../common/services/userService";
 import {CreateTeamComponent} from "../createTeam/createTeam.component";
 import {TeamService} from "../../../common/services/teamService";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
@@ -12,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
   styles: [require('./teamsSettings.component.scss')],
   directives: [CircularLoadingComponent, CreateTeamComponent]
 })
-export class TeamsSettingsComponent extends LoadingComponentBase<ITeamNameDetails[]> {
+export class TeamsSettingsComponent extends LoadingComponentBase<[ITeamNameDetails[], boolean]> {
   @ViewChild('teamSettingsModal') public teamSettingsModal: ElementRef;
   @ViewChild('creatingTeamModal') public creatingTeamModal: ElementRef;
   public isLoadingTeams: boolean;
@@ -20,8 +21,10 @@ export class TeamsSettingsComponent extends LoadingComponentBase<ITeamNameDetail
   public teamsDetails: ITeamNameDetails[];
   public selectedTeam: ITeamNameDetails;
   public isCreatingTeam: boolean;
+  public canUserModifyTeams: boolean;
 
   constructor(private teamService: TeamService,
+    private userService: UserService,
     private zone: NgZone) {
     super();
   }
@@ -46,16 +49,26 @@ export class TeamsSettingsComponent extends LoadingComponentBase<ITeamNameDetail
     super.load();
   }
 
-  protected get(): Observable<ITeamNameDetails[]> {
-    return this.teamService.getTeamsDetails();
+  protected get(): Observable<[ITeamNameDetails[], boolean]> {
+    return Observable.combineLatest(
+      this.teamService.getTeamsDetails(),
+      this.userService.canUserModifyTeams()
+    );
   }
 
   protected setIsLoading(value: boolean): void {
     this.isLoadingTeams = value;
   }
 
-  protected setLoadingResult(teamsDetails: ITeamNameDetails[]): void {
-    this.teamsDetails = teamsDetails;
+  protected setLoadingResult(result: [ITeamNameDetails[], boolean]): void {
+    if (!result) {
+      this.teamsDetails = null;
+      this.canUserModifyTeams = false;
+      return;
+    }
+
+    this.teamsDetails = result[0];
+    this.canUserModifyTeams = result[1];
   }
 
   protected setLoadingError(error: any): void {

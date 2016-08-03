@@ -1,3 +1,4 @@
+import {UserServiceMockFactory} from "../../../../testUtils/mockFactories/userServiceMockFactory";
 import {ITeamNameDetails} from "../../../common/interfaces/iTeamNameDetails";
 import {TeamsSettingsComponent} from "./teamsSettings.component";
 import {TeamServiceMockFactory} from "../../../../testUtils/mockFactories/teamServiceMockFactory";
@@ -11,6 +12,7 @@ import {
 } from '@angular/core/testing';
 import {provide, NgZone} from '@angular/core';
 import {expect} from 'chai';
+import {IUserService, UserService} from "../../../common/services/userService";
 import {ITeamService, TeamService} from "../../../common/services/teamService";
 import {SinonSpy, spy, stub} from 'sinon';
 import { Subject } from 'rxjs/Subject';
@@ -19,8 +21,11 @@ import * as _ from 'lodash';
 describe('TeamsSettingsComponent', () => {
 
   var teamServiceMock: ITeamService;
+  var userServiceMock: IUserService;
   var getTeamsDetailsSpy: SinonSpy;
+  var getCanUserModifyTeamsListSpy: SinonSpy;
   var getTeamsDetailsResult: Subject<ITeamNameDetails[]>;
+  var getCanUserModifyTeamsListResult: Subject<boolean>;
   var zoneMock: NgZone;
   var zoneRunSpy: SinonSpy;
 
@@ -29,11 +34,18 @@ describe('TeamsSettingsComponent', () => {
   beforeEachProviders(() => {
 
     teamServiceMock = TeamServiceMockFactory.createTeamServiceMock();
+    userServiceMock = UserServiceMockFactory.createUserServiceMock();
 
     getTeamsDetailsSpy =
       stub(teamServiceMock, 'getTeamsDetails', () => {
         getTeamsDetailsResult = new Subject<ITeamNameDetails[]>();
         return getTeamsDetailsResult;
+      });
+
+    getCanUserModifyTeamsListSpy =
+      stub(userServiceMock, 'canUserModifyTeams', () => {
+        getCanUserModifyTeamsListResult = new Subject<boolean>();
+        return getCanUserModifyTeamsListResult;
       });
 
     zoneMock = <any>{
@@ -44,6 +56,7 @@ describe('TeamsSettingsComponent', () => {
 
     return [
       provide(NgZone, { useValue: zoneMock }),
+      provide(UserService, { useValue: userServiceMock }),
       provide(TeamService, { useValue: teamServiceMock }),
       TeamsSettingsComponent
     ];
@@ -75,6 +88,10 @@ describe('TeamsSettingsComponent', () => {
     expect(getTeamsDetailsSpy.callCount).to.be.equal(1);
   });
 
+  it('should call userService.canUserModifyTeams()', () => {
+    expect(getCanUserModifyTeamsListSpy.callCount).to.be.equal(1);
+  });
+
   it('teamsDetails should be null', () => {
     expect(component.teamsDetails).to.be.null;
   });
@@ -87,53 +104,26 @@ describe('TeamsSettingsComponent', () => {
     expect(component.isCreatingTeam).to.be.false;
   });
 
-  describe('getting teams details fails', () => {
+  it('canUserModifyTeams should be false', () => {
+    expect(component.canUserModifyTeams).to.be.false;
+  });
 
-    var error: string;
+  var onOneError = (returnError: (error: string) => void) => {
+    return () => {
 
-    beforeEach(() => {
-      error = 'some error';
-      getTeamsDetailsResult.error(error);
-    });
-
-    it('isLoadingTeams should be false', () => {
-      expect(component.isLoadingTeams).to.be.false;
-    });
-
-    it('loadingTeamsError should be correct', () => {
-      expect(component.loadingTeamsError).to.be.equal(error);
-    });
-
-    it('teamsDetails should be null', () => {
-      expect(component.teamsDetails).to.be.null;
-    });
-
-    it('selectedTeam should be null', () => {
-      expect(component.selectedTeam).to.be.null;
-    });
-
-    it('isCreatingTeam should be false', () => {
-      expect(component.isCreatingTeam).to.be.false;
-    });
-
-    describe('reload', () => {
+      var error: string;
 
       beforeEach(() => {
-        getTeamsDetailsSpy.reset();
-
-        component.reload();
+        error = 'some error';
+        returnError(error);
       });
 
-      it('isLoadingTeams should be true', () => {
-        expect(component.isLoadingTeams).to.be.true;
+      it('isLoadingTeams should be false', () => {
+        expect(component.isLoadingTeams).to.be.false;
       });
 
-      it('loadingTeamsError should be null', () => {
-        expect(component.loadingTeamsError).to.be.null;
-      });
-
-      it('should call teamService.getTeamsDetails()', () => {
-        expect(getTeamsDetailsSpy.callCount).to.be.equal(1);
+      it('loadingTeamsError should be correct', () => {
+        expect(component.loadingTeamsError).to.be.equal(error);
       });
 
       it('teamsDetails should be null', () => {
@@ -148,22 +138,96 @@ describe('TeamsSettingsComponent', () => {
         expect(component.isCreatingTeam).to.be.false;
       });
 
+      it('canUserModifyTeams should be false', () => {
+        expect(component.canUserModifyTeams).to.be.false;
+      });
+
+      describe('reload', () => {
+
+        beforeEach(() => {
+          getTeamsDetailsSpy.reset();
+          getCanUserModifyTeamsListSpy.reset();
+
+          component.reload();
+        });
+
+        it('isLoadingTeams should be true', () => {
+          expect(component.isLoadingTeams).to.be.true;
+        });
+
+        it('loadingTeamsError should be null', () => {
+          expect(component.loadingTeamsError).to.be.null;
+        });
+
+        it('should call teamService.getTeamsDetails()', () => {
+          expect(getTeamsDetailsSpy.callCount).to.be.equal(1);
+        });
+
+        it('should call userService.canUserModifyTeams()', () => {
+          expect(getCanUserModifyTeamsListSpy.callCount).to.be.equal(1);
+        });
+
+        it('teamsDetails should be null', () => {
+          expect(component.teamsDetails).to.be.null;
+        });
+
+        it('selectedTeam should be null', () => {
+          expect(component.selectedTeam).to.be.null;
+        });
+
+        it('isCreatingTeam should be false', () => {
+          expect(component.isCreatingTeam).to.be.false;
+        });
+
+        it('canUserModifyTeams should be false', () => {
+          expect(component.canUserModifyTeams).to.be.false;
+        });
+
+      })
+
+    }
+  }
+
+  describe('getting teams details fails',
+    onOneError((error: string) => {
+      getTeamsDetailsResult.error(error);
+
+      getCanUserModifyTeamsListResult.next(true);
+      getCanUserModifyTeamsListResult.complete();
     })
+  );
 
-  });
+  describe('getting can user modify teams list fails',
+    onOneError((error: string) => {
+      getCanUserModifyTeamsListResult.error(error);
 
-  describe('getting teams details succeeds', () => {
-
-    var teamsDetails: ITeamNameDetails[];
-
-    beforeEach(() => {
-      teamsDetails =
+      var teamsDetails: ITeamNameDetails[] =
         _.map([1, 2, 3], (_id) => {
           return { id: _id, teamName: _id.toString() };
         });
 
       getTeamsDetailsResult.next(teamsDetails);
       getTeamsDetailsResult.complete();
+    })
+  );
+
+  describe('all succeeds', () => {
+
+    var teamsDetails: ITeamNameDetails[];
+    var canModifyTeams: boolean;
+
+    beforeEach(() => {
+      teamsDetails =
+        _.map([1, 2, 3], (_id) => {
+          return { id: _id, teamName: _id.toString() };
+        });
+      canModifyTeams = true;
+
+      getTeamsDetailsResult.next(teamsDetails);
+      getTeamsDetailsResult.complete();
+
+      getCanUserModifyTeamsListResult.next(canModifyTeams);
+      getCanUserModifyTeamsListResult.complete();
 
     });
 
@@ -185,6 +249,10 @@ describe('TeamsSettingsComponent', () => {
 
     it('isCreatingTeam should be false', () => {
       expect(component.isCreatingTeam).to.be.false;
+    });
+
+    it('canUserModifyTeams should be correct', () => {
+      expect(component.canUserModifyTeams).to.be.equal(canModifyTeams);
     });
 
     describe('selectTeam', () => {

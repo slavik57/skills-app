@@ -39,6 +39,7 @@
       </div>
 
       <a class="add-button waves-effect waves-light"
+         *ngIf="canUserModifyTeams"
          (click)="setAsCreatingTeam()">
         <i class="material-icons">add</i>
       </a>

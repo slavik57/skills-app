@@ -13,16 +13,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var userService_1 = require("../../../common/services/userService");
 var createTeam_component_1 = require("../createTeam/createTeam.component");
 var teamService_1 = require("../../../common/services/teamService");
 var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
 var loadingComponentBase_1 = require("../../../common/components/loadingComponentBase/loadingComponentBase");
 var core_1 = require('@angular/core');
+var Observable_1 = require('rxjs/Observable');
 var TeamsSettingsComponent = (function (_super) {
     __extends(TeamsSettingsComponent, _super);
-    function TeamsSettingsComponent(teamService, zone) {
+    function TeamsSettingsComponent(teamService, userService, zone) {
         _super.call(this);
         this.teamService = teamService;
+        this.userService = userService;
         this.zone = zone;
     }
     TeamsSettingsComponent.prototype.selectTeam = function (teamDetails) {
@@ -42,13 +45,19 @@ var TeamsSettingsComponent = (function (_super) {
         _super.prototype.load.call(this);
     };
     TeamsSettingsComponent.prototype.get = function () {
-        return this.teamService.getTeamsDetails();
+        return Observable_1.Observable.combineLatest(this.teamService.getTeamsDetails(), this.userService.canUserModifyTeams());
     };
     TeamsSettingsComponent.prototype.setIsLoading = function (value) {
         this.isLoadingTeams = value;
     };
-    TeamsSettingsComponent.prototype.setLoadingResult = function (teamsDetails) {
-        this.teamsDetails = teamsDetails;
+    TeamsSettingsComponent.prototype.setLoadingResult = function (result) {
+        if (!result) {
+            this.teamsDetails = null;
+            this.canUserModifyTeams = false;
+            return;
+        }
+        this.teamsDetails = result[0];
+        this.canUserModifyTeams = result[1];
     };
     TeamsSettingsComponent.prototype.setLoadingError = function (error) {
         this.loadingTeamsError = error;
@@ -77,7 +86,7 @@ var TeamsSettingsComponent = (function (_super) {
             styles: [require('./teamsSettings.component.scss')],
             directives: [circularLoading_component_1.CircularLoadingComponent, createTeam_component_1.CreateTeamComponent]
         }), 
-        __metadata('design:paramtypes', [teamService_1.TeamService, core_1.NgZone])
+        __metadata('design:paramtypes', [teamService_1.TeamService, userService_1.UserService, core_1.NgZone])
     ], TeamsSettingsComponent);
     return TeamsSettingsComponent;
 }(loadingComponentBase_1.LoadingComponentBase));
