@@ -43,6 +43,12 @@ export class TeamsSettingsComponent extends LoadingComponentBase<[ITeamNameDetai
     });
   }
 
+  public onTeamCreated(newTeamNameDetails: ITeamNameDetails): void {
+    this._closeModal(this.creatingTeamModal);
+    this.teamsDetails.unshift(newTeamNameDetails);
+    this.selectTeam(newTeamNameDetails);
+  }
+
   protected load(): void {
     this.selectedTeam = null;
     this.isCreatingTeam = false;
@@ -81,6 +87,10 @@ export class TeamsSettingsComponent extends LoadingComponentBase<[ITeamNameDetai
         this.zone.run(closeCallback);
       }
     });
+  }
+
+  private _closeModal(modalElement: ElementRef): void {
+    $(modalElement.nativeElement).closeModal();
   }
 
 }

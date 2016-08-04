@@ -39,6 +39,11 @@ var TeamsSettingsComponent = (function (_super) {
             _this.isCreatingTeam = false;
         });
     };
+    TeamsSettingsComponent.prototype.onTeamCreated = function (newTeamNameDetails) {
+        this._closeModal(this.creatingTeamModal);
+        this.teamsDetails.unshift(newTeamNameDetails);
+        this.selectTeam(newTeamNameDetails);
+    };
     TeamsSettingsComponent.prototype.load = function () {
         this.selectedTeam = null;
         this.isCreatingTeam = false;
@@ -70,6 +75,9 @@ var TeamsSettingsComponent = (function (_super) {
                 _this.zone.run(closeCallback);
             }
         });
+    };
+    TeamsSettingsComponent.prototype._closeModal = function (modalElement) {
+        $(modalElement.nativeElement).closeModal();
     };
     __decorate([
         core_1.ViewChild('teamSettingsModal'), 

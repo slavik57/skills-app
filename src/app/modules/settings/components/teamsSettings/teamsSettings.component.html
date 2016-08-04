@@ -70,7 +70,7 @@
       <div class="modal-content">
         <div *ngIf="creatingTeamModal.className.split(' ').indexOf('open') >= 0"
               class="modal-inner-content">
-              <create-team></create-team>
+              <create-team (onTeamCreated)="onTeamCreated($event)"></create-team>
         </div>
       </div>
       <div class="modal-footer">

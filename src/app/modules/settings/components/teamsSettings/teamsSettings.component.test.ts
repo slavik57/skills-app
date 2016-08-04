@@ -334,15 +334,16 @@ describe('TeamsSettingsComponent', () => {
 
       var jquerySpy: SinonSpy;
       var openModalSpy: SinonSpy;
+      var jqueryMock: any;
 
       beforeEach(() => {
-        var jqueryResult = {
+        jqueryMock = {
           openModal: () => null
         }
 
-        openModalSpy = spy(jqueryResult, 'openModal');
+        openModalSpy = spy(jqueryMock, 'openModal');
 
-        jquerySpy = stub(window, '$', () => jqueryResult);
+        jquerySpy = stub(window, '$', () => jqueryMock);
 
         component.setAsCreatingTeam();
       });
@@ -350,7 +351,6 @@ describe('TeamsSettingsComponent', () => {
       afterEach(() => {
         jquerySpy.restore();
       });
-
 
       it('should set isCreatingTeam to true', () => {
         expect(component.isCreatingTeam).to.be.true;
@@ -381,7 +381,69 @@ describe('TeamsSettingsComponent', () => {
 
       });
 
+      describe('onTeamCreated', () => {
 
+        var originalTeamsDetails: ITeamNameDetails[];
+        var createdTeamDetails: ITeamNameDetails;
+        var closeModalSpy: SinonSpy;
+
+        beforeEach(() => {
+          createdTeamDetails = {
+            teamName: 'some new team name',
+            id: 123123
+          }
+
+          jqueryMock.closeModal = () => {
+            openModalSpy.args[0][0].complete();
+          };
+
+          closeModalSpy = spy(jqueryMock, 'closeModal');
+
+          jquerySpy.reset();
+
+          originalTeamsDetails =
+            _.map(component.teamsDetails, _ => _);
+
+          component.onTeamCreated(createdTeamDetails);
+        })
+
+        it('should close the modal', () => {
+          expect(jquerySpy.callCount).to.be.equal(1);
+          expect(jquerySpy.args[0].length).to.be.equal(1);
+          expect(jquerySpy.args[0][0]).to.be.equal(component.creatingTeamModal.nativeElement);
+          expect(closeModalSpy.callCount).to.be.equal(1);
+        });
+
+        it('should call zone.run()', () => {
+          expect(zoneRunSpy.callCount).to.be.equal(1);
+        });
+
+        it('should set isCreatingTeam to false', () => {
+          expect(component.isCreatingTeam).to.be.false;
+        });
+
+        it('should add the created team details to the teams details list', () => {
+          expect(component.teamsDetails).to.be.length(originalTeamsDetails.length + 1);
+        });
+
+        it('should add the created team details as first team details', () => {
+          expect(component.teamsDetails[0]).to.be.equal(createdTeamDetails);
+        });
+
+        it('should select the created team details', () => {
+          expect(component.selectedTeam).to.be.equal(createdTeamDetails);
+        });
+
+        it('should open the selected team modal', () => {
+          expect(jquerySpy.callCount).to.be.equal(1);
+          expect(jquerySpy.args[0].length).to.be.equal(1);
+          expect(jquerySpy.args[0][0]).to.be.equal(component.teamSettingsModal.nativeElement);
+          expect(openModalSpy.callCount).to.be.equal(1);
+          expect(openModalSpy.args[0]).to.be.length(1);
+          expect(openModalSpy.args[0][0].complete).to.exist;
+        });
+
+      });
     });
 
   });

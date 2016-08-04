@@ -237,12 +237,13 @@ testing_1.describe('TeamsSettingsComponent', function () {
         testing_1.describe('setAsCreatingTeam', function () {
             var jquerySpy;
             var openModalSpy;
+            var jqueryMock;
             testing_1.beforeEach(function () {
-                var jqueryResult = {
+                jqueryMock = {
                     openModal: function () { return null; }
                 };
-                openModalSpy = sinon_1.spy(jqueryResult, 'openModal');
-                jquerySpy = sinon_1.stub(window, '$', function () { return jqueryResult; });
+                openModalSpy = sinon_1.spy(jqueryMock, 'openModal');
+                jquerySpy = sinon_1.stub(window, '$', function () { return jqueryMock; });
                 component.setAsCreatingTeam();
             });
             testing_1.afterEach(function () {
@@ -268,6 +269,54 @@ testing_1.describe('TeamsSettingsComponent', function () {
                 });
                 testing_1.it('isCreatingTeam should be false', function () {
                     chai_1.expect(component.isCreatingTeam).to.be.false;
+                });
+            });
+            testing_1.describe('onTeamCreated', function () {
+                var originalTeamsDetails;
+                var createdTeamDetails;
+                var closeModalSpy;
+                testing_1.beforeEach(function () {
+                    createdTeamDetails = {
+                        teamName: 'some new team name',
+                        id: 123123
+                    };
+                    jqueryMock.closeModal = function () {
+                        openModalSpy.args[0][0].complete();
+                    };
+                    closeModalSpy = sinon_1.spy(jqueryMock, 'closeModal');
+                    jquerySpy.reset();
+                    originalTeamsDetails =
+                        _.map(component.teamsDetails, function (_) { return _; });
+                    component.onTeamCreated(createdTeamDetails);
+                });
+                testing_1.it('should close the modal', function () {
+                    chai_1.expect(jquerySpy.callCount).to.be.equal(1);
+                    chai_1.expect(jquerySpy.args[0].length).to.be.equal(1);
+                    chai_1.expect(jquerySpy.args[0][0]).to.be.equal(component.creatingTeamModal.nativeElement);
+                    chai_1.expect(closeModalSpy.callCount).to.be.equal(1);
+                });
+                testing_1.it('should call zone.run()', function () {
+                    chai_1.expect(zoneRunSpy.callCount).to.be.equal(1);
+                });
+                testing_1.it('should set isCreatingTeam to false', function () {
+                    chai_1.expect(component.isCreatingTeam).to.be.false;
+                });
+                testing_1.it('should add the created team details to the teams details list', function () {
+                    chai_1.expect(component.teamsDetails).to.be.length(originalTeamsDetails.length + 1);
+                });
+                testing_1.it('should add the created team details as first team details', function () {
+                    chai_1.expect(component.teamsDetails[0]).to.be.equal(createdTeamDetails);
+                });
+                testing_1.it('should select the created team details', function () {
+                    chai_1.expect(component.selectedTeam).to.be.equal(createdTeamDetails);
+                });
+                testing_1.it('should open the selected team modal', function () {
+                    chai_1.expect(jquerySpy.callCount).to.be.equal(1);
+                    chai_1.expect(jquerySpy.args[0].length).to.be.equal(1);
+                    chai_1.expect(jquerySpy.args[0][0]).to.be.equal(component.teamSettingsModal.nativeElement);
+                    chai_1.expect(openModalSpy.callCount).to.be.equal(1);
+                    chai_1.expect(openModalSpy.args[0]).to.be.length(1);
+                    chai_1.expect(openModalSpy.args[0][0].complete).to.exist;
                 });
             });
         });
