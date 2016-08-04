@@ -3,6 +3,7 @@
 
 :host {
   @extend .row;
+  margin: 0;
 
   .loading-user-details-indicator {
     $size: 2rem;
