@@ -33,7 +33,10 @@
 
             <i class="material-icons">supervisor_account</i>
             <span class="team-name">{{teamDetails.teamName}}</span>
-            <a (click)="$event.stopPropagation(); deleteTeam(teamDetails)"><i class="material-icons delete-team-icon">delete</i></a>
+            <a (click)="$event.stopPropagation(); deleteTeam(teamDetails)"
+               *ngIf="canUserModifyTeams">
+              <i class="material-icons delete-team-icon">delete</i>
+            </a>
 
         </a>
 
