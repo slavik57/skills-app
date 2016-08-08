@@ -16,12 +16,16 @@ import { Observable } from 'rxjs/Observable';
 export class TeamsSettingsComponent extends LoadingComponentBase<[ITeamNameDetails[], boolean]> {
   @ViewChild('teamSettingsModal') public teamSettingsModal: ElementRef;
   @ViewChild('creatingTeamModal') public creatingTeamModal: ElementRef;
+  @ViewChild('deleteTeamModal') public deleteTeamModal: ElementRef;
   public isLoadingTeams: boolean;
   public loadingTeamsError: any;
   public teamsDetails: ITeamNameDetails[];
   public selectedTeam: ITeamNameDetails;
   public isCreatingTeam: boolean;
   public canUserModifyTeams: boolean;
+  public teamToDelete: ITeamNameDetails;
+  public isDeletingTeam: boolean;
+  public deletingTeamError: any;
 
   constructor(private teamService: TeamService,
     private userService: UserService,
@@ -29,10 +33,36 @@ export class TeamsSettingsComponent extends LoadingComponentBase<[ITeamNameDetai
     super();
   }
 
+  public ngOnInit() {
+    this.teamToDelete = null;
+    this.isDeletingTeam = false;
+    this.deletingTeamError = null;
+
+    super.ngOnInit();
+  }
+
   public selectTeam(teamDetails: ITeamNameDetails): void {
     this.selectedTeam = teamDetails;
 
     this._openModal(this.teamSettingsModal);
+  }
+
+  public deleteTeam(teamDetails: ITeamNameDetails): void {
+    this.teamToDelete = teamDetails;
+
+    this._openModal(this.deleteTeamModal, () => {
+      this.teamToDelete = null;
+    });
+  }
+
+  public confirmDeletingTeam(): void {
+    this.isDeletingTeam = true;
+    this.deletingTeamError = null;
+
+    this.teamService.deleteTeam(this.teamToDelete.id)
+      .finally(() => this._setAsNotDeletingTeam())
+      .subscribe(() => this._onTeamDeletedSuccessfully(),
+      (error) => this._setDeletingTeamError(error));
   }
 
   public setAsCreatingTeam(): void {
@@ -91,6 +121,21 @@ export class TeamsSettingsComponent extends LoadingComponentBase<[ITeamNameDetai
 
   private _closeModal(modalElement: ElementRef): void {
     $(modalElement.nativeElement).closeModal();
+  }
+
+  private _setAsNotDeletingTeam(): void {
+    this.isDeletingTeam = false;
+  }
+
+  private _onTeamDeletedSuccessfully(): void {
+    var teamToDeleteIndex = this.teamsDetails.indexOf(this.teamToDelete);
+    this.teamsDetails.splice(teamToDeleteIndex, 1);
+
+    this._closeModal(this.deleteTeamModal);
+  }
+
+  private _setDeletingTeamError(error: any): void {
+    this.deletingTeamError = error;
   }
 
 }

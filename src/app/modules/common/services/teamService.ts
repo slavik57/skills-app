@@ -14,6 +14,7 @@ export interface ITeamService {
   getTeamsDetails(): Observable<ITeamNameDetails[]>;
   isTeamExists(teamName: string): Observable<boolean>;
   createTeam(teamName: string): Observable<ITeamNameDetails>;
+  deleteTeam(teamId: number): Observable<void>;
 }
 
 @Injectable()
@@ -47,6 +48,14 @@ export class TeamService extends HttpServiceBase implements ITeamService {
     return this._post(this._teamsControllerUrl, body)
       .map((response: Response) => this._extractAllBody<ITeamNameDetails>(response))
       .catch((error: any) => this._handleServerError<ITeamNameDetails>(error));
+  }
+
+  public deleteTeam(teamId: number): Observable<void> {
+    var url = this._teamsControllerUrl + teamId;
+
+    return this._delete(url)
+      .map((response: Response) => this._throwErrorIfStatusIsNotOk<void>(response))
+      .catch((error: any) => this._handleServerError<void>(error));
   }
 
   private _extractTeamsDetails(response: Response): ITeamNameDetails[] {

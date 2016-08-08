@@ -69,6 +69,15 @@ describe('TeamService', () => {
     expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
   });
 
+  it('deleteTeam should use correct url', () => {
+    var teamId = 123;
+    teamService.deleteTeam(teamId);
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Delete);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId);
+  });
+
   function shouldFaildWithError(error: any, beforeEachFunc: () => void): any {
 
     return () => {
@@ -91,6 +100,13 @@ describe('TeamService', () => {
 
       it('createTeam should fail correctly', () => {
         teamService.createTeam('').subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(error)
+        );
+      });
+
+      it('deleteTeam should fail correctly', () => {
+        teamService.deleteTeam(123).subscribe(
           () => expect(true, 'should fail').to.be.false,
           (error) => expect(error).to.be.equal(error)
         );
@@ -366,6 +382,31 @@ describe('TeamService', () => {
             () => expect(true, 'should succeed').to.be.false)
         });
 
+      });
+
+    });
+
+    describe('deleteTeam', () => {
+
+      it('should succeed', () => {
+        var result = true;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        var wasResolved = false;
+        teamService.deleteTeam(1234).subscribe(
+          () => wasResolved = true,
+          () => expect(true, 'should succeed').to.be.false);
+
+        expect(wasResolved).to.be.true;
       });
 
     });

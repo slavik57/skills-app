@@ -46,6 +46,13 @@ var TeamService = (function (_super) {
             .map(function (response) { return _this._extractAllBody(response); })
             .catch(function (error) { return _this._handleServerError(error); });
     };
+    TeamService.prototype.deleteTeam = function (teamId) {
+        var _this = this;
+        var url = this._teamsControllerUrl + teamId;
+        return this._delete(url)
+            .map(function (response) { return _this._throwErrorIfStatusIsNotOk(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
+    };
     TeamService.prototype._extractTeamsDetails = function (response) {
         var _this = this;
         this._throwErrorIfStatusIsNotOk(response);

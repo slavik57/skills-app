@@ -34,6 +34,13 @@ export class HttpServiceBase {
     return this.http.put(url, body, options);
   }
 
+  protected _delete(url: string): Observable<Response> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.delete(url, options);
+  }
+
   protected _handleServerError<T>(error: any): Observable<T> {
     console.log(error);
 

@@ -28,9 +28,30 @@ var TeamsSettingsComponent = (function (_super) {
         this.userService = userService;
         this.zone = zone;
     }
+    TeamsSettingsComponent.prototype.ngOnInit = function () {
+        this.teamToDelete = null;
+        this.isDeletingTeam = false;
+        this.deletingTeamError = null;
+        _super.prototype.ngOnInit.call(this);
+    };
     TeamsSettingsComponent.prototype.selectTeam = function (teamDetails) {
         this.selectedTeam = teamDetails;
         this._openModal(this.teamSettingsModal);
+    };
+    TeamsSettingsComponent.prototype.deleteTeam = function (teamDetails) {
+        var _this = this;
+        this.teamToDelete = teamDetails;
+        this._openModal(this.deleteTeamModal, function () {
+            _this.teamToDelete = null;
+        });
+    };
+    TeamsSettingsComponent.prototype.confirmDeletingTeam = function () {
+        var _this = this;
+        this.isDeletingTeam = true;
+        this.deletingTeamError = null;
+        this.teamService.deleteTeam(this.teamToDelete.id)
+            .finally(function () { return _this._setAsNotDeletingTeam(); })
+            .subscribe(function () { return _this._onTeamDeletedSuccessfully(); }, function (error) { return _this._setDeletingTeamError(error); });
     };
     TeamsSettingsComponent.prototype.setAsCreatingTeam = function () {
         var _this = this;
@@ -79,6 +100,17 @@ var TeamsSettingsComponent = (function (_super) {
     TeamsSettingsComponent.prototype._closeModal = function (modalElement) {
         $(modalElement.nativeElement).closeModal();
     };
+    TeamsSettingsComponent.prototype._setAsNotDeletingTeam = function () {
+        this.isDeletingTeam = false;
+    };
+    TeamsSettingsComponent.prototype._onTeamDeletedSuccessfully = function () {
+        var teamToDeleteIndex = this.teamsDetails.indexOf(this.teamToDelete);
+        this.teamsDetails.splice(teamToDeleteIndex, 1);
+        this._closeModal(this.deleteTeamModal);
+    };
+    TeamsSettingsComponent.prototype._setDeletingTeamError = function (error) {
+        this.deletingTeamError = error;
+    };
     __decorate([
         core_1.ViewChild('teamSettingsModal'), 
         __metadata('design:type', core_1.ElementRef)
@@ -87,6 +119,10 @@ var TeamsSettingsComponent = (function (_super) {
         core_1.ViewChild('creatingTeamModal'), 
         __metadata('design:type', core_1.ElementRef)
     ], TeamsSettingsComponent.prototype, "creatingTeamModal", void 0);
+    __decorate([
+        core_1.ViewChild('deleteTeamModal'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], TeamsSettingsComponent.prototype, "deleteTeamModal", void 0);
     TeamsSettingsComponent = __decorate([
         core_1.Component({
             selector: 'teams-settings',

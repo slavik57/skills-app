@@ -33,6 +33,7 @@
 
             <i class="material-icons">supervisor_account</i>
             <span class="team-name">{{teamDetails.teamName}}</span>
+            <a (click)="$event.stopPropagation(); deleteTeam(teamDetails)"><i class="material-icons delete-team-icon">delete</i></a>
 
         </a>
 
@@ -76,6 +77,38 @@
       <div class="modal-footer">
         <a class="modal-action modal-close">Close</a>
       </div>
+
+  </div>
+
+  <div #deleteTeamModal
+       class="modal delete-team-modal">
+
+       <div class="modal-content loaded-content-wrapper"
+            *ngIf="teamToDelete"
+            [ngClass]="{loading: isDeletingTeam, error: deletingTeamError}">
+            <div class="delete-team-verification-message">
+              You are about to delete the team: {{teamToDelete.teamName}}<br/>
+              Would you like to continue?
+            </div>
+            <div class="delete-proccess-wrapper">
+              <div class="loading-wrapper deleting-team-indicator">
+                <circular-loading></circular-loading>
+              </div>
+              <div class="loading-content-error deleting-team-failed">
+                <span class="text">{{deletingTeamError}}</span>
+              </div>
+            </div>
+       </div>
+       <div class="modal-footer">
+         <a class="modal-action modal-close"
+            [ngClass]="{disabled: isDeletingTeam}">Cancel</a>
+         <a class="modal-action"
+            (click)="confirmDeletingTeam()"
+            [ngClass]="{disabled: isDeletingTeam}">
+            <span *ngIf="!deletingTeamError">Delete</span>
+            <span *ngIf="deletingTeamError">Retry Deleting</span>
+          </a>
+       </div>
 
   </div>
 

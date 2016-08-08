@@ -48,6 +48,13 @@ testing_1.describe('TeamService', function () {
         });
         chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
     });
+    testing_1.it('deleteTeam should use correct url', function () {
+        var teamId = 123;
+        teamService.deleteTeam(teamId);
+        chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+        chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Delete);
+        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId);
+    });
     function shouldFaildWithError(error, beforeEachFunc) {
         return function () {
             testing_1.beforeEach(beforeEachFunc);
@@ -59,6 +66,9 @@ testing_1.describe('TeamService', function () {
             });
             testing_1.it('createTeam should fail correctly', function () {
                 teamService.createTeam('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
+            });
+            testing_1.it('deleteTeam should fail correctly', function () {
+                teamService.deleteTeam(123).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
             });
         };
     }
@@ -214,6 +224,20 @@ testing_1.describe('TeamService', function () {
                 testing_1.it('crateTeam should return correct team details', function () {
                     teamService.createTeam('').subscribe(function (_details) { return chai_1.expect(_details).to.deep.equal(teamDetails); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
                 });
+            });
+        });
+        testing_1.describe('deleteTeam', function () {
+            testing_1.it('should succeed', function () {
+                var result = true;
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                var wasResolved = false;
+                teamService.deleteTeam(1234).subscribe(function () { return wasResolved = true; }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
+                chai_1.expect(wasResolved).to.be.true;
             });
         });
     });

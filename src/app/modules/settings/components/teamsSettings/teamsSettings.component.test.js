@@ -52,6 +52,9 @@ testing_1.describe('TeamsSettingsComponent', function () {
         component.creatingTeamModal = {
             nativeElement: {}
         };
+        component.deleteTeamModal = {
+            nativeElement: {}
+        };
         component.ngOnInit();
     }));
     testing_1.it('isLoadingTeams should be true', function () {
@@ -77,6 +80,15 @@ testing_1.describe('TeamsSettingsComponent', function () {
     });
     testing_1.it('canUserModifyTeams should be false', function () {
         chai_1.expect(component.canUserModifyTeams).to.be.false;
+    });
+    testing_1.it('teamToDelete should be null', function () {
+        chai_1.expect(component.teamToDelete).to.be.null;
+    });
+    testing_1.it('isDeletingTeam should be false', function () {
+        chai_1.expect(component.isDeletingTeam).to.be.false;
+    });
+    testing_1.it('deletingTeamError should be correct', function () {
+        chai_1.expect(component.deletingTeamError).to.be.null;
     });
     var onOneError = function (returnError) {
         return function () {
@@ -289,11 +301,11 @@ testing_1.describe('TeamsSettingsComponent', function () {
                         _.map(component.teamsDetails, function (_) { return _; });
                     component.onTeamCreated(createdTeamDetails);
                 });
-                testing_1.it('should close the modal', function () {
-                    chai_1.expect(jquerySpy.callCount).to.be.equal(1);
-                    chai_1.expect(jquerySpy.args[0].length).to.be.equal(1);
-                    chai_1.expect(jquerySpy.args[0][0]).to.be.equal(component.creatingTeamModal.nativeElement);
-                    chai_1.expect(closeModalSpy.callCount).to.be.equal(1);
+                testing_1.it('should close the create team modal and open the team modal', function () {
+                    chai_1.expect(jquerySpy.callCount, 'should use the jquery twice').to.be.equal(2);
+                    chai_1.expect(jquerySpy.args[0].length, 'should use jquery with one argument the first time').to.be.equal(1);
+                    chai_1.expect(jquerySpy.args[0][0], 'the jquery arument on the first call should be the creating team modal').to.be.equal(component.creatingTeamModal.nativeElement);
+                    chai_1.expect(closeModalSpy.callCount, 'close modal should be called once').to.be.equal(1);
                 });
                 testing_1.it('should call zone.run()', function () {
                     chai_1.expect(zoneRunSpy.callCount).to.be.equal(1);
@@ -311,12 +323,164 @@ testing_1.describe('TeamsSettingsComponent', function () {
                     chai_1.expect(component.selectedTeam).to.be.equal(createdTeamDetails);
                 });
                 testing_1.it('should open the selected team modal', function () {
-                    chai_1.expect(jquerySpy.callCount).to.be.equal(1);
-                    chai_1.expect(jquerySpy.args[0].length).to.be.equal(1);
-                    chai_1.expect(jquerySpy.args[0][0]).to.be.equal(component.teamSettingsModal.nativeElement);
-                    chai_1.expect(openModalSpy.callCount).to.be.equal(1);
-                    chai_1.expect(openModalSpy.args[0]).to.be.length(1);
-                    chai_1.expect(openModalSpy.args[0][0].complete).to.exist;
+                    chai_1.expect(jquerySpy.callCount).to.be.equal(2);
+                    chai_1.expect(jquerySpy.args[1].length).to.be.equal(1);
+                    chai_1.expect(jquerySpy.args[1][0]).to.be.equal(component.teamSettingsModal.nativeElement);
+                    chai_1.expect(openModalSpy.callCount).to.be.equal(2);
+                    chai_1.expect(openModalSpy.args[1]).to.be.length(1);
+                    chai_1.expect(openModalSpy.args[1][0].complete).to.exist;
+                });
+            });
+        });
+        testing_1.describe('delete team', function () {
+            var teamToDelete;
+            var jquerySpy;
+            var openModalSpy;
+            var jqueryResult;
+            testing_1.beforeEach(function () {
+                teamToDelete = teamsDetails[2];
+                jqueryResult = {
+                    openModal: function () { return null; },
+                };
+                openModalSpy = sinon_1.spy(jqueryResult, 'openModal');
+                jquerySpy = sinon_1.stub(window, '$', function () { return jqueryResult; });
+                component.deleteTeam(teamToDelete);
+            });
+            testing_1.afterEach(function () {
+                jquerySpy.restore();
+            });
+            testing_1.it('teamToDelete should be correct', function () {
+                chai_1.expect(component.teamToDelete).to.be.equal(teamToDelete);
+            });
+            testing_1.it('isDeletingTeam should be false', function () {
+                chai_1.expect(component.isDeletingTeam).to.be.false;
+            });
+            testing_1.it('deletingTeamError should be correct', function () {
+                chai_1.expect(component.deletingTeamError).to.be.null;
+            });
+            testing_1.it('should open the delete team modal', function () {
+                chai_1.expect(jquerySpy.callCount).to.be.equal(1);
+                chai_1.expect(jquerySpy.args[0].length).to.be.equal(1);
+                chai_1.expect(jquerySpy.args[0][0]).to.be.equal(component.deleteTeamModal.nativeElement);
+                chai_1.expect(openModalSpy.callCount).to.be.equal(1);
+                chai_1.expect(openModalSpy.args[0]).to.be.length(1);
+                chai_1.expect(openModalSpy.args[0][0].complete).to.exist;
+            });
+            testing_1.describe('close the modal', function () {
+                testing_1.beforeEach(function () {
+                    openModalSpy.args[0][0].complete();
+                });
+                testing_1.it('teamToDelete should be null', function () {
+                    chai_1.expect(component.teamToDelete).to.be.null;
+                });
+                testing_1.it('isDeletingTeam should be false', function () {
+                    chai_1.expect(component.isDeletingTeam).to.be.false;
+                });
+                testing_1.it('deletingTeamError should be correct', function () {
+                    chai_1.expect(component.deletingTeamError).to.be.null;
+                });
+            });
+            testing_1.describe('confirm deleting team', function () {
+                var closeModalSpy;
+                var deleteTeamSpy;
+                var deleteTeamResult;
+                testing_1.beforeEach(function () {
+                    jqueryResult.closeModal = function () { return openModalSpy.args[0][0].complete(); };
+                    closeModalSpy = sinon_1.spy(jqueryResult, 'closeModal');
+                    jquerySpy.reset();
+                    deleteTeamSpy = sinon_1.stub(teamServiceMock, 'deleteTeam', function () {
+                        deleteTeamResult = new Subject_1.Subject();
+                        return deleteTeamResult;
+                    });
+                    component.confirmDeletingTeam();
+                });
+                testing_1.it('isDeletingTeam should be true', function () {
+                    chai_1.expect(component.isDeletingTeam).to.be.true;
+                });
+                testing_1.it('should not close the modal', function () {
+                    chai_1.expect(jquerySpy.callCount).to.be.equal(0);
+                    chai_1.expect(closeModalSpy.callCount).to.be.equal(0);
+                });
+                testing_1.it('teamToDelete should be correct', function () {
+                    chai_1.expect(component.teamToDelete).to.be.equal(teamToDelete);
+                });
+                testing_1.it('should call teamService.deleteTeam', function () {
+                    chai_1.expect(deleteTeamSpy.callCount).to.be.equal(1);
+                    chai_1.expect(deleteTeamSpy.args[0]).to.deep.equal([teamToDelete.id]);
+                });
+                testing_1.it('deletingTeamError should be correct', function () {
+                    chai_1.expect(component.deletingTeamError).to.be.null;
+                });
+                testing_1.describe('deleting team fails', function () {
+                    var error;
+                    testing_1.beforeEach(function () {
+                        error = 'error deleting team';
+                        deleteTeamResult.error(error);
+                    });
+                    testing_1.it('should not close the modal', function () {
+                        chai_1.expect(jquerySpy.callCount).to.be.equal(0);
+                        chai_1.expect(closeModalSpy.callCount).to.be.equal(0);
+                    });
+                    testing_1.it('teamToDelete should be correct', function () {
+                        chai_1.expect(component.teamToDelete).to.be.equal(teamToDelete);
+                    });
+                    testing_1.it('isDeletingTeam should be false', function () {
+                        chai_1.expect(component.isDeletingTeam).to.be.false;
+                    });
+                    testing_1.it('deletingTeamError should be correct', function () {
+                        chai_1.expect(component.deletingTeamError).to.be.equal(error);
+                    });
+                    testing_1.describe('try deleting again', function () {
+                        testing_1.beforeEach(function () {
+                            deleteTeamSpy.reset();
+                            component.confirmDeletingTeam();
+                        });
+                        testing_1.it('isDeletingTeam should be true', function () {
+                            chai_1.expect(component.isDeletingTeam).to.be.true;
+                        });
+                        testing_1.it('should not close the modal', function () {
+                            chai_1.expect(jquerySpy.callCount).to.be.equal(0);
+                            chai_1.expect(closeModalSpy.callCount).to.be.equal(0);
+                        });
+                        testing_1.it('teamToDelete should be correct', function () {
+                            chai_1.expect(component.teamToDelete).to.be.equal(teamToDelete);
+                        });
+                        testing_1.it('should call teamService.deleteTeam', function () {
+                            chai_1.expect(deleteTeamSpy.callCount).to.be.equal(1);
+                            chai_1.expect(deleteTeamSpy.args[0]).to.deep.equal([teamToDelete.id]);
+                        });
+                        testing_1.it('deletingTeamError should be correct', function () {
+                            chai_1.expect(component.deletingTeamError).to.be.null;
+                        });
+                    });
+                });
+                testing_1.describe('deleting team succeeds', function () {
+                    var originalTeamsDetailsLength;
+                    testing_1.beforeEach(function () {
+                        originalTeamsDetailsLength = teamsDetails.length;
+                        deleteTeamResult.next(null);
+                        deleteTeamResult.complete();
+                    });
+                    testing_1.it('should close the modal', function () {
+                        chai_1.expect(jquerySpy.callCount).to.be.equal(1);
+                        chai_1.expect(jquerySpy.args[0].length).to.be.equal(1);
+                        chai_1.expect(jquerySpy.args[0][0]).to.be.equal(component.deleteTeamModal.nativeElement);
+                        chai_1.expect(closeModalSpy.callCount).to.be.equal(1);
+                        chai_1.expect(closeModalSpy.args[0]).to.be.empty;
+                    });
+                    testing_1.it('isDeletingTeam should be false', function () {
+                        chai_1.expect(component.isDeletingTeam).to.be.false;
+                    });
+                    testing_1.it('team to delete should be null', function () {
+                        chai_1.expect(component.teamToDelete).to.be.null;
+                    });
+                    testing_1.it('deletingTeamError should be correct', function () {
+                        chai_1.expect(component.deletingTeamError).to.be.null;
+                    });
+                    testing_1.it('should remove the team from teams list', function () {
+                        chai_1.expect(teamsDetails).to.be.length(originalTeamsDetailsLength - 1);
+                        chai_1.expect(teamsDetails).not.to.contain(teamToDelete);
+                    });
                 });
             });
         });
