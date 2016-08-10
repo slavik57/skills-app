@@ -1,0 +1,58 @@
+<div class="filling-form-wrapper"
+     [ngClass]="{ submitting: updatingTeamDetails, 'has-submit-error': !!updatingTeamDetailsError }">
+
+  <form id="team-details-form"
+        [formGroup]="teamDetailsFormGroup"
+        (ngSubmit)="updateTeamDetails()">
+
+    <div class="team-details">
+
+      <div class="input-field team-name">
+        <input id="teamName"
+               type="text"
+               formControlName="teamName"
+               [(ngModel)]="teamName"
+               [ngClass]="{ 'validation-pending': teamDetailsFormGroup.controls.teamName.pending }"/>
+        <label for="teamName">New Team Name</label>
+        <div class="async-validation-indicator" [ngClass]="{ 'pending': teamDetailsFormGroup.controls.teamName.pending }">
+          <circular-loading></circular-loading>
+        </div>
+        <div class="form-validation-errors">
+          <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(teamDetailsFormGroup.controls.teamName, 'required') }">
+            Team name is required
+          </div>
+          <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(teamDetailsFormGroup.controls.teamName, 'teamNameTaken', false) }">
+            Team name is taken
+          </div>
+          <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(teamDetailsFormGroup.controls.teamName, 'teamNameTakenCheckFailed', false) }">
+            Failed checking if team name exists
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="submit-error">
+      {{updatingTeamDetailsError}}
+    </div>
+
+    <div class="team-details-updated" *ngIf="isTeamDetailsUpdated">
+      The team details were successfully updated
+    </div>
+
+    <div class="submit-wrapper">
+      <button type="submit"
+              class="submit-button"
+              [disabled]="!canUpdateTeamDetails()"
+              [ngClass]="{ disabled: !canUpdateTeamDetails() }">
+             Update
+      </button>
+    </div>
+
+  </form>
+
+</div>
+
+<div class="submitting-form-wrapper" [ngClass]="{ submitting: updatingTeamDetails }">
+  <circular-loading></circular-loading>
+</div>

@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var editTeamDetails_component_1 = require("../editTeamDetails/editTeamDetails.component");
 var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
 var teamService_1 = require("../../../common/services/teamService");
 var core_1 = require('@angular/core');
@@ -34,6 +35,7 @@ var TeamSettingsComponent = (function () {
             template: require('./teamSettings.component.html'),
             styles: [require('./teamSettings.component.scss')],
             directives: [
+                editTeamDetails_component_1.EditTeamDetailsComponent,
                 circularLoading_component_1.CircularLoadingComponent
             ],
         }), 
