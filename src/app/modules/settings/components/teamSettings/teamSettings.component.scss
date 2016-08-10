@@ -1,0 +1,49 @@
+@import '~materialize-css/sass/materialize';
+@import "../../../../commonStyles/_loading";
+
+:host{
+  display: flex;
+  flex-direction: column;
+
+  h4 {
+    margin-top: 0;
+  }
+
+  .team-settings-content{
+    width: 100%;
+
+    .tabs{
+      @extend .row;
+      margin-bottom: 0;
+
+      div.indicator{
+        @extend .blue;
+      }
+
+      .tab a{
+        @extend .blue-text;
+        @extend .col;
+        @extend .s4;
+      }
+
+      @media #{$small-and-down} {
+        .tab a{
+          font-size: 0.7rem;
+        }
+      }
+    }
+
+  }
+
+  #teamDetailsSettings{
+    flex: 1;
+    margin-top: 1rem;
+  }
+
+  #teamDetailsSettings{
+    display: flex;
+    flex-direction: column;
+
+  }
+
+}

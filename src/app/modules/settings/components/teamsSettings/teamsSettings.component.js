@@ -13,6 +13,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var teamSettings_component_1 = require("../teamSettings/teamSettings.component");
 var userService_1 = require("../../../common/services/userService");
 var createTeam_component_1 = require("../createTeam/createTeam.component");
 var teamService_1 = require("../../../common/services/teamService");
@@ -128,7 +129,7 @@ var TeamsSettingsComponent = (function (_super) {
             selector: 'teams-settings',
             template: require('./teamsSettings.component.html'),
             styles: [require('./teamsSettings.component.scss')],
-            directives: [circularLoading_component_1.CircularLoadingComponent, createTeam_component_1.CreateTeamComponent]
+            directives: [circularLoading_component_1.CircularLoadingComponent, createTeam_component_1.CreateTeamComponent, teamSettings_component_1.TeamSettingsComponent]
         }), 
         __metadata('design:paramtypes', [teamService_1.TeamService, userService_1.UserService, core_1.NgZone])
     ], TeamsSettingsComponent);
