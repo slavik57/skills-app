@@ -53,6 +53,16 @@ var TeamService = (function (_super) {
             .map(function (response) { return _this._throwErrorIfStatusIsNotOk(response); })
             .catch(function (error) { return _this._handleServerError(error); });
     };
+    TeamService.prototype.updateTeamName = function (teamId, newTeamName) {
+        var _this = this;
+        var url = this._teamsControllerUrl + teamId;
+        var body = JSON.stringify({
+            name: newTeamName
+        });
+        return this._put(url, body)
+            .map(function (response) { return _this._extractAllBody(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
+    };
     TeamService.prototype._extractTeamsDetails = function (response) {
         var _this = this;
         this._throwErrorIfStatusIsNotOk(response);

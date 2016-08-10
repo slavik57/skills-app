@@ -50,23 +50,29 @@ describe('TeamService', () => {
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamName + '/exists');
   });
 
-  it('createTeam should use correct url', () => {
-    teamService.createTeam('');
+  describe('createTeam', () => {
 
-    expect(mockBackend.connectionsArray).to.be.length(1);
-    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Post);
-    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/');
-  });
+    var teamName: string;
 
-  it('createTeam should use correct body', () => {
-    var teamName = 'some team name';
-    teamService.createTeam(teamName);
-
-    var expectedBody = JSON.stringify({
-      name: teamName
+    beforeEach(() => {
+      teamName = 'some team name';
+      teamService.createTeam(teamName);
     });
 
-    expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+    it('should use correct url', () => {
+      expect(mockBackend.connectionsArray).to.be.length(1);
+      expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Post);
+      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/');
+    });
+
+    it('should use correct body', () => {
+      var expectedBody = JSON.stringify({
+        name: teamName
+      });
+
+      expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+    });
+
   });
 
   it('deleteTeam should use correct url', () => {
@@ -76,6 +82,34 @@ describe('TeamService', () => {
     expect(mockBackend.connectionsArray).to.be.length(1);
     expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Delete);
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId);
+  });
+
+  describe('updateTeamName', () => {
+
+    var teamId: number;
+    var newTeamName: string;
+
+    beforeEach(() => {
+      teamId = 1234321;
+      newTeamName = 'new team name';
+
+      teamService.updateTeamName(teamId, newTeamName);
+    });
+
+    it('should use correct url', () => {
+      expect(mockBackend.connectionsArray).to.be.length(1);
+      expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Put);
+      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId);
+    });
+
+    it('should use correct body', () => {
+      var expectedBody = JSON.stringify({
+        name: newTeamName
+      });
+
+      expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+    });
+
   });
 
   function shouldFaildWithError(error: any, beforeEachFunc: () => void): any {
@@ -107,6 +141,13 @@ describe('TeamService', () => {
 
       it('deleteTeam should fail correctly', () => {
         teamService.deleteTeam(123).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(error)
+        );
+      });
+
+      it('updateTeamName should fail correctly', () => {
+        teamService.updateTeamName(123, 'new team name').subscribe(
           () => expect(true, 'should fail').to.be.false,
           (error) => expect(error).to.be.equal(error)
         );
@@ -407,6 +448,52 @@ describe('TeamService', () => {
           () => expect(true, 'should succeed').to.be.false);
 
         expect(wasResolved).to.be.true;
+      });
+
+    });
+
+    describe('updateTeamName', () => {
+
+      describe('without team details', () => {
+
+        beforeEach(() => {
+          mockBackend.connections.subscribe(
+            (connection: MockConnection) => connection.mockRespond(new Response(responseOptions)));
+        });
+
+        it('should fail correctly', () => {
+          teamService.updateTeamName(123, 'new team name').subscribe(
+            () => expect(true, 'should fail').to.be.false,
+            (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+          );
+        });
+
+      });
+
+      describe('with team details', () => {
+
+        var teamDetails: ITeamNameDetails;
+
+        beforeEach(() => {
+          teamDetails = {
+            teamName: 'some team name',
+            id: 1234
+          }
+
+          responseOptions.body = teamDetails;
+
+          var response = new Response(responseOptions);
+
+          mockBackend.connections.subscribe(
+            (connection: MockConnection) => connection.mockRespond(response));
+        });
+
+        it('should return correct team details', () => {
+          teamService.updateTeamName(teamDetails.id, teamDetails.teamName).subscribe(
+            (_details: ITeamNameDetails) => expect(_details).to.deep.equal(teamDetails),
+            () => expect(true, 'should succeed').to.be.false)
+        });
+
       });
 
     });

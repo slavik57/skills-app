@@ -6,7 +6,8 @@ export class TeamServiceMockFactory {
       getTeamsDetails: () => null,
       isTeamExists: () => null,
       createTeam: () => null,
-      deleteTeam: () => null
+      deleteTeam: () => null,
+      updateTeamName: () => null
     }
   }
 }

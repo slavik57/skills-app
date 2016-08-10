@@ -34,19 +34,23 @@ testing_1.describe('TeamService', function () {
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
         chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamName + '/exists');
     });
-    testing_1.it('createTeam should use correct url', function () {
-        teamService.createTeam('');
-        chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
-        chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Post);
-        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/');
-    });
-    testing_1.it('createTeam should use correct body', function () {
-        var teamName = 'some team name';
-        teamService.createTeam(teamName);
-        var expectedBody = JSON.stringify({
-            name: teamName
+    testing_1.describe('createTeam', function () {
+        var teamName;
+        testing_1.beforeEach(function () {
+            teamName = 'some team name';
+            teamService.createTeam(teamName);
         });
-        chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+        testing_1.it('should use correct url', function () {
+            chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+            chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Post);
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/');
+        });
+        testing_1.it('should use correct body', function () {
+            var expectedBody = JSON.stringify({
+                name: teamName
+            });
+            chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+        });
     });
     testing_1.it('deleteTeam should use correct url', function () {
         var teamId = 123;
@@ -54,6 +58,26 @@ testing_1.describe('TeamService', function () {
         chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Delete);
         chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId);
+    });
+    testing_1.describe('updateTeamName', function () {
+        var teamId;
+        var newTeamName;
+        testing_1.beforeEach(function () {
+            teamId = 1234321;
+            newTeamName = 'new team name';
+            teamService.updateTeamName(teamId, newTeamName);
+        });
+        testing_1.it('should use correct url', function () {
+            chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+            chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Put);
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId);
+        });
+        testing_1.it('should use correct body', function () {
+            var expectedBody = JSON.stringify({
+                name: newTeamName
+            });
+            chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+        });
     });
     function shouldFaildWithError(error, beforeEachFunc) {
         return function () {
@@ -69,6 +93,9 @@ testing_1.describe('TeamService', function () {
             });
             testing_1.it('deleteTeam should fail correctly', function () {
                 teamService.deleteTeam(123).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
+            });
+            testing_1.it('updateTeamName should fail correctly', function () {
+                teamService.updateTeamName(123, 'new team name').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
             });
         };
     }
@@ -238,6 +265,31 @@ testing_1.describe('TeamService', function () {
                 var wasResolved = false;
                 teamService.deleteTeam(1234).subscribe(function () { return wasResolved = true; }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
                 chai_1.expect(wasResolved).to.be.true;
+            });
+        });
+        testing_1.describe('updateTeamName', function () {
+            testing_1.describe('without team details', function () {
+                testing_1.beforeEach(function () {
+                    mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(new http_2.Response(responseOptions)); });
+                });
+                testing_1.it('should fail correctly', function () {
+                    teamService.updateTeamName(123, 'new team name').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+                });
+            });
+            testing_1.describe('with team details', function () {
+                var teamDetails;
+                testing_1.beforeEach(function () {
+                    teamDetails = {
+                        teamName: 'some team name',
+                        id: 1234
+                    };
+                    responseOptions.body = teamDetails;
+                    var response = new http_2.Response(responseOptions);
+                    mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                });
+                testing_1.it('should return correct team details', function () {
+                    teamService.updateTeamName(teamDetails.id, teamDetails.teamName).subscribe(function (_details) { return chai_1.expect(_details).to.deep.equal(teamDetails); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
+                });
             });
         });
     });
