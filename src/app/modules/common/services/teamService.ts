@@ -1,3 +1,4 @@
+import {IUsernameDetails} from "../interfaces/iUsernameDetails";
 import {HttpServiceBase} from "./base/httpServiceBase";
 import {ITeamNameDetails} from "../interfaces/iTeamNameDetails";
 import { Observable } from 'rxjs/Observable';
@@ -10,18 +11,25 @@ interface IServerTeamNameDetails {
   teamName: string;
 }
 
+interface IServerTeamMember {
+  id: number;
+  username: string;
+}
+
 export interface ITeamService {
   getTeamsDetails(): Observable<ITeamNameDetails[]>;
   isTeamExists(teamName: string): Observable<boolean>;
   createTeam(teamName: string): Observable<ITeamNameDetails>;
   deleteTeam(teamId: number): Observable<void>;
   updateTeamName(teamId: number, newTeamName: string): Observable<ITeamNameDetails>;
+  getTeamMembers(teamId: number): Observable<IUsernameDetails[]>;
 }
 
 @Injectable()
 export class TeamService extends HttpServiceBase implements ITeamService {
   private _teamsControllerUrl = '/api/teams/';
   private _teamExistsUrlSuffix = '/exists';
+  private _teamMembersUrlSuffix = '/members'
 
   constructor(http: Http) {
     super(http)
@@ -71,6 +79,13 @@ export class TeamService extends HttpServiceBase implements ITeamService {
       .catch((error: any) => this._handleServerError<ITeamNameDetails>(error));
   }
 
+  public getTeamMembers(teamId: number): Observable<IUsernameDetails[]> {
+    var url = this._teamsControllerUrl + teamId + this._teamMembersUrlSuffix;
+    return this._get(url)
+      .map((response: Response) => this._extractTeamMembers(response))
+      .catch((error: any) => this._throwOnUnauthorizedOrGenericError<IUsernameDetails[]>(error));
+  }
+
   private _extractTeamsDetails(response: Response): ITeamNameDetails[] {
     this._throwErrorIfStatusIsNotOk(response);
 
@@ -104,4 +119,36 @@ export class TeamService extends HttpServiceBase implements ITeamService {
     }
   }
 
+  private _extractTeamMembers(response: Response): IUsernameDetails[] {
+    this._throwErrorIfStatusIsNotOk(response);
+
+    var result = response.json();
+
+    if (!result || !(result instanceof Array)) {
+      throw 'Unexpected result';
+    }
+
+    var teamMembers: IUsernameDetails[] =
+      _.map(result, (_serverTeamMember: IServerTeamMember) => {
+        this._validateServerTeamMember(_serverTeamMember);
+
+        return {
+          id: _serverTeamMember.id,
+          username: _serverTeamMember.username
+        }
+      });
+
+    return teamMembers;
+  }
+
+  private _validateServerTeamMember(serverTeamMember: IServerTeamMember): void {
+    if (serverTeamMember.id === null ||
+      serverTeamMember.id === undefined) {
+      throw 'User id is missing';
+    }
+
+    if (!serverTeamMember.username) {
+      throw 'Username is missing';
+    }
+  }
 }

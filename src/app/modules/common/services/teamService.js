@@ -23,6 +23,7 @@ var TeamService = (function (_super) {
         _super.call(this, http);
         this._teamsControllerUrl = '/api/teams/';
         this._teamExistsUrlSuffix = '/exists';
+        this._teamMembersUrlSuffix = '/members';
     }
     TeamService.prototype.getTeamsDetails = function () {
         var _this = this;
@@ -63,6 +64,13 @@ var TeamService = (function (_super) {
             .map(function (response) { return _this._extractAllBody(response); })
             .catch(function (error) { return _this._handleServerError(error); });
     };
+    TeamService.prototype.getTeamMembers = function (teamId) {
+        var _this = this;
+        var url = this._teamsControllerUrl + teamId + this._teamMembersUrlSuffix;
+        return this._get(url)
+            .map(function (response) { return _this._extractTeamMembers(response); })
+            .catch(function (error) { return _this._throwOnUnauthorizedOrGenericError(error); });
+    };
     TeamService.prototype._extractTeamsDetails = function (response) {
         var _this = this;
         this._throwErrorIfStatusIsNotOk(response);
@@ -86,6 +94,31 @@ var TeamService = (function (_super) {
         }
         if (!serverTeamNameDetails.teamName) {
             throw 'Team name is missing';
+        }
+    };
+    TeamService.prototype._extractTeamMembers = function (response) {
+        var _this = this;
+        this._throwErrorIfStatusIsNotOk(response);
+        var result = response.json();
+        if (!result || !(result instanceof Array)) {
+            throw 'Unexpected result';
+        }
+        var teamMembers = _.map(result, function (_serverTeamMember) {
+            _this._validateServerTeamMember(_serverTeamMember);
+            return {
+                id: _serverTeamMember.id,
+                username: _serverTeamMember.username
+            };
+        });
+        return teamMembers;
+    };
+    TeamService.prototype._validateServerTeamMember = function (serverTeamMember) {
+        if (serverTeamMember.id === null ||
+            serverTeamMember.id === undefined) {
+            throw 'User id is missing';
+        }
+        if (!serverTeamMember.username) {
+            throw 'Username is missing';
         }
     };
     TeamService = __decorate([

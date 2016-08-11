@@ -1,0 +1,32 @@
+@import "../../../../commonStyles/_loading";
+@import "../../../../commonStyles/_forms";
+@import "../../../../commonStyles/_collections";
+
+:host {
+  display: flex;
+  overflow-y: auto;
+
+  .team-users-list-wrapper{
+
+    .team-users-wrapper {
+      .collection{
+
+        .item{
+          @extend .small-item;
+          $transition-speed: .3s;
+          user-select: none;
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+
+          .username {
+            @extend .blue-text;
+            vertical-align: middle;
+          }
+
+        }
+      }
+    }
+
+  }
+}

@@ -1,3 +1,5 @@
+@import "~materialize-css/sass/materialize.scss";
+@import "~materialize-css/sass/components/_variables.scss";
 @import "../../../../commonStyles/_loading";
 @import "../../../../commonStyles/_forms";
 @import "../../../../commonStyles/_buttons";
@@ -67,22 +69,34 @@
           .delete-team-icon {
             position: absolute;
             right: 1rem;
-            opacity: 0;
             transition: opacity .3s ease;
-
-
           }
+        }
 
-          &:hover{
-            .delete-team-icon{
-              opacity: .8;
+        @media #{$small-and-down} {
+          .item{
+            .delete-team-icon {
+              opacity: 1;
+            }
+          }
+        }
 
-              &:hover {
-                opacity: 1;
+        @media #{$medium-and-up} {
+          .item{
+            .delete-team-icon {
+              opacity: 0;
+            }
+
+            &:hover{
+              .delete-team-icon{
+                opacity: .8;
+
+                &:hover {
+                  opacity: 1;
+                }
               }
             }
           }
-
         }
       }
 

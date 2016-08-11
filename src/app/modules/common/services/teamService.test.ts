@@ -1,3 +1,4 @@
+import {IUsernameDetails} from "../interfaces/iUsernameDetails";
 import {ITeamNameDetails} from "../interfaces/iTeamNameDetails";
 import {HttpError} from "../errors/httpError";
 import {StatusCode} from "../../../../common/statusCode";
@@ -110,6 +111,15 @@ describe('TeamService', () => {
       expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
     });
 
+  });
+
+  it('getTeamMembers should use correct url', () => {
+    var teamId = 123321;
+    teamService.getTeamMembers(teamId);
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members');
   });
 
   function shouldFaildWithError(error: any, beforeEachFunc: () => void): any {
@@ -494,6 +504,119 @@ describe('TeamService', () => {
             () => expect(true, 'should succeed').to.be.false)
         });
 
+      });
+
+    });
+
+    describe('getTeamMembers', () => {
+
+      it('without the users details result should fail correctly', () => {
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(new Response(responseOptions)));
+
+        teamService.getTeamMembers(123).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with partial users details result should fail correctly', () => {
+        var result: IUsernameDetails = {
+          id: 1,
+          username: 'some username'
+        };
+
+        delete result.username;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        teamService.getTeamMembers(12321).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the users details result and empty username should fail correctly', () => {
+        var result: IUsernameDetails = {
+          id: 1,
+          username: '',
+        };
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        teamService.getTeamMembers(12321).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the users details result and null id should return fail correctly', () => {
+        var result: IUsernameDetails = {
+          id: null,
+          username: 'some username',
+        };
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        teamService.getTeamMembers(11).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the users details result should return correct value', () => {
+        var result: IUsernameDetails[] = [
+          {
+            id: 1,
+            username: 'some username',
+          },
+          {
+            id: 2,
+            username: 'some other username',
+          }
+        ];
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        teamService.getTeamMembers(111).subscribe(
+          (_result: IUsernameDetails[]) => expect(_result).to.be.deep.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
       });
 
     });

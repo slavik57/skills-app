@@ -8,7 +8,8 @@ var TeamServiceMockFactory = (function () {
             isTeamExists: function () { return null; },
             createTeam: function () { return null; },
             deleteTeam: function () { return null; },
-            updateTeamName: function () { return null; }
+            updateTeamName: function () { return null; },
+            getTeamMembers: function () { return null; }
         };
     };
     return TeamServiceMockFactory;

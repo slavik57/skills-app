@@ -1,3 +1,4 @@
+import {TeamUsersListComponent} from "../teamUsersList/teamUsersList.component";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {ITeamNameDetails} from "../../../common/interfaces/iTeamNameDetails";
 import { Component, Input, OnInit } from '@angular/core';
@@ -10,7 +11,8 @@ export enum TeamUsersState {
 @Component({
   selector: 'team-users',
   template: require('./teamUsers.component.html'),
-  styles: [require('./teamUsers.component.scss')]
+  styles: [require('./teamUsers.component.scss')],
+  directives: [TeamUsersListComponent]
 })
 export class TeamUsersComponent implements OnInit {
   @Input() public teamDetails: ITeamNameDetails;

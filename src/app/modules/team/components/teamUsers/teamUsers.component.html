@@ -1,5 +1,9 @@
+<team-users-list [teamDetails]="teamDetails"
+                 (teamMembers)="teamMembers = $event"
+                 *ngIf="state === TeamUsersState.LIST_USERS"></team-users-list>
+
 <div class="team-users-actions">
-  <button *ngIf="state === TeamUsersState.LIST_USERS"
+  <button *ngIf="state === TeamUsersState.LIST_USERS && teamMembers"
           class="add-team-members-button"
           (click)="addTeamMember()">
     Add Team Members

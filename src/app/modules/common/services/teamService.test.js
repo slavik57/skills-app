@@ -79,6 +79,13 @@ testing_1.describe('TeamService', function () {
             chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
         });
     });
+    testing_1.it('getTeamMembers should use correct url', function () {
+        var teamId = 123321;
+        teamService.getTeamMembers(teamId);
+        chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+        chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
+        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members');
+    });
     function shouldFaildWithError(error, beforeEachFunc) {
         return function () {
             testing_1.beforeEach(beforeEachFunc);
@@ -290,6 +297,75 @@ testing_1.describe('TeamService', function () {
                 testing_1.it('should return correct team details', function () {
                     teamService.updateTeamName(teamDetails.id, teamDetails.teamName).subscribe(function (_details) { return chai_1.expect(_details).to.deep.equal(teamDetails); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
                 });
+            });
+        });
+        testing_1.describe('getTeamMembers', function () {
+            testing_1.it('without the users details result should fail correctly', function () {
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(new http_2.Response(responseOptions)); });
+                teamService.getTeamMembers(123).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with partial users details result should fail correctly', function () {
+                var result = {
+                    id: 1,
+                    username: 'some username'
+                };
+                delete result.username;
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                teamService.getTeamMembers(12321).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the users details result and empty username should fail correctly', function () {
+                var result = {
+                    id: 1,
+                    username: '',
+                };
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                teamService.getTeamMembers(12321).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the users details result and null id should return fail correctly', function () {
+                var result = {
+                    id: null,
+                    username: 'some username',
+                };
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                teamService.getTeamMembers(11).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the users details result should return correct value', function () {
+                var result = [
+                    {
+                        id: 1,
+                        username: 'some username',
+                    },
+                    {
+                        id: 2,
+                        username: 'some other username',
+                    }
+                ];
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: result
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                teamService.getTeamMembers(111).subscribe(function (_result) { return chai_1.expect(_result).to.be.deep.equal(result); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
             });
         });
     });
