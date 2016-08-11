@@ -2,11 +2,15 @@
 <div class="team-settings-content">
 
   <ul #availableTeamSettings class="tabs">
-   <li class="tab"><a href="#teamDetailsSettings">Details</a></li>
+    <li class="tab"><a href="#teamDetailsSettings">Details</a></li>
+    <li class="tab"><a href="#teamUsersSettings">Users</a></li>
   </ul>
 
 </div>
 
 <div id="teamDetailsSettings">
   <edit-team-details [teamDetails]="teamDetails"></edit-team-details>
+</div>
+<div id="teamUsersSettings">
+  <team-users [teamDetails]="teamDetails"></team-users>
 </div>

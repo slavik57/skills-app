@@ -35,15 +35,11 @@
 
   }
 
-  #teamDetailsSettings{
+  #teamDetailsSettings, #teamUsersSettings{
     flex: 1;
     margin-top: 1rem;
-  }
-
-  #teamDetailsSettings{
     display: flex;
     flex-direction: column;
-
   }
 
 }

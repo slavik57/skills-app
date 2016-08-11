@@ -1,3 +1,4 @@
+import {TeamUsersComponent} from "../../../team/components/teamUsers/teamUsers.component";
 import {EditTeamDetailsComponent} from "../editTeamDetails/editTeamDetails.component";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {TeamService} from "../../../common/services/teamService";
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs/Observable';
   styles: [require('./teamSettings.component.scss')],
   directives: [
     EditTeamDetailsComponent,
+    TeamUsersComponent,
     CircularLoadingComponent
   ],
 })

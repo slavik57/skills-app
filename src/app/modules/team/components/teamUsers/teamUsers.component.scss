@@ -1,0 +1,23 @@
+@import "~materialize-css/dist/css/materialize.min";
+
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;;
+
+  .team-users-actions{
+    margin-bottom: 0;
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+
+    .add-team-members-button{
+      @extend .btn;
+      @extend .blue;
+      @extend .lighten-1;
+      @extend .white-text;
+    }
+
+  }
+
+}

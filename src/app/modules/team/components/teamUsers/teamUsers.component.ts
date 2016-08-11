@@ -1,0 +1,32 @@
+import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
+import {ITeamNameDetails} from "../../../common/interfaces/iTeamNameDetails";
+import { Component, Input, OnInit } from '@angular/core';
+
+export enum TeamUsersState {
+  LIST_USERS,
+  ADD_TEAM_MEMBER
+}
+
+@Component({
+  selector: 'team-users',
+  template: require('./teamUsers.component.html'),
+  styles: [require('./teamUsers.component.scss')]
+})
+export class TeamUsersComponent implements OnInit {
+  @Input() public teamDetails: ITeamNameDetails;
+  public state: TeamUsersState;
+  public TeamUsersState: any;
+
+  public ngOnInit(): void {
+    this.TeamUsersState = TeamUsersState;
+    this.state = TeamUsersState.LIST_USERS;
+  }
+
+  public addTeamMember(): void {
+    this.state = TeamUsersState.ADD_TEAM_MEMBER;
+  }
+
+  public cancelAddingTeamMember(): void {
+    this.state = TeamUsersState.LIST_USERS;
+  }
+}

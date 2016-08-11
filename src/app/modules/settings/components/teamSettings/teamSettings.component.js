@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var teamUsers_component_1 = require("../../../team/components/teamUsers/teamUsers.component");
 var editTeamDetails_component_1 = require("../editTeamDetails/editTeamDetails.component");
 var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
 var teamService_1 = require("../../../common/services/teamService");
@@ -36,6 +37,7 @@ var TeamSettingsComponent = (function () {
             styles: [require('./teamSettings.component.scss')],
             directives: [
                 editTeamDetails_component_1.EditTeamDetailsComponent,
+                teamUsers_component_1.TeamUsersComponent,
                 circularLoading_component_1.CircularLoadingComponent
             ],
         }), 
