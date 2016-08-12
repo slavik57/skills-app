@@ -24,7 +24,7 @@ export abstract class ExistsValidatorBase implements IExistsValidator {
   public bindControl(control: AbstractControl): void {
     this._valueChangesSubscription =
       control.valueChanges
-        .debounceTime(2000)
+        .debounceTime(500)
         .subscribe((newValue: string) => {
           if (!this._subscriber) {
             return;
