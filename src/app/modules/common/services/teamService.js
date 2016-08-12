@@ -107,7 +107,8 @@ var TeamService = (function (_super) {
             _this._validateServerTeamMember(_serverTeamMember);
             return {
                 id: _serverTeamMember.id,
-                username: _serverTeamMember.username
+                username: _serverTeamMember.username,
+                isAdmin: _serverTeamMember.isAdmin
             };
         });
         return teamMembers;
@@ -119,6 +120,10 @@ var TeamService = (function (_super) {
         }
         if (!serverTeamMember.username) {
             throw 'Username is missing';
+        }
+        if (serverTeamMember.isAdmin === null ||
+            serverTeamMember.isAdmin === undefined) {
+            throw 'User id is missing';
         }
     };
     TeamService = __decorate([

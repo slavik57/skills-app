@@ -103,9 +103,9 @@ testing_1.describe('TeamUsersListComponent', function () {
         var teamMembers;
         testing_1.beforeEach(function () {
             teamMembers = [
-                { id: 0, username: 'a' },
-                { id: 1, username: 'b' },
-                { id: 2, username: 'c' },
+                { id: 0, username: 'a', isAdmin: true },
+                { id: 1, username: 'b', isAdmin: false },
+                { id: 2, username: 'c', isAdmin: true },
             ];
             getTeamMembersResult.next(teamMembers);
             getTeamMembersResult.complete();

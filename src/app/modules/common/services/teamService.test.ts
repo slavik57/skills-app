@@ -1,4 +1,4 @@
-import {IUsernameDetails} from "../interfaces/iUsernameDetails";
+import {ITeamMemberDetails} from "../interfaces/iTeamMemberDetails";
 import {ITeamNameDetails} from "../interfaces/iTeamNameDetails";
 import {HttpError} from "../errors/httpError";
 import {StatusCode} from "../../../../common/statusCode";
@@ -520,10 +520,11 @@ describe('TeamService', () => {
         );
       });
 
-      it('with partial users details result should fail correctly', () => {
-        var result: IUsernameDetails = {
+      it('without username should fail correctly', () => {
+        var result: ITeamMemberDetails = {
           id: 1,
-          username: 'some username'
+          username: 'some username',
+          isAdmin: true
         };
 
         delete result.username;
@@ -545,10 +546,63 @@ describe('TeamService', () => {
         );
       });
 
+      it('without id should fail correctly', () => {
+        var result: ITeamMemberDetails = {
+          id: 1,
+          username: 'some username',
+          isAdmin: true
+        };
+
+        delete result.id;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        teamService.getTeamMembers(12321).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('without isAdmin should fail correctly', () => {
+        var result: ITeamMemberDetails = {
+          id: 1,
+          username: 'some username',
+          isAdmin: true
+        };
+
+        delete result.isAdmin;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        teamService.getTeamMembers(12321).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
       it('with the users details result and empty username should fail correctly', () => {
-        var result: IUsernameDetails = {
+        var result: ITeamMemberDetails = {
           id: 1,
           username: '',
+          isAdmin: true
         };
 
         responseOptions = new ResponseOptions({
@@ -569,9 +623,10 @@ describe('TeamService', () => {
       });
 
       it('with the users details result and null id should return fail correctly', () => {
-        var result: IUsernameDetails = {
+        var result: ITeamMemberDetails = {
           id: null,
           username: 'some username',
+          isAdmin: true
         };
 
         responseOptions = new ResponseOptions({
@@ -592,14 +647,16 @@ describe('TeamService', () => {
       });
 
       it('with the users details result should return correct value', () => {
-        var result: IUsernameDetails[] = [
+        var result: ITeamMemberDetails[] = [
           {
             id: 1,
             username: 'some username',
+            isAdmin: true
           },
           {
             id: 2,
             username: 'some other username',
+            isAdmin: false
           }
         ];
 
@@ -615,7 +672,7 @@ describe('TeamService', () => {
           (connection: MockConnection) => connection.mockRespond(response));
 
         teamService.getTeamMembers(111).subscribe(
-          (_result: IUsernameDetails[]) => expect(_result).to.be.deep.equal(result),
+          (_result: ITeamMemberDetails[]) => expect(_result).to.be.deep.equal(result),
           () => expect(true, 'should succeed').to.be.false)
       });
 

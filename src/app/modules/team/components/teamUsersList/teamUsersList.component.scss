@@ -1,6 +1,7 @@
 @import "../../../../commonStyles/_loading";
 @import "../../../../commonStyles/_forms";
 @import "../../../../commonStyles/_collections";
+@import "~materialize-css/sass/components/_variables.scss";
 
 :host {
   display: flex;
@@ -24,6 +25,29 @@
             vertical-align: middle;
           }
 
+        }
+      }
+
+      .no-team-members-message{
+        position: absolute;
+        width: 100%;
+        text-align: center;
+
+        .material-icons{
+          display: block;
+          font-size: 5rem;
+        }
+      }
+
+      @media #{$small-and-down} {
+        .no-team-members-message{
+          top: 15%;
+        }
+      }
+
+      @media #{$medium-and-up} {
+        .no-team-members-message{
+          top: 25%;
         }
       }
     }

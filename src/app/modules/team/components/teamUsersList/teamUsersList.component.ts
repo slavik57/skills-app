@@ -1,4 +1,4 @@
-import {IUsernameDetails} from "../../../common/interfaces/iUsernameDetails";
+import {ITeamMemberDetails} from "../../../common/interfaces/iTeamMemberDetails";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {LoadingComponentBase} from "../../../common/components/loadingComponentBase/loadingComponentBase";
 import {TeamService} from "../../../common/services/teamService";
@@ -12,17 +12,17 @@ import { Observable } from 'rxjs/Observable';
   styles: [require('./teamUsersList.component.scss')],
   directives: [CircularLoadingComponent]
 })
-export class TeamUsersListComponent extends LoadingComponentBase<IUsernameDetails[]> implements OnInit {
+export class TeamUsersListComponent extends LoadingComponentBase<ITeamMemberDetails[]> implements OnInit {
   @Input() public teamDetails: ITeamNameDetails;
-  @Output('teamMembers') public teamMembersChanged: EventEmitter<IUsernameDetails[]>;
+  @Output('teamMembers') public teamMembersChanged: EventEmitter<ITeamMemberDetails[]>;
   public isLoadingTeamMembers: boolean;
   public loadingTeamMembersError: any;
-  public teamMembers: IUsernameDetails[];
+  public teamMembers: ITeamMemberDetails[];
 
   constructor(private teamService: TeamService) {
     super();
 
-    this.teamMembersChanged = new EventEmitter<IUsernameDetails[]>();
+    this.teamMembersChanged = new EventEmitter<ITeamMemberDetails[]>();
   }
 
   protected setIsLoading(value: boolean): void {
@@ -33,7 +33,7 @@ export class TeamUsersListComponent extends LoadingComponentBase<IUsernameDetail
     this.loadingTeamMembersError = error;
   }
 
-  protected setLoadingResult(result: IUsernameDetails[]): void {
+  protected setLoadingResult(result: ITeamMemberDetails[]): void {
     this.teamMembers = result;
 
     if (result) {
@@ -41,7 +41,7 @@ export class TeamUsersListComponent extends LoadingComponentBase<IUsernameDetail
     }
   }
 
-  protected get(): Observable<IUsernameDetails[]> {
+  protected get(): Observable<ITeamMemberDetails[]> {
     return this.teamService.getTeamMembers(this.teamDetails.id);
   }
 }

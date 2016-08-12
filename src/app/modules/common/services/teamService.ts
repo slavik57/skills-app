@@ -1,4 +1,4 @@
-import {IUsernameDetails} from "../interfaces/iUsernameDetails";
+import {ITeamMemberDetails} from "../interfaces/iTeamMemberDetails";
 import {HttpServiceBase} from "./base/httpServiceBase";
 import {ITeamNameDetails} from "../interfaces/iTeamNameDetails";
 import { Observable } from 'rxjs/Observable';
@@ -14,6 +14,7 @@ interface IServerTeamNameDetails {
 interface IServerTeamMember {
   id: number;
   username: string;
+  isAdmin: boolean;
 }
 
 export interface ITeamService {
@@ -22,7 +23,7 @@ export interface ITeamService {
   createTeam(teamName: string): Observable<ITeamNameDetails>;
   deleteTeam(teamId: number): Observable<void>;
   updateTeamName(teamId: number, newTeamName: string): Observable<ITeamNameDetails>;
-  getTeamMembers(teamId: number): Observable<IUsernameDetails[]>;
+  getTeamMembers(teamId: number): Observable<ITeamMemberDetails[]>;
 }
 
 @Injectable()
@@ -79,11 +80,11 @@ export class TeamService extends HttpServiceBase implements ITeamService {
       .catch((error: any) => this._handleServerError<ITeamNameDetails>(error));
   }
 
-  public getTeamMembers(teamId: number): Observable<IUsernameDetails[]> {
+  public getTeamMembers(teamId: number): Observable<ITeamMemberDetails[]> {
     var url = this._teamsControllerUrl + teamId + this._teamMembersUrlSuffix;
     return this._get(url)
       .map((response: Response) => this._extractTeamMembers(response))
-      .catch((error: any) => this._throwOnUnauthorizedOrGenericError<IUsernameDetails[]>(error));
+      .catch((error: any) => this._throwOnUnauthorizedOrGenericError<ITeamMemberDetails[]>(error));
   }
 
   private _extractTeamsDetails(response: Response): ITeamNameDetails[] {
@@ -119,7 +120,7 @@ export class TeamService extends HttpServiceBase implements ITeamService {
     }
   }
 
-  private _extractTeamMembers(response: Response): IUsernameDetails[] {
+  private _extractTeamMembers(response: Response): ITeamMemberDetails[] {
     this._throwErrorIfStatusIsNotOk(response);
 
     var result = response.json();
@@ -128,13 +129,14 @@ export class TeamService extends HttpServiceBase implements ITeamService {
       throw 'Unexpected result';
     }
 
-    var teamMembers: IUsernameDetails[] =
+    var teamMembers: ITeamMemberDetails[] =
       _.map(result, (_serverTeamMember: IServerTeamMember) => {
         this._validateServerTeamMember(_serverTeamMember);
 
-        return {
+        return <ITeamMemberDetails>{
           id: _serverTeamMember.id,
-          username: _serverTeamMember.username
+          username: _serverTeamMember.username,
+          isAdmin: _serverTeamMember.isAdmin
         }
       });
 
@@ -149,6 +151,11 @@ export class TeamService extends HttpServiceBase implements ITeamService {
 
     if (!serverTeamMember.username) {
       throw 'Username is missing';
+    }
+
+    if (serverTeamMember.isAdmin === null ||
+      serverTeamMember.isAdmin === undefined) {
+      throw 'User id is missing';
     }
   }
 }

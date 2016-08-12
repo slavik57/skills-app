@@ -1,5 +1,5 @@
 import {ITeamNameDetails} from "../../../common/interfaces/iTeamNameDetails";
-import {IUsernameDetails} from "../../../common/interfaces/iUsernameDetails";
+import {ITeamMemberDetails} from "../../../common/interfaces/iTeamMemberDetails";
 import {TeamUsersListComponent} from "./teamUsersList.component";
 import {TeamServiceMockFactory} from "../../../../testUtils/mockFactories/teamServiceMockFactory";
 import {
@@ -21,9 +21,9 @@ describe('TeamUsersListComponent', () => {
 
   var teamServiceMock: ITeamService;
   var getTeamMembersSpy: SinonSpy;
-  var getTeamMembersResult: Subject<IUsernameDetails[]>;
+  var getTeamMembersResult: Subject<ITeamMemberDetails[]>;
   var teamDetails: ITeamNameDetails;
-  var teamMembersChangedRaises: IUsernameDetails[][];
+  var teamMembersChangedRaises: ITeamMemberDetails[][];
 
   var component: TeamUsersListComponent;
 
@@ -33,7 +33,7 @@ describe('TeamUsersListComponent', () => {
 
     getTeamMembersSpy =
       stub(teamServiceMock, 'getTeamMembers', () => {
-        getTeamMembersResult = new Subject<IUsernameDetails[]>();
+        getTeamMembersResult = new Subject<ITeamMemberDetails[]>();
         return getTeamMembersResult;
       });
 
@@ -53,7 +53,7 @@ describe('TeamUsersListComponent', () => {
 
     component.teamDetails = teamDetails;
     teamMembersChangedRaises = [];
-    component.teamMembersChanged.subscribe((_teamMembers: IUsernameDetails[]) => {
+    component.teamMembersChanged.subscribe((_teamMembers: ITeamMemberDetails[]) => {
       teamMembersChangedRaises.push(_teamMembers);
     });
 
@@ -146,13 +146,13 @@ describe('TeamUsersListComponent', () => {
 
   describe('getting team members succeeds', () => {
 
-    var teamMembers: IUsernameDetails[];
+    var teamMembers: ITeamMemberDetails[];
 
     beforeEach(() => {
       teamMembers = [
-        { id: 0, username: 'a' },
-        { id: 1, username: 'b' },
-        { id: 2, username: 'c' },
+        { id: 0, username: 'a', isAdmin: true },
+        { id: 1, username: 'b', isAdmin: false },
+        { id: 2, username: 'c', isAdmin: true },
       ];
 
       getTeamMembersResult.next(teamMembers);

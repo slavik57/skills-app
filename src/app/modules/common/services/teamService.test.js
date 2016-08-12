@@ -304,12 +304,45 @@ testing_1.describe('TeamService', function () {
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(new http_2.Response(responseOptions)); });
                 teamService.getTeamMembers(123).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
             });
-            testing_1.it('with partial users details result should fail correctly', function () {
+            testing_1.it('without username should fail correctly', function () {
                 var result = {
                     id: 1,
-                    username: 'some username'
+                    username: 'some username',
+                    isAdmin: true
                 };
                 delete result.username;
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                teamService.getTeamMembers(12321).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('without id should fail correctly', function () {
+                var result = {
+                    id: 1,
+                    username: 'some username',
+                    isAdmin: true
+                };
+                delete result.id;
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                teamService.getTeamMembers(12321).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('without isAdmin should fail correctly', function () {
+                var result = {
+                    id: 1,
+                    username: 'some username',
+                    isAdmin: true
+                };
+                delete result.isAdmin;
                 responseOptions = new http_2.ResponseOptions({
                     status: statusCode_1.StatusCode.OK,
                     headers: new http_1.Headers(),
@@ -323,6 +356,7 @@ testing_1.describe('TeamService', function () {
                 var result = {
                     id: 1,
                     username: '',
+                    isAdmin: true
                 };
                 responseOptions = new http_2.ResponseOptions({
                     status: statusCode_1.StatusCode.OK,
@@ -337,6 +371,7 @@ testing_1.describe('TeamService', function () {
                 var result = {
                     id: null,
                     username: 'some username',
+                    isAdmin: true
                 };
                 responseOptions = new http_2.ResponseOptions({
                     status: statusCode_1.StatusCode.OK,
@@ -352,10 +387,12 @@ testing_1.describe('TeamService', function () {
                     {
                         id: 1,
                         username: 'some username',
+                        isAdmin: true
                     },
                     {
                         id: 2,
                         username: 'some other username',
+                        isAdmin: false
                     }
                 ];
                 responseOptions = new http_2.ResponseOptions({
