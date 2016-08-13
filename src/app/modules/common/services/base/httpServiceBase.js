@@ -5,6 +5,7 @@ var Observable_1 = require('rxjs/Observable');
 var HttpServiceBase = (function () {
     function HttpServiceBase(http) {
         this.http = http;
+        this._limitedQueryParameter = '?max=';
     }
     HttpServiceBase.prototype._get = function (url) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });

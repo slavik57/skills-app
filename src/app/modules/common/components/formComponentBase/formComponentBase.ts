@@ -17,10 +17,16 @@ export class FormComponentBase {
     }
   }
 
-  public isFieldHasError(field: any, errorName: string, checkTouched: boolean = true): boolean {
-    return this.isFieldInvalid(field, checkTouched) &&
-      !!field.errors &&
-      errorName in field.errors;
+  public isFieldHasError(field: any, errorName: string = null, checkTouched: boolean = true): boolean {
+    if (!this.isFieldInvalid(field, checkTouched) || !field.errors) {
+      return false;
+    }
+
+    if (errorName === null) {
+      return true;
+    }
+
+    return errorName in field.errors;
   }
 
   protected resetControlAsUntouchedAndNotDirty(control: AbstractControl): void {

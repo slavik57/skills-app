@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var addTeamUser_component_1 = require("../addTeamUser/addTeamUser.component");
 var teamUsersList_component_1 = require("../teamUsersList/teamUsersList.component");
 var core_1 = require('@angular/core');
 (function (TeamUsersState) {
@@ -37,7 +38,7 @@ var TeamUsersComponent = (function () {
             selector: 'team-users',
             template: require('./teamUsers.component.html'),
             styles: [require('./teamUsers.component.scss')],
-            directives: [teamUsersList_component_1.TeamUsersListComponent]
+            directives: [teamUsersList_component_1.TeamUsersListComponent, addTeamUser_component_1.AddTeamUserComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], TeamUsersComponent);

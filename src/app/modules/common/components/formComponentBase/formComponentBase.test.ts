@@ -221,6 +221,14 @@ describe('FormComponentBase', () => {
         expect(component.isFieldHasError(field, 'errorName')).to.be.true;
       });
 
+      it('has errors and error to check not passed should return true', () => {
+        field.errors = {
+          errorName: true
+        };
+
+        expect(component.isFieldHasError(field)).to.be.true;
+      });
+
     });
 
   });

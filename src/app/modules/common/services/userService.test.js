@@ -86,6 +86,23 @@ testing_1.describe('UserService', function () {
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
         chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/');
     });
+    testing_1.describe('getUsersDetailsByPartialUsername', function () {
+        testing_1.it('should use correct url', function () {
+            var username = 'some username';
+            var max = 3;
+            userService.getUsersDetailsByPartialUsername(username, max);
+            chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+            chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/users/filtered/' + username + '?max=' + max);
+        });
+        testing_1.it('without limit should use correct url', function () {
+            var username = 'some username';
+            userService.getUsersDetailsByPartialUsername(username);
+            chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+            chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/users/filtered/' + username);
+        });
+    });
     testing_1.it('updateUserDetails should use correct url', function () {
         var id = 123;
         userService.updateUserDetails(id, '', '', '', '');
@@ -577,6 +594,75 @@ testing_1.describe('UserService', function () {
                 response = new http_2.Response(responseOptions);
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
                 userService.getUsersDetails().subscribe(function (_result) { return chai_1.expect(_result).to.be.deep.equal(result); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
+            });
+        });
+        testing_1.describe('getUsersDetailsByPartialUsername', function () {
+            testing_1.it('without the user details result should fail correctly', function () {
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                userService.getUsersDetailsByPartialUsername('some username').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with partial user details result should fail correctly', function () {
+                var result = {
+                    id: 1,
+                    username: 'some username'
+                };
+                delete result.username;
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                userService.getUsersDetailsByPartialUsername('some username').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the user details result and empty username should return fail correctly', function () {
+                var result = {
+                    id: 1,
+                    username: '',
+                };
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                userService.getUsersDetailsByPartialUsername('some username').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the user details result and null id should return fail correctly', function () {
+                var result = {
+                    id: null,
+                    username: 'some username',
+                };
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                userService.getUsersDetailsByPartialUsername('some username').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the user details result should return correct value', function () {
+                var result = [
+                    {
+                        id: 1,
+                        username: 'some username',
+                    },
+                    {
+                        id: 2,
+                        username: 'some other username',
+                    }
+                ];
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: result
+                });
+                response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                userService.getUsersDetailsByPartialUsername('some username').subscribe(function (_result) { return chai_1.expect(_result).to.be.deep.equal(result); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
             });
         });
         testing_1.describe('getUserPermissions', function () {

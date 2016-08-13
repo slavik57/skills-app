@@ -56,6 +56,7 @@ export interface IUserService {
     lastName: string): Observable<string>;
   getUserDetails(): Observable<IUserDetails>;
   getUsersDetails(): Observable<IUsernameDetails[]>;
+  getUsersDetailsByPartialUsername(username: string, maxNumberOfUsers?: number): Observable<IUsernameDetails[]>;
   updateUserDetails(userId: number,
     username: string,
     email: string,
@@ -83,7 +84,8 @@ export class UserService extends HttpServiceBase implements IUserService {
   private _userPermissionsUrlSuffix = '/permissions';
   private _userPermissionsModificationRulesUrlSuffix = 'permissions-modification-rules'
   private _canUserUpdatePasswordSuffix = '/can-update-password';
-  private _canUserModifyTeamsListSuffix = 'can-modify-teams-list'
+  private _canUserModifyTeamsListSuffix = 'can-modify-teams-list';
+  private _filteredUsersPrefix = 'filtered/';
 
   constructor(http: Http) {
     super(http)
@@ -153,6 +155,18 @@ export class UserService extends HttpServiceBase implements IUserService {
 
   public getUsersDetails(): Observable<IUsernameDetails[]> {
     return this._get(this._usersControllerUrl)
+      .map((response: Response) => this._extractUsersDetails(response))
+      .catch((error: any) => this._throwOnUnauthorizedOrGenericError<IUsernameDetails[]>(error));
+  }
+
+  public getUsersDetailsByPartialUsername(username: string, maxNumberOfUsers: number = null): Observable<IUsernameDetails[]> {
+    var url = this._usersControllerUrl + this._filteredUsersPrefix + username;
+
+    if (maxNumberOfUsers != null) {
+      url += this._limitedQueryParameter + maxNumberOfUsers;
+    }
+
+    return this._get(url)
       .map((response: Response) => this._extractUsersDetails(response))
       .catch((error: any) => this._throwOnUnauthorizedOrGenericError<IUsernameDetails[]>(error));
   }

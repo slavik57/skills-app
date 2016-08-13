@@ -9,6 +9,7 @@ interface IServerError {
 export class HttpServiceBase {
   protected static UNAUTHORIZED_ERROR = 'Unauthorized';
   protected static GENERIC_ERROR = 'Oops. Something went wrong. Please try again';
+  protected _limitedQueryParameter = '?max=';
 
   constructor(private http: Http) {
   }

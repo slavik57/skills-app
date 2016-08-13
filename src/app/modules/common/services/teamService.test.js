@@ -86,6 +86,26 @@ testing_1.describe('TeamService', function () {
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
         chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members');
     });
+    testing_1.describe('addTeamMember', function () {
+        var teamId;
+        var username;
+        testing_1.beforeEach(function () {
+            teamId = 789;
+            username = 'some username';
+            teamService.addTeamMember(teamId, username);
+        });
+        testing_1.it('should use correct url', function () {
+            chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+            chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Post);
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members');
+        });
+        testing_1.it('should use correct body', function () {
+            var expectedBody = JSON.stringify({
+                username: username
+            });
+            chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+        });
+    });
     function shouldFaildWithError(error, beforeEachFunc) {
         return function () {
             testing_1.beforeEach(beforeEachFunc);
@@ -103,6 +123,9 @@ testing_1.describe('TeamService', function () {
             });
             testing_1.it('updateTeamName should fail correctly', function () {
                 teamService.updateTeamName(123, 'new team name').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
+            });
+            testing_1.it('addTeamMember should fail correctly', function () {
+                teamService.addTeamMember(1, '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
             });
         };
     }
@@ -403,6 +426,32 @@ testing_1.describe('TeamService', function () {
                 var response = new http_2.Response(responseOptions);
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
                 teamService.getTeamMembers(111).subscribe(function (_result) { return chai_1.expect(_result).to.be.deep.equal(result); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
+            });
+        });
+        testing_1.describe('addTeamMember', function () {
+            testing_1.describe('without team member details', function () {
+                testing_1.beforeEach(function () {
+                    mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(new http_2.Response(responseOptions)); });
+                });
+                testing_1.it('should fail correctly', function () {
+                    teamService.addTeamMember(1, '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+                });
+            });
+            testing_1.describe('with team member details', function () {
+                var teamMemberDetails;
+                testing_1.beforeEach(function () {
+                    teamMemberDetails = {
+                        id: 1234,
+                        username: 'some username',
+                        isAdmin: true
+                    };
+                    responseOptions.body = teamMemberDetails;
+                    var response = new http_2.Response(responseOptions);
+                    mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                });
+                testing_1.it('should return correct team details', function () {
+                    teamService.addTeamMember(1, '').subscribe(function (_details) { return chai_1.expect(_details).to.deep.equal(teamMemberDetails); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
+                });
             });
         });
     });

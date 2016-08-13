@@ -19,10 +19,15 @@ var FormComponentBase = (function () {
         }
     };
     FormComponentBase.prototype.isFieldHasError = function (field, errorName, checkTouched) {
+        if (errorName === void 0) { errorName = null; }
         if (checkTouched === void 0) { checkTouched = true; }
-        return this.isFieldInvalid(field, checkTouched) &&
-            !!field.errors &&
-            errorName in field.errors;
+        if (!this.isFieldInvalid(field, checkTouched) || !field.errors) {
+            return false;
+        }
+        if (errorName === null) {
+            return true;
+        }
+        return errorName in field.errors;
     };
     FormComponentBase.prototype.resetControlAsUntouchedAndNotDirty = function (control) {
         control['_touched'] = false;

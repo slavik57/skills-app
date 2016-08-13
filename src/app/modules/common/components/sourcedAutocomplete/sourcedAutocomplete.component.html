@@ -1,0 +1,20 @@
+<div class="sourced-autocomplete-wrapper">
+  <input id="{{id}}"
+         type="text"
+         [formControl]="formControl"
+         [ngClass]="{ 'validation-pending': formControl.pending }"/>
+  <label [attr.for]="id">{{labelText}}</label>
+  <div class="async-validation-indicator" [ngClass]="{ 'pending': formControl.pending }">
+    <circular-loading></circular-loading>
+  </div>
+
+  <ul class="sourced-autocomplete-results" *ngIf="results">
+    <template ngFor [ngForOf]="results"
+        [ngForTemplate]="template">
+    </template>
+  </ul>
+
+  <div *ngIf="isLoadingResults">
+    Loading results...
+  </div>
+</div>

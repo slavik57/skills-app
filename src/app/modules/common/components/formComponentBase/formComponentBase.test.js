@@ -145,6 +145,12 @@ testing_1.describe('FormComponentBase', function () {
                 };
                 chai_1.expect(component.isFieldHasError(field, 'errorName')).to.be.true;
             });
+            testing_1.it('has errors and error to check not passed should return true', function () {
+                field.errors = {
+                    errorName: true
+                };
+                chai_1.expect(component.isFieldHasError(field)).to.be.true;
+            });
         });
     });
 });

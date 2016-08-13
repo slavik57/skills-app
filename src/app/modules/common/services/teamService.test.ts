@@ -122,6 +122,33 @@ describe('TeamService', () => {
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members');
   });
 
+  describe('addTeamMember', () => {
+
+    var teamId: number;
+    var username: string;
+
+    beforeEach(() => {
+      teamId = 789;
+      username = 'some username';
+      teamService.addTeamMember(teamId, username);
+    });
+
+    it('should use correct url', () => {
+      expect(mockBackend.connectionsArray).to.be.length(1);
+      expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Post);
+      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members');
+    });
+
+    it('should use correct body', () => {
+      var expectedBody = JSON.stringify({
+        username: username
+      });
+
+      expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+    });
+
+  });
+
   function shouldFaildWithError(error: any, beforeEachFunc: () => void): any {
 
     return () => {
@@ -158,6 +185,13 @@ describe('TeamService', () => {
 
       it('updateTeamName should fail correctly', () => {
         teamService.updateTeamName(123, 'new team name').subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(error)
+        );
+      });
+
+      it('addTeamMember should fail correctly', () => {
+        teamService.addTeamMember(1, '').subscribe(
           () => expect(true, 'should fail').to.be.false,
           (error) => expect(error).to.be.equal(error)
         );
@@ -674,6 +708,53 @@ describe('TeamService', () => {
         teamService.getTeamMembers(111).subscribe(
           (_result: ITeamMemberDetails[]) => expect(_result).to.be.deep.equal(result),
           () => expect(true, 'should succeed').to.be.false)
+      });
+
+    });
+
+    describe('addTeamMember', () => {
+
+      describe('without team member details', () => {
+
+        beforeEach(() => {
+          mockBackend.connections.subscribe(
+            (connection: MockConnection) => connection.mockRespond(new Response(responseOptions)));
+        });
+
+        it('should fail correctly', () => {
+          teamService.addTeamMember(1, '').subscribe(
+            () => expect(true, 'should fail').to.be.false,
+            (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+          );
+        });
+
+      });
+
+      describe('with team member details', () => {
+
+        var teamMemberDetails: ITeamMemberDetails;
+
+        beforeEach(() => {
+          teamMemberDetails = {
+            id: 1234,
+            username: 'some username',
+            isAdmin: true
+          }
+
+          responseOptions.body = teamMemberDetails;
+
+          var response = new Response(responseOptions);
+
+          mockBackend.connections.subscribe(
+            (connection: MockConnection) => connection.mockRespond(response));
+        });
+
+        it('should return correct team details', () => {
+          teamService.addTeamMember(1, '').subscribe(
+            (_details: ITeamMemberDetails) => expect(_details).to.deep.equal(teamMemberDetails),
+            () => expect(true, 'should succeed').to.be.false)
+        });
+
       });
 
     });

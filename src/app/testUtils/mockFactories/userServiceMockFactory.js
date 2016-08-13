@@ -9,6 +9,7 @@ var UserServiceMockFactory = (function () {
             registerUser: function () { return null; },
             getUserDetails: function () { return null; },
             getUsersDetails: function () { return null; },
+            getUsersDetailsByPartialUsername: function () { return null; },
             updateUserDetails: function () { return null; },
             updateUserPassword: function () { return null; },
             getUserPermissions: function () { return null; },

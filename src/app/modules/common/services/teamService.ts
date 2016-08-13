@@ -24,6 +24,7 @@ export interface ITeamService {
   deleteTeam(teamId: number): Observable<void>;
   updateTeamName(teamId: number, newTeamName: string): Observable<ITeamNameDetails>;
   getTeamMembers(teamId: number): Observable<ITeamMemberDetails[]>;
+  addTeamMember(teamId: number, username: string): Observable<ITeamMemberDetails>;
 }
 
 @Injectable()
@@ -85,6 +86,18 @@ export class TeamService extends HttpServiceBase implements ITeamService {
     return this._get(url)
       .map((response: Response) => this._extractTeamMembers(response))
       .catch((error: any) => this._throwOnUnauthorizedOrGenericError<ITeamMemberDetails[]>(error));
+  }
+
+  public addTeamMember(teamId, username: string): Observable<ITeamMemberDetails> {
+    var url = this._teamsControllerUrl + teamId + this._teamMembersUrlSuffix;
+
+    let body: string = JSON.stringify({
+      username: username
+    });
+
+    return this._post(url, body)
+      .map((response: Response) => this._extractAllBody<ITeamMemberDetails>(response))
+      .catch((error: any) => this._handleServerError<ITeamMemberDetails>(error));
   }
 
   private _extractTeamsDetails(response: Response): ITeamNameDetails[] {

@@ -36,8 +36,6 @@ var CreateTeamComponent = (function (_super) {
     CreateTeamComponent.prototype.ngOnDestroy = function () {
         this._teamExistsValidator.destroy();
     };
-    CreateTeamComponent.prototype.onSubmit = function () {
-    };
     CreateTeamComponent.prototype.canCreateTeam = function () {
         return this.createTeamFormGroup.valid && !!this.teamName;
     };

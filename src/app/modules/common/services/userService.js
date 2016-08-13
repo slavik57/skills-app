@@ -33,6 +33,7 @@ var UserService = (function (_super) {
         this._userPermissionsModificationRulesUrlSuffix = 'permissions-modification-rules';
         this._canUserUpdatePasswordSuffix = '/can-update-password';
         this._canUserModifyTeamsListSuffix = 'can-modify-teams-list';
+        this._filteredUsersPrefix = 'filtered/';
     }
     UserService.prototype.signinUser = function (username, password) {
         var _this = this;
@@ -87,6 +88,17 @@ var UserService = (function (_super) {
     UserService.prototype.getUsersDetails = function () {
         var _this = this;
         return this._get(this._usersControllerUrl)
+            .map(function (response) { return _this._extractUsersDetails(response); })
+            .catch(function (error) { return _this._throwOnUnauthorizedOrGenericError(error); });
+    };
+    UserService.prototype.getUsersDetailsByPartialUsername = function (username, maxNumberOfUsers) {
+        var _this = this;
+        if (maxNumberOfUsers === void 0) { maxNumberOfUsers = null; }
+        var url = this._usersControllerUrl + this._filteredUsersPrefix + username;
+        if (maxNumberOfUsers != null) {
+            url += this._limitedQueryParameter + maxNumberOfUsers;
+        }
+        return this._get(url)
             .map(function (response) { return _this._extractUsersDetails(response); })
             .catch(function (error) { return _this._throwOnUnauthorizedOrGenericError(error); });
     };

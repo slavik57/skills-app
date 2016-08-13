@@ -1,16 +1,24 @@
 "use strict";
 var Observable_1 = require('rxjs/Observable');
+(function (ExistsValidationMode) {
+    ExistsValidationMode[ExistsValidationMode["FAIL_IF_EXISTS"] = 0] = "FAIL_IF_EXISTS";
+    ExistsValidationMode[ExistsValidationMode["FAIL_IF_NOT_EXISTS"] = 1] = "FAIL_IF_NOT_EXISTS";
+})(exports.ExistsValidationMode || (exports.ExistsValidationMode = {}));
+var ExistsValidationMode = exports.ExistsValidationMode;
 var ExistsValidatorBase = (function () {
-    function ExistsValidatorBase(allowedValues, errorOnExists, errorOnFailChecking) {
+    function ExistsValidatorBase(allowedValues, errorOnExists, errorOnFailChecking, validationMode) {
+        if (validationMode === void 0) { validationMode = ExistsValidationMode.FAIL_IF_EXISTS; }
         this.allowedValues = allowedValues;
         this.errorOnExists = errorOnExists;
         this.errorOnFailChecking = errorOnFailChecking;
+        this.validationMode = validationMode;
     }
     ExistsValidatorBase.prototype.bindControl = function (control) {
         var _this = this;
         this._valueChangesSubscription =
             control.valueChanges
                 .debounceTime(500)
+                .distinctUntilChanged()
                 .subscribe(function (newValue) {
                 if (!_this._subscriber) {
                     return;
@@ -42,13 +50,23 @@ var ExistsValidatorBase = (function () {
         this._valueChangesSubscription = null;
     };
     ExistsValidatorBase.prototype._handleResult = function (isExistsResult, subscriber) {
-        if (!isExistsResult) {
+        if (this._isValidResult(isExistsResult)) {
             this._resolveSubscriber(subscriber, null);
         }
         else {
             var validationErrorResult = {};
             validationErrorResult[this.errorOnExists] = true;
             this._resolveSubscriber(subscriber, validationErrorResult);
+        }
+    };
+    ExistsValidatorBase.prototype._isValidResult = function (isExistsResult) {
+        switch (this.validationMode) {
+            case ExistsValidationMode.FAIL_IF_EXISTS:
+                return !isExistsResult;
+            case ExistsValidationMode.FAIL_IF_NOT_EXISTS:
+                return isExistsResult;
+            default:
+                throw 'Not supported validation mode: ' + ExistsValidationMode[this.validationMode];
         }
     };
     ExistsValidatorBase.prototype._handleError = function (error, subscriber) {

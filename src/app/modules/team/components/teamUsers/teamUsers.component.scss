@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
 
-  team-users-list{
+  team-users-list, add-team-user{
     width: 100%;
     flex: 1;
   }
@@ -16,12 +16,26 @@
     margin-left: 0;
     margin-right: 0;
 
-    .add-team-members-button{
+    button{
       @extend .btn;
       @extend .blue;
       @extend .lighten-1;
       @extend .white-text;
-      width: 100%;
+    }
+
+    @media #{$small-and-down} {
+      .cancel-adding-team-members-button{
+        margin-top: 1rem;
+        width: 100%;
+      }
+    }
+
+    @media #{$medium-and-up} {
+      .cancel-adding-team-members-button{
+        position: absolute;
+        bottom: 0;
+        left: 9rem;
+      }
     }
 
   }

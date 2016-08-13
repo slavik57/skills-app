@@ -119,6 +119,29 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/');
   });
 
+  describe('getUsersDetailsByPartialUsername', () => {
+
+    it('should use correct url', () => {
+      var username = 'some username';
+      var max = 3;
+      userService.getUsersDetailsByPartialUsername(username, max);
+
+      expect(mockBackend.connectionsArray).to.be.length(1);
+      expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
+      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/users/filtered/' + username + '?max=' + max);
+    });
+
+    it('without limit should use correct url', () => {
+      var username = 'some username';
+      userService.getUsersDetailsByPartialUsername(username);
+
+      expect(mockBackend.connectionsArray).to.be.length(1);
+      expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
+      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/users/filtered/' + username);
+    });
+
+  });
+
   it('updateUserDetails should use correct url', () => {
     var id = 123;
     userService.updateUserDetails(id, '', '', '', '');
@@ -1021,6 +1044,119 @@ describe('UserService', () => {
           () => expect(true, 'should succeed').to.be.false)
       });
 
+
+    });
+
+    describe('getUsersDetailsByPartialUsername', () => {
+
+      it('without the user details result should fail correctly', () => {
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getUsersDetailsByPartialUsername('some username').subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with partial user details result should fail correctly', () => {
+        var result: IUsernameDetails = {
+          id: 1,
+          username: 'some username'
+        };
+
+        delete result.username;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getUsersDetailsByPartialUsername('some username').subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the user details result and empty username should return fail correctly', () => {
+        var result: IUsernameDetails = {
+          id: 1,
+          username: '',
+        };
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getUsersDetailsByPartialUsername('some username').subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the user details result and null id should return fail correctly', () => {
+        var result: IUsernameDetails = {
+          id: null,
+          username: 'some username',
+        };
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getUsersDetailsByPartialUsername('some username').subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the user details result should return correct value', () => {
+        var result: IUsernameDetails[] = [
+          {
+            id: 1,
+            username: 'some username',
+          },
+          {
+            id: 2,
+            username: 'some other username',
+          }
+        ];
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getUsersDetailsByPartialUsername('some username').subscribe(
+          (_result: IUsernameDetails[]) => expect(_result).to.be.deep.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
 
     });
 

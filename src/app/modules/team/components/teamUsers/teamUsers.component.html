@@ -2,10 +2,20 @@
                  (teamMembers)="teamMembers = $event"
                  *ngIf="state === TeamUsersState.LIST_USERS"></team-users-list>
 
+<add-team-user [teamDetails]="teamDetails"
+               (teamMemberAdded)="cancelAddingTeamMember()"
+               *ngIf="state === TeamUsersState.ADD_TEAM_MEMBER"></add-team-user>
+
 <div class="team-users-actions">
   <button *ngIf="state === TeamUsersState.LIST_USERS && teamMembers"
           class="add-team-members-button"
           (click)="addTeamMember()">
     Add Team Members
+  </button>
+
+  <button *ngIf="state === TeamUsersState.ADD_TEAM_MEMBER"
+          class="cancel-adding-team-members-button"
+          (click)="cancelAddingTeamMember()">
+    Cancel
   </button>
 </div>

@@ -11,6 +11,11 @@ export interface IExistsValidator {
   destroy(): void;
 }
 
+export enum ExistsValidationMode {
+  FAIL_IF_EXISTS,
+  FAIL_IF_NOT_EXISTS
+}
+
 export abstract class ExistsValidatorBase implements IExistsValidator {
 
   private _subscriber: Subscriber<IValidationResult>;
@@ -18,13 +23,15 @@ export abstract class ExistsValidatorBase implements IExistsValidator {
 
   constructor(private allowedValues: string[],
     private errorOnExists: string,
-    private errorOnFailChecking: string) {
+    private errorOnFailChecking: string,
+    private validationMode: ExistsValidationMode = ExistsValidationMode.FAIL_IF_EXISTS) {
   }
 
   public bindControl(control: AbstractControl): void {
     this._valueChangesSubscription =
       control.valueChanges
         .debounceTime(500)
+        .distinctUntilChanged()
         .subscribe((newValue: string) => {
           if (!this._subscriber) {
             return;
@@ -66,13 +73,24 @@ export abstract class ExistsValidatorBase implements IExistsValidator {
   protected abstract isValueExists(value: string): Observable<boolean>;
 
   private _handleResult(isExistsResult: boolean, subscriber: Subscriber<IValidationResult>): void {
-    if (!isExistsResult) {
+    if (this._isValidResult(isExistsResult)) {
       this._resolveSubscriber(subscriber, null);
     } else {
       var validationErrorResult: IValidationResult = {};
       validationErrorResult[this.errorOnExists] = true;
 
       this._resolveSubscriber(subscriber, validationErrorResult);
+    }
+  }
+
+  private _isValidResult(isExistsResult: boolean): boolean {
+    switch (this.validationMode) {
+      case ExistsValidationMode.FAIL_IF_EXISTS:
+        return !isExistsResult;
+      case ExistsValidationMode.FAIL_IF_NOT_EXISTS:
+        return isExistsResult;
+      default:
+        throw 'Not supported validation mode: ' + ExistsValidationMode[this.validationMode];
     }
   }
 

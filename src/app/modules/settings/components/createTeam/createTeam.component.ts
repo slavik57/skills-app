@@ -45,9 +45,6 @@ export class CreateTeamComponent extends FormComponentBase implements OnInit, On
     this._teamExistsValidator.destroy();
   }
 
-  public onSubmit(): void {
-  }
-
   public canCreateTeam(): boolean {
     return this.createTeamFormGroup.valid && !!this.teamName;
   }

@@ -1,0 +1,57 @@
+@import "../../../../commonStyles/_forms";
+
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .title{
+    font-size: 1.2rem;
+  }
+
+  .filling-form-wrapper{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    #add-team-user-form{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .username{
+        flex:1;
+      }
+
+      .submit-error{
+        margin: 1rem;
+      }
+
+      .submit-wrapper{
+        margin:0;
+
+        @media #{$small-and-down} {
+          .submit-button{
+            width: 100%;
+          }
+        }
+
+        @media #{$medium-and-up} {
+          .submit-button{
+            width: auto;
+          }
+        }
+
+      }
+    }
+
+  }
+
+  .submitting-form-wrapper{
+    circular-loading{
+      top: 15rem;
+    }
+  }
+
+}

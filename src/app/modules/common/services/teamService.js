@@ -71,6 +71,16 @@ var TeamService = (function (_super) {
             .map(function (response) { return _this._extractTeamMembers(response); })
             .catch(function (error) { return _this._throwOnUnauthorizedOrGenericError(error); });
     };
+    TeamService.prototype.addTeamMember = function (teamId, username) {
+        var _this = this;
+        var url = this._teamsControllerUrl + teamId + this._teamMembersUrlSuffix;
+        var body = JSON.stringify({
+            username: username
+        });
+        return this._post(url, body)
+            .map(function (response) { return _this._extractAllBody(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
+    };
     TeamService.prototype._extractTeamsDetails = function (response) {
         var _this = this;
         this._throwErrorIfStatusIsNotOk(response);

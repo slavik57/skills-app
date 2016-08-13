@@ -1,0 +1,57 @@
+<h5 class="title">Add team member</h5>
+
+<div class="filling-form-wrapper"
+    [ngClass]="{ submitting: isAddingTeamUser, 'has-submit-error': !!addTeamUserError }">
+
+  <form id="add-team-user-form"
+        [formGroup]="addTeamUserFormGroup"
+        (ngSubmit)="addTeamUser()">
+
+    <div class="input-field username">
+
+      <sourced-autocomplete [autocompleteFormControl]="usernameControl"
+                            labelText="Username"
+                            debounceTime="500"
+                            [itemsSource]="usersByPartialUsernameSource">
+        <template let-searchResult="$implicit">
+            <li>
+              {{searchResult.username}}
+            </li>
+        </template>
+      </sourced-autocomplete>
+
+      <div class="form-validation-errors">
+        <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(usernameControl, 'required') }">
+          Username is required
+        </div>
+        <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(usernameControl, 'usernameDoesNotExist', false) }">
+          User does not exists
+        </div>
+        <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(usernameControl, 'usernameDoesNotExistCheckFailed', false) }"> -->
+          Failed checking if user exists
+        </div>
+      </div>
+
+    </div>
+
+    <div class="submit-error">
+      {{addTeamUserError}}
+    </div>
+
+    <div class="submit-wrapper">
+      <button type="submit"
+              class="submit-button"
+              [disabled]="!canAddUserToTeam()"
+              [ngClass]="{ disabled: !canAddUserToTeam() }">
+             Create
+      </button>
+    </div>
+
+  </form>
+
+</div>
+
+<div class="submitting-form-wrapper"
+     [ngClass]="{ submitting: isAddingTeamUser }">
+  <circular-loading></circular-loading>
+</div>

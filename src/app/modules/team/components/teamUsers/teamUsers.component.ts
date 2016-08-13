@@ -1,3 +1,4 @@
+import {AddTeamUserComponent} from "../addTeamUser/addTeamUser.component";
 import {TeamUsersListComponent} from "../teamUsersList/teamUsersList.component";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {ITeamNameDetails} from "../../../common/interfaces/iTeamNameDetails";
@@ -12,7 +13,7 @@ export enum TeamUsersState {
   selector: 'team-users',
   template: require('./teamUsers.component.html'),
   styles: [require('./teamUsers.component.scss')],
-  directives: [TeamUsersListComponent]
+  directives: [TeamUsersListComponent, AddTeamUserComponent]
 })
 export class TeamUsersComponent implements OnInit {
   @Input() public teamDetails: ITeamNameDetails;
@@ -31,4 +32,5 @@ export class TeamUsersComponent implements OnInit {
   public cancelAddingTeamMember(): void {
     this.state = TeamUsersState.LIST_USERS;
   }
+
 }
