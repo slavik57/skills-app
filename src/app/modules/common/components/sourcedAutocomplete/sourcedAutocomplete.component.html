@@ -2,19 +2,21 @@
   <input id="{{id}}"
          type="text"
          [formControl]="formControl"
-         [ngClass]="{ 'validation-pending': formControl.pending }"/>
+         class="auto-complete-input"
+         [ngClass]="{ 'validation-pending': formControl.pending }"
+         (blur)="clearResultsAsync()"/>
   <label [attr.for]="id">{{labelText}}</label>
   <div class="async-validation-indicator" [ngClass]="{ 'pending': formControl.pending }">
     <circular-loading></circular-loading>
   </div>
 
-  <ul class="sourced-autocomplete-results" *ngIf="results">
-    <template ngFor [ngForOf]="results"
-        [ngForTemplate]="template">
+  <div class="collection sourced-autocomplete-results" *ngIf="results">
+    <template ngFor let-result [ngForOf]="results">
+      <a class="collection-item"
+         (click)="select(result)">
+        <template [itemTemplate]="template" [item]="result"></template>
+      </a>
     </template>
-  </ul>
-
-  <div *ngIf="isLoadingResults">
-    Loading results...
   </div>
+
 </div>

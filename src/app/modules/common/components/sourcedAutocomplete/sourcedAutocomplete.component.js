@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var itemTemplateResolver_directive_1 = require("./itemTemplateResolver.directive");
 var circularLoading_component_1 = require("../circularLoading/circularLoading.component");
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
@@ -24,7 +25,13 @@ var SourcedAutocompleteComponent = (function () {
         this.results = null;
         this.formControl.valueChanges
             .debounceTime(debounceTime)
-            .distinctUntilChanged()
+            .filter(function (_searchText) {
+            if (_this._lastSelectedItemText === _searchText) {
+                _this._lastSelectedItemText = null;
+                return false;
+            }
+            return true;
+        })
             .switchMap(function (_searchText) {
             _this.isLoadingResults = true;
             return _this._getItemsSafe(_searchText);
@@ -33,6 +40,18 @@ var SourcedAutocompleteComponent = (function () {
             _this.isLoadingResults = false;
             _this.results = _results;
         });
+    };
+    SourcedAutocompleteComponent.prototype.select = function (item) {
+        var itemText = this.itemsSource.converItemToString(item);
+        this.results = null;
+        this._lastSelectedItemText = itemText;
+        this.formControl.updateValue(itemText);
+    };
+    SourcedAutocompleteComponent.prototype.clearResultsAsync = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.results = null;
+        }, 100);
     };
     SourcedAutocompleteComponent.prototype._validateInputs = function () {
         if (!this.itemsSource) {
@@ -100,7 +119,7 @@ var SourcedAutocompleteComponent = (function () {
             selector: 'sourced-autocomplete',
             template: require('./sourcedAutocomplete.component.html'),
             styles: [require('./sourcedAutocomplete.component.scss')],
-            directives: [forms_1.REACTIVE_FORM_DIRECTIVES, circularLoading_component_1.CircularLoadingComponent]
+            directives: [forms_1.REACTIVE_FORM_DIRECTIVES, circularLoading_component_1.CircularLoadingComponent, itemTemplateResolver_directive_1.ItemTemplateResolver]
         }), 
         __metadata('design:paramtypes', [])
     ], SourcedAutocompleteComponent);

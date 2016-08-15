@@ -13,10 +13,8 @@
                             labelText="Username"
                             debounceTime="500"
                             [itemsSource]="usersByPartialUsernameSource">
-        <template let-searchResult="$implicit">
-            <li>
+        <template let-searchResult="item">
               {{searchResult.username}}
-            </li>
         </template>
       </sourced-autocomplete>
 

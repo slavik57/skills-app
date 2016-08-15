@@ -32,7 +32,8 @@ describe('SourcedAutocompleteComponent', () => {
       getItems: () => {
         getItemsResult = new Subject<any[]>();
         return getItemsResult;
-      }
+      },
+      converItemToString: (_item) => _item.toString()
     }
 
     getItemsSpy = spy(itemsSource, 'getItems');
@@ -118,12 +119,36 @@ describe('SourcedAutocompleteComponent', () => {
 
       describe('debounce time passes', () => {
 
-        beforeEach(fakeAsync(() => {
+        var valueChangesTests = (getValueFunction: () => string, getExpectedResultsFunction: () => any[]) => {
+          var value: string;
+          var expectedResults: any[];
 
-          formControl.updateValue(newValue, { emitEvent: true });
+          beforeEach(fakeAsync(() => {
+            value = getValueFunction();
+            expectedResults = getExpectedResultsFunction();
 
-          tick(debounceTime);
-        }));
+            getItemsSpy.reset();
+
+            formControl.updateValue(value, { emitEvent: true });
+
+            tick(debounceTime);
+          }));
+
+          it('should call getItems correctly', () => {
+            expect(getItemsSpy.callCount).to.be.equal(1);
+            expect(getItemsSpy.args[0]).to.deep.equal([value]);
+          });
+
+          it('results should be correct', () => {
+            expect(component.results).to.deep.equal(expectedResults);
+          });
+
+          it('isLoadingResults to be true', () => {
+            expect(component.isLoadingResults).to.be.true;
+          });
+        };
+
+        valueChangesTests(() => newValue, () => null);
 
         it('should call getItems correctly', () => {
           expect(getItemsSpy.callCount).to.be.equal(1);
@@ -153,56 +178,12 @@ describe('SourcedAutocompleteComponent', () => {
 
           describe('value changes again', () => {
 
-            describe('to different value', () => {
-
-              var otherNewValue: string;
-
-              beforeEach(fakeAsync(() => {
-                otherNewValue = 'other new value';
-                getItemsSpy.reset();
-
-                formControl.updateValue(otherNewValue, { emitEvent: true });
-
-                tick(debounceTime);
-              }));
-
-              it('should call getItems correctly', () => {
-                expect(getItemsSpy.callCount).to.be.equal(1);
-                expect(getItemsSpy.args[0]).to.deep.equal([otherNewValue]);
-              });
-
-              it('results should be null', () => {
-                expect(component.results).to.be.null;
-              });
-
-              it('isLoadingResults to be true', () => {
-                expect(component.isLoadingResults).to.be.true;
-              });
-
+            describe('to same value', () => {
+              valueChangesTests(() => newValue, () => null);
             });
 
-            describe('to same value', () => {
-
-              beforeEach(fakeAsync(() => {
-                getItemsSpy.reset();
-
-                formControl.updateValue(newValue, { emitEvent: true });
-
-                tick(debounceTime);
-              }));
-
-              it('should not call getItems', () => {
-                expect(getItemsSpy.callCount).to.be.equal(0);
-              });
-
-              it('results should be null', () => {
-                expect(component.results).to.be.null;
-              });
-
-              it('isLoadingResults to be false', () => {
-                expect(component.isLoadingResults).to.be.false;
-              });
-
+            describe('to different value', () => {
+              valueChangesTests(() => 'other new value', () => null);
             });
 
           });
@@ -229,56 +210,12 @@ describe('SourcedAutocompleteComponent', () => {
 
           describe('value changes again', () => {
 
-            describe('to different value', () => {
-
-              var otherNewValue: string;
-
-              beforeEach(fakeAsync(() => {
-                otherNewValue = 'other new value';
-                getItemsSpy.reset();
-
-                formControl.updateValue(otherNewValue, { emitEvent: true });
-
-                tick(debounceTime);
-              }));
-
-              it('should call getItems correctly', () => {
-                expect(getItemsSpy.callCount).to.be.equal(1);
-                expect(getItemsSpy.args[0]).to.deep.equal([otherNewValue]);
-              });
-
-              it('results should be correct', () => {
-                expect(component.results).to.be.equal(items);
-              });
-
-              it('isLoadingResults to be true', () => {
-                expect(component.isLoadingResults).to.be.true;
-              });
-
+            describe('to same value', () => {
+              valueChangesTests(() => newValue, () => items);
             });
 
-            describe('to same value', () => {
-
-              beforeEach(fakeAsync(() => {
-                getItemsSpy.reset();
-
-                formControl.updateValue(newValue, { emitEvent: true });
-
-                tick(debounceTime);
-              }));
-
-              it('should not call getItems', () => {
-                expect(getItemsSpy.callCount).to.be.equal(0);
-              });
-
-              it('results should be correct', () => {
-                expect(component.results).to.be.equal(items);
-              });
-
-              it('isLoadingResults to be false', () => {
-                expect(component.isLoadingResults).to.be.false;
-              });
-
+            describe('to different value', () => {
+              valueChangesTests(() => 'other new value', () => items);
             });
 
             describe('to empty', () => {
@@ -306,6 +243,64 @@ describe('SourcedAutocompleteComponent', () => {
             })
 
           });
+
+          describe('select', () => {
+
+            var selectSomeValueTests = (formControlText, searchText) => {
+
+              beforeEach(() => {
+                getItemsSpy.reset();
+
+                component.formControl.updateValue(formControlText, { emitEvent: false });
+
+                component.select(searchText);
+              });
+
+              it('should clear the results', () => {
+                expect(component.results).to.be.null;
+              });
+
+              it('should update the formControl value', () => {
+                expect(component.formControl.value).to.be.equal(searchText);
+              });
+
+              it('should not set as loading results', () => {
+                expect(component.isLoadingResults).to.be.false;
+              });
+
+              it('should not call get items', () => {
+                expect(getItemsSpy.callCount).to.be.equal(0);
+              });
+
+              describe('value changes again', () => {
+                valueChangesTests(() => 'other new value', () => null);
+              })
+
+            };
+
+            describe('selecting different item from the formControl value', () => {
+
+              selectSomeValueTests('text', 'some search text');
+
+            });
+
+            describe('selecting same item from the formControl value', () => {
+
+              selectSomeValueTests('some search text', 'some search text');
+
+            });
+
+          });
+
+          it('clearResultsAsync should clear the results', fakeAsync(() => {
+            component.clearResultsAsync();
+
+            expect(component.results).to.exist;
+
+            tick(100);
+
+            expect(component.results).to.be.null;
+          }));
 
         });
 

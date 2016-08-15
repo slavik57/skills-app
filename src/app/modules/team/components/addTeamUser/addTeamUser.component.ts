@@ -48,6 +48,9 @@ export class AddTeamUserComponent extends FormComponentBase implements OnInit, O
     this.usersByPartialUsernameSource = {
       getItems: (partialUsername: string) => {
         return this.userService.getUsersDetailsByPartialUsername(partialUsername, AddTeamUserComponent.MAX_NUMBER_OF_SUGGESTED_USERS);
+      },
+      converItemToString: (teamMember: IUsernameDetails) => {
+        return teamMember.username;
       }
     }
 

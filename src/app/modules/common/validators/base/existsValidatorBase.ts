@@ -31,7 +31,6 @@ export abstract class ExistsValidatorBase implements IExistsValidator {
     this._valueChangesSubscription =
       control.valueChanges
         .debounceTime(500)
-        .distinctUntilChanged()
         .subscribe((newValue: string) => {
           if (!this._subscriber) {
             return;

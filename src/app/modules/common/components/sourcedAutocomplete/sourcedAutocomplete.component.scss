@@ -1,0 +1,22 @@
+@import "~materialize-css/sass/materialize.scss";
+
+:host {
+  .sourced-autocomplete-wrapper{
+    .results-area-position {
+      position: absolute;
+      top: 3rem;
+      margin: 0;
+      margin-top: 1px;
+    }
+
+    .sourced-autocomplete-results{
+      @extend .results-area-position;
+
+      a{
+        @extend .blue-text;
+        cursor: pointer;
+      }
+    }
+
+  }
+}

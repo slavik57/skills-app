@@ -170,6 +170,17 @@ describe('TeamUsersComponent', () => {
 
     });
 
+    it('usersByPartialUsernameSource.convertItemToString should return the username', () => {
+      var username = 'some username1';
+
+      var userDetails: IUsernameDetails = {
+        id: 123,
+        username: username
+      }
+
+      expect(component.usersByPartialUsernameSource.converItemToString(userDetails)).to.be.equal(username);
+    });
+
     it('when the component is destroyed should destroy the TeamExistsValidator', () => {
       component.ngOnDestroy();
 

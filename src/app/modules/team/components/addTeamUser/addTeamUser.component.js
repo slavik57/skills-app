@@ -36,6 +36,9 @@ var AddTeamUserComponent = (function (_super) {
         this.usersByPartialUsernameSource = {
             getItems: function (partialUsername) {
                 return _this.userService.getUsersDetailsByPartialUsername(partialUsername, AddTeamUserComponent.MAX_NUMBER_OF_SUGGESTED_USERS);
+            },
+            converItemToString: function (teamMember) {
+                return teamMember.username;
             }
         };
         this._initialize();

@@ -1,3 +1,4 @@
+import {ItemTemplateResolver} from "./itemTemplateResolver.directive";
 import {CircularLoadingComponent} from "../circularLoading/circularLoading.component";
 import {Component, Input, OnInit, TemplateRef, ContentChild} from '@angular/core';
 import {REACTIVE_FORM_DIRECTIVES, FormControl} from '@angular/forms';
@@ -9,7 +10,7 @@ import { Subscriber } from 'rxjs/Subscriber';
   selector: 'sourced-autocomplete',
   template: require('./sourcedAutocomplete.component.html'),
   styles: [require('./sourcedAutocomplete.component.scss')],
-  directives: [REACTIVE_FORM_DIRECTIVES, CircularLoadingComponent]
+  directives: [REACTIVE_FORM_DIRECTIVES, CircularLoadingComponent, ItemTemplateResolver]
 })
 export class SourcedAutocompleteComponent implements OnInit {
   public static INSTANCE_NUMBER = 0;
@@ -27,6 +28,8 @@ export class SourcedAutocompleteComponent implements OnInit {
   public results: any[];
   public isLoadingResults: boolean;
 
+  private _lastSelectedItemText: string;
+
   constructor() {
     this._initializeId();
   }
@@ -41,7 +44,14 @@ export class SourcedAutocompleteComponent implements OnInit {
 
     this.formControl.valueChanges
       .debounceTime(debounceTime)
-      .distinctUntilChanged()
+      .filter((_searchText) => {
+        if (this._lastSelectedItemText === _searchText) {
+          this._lastSelectedItemText = null;
+          return false;
+        }
+
+        return true;
+      })
       .switchMap((_searchText: string) => {
         this.isLoadingResults = true;
         return this._getItemsSafe(_searchText);
@@ -50,6 +60,22 @@ export class SourcedAutocompleteComponent implements OnInit {
         this.isLoadingResults = false;
         this.results = _results;
       });
+  }
+
+  public select(item: any): void {
+    var itemText: string = this.itemsSource.converItemToString(item);
+
+    this.results = null;
+
+    this._lastSelectedItemText = itemText;
+
+    this.formControl.updateValue(itemText);
+  }
+
+  public clearResultsAsync(): void {
+    setTimeout(() => {
+      this.results = null;
+    }, 100);
   }
 
   private _validateInputs(): void {

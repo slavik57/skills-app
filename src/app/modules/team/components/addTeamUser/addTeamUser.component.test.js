@@ -117,6 +117,14 @@ testing_1.describe('TeamUsersComponent', function () {
                 });
             });
         });
+        testing_1.it('usersByPartialUsernameSource.convertItemToString should return the username', function () {
+            var username = 'some username1';
+            var userDetails = {
+                id: 123,
+                username: username
+            };
+            chai_1.expect(component.usersByPartialUsernameSource.converItemToString(userDetails)).to.be.equal(username);
+        });
         testing_1.it('when the component is destroyed should destroy the TeamExistsValidator', function () {
             component.ngOnDestroy();
             chai_1.expect(destroyUsernameNotExistsValidatorSpy.callCount).to.be.equal(1);

@@ -18,7 +18,6 @@ var ExistsValidatorBase = (function () {
         this._valueChangesSubscription =
             control.valueChanges
                 .debounceTime(500)
-                .distinctUntilChanged()
                 .subscribe(function (newValue) {
                 if (!_this._subscriber) {
                     return;
