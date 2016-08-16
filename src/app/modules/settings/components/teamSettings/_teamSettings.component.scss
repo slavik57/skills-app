@@ -1,5 +1,7 @@
-@import '~materialize-css/sass/materialize';
-@import "../../../../commonStyles/_loading";
+@import '~materialize-css/sass/components/_color';
+@import '~materialize-css/sass/components/_variables';
+@import '~materialize-css/sass/components/_grid';
+@import '~materialize-css/sass/components/_tabs';
 
 :host{
   display: flex;
@@ -9,7 +11,7 @@
     margin-top: 0;
   }
 
-  .user-settings-content{
+  .team-settings-content{
     width: 100%;
 
     .tabs{
@@ -24,7 +26,6 @@
         @extend .blue-text;
         @extend .col;
         @extend .s4;
-
       }
 
       @media #{$small-and-down} {
@@ -36,29 +37,11 @@
 
   }
 
-  #userPermissionsSettings, #userTeamsSettings, #userPasswordSettings{
+  #teamDetailsSettings, #teamUsersSettings{
     flex: 1;
     margin-top: 1rem;
-  }
-
-  #userPasswordSettings{
     display: flex;
     flex-direction: column;
-
-    .content-wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-
-      change-user-password{
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-    }
   }
 
-  .not-allowed-to-change-password-message{
-    @extend .centered;
-  }
 }

@@ -12,7 +12,7 @@ export enum TeamUsersState {
 @Component({
   selector: 'team-users',
   template: require('./teamUsers.component.html'),
-  styles: [require('./teamUsers.component.scss')],
+  styles: [require('./_teamUsers.component.scss')],
   directives: [TeamUsersListComponent, AddTeamUserComponent]
 })
 export class TeamUsersComponent implements OnInit {

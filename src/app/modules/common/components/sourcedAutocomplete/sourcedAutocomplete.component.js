@@ -118,7 +118,7 @@ var SourcedAutocompleteComponent = (function () {
         core_1.Component({
             selector: 'sourced-autocomplete',
             template: require('./sourcedAutocomplete.component.html'),
-            styles: [require('./sourcedAutocomplete.component.scss')],
+            styles: [require('./_sourcedAutocomplete.component.scss')],
             directives: [forms_1.REACTIVE_FORM_DIRECTIVES, circularLoading_component_1.CircularLoadingComponent, itemTemplateResolver_directive_1.ItemTemplateResolver]
         }), 
         __metadata('design:paramtypes', [])

@@ -83,7 +83,7 @@ var CreateTeamComponent = (function (_super) {
         core_1.Component({
             selector: 'create-team',
             template: require('./createTeam.component.html'),
-            styles: [require('./createTeam.component.scss')],
+            styles: [require('./_createTeam.component.scss')],
             directives: [forms_1.REACTIVE_FORM_DIRECTIVES, circularLoading_component_1.CircularLoadingComponent],
             providers: [forms_1.FormBuilder, teamExistsValidator_1.TeamExistsValidatorFactory]
         }), 

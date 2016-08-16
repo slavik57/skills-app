@@ -84,7 +84,7 @@ var EditTeamDetailsComponent = (function (_super) {
         core_1.Component({
             selector: 'edit-team-details',
             template: require('./editTeamDetails.component.html'),
-            styles: [require('./editTeamDetails.component.scss')],
+            styles: [require('./_editTeamDetails.component.scss')],
             directives: [forms_1.REACTIVE_FORM_DIRECTIVES, circularLoading_component_1.CircularLoadingComponent],
             providers: [forms_1.FormBuilder, teamExistsValidator_1.TeamExistsValidatorFactory]
         }), 

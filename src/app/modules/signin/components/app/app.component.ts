@@ -12,7 +12,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 @Component({
   selector: 'signin-app',
   template: require('./app.component.html'),
-  styles: [require('./app.component.scss')],
+  styles: [require('./_app.component.scss')],
   directives: _.union(ROUTER_DIRECTIVES, [NavigationComponent, CreditsComponent]),
   providers: [
     HTTP_PROVIDERS,

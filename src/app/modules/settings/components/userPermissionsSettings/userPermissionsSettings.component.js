@@ -38,7 +38,7 @@ var UserPermissionsSettingsComponent = (function () {
         core_1.Component({
             selector: 'user-permissions-settings',
             template: require('./userPermissionsSettings.component.html'),
-            styles: [require('./userPermissionsSettings.component.scss')],
+            styles: [require('./_userPermissionsSettings.component.scss')],
             directives: [circularLoading_component_1.CircularLoadingComponent, readonlyUserPermissions_component_1.ReadonlyUserPermissionsComponent, updateUserPermissions_component_1.UpdateUserPermissionsComponent],
         }), 
         __metadata('design:paramtypes', [])

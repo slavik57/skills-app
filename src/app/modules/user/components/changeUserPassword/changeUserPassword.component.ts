@@ -10,7 +10,7 @@ import {UserService} from "../../../common/services/userService";
 @Component({
   selector: 'change-user-password',
   template: require('./changeUserPassword.component.html'),
-  styles: [require('./changeUserPassword.component.scss')],
+  styles: [require('./_changeUserPassword.component.scss')],
   directives: [REACTIVE_FORM_DIRECTIVES, CircularLoadingComponent],
   providers: [FormBuilder]
 })

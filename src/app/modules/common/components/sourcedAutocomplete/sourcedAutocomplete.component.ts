@@ -9,7 +9,7 @@ import { Subscriber } from 'rxjs/Subscriber';
 @Component({
   selector: 'sourced-autocomplete',
   template: require('./sourcedAutocomplete.component.html'),
-  styles: [require('./sourcedAutocomplete.component.scss')],
+  styles: [require('./_sourcedAutocomplete.component.scss')],
   directives: [REACTIVE_FORM_DIRECTIVES, CircularLoadingComponent, ItemTemplateResolver]
 })
 export class SourcedAutocompleteComponent implements OnInit {

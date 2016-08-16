@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'users-settings',
   template: require('./usersSettings.component.html'),
-  styles: [require('./usersSettings.component.scss')],
+  styles: [require('./_usersSettings.component.scss')],
   directives: [CircularLoadingComponent, UserSettingsComponent]
 })
 export class UsersSettingsComponent extends LoadingComponentBase<IUsernameDetails[]> {

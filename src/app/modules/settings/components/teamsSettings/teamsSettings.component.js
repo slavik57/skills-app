@@ -128,7 +128,7 @@ var TeamsSettingsComponent = (function (_super) {
         core_1.Component({
             selector: 'teams-settings',
             template: require('./teamsSettings.component.html'),
-            styles: [require('./teamsSettings.component.scss')],
+            styles: [require('./_teamsSettings.component.scss')],
             directives: [circularLoading_component_1.CircularLoadingComponent, createTeam_component_1.CreateTeamComponent, teamSettings_component_1.TeamSettingsComponent]
         }), 
         __metadata('design:paramtypes', [teamService_1.TeamService, userService_1.UserService, core_1.NgZone])

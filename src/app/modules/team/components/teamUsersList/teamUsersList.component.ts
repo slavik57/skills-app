@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'team-users-list',
   template: require('./teamUsersList.component.html'),
-  styles: [require('./teamUsersList.component.scss')],
+  styles: [require('./_teamUsersList.component.scss')],
   directives: [CircularLoadingComponent]
 })
 export class TeamUsersListComponent extends LoadingComponentBase<ITeamMemberDetails[]> implements OnInit {

@@ -12,7 +12,7 @@ export enum UserPermissionsSettingsState {
 @Component({
   selector: 'user-permissions-settings',
   template: require('./userPermissionsSettings.component.html'),
-  styles: [require('./userPermissionsSettings.component.scss')],
+  styles: [require('./_userPermissionsSettings.component.scss')],
   directives: [CircularLoadingComponent, ReadonlyUserPermissionsComponent, UpdateUserPermissionsComponent],
 })
 export class UserPermissionsSettingsComponent implements OnInit {

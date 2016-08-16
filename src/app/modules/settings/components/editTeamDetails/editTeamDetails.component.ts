@@ -10,7 +10,7 @@ import {EmailValidator} from "../../../common/validators/emailValidator";
 @Component({
   selector: 'edit-team-details',
   template: require('./editTeamDetails.component.html'),
-  styles: [require('./editTeamDetails.component.scss')],
+  styles: [require('./_editTeamDetails.component.scss')],
   directives: [REACTIVE_FORM_DIRECTIVES, CircularLoadingComponent],
   providers: [FormBuilder, TeamExistsValidatorFactory]
 })

@@ -1,18 +1,18 @@
-@import '~materialize-css/sass/materialize.scss';
 @import '../../../../commonStyles/_forms';
+@import '~materialize-css/sass/components/_cards';
 
-.register-container {
+.signin-container {
   @extend .row;
 
-  .register-card-wrapper {
+  .sign-in-card-wrapper {
     @extend .col;
     @extend .s12;
-    @extend .m8;
+    @extend .m6;
     @extend .l6;
-    @extend .offset-m2;
+    @extend .offset-m3;
     @extend .offset-l3;
 
-    .register-card {
+    .sign-in-card {
       @extend .card;
       @extend .grey;
       @extend .lighten-4;
@@ -24,16 +24,14 @@
           @extend .card-title;
         }
 
-        .user-details, .passwords, .credentials{
-          @extend .row;
-          margin-bottom: 0;
+        .filling-form-wrapper{
+          max-height: 17rem;
 
-          .input-field{
-            @extend .col;
-            @extend .m6;
-            @extend .s12;
+          &.has-submit-error{
+            max-height: 19rem;
           }
         }
+
       }
 
       .card-action{

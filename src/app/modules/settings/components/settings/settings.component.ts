@@ -7,7 +7,7 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 @Component({
   selector: 'settings',
   template: require('./settings.component.html'),
-  styles: [require('./settings.component.scss')],
+  styles: [require('./_settings.component.scss')],
   directives: [ROUTER_DIRECTIVES],
   precompile: [UsersSettingsComponent, SkillsSettingsComponent, TeamsSettingsComponent]
 })

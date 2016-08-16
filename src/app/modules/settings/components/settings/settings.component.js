@@ -27,7 +27,7 @@ var SettingsComponent = (function () {
         core_1.Component({
             selector: 'settings',
             template: require('./settings.component.html'),
-            styles: [require('./settings.component.scss')],
+            styles: [require('./_settings.component.scss')],
             directives: [router_1.ROUTER_DIRECTIVES],
             precompile: [usersSettings_component_1.UsersSettingsComponent, skillsSettings_component_1.SkillsSettingsComponent, teamsSettings_component_1.TeamsSettingsComponent]
         }), 

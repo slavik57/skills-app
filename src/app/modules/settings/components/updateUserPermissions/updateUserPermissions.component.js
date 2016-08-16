@@ -147,7 +147,7 @@ var UpdateUserPermissionsComponent = (function (_super) {
         core_1.Component({
             selector: 'update-user-permissions',
             template: require('./updateUserPermissions.component.html'),
-            styles: [require('./updateUserPermissions.component.scss')],
+            styles: [require('./_updateUserPermissions.component.scss')],
             directives: [circularLoading_component_1.CircularLoadingComponent],
             pipes: [globalPermissionsNamePipe_1.GlobalPermissionsNamePipe]
         }), 

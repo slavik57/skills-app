@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'user-settings',
   template: require('./userSettings.component.html'),
-  styles: [require('./userSettings.component.scss')],
+  styles: [require('./_userSettings.component.scss')],
   directives: [
     UserPermissionsSettingsComponent,
     ChangeUserPasswordComponent,

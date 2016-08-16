@@ -37,7 +37,7 @@ var TeamUsersComponent = (function () {
         core_1.Component({
             selector: 'team-users',
             template: require('./teamUsers.component.html'),
-            styles: [require('./teamUsers.component.scss')],
+            styles: [require('./_teamUsers.component.scss')],
             directives: [teamUsersList_component_1.TeamUsersListComponent, addTeamUser_component_1.AddTeamUserComponent]
         }), 
         __metadata('design:paramtypes', [])

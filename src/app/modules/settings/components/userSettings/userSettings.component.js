@@ -59,7 +59,7 @@ var UserSettingsComponent = (function (_super) {
         core_1.Component({
             selector: 'user-settings',
             template: require('./userSettings.component.html'),
-            styles: [require('./userSettings.component.scss')],
+            styles: [require('./_userSettings.component.scss')],
             directives: [
                 userPermissionsSettings_component_1.UserPermissionsSettingsComponent,
                 changeUserPassword_component_1.ChangeUserPasswordComponent,

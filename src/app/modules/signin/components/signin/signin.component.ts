@@ -10,7 +10,7 @@ import { NgClass }    from '@angular/common';
 @Component({
   selector: 'signin',
   template: require('./signin.component.html'),
-  styles: [require('./signin.component.scss')],
+  styles: [require('./_signin.component.scss')],
   directives: [ROUTER_DIRECTIVES, NgClass, CircularLoadingComponent],
 })
 export class SigninComponent extends FormComponentBase {

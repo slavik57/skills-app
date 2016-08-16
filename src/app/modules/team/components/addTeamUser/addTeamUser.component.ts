@@ -19,7 +19,7 @@ import {
 @Component({
   selector: 'add-team-user',
   template: require('./addTeamUser.component.html'),
-  styles: [require('./addTeamUser.component.scss')],
+  styles: [require('./_addTeamUser.component.scss')],
   directives: [REACTIVE_FORM_DIRECTIVES, SourcedAutocompleteComponent, CircularLoadingComponent],
   providers: [FormBuilder, UsernameNotExistsValidatorFactory]
 })

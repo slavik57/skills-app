@@ -1,5 +1,9 @@
-@import "../../../../commonStyles/_colors";
-@import '~materialize-css/sass/materialize.scss';
+@import '~materialize-css/sass/components/_color';
+@import '~materialize-css/sass/components/_variables';
+@import '~materialize-css/sass/components/_typography';
+@import '~materialize-css/sass/components/_global';
+@import '~materialize-css/sass/components/_navbar';
+@import '~materialize-css/sass/components/_dropdown';
 
 nav{
   @extend .blue;

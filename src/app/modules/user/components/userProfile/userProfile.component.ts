@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'user-profile',
   template: require('./userProfile.component.html'),
-  styles: [require('./userProfile.component.scss')],
+  styles: [require('./_userProfile.component.scss')],
   directives: [EditUserDetailsComponent, ChangeUserPasswordComponent, CircularLoadingComponent],
 })
 export class UserProfileComponent extends LoadingComponentBase<IUserDetails> implements OnInit {

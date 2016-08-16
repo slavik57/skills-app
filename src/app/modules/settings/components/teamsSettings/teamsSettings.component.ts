@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'teams-settings',
   template: require('./teamsSettings.component.html'),
-  styles: [require('./teamsSettings.component.scss')],
+  styles: [require('./_teamsSettings.component.scss')],
   directives: [CircularLoadingComponent, CreateTeamComponent, TeamSettingsComponent]
 })
 export class TeamsSettingsComponent extends LoadingComponentBase<[ITeamNameDetails[], boolean]> {

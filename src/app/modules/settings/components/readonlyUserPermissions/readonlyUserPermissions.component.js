@@ -52,7 +52,7 @@ var ReadonlyUserPermissionsComponent = (function (_super) {
         core_1.Component({
             selector: 'readonly-user-permissions',
             template: require('./readonlyUserPermissions.component.html'),
-            styles: [require('./readonlyUserPermissions.component.scss')],
+            styles: [require('./_readonlyUserPermissions.component.scss')],
             directives: [circularLoading_component_1.CircularLoadingComponent],
             pipes: [globalPermissionsNamePipe_1.GlobalPermissionsNamePipe]
         }), 

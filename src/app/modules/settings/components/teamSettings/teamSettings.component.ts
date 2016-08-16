@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'team-settings',
   template: require('./teamSettings.component.html'),
-  styles: [require('./teamSettings.component.scss')],
+  styles: [require('./_teamSettings.component.scss')],
   directives: [
     EditTeamDetailsComponent,
     TeamUsersComponent,

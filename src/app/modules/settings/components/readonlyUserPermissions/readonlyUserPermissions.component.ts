@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'readonly-user-permissions',
   template: require('./readonlyUserPermissions.component.html'),
-  styles: [require('./readonlyUserPermissions.component.scss')],
+  styles: [require('./_readonlyUserPermissions.component.scss')],
   directives: [CircularLoadingComponent],
   pipes: [GlobalPermissionsNamePipe]
 })

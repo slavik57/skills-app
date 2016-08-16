@@ -4,7 +4,7 @@ import { ROUTER_DIRECTIVES, Router, UrlTree } from '@angular/router';
 @Component({
   selector: 'navigation-bar',
   template: require('./navigation.component.html'),
-  styles: [require('./navigation.component.scss')],
+  styles: [require('./_navigation.component.scss')],
   directives: [ROUTER_DIRECTIVES]
 })
 export class NavigationComponent {

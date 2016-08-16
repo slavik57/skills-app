@@ -51,7 +51,7 @@ var TeamUsersListComponent = (function (_super) {
         core_1.Component({
             selector: 'team-users-list',
             template: require('./teamUsersList.component.html'),
-            styles: [require('./teamUsersList.component.scss')],
+            styles: [require('./_teamUsersList.component.scss')],
             directives: [circularLoading_component_1.CircularLoadingComponent]
         }), 
         __metadata('design:paramtypes', [teamService_1.TeamService])

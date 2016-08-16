@@ -58,7 +58,7 @@ var UsersSettingsComponent = (function (_super) {
         core_1.Component({
             selector: 'users-settings',
             template: require('./usersSettings.component.html'),
-            styles: [require('./usersSettings.component.scss')],
+            styles: [require('./_usersSettings.component.scss')],
             directives: [circularLoading_component_1.CircularLoadingComponent, userSettings_component_1.UserSettingsComponent]
         }), 
         __metadata('design:paramtypes', [userService_1.UserService, core_1.NgZone])

@@ -52,7 +52,7 @@ var SigninComponent = (function (_super) {
         core_1.Component({
             selector: 'signin',
             template: require('./signin.component.html'),
-            styles: [require('./signin.component.scss')],
+            styles: [require('./_signin.component.scss')],
             directives: [router_1.ROUTER_DIRECTIVES, common_1.NgClass, circularLoading_component_1.CircularLoadingComponent],
         }), 
         __metadata('design:paramtypes', [userService_1.UserService, locationService_1.LocationService])

@@ -1,8 +1,6 @@
-@import "~materialize-css/sass/materialize.scss";
-@import "~materialize-css/sass/components/_variables.scss";
-@import "../../../../commonStyles/_loading";
 @import "../../../../commonStyles/_forms";
 @import "../../../../commonStyles/_buttons";
+@import '~materialize-css/sass/components/_modal';
 
 :host {
   display: flex;

@@ -9,7 +9,7 @@ import {ITeamExistsValidator, TeamExistsValidator, TeamExistsValidatorFactory} f
 @Component({
   selector: 'create-team',
   template: require('./createTeam.component.html'),
-  styles: [require('./createTeam.component.scss')],
+  styles: [require('./_createTeam.component.scss')],
   directives: [REACTIVE_FORM_DIRECTIVES, CircularLoadingComponent],
   providers: [FormBuilder, TeamExistsValidatorFactory]
 })

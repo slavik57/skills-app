@@ -20,7 +20,7 @@ interface IUserPermissionsToChange {
 @Component({
   selector: 'update-user-permissions',
   template: require('./updateUserPermissions.component.html'),
-  styles: [require('./updateUserPermissions.component.scss')],
+  styles: [require('./_updateUserPermissions.component.scss')],
   directives: [CircularLoadingComponent],
   pipes: [GlobalPermissionsNamePipe]
 })

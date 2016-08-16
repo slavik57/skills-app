@@ -34,7 +34,7 @@ var TeamSettingsComponent = (function () {
         core_1.Component({
             selector: 'team-settings',
             template: require('./teamSettings.component.html'),
-            styles: [require('./teamSettings.component.scss')],
+            styles: [require('./_teamSettings.component.scss')],
             directives: [
                 editTeamDetails_component_1.EditTeamDetailsComponent,
                 teamUsers_component_1.TeamUsersComponent,

@@ -96,7 +96,7 @@ var AddTeamUserComponent = (function (_super) {
         core_1.Component({
             selector: 'add-team-user',
             template: require('./addTeamUser.component.html'),
-            styles: [require('./addTeamUser.component.scss')],
+            styles: [require('./_addTeamUser.component.scss')],
             directives: [forms_1.REACTIVE_FORM_DIRECTIVES, sourcedAutocomplete_component_1.SourcedAutocompleteComponent, circularLoading_component_1.CircularLoadingComponent],
             providers: [forms_1.FormBuilder, usernameNotExistsValidator_1.UsernameNotExistsValidatorFactory]
         }), 
