@@ -27,6 +27,13 @@
       position: relative;
       margin-left: 0;
       margin-right: 0;
+      opacity: 1;
+      transition: opacity .3s ease;
+
+      &.removing-team-member{
+        pointer-events: none;
+        opacity: 0.5;
+      }
 
       button{
         @extend .btn;

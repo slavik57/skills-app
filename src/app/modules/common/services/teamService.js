@@ -81,6 +81,9 @@ var TeamService = (function (_super) {
             .map(function (response) { return _this._extractAllBody(response); })
             .catch(function (error) { return _this._handleServerError(error); });
     };
+    TeamService.prototype.removeTeamMember = function (teamId, userId) {
+        return null;
+    };
     TeamService.prototype._extractTeamsDetails = function (response) {
         var _this = this;
         this._throwErrorIfStatusIsNotOk(response);

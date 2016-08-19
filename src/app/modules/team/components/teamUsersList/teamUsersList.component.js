@@ -22,8 +22,19 @@ var TeamUsersListComponent = (function (_super) {
     function TeamUsersListComponent(teamService) {
         _super.call(this);
         this.teamService = teamService;
-        this.teamMembersChanged = new core_1.EventEmitter();
+        this.teamMembersChangedEvent = new core_1.EventEmitter();
+        this.removingTeamMemberStateChangedEvent = new core_1.EventEmitter();
+        this.removingTeamMember = false;
+        this.removingTeamMemberError = null;
     }
+    TeamUsersListComponent.prototype.removeTeamMember = function (teamMember) {
+        var _this = this;
+        this._setRemovingTeamMember(true);
+        this.removingTeamMemberError = null;
+        this.teamService.removeTeamMember(this.teamDetails.id, teamMember.id)
+            .finally(function () { return _this._setRemovingTeamMember(false); })
+            .subscribe(function () { return _this._removeTeamMemberFromTeamMembersList(teamMember); }, function (_error) { return _this.removingTeamMemberError = _error; });
+    };
     TeamUsersListComponent.prototype.setIsLoading = function (value) {
         this.isLoadingTeamMembers = value;
     };
@@ -33,11 +44,20 @@ var TeamUsersListComponent = (function (_super) {
     TeamUsersListComponent.prototype.setLoadingResult = function (result) {
         this.teamMembers = result;
         if (result) {
-            this.teamMembersChanged.emit(result);
+            this.teamMembersChangedEvent.emit(result);
         }
     };
     TeamUsersListComponent.prototype.get = function () {
         return this.teamService.getTeamMembers(this.teamDetails.id);
+    };
+    TeamUsersListComponent.prototype._setRemovingTeamMember = function (isRemoving) {
+        this.removingTeamMember = isRemoving;
+        this.removingTeamMemberStateChangedEvent.emit(isRemoving);
+    };
+    TeamUsersListComponent.prototype._removeTeamMemberFromTeamMembersList = function (teamMember) {
+        var teamMemberIndex = this.teamMembers.indexOf(teamMember);
+        this.teamMembers.splice(teamMemberIndex, 1);
+        this.teamMembersChangedEvent.emit(this.teamMembers);
     };
     __decorate([
         core_1.Input(), 
@@ -46,7 +66,11 @@ var TeamUsersListComponent = (function (_super) {
     __decorate([
         core_1.Output('teamMembers'), 
         __metadata('design:type', core_1.EventEmitter)
-    ], TeamUsersListComponent.prototype, "teamMembersChanged", void 0);
+    ], TeamUsersListComponent.prototype, "teamMembersChangedEvent", void 0);
+    __decorate([
+        core_1.Output('removingTeamMemberStateChanged'), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], TeamUsersListComponent.prototype, "removingTeamMemberStateChangedEvent", void 0);
     TeamUsersListComponent = __decorate([
         core_1.Component({
             selector: 'team-users-list',

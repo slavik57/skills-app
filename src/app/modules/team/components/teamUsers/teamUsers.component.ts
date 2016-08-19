@@ -19,6 +19,7 @@ export class TeamUsersComponent implements OnInit {
   @Input() public teamDetails: ITeamNameDetails;
   public state: TeamUsersState;
   public TeamUsersState: any;
+  public removingTeamMember: boolean;
 
   public ngOnInit(): void {
     this.TeamUsersState = TeamUsersState;

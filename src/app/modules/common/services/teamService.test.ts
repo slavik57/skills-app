@@ -149,6 +149,33 @@ describe('TeamService', () => {
 
   });
 
+  describe('removeTeamMember', () => {
+
+    var teamId: number;
+    var userId: number;
+
+    beforeEach(() => {
+      teamId = 789;
+      userId = 111222;
+      teamService.removeTeamMember(teamId, userId);
+    });
+
+    it('should use correct url', () => {
+      expect(mockBackend.connectionsArray).to.be.length(1);
+      expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Delete);
+      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members');
+    });
+
+    it('should use correct body', () => {
+      var expectedBody = JSON.stringify({
+        userId: userId
+      });
+
+      expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+    });
+
+  });
+
   function shouldFaildWithError(error: any, beforeEachFunc: () => void): any {
 
     return () => {
@@ -192,6 +219,13 @@ describe('TeamService', () => {
 
       it('addTeamMember should fail correctly', () => {
         teamService.addTeamMember(1, '').subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(error)
+        );
+      });
+
+      it('removeTeamMember should fail correctly', () => {
+        teamService.removeTeamMember(123, 456).subscribe(
           () => expect(true, 'should fail').to.be.false,
           (error) => expect(error).to.be.equal(error)
         );
@@ -481,8 +515,6 @@ describe('TeamService', () => {
     describe('deleteTeam', () => {
 
       it('should succeed', () => {
-        var result = true;
-
         responseOptions = new ResponseOptions({
           status: StatusCode.OK,
           headers: new Headers(),
@@ -762,6 +794,29 @@ describe('TeamService', () => {
             () => expect(true, 'should succeed').to.be.false)
         });
 
+      });
+
+    });
+
+    describe('removeTeamMember', () => {
+
+      it('should succeed', () => {
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        var wasResolved = false;
+        teamService.removeTeamMember(1234, 5678).subscribe(
+          () => wasResolved = true,
+          () => expect(true, 'should succeed').to.be.false);
+
+        expect(wasResolved).to.be.true;
       });
 
     });

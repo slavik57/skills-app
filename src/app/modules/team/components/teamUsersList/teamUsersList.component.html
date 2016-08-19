@@ -12,9 +12,10 @@
     </button>
   </div>
 
-  <div class="team-users-wrapper content-wrapper">
+  <div class="team-users-wrapper content-wrapper filling-form-wrapper"
+       [ngClass]="{ submitting: removingTeamMember, 'has-submit-error': !!removingTeamMemberError }">
 
-    <div *ngIf="teamMembers">
+    <div *ngIf="teamMembers" class="team-users-content">
 
       <ul class="collection" *ngIf="teamMembers.length > 0">
 
@@ -23,6 +24,9 @@
 
             <span class="username">{{teamMember.username}}</span>
 
+            <a class="delete-team-member-button" (click)="$event.stopPropagation(); removeTeamMember(teamMember)">
+              <i class="material-icons">delete</i>
+            </a>
         </li>
 
       </ul>
@@ -32,6 +36,16 @@
         There are not team members. It time to add some...
       </span>
 
+    </div>
+
+    <div *ngIf="removingTeamMemberError"
+         class="submit-error">
+      {{removingTeamMemberError}}
+    </div>
+
+    <div class="submitting-form-wrapper"
+         [ngClass]="{ submitting: removingTeamMember }">
+      <circular-loading></circular-loading>
     </div>
 
   </div>

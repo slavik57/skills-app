@@ -14,15 +14,32 @@ import { Observable } from 'rxjs/Observable';
 })
 export class TeamUsersListComponent extends LoadingComponentBase<ITeamMemberDetails[]> implements OnInit {
   @Input() public teamDetails: ITeamNameDetails;
-  @Output('teamMembers') public teamMembersChanged: EventEmitter<ITeamMemberDetails[]>;
+  @Output('teamMembers') public teamMembersChangedEvent: EventEmitter<ITeamMemberDetails[]>;
+  @Output('removingTeamMemberStateChanged') public removingTeamMemberStateChangedEvent: EventEmitter<boolean>;
   public isLoadingTeamMembers: boolean;
   public loadingTeamMembersError: any;
   public teamMembers: ITeamMemberDetails[];
+  public removingTeamMember: boolean;
+  public removingTeamMemberError: any;
 
   constructor(private teamService: TeamService) {
     super();
 
-    this.teamMembersChanged = new EventEmitter<ITeamMemberDetails[]>();
+    this.teamMembersChangedEvent = new EventEmitter<ITeamMemberDetails[]>();
+    this.removingTeamMemberStateChangedEvent = new EventEmitter<boolean>();
+    this.removingTeamMember = false;
+    this.removingTeamMemberError = null;
+  }
+
+  public removeTeamMember(teamMember: ITeamMemberDetails): void {
+    this._setRemovingTeamMember(true);
+    this.removingTeamMemberError = null;
+
+    this.teamService.removeTeamMember(this.teamDetails.id, teamMember.id)
+      .finally(() => this._setRemovingTeamMember(false))
+      .subscribe(
+      () => this._removeTeamMemberFromTeamMembersList(teamMember),
+      (_error) => this.removingTeamMemberError = _error);
   }
 
   protected setIsLoading(value: boolean): void {
@@ -37,11 +54,24 @@ export class TeamUsersListComponent extends LoadingComponentBase<ITeamMemberDeta
     this.teamMembers = result;
 
     if (result) {
-      this.teamMembersChanged.emit(result);
+      this.teamMembersChangedEvent.emit(result);
     }
   }
 
   protected get(): Observable<ITeamMemberDetails[]> {
     return this.teamService.getTeamMembers(this.teamDetails.id);
+  }
+
+  private _setRemovingTeamMember(isRemoving: boolean): void {
+    this.removingTeamMember = isRemoving;
+    this.removingTeamMemberStateChangedEvent.emit(isRemoving);
+  }
+
+  private _removeTeamMemberFromTeamMembersList(teamMember: ITeamMemberDetails): void {
+    var teamMemberIndex: number = this.teamMembers.indexOf(teamMember);
+
+    this.teamMembers.splice(teamMemberIndex, 1);
+
+    this.teamMembersChangedEvent.emit(this.teamMembers);
   }
 }

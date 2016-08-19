@@ -9,7 +9,8 @@ export class TeamServiceMockFactory {
       deleteTeam: () => null,
       updateTeamName: () => null,
       getTeamMembers: () => null,
-      addTeamMember: () => null
+      addTeamMember: () => null,
+      removeTeamMember: () => null
     }
   }
 }

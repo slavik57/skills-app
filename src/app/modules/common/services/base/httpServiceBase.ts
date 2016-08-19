@@ -1,5 +1,5 @@
 import {StatusCode} from "../../../../../common/statusCode";
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 interface IServerError {
@@ -35,11 +35,20 @@ export class HttpServiceBase {
     return this.http.put(url, body, options);
   }
 
-  protected _delete(url: string): Observable<Response> {
+  protected _delete(url: string, body?: any): Observable<Response> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
 
-    return this.http.delete(url, options);
+    let optionsArgs: RequestOptionsArgs = {
+      headers: headers
+    };
+
+    if (body) {
+      optionsArgs.body = body;
+    }
+
+    let rquestOptions = new RequestOptions(optionsArgs);
+
+    return this.http.delete(url, rquestOptions);
   }
 
   protected _handleServerError<T>(error: any): Observable<T> {

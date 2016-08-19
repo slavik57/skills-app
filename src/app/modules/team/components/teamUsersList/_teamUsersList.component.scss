@@ -6,48 +6,102 @@
   overflow-y: auto;
 
   .team-users-list-wrapper{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 
     .team-users-wrapper {
-      .collection{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
 
-        .item{
-          @extend .small-item;
-          $transition-speed: .3s;
-          user-select: none;
-          -moz-user-select: none;
-          -webkit-user-select: none;
-          -ms-user-select: none;
+      .team-users-content{
+        flex: 1;
 
-          .username {
-            @extend .blue-text;
-            vertical-align: middle;
+        .collection{
+
+          .item{
+            @extend .small-item;
+            $transition-speed: .3s;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+
+            .username {
+              @extend .blue-text;
+              vertical-align: middle;
+            }
+
+            .delete-team-member-button{
+              cursor: pointer;
+              position: absolute;
+              right: 1rem;
+              transition: opacity .3s ease;
+            }
           }
 
+          @media #{$small-and-down} {
+            .item{
+              .delete-team-member-button {
+                opacity: 1;
+              }
+            }
+          }
+
+          @media #{$medium-and-up} {
+            .item{
+              .delete-team-member-button {
+                opacity: 0;
+              }
+
+              &:hover{
+                .delete-team-member-button{
+                  opacity: .8;
+
+                  &:hover {
+                    opacity: 1;
+                  }
+                }
+              }
+            }
+          }
         }
-      }
 
-      .no-team-members-message{
-        position: absolute;
-        width: 100%;
-        text-align: center;
-
-        .material-icons{
-          display: block;
-          font-size: 5rem;
-        }
-      }
-
-      @media #{$small-and-down} {
         .no-team-members-message{
-          top: 15%;
+          position: absolute;
+          width: 100%;
+          text-align: center;
+
+          .material-icons{
+            display: block;
+            font-size: 5rem;
+          }
+        }
+
+        @media #{$small-and-down} {
+          .no-team-members-message{
+            top: 15%;
+          }
+        }
+
+        @media #{$medium-and-up} {
+          .no-team-members-message{
+            top: 25%;
+          }
         }
       }
 
-      @media #{$medium-and-up} {
-        .no-team-members-message{
-          top: 25%;
+      .submit-error{
+        margin-bottom: 1rem;
+      }
+
+      .submitting-form-wrapper{
+        circular-loading {
+          top: 6rem;
         }
       }
+
     }
 
   }

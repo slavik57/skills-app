@@ -106,6 +106,26 @@ testing_1.describe('TeamService', function () {
             chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
         });
     });
+    testing_1.describe('removeTeamMember', function () {
+        var teamId;
+        var userId;
+        testing_1.beforeEach(function () {
+            teamId = 789;
+            userId = 111222;
+            teamService.removeTeamMember(teamId, userId);
+        });
+        testing_1.it('should use correct url', function () {
+            chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+            chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Delete);
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members');
+        });
+        testing_1.it('should use correct body', function () {
+            var expectedBody = JSON.stringify({
+                userId: userId
+            });
+            chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+        });
+    });
     function shouldFaildWithError(error, beforeEachFunc) {
         return function () {
             testing_1.beforeEach(beforeEachFunc);
@@ -126,6 +146,9 @@ testing_1.describe('TeamService', function () {
             });
             testing_1.it('addTeamMember should fail correctly', function () {
                 teamService.addTeamMember(1, '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
+            });
+            testing_1.it('removeTeamMember should fail correctly', function () {
+                teamService.removeTeamMember(123, 456).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
             });
         };
     }
@@ -288,7 +311,6 @@ testing_1.describe('TeamService', function () {
         });
         testing_1.describe('deleteTeam', function () {
             testing_1.it('should succeed', function () {
-                var result = true;
                 responseOptions = new http_2.ResponseOptions({
                     status: statusCode_1.StatusCode.OK,
                     headers: new http_1.Headers(),
@@ -455,6 +477,19 @@ testing_1.describe('TeamService', function () {
                 testing_1.it('should return correct team details', function () {
                     teamService.addTeamMember(1, '').subscribe(function (_details) { return chai_1.expect(_details).to.deep.equal(teamMemberDetails); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
                 });
+            });
+        });
+        testing_1.describe('removeTeamMember', function () {
+            testing_1.it('should succeed', function () {
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                var wasResolved = false;
+                teamService.removeTeamMember(1234, 5678).subscribe(function () { return wasResolved = true; }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
+                chai_1.expect(wasResolved).to.be.true;
             });
         });
     });
