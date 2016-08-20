@@ -139,7 +139,7 @@ testing_1.describe('TeamService', function () {
         testing_1.it('should use correct url', function () {
             chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
             chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Patch);
-            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members/' + userId);
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members/' + userId + '/admin');
         });
         testing_1.it('should use correct body', function () {
             var expectedBody = JSON.stringify({

@@ -192,7 +192,7 @@ describe('TeamService', () => {
     it('should use correct url', () => {
       expect(mockBackend.connectionsArray).to.be.length(1);
       expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Patch);
-      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members/' + userId);
+      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members/' + userId + '/admin');
     });
 
     it('should use correct body', () => {

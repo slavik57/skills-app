@@ -24,6 +24,7 @@ var TeamService = (function (_super) {
         this._teamsControllerUrl = '/api/teams/';
         this._teamExistsUrlSuffix = '/exists';
         this._teamMembersUrlSuffix = '/members';
+        this._adminRightsSuffix = '/admin';
     }
     TeamService.prototype.getTeamsDetails = function () {
         var _this = this;
@@ -93,7 +94,7 @@ var TeamService = (function (_super) {
     };
     TeamService.prototype.changeTeamAdminRights = function (teamId, userId, isAdmin) {
         var _this = this;
-        var url = this._teamsControllerUrl + teamId + this._teamMembersUrlSuffix + '/' + userId;
+        var url = this._teamsControllerUrl + teamId + this._teamMembersUrlSuffix + '/' + userId + this._adminRightsSuffix;
         var body = JSON.stringify({
             isAdmin: isAdmin
         });

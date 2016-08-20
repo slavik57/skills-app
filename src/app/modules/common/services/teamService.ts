@@ -34,6 +34,7 @@ export class TeamService extends HttpServiceBase implements ITeamService {
   private _teamsControllerUrl = '/api/teams/';
   private _teamExistsUrlSuffix = '/exists';
   private _teamMembersUrlSuffix = '/members'
+  private _adminRightsSuffix = '/admin'
 
   constructor(http: Http) {
     super(http)
@@ -115,7 +116,8 @@ export class TeamService extends HttpServiceBase implements ITeamService {
   }
 
   public changeTeamAdminRights(teamId: number, userId: number, isAdmin: boolean): Observable<void> {
-    var url = this._teamsControllerUrl + teamId + this._teamMembersUrlSuffix + '/' + userId;
+    var url =
+      this._teamsControllerUrl + teamId + this._teamMembersUrlSuffix + '/' + userId + this._adminRightsSuffix;
 
     let body: string = JSON.stringify({
       isAdmin: isAdmin
