@@ -22,6 +22,11 @@ var HttpServiceBase = (function () {
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.put(url, body, options);
     };
+    HttpServiceBase.prototype._patch = function (url, body) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.patch(url, body, options);
+    };
     HttpServiceBase.prototype._delete = function (url, body) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var optionsArgs = {

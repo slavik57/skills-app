@@ -9,8 +9,10 @@ import {
   beforeEach,
   afterEach,
   beforeEachProviders,
+  fakeAsync,
+  tick
 } from '@angular/core/testing';
-import {provide} from '@angular/core';
+import {provide, ElementRef} from '@angular/core';
 import {expect} from 'chai';
 import {ITeamService, TeamService} from "../../../common/services/teamService";
 import {SinonSpy, spy, stub} from 'sinon';
@@ -24,7 +26,10 @@ describe('TeamUsersListComponent', () => {
   var getTeamMembersResult: Subject<ITeamMemberDetails[]>;
   var teamDetails: ITeamNameDetails;
   var teamMembersChangedRaises: ITeamMemberDetails[][];
-  var removingTeamMemberStateChangedRaises: boolean[];
+  var changingTeamMemberRaises: boolean[];
+  var teamMembersListElement: ElementRef;
+  var jquerySpy: SinonSpy;
+  var jqueryResultCollapsibleSpy: SinonSpy;
 
   var component: TeamUsersListComponent;
 
@@ -57,13 +62,32 @@ describe('TeamUsersListComponent', () => {
     component.teamMembersChangedEvent.subscribe((_teamMembers: ITeamMemberDetails[]) => {
       teamMembersChangedRaises.push(_teamMembers);
     });
-    removingTeamMemberStateChangedRaises = [];
-    component.removingTeamMemberStateChangedEvent.subscribe((_isRemoving: boolean) => {
-      removingTeamMemberStateChangedRaises.push(_isRemoving);
+    changingTeamMemberRaises = [];
+    component.changingTeamMemberEvent.subscribe((_isRemoving: boolean) => {
+      changingTeamMemberRaises.push(_isRemoving);
+    });
+
+    teamMembersListElement = {
+      nativeElement: {}
+    }
+    component.teamMembersListElement = teamMembersListElement
+
+    var jqueryResult = {
+      collapsible: () => null
+    }
+
+    jqueryResultCollapsibleSpy = spy(jqueryResult, 'collapsible');
+
+    jquerySpy = stub(window, '$', () => {
+      return jqueryResult;
     });
 
     component.ngOnInit();
   }));
+
+  afterEach(() => {
+    jquerySpy.restore();
+  });
 
   it('isLoadingTeamMembers should be true', () => {
     expect(component.isLoadingTeamMembers).to.be.true;
@@ -90,12 +114,12 @@ describe('TeamUsersListComponent', () => {
     expect(teamMembersChangedRaises).to.deep.equal([]);
   });
 
-  it('should set as not removing team member', () => {
-    expect(component.removingTeamMember).to.be.false;
+  it('should set as not updating team member', () => {
+    expect(component.updatingTeamMember).to.be.false;
   });
 
-  it('removingTeamMemberError should be null', () => {
-    expect(component.removingTeamMemberError).to.be.null;
+  it('updatingTeamMemberError should be null', () => {
+    expect(component.updatingTeamMemberError).to.be.null;
   });
 
   describe('getting team members fails', () => {
@@ -161,7 +185,7 @@ describe('TeamUsersListComponent', () => {
 
     var teamMembers: ITeamMemberDetails[];
 
-    beforeEach(() => {
+    beforeEach(fakeAsync(() => {
       teamMembers = [
         { id: 0, username: 'a', isAdmin: true },
         { id: 1, username: 'b', isAdmin: false },
@@ -170,7 +194,9 @@ describe('TeamUsersListComponent', () => {
 
       getTeamMembersResult.next(teamMembers);
       getTeamMembersResult.complete();
-    });
+
+      tick();
+    }));
 
     it('isLoadingTeamMembers should be false', () => {
       expect(component.isLoadingTeamMembers).to.be.false;
@@ -186,6 +212,13 @@ describe('TeamUsersListComponent', () => {
 
     it('teamMembersChangedRaises should be raised correctly', () => {
       expect(teamMembersChangedRaises).to.deep.equal([teamMembers]);
+    });
+
+    it('should initialize the collapisble element', () => {
+      expect(jquerySpy.callCount).to.be.equal(1);
+      expect(jquerySpy.args[0]).to.deep.equal([teamMembersListElement.nativeElement]);
+      expect(jqueryResultCollapsibleSpy.callCount).to.be.equal(1);
+      expect(jqueryResultCollapsibleSpy.args[0]).to.deep.equal([{ accordion: true }]);
     });
 
     describe('removeTeamMember', () => {
@@ -206,8 +239,8 @@ describe('TeamUsersListComponent', () => {
         component.removeTeamMember(userToRemove);
       });
 
-      it('should set removing team member', () => {
-        expect(component.removingTeamMember).to.be.true;
+      it('should set updating team member', () => {
+        expect(component.updatingTeamMember).to.be.true;
       });
 
       it('should call teamService.removeTeamMember', () => {
@@ -215,12 +248,12 @@ describe('TeamUsersListComponent', () => {
         expect(removeTeamMemberSpy.args[0]).to.deep.equal([teamDetails.id, userToRemove.id]);
       });
 
-      it('removingTeamMemberError should be null', () => {
-        expect(component.removingTeamMemberError).to.be.null;
+      it('updatingTeamMemberError should be null', () => {
+        expect(component.updatingTeamMemberError).to.be.null;
       });
 
-      it('should raise removing team member event correctly', () => {
-        expect(removingTeamMemberStateChangedRaises).to.deep.equal([true]);
+      it('should raise changing team member event correctly', () => {
+        expect(changingTeamMemberRaises).to.deep.equal([true]);
       });
 
       describe('removing fails', () => {
@@ -230,13 +263,13 @@ describe('TeamUsersListComponent', () => {
         beforeEach(() => {
           error = 'some error';
 
-          removingTeamMemberStateChangedRaises = [];
+          changingTeamMemberRaises = [];
 
           removeTeamMemberResult.error(error);
         });
 
-        it('should set as not removing team member', () => {
-          expect(component.removingTeamMember).to.be.false;
+        it('should set as not updating team member', () => {
+          expect(component.updatingTeamMember).to.be.false;
         });
 
         it('should not remove the user from team members list', () => {
@@ -245,12 +278,12 @@ describe('TeamUsersListComponent', () => {
           expect(teamMemberIds).to.contain(userToRemove.id);
         });
 
-        it('should set removingTeamMemberError correctly', () => {
-          expect(component.removingTeamMemberError).to.be.equal(error);
+        it('should set updatingTeamMemberError correctly', () => {
+          expect(component.updatingTeamMemberError).to.be.equal(error);
         });
 
-        it('should raise removing team member event correctly', () => {
-          expect(removingTeamMemberStateChangedRaises).to.deep.equal([false]);
+        it('should raise changing team member event correctly', () => {
+          expect(changingTeamMemberRaises).to.deep.equal([false]);
         });
 
         describe('remove another team member', () => {
@@ -260,14 +293,14 @@ describe('TeamUsersListComponent', () => {
           beforeEach(() => {
             otherUserToRemove = teamMembers[0];
 
-            removingTeamMemberStateChangedRaises = [];
+            changingTeamMemberRaises = [];
             removeTeamMemberSpy.reset();
 
             component.removeTeamMember(otherUserToRemove);
           });
 
-          it('should set removing team member', () => {
-            expect(component.removingTeamMember).to.be.true;
+          it('should set updating team member', () => {
+            expect(component.updatingTeamMember).to.be.true;
           });
 
           it('should call teamService.removeTeamMember', () => {
@@ -275,12 +308,12 @@ describe('TeamUsersListComponent', () => {
             expect(removeTeamMemberSpy.args[0]).to.deep.equal([teamDetails.id, otherUserToRemove.id]);
           });
 
-          it('removingTeamMemberError should be null', () => {
-            expect(component.removingTeamMemberError).to.be.null;
+          it('updatingTeamMemberError should be null', () => {
+            expect(component.updatingTeamMemberError).to.be.null;
           });
 
-          it('should raise removing team member event correctly', () => {
-            expect(removingTeamMemberStateChangedRaises).to.deep.equal([true]);
+          it('should raise changing team member event correctly', () => {
+            expect(changingTeamMemberRaises).to.deep.equal([true]);
           });
 
         });
@@ -288,16 +321,21 @@ describe('TeamUsersListComponent', () => {
       });
 
       describe('removing succeeds', () => {
-        beforeEach(() => {
-          removingTeamMemberStateChangedRaises = [];
+        beforeEach(fakeAsync(() => {
+          jquerySpy.reset();
+          jqueryResultCollapsibleSpy.reset();
+
+          changingTeamMemberRaises = [];
           teamMembersChangedRaises = [];
 
           removeTeamMemberResult.next(null);
           removeTeamMemberResult.complete();
-        });
 
-        it('should set as not removing team member', () => {
-          expect(component.removingTeamMember).to.be.false;
+          tick();
+        }));
+
+        it('should set as not updating team member', () => {
+          expect(component.updatingTeamMember).to.be.false;
         });
 
         it('should remove the user from team members list', () => {
@@ -306,16 +344,205 @@ describe('TeamUsersListComponent', () => {
           expect(teamMemberIds).to.not.contain(userToRemove.id);
         });
 
-        it('should raise removing team member event correctly', () => {
-          expect(removingTeamMemberStateChangedRaises).to.deep.equal([false]);
+        it('should raise changing team member event correctly', () => {
+          expect(changingTeamMemberRaises).to.deep.equal([false]);
         });
 
         it('should raise team members changed correctly', () => {
           expect(teamMembersChangedRaises).to.deep.equal([component.teamMembers]);
         });
 
+        it('should initialize the collapisble element', () => {
+          expect(jquerySpy.callCount).to.be.equal(1);
+          expect(jquerySpy.args[0]).to.deep.equal([teamMembersListElement.nativeElement]);
+          expect(jqueryResultCollapsibleSpy.callCount).to.be.equal(1);
+          expect(jqueryResultCollapsibleSpy.args[0]).to.deep.equal([{ accordion: true }]);
+        });
+
       });
 
+    });
+
+    describe('changeTeamAdminRights', () => {
+
+      var originalIsAdmin: boolean;
+      var userToChange: ITeamMemberDetails;
+      var changeTeamAdminRightsSpy: SinonSpy;
+      var changeTeamAdminRightsResult: Subject<void>;
+      var newAdminRights: boolean;
+
+      beforeEach(() => {
+        userToChange = teamMembers[1];
+
+        changeTeamAdminRightsSpy = stub(teamServiceMock, 'changeTeamAdminRights', () => {
+          changeTeamAdminRightsResult = new Subject<void>();
+
+          return changeTeamAdminRightsResult;
+        });
+
+        originalIsAdmin = false;
+        userToChange.isAdmin = originalIsAdmin;
+        newAdminRights = !originalIsAdmin;
+
+        component.changeTeamAdminRights(userToChange, newAdminRights);
+      });
+
+      it('should set team member admin rights', () => {
+        expect(userToChange.isAdmin).to.be.equal(newAdminRights);
+      });
+
+      it('should set updating team member', () => {
+        expect(component.updatingTeamMember).to.be.true;
+      });
+
+      it('should call teamService.removeTeamMember', () => {
+        expect(changeTeamAdminRightsSpy.callCount).to.be.equal(1);
+        expect(changeTeamAdminRightsSpy.args[0]).to.deep.equal([teamDetails.id, userToChange.id, newAdminRights]);
+      });
+
+      it('updatingTeamMemberError should be null', () => {
+        expect(component.updatingTeamMemberError).to.be.null;
+      });
+
+      it('should raise changing team member event correctly', () => {
+        expect(changingTeamMemberRaises).to.deep.equal([true]);
+      });
+
+      describe('changing fails', () => {
+
+        var error: any;
+
+        beforeEach(() => {
+          error = 'some error';
+
+          changingTeamMemberRaises = [];
+
+          changeTeamAdminRightsResult.error(error);
+        });
+
+        it('should restore team member admin rights', () => {
+          expect(userToChange.isAdmin).to.be.equal(originalIsAdmin);
+        });
+
+        it('should set as not updating team member', () => {
+          expect(component.updatingTeamMember).to.be.false;
+        });
+
+        it('should not update admin rights', () => {
+          expect(userToChange.isAdmin).to.be.equal(originalIsAdmin);
+        });
+
+        it('should set updatingTeamMemberError correctly', () => {
+          expect(component.updatingTeamMemberError).to.be.equal(error);
+        });
+
+        it('should raise changing team member event correctly', () => {
+          expect(changingTeamMemberRaises).to.deep.equal([false]);
+        });
+
+        describe('change admin rights to another team member', () => {
+
+          var otherUserToRemove: ITeamMemberDetails;
+
+          beforeEach(() => {
+            otherUserToRemove = teamMembers[0];
+
+            changingTeamMemberRaises = [];
+            changeTeamAdminRightsSpy.reset();
+
+            otherUserToRemove.isAdmin = true;
+            newAdminRights = false;
+            component.changeTeamAdminRights(otherUserToRemove, newAdminRights);
+          });
+
+          it('should set team member admin rights', () => {
+            expect(otherUserToRemove.isAdmin).to.be.equal(newAdminRights);
+          });
+
+          it('should set updating team member', () => {
+            expect(component.updatingTeamMember).to.be.true;
+          });
+
+          it('should call teamService.changeTeamAdminRights', () => {
+            expect(changeTeamAdminRightsSpy.callCount).to.be.equal(1);
+            expect(changeTeamAdminRightsSpy.args[0]).to.deep.equal([teamDetails.id, otherUserToRemove.id, newAdminRights]);
+          });
+
+          it('updatingTeamMemberError should be null', () => {
+            expect(component.updatingTeamMemberError).to.be.null;
+          });
+
+          it('should raise changing team member event correctly', () => {
+            expect(changingTeamMemberRaises).to.deep.equal([true]);
+          });
+
+        });
+
+      });
+
+      describe('changing succeeds', () => {
+        beforeEach(() => {
+          changingTeamMemberRaises = [];
+
+          changeTeamAdminRightsResult.next(null);
+          changeTeamAdminRightsResult.complete();
+        });
+
+        it('should set as not updating team member', () => {
+          expect(component.updatingTeamMember).to.be.false;
+        });
+
+        it('should update the user admin rights', () => {
+          expect(userToChange.isAdmin).to.be.equal(newAdminRights);
+        });
+
+        it('should raise changing team member event correctly', () => {
+          expect(changingTeamMemberRaises).to.deep.equal([false]);
+        });
+
+      });
+
+    });
+
+    describe('changeTeamAdminRights to same value', () => {
+
+      var originalIsAdmin: boolean;
+      var userToChange: ITeamMemberDetails;
+      var changeTeamAdminRightsSpy: SinonSpy;
+      var changeTeamAdminRightsResult: Subject<void>;
+      var newAdminRights: boolean;
+
+      beforeEach(() => {
+        userToChange = teamMembers[1];
+
+        changeTeamAdminRightsSpy = stub(teamServiceMock, 'changeTeamAdminRights', () => {
+          changeTeamAdminRightsResult = new Subject<void>();
+
+          return changeTeamAdminRightsResult;
+        });
+
+        originalIsAdmin = false;
+        userToChange.isAdmin = originalIsAdmin;
+        newAdminRights = originalIsAdmin;
+
+        component.changeTeamAdminRights(userToChange, newAdminRights);
+      });
+
+      it('should not set updating team member', () => {
+        expect(component.updatingTeamMember).to.be.false;
+      });
+
+      it('should not call teamService.removeTeamMember', () => {
+        expect(changeTeamAdminRightsSpy.callCount).to.be.equal(0);
+      });
+
+      it('updatingTeamMemberError should be null', () => {
+        expect(component.updatingTeamMemberError).to.be.null;
+      });
+
+      it('should not raise changing team member event', () => {
+        expect(changingTeamMemberRaises).to.be.empty;
+      });
     });
 
   });

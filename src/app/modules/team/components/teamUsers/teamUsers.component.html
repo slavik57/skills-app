@@ -1,7 +1,7 @@
 <div class="team-users-details-wrapper">
   <team-users-list [teamDetails]="teamDetails"
                    (teamMembers)="teamMembers = $event"
-                   (removingTeamMemberStateChanged)="removingTeamMember = $event"
+                   (changingTeamMember)="changingTeamMember = $event"
                    *ngIf="state === TeamUsersState.LIST_USERS"></team-users-list>
 
   <add-team-user [teamDetails]="teamDetails"
@@ -9,7 +9,7 @@
                  *ngIf="state === TeamUsersState.ADD_TEAM_MEMBER"></add-team-user>
 
   <div class="team-users-actions"
-       [ngClass]="{'removing-team-member': removingTeamMember}">
+       [ngClass]="{'removing-team-member': changingTeamMember}">
 
     <button *ngIf="state === TeamUsersState.LIST_USERS && teamMembers"
             class="add-team-members-button"

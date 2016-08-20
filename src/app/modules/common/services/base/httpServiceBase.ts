@@ -35,6 +35,14 @@ export class HttpServiceBase {
     return this.http.put(url, body, options);
   }
 
+  protected _patch(url: string, body: string): Observable<Response> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.patch(url, body, options);
+  }
+
+
   protected _delete(url: string, body?: any): Observable<Response> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
 

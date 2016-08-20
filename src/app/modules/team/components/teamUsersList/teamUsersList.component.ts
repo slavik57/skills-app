@@ -3,7 +3,7 @@ import {CircularLoadingComponent} from "../../../common/components/circularLoadi
 import {LoadingComponentBase} from "../../../common/components/loadingComponentBase/loadingComponentBase";
 import {TeamService} from "../../../common/services/teamService";
 import {ITeamNameDetails} from "../../../common/interfaces/iTeamNameDetails";
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -15,31 +15,46 @@ import { Observable } from 'rxjs/Observable';
 export class TeamUsersListComponent extends LoadingComponentBase<ITeamMemberDetails[]> implements OnInit {
   @Input() public teamDetails: ITeamNameDetails;
   @Output('teamMembers') public teamMembersChangedEvent: EventEmitter<ITeamMemberDetails[]>;
-  @Output('removingTeamMemberStateChanged') public removingTeamMemberStateChangedEvent: EventEmitter<boolean>;
+  @Output('changingTeamMember') public changingTeamMemberEvent: EventEmitter<boolean>;
+  @ViewChild('teamMembersList') public teamMembersListElement: ElementRef;
   public isLoadingTeamMembers: boolean;
   public loadingTeamMembersError: any;
   public teamMembers: ITeamMemberDetails[];
-  public removingTeamMember: boolean;
-  public removingTeamMemberError: any;
+  public updatingTeamMember: boolean;
+  public updatingTeamMemberError: any;
 
   constructor(private teamService: TeamService) {
     super();
 
     this.teamMembersChangedEvent = new EventEmitter<ITeamMemberDetails[]>();
-    this.removingTeamMemberStateChangedEvent = new EventEmitter<boolean>();
-    this.removingTeamMember = false;
-    this.removingTeamMemberError = null;
+    this.changingTeamMemberEvent = new EventEmitter<boolean>();
+    this.updatingTeamMember = false;
+    this.updatingTeamMemberError = null;
   }
 
   public removeTeamMember(teamMember: ITeamMemberDetails): void {
-    this._setRemovingTeamMember(true);
-    this.removingTeamMemberError = null;
+    this._setAsUpdatingTeamMember();
 
     this.teamService.removeTeamMember(this.teamDetails.id, teamMember.id)
-      .finally(() => this._setRemovingTeamMember(false))
+      .finally(() => this._changeUpdatingTeamMember(false))
       .subscribe(
       () => this._removeTeamMemberFromTeamMembersList(teamMember),
-      (_error) => this.removingTeamMemberError = _error);
+      (_error) => this.updatingTeamMemberError = _error);
+  }
+
+  public changeTeamAdminRights(teamMember: ITeamMemberDetails, isAdmin: boolean): void {
+    if (teamMember.isAdmin === isAdmin) {
+      return;
+    }
+
+    this._setAsUpdatingTeamMember();
+    teamMember.isAdmin = isAdmin;
+
+    this.teamService.changeTeamAdminRights(this.teamDetails.id, teamMember.id, isAdmin)
+      .finally(() => this._changeUpdatingTeamMember(false))
+      .subscribe(
+      () => this._updateTeamMemberAdminRights(teamMember, isAdmin),
+      (_error) => this._handleUpdatingTeamMemberAdminRightsFailed(teamMember, _error, !isAdmin));
   }
 
   protected setIsLoading(value: boolean): void {
@@ -51,20 +66,21 @@ export class TeamUsersListComponent extends LoadingComponentBase<ITeamMemberDeta
   }
 
   protected setLoadingResult(result: ITeamMemberDetails[]): void {
-    this.teamMembers = result;
-
-    if (result) {
-      this.teamMembersChangedEvent.emit(result);
-    }
+    this._setTeamMembers(result);
   }
 
   protected get(): Observable<ITeamMemberDetails[]> {
     return this.teamService.getTeamMembers(this.teamDetails.id);
   }
 
-  private _setRemovingTeamMember(isRemoving: boolean): void {
-    this.removingTeamMember = isRemoving;
-    this.removingTeamMemberStateChangedEvent.emit(isRemoving);
+  private _setAsUpdatingTeamMember(): void {
+    this._changeUpdatingTeamMember(true);
+    this.updatingTeamMemberError = null;
+  }
+
+  private _changeUpdatingTeamMember(isUpdating: boolean): void {
+    this.updatingTeamMember = isUpdating;
+    this.changingTeamMemberEvent.emit(isUpdating);
   }
 
   private _removeTeamMemberFromTeamMembersList(teamMember: ITeamMemberDetails): void {
@@ -72,6 +88,29 @@ export class TeamUsersListComponent extends LoadingComponentBase<ITeamMemberDeta
 
     this.teamMembers.splice(teamMemberIndex, 1);
 
-    this.teamMembersChangedEvent.emit(this.teamMembers);
+    this._setTeamMembers(this.teamMembers);
+  }
+
+  private _setTeamMembers(teamMembers: ITeamMemberDetails[]): void {
+    this.teamMembers = teamMembers;
+
+    if (teamMembers) {
+      this.teamMembersChangedEvent.emit(teamMembers);
+
+      setTimeout(() => {
+        $(this.teamMembersListElement.nativeElement).collapsible({
+          accordion: true
+        });
+      }, 0);
+    }
+  }
+
+  private _handleUpdatingTeamMemberAdminRightsFailed(teamMember: ITeamMemberDetails, error: any, originalIsAdmin: boolean): void {
+    this.updatingTeamMemberError = error;
+    this._updateTeamMemberAdminRights(teamMember, originalIsAdmin);
+  }
+
+  private _updateTeamMemberAdminRights(teamMember: ITeamMemberDetails, isAdmin: boolean): void {
+    teamMember.isAdmin = isAdmin;
   }
 }

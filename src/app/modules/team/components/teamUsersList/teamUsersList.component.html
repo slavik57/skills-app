@@ -13,20 +13,40 @@
   </div>
 
   <div class="team-users-wrapper content-wrapper filling-form-wrapper"
-       [ngClass]="{ submitting: removingTeamMember, 'has-submit-error': !!removingTeamMemberError }">
+       [ngClass]="{ submitting: updatingTeamMember, 'has-submit-error': !!updatingTeamMemberError }">
 
     <div *ngIf="teamMembers" class="team-users-content">
 
-      <ul class="collection" *ngIf="teamMembers.length > 0">
+      <ul #teamMembersList
+          class="collapsible"
+          data-collapsible="accordion"
+          *ngIf="teamMembers.length > 0">
 
-        <li class="item collection-item"
+        <li class="item"
            *ngFor="let teamMember of teamMembers">
 
-            <span class="username">{{teamMember.username}}</span>
+            <span class="collapsible-header username">
+              {{teamMember.username}}
+              <i class="material-icons expand-icon">keyboard_arrow_down</i>
+            </span>
 
-            <a class="delete-team-member-button" (click)="$event.stopPropagation(); removeTeamMember(teamMember)">
-              <i class="material-icons">delete</i>
-            </a>
+            <div class="collapsible-body">
+              <div class="switch user-admin-checkbox">
+                <input type="checkbox"
+                       id="team-member-{{teamMember.id}}"
+                       (change)="changeTeamAdminRights(teamMember, $event.target.checked)"
+                       [checked]="teamMember.isAdmin"/>
+                 <label attr.for="team-member-{{teamMember.id}}">
+                   Team admin
+                </label>
+              </div>
+
+              <a class="delete-team-member-button"
+                 (click)="$event.stopPropagation(); removeTeamMember(teamMember)">
+                <i class="material-icons">delete</i>
+                <span class="button-text">Remove from team</span>
+              </a>
+            </div>
         </li>
 
       </ul>
@@ -38,13 +58,13 @@
 
     </div>
 
-    <div *ngIf="removingTeamMemberError"
+    <div *ngIf="updatingTeamMemberError"
          class="submit-error">
-      {{removingTeamMemberError}}
+      {{updatingTeamMemberError}}
     </div>
 
     <div class="submitting-form-wrapper"
-         [ngClass]="{ submitting: removingTeamMember }">
+         [ngClass]="{ submitting: updatingTeamMember }">
       <circular-loading></circular-loading>
     </div>
 

@@ -11,7 +11,8 @@ var TeamServiceMockFactory = (function () {
             updateTeamName: function () { return null; },
             getTeamMembers: function () { return null; },
             addTeamMember: function () { return null; },
-            removeTeamMember: function () { return null; }
+            removeTeamMember: function () { return null; },
+            changeTeamAdminRights: function () { return null; }
         };
     };
     return TeamServiceMockFactory;

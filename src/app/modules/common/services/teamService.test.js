@@ -126,6 +126,28 @@ testing_1.describe('TeamService', function () {
             chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
         });
     });
+    testing_1.describe('changeTeamAdminRights', function () {
+        var teamId;
+        var userId;
+        var isAdmin;
+        testing_1.beforeEach(function () {
+            teamId = 789;
+            userId = 123456;
+            isAdmin = true;
+            teamService.changeTeamAdminRights(teamId, userId, isAdmin);
+        });
+        testing_1.it('should use correct url', function () {
+            chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+            chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Patch);
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members/' + userId);
+        });
+        testing_1.it('should use correct body', function () {
+            var expectedBody = JSON.stringify({
+                isAdmin: isAdmin
+            });
+            chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+        });
+    });
     function shouldFaildWithError(error, beforeEachFunc) {
         return function () {
             testing_1.beforeEach(beforeEachFunc);
@@ -149,6 +171,9 @@ testing_1.describe('TeamService', function () {
             });
             testing_1.it('removeTeamMember should fail correctly', function () {
                 teamService.removeTeamMember(123, 456).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
+            });
+            testing_1.it('changeTeamAdminRights should fail correctly', function () {
+                teamService.changeTeamAdminRights(123, 456, true).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
             });
         };
     }
@@ -489,6 +514,19 @@ testing_1.describe('TeamService', function () {
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
                 var wasResolved = false;
                 teamService.removeTeamMember(1234, 5678).subscribe(function () { return wasResolved = true; }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
+                chai_1.expect(wasResolved).to.be.true;
+            });
+        });
+        testing_1.describe('changeTeamAdminRights', function () {
+            testing_1.it('should succeed', function () {
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                var wasResolved = false;
+                teamService.changeTeamAdminRights(1234, 5678, true).subscribe(function () { return wasResolved = true; }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
                 chai_1.expect(wasResolved).to.be.true;
             });
         });

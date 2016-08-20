@@ -82,7 +82,24 @@ var TeamService = (function (_super) {
             .catch(function (error) { return _this._handleServerError(error); });
     };
     TeamService.prototype.removeTeamMember = function (teamId, userId) {
-        return null;
+        var _this = this;
+        var url = this._teamsControllerUrl + teamId + this._teamMembersUrlSuffix;
+        var body = JSON.stringify({
+            userId: userId
+        });
+        return this._delete(url, body)
+            .map(function (response) { return _this._throwErrorIfStatusIsNotOk(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
+    };
+    TeamService.prototype.changeTeamAdminRights = function (teamId, userId, isAdmin) {
+        var _this = this;
+        var url = this._teamsControllerUrl + teamId + this._teamMembersUrlSuffix + '/' + userId;
+        var body = JSON.stringify({
+            isAdmin: isAdmin
+        });
+        return this._patch(url, body)
+            .map(function (response) { return _this._throwErrorIfStatusIsNotOk(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
     };
     TeamService.prototype._extractTeamsDetails = function (response) {
         var _this = this;

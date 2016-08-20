@@ -26,6 +26,7 @@ export interface ITeamService {
   getTeamMembers(teamId: number): Observable<ITeamMemberDetails[]>;
   addTeamMember(teamId: number, username: string): Observable<ITeamMemberDetails>;
   removeTeamMember(teamId: number, userId: number): Observable<void>;
+  changeTeamAdminRights(teamId: number, userId: number, isAdmin: boolean): Observable<void>;
 }
 
 @Injectable()
@@ -109,6 +110,18 @@ export class TeamService extends HttpServiceBase implements ITeamService {
     });
 
     return this._delete(url, body)
+      .map((response: Response) => this._throwErrorIfStatusIsNotOk<void>(response))
+      .catch((error: any) => this._handleServerError<void>(error));
+  }
+
+  public changeTeamAdminRights(teamId: number, userId: number, isAdmin: boolean): Observable<void> {
+    var url = this._teamsControllerUrl + teamId + this._teamMembersUrlSuffix + '/' + userId;
+
+    let body: string = JSON.stringify({
+      isAdmin: isAdmin
+    });
+
+    return this._patch(url, body)
       .map((response: Response) => this._throwErrorIfStatusIsNotOk<void>(response))
       .catch((error: any) => this._handleServerError<void>(error));
   }

@@ -176,6 +176,35 @@ describe('TeamService', () => {
 
   });
 
+  describe('changeTeamAdminRights', () => {
+
+    var teamId: number;
+    var userId: number;
+    var isAdmin: boolean;
+
+    beforeEach(() => {
+      teamId = 789;
+      userId = 123456;
+      isAdmin = true;
+      teamService.changeTeamAdminRights(teamId, userId, isAdmin);
+    });
+
+    it('should use correct url', () => {
+      expect(mockBackend.connectionsArray).to.be.length(1);
+      expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Patch);
+      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/teams/' + teamId + '/members/' + userId);
+    });
+
+    it('should use correct body', () => {
+      var expectedBody = JSON.stringify({
+        isAdmin: isAdmin
+      });
+
+      expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+    });
+
+  });
+
   function shouldFaildWithError(error: any, beforeEachFunc: () => void): any {
 
     return () => {
@@ -226,6 +255,13 @@ describe('TeamService', () => {
 
       it('removeTeamMember should fail correctly', () => {
         teamService.removeTeamMember(123, 456).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(error)
+        );
+      });
+
+      it('changeTeamAdminRights should fail correctly', () => {
+        teamService.changeTeamAdminRights(123, 456, true).subscribe(
           () => expect(true, 'should fail').to.be.false,
           (error) => expect(error).to.be.equal(error)
         );
@@ -813,6 +849,29 @@ describe('TeamService', () => {
 
         var wasResolved = false;
         teamService.removeTeamMember(1234, 5678).subscribe(
+          () => wasResolved = true,
+          () => expect(true, 'should succeed').to.be.false);
+
+        expect(wasResolved).to.be.true;
+      });
+
+    });
+
+    describe('changeTeamAdminRights', () => {
+
+      it('should succeed', () => {
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        var wasResolved = false;
+        teamService.changeTeamAdminRights(1234, 5678, true).subscribe(
           () => wasResolved = true,
           () => expect(true, 'should succeed').to.be.false);
 

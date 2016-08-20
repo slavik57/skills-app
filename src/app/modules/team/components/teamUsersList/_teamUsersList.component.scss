@@ -18,50 +18,83 @@
       .team-users-content{
         flex: 1;
 
-        .collection{
+        .collapsible{
+          box-shadow: none;
 
           .item{
-            @extend .small-item;
-            $transition-speed: .3s;
-            user-select: none;
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-
             .username {
               @extend .blue-text;
               vertical-align: middle;
             }
 
-            .delete-team-member-button{
-              cursor: pointer;
+            .expand-icon{
+              display: inline-block;
               position: absolute;
-              right: 1rem;
-              transition: opacity .3s ease;
+              right: 0;
+              transition: opacity .3s ease, transform .3s ease;
+              transform-origin: 50% 45%;
+            }
+
+            .collapsible-body{
+              @extend .row;
+              margin: 0;
+
+              .user-admin-checkbox{
+                @extend .col;
+                @extend .s12;
+                @extend .m6;
+                height: 36px;
+                padding-top: 6px;
+                padding-left: 1rem;
+
+                &:before{
+                  top: 1px;
+                }
+              }
+
+              .delete-team-member-button{
+                @extend .col;
+                @extend .s12;
+                @extend .m6;
+                cursor: pointer;
+                width: auto;
+
+                i.material-icons {
+                  vertical-align: middle;
+                  margin-right: 0.5rem;
+                }
+
+                .button-text{
+                  @extend .grey-text;
+                  vertical-align: middle;
+                }
+              }
+            }
+
+            &.active {
+              .expand-icon{
+                transform: rotate(180deg);
+              }
             }
           }
 
           @media #{$small-and-down} {
-            .item{
-              .delete-team-member-button {
+            .item {
+              .expand-icon{
                 opacity: 1;
               }
             }
           }
 
           @media #{$medium-and-up} {
-            .item{
-              .delete-team-member-button {
+            .item {
+              .expand-icon{
                 opacity: 0;
               }
 
               &:hover{
-                .delete-team-member-button{
-                  opacity: .8;
-
-                  &:hover {
-                    opacity: 1;
-                  }
+                .expand-icon{
+                  opacity: 1;
                 }
               }
             }
