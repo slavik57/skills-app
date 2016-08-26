@@ -31,7 +31,7 @@
            (click)="selectSkill(skillDetails)"
            [ngClass]="{ hidden: filter && skillDetails.skillName.toLowerCase().indexOf(filter.toLowerCase()) < 0 , active: selectedSkill === skillDetails}">
 
-            <i class="material-icons">supervisor_account</i>
+            <i class="material-icons">card_membership</i>
             <span class="skill-name">{{skillDetails.skillName}}</span>
             <a (click)="$event.stopPropagation(); deleteSkill(skillDetails)"
                *ngIf="canUserModifySkills">

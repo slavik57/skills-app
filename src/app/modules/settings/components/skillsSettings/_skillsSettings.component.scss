@@ -52,7 +52,7 @@
           &.active {
             @extend .blue;
 
-            .material-icons, .team-name {
+            .material-icons, .skill-name {
               @extend .white-text;
             }
           }
