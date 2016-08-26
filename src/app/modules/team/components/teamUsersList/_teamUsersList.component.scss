@@ -50,6 +50,10 @@
                 &:before{
                   top: 1px;
                 }
+
+                input[type="checkbox"]:disabled+label {
+                  cursor: default;
+                }
               }
 
               .delete-team-member-button{
@@ -58,6 +62,15 @@
                 @extend .m6;
                 cursor: pointer;
                 width: auto;
+
+                &.disabled{
+                  pointer-events: none;
+                  cursor: default;
+
+                  i.material-icons {
+                    @extend .grey-text;
+                  }
+                }
 
                 i.material-icons {
                   vertical-align: middle;

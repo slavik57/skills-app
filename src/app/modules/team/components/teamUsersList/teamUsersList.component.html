@@ -35,13 +35,15 @@
                 <input type="checkbox"
                        id="team-member-{{teamMember.id}}"
                        (change)="changeTeamAdminRights(teamMember, $event.target.checked)"
-                       [checked]="teamMember.isAdmin"/>
+                       [checked]="teamMember.isAdmin"
+                       [disabled]="!canModifyTeamAdmins"/>
                  <label attr.for="team-member-{{teamMember.id}}">
                    Team admin
                 </label>
               </div>
 
               <a class="delete-team-member-button"
+                 [ngClass]="{disabled:!canModifyUsers}"
                  (click)="$event.stopPropagation(); removeTeamMember(teamMember)">
                 <i class="material-icons">delete</i>
                 <span class="button-text">Remove from team</span>

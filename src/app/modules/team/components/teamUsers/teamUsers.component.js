@@ -33,6 +33,14 @@ var TeamUsersComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], TeamUsersComponent.prototype, "teamDetails", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TeamUsersComponent.prototype, "canModifyUsers", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TeamUsersComponent.prototype, "canModifyTeamAdmins", void 0);
     TeamUsersComponent = __decorate([
         core_1.Component({
             selector: 'team-users',

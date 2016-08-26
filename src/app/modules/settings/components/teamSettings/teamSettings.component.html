@@ -30,7 +30,9 @@
         </edit-team-details>
       </div>
       <div id="teamUsersSettings">
-        <team-users [teamDetails]="teamDetails"></team-users>
+        <team-users [teamDetails]="teamDetails"
+                    [canModifyUsers]="permissions.canModifyTeamUsers"
+                    [canModifyTeamAdmins]="permissions.canModifyTeamAdmins"></team-users>
       </div>
 
 

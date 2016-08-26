@@ -14,6 +14,8 @@ import { Observable } from 'rxjs/Observable';
 })
 export class TeamUsersListComponent extends LoadingComponentBase<ITeamMemberDetails[]> implements OnInit {
   @Input() public teamDetails: ITeamNameDetails;
+  @Input() public canModifyUsers: boolean;
+  @Input() public canModifyTeamAdmins: boolean;
   @Output('teamMembers') public teamMembersChangedEvent: EventEmitter<ITeamMemberDetails[]>;
   @Output('changingTeamMember') public changingTeamMemberEvent: EventEmitter<boolean>;
   @ViewChild('teamMembersList') public teamMembersListElement: ElementRef;

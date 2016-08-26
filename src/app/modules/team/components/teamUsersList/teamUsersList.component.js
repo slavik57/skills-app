@@ -94,6 +94,14 @@ var TeamUsersListComponent = (function (_super) {
         __metadata('design:type', Object)
     ], TeamUsersListComponent.prototype, "teamDetails", void 0);
     __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TeamUsersListComponent.prototype, "canModifyUsers", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TeamUsersListComponent.prototype, "canModifyTeamAdmins", void 0);
+    __decorate([
         core_1.Output('teamMembers'), 
         __metadata('design:type', core_1.EventEmitter)
     ], TeamUsersListComponent.prototype, "teamMembersChangedEvent", void 0);

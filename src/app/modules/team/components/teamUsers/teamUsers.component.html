@@ -1,5 +1,7 @@
 <div class="team-users-details-wrapper">
   <team-users-list [teamDetails]="teamDetails"
+                   [canModifyUsers]="canModifyUsers"
+                   [canModifyTeamAdmins]="canModifyTeamAdmins"
                    (teamMembers)="teamMembers = $event"
                    (changingTeamMember)="changingTeamMember = $event"
                    *ngIf="state === TeamUsersState.LIST_USERS"></team-users-list>
@@ -13,7 +15,9 @@
 
     <button *ngIf="state === TeamUsersState.LIST_USERS && teamMembers"
             class="add-team-members-button"
-            (click)="addTeamMember()">
+            (click)="addTeamMember()"
+            [ngClass]="{ 'disabled': !canModifyUsers }"
+            [disabled]="!canModifyUsers">
       Add Team Members
     </button>
 

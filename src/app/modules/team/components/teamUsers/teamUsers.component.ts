@@ -17,6 +17,8 @@ export enum TeamUsersState {
 })
 export class TeamUsersComponent implements OnInit {
   @Input() public teamDetails: ITeamNameDetails;
+  @Input() public canModifyUsers: boolean;
+  @Input() public canModifyTeamAdmins: boolean;
   public state: TeamUsersState;
   public TeamUsersState: any;
   public changingTeamMember: boolean;
