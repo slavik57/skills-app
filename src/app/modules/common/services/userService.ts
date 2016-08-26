@@ -335,7 +335,7 @@ export class UserService extends HttpServiceBase implements IUserService {
     return result;
   }
 
-  private _isResponseHasAllTeamModificationPermissions(response: any):boolean {
+  private _isResponseHasAllTeamModificationPermissions(response: any): boolean {
     return ('canModifyTeamName' in response) &&
       ('canModifyTeamAdmins' in response) &&
       ('canModifyTeamUsers' in response);
