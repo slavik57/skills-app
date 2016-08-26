@@ -1,0 +1,54 @@
+<div class="create-skill-wrapper">
+  <h4>Create skill</h4>
+
+  <div class="filling-form-wrapper"
+    [ngClass]="{ submitting: submitting, 'has-submit-error': !!createSkillError }">
+
+    <form id="create-skill-form"
+          [formGroup]="createSkillFormGroup"
+          (ngSubmit)="createSkill()">
+
+      <div class="input-field skill-name">
+        <input id="skillName"
+               type="text"
+               formControlName="skillName"
+               [(ngModel)]="skillName"
+               [ngClass]="{ 'validation-pending': createSkillFormGroup.controls.skillName.pending }"/>
+        <label for="skillName">Skill name</label>
+        <div class="async-validation-indicator" [ngClass]="{ 'pending': createSkillFormGroup.controls.skillName.pending }">
+          <circular-loading></circular-loading>
+        </div>
+        <div class="form-validation-errors">
+          <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(createSkillFormGroup.controls.skillName, 'required') }">
+            Skill name is required
+          </div>
+          <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(createSkillFormGroup.controls.skillName, 'skillNameTaken', false) }">
+            Skill already exists
+          </div>
+          <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(createSkillFormGroup.controls.skillName, 'skillNameTakenCheckFailed', false) }"> -->
+            Failed checking if skill with this name exists
+          </div>
+        </div>
+      </div>
+
+      <div class="submit-error">
+        {{createSkillError}}
+      </div>
+
+      <div class="submit-wrapper">
+        <button type="submit"
+                class="submit-button"
+                [disabled]="!canCreateSkill()"
+                [ngClass]="{ disabled: !canCreateSkill() }">
+               Create
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="submitting-form-wrapper"
+       [ngClass]="{ submitting: submitting }">
+    <circular-loading></circular-loading>
+  </div>
+</div>

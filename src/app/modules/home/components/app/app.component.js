@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var skillService_1 = require("../../../common/services/skillService");
 var teamService_1 = require("../../../common/services/teamService");
 var settings_component_1 = require("../../../settings/components/settings/settings.component");
 var home_component_1 = require("../home/home.component");
@@ -31,7 +32,8 @@ var AppComponent = (function () {
             providers: [
                 http_1.HTTP_PROVIDERS,
                 userService_1.UserService,
-                teamService_1.TeamService
+                teamService_1.TeamService,
+                skillService_1.SkillService
             ],
             precompile: [home_component_1.HomeComponent, userProfile_component_1.UserProfileComponent, settings_component_1.SettingsComponent]
         }), 

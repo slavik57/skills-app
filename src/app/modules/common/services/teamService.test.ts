@@ -205,7 +205,7 @@ describe('TeamService', () => {
 
   });
 
-  function shouldFaildWithError(error: any, beforeEachFunc: () => void): any {
+  function shoulFaildWithError(error: any, beforeEachFunc: () => void): any {
 
     return () => {
 
@@ -272,7 +272,7 @@ describe('TeamService', () => {
   }
 
   describe('on UNAUTHORIZED error',
-    shouldFaildWithError('Unauthorized', () => {
+    shoulFaildWithError('Unauthorized', () => {
       var error = new HttpError();
       error.status = StatusCode.UNAUTHORIZED;
 
@@ -282,7 +282,7 @@ describe('TeamService', () => {
   );
 
   describe('on INTERNAL_SERVER_ERROR error',
-    shouldFaildWithError('Oops. Something went wrong. Please try again', () => {
+    shoulFaildWithError('Oops. Something went wrong. Please try again', () => {
       var error = new HttpError();
       error.status = StatusCode.INTERNAL_SERVER_ERROR;
 
@@ -292,7 +292,7 @@ describe('TeamService', () => {
   );
 
   describe('on error with failing json method',
-    shouldFaildWithError('Oops. Something went wrong. Please try again', () => {
+    shoulFaildWithError('Oops. Something went wrong. Please try again', () => {
       var error = new HttpError();
       error.json = () => { throw 'fail to parse'; }
       error.status = StatusCode.NOT_FOUND;
@@ -303,7 +303,7 @@ describe('TeamService', () => {
   );
 
   describe('on error with failing json method',
-    shouldFaildWithError('Oops. Something went wrong. Please try again', () => {
+    shoulFaildWithError('Oops. Something went wrong. Please try again', () => {
       var responseOptions = new ResponseOptions({
         status: StatusCode.UNAUTHORIZED
       })

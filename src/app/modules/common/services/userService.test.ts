@@ -111,6 +111,15 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/can-modify-teams-list');
   });
 
+  it('canUserModifySkills should use correct url', () => {
+    userService.canUserModifySkills();
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/can-modify-skills-list');
+  });
+
+
   it('getUserDetails should use correct url', () => {
     var username = 'some username'
     userService.getUserDetails();
@@ -286,6 +295,13 @@ describe('UserService', () => {
         );
       });
 
+      it('canUserModifySkills should fail correctly', () => {
+        userService.canUserModifySkills().subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
       it('getUserDetails should fail correctly', () => {
         userService.getUserDetails().subscribe(
           () => expect(true, 'should fail').to.be.false,
@@ -385,6 +401,13 @@ describe('UserService', () => {
 
     it('canUserModifyTeams should fail correctly', () => {
       userService.canUserModifyTeams().subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
+    it('canUserModifySkills should fail correctly', () => {
+      userService.canUserModifySkills().subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
@@ -1182,6 +1205,39 @@ describe('UserService', () => {
           (connection: MockConnection) => connection.mockRespond(response));
 
         userService.canUserModifyTeams().subscribe(
+          (_result: boolean) => expect(_result).to.be.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
+
+    });
+
+    describe('canUserModifySkills', () => {
+
+      it('without the expected result should fail correctly', () => {
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.canUserModifySkills().subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the expected result should return correct value', () => {
+        var result = true;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: { canModifySkillsList: result }
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.canUserModifySkills().subscribe(
           (_result: boolean) => expect(_result).to.be.equal(result),
           () => expect(true, 'should succeed').to.be.false)
       });

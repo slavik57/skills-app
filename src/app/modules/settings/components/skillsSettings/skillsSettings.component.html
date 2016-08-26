@@ -1,1 +1,117 @@
-Hi skills settings...
+<div class="skills-settings-wrapper loaded-content-wrapper"
+     [ngClass]="{loading: isLoadingSkills, error: loadingSkillsError}">
+
+  <div class="loading-skills-details loading-wrapper">
+    <circular-loading></circular-loading>
+  </div>
+
+  <div class="loading-skills-details-error loading-content-error">
+    <span class="text">{{loadingSkillsError}}</span>
+    <button class="retry-button" (click)="reload()">
+     Try Again
+    </button>
+  </div>
+
+  <div class="skill-details-wrapper content-wrapper">
+
+    <div *ngIf="skillsDetails">
+
+      <div class="input-field">
+        <input class="filter"
+               id="skill-filter"
+               type="text"
+               [(ngModel)]="filter"/>
+        <label for="skill-filter">Filter skills</label>
+      </div>
+
+      <div #skillDetailsList class="collection">
+
+        <a class="item collection-item"
+           *ngFor="let skillDetails of skillsDetails"
+           (click)="selectSkill(skillDetails)"
+           [ngClass]="{ hidden: filter && skillDetails.skillName.toLowerCase().indexOf(filter.toLowerCase()) < 0 , active: selectedSkill === skillDetails}">
+
+            <i class="material-icons">supervisor_account</i>
+            <span class="skill-name">{{skillDetails.skillName}}</span>
+            <a (click)="$event.stopPropagation(); deleteSkill(skillDetails)"
+               *ngIf="canUserModifySkills">
+              <i class="material-icons delete-skill-icon">delete</i>
+            </a>
+
+        </a>
+
+      </div>
+
+      <a class="add-button waves-effect waves-light"
+         *ngIf="canUserModifySkills"
+         (click)="setAsCreatingSkill()">
+        <i class="material-icons">add</i>
+      </a>
+
+    </div>
+
+  </div>
+
+  <div #skillSettingsModal
+       class="modal">
+
+      <div class="modal-content">
+        <div *ngIf="skillSettingsModal.className.split(' ').indexOf('open') >= 0"
+              class="modal-inner-content">
+          <skill-settings [skillDetails]="selectedSkill"></skill-settings>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="modal-action modal-close">Close</a>
+      </div>
+
+  </div>
+
+  <div #creatingSkillModal
+       class="modal">
+
+      <div class="modal-content">
+        <div *ngIf="creatingSkillModal.className.split(' ').indexOf('open') >= 0"
+              class="modal-inner-content">
+              <create-skill (onSkillCreated)="onSkillCreated($event)"></create-skill>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="modal-action modal-close">Close</a>
+      </div>
+
+  </div>
+
+  <div #deleteSkillModal
+       class="modal delete-skill-modal">
+
+       <div class="modal-content loaded-content-wrapper"
+            *ngIf="skillToDelete"
+            [ngClass]="{loading: isDeletingSkill, error: deletingSkillError}">
+            <div class="delete-skill-verification-message">
+              You are about to delete the skill: {{skillToDelete.skillName}}<br/>
+              Would you like to continue?
+            </div>
+            <div class="delete-proccess-wrapper">
+              <div class="loading-wrapper deleting-skill-indicator">
+                <circular-loading></circular-loading>
+              </div>
+              <div class="loading-content-error deleting-skill-failed">
+                <span class="text">{{deletingSkillError}}</span>
+              </div>
+            </div>
+       </div>
+       <div class="modal-footer">
+         <a class="modal-action modal-close"
+            [ngClass]="{disabled: isDeletingSkill}">Cancel</a>
+         <a class="modal-action"
+            (click)="confirmDeletingSkill()"
+            [ngClass]="{disabled: isDeletingSkill}">
+            <span *ngIf="!deletingSkillError">Delete</span>
+            <span *ngIf="deletingSkillError">Retry Deleting</span>
+          </a>
+       </div>
+
+  </div>
+
+</div>

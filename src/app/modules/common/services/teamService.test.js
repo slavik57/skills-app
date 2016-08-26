@@ -148,7 +148,7 @@ testing_1.describe('TeamService', function () {
             chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
         });
     });
-    function shouldFaildWithError(error, beforeEachFunc) {
+    function shoulFaildWithError(error, beforeEachFunc) {
         return function () {
             testing_1.beforeEach(beforeEachFunc);
             testing_1.it('getTeamsDetails should fail correctly', function () {
@@ -177,23 +177,23 @@ testing_1.describe('TeamService', function () {
             });
         };
     }
-    testing_1.describe('on UNAUTHORIZED error', shouldFaildWithError('Unauthorized', function () {
+    testing_1.describe('on UNAUTHORIZED error', shoulFaildWithError('Unauthorized', function () {
         var error = new httpError_1.HttpError();
         error.status = statusCode_1.StatusCode.UNAUTHORIZED;
         mockBackend.connections.subscribe(function (connection) { return connection.mockError(error); });
     }));
-    testing_1.describe('on INTERNAL_SERVER_ERROR error', shouldFaildWithError('Oops. Something went wrong. Please try again', function () {
+    testing_1.describe('on INTERNAL_SERVER_ERROR error', shoulFaildWithError('Oops. Something went wrong. Please try again', function () {
         var error = new httpError_1.HttpError();
         error.status = statusCode_1.StatusCode.INTERNAL_SERVER_ERROR;
         mockBackend.connections.subscribe(function (connection) { return connection.mockError(error); });
     }));
-    testing_1.describe('on error with failing json method', shouldFaildWithError('Oops. Something went wrong. Please try again', function () {
+    testing_1.describe('on error with failing json method', shoulFaildWithError('Oops. Something went wrong. Please try again', function () {
         var error = new httpError_1.HttpError();
         error.json = function () { throw 'fail to parse'; };
         error.status = statusCode_1.StatusCode.NOT_FOUND;
         mockBackend.connections.subscribe(function (connection) { return connection.mockError(error); });
     }));
-    testing_1.describe('on error with failing json method', shouldFaildWithError('Oops. Something went wrong. Please try again', function () {
+    testing_1.describe('on error with failing json method', shoulFaildWithError('Oops. Something went wrong. Please try again', function () {
         var responseOptions = new http_2.ResponseOptions({
             status: statusCode_1.StatusCode.UNAUTHORIZED
         });

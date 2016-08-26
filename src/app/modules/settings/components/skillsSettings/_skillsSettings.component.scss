@@ -1,0 +1,190 @@
+@import "../../../../commonStyles/_forms";
+@import "../../../../commonStyles/_buttons";
+@import '~materialize-css/sass/components/_modal';
+
+:host {
+  display: flex;
+  flex: 1;
+
+  .skills-settings-wrapper{
+    display: flex;
+    flex-direction: column;
+
+    &.loading{
+      height: 6rem;
+    }
+
+    &.error{
+      height: 6rem;
+    }
+
+    .loading-skills-details-error{
+      top: 2rem;
+    }
+
+    .skill-details-wrapper {
+      flex: 1;
+
+      .input-field {
+        margin-left: 2rem;
+        margin-right: 2rem;
+      }
+
+      .collection{
+        margin-left: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 7rem;
+
+        .item{
+          $transition-speed: .3s;
+          user-select: none;
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+          cursor: pointer;
+          @extend .white;
+          transition: background-color $transition-speed ease;
+
+          &.hidden {
+            display: none;
+          }
+
+          &.active {
+            @extend .blue;
+
+            .material-icons, .team-name {
+              @extend .white-text;
+            }
+          }
+
+          .material-icons, .skill-name {
+            @extend .blue-text;
+            vertical-align: middle;
+
+            transition: color $transition-speed ease;
+          }
+
+          .delete-skill-icon {
+            position: absolute;
+            right: 1rem;
+            transition: opacity .3s ease;
+          }
+        }
+
+        @media #{$small-and-down} {
+          .item{
+            .delete-skill-icon {
+              opacity: 1;
+            }
+          }
+        }
+
+        @media #{$medium-and-up} {
+          .item{
+            .delete-skill-icon {
+              opacity: 0;
+            }
+
+            &:hover{
+              .delete-skill-icon{
+                opacity: .8;
+
+                &:hover {
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .add-button {
+        position: fixed;
+        bottom: 4.5rem;
+        right: 2rem;
+        opacity: 1;
+        transition: opacity .3s ease;
+      }
+    }
+
+    .modal {
+      @extend .modal-fixed-footer;
+      top:10%;
+      bottom: 10%;
+      left:10%;
+      right:10%;
+      max-width: 80%;
+      max-height: 80%;
+      width: 80%;
+      height: 80%;
+
+      .modal-inner-content{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        skill-settings{
+          flex: 1;
+        }
+      }
+
+      .modal-footer {
+        @extend .grey;
+        @extend .lighten-3;
+
+        a{
+          @extend .btn-flat;
+
+          &.disabled {
+            pointer-events: none;
+          }
+        }
+      }
+
+      &.delete-skill-modal{
+        height: 15rem;
+
+        .loaded-content-wrapper{
+
+          .delete-skill-verification-message{
+            position: relative;
+            z-index: 3;
+            opacity: 1;
+            transition: opacity .3s ease;
+          }
+
+          .delete-proccess-wrapper{
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+
+            .deleting-skill-failed{
+              top: 40%;
+            }
+          }
+
+          &.loading {
+            .delete-skill-verification-message{
+              z-index: 1;
+              opacity: 0;
+            }
+          }
+
+          &.error{
+            .delete-skill-verification-message{
+              z-index: 1;
+              opacity: 0;
+            }
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+}

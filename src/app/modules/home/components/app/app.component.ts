@@ -1,3 +1,4 @@
+import {SkillService} from "../../../common/services/skillService";
 import {TeamService} from "../../../common/services/teamService";
 import {SettingsComponent} from "../../../settings/components/settings/settings.component";
 import {HomeComponent} from "../home/home.component";
@@ -18,7 +19,8 @@ import * as _ from 'lodash';
   providers: [
     HTTP_PROVIDERS,
     UserService,
-    TeamService
+    TeamService,
+    SkillService
   ],
   precompile: [HomeComponent, UserProfileComponent, SettingsComponent]
 })
