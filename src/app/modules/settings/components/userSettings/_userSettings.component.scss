@@ -23,7 +23,7 @@
       .tab a{
         @extend .blue-text;
         @extend .col;
-        @extend .s4;
+        @extend .s6;
 
       }
 
@@ -36,7 +36,7 @@
 
   }
 
-  #userPermissionsSettings, #userTeamsSettings, #userPasswordSettings{
+  #userPermissionsSettings, #userPasswordSettings{
     flex: 1;
     margin-top: 1rem;
   }
