@@ -53,10 +53,16 @@ testing_1.describe('EditTeamDetailsComponent', function () {
     });
     testing_1.beforeEach(testing_1.inject([editTeamDetails_component_1.EditTeamDetailsComponent], function (_component) {
         component = _component;
+        component.teamDetails = teamDetails;
+        component.canModifyTeamDetails = true;
     }));
     testing_1.it('initializing without the team details should throw error', testing_1.inject([editTeamDetails_component_1.EditTeamDetailsComponent], function (_component) {
         _component.teamDetails = null;
         chai_1.expect(function () { return _component.ngOnInit(); }).to.throw('teamDetails is not set');
+    }));
+    testing_1.it('initializing without the canModifyTeamDetails should throw error', testing_1.inject([editTeamDetails_component_1.EditTeamDetailsComponent], function (_component) {
+        _component.canModifyTeamDetails = null;
+        chai_1.expect(function () { return _component.ngOnInit(); }).to.throw('canModifyTeamDetails is not set');
     }));
     testing_1.describe('fill team', function () {
         var updateTextFieldsSpy;
@@ -76,7 +82,7 @@ testing_1.describe('EditTeamDetailsComponent', function () {
             chai_1.expect(destroyTeamExistsValidatorSpy.callCount).to.be.equal(1);
         });
         testing_1.it('updatingTeamDetailsError should be correct', function () {
-            chai_1.expect(component.updatingTeamDetailsError).to.be.undefined;
+            chai_1.expect(component.updatingTeamDetailsError).to.be.null;
         });
         testing_1.it('updatingTeamDetails should be correct', function () {
             chai_1.expect(component.updatingTeamDetails).to.be.false;
@@ -141,6 +147,10 @@ testing_1.describe('EditTeamDetailsComponent', function () {
                     testing_1.it('canUpdateTeamDetails should return true', function () {
                         chai_1.expect(component.canUpdateTeamDetails()).to.be.true;
                     });
+                    testing_1.it('canModifyTeamDetails is false canUpdateTeamDetails should return false', function () {
+                        component.canModifyTeamDetails = false;
+                        chai_1.expect(component.canUpdateTeamDetails()).to.be.false;
+                    });
                     testing_1.describe('restore team name', function () {
                         testing_1.beforeEach(function () {
                             var value = teamDetails.teamName;
@@ -193,76 +203,108 @@ testing_1.describe('EditTeamDetailsComponent', function () {
                         updateTeamDetailsResult = new Subject_1.Subject();
                         return updateTeamDetailsResult;
                     });
-                component.updateTeamDetails();
             });
             testing_1.afterEach(function () {
                 updateTeamDetailsStub.restore();
             });
-            testing_1.it('should call teamService.updateTeamName() correctly', function () {
-                var expectedArgs = [
-                    newTeamDetails.id,
-                    newTeamDetails.teamName,
-                ];
-                chai_1.expect(updateTeamDetailsStub.callCount).to.be.equal(1);
-                chai_1.expect(updateTeamDetailsStub.args[0]).to.be.deep.equal(expectedArgs);
-            });
-            testing_1.it('should set updatingTeamDetails to true', function () {
-                chai_1.expect(component.updatingTeamDetails).to.be.true;
-            });
-            testing_1.it('should set updatingTeamDetailsError to null', function () {
-                chai_1.expect(component.updatingTeamDetailsError).to.be.null;
-            });
-            testing_1.it('isTeamDetailsUpdated should be correct', function () {
-                chai_1.expect(component.isTeamDetailsUpdated).to.be.false;
-            });
-            testing_1.describe('updating fails', function () {
-                var error;
+            testing_1.describe('canModifyTeamDetails is false', function () {
                 testing_1.beforeEach(function () {
-                    error = 'updateTeamDetails error';
-                    updateTeamDetailsResult.error(error);
+                    component.canModifyTeamDetails = false;
+                    component.updateTeamDetails();
                 });
-                testing_1.it('should set updatingTeamDetails to false', function () {
+                testing_1.it('should not call teamService.updateTeamName()', function () {
+                    chai_1.expect(updateTeamDetailsStub.callCount).to.be.equal(0);
+                });
+                testing_1.it('updatingTeamDetails should be false', function () {
                     chai_1.expect(component.updatingTeamDetails).to.be.false;
                 });
-                testing_1.it('should set updatingTeamDetailsError correctly', function () {
-                    chai_1.expect(component.updatingTeamDetailsError).to.be.equal(error);
+                testing_1.it('updatingTeamDetailsError should be null', function () {
+                    chai_1.expect(component.updatingTeamDetailsError).to.be.null;
                 });
                 testing_1.it('isTeamDetailsUpdated should be correct', function () {
                     chai_1.expect(component.isTeamDetailsUpdated).to.be.false;
                 });
             });
-            testing_1.describe('updating succeeds', function () {
+            testing_1.describe('canModifyTeamDetails is true', function () {
                 testing_1.beforeEach(function () {
-                    updateTeamDetailsResult.next(newTeamDetails);
-                    updateTeamDetailsResult.complete();
+                    component.canModifyTeamDetails = true;
+                    component.updateTeamDetails();
                 });
-                testing_1.it('should set updatingTeamDetails to false', function () {
-                    chai_1.expect(component.updatingTeamDetails).to.be.false;
+                testing_1.it('should call teamService.updateTeamName() correctly', function () {
+                    var expectedArgs = [
+                        newTeamDetails.id,
+                        newTeamDetails.teamName,
+                    ];
+                    chai_1.expect(updateTeamDetailsStub.callCount).to.be.equal(1);
+                    chai_1.expect(updateTeamDetailsStub.args[0]).to.be.deep.equal(expectedArgs);
+                });
+                testing_1.it('should set updatingTeamDetails to true', function () {
+                    chai_1.expect(component.updatingTeamDetails).to.be.true;
                 });
                 testing_1.it('should set updatingTeamDetailsError to null', function () {
                     chai_1.expect(component.updatingTeamDetailsError).to.be.null;
                 });
-                testing_1.it('canUpdateTeamDetails should return false', function () {
-                    chai_1.expect(component.canUpdateTeamDetails()).to.be.false;
-                });
-                testing_1.it('should not change the teamDetails reference', function () {
-                    chai_1.expect(component.teamDetails).to.be.equal(teamDetails);
-                });
-                testing_1.it('should update the teamDetails', function () {
-                    chai_1.expect(component.teamDetails).to.be.deep.equal(newTeamDetails);
-                });
                 testing_1.it('isTeamDetailsUpdated should be correct', function () {
-                    chai_1.expect(component.isTeamDetailsUpdated).to.be.true;
+                    chai_1.expect(component.isTeamDetailsUpdated).to.be.false;
                 });
-                testing_1.describe('updateTeamDetails()', function () {
+                testing_1.describe('updating fails', function () {
+                    var error;
                     testing_1.beforeEach(function () {
-                        component.updateTeamDetails();
+                        error = 'updateTeamDetails error';
+                        updateTeamDetailsResult.error(error);
+                    });
+                    testing_1.it('should set updatingTeamDetails to false', function () {
+                        chai_1.expect(component.updatingTeamDetails).to.be.false;
+                    });
+                    testing_1.it('should set updatingTeamDetailsError correctly', function () {
+                        chai_1.expect(component.updatingTeamDetailsError).to.be.equal(error);
                     });
                     testing_1.it('isTeamDetailsUpdated should be correct', function () {
                         chai_1.expect(component.isTeamDetailsUpdated).to.be.false;
                     });
-                    testing_1.it('should set updatingTeamDetails to true', function () {
-                        chai_1.expect(component.updatingTeamDetails).to.be.true;
+                });
+                testing_1.describe('updating succeeds', function () {
+                    testing_1.beforeEach(function () {
+                        updateTeamDetailsResult.next(newTeamDetails);
+                        updateTeamDetailsResult.complete();
+                    });
+                    testing_1.it('should set updatingTeamDetails to false', function () {
+                        chai_1.expect(component.updatingTeamDetails).to.be.false;
+                    });
+                    testing_1.it('should set updatingTeamDetailsError to null', function () {
+                        chai_1.expect(component.updatingTeamDetailsError).to.be.null;
+                    });
+                    testing_1.it('canUpdateTeamDetails should return false', function () {
+                        chai_1.expect(component.canUpdateTeamDetails()).to.be.false;
+                    });
+                    testing_1.it('should not change the teamDetails reference', function () {
+                        chai_1.expect(component.teamDetails).to.be.equal(teamDetails);
+                    });
+                    testing_1.it('should update the teamDetails', function () {
+                        chai_1.expect(component.teamDetails).to.be.deep.equal(newTeamDetails);
+                    });
+                    testing_1.it('isTeamDetailsUpdated should be correct', function () {
+                        chai_1.expect(component.isTeamDetailsUpdated).to.be.true;
+                    });
+                    testing_1.describe('updateTeamDetails again', function () {
+                        testing_1.beforeEach(function () {
+                            newTeamDetails = {
+                                id: teamDetails.id,
+                                teamName: 'new team name 2'
+                            };
+                            var teamNameControl = component.teamDetailsFormGroup.controls['teamName'];
+                            formFiller_1.FormFiller.fillFormControl(component.teamDetailsFormGroup, teamNameControl, newTeamDetails.teamName);
+                            component.teamName = newTeamDetails.teamName;
+                            teamExistsResult.next(null);
+                            teamExistsResult.complete();
+                            component.updateTeamDetails();
+                        });
+                        testing_1.it('isTeamDetailsUpdated should be correct', function () {
+                            chai_1.expect(component.isTeamDetailsUpdated).to.be.false;
+                        });
+                        testing_1.it('should set updatingTeamDetails to true', function () {
+                            chai_1.expect(component.updatingTeamDetails).to.be.true;
+                        });
                     });
                 });
             });

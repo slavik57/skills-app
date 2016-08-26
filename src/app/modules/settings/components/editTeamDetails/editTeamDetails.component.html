@@ -1,5 +1,7 @@
 <div class="filling-form-wrapper"
-     [ngClass]="{ submitting: updatingTeamDetails, 'has-submit-error': !!updatingTeamDetailsError }">
+     [ngClass]="{ submitting: updatingTeamDetails,
+       'has-submit-error': !!updatingTeamDetailsError,
+       'unauthorized': !canModifyTeamDetails}">
 
   <form id="team-details-form"
         [formGroup]="teamDetailsFormGroup"
@@ -55,4 +57,12 @@
 
 <div class="submitting-form-wrapper" [ngClass]="{ submitting: updatingTeamDetails }">
   <circular-loading></circular-loading>
+</div>
+
+<div *ngIf="!canModifyTeamDetails"
+     class="unauthorized-to-modify">
+     <span class="text">
+       <i class="material-icons">lock_outline</i>
+       You do not have sufficient permissions to edit team details
+     </span>
 </div>

@@ -11,6 +11,10 @@
     display: flex;
     flex-direction: column;
 
+    &.unauthorized{
+      opacity: .3;
+    }
+
     #team-details-form{
       flex: 1;
       display: flex;
@@ -40,6 +44,27 @@
         .submit-button{
           width: 100%;
         }
+      }
+    }
+  }
+
+  .unauthorized-to-modify{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+
+    .text{
+      position: absolute;
+      top: 25%;
+      left:0;
+      right: 0;
+      text-align: center;
+
+      .material-icons{
+        display: block;
+        font-size: 6rem;
       }
     }
   }

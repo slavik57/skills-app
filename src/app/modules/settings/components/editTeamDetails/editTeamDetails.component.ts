@@ -16,6 +16,7 @@ import {EmailValidator} from "../../../common/validators/emailValidator";
 })
 export class EditTeamDetailsComponent extends FormComponentBase implements OnInit, OnDestroy {
   @Input() public teamDetails: ITeamNameDetails;
+  @Input() public canModifyTeamDetails: boolean;
 
   public teamName: string;
   public teamDetailsFormGroup: FormGroup;
@@ -36,8 +37,14 @@ export class EditTeamDetailsComponent extends FormComponentBase implements OnIni
       throw 'teamDetails is not set';
     }
 
+    if (this.canModifyTeamDetails === null ||
+      this.canModifyTeamDetails === undefined) {
+      throw 'canModifyTeamDetails is not set';
+    }
+
     this.updatingTeamDetails = false;
     this.isTeamDetailsUpdated = false;
+    this.updatingTeamDetailsError = null;
 
     this._initializeEditTeamName();
   }
@@ -47,10 +54,16 @@ export class EditTeamDetailsComponent extends FormComponentBase implements OnIni
   }
 
   public canUpdateTeamDetails(): boolean {
-    return this.teamDetailsFormGroup.valid && this._isTeamNameDetailsChanged();
+    return this.canModifyTeamDetails &&
+      this.teamDetailsFormGroup.valid &&
+      this._isTeamNameDetailsChanged();
   }
 
   public updateTeamDetails(): void {
+    if (!this.canUpdateTeamDetails()) {
+      return;
+    }
+
     this.updatingTeamDetails = true;
     this.updatingTeamDetailsError = null;
     this.isTeamDetailsUpdated = false;

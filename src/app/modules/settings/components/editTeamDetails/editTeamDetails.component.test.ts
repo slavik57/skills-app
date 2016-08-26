@@ -80,11 +80,19 @@ describe('EditTeamDetailsComponent', () => {
 
   beforeEach(inject([EditTeamDetailsComponent], (_component: EditTeamDetailsComponent) => {
     component = _component;
+
+    component.teamDetails = teamDetails;
+    component.canModifyTeamDetails = true;
   }));
 
   it('initializing without the team details should throw error', inject([EditTeamDetailsComponent], (_component: EditTeamDetailsComponent) => {
     _component.teamDetails = null;
     expect(() => _component.ngOnInit()).to.throw('teamDetails is not set');
+  }));
+
+  it('initializing without the canModifyTeamDetails should throw error', inject([EditTeamDetailsComponent], (_component: EditTeamDetailsComponent) => {
+    _component.canModifyTeamDetails = null;
+    expect(() => _component.ngOnInit()).to.throw('canModifyTeamDetails is not set');
   }));
 
   describe('fill team', () => {
@@ -114,7 +122,7 @@ describe('EditTeamDetailsComponent', () => {
     });
 
     it('updatingTeamDetailsError should be correct', () => {
-      expect(component.updatingTeamDetailsError).to.be.undefined;
+      expect(component.updatingTeamDetailsError).to.be.null;
     });
 
     it('updatingTeamDetails should be correct', () => {
@@ -203,6 +211,12 @@ describe('EditTeamDetailsComponent', () => {
             expect(component.canUpdateTeamDetails()).to.be.true;
           });
 
+          it('canModifyTeamDetails is false canUpdateTeamDetails should return false', () => {
+            component.canModifyTeamDetails = false;
+
+            expect(component.canUpdateTeamDetails()).to.be.false;
+          });
+
           describe('restore team name', () => {
 
             beforeEach(() => {
@@ -275,52 +289,29 @@ describe('EditTeamDetailsComponent', () => {
             updateTeamDetailsResult = new Subject<ITeamNameDetails>();
             return updateTeamDetailsResult;
           });
-
-        component.updateTeamDetails();
       });
 
       afterEach(() => {
         updateTeamDetailsStub.restore();
-      })
-
-      it('should call teamService.updateTeamName() correctly', () => {
-        var expectedArgs = [
-          newTeamDetails.id,
-          newTeamDetails.teamName,
-        ];
-
-        expect(updateTeamDetailsStub.callCount).to.be.equal(1);
-        expect(updateTeamDetailsStub.args[0]).to.be.deep.equal(expectedArgs);
       });
 
-      it('should set updatingTeamDetails to true', () => {
-        expect(component.updatingTeamDetails).to.be.true;
-      });
-
-      it('should set updatingTeamDetailsError to null', () => {
-        expect(component.updatingTeamDetailsError).to.be.null;
-      });
-
-      it('isTeamDetailsUpdated should be correct', () => {
-        expect(component.isTeamDetailsUpdated).to.be.false;
-      });
-
-      describe('updating fails', () => {
-
-        var error: string;
+      describe('canModifyTeamDetails is false', () => {
 
         beforeEach(() => {
-          error = 'updateTeamDetails error';
-
-          updateTeamDetailsResult.error(error);
+          component.canModifyTeamDetails = false;
+          component.updateTeamDetails();
         });
 
-        it('should set updatingTeamDetails to false', () => {
+        it('should not call teamService.updateTeamName()', () => {
+          expect(updateTeamDetailsStub.callCount).to.be.equal(0);
+        });
+
+        it('updatingTeamDetails should be false', () => {
           expect(component.updatingTeamDetails).to.be.false;
         });
 
-        it('should set updatingTeamDetailsError correctly', () => {
-          expect(component.updatingTeamDetailsError).to.be.equal(error);
+        it('updatingTeamDetailsError should be null', () => {
+          expect(component.updatingTeamDetailsError).to.be.null;
         });
 
         it('isTeamDetailsUpdated should be correct', () => {
@@ -329,49 +320,116 @@ describe('EditTeamDetailsComponent', () => {
 
       });
 
-      describe('updating succeeds', () => {
+      describe('canModifyTeamDetails is true', () => {
 
         beforeEach(() => {
-          updateTeamDetailsResult.next(newTeamDetails);
-          updateTeamDetailsResult.complete();
+          component.canModifyTeamDetails = true;
+          component.updateTeamDetails();
         });
 
-        it('should set updatingTeamDetails to false', () => {
-          expect(component.updatingTeamDetails).to.be.false;
+        it('should call teamService.updateTeamName() correctly', () => {
+          var expectedArgs = [
+            newTeamDetails.id,
+            newTeamDetails.teamName,
+          ];
+
+          expect(updateTeamDetailsStub.callCount).to.be.equal(1);
+          expect(updateTeamDetailsStub.args[0]).to.be.deep.equal(expectedArgs);
+        });
+
+        it('should set updatingTeamDetails to true', () => {
+          expect(component.updatingTeamDetails).to.be.true;
         });
 
         it('should set updatingTeamDetailsError to null', () => {
           expect(component.updatingTeamDetailsError).to.be.null;
         });
 
-        it('canUpdateTeamDetails should return false', () => {
-          expect(component.canUpdateTeamDetails()).to.be.false;
-        });
-
-        it('should not change the teamDetails reference', () => {
-          expect(component.teamDetails).to.be.equal(teamDetails);
-        });
-
-        it('should update the teamDetails', () => {
-          expect(component.teamDetails).to.be.deep.equal(newTeamDetails);
-        });
-
         it('isTeamDetailsUpdated should be correct', () => {
-          expect(component.isTeamDetailsUpdated).to.be.true;
+          expect(component.isTeamDetailsUpdated).to.be.false;
         });
 
-        describe('updateTeamDetails()', () => {
+        describe('updating fails', () => {
+
+          var error: string;
 
           beforeEach(() => {
-            component.updateTeamDetails();
+            error = 'updateTeamDetails error';
+
+            updateTeamDetailsResult.error(error);
+          });
+
+          it('should set updatingTeamDetails to false', () => {
+            expect(component.updatingTeamDetails).to.be.false;
+          });
+
+          it('should set updatingTeamDetailsError correctly', () => {
+            expect(component.updatingTeamDetailsError).to.be.equal(error);
           });
 
           it('isTeamDetailsUpdated should be correct', () => {
             expect(component.isTeamDetailsUpdated).to.be.false;
           });
 
-          it('should set updatingTeamDetails to true', () => {
-            expect(component.updatingTeamDetails).to.be.true;
+        });
+
+        describe('updating succeeds', () => {
+
+          beforeEach(() => {
+            updateTeamDetailsResult.next(newTeamDetails);
+            updateTeamDetailsResult.complete();
+          });
+
+          it('should set updatingTeamDetails to false', () => {
+            expect(component.updatingTeamDetails).to.be.false;
+          });
+
+          it('should set updatingTeamDetailsError to null', () => {
+            expect(component.updatingTeamDetailsError).to.be.null;
+          });
+
+          it('canUpdateTeamDetails should return false', () => {
+            expect(component.canUpdateTeamDetails()).to.be.false;
+          });
+
+          it('should not change the teamDetails reference', () => {
+            expect(component.teamDetails).to.be.equal(teamDetails);
+          });
+
+          it('should update the teamDetails', () => {
+            expect(component.teamDetails).to.be.deep.equal(newTeamDetails);
+          });
+
+          it('isTeamDetailsUpdated should be correct', () => {
+            expect(component.isTeamDetailsUpdated).to.be.true;
+          });
+
+          describe('updateTeamDetails again', () => {
+
+            beforeEach(() => {
+              newTeamDetails = {
+                id: teamDetails.id,
+                teamName: 'new team name 2'
+              }
+
+              var teamNameControl = <FormControl>component.teamDetailsFormGroup.controls['teamName'];
+
+              FormFiller.fillFormControl(component.teamDetailsFormGroup, teamNameControl, newTeamDetails.teamName);
+              component.teamName = newTeamDetails.teamName;
+              teamExistsResult.next(null);
+              teamExistsResult.complete();
+
+              component.updateTeamDetails();
+            });
+
+            it('isTeamDetailsUpdated should be correct', () => {
+              expect(component.isTeamDetailsUpdated).to.be.false;
+            });
+
+            it('should set updatingTeamDetails to true', () => {
+              expect(component.updatingTeamDetails).to.be.true;
+            });
+
           });
 
         });

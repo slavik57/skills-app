@@ -25,7 +25,9 @@
       </ul>
 
       <div id="teamDetailsSettings">
-        <edit-team-details [teamDetails]="teamDetails"></edit-team-details>
+        <edit-team-details [teamDetails]="teamDetails"
+                           [canModifyTeamDetails]="permissions.canModifyTeamName">
+        </edit-team-details>
       </div>
       <div id="teamUsersSettings">
         <team-users [teamDetails]="teamDetails"></team-users>

@@ -31,18 +31,28 @@ var EditTeamDetailsComponent = (function (_super) {
         if (!this.teamDetails) {
             throw 'teamDetails is not set';
         }
+        if (this.canModifyTeamDetails === null ||
+            this.canModifyTeamDetails === undefined) {
+            throw 'canModifyTeamDetails is not set';
+        }
         this.updatingTeamDetails = false;
         this.isTeamDetailsUpdated = false;
+        this.updatingTeamDetailsError = null;
         this._initializeEditTeamName();
     };
     EditTeamDetailsComponent.prototype.ngOnDestroy = function () {
         this._teamExistsValidator.destroy();
     };
     EditTeamDetailsComponent.prototype.canUpdateTeamDetails = function () {
-        return this.teamDetailsFormGroup.valid && this._isTeamNameDetailsChanged();
+        return this.canModifyTeamDetails &&
+            this.teamDetailsFormGroup.valid &&
+            this._isTeamNameDetailsChanged();
     };
     EditTeamDetailsComponent.prototype.updateTeamDetails = function () {
         var _this = this;
+        if (!this.canUpdateTeamDetails()) {
+            return;
+        }
         this.updatingTeamDetails = true;
         this.updatingTeamDetailsError = null;
         this.isTeamDetailsUpdated = false;
@@ -80,6 +90,10 @@ var EditTeamDetailsComponent = (function (_super) {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], EditTeamDetailsComponent.prototype, "teamDetails", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], EditTeamDetailsComponent.prototype, "canModifyTeamDetails", void 0);
     EditTeamDetailsComponent = __decorate([
         core_1.Component({
             selector: 'edit-team-details',
