@@ -1,3 +1,4 @@
+import {ITeamModificatioPermissions} from "../interfaces/iTeamModificationPermissions";
 import {HttpServiceBase} from "./base/httpServiceBase";
 import {IUserPermissionRule} from "../interfaces/iUserPermissionRule";
 import {IUserPermission} from "../interfaces/iUserPermission";
@@ -70,6 +71,7 @@ export interface IUserService {
   updateUserPermissions(userId: number,
     userPermissionsToAdd: IUserPermission[],
     userPermissionsToRemove: IUserPermission[]): Observable<void>;
+  getTeamModificationPermissions(teamId: number): Observable<ITeamModificatioPermissions>;
 }
 
 @Injectable()
@@ -86,6 +88,7 @@ export class UserService extends HttpServiceBase implements IUserService {
   private _canUserUpdatePasswordSuffix = '/can-update-password';
   private _canUserModifyTeamsListSuffix = 'can-modify-teams-list';
   private _filteredUsersPrefix = 'filtered/';
+  private _teamModificationRulesSuffix = 'team-modification-permissions/';
 
   constructor(http: Http) {
     super(http)
@@ -235,8 +238,16 @@ export class UserService extends HttpServiceBase implements IUserService {
     let url = this._userControllerUrl + this._userPermissionsModificationRulesUrlSuffix;
 
     return this._get(url)
-      .map((response: Response) => this._parseBodyAsArray<IUserPermissionRule>(response))
+      .map((response: Response) => this._parseBodyAsArray<IUserPermissionRule[]>(response))
       .catch((error: any) => this._handleServerError<IUserPermissionRule[]>(error));
+  }
+
+  public getTeamModificationPermissions(teamId: number): Observable<ITeamModificatioPermissions> {
+    var url = `${this._userControllerUrl}${this._teamModificationRulesSuffix}${teamId}`;
+
+    return this._get(url)
+      .map((response: Response) => this._extractTeamModificationPermissions(response))
+      .catch((error: any) => this._handleServerError<ITeamModificatioPermissions>(error));
   }
 
   private _getRedirectionLocation(response: Response): string {
@@ -310,6 +321,24 @@ export class UserService extends HttpServiceBase implements IUserService {
     if (!serverUsernameDetails.username) {
       throw 'Username is missing';
     }
+  }
+
+  private _extractTeamModificationPermissions(response: Response): ITeamModificatioPermissions {
+    this._throwErrorIfStatusIsNotOk(response);
+
+    var result = response.json();
+
+    if (!result || !this._isResponseHasAllTeamModificationPermissions(result)) {
+      throw 'Unexpected result';
+    }
+
+    return result;
+  }
+
+  private _isResponseHasAllTeamModificationPermissions(response: any):boolean {
+    return ('canModifyTeamName' in response) &&
+      ('canModifyTeamAdmins' in response) &&
+      ('canModifyTeamUsers' in response);
   }
 
 }

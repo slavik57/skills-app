@@ -1,3 +1,4 @@
+import {ITeamModificatioPermissions} from "../interfaces/iTeamModificationPermissions";
 import {IUserPermissionRule} from "../interfaces/iUserPermissionRule";
 import {IUserPermission} from "../interfaces/iUserPermission";
 import {IUsernameDetails} from "../interfaces/iUsernameDetails";
@@ -203,33 +204,46 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/permissions-modification-rules');
   });
 
-  it('updateUserPermissions should use correct url', () => {
-    var id = 123;
-    userService.updateUserPermissions(id, [], []);
+  describe('updateUserPermissions', () => {
 
-    expect(mockBackend.connectionsArray).to.be.length(1);
-    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Put);
-    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/users/' + id + '/permissions');
-  });
+    it('updateUserPermissions should use correct url', () => {
+      var id = 123;
+      userService.updateUserPermissions(id, [], []);
 
-  it('updateUserPermissions should use correct body', () => {
-    var id = 123;
-    var permissionsToAdd: IUserPermission[] = [
-      { value: 1, name: 'name1', description: 'description1' },
-      { value: 2, name: 'name2', description: 'description2' }
-    ];
-    var permissionsToRemove: IUserPermission[] = [
-      { value: 3, name: 'name3', description: 'description3' },
-      { value: 4, name: 'name4', description: 'description4' }
-    ];
-    userService.updateUserPermissions(id, permissionsToAdd, permissionsToRemove);
-
-    var expectedBody = JSON.stringify({
-      permissionsToAdd: [1, 2],
-      permissionsToRemove: [3, 4]
+      expect(mockBackend.connectionsArray).to.be.length(1);
+      expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Put);
+      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/users/' + id + '/permissions');
     });
 
-    expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+    it('updateUserPermissions should use correct body', () => {
+      var id = 123;
+      var permissionsToAdd: IUserPermission[] = [
+        { value: 1, name: 'name1', description: 'description1' },
+        { value: 2, name: 'name2', description: 'description2' }
+      ];
+      var permissionsToRemove: IUserPermission[] = [
+        { value: 3, name: 'name3', description: 'description3' },
+        { value: 4, name: 'name4', description: 'description4' }
+      ];
+      userService.updateUserPermissions(id, permissionsToAdd, permissionsToRemove);
+
+      var expectedBody = JSON.stringify({
+        permissionsToAdd: [1, 2],
+        permissionsToRemove: [3, 4]
+      });
+
+      expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+    });
+
+  });
+
+  it('getTeamModificationPermissions should use correct url', () => {
+    var teamId = 123321;
+    userService.getTeamModificationPermissions(teamId);
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal(`/api/user/team-modification-permissions/${teamId}`);
   });
 
   describe('on UNAUTHORIZED error', () => {
@@ -326,6 +340,13 @@ describe('UserService', () => {
       );
     });
 
+    it('getTeamModificationPermissions should fail correctly', () => {
+      userService.getTeamModificationPermissions(1).subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Unauthorized')
+      );
+    });
+
   });
 
   describe('on INTERNAL_SERVER_ERROR error', () => {
@@ -417,6 +438,13 @@ describe('UserService', () => {
 
     it('updateUserPermissions should fail correctly', () => {
       userService.updateUserPermissions(1, [], []).subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
+    it('getTeamModificationPermissions should fail correctly', () => {
+      userService.getTeamModificationPermissions(1).subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
@@ -519,6 +547,13 @@ describe('UserService', () => {
       );
     });
 
+    it('getTeamModificationPermissions should fail correctly', () => {
+      userService.getTeamModificationPermissions(1).subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
   });
 
   describe('on success with UNAUTHORIZED', () => {
@@ -613,6 +648,13 @@ describe('UserService', () => {
 
     it('updateUserPermissions should fail correctly', () => {
       userService.updateUserPermissions(1, [], []).subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+      );
+    });
+
+    it('getTeamModificationPermissions should fail correctly', () => {
+      userService.getTeamModificationPermissions(1).subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
       );
@@ -1312,6 +1354,121 @@ describe('UserService', () => {
 
         userService.canUserModifyTeams().subscribe(
           (_result: boolean) => expect(_result).to.be.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
+
+    });
+
+    describe('getTeamModificationPermissions', () => {
+
+      it('without the permissions result should fail correctly', () => {
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getTeamModificationPermissions(1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the permissions result without canModifyTeamName should fail correctly', () => {
+        var result: ITeamModificatioPermissions = {
+          canModifyTeamName: true,
+          canModifyTeamAdmins: false,
+          canModifyTeamUsers: true
+        };
+
+        delete result.canModifyTeamName;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getTeamModificationPermissions(1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the permissions result without canModifyTeamAdmins should fail correctly', () => {
+        var result: ITeamModificatioPermissions = {
+          canModifyTeamName: true,
+          canModifyTeamAdmins: false,
+          canModifyTeamUsers: true
+        };
+
+        delete result.canModifyTeamAdmins;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getTeamModificationPermissions(1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the permissions result without canModifyTeamUsers should fail correctly', () => {
+        var result: ITeamModificatioPermissions = {
+          canModifyTeamName: true,
+          canModifyTeamAdmins: false,
+          canModifyTeamUsers: true
+        };
+
+        delete result.canModifyTeamUsers;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getTeamModificationPermissions(1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the permissions result should return correct value', () => {
+        var result: ITeamModificatioPermissions = {
+          canModifyTeamName: true,
+          canModifyTeamAdmins: false,
+          canModifyTeamUsers: true
+        };
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getTeamModificationPermissions(1).subscribe(
+          (_result: ITeamModificatioPermissions) => expect(_result).to.be.deep.equal(result),
           () => expect(true, 'should succeed').to.be.false)
       });
 

@@ -34,6 +34,7 @@ var UserService = (function (_super) {
         this._canUserUpdatePasswordSuffix = '/can-update-password';
         this._canUserModifyTeamsListSuffix = 'can-modify-teams-list';
         this._filteredUsersPrefix = 'filtered/';
+        this._teamModificationRulesSuffix = 'team-modification-permissions/';
     }
     UserService.prototype.signinUser = function (username, password) {
         var _this = this;
@@ -151,6 +152,13 @@ var UserService = (function (_super) {
             .map(function (response) { return _this._parseBodyAsArray(response); })
             .catch(function (error) { return _this._handleServerError(error); });
     };
+    UserService.prototype.getTeamModificationPermissions = function (teamId) {
+        var _this = this;
+        var url = "" + this._userControllerUrl + this._teamModificationRulesSuffix + teamId;
+        return this._get(url)
+            .map(function (response) { return _this._extractTeamModificationPermissions(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
+    };
     UserService.prototype._getRedirectionLocation = function (response) {
         this._throwErrorIfStatusIsNotOk(response);
         var redirectPath = response.headers.get('redirect-path');
@@ -205,6 +213,19 @@ var UserService = (function (_super) {
         if (!serverUsernameDetails.username) {
             throw 'Username is missing';
         }
+    };
+    UserService.prototype._extractTeamModificationPermissions = function (response) {
+        this._throwErrorIfStatusIsNotOk(response);
+        var result = response.json();
+        if (!result || !this._isResponseHasAllTeamModificationPermissions(result)) {
+            throw 'Unexpected result';
+        }
+        return result;
+    };
+    UserService.prototype._isResponseHasAllTeamModificationPermissions = function (response) {
+        return ('canModifyTeamName' in response) &&
+            ('canModifyTeamAdmins' in response) &&
+            ('canModifyTeamUsers' in response);
     };
     UserService = __decorate([
         core_1.Injectable(), 
