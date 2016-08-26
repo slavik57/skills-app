@@ -110,7 +110,7 @@ testing_1.describe('UserService', function () {
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Put);
         chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + id);
     });
-    testing_1.it('retister should use correct body', function () {
+    testing_1.it('register should use correct body', function () {
         var id = 123;
         var username = 'some username';
         var email = 'some email';
@@ -184,6 +184,50 @@ testing_1.describe('UserService', function () {
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
         chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal("/api/user/team-modification-permissions/" + teamId);
     });
+    var failingTests = function (beforeEachFunc, expectedError) {
+        return function () {
+            testing_1.beforeEach(beforeEachFunc);
+            testing_1.it('signin should fail correctly', function () {
+                userService.signinUser('', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+            testing_1.it('register should fail correctly', function () {
+                userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+            testing_1.it('isUsernameExists should fail correctly', function () {
+                userService.isUsernameExists('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+            testing_1.it('canUserUpdatePassword should fail correctly', function () {
+                userService.canUserUpdatePassword(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+            testing_1.it('canUserModifyTeams should fail correctly', function () {
+                userService.canUserModifyTeams().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+            testing_1.it('getUserDetails should fail correctly', function () {
+                userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+            testing_1.it('updateUserDetails should fail correctly', function () {
+                userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+            testing_1.it('updateUserPassword should fail correctly', function () {
+                userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+            testing_1.it('getUsersDetails should fail correctly', function () {
+                userService.getUsersDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+            testing_1.it('getUserPermissions should fail correctly', function () {
+                userService.getUserPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+            testing_1.it('getUserPermissionsModificationRules should fail correctly', function () {
+                userService.getUserPermissionsModificationRules().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+            testing_1.it('updateUserPermissions should fail correctly', function () {
+                userService.updateUserPermissions(1, [], []).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+            testing_1.it('getTeamModificationPermissions should fail correctly', function () {
+                userService.getTeamModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+        };
+    };
     testing_1.describe('on UNAUTHORIZED error', function () {
         testing_1.beforeEach(function () {
             var error = new httpError_1.HttpError();
@@ -230,147 +274,24 @@ testing_1.describe('UserService', function () {
             userService.getTeamModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized'); });
         });
     });
-    testing_1.describe('on INTERNAL_SERVER_ERROR error', function () {
-        testing_1.beforeEach(function () {
-            var error = new httpError_1.HttpError();
-            error.status = statusCode_1.StatusCode.INTERNAL_SERVER_ERROR;
-            mockBackend.connections.subscribe(function (connection) { return connection.mockError(error); });
+    testing_1.describe('on INTERNAL_SERVER_ERROR error', failingTests(function () {
+        var error = new httpError_1.HttpError();
+        error.status = statusCode_1.StatusCode.INTERNAL_SERVER_ERROR;
+        mockBackend.connections.subscribe(function (connection) { return connection.mockError(error); });
+    }, 'Oops. Something went wrong. Please try again'));
+    testing_1.describe('on error with failing json method', failingTests(function () {
+        var error = new httpError_1.HttpError();
+        error.json = function () { throw 'fail to parse'; };
+        error.status = statusCode_1.StatusCode.NOT_FOUND;
+        mockBackend.connections.subscribe(function (connection) { return connection.mockError(error); });
+    }, 'Oops. Something went wrong. Please try again'));
+    testing_1.describe('on success with UNAUTHORIZED', failingTests(function () {
+        var responseOptions = new http_2.ResponseOptions({
+            status: statusCode_1.StatusCode.UNAUTHORIZED
         });
-        testing_1.it('signin should fail correctly', function () {
-            userService.signinUser('', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('register should fail correctly', function () {
-            userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('isUsernameExists should fail correctly', function () {
-            userService.isUsernameExists('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('canUserUpdatePassword should fail correctly', function () {
-            userService.canUserUpdatePassword(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('canUserModifyTeams should fail correctly', function () {
-            userService.canUserModifyTeams().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getUserDetails should fail correctly', function () {
-            userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('updateUserDetails should fail correctly', function () {
-            userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('updateUserPassword should fail correctly', function () {
-            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getUsersDetails should fail correctly', function () {
-            userService.getUsersDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getUserPermissions should fail correctly', function () {
-            userService.getUserPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getUserPermissionsModificationRules should fail correctly', function () {
-            userService.getUserPermissionsModificationRules().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('updateUserPermissions should fail correctly', function () {
-            userService.updateUserPermissions(1, [], []).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getTeamModificationPermissions should fail correctly', function () {
-            userService.getTeamModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-    });
-    testing_1.describe('on error with failing json method', function () {
-        testing_1.beforeEach(function () {
-            var error = new httpError_1.HttpError();
-            error.json = function () { throw 'fail to parse'; };
-            error.status = statusCode_1.StatusCode.NOT_FOUND;
-            mockBackend.connections.subscribe(function (connection) { return connection.mockError(error); });
-        });
-        testing_1.it('signin should fail correctly', function () {
-            userService.signinUser('', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('register should fail correctly', function () {
-            userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('isUsernameExists should fail correctly', function () {
-            userService.isUsernameExists('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('canUserUpdatePassword should fail correctly', function () {
-            userService.canUserUpdatePassword(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('canUserModifyTeams should fail correctly', function () {
-            userService.canUserModifyTeams().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getUserDetails should fail correctly', function () {
-            userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('updateUserDetails should fail correctly', function () {
-            userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('updateUserPassword should fail correctly', function () {
-            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getUsersDetails should fail correctly', function () {
-            userService.getUsersDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getUserPermissions should fail correctly', function () {
-            userService.getUserPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getUserPermissionsModificationRules should fail correctly', function () {
-            userService.getUserPermissionsModificationRules().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('updateUserPermissions should fail correctly', function () {
-            userService.updateUserPermissions(1, [], []).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getTeamModificationPermissions should fail correctly', function () {
-            userService.getTeamModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-    });
-    testing_1.describe('on success with UNAUTHORIZED', function () {
-        testing_1.beforeEach(function () {
-            var responseOptions = new http_2.ResponseOptions({
-                status: statusCode_1.StatusCode.UNAUTHORIZED
-            });
-            var response = new http_2.Response(responseOptions);
-            mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
-        });
-        testing_1.it('signin should fail correctly', function () {
-            userService.signinUser('', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('register should fail correctly', function () {
-            userService.registerUser('', '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('isUsernameExists should fail correctly', function () {
-            userService.isUsernameExists('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('canUserUpdatePassword should fail correctly', function () {
-            userService.canUserUpdatePassword(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('canUserModifyTeams should fail correctly', function () {
-            userService.canUserModifyTeams().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getUserDetails should fail correctly', function () {
-            userService.getUserDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('updateUserDetails should fail correctly', function () {
-            userService.updateUserDetails(1, '', '', '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('updateUserPassword should fail correctly', function () {
-            userService.updateUserPassword(1, '', '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getUsersDetails should fail correctly', function () {
-            userService.getUsersDetails().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getUserPermissions should fail correctly', function () {
-            userService.getUserPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getUserPermissionsModificationRules should fail correctly', function () {
-            userService.getUserPermissionsModificationRules().subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('updateUserPermissions should fail correctly', function () {
-            userService.updateUserPermissions(1, [], []).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-        testing_1.it('getTeamModificationPermissions should fail correctly', function () {
-            userService.getTeamModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
-        });
-    });
+        var response = new http_2.Response(responseOptions);
+        mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+    }, 'Oops. Something went wrong. Please try again'));
     testing_1.describe('on error with error description', function () {
         var reasonForError;
         testing_1.beforeEach(function () {

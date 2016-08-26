@@ -152,7 +152,7 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/' + id);
   });
 
-  it('retister should use correct body', () => {
+  it('register should use correct body', () => {
     var id = 123;
     var username = 'some username';
     var email = 'some email';
@@ -245,6 +245,105 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal(`/api/user/team-modification-permissions/${teamId}`);
   });
+
+  var failingTests = (beforeEachFunc: () => void, expectedError: string) => {
+    return () => {
+
+      beforeEach(beforeEachFunc);
+
+      it('signin should fail correctly', () => {
+        userService.signinUser('', '').subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+      it('register should fail correctly', () => {
+        userService.registerUser('', '', '', '', '').subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+      it('isUsernameExists should fail correctly', () => {
+        userService.isUsernameExists('').subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+      it('canUserUpdatePassword should fail correctly', () => {
+        userService.canUserUpdatePassword(1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+      it('canUserModifyTeams should fail correctly', () => {
+        userService.canUserModifyTeams().subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+      it('getUserDetails should fail correctly', () => {
+        userService.getUserDetails().subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+      it('updateUserDetails should fail correctly', () => {
+        userService.updateUserDetails(1, '', '', '', '').subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+      it('updateUserPassword should fail correctly', () => {
+        userService.updateUserPassword(1, '', '').subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+      it('getUsersDetails should fail correctly', () => {
+        userService.getUsersDetails().subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+      it('getUserPermissions should fail correctly', () => {
+        userService.getUserPermissions(1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+      it('getUserPermissionsModificationRules should fail correctly', () => {
+        userService.getUserPermissionsModificationRules().subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+      it('updateUserPermissions should fail correctly', () => {
+        userService.updateUserPermissions(1, [], []).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+      it('getTeamModificationPermissions should fail correctly', () => {
+        userService.getTeamModificationPermissions(1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+    };
+  };
 
   describe('on UNAUTHORIZED error', () => {
 
@@ -349,318 +448,48 @@ describe('UserService', () => {
 
   });
 
-  describe('on INTERNAL_SERVER_ERROR error', () => {
+  describe('on INTERNAL_SERVER_ERROR error',
+    failingTests(
+      () => {
+        var error = new HttpError();
+        error.status = StatusCode.INTERNAL_SERVER_ERROR;
 
-    beforeEach(() => {
-      var error = new HttpError();
-      error.status = StatusCode.INTERNAL_SERVER_ERROR;
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockError(error));
+      },
+      'Oops. Something went wrong. Please try again'
+    )
+  );
 
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => connection.mockError(error));
-    });
+  describe('on error with failing json method',
+    failingTests(
+      () => {
+        var error = new HttpError();
+        error.json = () => { throw 'fail to parse'; }
+        error.status = StatusCode.NOT_FOUND;
 
-    it('signin should fail correctly', () => {
-      userService.signinUser('', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockError(error));
+      },
+      'Oops. Something went wrong. Please try again'
+    )
+  );
 
-    it('register should fail correctly', () => {
-      userService.registerUser('', '', '', '', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
+  describe('on success with UNAUTHORIZED',
+    failingTests(
+      () => {
+        var responseOptions = new ResponseOptions({
+          status: StatusCode.UNAUTHORIZED
+        })
 
-    it('isUsernameExists should fail correctly', () => {
-      userService.isUsernameExists('').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
+        var response = new Response(responseOptions);
 
-    it('canUserUpdatePassword should fail correctly', () => {
-      userService.canUserUpdatePassword(1).subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('canUserModifyTeams should fail correctly', () => {
-      userService.canUserModifyTeams().subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getUserDetails should fail correctly', () => {
-      userService.getUserDetails().subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('updateUserDetails should fail correctly', () => {
-      userService.updateUserDetails(1, '', '', '', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('updateUserPassword should fail correctly', () => {
-      userService.updateUserPassword(1, '', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getUsersDetails should fail correctly', () => {
-      userService.getUsersDetails().subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getUserPermissions should fail correctly', () => {
-      userService.getUserPermissions(1).subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getUserPermissionsModificationRules should fail correctly', () => {
-      userService.getUserPermissionsModificationRules().subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('updateUserPermissions should fail correctly', () => {
-      userService.updateUserPermissions(1, [], []).subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getTeamModificationPermissions should fail correctly', () => {
-      userService.getTeamModificationPermissions(1).subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-  });
-
-  describe('on error with failing json method', () => {
-
-    beforeEach(() => {
-      var error = new HttpError();
-      error.json = () => { throw 'fail to parse'; }
-      error.status = StatusCode.NOT_FOUND;
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => connection.mockError(error));
-    });
-
-    it('signin should fail correctly', () => {
-      userService.signinUser('', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('register should fail correctly', () => {
-      userService.registerUser('', '', '', '', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('isUsernameExists should fail correctly', () => {
-      userService.isUsernameExists('').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('canUserUpdatePassword should fail correctly', () => {
-      userService.canUserUpdatePassword(1).subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('canUserModifyTeams should fail correctly', () => {
-      userService.canUserModifyTeams().subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getUserDetails should fail correctly', () => {
-      userService.getUserDetails().subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('updateUserDetails should fail correctly', () => {
-      userService.updateUserDetails(1, '', '', '', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('updateUserPassword should fail correctly', () => {
-      userService.updateUserPassword(1, '', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getUsersDetails should fail correctly', () => {
-      userService.getUsersDetails().subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getUserPermissions should fail correctly', () => {
-      userService.getUserPermissions(1).subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getUserPermissionsModificationRules should fail correctly', () => {
-      userService.getUserPermissionsModificationRules().subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('updateUserPermissions should fail correctly', () => {
-      userService.updateUserPermissions(1, [], []).subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getTeamModificationPermissions should fail correctly', () => {
-      userService.getTeamModificationPermissions(1).subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-  });
-
-  describe('on success with UNAUTHORIZED', () => {
-
-    beforeEach(() => {
-      var responseOptions = new ResponseOptions({
-        status: StatusCode.UNAUTHORIZED
-      })
-
-      var response = new Response(responseOptions);
-
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => connection.mockRespond(response));
-    });
-
-    it('signin should fail correctly', () => {
-      userService.signinUser('', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('register should fail correctly', () => {
-      userService.registerUser('', '', '', '', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('isUsernameExists should fail correctly', () => {
-      userService.isUsernameExists('').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('canUserUpdatePassword should fail correctly', () => {
-      userService.canUserUpdatePassword(1).subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('canUserModifyTeams should fail correctly', () => {
-      userService.canUserModifyTeams().subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getUserDetails should fail correctly', () => {
-      userService.getUserDetails().subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('updateUserDetails should fail correctly', () => {
-      userService.updateUserDetails(1, '', '', '', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('updateUserPassword should fail correctly', () => {
-      userService.updateUserPassword(1, '', '').subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getUsersDetails should fail correctly', () => {
-      userService.getUsersDetails().subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getUserPermissions should fail correctly', () => {
-      userService.getUserPermissions(1).subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getUserPermissionsModificationRules should fail correctly', () => {
-      userService.getUserPermissionsModificationRules().subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('updateUserPermissions should fail correctly', () => {
-      userService.updateUserPermissions(1, [], []).subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-    it('getTeamModificationPermissions should fail correctly', () => {
-      userService.getTeamModificationPermissions(1).subscribe(
-        () => expect(true, 'should fail').to.be.false,
-        (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
-      );
-    });
-
-  });
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+      },
+      'Oops. Something went wrong. Please try again'
+    )
+  );
 
   describe('on error with error description', () => {
 
