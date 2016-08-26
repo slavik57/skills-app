@@ -11,38 +11,56 @@
     margin-top: 0;
   }
 
-  .team-settings-content{
-    width: 100%;
+  .team-settings-wrapper{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 
-    .tabs{
-      @extend .row;
-      margin-bottom: 0;
+    .loading-permissions-error {
+      top: 40%;
+    }
 
-      div.indicator{
-        @extend .blue;
-      }
+    .content-wrapper{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
 
-      .tab a{
-        @extend .blue-text;
-        @extend .col;
-        @extend .s4;
-      }
+      .team-settings-content{
+        flex:1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
 
-      @media #{$small-and-down} {
-        .tab a{
-          font-size: 0.7rem;
+        .tabs{
+          @extend .row;
+          margin-bottom: 0;
+
+          div.indicator{
+            @extend .blue;
+          }
+
+          .tab a{
+            @extend .blue-text;
+            // @extend .col;
+            // @extend .s4;
+            width: 100%;
+          }
+
+          @media #{$small-and-down} {
+            .tab a{
+              font-size: 0.7rem;
+            }
+          }
+        }
+
+        #teamDetailsSettings, #teamUsersSettings{
+          flex: 1;
+          margin-top: 1rem;
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto;
         }
       }
     }
-
   }
-
-  #teamDetailsSettings, #teamUsersSettings{
-    flex: 1;
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-  }
-
 }

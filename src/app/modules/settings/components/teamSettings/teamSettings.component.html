@@ -1,16 +1,38 @@
 <h4>{{teamDetails.teamName}}</h4>
-<div class="team-settings-content">
 
-  <ul #availableTeamSettings class="tabs">
-    <li class="tab"><a href="#teamUsersSettings">Users</a></li>
-    <li class="tab"><a href="#teamDetailsSettings">Details</a></li>
-  </ul>
+<div class="team-settings-wrapper loaded-content-wrapper"
+  [ngClass]="{loading: isLoadingPermissions, error: loadingPermissionsError}">
 
-</div>
+  <div class="loading-permissions loading-wrapper">
+    <circular-loading></circular-loading>
+  </div>
 
-<div id="teamDetailsSettings">
-  <edit-team-details [teamDetails]="teamDetails"></edit-team-details>
-</div>
-<div id="teamUsersSettings">
-  <team-users [teamDetails]="teamDetails"></team-users>
+  <div class="loading-permissions-error loading-content-error">
+    <span class="text">{{loadingPermissionsError}}</span>
+    <button class="retry-button" (click)="reload()">
+     Try Again
+    </button>
+  </div>
+
+  <div class="content-wrapper">
+
+    <div class="team-settings-content"
+         *ngIf="permissions">
+
+      <ul #availableTeamSettings class="tabs">
+        <li class="tab"><a href="#teamUsersSettings">Users</a></li>
+        <li class="tab"><a href="#teamDetailsSettings">Details</a></li>
+      </ul>
+
+      <div id="teamDetailsSettings">
+        <edit-team-details [teamDetails]="teamDetails"></edit-team-details>
+      </div>
+      <div id="teamUsersSettings">
+        <team-users [teamDetails]="teamDetails"></team-users>
+      </div>
+
+
+    </div>
+
+  </div>
 </div>

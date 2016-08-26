@@ -1,9 +1,10 @@
+import {UserService} from "../../../common/services/userService";
+import {ITeamModificatioPermissions} from "../../../common/interfaces/iTeamModificationPermissions";
 import {TeamUsersComponent} from "../../../team/components/teamUsers/teamUsers.component";
 import {EditTeamDetailsComponent} from "../editTeamDetails/editTeamDetails.component";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
-import {TeamService} from "../../../common/services/teamService";
 import {ITeamNameDetails} from "../../../common/interfaces/iTeamNameDetails";
-import { Component, Input, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
 import {LoadingComponentBase} from "../../../common/components/loadingComponentBase/loadingComponentBase";
 import { Observable } from 'rxjs/Observable';
 
@@ -17,18 +18,37 @@ import { Observable } from 'rxjs/Observable';
     CircularLoadingComponent
   ],
 })
-export class TeamSettingsComponent implements AfterViewInit, OnInit {
+export class TeamSettingsComponent extends LoadingComponentBase<ITeamModificatioPermissions> implements OnInit {
   @Input() public teamDetails: ITeamNameDetails;
   @ViewChild('availableTeamSettings') availableTeamSettings: ElementRef;
+  public isLoadingPermissions: boolean;
+  public permissions: ITeamModificatioPermissions;
+  public loadingPermissionsError: any;
 
-  constructor(private teamService: TeamService) {
+  constructor(private userService: UserService) {
+    super();
   }
 
-  public ngOnInit(): void {
+  protected setIsLoading(value: boolean): void {
+    this.isLoadingPermissions = value;
   }
 
-  public ngAfterViewInit(): void {
-    $(this.availableTeamSettings.nativeElement).tabs();
+  protected setLoadingError(error: any): void {
+    this.loadingPermissionsError = error;
+  }
+
+  protected setLoadingResult(result: ITeamModificatioPermissions): void {
+    this.permissions = result;
+
+    if (result) {
+      setTimeout(() => {
+        $(this.availableTeamSettings.nativeElement).tabs();
+      }, 0);
+    }
+  }
+
+  protected get(): Observable<ITeamModificatioPermissions> {
+    return this.userService.getTeamModificationPermissions(this.teamDetails.id);
   }
 
 }
