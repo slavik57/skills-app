@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var addSkillDependency_component_1 = require("../addSkillDependency/addSkillDependency.component");
 var skillDependenciesList_component_1 = require("../skillDependenciesList/skillDependenciesList.component");
 var core_1 = require('@angular/core');
 (function (SkillDependenciesState) {
@@ -41,7 +42,7 @@ var SkillDependenciesComponent = (function () {
             selector: 'skill-dependencies',
             template: require('./skillDependencies.component.html'),
             styles: [require('./_skillDependencies.component.scss')],
-            directives: [skillDependenciesList_component_1.SkillDependenciesListComponent]
+            directives: [skillDependenciesList_component_1.SkillDependenciesListComponent, addSkillDependency_component_1.AddSkillDependencyComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], SkillDependenciesComponent);

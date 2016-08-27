@@ -374,6 +374,13 @@ describe('UserService', () => {
         );
       });
 
+      it('getUsersDetailsByPartialUsername should fail correctly', () => {
+        userService.getUsersDetailsByPartialUsername('username', 1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
     };
   };
 

@@ -24,6 +24,7 @@ var SkillService = (function (_super) {
         this._skillsControllerUrl = '/api/skills/';
         this._skillExistsUrlSuffix = '/exists';
         this._skillDependenciesUrlSuffix = '/dependencies';
+        this._filteredSkillsPrefix = 'filtered/';
     }
     SkillService.prototype.getSkillsDetails = function () {
         var _this = this;
@@ -61,6 +62,16 @@ var SkillService = (function (_super) {
             .map(function (response) { return _this._extractSkillDependencies(response); })
             .catch(function (error) { return _this._throwOnUnauthorizedOrGenericError(error); });
     };
+    SkillService.prototype.addSkillDependency = function (skillId, skillName) {
+        var _this = this;
+        var url = this._skillsControllerUrl + skillId + this._skillDependenciesUrlSuffix;
+        var body = JSON.stringify({
+            skillName: skillName
+        });
+        return this._post(url, body)
+            .map(function (response) { return _this._extractAllBody(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
+    };
     SkillService.prototype.removeSkillDependency = function (skillId, dependencyId) {
         var _this = this;
         var url = this._skillsControllerUrl + skillId + this._skillDependenciesUrlSuffix;
@@ -70,6 +81,17 @@ var SkillService = (function (_super) {
         return this._delete(url, body)
             .map(function (response) { return _this._throwErrorIfStatusIsNotOk(response); })
             .catch(function (error) { return _this._handleServerError(error); });
+    };
+    SkillService.prototype.getSkillsDetailsByPartialSkillName = function (skillName, maxNumberOfSkills) {
+        var _this = this;
+        if (maxNumberOfSkills === void 0) { maxNumberOfSkills = null; }
+        var url = this._skillsControllerUrl + this._filteredSkillsPrefix + skillName;
+        if (maxNumberOfSkills != null) {
+            url += this._limitedQueryParameter + maxNumberOfSkills;
+        }
+        return this._get(url)
+            .map(function (response) { return _this._extractSkillsDetails(response); })
+            .catch(function (error) { return _this._throwOnUnauthorizedOrGenericError(error); });
     };
     SkillService.prototype._extractSkillsDetails = function (response) {
         var _this = this;

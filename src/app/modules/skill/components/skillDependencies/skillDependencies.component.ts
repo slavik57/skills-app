@@ -1,3 +1,4 @@
+import {AddSkillDependencyComponent} from "../addSkillDependency/addSkillDependency.component";
 import {SkillDependenciesListComponent} from "../skillDependenciesList/skillDependenciesList.component";
 import {ISkillNameDetails} from "../../../common/interfaces/iSkillNameDetails";
 import {Component, Input, OnInit} from '@angular/core';
@@ -11,7 +12,7 @@ export enum SkillDependenciesState {
   selector: 'skill-dependencies',
   template: require('./skillDependencies.component.html'),
   styles: [require('./_skillDependencies.component.scss')],
-  directives: [SkillDependenciesListComponent]
+  directives: [SkillDependenciesListComponent, AddSkillDependencyComponent]
 })
 export class SkillDependenciesComponent implements OnInit {
   @Input() public skillDetails: ISkillNameDetails;

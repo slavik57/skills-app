@@ -245,6 +245,9 @@ testing_1.describe('UserService', function () {
             testing_1.it('getSkillModificationPermissions should fail correctly', function () {
                 userService.getSkillModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
             });
+            testing_1.it('getUsersDetailsByPartialUsername should fail correctly', function () {
+                userService.getUsersDetailsByPartialUsername('username', 1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
         };
     };
     testing_1.describe('on UNAUTHORIZED error', function () {

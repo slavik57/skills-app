@@ -66,6 +66,26 @@ testing_1.describe('SkillService', function () {
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
         chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/dependencies');
     });
+    testing_1.describe('addSkillDependency', function () {
+        var skillId;
+        var skillName;
+        testing_1.beforeEach(function () {
+            skillId = 789;
+            skillName = 'some skill name';
+            skillService.addSkillDependency(skillId, skillName);
+        });
+        testing_1.it('should use correct url', function () {
+            chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+            chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Post);
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/dependencies');
+        });
+        testing_1.it('should use correct body', function () {
+            var expectedBody = JSON.stringify({
+                skillName: skillName
+            });
+            chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+        });
+    });
     testing_1.describe('removeSkillDependency', function () {
         var skillId;
         var dependencyId;
@@ -86,6 +106,23 @@ testing_1.describe('SkillService', function () {
             chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
         });
     });
+    testing_1.describe('getSkillsDetailsByPartialSkillName', function () {
+        testing_1.it('should use correct url', function () {
+            var skillName = 'some skill name';
+            var max = 3;
+            skillService.getSkillsDetailsByPartialSkillName(skillName, max);
+            chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+            chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/filtered/' + skillName + '?max=' + max);
+        });
+        testing_1.it('without limit should use correct url', function () {
+            var skillName = 'some skill name';
+            skillService.getSkillsDetailsByPartialSkillName(skillName);
+            chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+            chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/filtered/' + skillName);
+        });
+    });
     function shouldFailWithError(error, beforeEachFunc) {
         return function () {
             testing_1.beforeEach(beforeEachFunc);
@@ -104,8 +141,14 @@ testing_1.describe('SkillService', function () {
             testing_1.it('getSkillDependencies should fail correctly', function () {
                 skillService.getSkillDependencies(123).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
             });
+            testing_1.it('addSkillDependency should fail correctly', function () {
+                skillService.addSkillDependency(1, '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
+            });
             testing_1.it('removeSkillDependency should fail correctly', function () {
                 skillService.removeSkillDependency(123, 456).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
+            });
+            testing_1.it('getSkillsDetailsByPartialSkillName should fail correctly', function () {
+                skillService.getSkillsDetailsByPartialSkillName('skill name', 1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
             });
         };
     }
@@ -142,6 +185,9 @@ testing_1.describe('SkillService', function () {
         });
         testing_1.it('createSkill should fail correctly', function () {
             skillService.createSkill('').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(reasonForError); });
+        });
+        testing_1.it('addSkillDependency should fail correctly', function () {
+            skillService.addSkillDependency(1, '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(reasonForError); });
         });
     });
     testing_1.describe('on success with OK', function () {
@@ -360,6 +406,31 @@ testing_1.describe('SkillService', function () {
                 skillService.getSkillDependencies(111).subscribe(function (_result) { return chai_1.expect(_result).to.be.deep.equal(result); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
             });
         });
+        testing_1.describe('addSkillDependency', function () {
+            testing_1.describe('without skill dependency details', function () {
+                testing_1.beforeEach(function () {
+                    mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(new http_2.Response(responseOptions)); });
+                });
+                testing_1.it('should fail correctly', function () {
+                    skillService.addSkillDependency(1, '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+                });
+            });
+            testing_1.describe('with skill dependency details', function () {
+                var skillDependencyDetails;
+                testing_1.beforeEach(function () {
+                    skillDependencyDetails = {
+                        id: 1234,
+                        skillName: 'some skill name'
+                    };
+                    responseOptions.body = skillDependencyDetails;
+                    var response = new http_2.Response(responseOptions);
+                    mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                });
+                testing_1.it('should return correct skill dependency details', function () {
+                    skillService.addSkillDependency(1, '').subscribe(function (_details) { return chai_1.expect(_details).to.deep.equal(skillDependencyDetails); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
+                });
+            });
+        });
         testing_1.describe('removeSkillDependency', function () {
             testing_1.it('should succeed', function () {
                 responseOptions = new http_2.ResponseOptions({
@@ -371,6 +442,80 @@ testing_1.describe('SkillService', function () {
                 var wasResolved = false;
                 skillService.removeSkillDependency(1234, 5678).subscribe(function () { return wasResolved = true; }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
                 chai_1.expect(wasResolved).to.be.true;
+            });
+        });
+        testing_1.describe('getSkillsDetailsByPartialSkillName', function () {
+            testing_1.it('without the skills details result should fail correctly', function () {
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                skillService.getSkillsDetailsByPartialSkillName('some skill name').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with partial skill details result should fail correctly', function () {
+                var result = {
+                    id: 1,
+                    skillName: 'some skill name'
+                };
+                delete result.skillName;
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                skillService.getSkillsDetailsByPartialSkillName('some skill name').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the skill details result and empty skill name should fail correctly', function () {
+                var result = {
+                    id: 1,
+                    skillName: '',
+                };
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                skillService.getSkillsDetailsByPartialSkillName('some skill name').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the skill details result and null id should fail correctly', function () {
+                var result = {
+                    id: null,
+                    skillName: 'some skill name',
+                };
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                skillService.getSkillsDetailsByPartialSkillName('some skill name').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the skill details result should return correct value', function () {
+                var result = [
+                    {
+                        id: 1,
+                        skillName: 'some skill name',
+                    },
+                    {
+                        id: 2,
+                        skillName: 'some other skill name',
+                    }
+                ];
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: result
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                skillService.getSkillsDetailsByPartialSkillName('some skill ame').subscribe(function (_result) { return chai_1.expect(_result).to.be.deep.equal(result); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
             });
         });
     });

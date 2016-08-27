@@ -91,7 +91,7 @@ export class TeamService extends HttpServiceBase implements ITeamService {
       .catch((error: any) => this._throwOnUnauthorizedOrGenericError<ITeamMemberDetails[]>(error));
   }
 
-  public addTeamMember(teamId, username: string): Observable<ITeamMemberDetails> {
+  public addTeamMember(teamId: number, username: string): Observable<ITeamMemberDetails> {
     var url = this._teamsControllerUrl + teamId + this._teamMembersUrlSuffix;
 
     let body: string = JSON.stringify({

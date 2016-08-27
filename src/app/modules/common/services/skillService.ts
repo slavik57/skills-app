@@ -22,7 +22,9 @@ export interface ISkillService {
   deleteSkill(skillId: number): Observable<void>;
   createSkill(skillName: string): Observable<ISkillNameDetails>;
   getSkillDependencies(skillId: number): Observable<ISkillDependencyDetails[]>;
+  addSkillDependency(skillId: number, skillName: string): Observable<ISkillDependencyDetails>;
   removeSkillDependency(skillId: number, dependencyId: number): Observable<void>;
+  getSkillsDetailsByPartialSkillName(skillName: string, maxNumberOfSkills?: number): Observable<ISkillNameDetails[]>;
 }
 
 @Injectable()
@@ -30,6 +32,7 @@ export class SkillService extends HttpServiceBase implements ISkillService {
   private _skillsControllerUrl = '/api/skills/';
   private _skillExistsUrlSuffix = '/exists';
   private _skillDependenciesUrlSuffix = '/dependencies';
+  private _filteredSkillsPrefix = 'filtered/';
 
   constructor(http: Http) {
     super(http)
@@ -74,6 +77,18 @@ export class SkillService extends HttpServiceBase implements ISkillService {
       .catch((error: any) => this._throwOnUnauthorizedOrGenericError<ISkillDependencyDetails[]>(error));
   }
 
+  public addSkillDependency(skillId: number, skillName: string): Observable<ISkillDependencyDetails> {
+    var url = this._skillsControllerUrl + skillId + this._skillDependenciesUrlSuffix;
+
+    let body: string = JSON.stringify({
+      skillName: skillName
+    });
+
+    return this._post(url, body)
+      .map((response: Response) => this._extractAllBody<ISkillDependencyDetails>(response))
+      .catch((error: any) => this._handleServerError<ISkillDependencyDetails>(error));
+  }
+
   public removeSkillDependency(skillId: number, dependencyId: number): Observable<void> {
     var url = this._skillsControllerUrl + skillId + this._skillDependenciesUrlSuffix;
 
@@ -84,6 +99,18 @@ export class SkillService extends HttpServiceBase implements ISkillService {
     return this._delete(url, body)
       .map((response: Response) => this._throwErrorIfStatusIsNotOk<void>(response))
       .catch((error: any) => this._handleServerError<void>(error));
+  }
+
+  public getSkillsDetailsByPartialSkillName(skillName: string, maxNumberOfSkills: number = null): Observable<ISkillNameDetails[]> {
+    var url = this._skillsControllerUrl + this._filteredSkillsPrefix + skillName;
+
+    if (maxNumberOfSkills != null) {
+      url += this._limitedQueryParameter + maxNumberOfSkills;
+    }
+
+    return this._get(url)
+      .map((response: Response) => this._extractSkillsDetails(response))
+      .catch((error: any) => this._throwOnUnauthorizedOrGenericError<ISkillNameDetails[]>(error));
   }
 
   private _extractSkillsDetails(response: Response): ISkillNameDetails[] {
