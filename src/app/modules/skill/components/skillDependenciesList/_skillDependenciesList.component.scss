@@ -1,2 +1,95 @@
+@import "../../../../commonStyles/_forms";
+@import "../../../../commonStyles/_collections";
+
 :host {
+  display: flex;
+  overflow-y: auto;
+
+  .skill-dependencies-list-wrapper{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .skill-dependencies-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .skill-dependencies-content{
+        flex: 1;
+
+        .collection{
+          .item{
+            .skill-name {
+              @extend .blue-text;
+              vertical-align: middle;
+            }
+
+            .delete-team-member-button{
+              position: absolute;
+              right: 1rem;
+              transition: opacity .3s ease;
+            }
+          }
+
+          @media #{$small-and-down} {
+            .item {
+              .delete-team-member-button{
+                opacity: 1;
+              }
+            }
+          }
+
+          @media #{$medium-and-up} {
+            .item {
+              .delete-team-member-button{
+                opacity: 0;
+              }
+
+              &:hover{
+                .delete-team-member-button{
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+
+        .no-skill-dependencies-message{
+          position: absolute;
+          width: 100%;
+          text-align: center;
+
+          .material-icons{
+            display: block;
+            font-size: 5rem;
+          }
+        }
+
+        @media #{$small-and-down} {
+          .no-skill-dependencies-message{
+            top: 15%;
+          }
+        }
+
+        @media #{$medium-and-up} {
+          .no-skill-dependencies-message{
+            top: 17%;
+          }
+        }
+      }
+
+      .submit-error{
+        margin-bottom: 1rem;
+      }
+
+      .submitting-form-wrapper{
+        circular-loading {
+          top: 6rem;
+        }
+      }
+
+    }
+
+  }
 }

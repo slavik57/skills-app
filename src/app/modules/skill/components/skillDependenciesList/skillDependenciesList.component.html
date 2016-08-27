@@ -1,1 +1,58 @@
-Hi from SkillDependenciesList component
+<div class="skill-dependencies-list-wrapper loaded-content-wrapper"
+     [ngClass]="{loading: isLoadingSkillDependencies, error: loadingSkillDependenciesError}">
+
+  <div class="loading-skill-dependencies loading-wrapper">
+    <circular-loading></circular-loading>
+  </div>
+
+  <div class="loading-skill-dependencies-error loading-content-error">
+    <span class="text">{{loadingSkillDependenciesError}}</span>
+    <button class="retry-button" (click)="reload()">
+     Try Again
+    </button>
+  </div>
+
+  <div class="skill-dependencies-wrapper content-wrapper filling-form-wrapper"
+       [ngClass]="{ submitting: updatingSkillDependency, 'has-submit-error': !!updatingSkillDependencyError }">
+
+    <div *ngIf="skillDependencies" class="skill-dependencies-content">
+
+      <ul #skillDependenciesList
+          class="collection"
+          *ngIf="skillDependencies.length > 0">
+
+        <li class="item collection-item"
+           *ngFor="let skillDependency of skillDependencies">
+
+            <span class="collapsible-header skill-name">
+              {{skillDependency.skillName}}
+            </span>
+            <a class="delete-skill-dependency-button"
+               *ngIf="canModify"
+               (click)="$event.stopPropagation(); removeSkillDependency(skillDependency)">
+              <i class="material-icons">delete</i>
+            </a>
+        </li>
+
+      </ul>
+
+      <span class="no-skill-dependencies-message" *ngIf="skillDependencies.length < 1">
+        <i class="material-icons">card_membership</i>
+        The skill is not dependant on any other skills
+      </span>
+
+    </div>
+
+    <div *ngIf="updatingSkillDependencyError"
+         class="submit-error">
+      {{updatingSkillDependencyError}}
+    </div>
+
+    <div class="submitting-form-wrapper"
+         [ngClass]="{ submitting: updatingSkillDependency }">
+      <circular-loading></circular-loading>
+    </div>
+
+  </div>
+
+</div>
