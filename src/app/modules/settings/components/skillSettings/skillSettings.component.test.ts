@@ -168,8 +168,8 @@ describe('SkillSettingsComponent', () => {
 
       beforeEach(fakeAsync(() => {
         permissions = {
-          canAddPrerequisites: true,
-          canAddDependencies: false
+          canModifyPrerequisites: true,
+          canModifyDependencies: false
         };
 
         getSkillModificationPermissionsResult.next(permissions);

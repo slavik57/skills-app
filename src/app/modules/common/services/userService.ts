@@ -376,8 +376,8 @@ export class UserService extends HttpServiceBase implements IUserService {
   }
 
   private _isResponseHasAllSkillModificationPermissions(response: any): boolean {
-    return ('canAddPrerequisites' in response) &&
-      ('canAddDependencies' in response);
+    return ('canModifyPrerequisites' in response) &&
+      ('canModifyDependencies' in response);
   }
 
 }

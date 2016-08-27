@@ -1394,13 +1394,13 @@ describe('UserService', () => {
         );
       });
 
-      it('with the permissions result without canAddPrerequisites should fail correctly', () => {
+      it('with the permissions result without canModifyPrerequisites should fail correctly', () => {
         var result: ISkillModificatioPermissions = {
-          canAddPrerequisites: true,
-          canAddDependencies: false
+          canModifyPrerequisites: true,
+          canModifyDependencies: false
         };
 
-        delete result.canAddPrerequisites;
+        delete result.canModifyPrerequisites;
 
         responseOptions = new ResponseOptions({
           status: StatusCode.OK,
@@ -1419,13 +1419,13 @@ describe('UserService', () => {
         );
       });
 
-      it('with the permissions result without canAddDependencies should fail correctly', () => {
+      it('with the permissions result without canModifyDependencies should fail correctly', () => {
         var result: ISkillModificatioPermissions = {
-          canAddPrerequisites: true,
-          canAddDependencies: false
+          canModifyPrerequisites: true,
+          canModifyDependencies: false
         };
 
-        delete result.canAddDependencies;
+        delete result.canModifyDependencies;
 
         responseOptions = new ResponseOptions({
           status: StatusCode.OK,
@@ -1446,8 +1446,8 @@ describe('UserService', () => {
 
       it('with the permissions result should return correct value', () => {
         var result: ISkillModificatioPermissions = {
-          canAddPrerequisites: true,
-          canAddDependencies: false
+          canModifyPrerequisites: true,
+          canModifyDependencies: false
         };
 
         responseOptions = new ResponseOptions({

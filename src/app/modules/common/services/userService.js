@@ -252,8 +252,8 @@ var UserService = (function (_super) {
         return result;
     };
     UserService.prototype._isResponseHasAllSkillModificationPermissions = function (response) {
-        return ('canAddPrerequisites' in response) &&
-            ('canAddDependencies' in response);
+        return ('canModifyPrerequisites' in response) &&
+            ('canModifyDependencies' in response);
     };
     UserService = __decorate([
         core_1.Injectable(), 

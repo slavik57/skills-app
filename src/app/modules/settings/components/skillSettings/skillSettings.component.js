@@ -13,6 +13,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var skillDependants_component_1 = require("../../../skill/components/skillDependants/skillDependants.component");
+var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
+var skillPrerequisites_component_1 = require("../../../skill/components/skillPrerequisites/skillPrerequisites.component");
 var userService_1 = require("../../../common/services/userService");
 var loadingComponentBase_1 = require("../../../common/components/loadingComponentBase/loadingComponentBase");
 var core_1 = require('@angular/core');
@@ -52,7 +55,12 @@ var SkillSettingsComponent = (function (_super) {
         core_1.Component({
             selector: 'skill-settings',
             template: require('./skillSettings.component.html'),
-            styles: [require('./_skillSettings.component.scss')]
+            styles: [require('./_skillSettings.component.scss')],
+            directives: [
+                skillPrerequisites_component_1.SkillPrerequisitesComponent,
+                skillDependants_component_1.SkillDependantsComponent,
+                circularLoading_component_1.CircularLoadingComponent
+            ]
         }), 
         __metadata('design:paramtypes', [userService_1.UserService])
     ], SkillSettingsComponent);

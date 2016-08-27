@@ -25,10 +25,14 @@
       </ul>
 
       <div id="prerequisiteSkillsSettings">
-        Prerequisites
+        <skill-prerequisites [skillDetails]="skillDetails"
+                             [canModify]="permissions.canModifyPrerequisites">
+        </skill-prerequisites>
       </div>
       <div id="dependantSkillsSettings">
-        Dependant
+        <skill-dependants [skillDetails]="skillDetails"
+                          [canModify]="permissions.canModifyDependencies">
+        </skill-dependants>
       </div>
 
     </div>

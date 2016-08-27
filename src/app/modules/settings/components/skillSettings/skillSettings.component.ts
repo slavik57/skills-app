@@ -1,3 +1,6 @@
+import {SkillDependantsComponent} from "../../../skill/components/skillDependants/skillDependants.component";
+import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
+import {SkillPrerequisitesComponent} from "../../../skill/components/skillPrerequisites/skillPrerequisites.component";
 import {ISkillModificatioPermissions} from "../../../common/interfaces/iSkillModificationPermissions";
 import {UserService} from "../../../common/services/userService";
 import {LoadingComponentBase} from "../../../common/components/loadingComponentBase/loadingComponentBase";
@@ -8,7 +11,12 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'skill-settings',
   template: require('./skillSettings.component.html'),
-  styles: [require('./_skillSettings.component.scss')]
+  styles: [require('./_skillSettings.component.scss')],
+  directives: [
+    SkillPrerequisitesComponent,
+    SkillDependantsComponent,
+    CircularLoadingComponent
+  ]
 })
 export class SkillSettingsComponent extends LoadingComponentBase<ISkillModificatioPermissions> {
   @Input() public skillDetails: ISkillNameDetails;

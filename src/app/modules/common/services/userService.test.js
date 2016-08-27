@@ -810,12 +810,12 @@ testing_1.describe('UserService', function () {
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
                 userService.getSkillModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
             });
-            testing_1.it('with the permissions result without canAddPrerequisites should fail correctly', function () {
+            testing_1.it('with the permissions result without canModifyPrerequisites should fail correctly', function () {
                 var result = {
-                    canAddPrerequisites: true,
-                    canAddDependencies: false
+                    canModifyPrerequisites: true,
+                    canModifyDependencies: false
                 };
-                delete result.canAddPrerequisites;
+                delete result.canModifyPrerequisites;
                 responseOptions = new http_2.ResponseOptions({
                     status: statusCode_1.StatusCode.OK,
                     headers: new http_1.Headers(),
@@ -825,12 +825,12 @@ testing_1.describe('UserService', function () {
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
                 userService.getSkillModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
             });
-            testing_1.it('with the permissions result without canAddDependencies should fail correctly', function () {
+            testing_1.it('with the permissions result without canModifyDependencies should fail correctly', function () {
                 var result = {
-                    canAddPrerequisites: true,
-                    canAddDependencies: false
+                    canModifyPrerequisites: true,
+                    canModifyDependencies: false
                 };
-                delete result.canAddDependencies;
+                delete result.canModifyDependencies;
                 responseOptions = new http_2.ResponseOptions({
                     status: statusCode_1.StatusCode.OK,
                     headers: new http_1.Headers(),
@@ -842,8 +842,8 @@ testing_1.describe('UserService', function () {
             });
             testing_1.it('with the permissions result should return correct value', function () {
                 var result = {
-                    canAddPrerequisites: true,
-                    canAddDependencies: false
+                    canModifyPrerequisites: true,
+                    canModifyDependencies: false
                 };
                 responseOptions = new http_2.ResponseOptions({
                     status: statusCode_1.StatusCode.OK,

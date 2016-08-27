@@ -114,8 +114,8 @@ testing_1.describe('SkillSettingsComponent', function () {
             var permissions;
             testing_1.beforeEach(testing_1.fakeAsync(function () {
                 permissions = {
-                    canAddPrerequisites: true,
-                    canAddDependencies: false
+                    canModifyPrerequisites: true,
+                    canModifyDependencies: false
                 };
                 getSkillModificationPermissionsResult.next(permissions);
                 getSkillModificationPermissionsResult.complete();
