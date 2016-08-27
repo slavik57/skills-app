@@ -36,6 +36,7 @@ var UserService = (function (_super) {
         this._canUserModifySkillsListSuffix = 'can-modify-skills-list';
         this._filteredUsersPrefix = 'filtered/';
         this._teamModificationRulesSuffix = 'team-modification-permissions/';
+        this._skillModificationRulesSuffix = 'skill-modification-permissions/';
     }
     UserService.prototype.signinUser = function (username, password) {
         var _this = this;
@@ -167,6 +168,13 @@ var UserService = (function (_super) {
             .map(function (response) { return _this._extractTeamModificationPermissions(response); })
             .catch(function (error) { return _this._handleServerError(error); });
     };
+    UserService.prototype.getSkillModificationPermissions = function (skillId) {
+        var _this = this;
+        var url = "" + this._userControllerUrl + this._skillModificationRulesSuffix + skillId;
+        return this._get(url)
+            .map(function (response) { return _this._extractSkillModificationPermissions(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
+    };
     UserService.prototype._getRedirectionLocation = function (response) {
         this._throwErrorIfStatusIsNotOk(response);
         var redirectPath = response.headers.get('redirect-path');
@@ -234,6 +242,18 @@ var UserService = (function (_super) {
         return ('canModifyTeamName' in response) &&
             ('canModifyTeamAdmins' in response) &&
             ('canModifyTeamUsers' in response);
+    };
+    UserService.prototype._extractSkillModificationPermissions = function (response) {
+        this._throwErrorIfStatusIsNotOk(response);
+        var result = response.json();
+        if (!result || !this._isResponseHasAllSkillModificationPermissions(result)) {
+            throw 'Unexpected result';
+        }
+        return result;
+    };
+    UserService.prototype._isResponseHasAllSkillModificationPermissions = function (response) {
+        return ('canAddPrerequisites' in response) &&
+            ('canAddDependencies' in response);
     };
     UserService = __decorate([
         core_1.Injectable(), 

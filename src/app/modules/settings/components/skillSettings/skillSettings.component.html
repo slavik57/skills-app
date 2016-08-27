@@ -1,1 +1,37 @@
-Hi from SkillSettings component
+<h4>{{skillDetails.skillName}}</h4>
+
+<div class="skill-settings-wrapper loaded-content-wrapper"
+  [ngClass]="{loading: isLoadingPermissions, error: loadingPermissionsError}">
+
+  <div class="loading-permissions loading-wrapper">
+    <circular-loading></circular-loading>
+  </div>
+
+  <div class="loading-permissions-error loading-content-error">
+    <span class="text">{{loadingPermissionsError}}</span>
+    <button class="retry-button" (click)="reload()">
+     Try Again
+    </button>
+  </div>
+
+  <div class="content-wrapper">
+
+    <div class="skill-settings-content"
+         *ngIf="permissions">
+
+      <ul #availableSkillSettings class="tabs">
+        <li class="tab"><a href="#prerequisiteSkillsSettings">Prerequisites</a></li>
+        <li class="tab"><a href="#dependantSkillsSettings">Dependant</a></li>
+      </ul>
+
+      <div id="prerequisiteSkillsSettings">
+        Prerequisites
+      </div>
+      <div id="dependantSkillsSettings">
+        Dependant
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -190,6 +190,13 @@ testing_1.describe('UserService', function () {
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
         chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal("/api/user/team-modification-permissions/" + teamId);
     });
+    testing_1.it('getSkillModificationPermissions should use correct url', function () {
+        var skillId = 123321;
+        userService.getSkillModificationPermissions(skillId);
+        chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+        chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
+        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal("/api/user/skill-modification-permissions/" + skillId);
+    });
     var failingTests = function (beforeEachFunc, expectedError) {
         return function () {
             testing_1.beforeEach(beforeEachFunc);
@@ -234,6 +241,9 @@ testing_1.describe('UserService', function () {
             });
             testing_1.it('getTeamModificationPermissions should fail correctly', function () {
                 userService.getTeamModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
+            });
+            testing_1.it('getSkillModificationPermissions should fail correctly', function () {
+                userService.getSkillModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(expectedError); });
             });
         };
     };
@@ -284,6 +294,9 @@ testing_1.describe('UserService', function () {
         });
         testing_1.it('getTeamModificationPermissions should fail correctly', function () {
             userService.getTeamModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized'); });
+        });
+        testing_1.it('getSkillModificationPermissions should fail correctly', function () {
+            userService.getSkillModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Unauthorized'); });
         });
     });
     testing_1.describe('on INTERNAL_SERVER_ERROR error', failingTests(function () {
@@ -790,6 +803,56 @@ testing_1.describe('UserService', function () {
                 response = new http_2.Response(responseOptions);
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
                 userService.getTeamModificationPermissions(1).subscribe(function (_result) { return chai_1.expect(_result).to.be.deep.equal(result); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
+            });
+        });
+        testing_1.describe('getSkillModificationPermissions', function () {
+            testing_1.it('without the permissions result should fail correctly', function () {
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                userService.getSkillModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the permissions result without canAddPrerequisites should fail correctly', function () {
+                var result = {
+                    canAddPrerequisites: true,
+                    canAddDependencies: false
+                };
+                delete result.canAddPrerequisites;
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: result
+                });
+                response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                userService.getSkillModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the permissions result without canAddDependencies should fail correctly', function () {
+                var result = {
+                    canAddPrerequisites: true,
+                    canAddDependencies: false
+                };
+                delete result.canAddDependencies;
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: result
+                });
+                response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                userService.getSkillModificationPermissions(1).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the permissions result should return correct value', function () {
+                var result = {
+                    canAddPrerequisites: true,
+                    canAddDependencies: false
+                };
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: result
+                });
+                response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                userService.getSkillModificationPermissions(1).subscribe(function (_result) { return chai_1.expect(_result).to.be.deep.equal(result); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
             });
         });
     });

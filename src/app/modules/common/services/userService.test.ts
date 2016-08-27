@@ -1,3 +1,4 @@
+import {ISkillModificatioPermissions} from "../interfaces/iSkillModificationPermissions";
 import {ITeamModificatioPermissions} from "../interfaces/iTeamModificationPermissions";
 import {IUserPermissionRule} from "../interfaces/iUserPermissionRule";
 import {IUserPermission} from "../interfaces/iUserPermission";
@@ -118,7 +119,6 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/user/can-modify-skills-list');
   });
-
 
   it('getUserDetails should use correct url', () => {
     var username = 'some username'
@@ -255,6 +255,15 @@ describe('UserService', () => {
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal(`/api/user/team-modification-permissions/${teamId}`);
   });
 
+  it('getSkillModificationPermissions should use correct url', () => {
+    var skillId = 123321;
+    userService.getSkillModificationPermissions(skillId);
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal(`/api/user/skill-modification-permissions/${skillId}`);
+  });
+
   var failingTests = (beforeEachFunc: () => void, expectedError: string) => {
     return () => {
 
@@ -353,6 +362,13 @@ describe('UserService', () => {
 
       it('getTeamModificationPermissions should fail correctly', () => {
         userService.getTeamModificationPermissions(1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(expectedError)
+        );
+      });
+
+      it('getSkillModificationPermissions should fail correctly', () => {
+        userService.getSkillModificationPermissions(1).subscribe(
           () => expect(true, 'should fail').to.be.false,
           (error) => expect(error).to.be.equal(expectedError)
         );
@@ -464,6 +480,13 @@ describe('UserService', () => {
 
     it('getTeamModificationPermissions should fail correctly', () => {
       userService.getTeamModificationPermissions(1).subscribe(
+        () => expect(true, 'should fail').to.be.false,
+        (error) => expect(error).to.be.equal('Unauthorized')
+      );
+    });
+
+    it('getSkillModificationPermissions should fail correctly', () => {
+      userService.getSkillModificationPermissions(1).subscribe(
         () => expect(true, 'should fail').to.be.false,
         (error) => expect(error).to.be.equal('Unauthorized')
       );
@@ -1354,6 +1377,92 @@ describe('UserService', () => {
 
         userService.getTeamModificationPermissions(1).subscribe(
           (_result: ITeamModificatioPermissions) => expect(_result).to.be.deep.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
+
+    });
+
+    describe('getSkillModificationPermissions', () => {
+
+      it('without the permissions result should fail correctly', () => {
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getSkillModificationPermissions(1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the permissions result without canAddPrerequisites should fail correctly', () => {
+        var result: ISkillModificatioPermissions = {
+          canAddPrerequisites: true,
+          canAddDependencies: false
+        };
+
+        delete result.canAddPrerequisites;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getSkillModificationPermissions(1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the permissions result without canAddDependencies should fail correctly', () => {
+        var result: ISkillModificatioPermissions = {
+          canAddPrerequisites: true,
+          canAddDependencies: false
+        };
+
+        delete result.canAddDependencies;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getSkillModificationPermissions(1).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the permissions result should return correct value', () => {
+        var result: ISkillModificatioPermissions = {
+          canAddPrerequisites: true,
+          canAddDependencies: false
+        };
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        userService.getSkillModificationPermissions(1).subscribe(
+          (_result: ISkillModificatioPermissions) => expect(_result).to.be.deep.equal(result),
           () => expect(true, 'should succeed').to.be.false)
       });
 

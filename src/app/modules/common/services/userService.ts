@@ -1,3 +1,4 @@
+import {ISkillModificatioPermissions} from "../interfaces/iSkillModificationPermissions";
 import {ITeamModificatioPermissions} from "../interfaces/iTeamModificationPermissions";
 import {HttpServiceBase} from "./base/httpServiceBase";
 import {IUserPermissionRule} from "../interfaces/iUserPermissionRule";
@@ -73,6 +74,7 @@ export interface IUserService {
     userPermissionsToAdd: IUserPermission[],
     userPermissionsToRemove: IUserPermission[]): Observable<void>;
   getTeamModificationPermissions(teamId: number): Observable<ITeamModificatioPermissions>;
+  getSkillModificationPermissions(skillId: number): Observable<ISkillModificatioPermissions>;
 }
 
 @Injectable()
@@ -91,6 +93,7 @@ export class UserService extends HttpServiceBase implements IUserService {
   private _canUserModifySkillsListSuffix = 'can-modify-skills-list';
   private _filteredUsersPrefix = 'filtered/';
   private _teamModificationRulesSuffix = 'team-modification-permissions/';
+  private _skillModificationRulesSuffix = 'skill-modification-permissions/';
 
   constructor(http: Http) {
     super(http)
@@ -261,6 +264,14 @@ export class UserService extends HttpServiceBase implements IUserService {
       .catch((error: any) => this._handleServerError<ITeamModificatioPermissions>(error));
   }
 
+  public getSkillModificationPermissions(skillId: number): Observable<ISkillModificatioPermissions> {
+    var url = `${this._userControllerUrl}${this._skillModificationRulesSuffix}${skillId}`;
+
+    return this._get(url)
+      .map((response: Response) => this._extractSkillModificationPermissions(response))
+      .catch((error: any) => this._handleServerError<ISkillModificatioPermissions>(error));
+  }
+
   private _getRedirectionLocation(response: Response): string {
     this._throwErrorIfStatusIsNotOk(response);
 
@@ -350,6 +361,23 @@ export class UserService extends HttpServiceBase implements IUserService {
     return ('canModifyTeamName' in response) &&
       ('canModifyTeamAdmins' in response) &&
       ('canModifyTeamUsers' in response);
+  }
+
+  private _extractSkillModificationPermissions(response: Response): ISkillModificatioPermissions {
+    this._throwErrorIfStatusIsNotOk(response);
+
+    var result = response.json();
+
+    if (!result || !this._isResponseHasAllSkillModificationPermissions(result)) {
+      throw 'Unexpected result';
+    }
+
+    return result;
+  }
+
+  private _isResponseHasAllSkillModificationPermissions(response: any): boolean {
+    return ('canAddPrerequisites' in response) &&
+      ('canAddDependencies' in response);
   }
 
 }

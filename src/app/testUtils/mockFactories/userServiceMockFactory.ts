@@ -17,6 +17,7 @@ export class UserServiceMockFactory {
       canUserUpdatePassword: () => null,
       canUserModifyTeams: () => null,
       getTeamModificationPermissions: () => null,
+      getSkillModificationPermissions: () => null,
       canUserModifySkills: () => null
     }
   }
