@@ -1,0 +1,31 @@
+<div class="skill-dependencies-wrapper">
+  <skill-dependencies-list [skillDetails]="skillDetails"
+                           [canModify]="canModify"
+                           (skillDependencies)="skillDependencies = $event"
+                           (changingSkillDependencies)="changingSkillDependencies = $event"
+                           *ngIf="state === SkillDependenciesState.LIST_DEPENDENCIES">
+  </skill-dependencies-list>
+
+  <add-skill-dependency [skillDetails]="skillDetails"
+                        (skillDependencyAdded)="cancelAddingDependency()"
+                        *ngIf="state === SkillDependenciesState.ADD_DEPENDENCY">
+  </add-skill-dependency>
+
+  <div class="skill-dependencies-actions"
+       [ngClass]="{'removing-skill-dependency': changingSkillDependencies}">
+
+    <button *ngIf="state === SkillDependenciesState.LIST_DEPENDENCIES && skillDependencies"
+            class="add-skill-dependency-button"
+            (click)="addDependency()"
+            [ngClass]="{ 'disabled': !canModify }"
+            [disabled]="!canModify">
+      Add Skill Dependncy
+    </button>
+
+    <button *ngIf="state === SkillDependenciesState.ADD_DEPENDENCY"
+            class="cancel-adding-skill-dependency-button"
+            (click)="cancelAddingDependency()">
+      Cancel
+    </button>
+  </div>
+</div>

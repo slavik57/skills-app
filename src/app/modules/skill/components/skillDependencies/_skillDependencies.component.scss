@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
 
-  .skill-prerequisites-wrapper{
+  .skill-dependencies-wrapper{
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -17,16 +17,16 @@
     padding-right: 1rem;
     padding-bottom: 1rem;
 
-    skill-prerequisites-list, add-skill-prerequisite{
+    skill-dependencies-list, add-skill-dependency{
       width: 100%;
       flex: 1;
     }
 
-    skill-prerequisites-list{
+    skill-dependencies-list{
       margin-bottom: 1rem;
     }
 
-    .skill-prerequisites-actions{
+    .skill-dependencies-actions{
       margin-bottom: 0;
       position: relative;
       margin-left: 0;
@@ -34,7 +34,7 @@
       opacity: 1;
       transition: opacity .3s ease;
 
-      &.removing-skill-prerequisite{
+      &.removing-skill-dependency{
         pointer-events: none;
         opacity: 0.5;
       }
@@ -47,14 +47,14 @@
       }
 
       @media #{$small-and-down} {
-        .cancel-adding-skill-prerequisite-button{
+        .cancel-adding-skill-dependency-button{
           margin-top: 1rem;
           width: 100%;
         }
       }
 
       @media #{$medium-and-up} {
-        .cancel-adding-skill-prerequisite-button{
+        .cancel-adding-skill-dependency-button{
           position: absolute;
           bottom: 0;
           left: 9rem;
@@ -66,13 +66,13 @@
   }
 
   @media #{$small-and-down} {
-    .skill-prerequisites-wrapper{
+    .skill-dependencies-wrapper{
       min-height: 17rem;
     }
   }
 
   @media #{$medium-and-up} {
-    .skill-prerequisites-wrapper{
+    .skill-dependencies-wrapper{
       min-height: 13rem;
     }
   }

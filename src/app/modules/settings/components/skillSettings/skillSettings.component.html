@@ -21,7 +21,7 @@
 
       <ul #availableSkillSettings class="tabs">
         <li class="tab"><a href="#prerequisiteSkillsSettings">Prerequisites</a></li>
-        <li class="tab"><a href="#dependantSkillsSettings">Dependants</a></li>
+        <li class="tab"><a href="#dependantSkillsSettings">Dependencies</a></li>
       </ul>
 
       <div id="prerequisiteSkillsSettings">
@@ -30,9 +30,9 @@
         </skill-prerequisites>
       </div>
       <div id="dependantSkillsSettings">
-        <skill-dependants [skillDetails]="skillDetails"
-                          [canModify]="permissions.canModifyDependencies">
-        </skill-dependants>
+        <skill-dependencies [skillDetails]="skillDetails"
+                            [canModify]="permissions.canModifyDependencies">
+        </skill-dependencies>
       </div>
 
     </div>

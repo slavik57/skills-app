@@ -13,7 +13,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var skillDependants_component_1 = require("../../../skill/components/skillDependants/skillDependants.component");
+var skillDependencies_component_1 = require("../../../skill/components/skillDependencies/skillDependencies.component");
 var circularLoading_component_1 = require("../../../common/components/circularLoading/circularLoading.component");
 var skillPrerequisites_component_1 = require("../../../skill/components/skillPrerequisites/skillPrerequisites.component");
 var userService_1 = require("../../../common/services/userService");
@@ -58,7 +58,7 @@ var SkillSettingsComponent = (function (_super) {
             styles: [require('./_skillSettings.component.scss')],
             directives: [
                 skillPrerequisites_component_1.SkillPrerequisitesComponent,
-                skillDependants_component_1.SkillDependantsComponent,
+                skillDependencies_component_1.SkillDependenciesComponent,
                 circularLoading_component_1.CircularLoadingComponent
             ]
         }), 

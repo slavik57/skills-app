@@ -1,1 +1,31 @@
-Hi from SkillPrerequisites component
+<div class="skill-prerequisites-wrapper">
+  <skill-prerequisites-list [skillDetails]="skillDetails"
+                            [canModify]="canModify"
+                            (skillPrerequisites)="skillPrerequisites = $event"
+                            (changingSkillPrerequisites)="changingSkillPrerequisites = $event"
+                            *ngIf="state === SkillPrerequisitesState.LIST_PREREQUISITES">
+  </skill-prerequisites-list>
+
+  <add-skill-prerequisite [skillDetails]="skillDetails"
+                          (skillPrerequisiteAdded)="cancelAddingPrerequisite()"
+                          *ngIf="state === SkillPrerequisitesState.ADD_PREREQUISITE">
+  </add-skill-prerequisite>
+
+  <div class="skill-prerequisites-actions"
+       [ngClass]="{'removing-skill-prerequisite': changingSkillPrerequisites}">
+
+    <button *ngIf="state === SkillPrerequisitesState.LIST_PREREQUISITES && skillPrerequisites"
+            class="add-skill-prerequisite-button"
+            (click)="addPrerequisite()"
+            [ngClass]="{ 'disabled': !canModify }"
+            [disabled]="!canModify">
+      Add Skill Prerequisite
+    </button>
+
+    <button *ngIf="state === SkillPrerequisitesState.ADD_PREREQUISITE"
+            class="cancel-adding-skill-prerequisite-button"
+            (click)="cancelAddingPrerequisite()">
+      Cancel
+    </button>
+  </div>
+</div>

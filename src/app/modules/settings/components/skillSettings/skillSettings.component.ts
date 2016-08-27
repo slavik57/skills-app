@@ -1,4 +1,4 @@
-import {SkillDependantsComponent} from "../../../skill/components/skillDependants/skillDependants.component";
+import {SkillDependenciesComponent} from "../../../skill/components/skillDependencies/skillDependencies.component";
 import {CircularLoadingComponent} from "../../../common/components/circularLoading/circularLoading.component";
 import {SkillPrerequisitesComponent} from "../../../skill/components/skillPrerequisites/skillPrerequisites.component";
 import {ISkillModificatioPermissions} from "../../../common/interfaces/iSkillModificationPermissions";
@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
   styles: [require('./_skillSettings.component.scss')],
   directives: [
     SkillPrerequisitesComponent,
-    SkillDependantsComponent,
+    SkillDependenciesComponent,
     CircularLoadingComponent
   ]
 })
