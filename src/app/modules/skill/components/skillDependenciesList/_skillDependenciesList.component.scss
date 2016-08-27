@@ -10,12 +10,12 @@
     display: flex;
     flex-direction: column;
 
-    .skill-dependencies-wrapper {
+    .skill-dependencies-list-content-wrapper {
       flex: 1;
       display: flex;
       flex-direction: column;
 
-      .skill-dependencies-content{
+      .skill-dependencies-list-content{
         flex: 1;
 
         .collection{
@@ -25,16 +25,17 @@
               vertical-align: middle;
             }
 
-            .delete-team-member-button{
+            .delete-skill-dependency-button{
               position: absolute;
               right: 1rem;
+              cursor: pointer;
               transition: opacity .3s ease;
             }
           }
 
           @media #{$small-and-down} {
             .item {
-              .delete-team-member-button{
+              .delete-skill-dependency-button{
                 opacity: 1;
               }
             }
@@ -42,13 +43,17 @@
 
           @media #{$medium-and-up} {
             .item {
-              .delete-team-member-button{
+              .delete-skill-dependency-button{
                 opacity: 0;
               }
 
               &:hover{
-                .delete-team-member-button{
-                  opacity: 1;
+                .delete-skill-dependency-button{
+                  opacity: .8;
+
+                  &:hover {
+                    opacity: 1;
+                  }
                 }
               }
             }

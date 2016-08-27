@@ -1,1 +1,55 @@
-Hi from AddSkillDependency component
+<h5 class="title">Add skill dependency</h5>
+
+<div class="filling-form-wrapper"
+    [ngClass]="{ submitting: isAddingSkillDependency, 'has-submit-error': !!addSkillDependencyError }">
+
+  <form id="add-skill-dependency-form"
+        [formGroup]="addSkillDependencyFormGroup"
+        (ngSubmit)="addSkillDependency()">
+
+    <div class="input-field skill-name">
+
+      <sourced-autocomplete [autocompleteFormControl]="skillNameControl"
+                            labelText="Skill Name"
+                            debounceTime="500"
+                            [itemsSource]="skillsByPartialSkillNameSource">
+        <template let-searchResult="item">
+              {{searchResult.skillName}}
+        </template>
+      </sourced-autocomplete>
+
+      <div class="form-validation-errors">
+        <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(skillNameControl, 'required') }">
+          Skill name is required
+        </div>
+        <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(skillNameControl, 'skillDoesNotExist', false) }">
+          Skill does not exists
+        </div>
+        <div class="form-validation-error" [ngClass]="{ 'has-errors': isFieldHasError(skillNameControl, 'skillDoesNotExistCheckFailed', false) }">
+          Failed checking if skill exists
+        </div>
+      </div>
+
+    </div>
+
+    <div class="submit-error">
+      {{addSkillDependencyError}}
+    </div>
+
+    <div class="submit-wrapper">
+      <button type="submit"
+              class="submit-button"
+              [disabled]="!canAddSkillDependency()"
+              [ngClass]="{ disabled: !canAddSkillDependency() }">
+             Add
+      </button>
+    </div>
+
+  </form>
+
+</div>
+
+<div class="submitting-form-wrapper"
+     [ngClass]="{ submitting: isAddingSkillDependency }">
+  <circular-loading></circular-loading>
+</div>

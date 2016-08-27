@@ -1,7 +1,7 @@
 <div class="skill-dependencies-list-wrapper loaded-content-wrapper"
      [ngClass]="{loading: isLoadingSkillDependencies, error: loadingSkillDependenciesError}">
 
-  <div class="loading-skill-dependencies loading-wrapper">
+  <div class="loading-skill-dependencies-list loading-wrapper">
     <circular-loading></circular-loading>
   </div>
 
@@ -12,10 +12,10 @@
     </button>
   </div>
 
-  <div class="skill-dependencies-wrapper content-wrapper filling-form-wrapper"
+  <div class="skill-dependencies-list-content-wrapper content-wrapper filling-form-wrapper"
        [ngClass]="{ submitting: updatingSkillDependency, 'has-submit-error': !!updatingSkillDependencyError }">
 
-    <div *ngIf="skillDependencies" class="skill-dependencies-content">
+    <div *ngIf="skillDependencies" class="skill-dependencies-list-content">
 
       <ul #skillDependenciesList
           class="collection"
@@ -24,9 +24,7 @@
         <li class="item collection-item"
            *ngFor="let skillDependency of skillDependencies">
 
-            <span class="collapsible-header skill-name">
-              {{skillDependency.skillName}}
-            </span>
+            <span class="skill-name">{{skillDependency.skillName}}</span>
             <a class="delete-skill-dependency-button"
                *ngIf="canModify"
                (click)="$event.stopPropagation(); removeSkillDependency(skillDependency)">
@@ -36,9 +34,10 @@
 
       </ul>
 
-      <span class="no-skill-dependencies-message" *ngIf="skillDependencies.length < 1">
+      <span class="no-skill-dependencies-message"
+            *ngIf="skillDependencies.length < 1">
         <i class="material-icons">card_membership</i>
-        The skill is not dependant on any other skills
+        The skill is not a prerequisite to any other skill
       </span>
 
     </div>
