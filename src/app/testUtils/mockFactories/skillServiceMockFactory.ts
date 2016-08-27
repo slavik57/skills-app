@@ -10,7 +10,8 @@ export class SkillServiceMockFactory {
       getSkillDependencies: () => null,
       removeSkillDependency: () => null,
       addSkillDependency: () => null,
-      getSkillsDetailsByPartialSkillName: () => null
+      getSkillsDetailsByPartialSkillName: () => null,
+      getSkillPrerequisites: () => null
     }
   }
 }

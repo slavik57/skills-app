@@ -66,6 +66,13 @@ testing_1.describe('SkillService', function () {
         chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
         chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/dependencies');
     });
+    testing_1.it('getSkillPrerequisites should use correct url', function () {
+        var skillId = 123321;
+        skillService.getSkillPrerequisites(skillId);
+        chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+        chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Get);
+        chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/prerequisites');
+    });
     testing_1.describe('addSkillDependency', function () {
         var skillId;
         var skillName;
@@ -140,6 +147,9 @@ testing_1.describe('SkillService', function () {
             });
             testing_1.it('getSkillDependencies should fail correctly', function () {
                 skillService.getSkillDependencies(123).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
+            });
+            testing_1.it('getSkillPrerequisites should fail correctly', function () {
+                skillService.getSkillPrerequisites(123).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
             });
             testing_1.it('addSkillDependency should fail correctly', function () {
                 skillService.addSkillDependency(1, '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
@@ -385,7 +395,7 @@ testing_1.describe('SkillService', function () {
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
                 skillService.getSkillDependencies(11).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
             });
-            testing_1.it('with the users details result should return correct value', function () {
+            testing_1.it('with the skill dependencies result should return correct value', function () {
                 var result = [
                     {
                         id: 1,
@@ -404,6 +414,90 @@ testing_1.describe('SkillService', function () {
                 var response = new http_2.Response(responseOptions);
                 mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
                 skillService.getSkillDependencies(111).subscribe(function (_result) { return chai_1.expect(_result).to.be.deep.equal(result); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
+            });
+        });
+        testing_1.describe('getSkillPrerequisites', function () {
+            testing_1.it('without the skill prerequisites result should fail correctly', function () {
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(new http_2.Response(responseOptions)); });
+                skillService.getSkillPrerequisites(123).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('without skill name should fail correctly', function () {
+                var result = {
+                    id: 1,
+                    skillName: 'some skill name'
+                };
+                delete result.skillName;
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                skillService.getSkillPrerequisites(12321).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('without id should fail correctly', function () {
+                var result = {
+                    id: 1,
+                    skillName: 'some skill name'
+                };
+                delete result.id;
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                skillService.getSkillPrerequisites(12321).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the skill prerequisites details result and empty skill name should fail correctly', function () {
+                var result = {
+                    id: 1,
+                    skillName: ''
+                };
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                skillService.getSkillPrerequisites(12321).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the skill prerequisites result and null id should return fail correctly', function () {
+                var result = {
+                    id: null,
+                    skillName: 'some skill name'
+                };
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: [result]
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                skillService.getSkillPrerequisites(11).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal('Oops. Something went wrong. Please try again'); });
+            });
+            testing_1.it('with the skill prerequisites result should return correct value', function () {
+                var result = [
+                    {
+                        id: 1,
+                        skillName: 'some skill name',
+                    },
+                    {
+                        id: 2,
+                        skillName: 'some other skill name',
+                    }
+                ];
+                responseOptions = new http_2.ResponseOptions({
+                    status: statusCode_1.StatusCode.OK,
+                    headers: new http_1.Headers(),
+                    body: result
+                });
+                var response = new http_2.Response(responseOptions);
+                mockBackend.connections.subscribe(function (connection) { return connection.mockRespond(response); });
+                skillService.getSkillPrerequisites(111).subscribe(function (_result) { return chai_1.expect(_result).to.be.deep.equal(result); }, function () { return chai_1.expect(true, 'should succeed').to.be.false; });
             });
         });
         testing_1.describe('addSkillDependency', function () {

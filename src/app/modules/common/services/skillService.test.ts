@@ -1,3 +1,4 @@
+import {ISkillPrerequisiteDetails} from "../interfaces/ISkillPrerequisiteDetails";
 import {ISkillDependencyDetails} from "../interfaces/iSkillDependencyDetails";
 import {ISkillNameDetails} from "../interfaces/iSkillNameDetails";
 import {HttpError} from "../errors/httpError";
@@ -92,6 +93,15 @@ describe('SkillService', () => {
     expect(mockBackend.connectionsArray).to.be.length(1);
     expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
     expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/dependencies');
+  });
+
+  it('getSkillPrerequisites should use correct url', () => {
+    var skillId = 123321;
+    skillService.getSkillPrerequisites(skillId);
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/prerequisites');
   });
 
   describe('addSkillDependency', () => {
@@ -207,6 +217,13 @@ describe('SkillService', () => {
 
       it('getSkillDependencies should fail correctly', () => {
         skillService.getSkillDependencies(123).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(error)
+        );
+      });
+
+      it('getSkillPrerequisites should fail correctly', () => {
+        skillService.getSkillPrerequisites(123).subscribe(
           () => expect(true, 'should fail').to.be.false,
           (error) => expect(error).to.be.equal(error)
         );
@@ -646,7 +663,7 @@ describe('SkillService', () => {
         );
       });
 
-      it('with the users details result should return correct value', () => {
+      it('with the skill dependencies result should return correct value', () => {
         var result: ISkillDependencyDetails[] = [
           {
             id: 1,
@@ -670,6 +687,145 @@ describe('SkillService', () => {
           (connection: MockConnection) => connection.mockRespond(response));
 
         skillService.getSkillDependencies(111).subscribe(
+          (_result: ISkillDependencyDetails[]) => expect(_result).to.be.deep.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
+
+    });
+
+    describe('getSkillPrerequisites', () => {
+
+      it('without the skill prerequisites result should fail correctly', () => {
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(new Response(responseOptions)));
+
+        skillService.getSkillPrerequisites(123).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('without skill name should fail correctly', () => {
+        var result: ISkillPrerequisiteDetails = {
+          id: 1,
+          skillName: 'some skill name'
+        };
+
+        delete result.skillName;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        skillService.getSkillPrerequisites(12321).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('without id should fail correctly', () => {
+        var result: ISkillPrerequisiteDetails = {
+          id: 1,
+          skillName: 'some skill name'
+        };
+
+        delete result.id;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        skillService.getSkillPrerequisites(12321).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the skill prerequisites details result and empty skill name should fail correctly', () => {
+        var result: ISkillPrerequisiteDetails = {
+          id: 1,
+          skillName: ''
+        };
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        skillService.getSkillPrerequisites(12321).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the skill prerequisites result and null id should return fail correctly', () => {
+        var result: ISkillPrerequisiteDetails = {
+          id: null,
+          skillName: 'some skill name'
+        };
+
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        skillService.getSkillPrerequisites(11).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the skill prerequisites result should return correct value', () => {
+        var result: ISkillPrerequisiteDetails[] = [
+          {
+            id: 1,
+            skillName: 'some skill name',
+          },
+          {
+            id: 2,
+            skillName: 'some other skill name',
+          }
+        ];
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        skillService.getSkillPrerequisites(111).subscribe(
           (_result: ISkillDependencyDetails[]) => expect(_result).to.be.deep.equal(result),
           () => expect(true, 'should succeed').to.be.false)
       });

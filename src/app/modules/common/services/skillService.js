@@ -23,6 +23,7 @@ var SkillService = (function (_super) {
         _super.call(this, http);
         this._skillsControllerUrl = '/api/skills/';
         this._skillExistsUrlSuffix = '/exists';
+        this._skillPrerequisitesUrlSuffix = '/prerequisites';
         this._skillDependenciesUrlSuffix = '/dependencies';
         this._filteredSkillsPrefix = 'filtered/';
     }
@@ -54,6 +55,13 @@ var SkillService = (function (_super) {
         return this._post(this._skillsControllerUrl, body)
             .map(function (response) { return _this._extractAllBody(response); })
             .catch(function (error) { return _this._handleServerError(error); });
+    };
+    SkillService.prototype.getSkillPrerequisites = function (skillId) {
+        var _this = this;
+        var url = this._skillsControllerUrl + skillId + this._skillPrerequisitesUrlSuffix;
+        return this._get(url)
+            .map(function (response) { return _this._extractSkillPrerequisites(response); })
+            .catch(function (error) { return _this._throwOnUnauthorizedOrGenericError(error); });
     };
     SkillService.prototype.getSkillDependencies = function (skillId) {
         var _this = this;
@@ -140,6 +148,31 @@ var SkillService = (function (_super) {
             throw 'Skill id is missing';
         }
         if (!serverSkillDependency.skillName) {
+            throw 'skillName is missing';
+        }
+    };
+    SkillService.prototype._extractSkillPrerequisites = function (response) {
+        var _this = this;
+        this._throwErrorIfStatusIsNotOk(response);
+        var result = response.json();
+        if (!result || !(result instanceof Array)) {
+            throw 'Unexpected result';
+        }
+        var skillPrerequisites = _.map(result, function (_serverSkillPrerequisite) {
+            _this._validateServerSkillPrerequisite(_serverSkillPrerequisite);
+            return {
+                id: _serverSkillPrerequisite.id,
+                skillName: _serverSkillPrerequisite.skillName,
+            };
+        });
+        return skillPrerequisites;
+    };
+    SkillService.prototype._validateServerSkillPrerequisite = function (serverSkillPrerequisite) {
+        if (serverSkillPrerequisite.id === null ||
+            serverSkillPrerequisite.id === undefined) {
+            throw 'Skill id is missing';
+        }
+        if (!serverSkillPrerequisite.skillName) {
             throw 'skillName is missing';
         }
     };

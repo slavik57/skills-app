@@ -1,3 +1,4 @@
+import {ISkillPrerequisiteDetails} from "../interfaces/ISkillPrerequisiteDetails";
 import {ISkillDependencyDetails} from "../interfaces/iSkillDependencyDetails";
 import {ISkillNameDetails} from "../interfaces/iSkillNameDetails";
 import {HttpServiceBase} from "./base/httpServiceBase";
@@ -7,6 +8,11 @@ import { Response, Http } from '@angular/http';
 import * as _ from 'lodash';
 
 interface IServerSkillNameDetails {
+  id: number;
+  skillName: string;
+}
+
+interface IServerSkillPrerequisite {
   id: number;
   skillName: string;
 }
@@ -21,6 +27,7 @@ export interface ISkillService {
   isSkillExists(skillName: string): Observable<boolean>;
   deleteSkill(skillId: number): Observable<void>;
   createSkill(skillName: string): Observable<ISkillNameDetails>;
+  getSkillPrerequisites(skillId: number): Observable<ISkillPrerequisiteDetails[]>;
   getSkillDependencies(skillId: number): Observable<ISkillDependencyDetails[]>;
   addSkillDependency(skillId: number, skillName: string): Observable<ISkillDependencyDetails>;
   removeSkillDependency(skillId: number, dependencyId: number): Observable<void>;
@@ -31,6 +38,7 @@ export interface ISkillService {
 export class SkillService extends HttpServiceBase implements ISkillService {
   private _skillsControllerUrl = '/api/skills/';
   private _skillExistsUrlSuffix = '/exists';
+  private _skillPrerequisitesUrlSuffix = '/prerequisites';
   private _skillDependenciesUrlSuffix = '/dependencies';
   private _filteredSkillsPrefix = 'filtered/';
 
@@ -68,6 +76,13 @@ export class SkillService extends HttpServiceBase implements ISkillService {
     return this._post(this._skillsControllerUrl, body)
       .map((response: Response) => this._extractAllBody<ISkillNameDetails>(response))
       .catch((error: any) => this._handleServerError<ISkillNameDetails>(error));
+  }
+
+  public getSkillPrerequisites(skillId: number): Observable<ISkillPrerequisiteDetails[]> {
+    var url = this._skillsControllerUrl + skillId + this._skillPrerequisitesUrlSuffix;
+    return this._get(url)
+      .map((response: Response) => this._extractSkillPrerequisites(response))
+      .catch((error: any) => this._throwOnUnauthorizedOrGenericError<ISkillPrerequisiteDetails[]>(error));
   }
 
   public getSkillDependencies(skillId: number): Observable<ISkillDependencyDetails[]> {
@@ -175,6 +190,39 @@ export class SkillService extends HttpServiceBase implements ISkillService {
     }
 
     if (!serverSkillDependency.skillName) {
+      throw 'skillName is missing';
+    }
+  }
+
+  private _extractSkillPrerequisites(response: Response): ISkillPrerequisiteDetails[] {
+    this._throwErrorIfStatusIsNotOk(response);
+
+    var result = response.json();
+
+    if (!result || !(result instanceof Array)) {
+      throw 'Unexpected result';
+    }
+
+    var skillPrerequisites: ISkillPrerequisiteDetails[] =
+      _.map(result, (_serverSkillPrerequisite: IServerSkillPrerequisite) => {
+        this._validateServerSkillPrerequisite(_serverSkillPrerequisite);
+
+        return <ISkillPrerequisiteDetails>{
+          id: _serverSkillPrerequisite.id,
+          skillName: _serverSkillPrerequisite.skillName,
+        }
+      });
+
+    return skillPrerequisites;
+  }
+
+  private _validateServerSkillPrerequisite(serverSkillPrerequisite: IServerSkillPrerequisite): void {
+    if (serverSkillPrerequisite.id === null ||
+      serverSkillPrerequisite.id === undefined) {
+      throw 'Skill id is missing';
+    }
+
+    if (!serverSkillPrerequisite.skillName) {
       throw 'skillName is missing';
     }
   }

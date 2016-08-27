@@ -11,7 +11,8 @@ var SkillServiceMockFactory = (function () {
             getSkillDependencies: function () { return null; },
             removeSkillDependency: function () { return null; },
             addSkillDependency: function () { return null; },
-            getSkillsDetailsByPartialSkillName: function () { return null; }
+            getSkillsDetailsByPartialSkillName: function () { return null; },
+            getSkillPrerequisites: function () { return null; }
         };
     };
     return SkillServiceMockFactory;
