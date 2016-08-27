@@ -166,6 +166,9 @@ testing_1.describe('TeamService', function () {
             testing_1.it('updateTeamName should fail correctly', function () {
                 teamService.updateTeamName(123, 'new team name').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
             });
+            testing_1.it('getTeamMembers should fail correctly', function () {
+                teamService.getTeamMembers(123).subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
+            });
             testing_1.it('addTeamMember should fail correctly', function () {
                 teamService.addTeamMember(1, '').subscribe(function () { return chai_1.expect(true, 'should fail').to.be.false; }, function (error) { return chai_1.expect(error).to.be.equal(error); });
             });

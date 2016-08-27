@@ -196,7 +196,7 @@ export class TeamService extends HttpServiceBase implements ITeamService {
 
     if (serverTeamMember.isAdmin === null ||
       serverTeamMember.isAdmin === undefined) {
-      throw 'User id is missing';
+      throw 'isAdmin is missing';
     }
   }
 }

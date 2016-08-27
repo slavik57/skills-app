@@ -154,7 +154,7 @@ var TeamService = (function (_super) {
         }
         if (serverTeamMember.isAdmin === null ||
             serverTeamMember.isAdmin === undefined) {
-            throw 'User id is missing';
+            throw 'isAdmin is missing';
         }
     };
     TeamService = __decorate([

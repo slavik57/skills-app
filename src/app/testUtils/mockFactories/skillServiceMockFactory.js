@@ -7,7 +7,9 @@ var SkillServiceMockFactory = (function () {
             getSkillsDetails: function () { return null; },
             deleteSkill: function () { return null; },
             createSkill: function () { return null; },
-            isSkillExists: function () { return null; }
+            isSkillExists: function () { return null; },
+            getSkillDependencies: function () { return null; },
+            removeSkillDependency: function () { return null; }
         };
     };
     return SkillServiceMockFactory;

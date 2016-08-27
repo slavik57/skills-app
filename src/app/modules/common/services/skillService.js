@@ -23,6 +23,7 @@ var SkillService = (function (_super) {
         _super.call(this, http);
         this._skillsControllerUrl = '/api/skills/';
         this._skillExistsUrlSuffix = '/exists';
+        this._skillDependenciesUrlSuffix = '/dependencies';
     }
     SkillService.prototype.getSkillsDetails = function () {
         var _this = this;
@@ -53,6 +54,23 @@ var SkillService = (function (_super) {
             .map(function (response) { return _this._extractAllBody(response); })
             .catch(function (error) { return _this._handleServerError(error); });
     };
+    SkillService.prototype.getSkillDependencies = function (skillId) {
+        var _this = this;
+        var url = this._skillsControllerUrl + skillId + this._skillDependenciesUrlSuffix;
+        return this._get(url)
+            .map(function (response) { return _this._extractSkillDependencies(response); })
+            .catch(function (error) { return _this._throwOnUnauthorizedOrGenericError(error); });
+    };
+    SkillService.prototype.removeSkillDependency = function (skillId, dependencyId) {
+        var _this = this;
+        var url = this._skillsControllerUrl + skillId + this._skillDependenciesUrlSuffix;
+        var body = JSON.stringify({
+            dependencyId: dependencyId
+        });
+        return this._delete(url, body)
+            .map(function (response) { return _this._throwErrorIfStatusIsNotOk(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
+    };
     SkillService.prototype._extractSkillsDetails = function (response) {
         var _this = this;
         this._throwErrorIfStatusIsNotOk(response);
@@ -76,6 +94,31 @@ var SkillService = (function (_super) {
         }
         if (!serverSkillNameDetails.skillName) {
             throw 'Skill name is missing';
+        }
+    };
+    SkillService.prototype._extractSkillDependencies = function (response) {
+        var _this = this;
+        this._throwErrorIfStatusIsNotOk(response);
+        var result = response.json();
+        if (!result || !(result instanceof Array)) {
+            throw 'Unexpected result';
+        }
+        var skillDependencies = _.map(result, function (_serverSkillDependency) {
+            _this._validateServerSkillDependency(_serverSkillDependency);
+            return {
+                id: _serverSkillDependency.id,
+                skillName: _serverSkillDependency.skillName,
+            };
+        });
+        return skillDependencies;
+    };
+    SkillService.prototype._validateServerSkillDependency = function (serverSkillDependency) {
+        if (serverSkillDependency.id === null ||
+            serverSkillDependency.id === undefined) {
+            throw 'Skill id is missing';
+        }
+        if (!serverSkillDependency.skillName) {
+            throw 'skillName is missing';
         }
     };
     SkillService = __decorate([

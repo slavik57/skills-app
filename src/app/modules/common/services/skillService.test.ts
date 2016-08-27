@@ -1,3 +1,4 @@
+import {ISkillDependencyDetails} from "../interfaces/iSkillDependencyDetails";
 import {ISkillNameDetails} from "../interfaces/iSkillNameDetails";
 import {HttpError} from "../errors/httpError";
 import {StatusCode} from "../../../../common/statusCode";
@@ -84,6 +85,41 @@ describe('SkillService', () => {
 
   });
 
+  it('getSkillDependencies should use correct url', () => {
+    var skillId = 123321;
+    skillService.getSkillDependencies(skillId);
+
+    expect(mockBackend.connectionsArray).to.be.length(1);
+    expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Get);
+    expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/dependencies');
+  });
+
+  describe('removeSkillDependency', () => {
+
+    var skillId: number;
+    var dependencyId: number;
+
+    beforeEach(() => {
+      skillId = 789;
+      dependencyId = 111222;
+      skillService.removeSkillDependency(skillId, dependencyId);
+    });
+
+    it('should use correct url', () => {
+      expect(mockBackend.connectionsArray).to.be.length(1);
+      expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Delete);
+      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/dependencies');
+    });
+
+    it('should use correct body', () => {
+      var expectedBody = JSON.stringify({
+        dependencyId: dependencyId
+      });
+
+      expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+    });
+
+  });
 
   function shouldFailWithError(error: any, beforeEachFunc: () => void): any {
 
@@ -114,6 +150,20 @@ describe('SkillService', () => {
 
       it('createSkill should fail correctly', () => {
         skillService.createSkill('').subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(error)
+        );
+      });
+
+      it('getSkillDependencies should fail correctly', () => {
+        skillService.getSkillDependencies(123).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(error)
+        );
+      });
+
+      it('removeSkillDependency should fail correctly', () => {
+        skillService.removeSkillDependency(123, 456).subscribe(
           () => expect(true, 'should fail').to.be.false,
           (error) => expect(error).to.be.equal(error)
         );
@@ -412,6 +462,168 @@ describe('SkillService', () => {
             () => expect(true, 'should succeed').to.be.false)
         });
 
+      });
+
+    });
+
+    describe('getSkillDependencies', () => {
+
+      it('without the skill dependencies result should fail correctly', () => {
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(new Response(responseOptions)));
+
+        skillService.getSkillDependencies(123).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('without skill name should fail correctly', () => {
+        var result: ISkillDependencyDetails = {
+          id: 1,
+          skillName: 'some skill name'
+        };
+
+        delete result.skillName;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        skillService.getSkillDependencies(12321).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('without id should fail correctly', () => {
+        var result: ISkillDependencyDetails = {
+          id: 1,
+          skillName: 'some skill name'
+        };
+
+        delete result.id;
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        skillService.getSkillDependencies(12321).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the skill dependencies details result and empty skill name should fail correctly', () => {
+        var result: ISkillDependencyDetails = {
+          id: 1,
+          skillName: ''
+        };
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        skillService.getSkillDependencies(12321).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the skill dependencies result and null id should return fail correctly', () => {
+        var result: ISkillDependencyDetails = {
+          id: null,
+          skillName: 'some skill name'
+        };
+
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: [result]
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        skillService.getSkillDependencies(11).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal('Oops. Something went wrong. Please try again')
+        );
+      });
+
+      it('with the users details result should return correct value', () => {
+        var result: ISkillDependencyDetails[] = [
+          {
+            id: 1,
+            skillName: 'some skill name',
+          },
+          {
+            id: 2,
+            skillName: 'some other skill name',
+          }
+        ];
+
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+          body: result
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        skillService.getSkillDependencies(111).subscribe(
+          (_result: ISkillDependencyDetails[]) => expect(_result).to.be.deep.equal(result),
+          () => expect(true, 'should succeed').to.be.false)
+      });
+
+    });
+
+    describe('removeSkillDependency', () => {
+
+      it('should succeed', () => {
+        responseOptions = new ResponseOptions({
+          status: StatusCode.OK,
+          headers: new Headers(),
+        });
+
+        var response = new Response(responseOptions);
+
+        mockBackend.connections.subscribe(
+          (connection: MockConnection) => connection.mockRespond(response));
+
+        var wasResolved = false;
+        skillService.removeSkillDependency(1234, 5678).subscribe(
+          () => wasResolved = true,
+          () => expect(true, 'should succeed').to.be.false);
+
+        expect(wasResolved).to.be.true;
       });
 
     });

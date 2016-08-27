@@ -6,7 +6,9 @@ export class SkillServiceMockFactory {
       getSkillsDetails: () => null,
       deleteSkill: () => null,
       createSkill: () => null,
-      isSkillExists: () => null
+      isSkillExists: () => null,
+      getSkillDependencies: () => null,
+      removeSkillDependency: () => null
     }
   }
 }

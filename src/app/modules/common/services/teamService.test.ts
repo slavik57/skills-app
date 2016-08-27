@@ -246,6 +246,13 @@ describe('TeamService', () => {
         );
       });
 
+      it('getTeamMembers should fail correctly', () => {
+        teamService.getTeamMembers(123).subscribe(
+          () => expect(true, 'should fail').to.be.false,
+          (error) => expect(error).to.be.equal(error)
+        );
+      });
+
       it('addTeamMember should fail correctly', () => {
         teamService.addTeamMember(1, '').subscribe(
           () => expect(true, 'should fail').to.be.false,
