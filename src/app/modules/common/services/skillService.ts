@@ -31,6 +31,8 @@ export interface ISkillService {
   getSkillDependencies(skillId: number): Observable<ISkillDependencyDetails[]>;
   addSkillDependency(skillId: number, skillName: string): Observable<ISkillDependencyDetails>;
   removeSkillDependency(skillId: number, dependencyId: number): Observable<void>;
+  addSkillPrerequisite(skillId: number, skillName: string): Observable<ISkillDependencyDetails>;
+  removeSkillPrerequisite(skillId: number, prerequisiteId: number): Observable<void>;
   getSkillsDetailsByPartialSkillName(skillName: string, maxNumberOfSkills?: number): Observable<ISkillNameDetails[]>;
 }
 
@@ -104,11 +106,35 @@ export class SkillService extends HttpServiceBase implements ISkillService {
       .catch((error: any) => this._handleServerError<ISkillDependencyDetails>(error));
   }
 
-  public removeSkillDependency(skillId: number, dependencyId: number): Observable<void> {
-    var url = this._skillsControllerUrl + skillId + this._skillDependenciesUrlSuffix;
+  public addSkillPrerequisite(skillId: number, skillName: string): Observable<ISkillDependencyDetails> {
+    var url = this._skillsControllerUrl + skillId + this._skillPrerequisitesUrlSuffix;
 
     let body: string = JSON.stringify({
-      dependencyId: dependencyId
+      skillName: skillName
+    });
+
+    return this._post(url, body)
+      .map((response: Response) => this._extractAllBody<ISkillDependencyDetails>(response))
+      .catch((error: any) => this._handleServerError<ISkillDependencyDetails>(error));
+  }
+
+  public removeSkillDependency(skillId: number, dependencyId: number): Observable<void> {
+    var url = this._skillsControllerUrl + dependencyId + this._skillPrerequisitesUrlSuffix;
+
+    let body: string = JSON.stringify({
+      prerequisiteId: skillId
+    });
+
+    return this._delete(url, body)
+      .map((response: Response) => this._throwErrorIfStatusIsNotOk<void>(response))
+      .catch((error: any) => this._handleServerError<void>(error));
+  }
+
+  public removeSkillPrerequisite(skillId: number, prerequisiteId: number): Observable<void> {
+    var url = this._skillsControllerUrl + skillId + this._skillPrerequisitesUrlSuffix;
+
+    let body: string = JSON.stringify({
+      prerequisiteId: prerequisiteId
     });
 
     return this._delete(url, body)

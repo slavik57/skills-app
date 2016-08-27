@@ -93,6 +93,26 @@ testing_1.describe('SkillService', function () {
             chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
         });
     });
+    testing_1.describe('addSkillPrerequisite', function () {
+        var skillId;
+        var skillName;
+        testing_1.beforeEach(function () {
+            skillId = 789;
+            skillName = 'some skill name';
+            skillService.addSkillPrerequisite(skillId, skillName);
+        });
+        testing_1.it('should use correct url', function () {
+            chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+            chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Post);
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/prerequisites');
+        });
+        testing_1.it('should use correct body', function () {
+            var expectedBody = JSON.stringify({
+                skillName: skillName
+            });
+            chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+        });
+    });
     testing_1.describe('removeSkillDependency', function () {
         var skillId;
         var dependencyId;
@@ -104,11 +124,31 @@ testing_1.describe('SkillService', function () {
         testing_1.it('should use correct url', function () {
             chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
             chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Delete);
-            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/dependencies');
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + dependencyId + '/prerequisites');
         });
         testing_1.it('should use correct body', function () {
             var expectedBody = JSON.stringify({
-                dependencyId: dependencyId
+                prerequisiteId: skillId
+            });
+            chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+        });
+    });
+    testing_1.describe('removeSkillPrerequisite', function () {
+        var skillId;
+        var prerequisiteId;
+        testing_1.beforeEach(function () {
+            skillId = 789;
+            prerequisiteId = 111222;
+            skillService.removeSkillPrerequisite(skillId, prerequisiteId);
+        });
+        testing_1.it('should use correct url', function () {
+            chai_1.expect(mockBackend.connectionsArray).to.be.length(1);
+            chai_1.expect(mockBackend.connectionsArray[0].request.method).to.be.equal(http_1.RequestMethod.Delete);
+            chai_1.expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/prerequisites');
+        });
+        testing_1.it('should use correct body', function () {
+            var expectedBody = JSON.stringify({
+                prerequisiteId: prerequisiteId
             });
             chai_1.expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
         });

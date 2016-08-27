@@ -11,7 +11,9 @@ export class SkillServiceMockFactory {
       removeSkillDependency: () => null,
       addSkillDependency: () => null,
       getSkillsDetailsByPartialSkillName: () => null,
-      getSkillPrerequisites: () => null
+      getSkillPrerequisites: () => null,
+      addSkillPrerequisite: () => null,
+      removeSkillPrerequisite: () => null
     }
   }
 }

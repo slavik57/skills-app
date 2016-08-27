@@ -80,11 +80,31 @@ var SkillService = (function (_super) {
             .map(function (response) { return _this._extractAllBody(response); })
             .catch(function (error) { return _this._handleServerError(error); });
     };
+    SkillService.prototype.addSkillPrerequisite = function (skillId, skillName) {
+        var _this = this;
+        var url = this._skillsControllerUrl + skillId + this._skillPrerequisitesUrlSuffix;
+        var body = JSON.stringify({
+            skillName: skillName
+        });
+        return this._post(url, body)
+            .map(function (response) { return _this._extractAllBody(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
+    };
     SkillService.prototype.removeSkillDependency = function (skillId, dependencyId) {
         var _this = this;
-        var url = this._skillsControllerUrl + skillId + this._skillDependenciesUrlSuffix;
+        var url = this._skillsControllerUrl + dependencyId + this._skillPrerequisitesUrlSuffix;
         var body = JSON.stringify({
-            dependencyId: dependencyId
+            prerequisiteId: skillId
+        });
+        return this._delete(url, body)
+            .map(function (response) { return _this._throwErrorIfStatusIsNotOk(response); })
+            .catch(function (error) { return _this._handleServerError(error); });
+    };
+    SkillService.prototype.removeSkillPrerequisite = function (skillId, prerequisiteId) {
+        var _this = this;
+        var url = this._skillsControllerUrl + skillId + this._skillPrerequisitesUrlSuffix;
+        var body = JSON.stringify({
+            prerequisiteId: prerequisiteId
         });
         return this._delete(url, body)
             .map(function (response) { return _this._throwErrorIfStatusIsNotOk(response); })

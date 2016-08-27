@@ -131,6 +131,33 @@ describe('SkillService', () => {
 
   });
 
+  describe('addSkillPrerequisite', () => {
+
+    var skillId: number;
+    var skillName: string;
+
+    beforeEach(() => {
+      skillId = 789;
+      skillName = 'some skill name';
+      skillService.addSkillPrerequisite(skillId, skillName);
+    });
+
+    it('should use correct url', () => {
+      expect(mockBackend.connectionsArray).to.be.length(1);
+      expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Post);
+      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/prerequisites');
+    });
+
+    it('should use correct body', () => {
+      var expectedBody = JSON.stringify({
+        skillName: skillName
+      });
+
+      expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+    });
+
+  });
+
   describe('removeSkillDependency', () => {
 
     var skillId: number;
@@ -145,12 +172,39 @@ describe('SkillService', () => {
     it('should use correct url', () => {
       expect(mockBackend.connectionsArray).to.be.length(1);
       expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Delete);
-      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/dependencies');
+      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + dependencyId + '/prerequisites');
     });
 
     it('should use correct body', () => {
       var expectedBody = JSON.stringify({
-        dependencyId: dependencyId
+        prerequisiteId: skillId
+      });
+
+      expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
+    });
+
+  });
+
+  describe('removeSkillPrerequisite', () => {
+
+    var skillId: number;
+    var prerequisiteId: number;
+
+    beforeEach(() => {
+      skillId = 789;
+      prerequisiteId = 111222;
+      skillService.removeSkillPrerequisite(skillId, prerequisiteId);
+    });
+
+    it('should use correct url', () => {
+      expect(mockBackend.connectionsArray).to.be.length(1);
+      expect(mockBackend.connectionsArray[0].request.method).to.be.equal(RequestMethod.Delete);
+      expect(mockBackend.connectionsArray[0].request.url).to.be.equal('/api/skills/' + skillId + '/prerequisites');
+    });
+
+    it('should use correct body', () => {
+      var expectedBody = JSON.stringify({
+        prerequisiteId: prerequisiteId
       });
 
       expect(mockBackend.connectionsArray[0].request.getBody()).to.be.equal(expectedBody);
