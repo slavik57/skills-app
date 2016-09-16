@@ -1,0 +1,57 @@
+<div class="skill-prerequisites-list-wrapper loaded-content-wrapper"
+     [ngClass]="{loading: isLoadingSkilPrerequisites, error: loadingSkillPrerequisitesError}">
+
+  <div class="loading-skill-prerequisites-list loading-wrapper">
+    <circular-loading></circular-loading>
+  </div>
+
+  <div class="loading-skill-prerequisites-error loading-content-error">
+    <span class="text">{{loadingSkillPrerequisitesError}}</span>
+    <button class="retry-button" (click)="reload()">
+     Try Again
+    </button>
+  </div>
+
+  <div class="skill-prerequisites-list-content-wrapper content-wrapper filling-form-wrapper"
+       [ngClass]="{ submitting: updatingSkillPrerequisite, 'has-submit-error': !!updatingSkillPrerequisiteError }">
+
+    <div *ngIf="skillPrerequisites" class="skill-prerequisites-list-content">
+
+      <ul #skillPrerequisitesList
+          class="collection"
+          *ngIf="skillPrerequisites.length > 0">
+
+        <li class="item collection-item"
+           *ngFor="let skillPrerequisite of skillPrerequisites">
+
+            <span class="skill-name">{{skillPrerequisite.skillName}}</span>
+            <a class="delete-skill-prerequisite-button"
+               *ngIf="canModify"
+               (click)="$event.stopPropagation(); removeSkillPrerequisite(skillPrerequisite)">
+              <i class="material-icons">delete</i>
+            </a>
+        </li>
+
+      </ul>
+
+      <span class="no-skill-prerequisites-message"
+            *ngIf="skillPrerequisites.length < 1">
+        <i class="material-icons">card_membership</i>
+        The skill is not a prerequisite to any other skill
+      </span>
+
+    </div>
+
+    <div *ngIf="updatingSkillPrerequisiteError"
+         class="submit-error">
+      {{updatingSkillPrerequisiteError}}
+    </div>
+
+    <div class="submitting-form-wrapper"
+         [ngClass]="{ submitting: updatingSkillPrerequisite }">
+      <circular-loading></circular-loading>
+    </div>
+
+  </div>
+
+</div>
