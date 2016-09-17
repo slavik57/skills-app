@@ -1,3 +1,4 @@
+import {AddSkillPrerequisiteComponent} from "../addSkillPrerequisite/addSkillPrerequisite.component";
 import {SkillPrerequisitesListComponent} from "../skillPrerequisitesList/skillPrerequisitesList.component";
 import {ISkillNameDetails} from "../../../common/interfaces/iSkillNameDetails";
 import {Component, OnInit, Input} from '@angular/core';
@@ -11,7 +12,7 @@ export enum SkillPrerequisitesState {
   selector: 'skill-prerequisites',
   template: require('./skillPrerequisites.component.html'),
   styles: [require('./_skillPrerequisites.component.scss')],
-  directives: [SkillPrerequisitesListComponent]
+  directives: [SkillPrerequisitesListComponent, AddSkillPrerequisiteComponent]
 })
 export class SkillPrerequisitesComponent implements OnInit {
   @Input() public skillDetails: ISkillNameDetails;

@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var addSkillPrerequisite_component_1 = require("../addSkillPrerequisite/addSkillPrerequisite.component");
 var skillPrerequisitesList_component_1 = require("../skillPrerequisitesList/skillPrerequisitesList.component");
 var core_1 = require('@angular/core');
 (function (SkillPrerequisitesState) {
@@ -41,7 +42,7 @@ var SkillPrerequisitesComponent = (function () {
             selector: 'skill-prerequisites',
             template: require('./skillPrerequisites.component.html'),
             styles: [require('./_skillPrerequisites.component.scss')],
-            directives: [skillPrerequisitesList_component_1.SkillPrerequisitesListComponent]
+            directives: [skillPrerequisitesList_component_1.SkillPrerequisitesListComponent, addSkillPrerequisite_component_1.AddSkillPrerequisiteComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], SkillPrerequisitesComponent);
